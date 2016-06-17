@@ -1,0 +1,313 @@
+EESchema Schematic File Version 2
+LIBS:glass-break-cache
+LIBS:liger
+LIBS:garage-opener-cache
+LIBS:glass-break
+LIBS:SR086-SOIC
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:liger-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L V23105 Relay?
+U 1 1 57633D5A
+P 5150 4350
+F 0 "Relay?" H 4500 4550 50  0000 L CNN
+F 1 "V23105" H 5600 4200 50  0000 L CNN
+F 2 "garage-opener:V23105" H 5150 4350 50  0000 C CNN
+F 3 "file:///home/chris/Downloads/ENG_SS_108-98007_L.pdf" H 5150 4350 50  0000 C CNN
+	1    5150 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L USB_OTG P?
+U 1 1 57633E1D
+P 1350 3650
+F 0 "P?" H 1675 3525 50  0000 C CNN
+F 1 "USB_OTG" H 1350 3850 50  0000 C CNN
+F 2 "" V 1300 3550 50  0000 C CNN
+F 3 "" V 1300 3550 50  0000 C CNN
+	1    1350 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L ESP-WROOM-02 U?
+U 1 1 57633EC0
+P 7700 2350
+F 0 "U?" H 8750 1050 60  0000 C CNN
+F 1 "ESP-WROOM-02" H 8400 2200 60  0000 C CNN
+F 2 "" H 7700 2350 60  0000 C CNN
+F 3 "" H 7700 2350 60  0000 C CNN
+	1    7700 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 57633FAF
+P 5850 1350
+F 0 "R?" V 5930 1350 50  0000 C CNN
+F 1 "R" V 5850 1350 50  0000 C CNN
+F 2 "" V 5780 1350 50  0000 C CNN
+F 3 "" H 5850 1350 50  0000 C CNN
+	1    5850 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 57634014
+P 7450 1000
+F 0 "R?" V 7530 1000 50  0000 C CNN
+F 1 "R" V 7450 1000 50  0000 C CNN
+F 2 "" V 7380 1000 50  0000 C CNN
+F 3 "" H 7450 1000 50  0000 C CNN
+	1    7450 1000
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 5763405B
+P 6600 1700
+F 0 "R?" V 6680 1700 50  0000 C CNN
+F 1 "R" V 6600 1700 50  0000 C CNN
+F 2 "" V 6530 1700 50  0000 C CNN
+F 3 "" H 6600 1700 50  0000 C CNN
+	1    6600 1700
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 57634061
+P 6850 2200
+F 0 "R?" V 6930 2200 50  0000 C CNN
+F 1 "R" V 6850 2200 50  0000 C CNN
+F 2 "" V 6780 2200 50  0000 C CNN
+F 3 "" H 6850 2200 50  0000 C CNN
+	1    6850 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 576340C5
+P 6850 1450
+F 0 "R?" V 6930 1450 50  0000 C CNN
+F 1 "R" V 6850 1450 50  0000 C CNN
+F 2 "" V 6780 1450 50  0000 C CNN
+F 3 "" H 6850 1450 50  0000 C CNN
+	1    6850 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 576341A5
+P 6100 1700
+F 0 "C?" H 6125 1800 50  0000 L CNN
+F 1 "C" H 6125 1600 50  0000 L CNN
+F 2 "" H 6138 1550 50  0000 C CNN
+F 3 "" H 6100 1700 50  0000 C CNN
+	1    6100 1700
+	0    1    1    0   
+$EndComp
+$Comp
+L C C?
+U 1 1 57634222
+P 6650 2200
+F 0 "C?" H 6675 2300 50  0000 L CNN
+F 1 "C" H 6675 2100 50  0000 L CNN
+F 2 "" H 6688 2050 50  0000 C CNN
+F 3 "" H 6650 2200 50  0000 C CNN
+	1    6650 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 57634242
+P 7450 800
+F 0 "C?" H 7475 900 50  0000 L CNN
+F 1 "C" H 7475 700 50  0000 L CNN
+F 2 "" H 7488 650 50  0000 C CNN
+F 3 "" H 7450 800 50  0000 C CNN
+	1    7450 800 
+	0    1    1    0   
+$EndComp
+$Comp
+L ADA4075 U?
+U 1 1 576343F3
+P 7450 1800
+F 0 "U?" H 7450 1950 50  0000 L CNN
+F 1 "ADA4075" H 7450 1650 50  0000 L CNN
+F 2 "" H 7350 1850 50  0000 C CNN
+F 3 "" H 7450 1950 50  0000 C CNN
+	1    7450 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L electret_microphone U?
+U 1 1 57634A59
+P 5150 1900
+F 0 "U?" H 5300 1650 60  0000 C CNN
+F 1 "electret_microphone" H 5150 2400 60  0000 C CNN
+F 2 "" H 5050 2050 60  0000 C CNN
+F 3 "http://www.mouser.com/ds/2/670/cmc-5044pf-a-515902.pdf" H 5050 2050 60  0000 C CNN
+	1    5150 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 2000 5550 2000
+Wire Wire Line
+	5550 2000 5550 2200
+Wire Wire Line
+	5850 1700 5850 1500
+Connection ~ 5850 1700
+Wire Wire Line
+	5350 1700 5950 1700
+Wire Wire Line
+	6250 1700 6450 1700
+Wire Wire Line
+	7100 1000 7300 1000
+Connection ~ 7100 1000
+Wire Wire Line
+	7100 800  7100 1700
+Wire Wire Line
+	7100 800  7300 800 
+Wire Wire Line
+	7600 800  7800 800 
+Wire Wire Line
+	7800 800  7800 1800
+Wire Wire Line
+	7800 1000 7600 1000
+Connection ~ 7800 1000
+Connection ~ 7100 1700
+Wire Wire Line
+	6750 1700 7150 1700
+Wire Wire Line
+	7350 1500 7350 1400
+Wire Wire Line
+	7750 1800 8000 1800
+Connection ~ 7800 1800
+Wire Wire Line
+	7350 2100 7350 2350
+Wire Wire Line
+	6650 1900 7150 1900
+Wire Wire Line
+	6850 1600 6850 2050
+Connection ~ 6850 1900
+Wire Wire Line
+	6650 1900 6650 2050
+Wire Wire Line
+	6850 2350 6850 2750
+Wire Wire Line
+	6650 2350 6650 2450
+Wire Wire Line
+	6650 2450 6850 2450
+Connection ~ 6850 2450
+Wire Wire Line
+	6850 1300 6850 1100
+Wire Wire Line
+	5850 1200 5850 1050
+$Comp
+L +3.3V #PWR?
+U 1 1 57635FF7
+P 5850 1050
+F 0 "#PWR?" H 5850 900 50  0001 C CNN
+F 1 "+3.3V" H 5850 1190 50  0000 C CNN
+F 2 "" H 5850 1050 50  0000 C CNN
+F 3 "" H 5850 1050 50  0000 C CNN
+	1    5850 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3.3V #PWR?
+U 1 1 57636057
+P 6850 1100
+F 0 "#PWR?" H 6850 950 50  0001 C CNN
+F 1 "+3.3V" H 6850 1240 50  0000 C CNN
+F 2 "" H 6850 1100 50  0000 C CNN
+F 3 "" H 6850 1100 50  0000 C CNN
+	1    6850 1100
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3.3V #PWR?
+U 1 1 57636091
+P 7350 1400
+F 0 "#PWR?" H 7350 1250 50  0001 C CNN
+F 1 "+3.3V" H 7350 1540 50  0000 C CNN
+F 2 "" H 7350 1400 50  0000 C CNN
+F 3 "" H 7350 1400 50  0000 C CNN
+	1    7350 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57636188
+P 5550 2200
+F 0 "#PWR?" H 5550 1950 50  0001 C CNN
+F 1 "GND" H 5550 2050 50  0000 C CNN
+F 2 "" H 5550 2200 50  0000 C CNN
+F 3 "" H 5550 2200 50  0000 C CNN
+	1    5550 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 576361F5
+P 6850 2750
+F 0 "#PWR?" H 6850 2500 50  0001 C CNN
+F 1 "GND" H 6850 2600 50  0000 C CNN
+F 2 "" H 6850 2750 50  0000 C CNN
+F 3 "" H 6850 2750 50  0000 C CNN
+	1    6850 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57636208
+P 7350 2350
+F 0 "#PWR?" H 7350 2100 50  0001 C CNN
+F 1 "GND" H 7350 2200 50  0000 C CNN
+F 2 "" H 7350 2350 50  0000 C CNN
+F 3 "" H 7350 2350 50  0000 C CNN
+	1    7350 2350
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
