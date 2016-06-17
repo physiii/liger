@@ -1,0 +1,47 @@
+Reference, Value, Footprint, Datasheet, Part Number
+JP1,CONN_01X06,Pin_Headers:Pin_Header_Straight_1x06,
+U11,SPX3819,TO_SOT_Packages_SMD:SOT-23-5,http://www.mouser.com/ds/2/146/SPX3819_DS_R200_082312-17072.pdf,SPX3819
+R3,10K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+C1,1uf,Capacitors_SMD:C_0603,http://www.mouser.com/ds/2/212/KEM_C1002_X7R_SMD-357932.pdf,VJ0805G106KXQTW1BC
+D2,ZENER,Diodes_SMD:SOD-123,http://www.mouser.com/ds/2/308/MBR120VLSFT1-D-107081.pdf,MBR120VLSFT1G
+P1,USB_OTG,Connect:USB_Micro-B,,10118194-0001LF
+R5,10K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+SW2,SW_PUSH,Buttons_Switches_SMD:SW_SPST_KMR2,http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf,KMR211NG LFS
+R8,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+D4,LED,LEDs:LED_0805,LS Q976-NR-1,LS Q976-NR-1
+Q1,MMBT3904LT1G,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/MMBT3904LT1-D-113169.pdf,MMBT3904LT1G
+R13,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+D5,SS14,Diodes_SMD:SMA_Standard,http://www.mouser.com/ds/2/149/BAT54-888471.pdf,SS14
+RL1,833H-1C-S-5VDC,relay:883H,http://www.mouser.com/ProductDetail/Song-Chuan/833H-1C-S-5VDC/?qs=sGAEpiMZZMtGt%252bn33CgIP4diQIwUoDh%2fZ7X61JOFkzA%3d,893-833H-1C-S-5VDC
+P2,1935161,Connect:bornier2,http://www.phoenixcontact.com/us/products/1935161/pdf,ESPM02200
+C2,1uf,Capacitors_SMD:C_0603,http://www.mouser.com/ds/2/212/KEM_C1002_X7R_SMD-357932.pdf,VJ0805G106KXQTW1BC
+C3,0.1uf,Capacitors_SMD:C_0603,http://www.mouser.com/ds/2/212/KEM_C1002_X7R_SMD-357932.pdf,VJ0805G106KXQTW1BC
+U1,ESP-WROOM-02,garage-opener:ESP-WROOM-02,http://akizukidenshi.com/download/ds/espressifsystems/0C-ESP8266__WROOM_WiFi_Module_Datasheet__EN_v0.3.pdf,ESP-WROOM-02
+JP3,CONN_01X10,Pin_Headers:Pin_Header_Straight_1x10,
+JP2,CONN_01X10,Pin_Headers:Pin_Header_Straight_1x10,
+P3,CONN_01X04,Pin_Headers:Pin_Header_Angled_1x04,
+R4,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+U2,FT230XS,Housings_SSOP:SSOP-16_3.9x4.9mm_Pitch0.635mm,http://www.mouser.com/ds/2/163/DS_FT230X-5395.pdf,FT230XS
+FB1,BK0603HS330-T,Resistors_SMD:R_0603,http://www.murata.com/~/media/webrenewal/support/library/catalog/products/emc/emifil/c31e.ashx?la=en-us,BK0603HS330-T
+R10,27K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+R11,27K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+D7,LED,LEDs:LED_0805,LS Q976-NR-1,LS Q976-NR-1
+R12,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+D8,LED,LEDs:LED_0805,LS Q976-NR-1,LS Q976-NR-1
+R14,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+R15,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+D9,LED,LEDs:LED_0805,LS Q976-NR-1,LS Q976-NR-1
+R16,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+C7,100nF,Capacitors_SMD:C_0603,http://www.mouser.com/ds/2/212/KEM_C1002_X7R_SMD-357932.pdf,VJ0603A470JXACW1BC
+C6,47pF,Capacitors_SMD:C_0603,http://www.mouser.com/ds/2/212/KEM_C1002_X7R_SMD-357932.pdf,VJ0603A470JXACW1BC
+C5,47pF,Capacitors_SMD:C_0603,http://www.mouser.com/ds/2/212/KEM_C1002_X7R_SMD-357932.pdf,VJ0603A470JXACW1BC
+R7,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+Q2,2N7002L,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/2N7002L-D-105484.pdf,2N7002L
+R9,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+C4,4.7uf,Capacitors_SMD:C_0603,http://www.mouser.com/ds/2/212/KEM_C1002_X7R_SMD-357932.pdf,KEM_C1002_X7R_SMD-357932
+Q3,BSS84LT1G,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/BSS84LT1-D-105913.pdf,BSS84LT1G
+R6,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+D1,LED,LEDs:LED_0805,LS Q976-NR-1,LS Q976-NR-1
+R2,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+R1,1K,Resistors_SMD:R_0603,http://www.mouser.com/ds/2/315/AOA0000CE2-37512.pdf,ERJ-1GE0R00C
+D6,SS14,Diodes_SMD:SMA_Standard,http://www.mouser.com/ds/2/149/1N4148WS-888323.pdf,SS14
