@@ -76,8 +76,9 @@ U 1 1 57633EC0
 P 4400 3450
 F 0 "U?" H 5450 2150 60  0000 C CNN
 F 1 "ESP-WROOM-02" H 5100 3300 60  0000 C CNN
-F 2 "" H 4400 3450 60  0000 C CNN
-F 3 "" H 4400 3450 60  0000 C CNN
+F 2 "garage-opener:ESP-WROOM-02" H 4400 3450 60  0000 C CNN
+F 3 "http://akizukidenshi.com/download/ds/espressifsystems/0C-ESP8266__WROOM_WiFi_Module_Datasheet__EN_v0.3.pdf" H 4400 3450 60  0000 C CNN
+F 4 "ESP-WROOM-02" H 4400 3450 60  0001 C CNN "Part Number"
 	1    4400 3450
 	1    0    0    -1  
 $EndComp
@@ -571,7 +572,7 @@ Wire Notes Line
 Wire Notes Line
 	500  2950 9450 2950
 Wire Notes Line
-	500  2950 500  550 
+	500  550  500  5900
 Wire Notes Line
 	500  550  9450 550 
 Wire Notes Line
@@ -680,8 +681,9 @@ U 1 1 57688C11
 P 7050 4150
 F 0 "U?" H 6500 4750 50  0000 L CNN
 F 1 "FT230XS" H 7350 4750 50  0000 L CNN
-F 2 "SSOP-16" H 7050 4150 50  0000 C CNN
-F 3 "" H 7050 4150 50  0000 C CNN
+F 2 "Housings_SSOP:SSOP-16_3.9x4.9mm_Pitch0.635mm" H 7050 4150 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/163/DS_FT230X-5395.pdf" H 7050 4150 50  0001 C CNN
+F 4 "FT230XS" H 7050 4150 60  0001 C CNN "Part Number"
 	1    7050 4150
 	1    0    0    -1  
 $EndComp
@@ -939,4 +941,10 @@ F 3 "" H 2700 3200 50  0000 C CNN
 	1    2700 3200
 	1    0    0    -1  
 $EndComp
+Wire Notes Line
+	3850 2950 3550 2950
+Wire Notes Line
+	3550 2950 3550 5900
+Wire Notes Line
+	3550 5900 500  5900
 $EndSCHEMATC
