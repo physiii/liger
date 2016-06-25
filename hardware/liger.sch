@@ -1,10 +1,4 @@
 EESchema Schematic File Version 2
-LIBS:glass-break-cache
-LIBS:liger
-LIBS:liger-cache
-LIBS:garage-opener-cache
-LIBS:glass-break
-LIBS:SR086-SOIC
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -34,6 +28,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:liger-cache
 EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
@@ -246,7 +241,7 @@ F 3 "" H 2950 2300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 3600 1750 2    60   Input ~ 0
-EN
+TOUT
 $Comp
 L SPX3819 U1?
 U 1 1 5768217D
@@ -386,7 +381,7 @@ U 1 1 57685A47
 P 9250 1700
 F 0 "P?" H 9250 1850 50  0000 C CNN
 F 1 "CONN_01X02" V 9350 1700 50  0000 C CNN
-F 2 "" H 9250 1700 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Angled_1x02" H 9250 1700 50  0001 C CNN
 F 3 "" H 9250 1700 50  0000 C CNN
 	1    9250 1700
 	1    0    0    -1  
@@ -1323,4 +1318,6 @@ F 4 "LS Q976-NR-1" H 13950 2250 60  0001 C CNN "Part Number"
 	1    13950 2250
 	1    0    0    -1  
 $EndComp
+Text Label 3650 1700 0    60   ~ 0
+ADC
 $EndSCHEMATC
