@@ -1,0 +1,62 @@
+Reference, Value, Footprint, Datasheet, Part Number
+Relay1,V23105,garage-opener:V23105,http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1393792-2&DocType=Customer+Drawing&DocLang=English,V23105A5001A201
+P3,USB_OTG,Connect:USB_Micro-B,,10118194-0001LF
+U3,ESP-WROOM-02,garage-opener:ESP-WROOM-02,http://akizukidenshi.com/download/ds/espressifsystems/0C-ESP8266__WROOM_WiFi_Module_Datasheet__EN_v0.3.pdf,ESP-WROOM-02
+R3,2.2K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603FR-072K2L
+R11,1M,Resistors_SMD:R_0603,http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_04.pdf,RC0603FR-071ML
+R5,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
+C1,4.7uF,Capacitors_SMD:C_0603,http://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL_Series_MLCC_ds.pdf,CL10B475KQ8NQNC
+C3,10uF,Capacitors_SMD:C_0603,http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf,GRM188R60G106ME47D
+12pF1,C,Capacitors_SMD:C_0402,http://www.kemet.com/Lists/ProductCatalog/Attachments/46/KEM_C1003_C0G_SMD.pdf,C0402C120J5GACTU
+U2,ADA4075,Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm,http://www.mouser.com/ds/2/609/OP275-879536.pdf,OPA344NA/3K
+U1,electret_microphone,libraries:Electret,http://www.mouser.com/ds/2/670/cmc-5044pf-a-515902.pdf,CMC-5044PF-A
+U11,SPX3819,TO_SOT_Packages_SMD:SOT-23-5,http://www.mouser.com/ds/2/146/SPX3819_DS_R200_082312-17072.pdf,SPX3819
+D3,ZENER,Diodes_SMD:SOD-123,http://www.mouser.com/ds/2/308/MBR120VLSFT1-D-107081.pdf,MBR120VLSFT1G
+C4,1uf,Capacitors_SMD:C_0603,http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf,CC0603ZRY5V7BB105
+D4,D,Diodes_SMD:SMA_Standard,http://www.mouser.com/ds/2/149/BAT54-888471.pdf,SS14
+Q3,Q_NPN_BEC,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/MMBT3904LT1-D-113169.pdf,MMBT3904LT1G
+P4,CONN_01X02,Pin_Headers:Pin_Header_Straight_1x02,
+P1,CONN_01X10,Pin_Headers:Pin_Header_Straight_1x10,http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=5164713&DocType=Customer+Drawing&DocLang=English,1-5164713-0
+P2,CONN_01X10,Pin_Headers:Pin_Header_Straight_1x10,http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=5164713&DocType=Customer+Drawing&DocLang=English,1-5164713-0
+U4,FT230XS,Housings_SSOP:SSOP-16_3.9x4.9mm_Pitch0.635mm,http://www.mouser.com/ds/2/163/DS_FT230X-5395.pdf,FT230XS
+R1,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+SW1,SW_PUSH,Buttons_Switches_SMD:SW_SPST_KMR2,http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf,KMR211NG LFS
+D5,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,LS Q976-NR-1
+FB1,BK0603HS330-T,Resistors_SMD:R_0603,http://www.yuden.co.jp/productdata/catalog/en/mlci07_e.pdf,BK0603HS330-T
+R16,27K,Resistors_SMD:R_0603,http://industrial.panasonic.com/cdbs/www-data/pdf/RDA0000/AOA0000C84.pdf,ERJ-3GEYJ273V
+C9,.1uF,Capacitors_SMD:C_0603,http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf,CC0603ZRY5V9BB104
+Q2,Q_PMOS_GSD,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/BSS84LT1-D-105913.pdf,BSS84LT1G
+Q1,Q_NMOS_GSD,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/2N7002L-D-105484.pdf,2N7002L
+R2,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R4,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R6,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R9,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R10,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R14,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R23,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R22,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R21,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R20,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+R7,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
+R8,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
+R12,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
+R15,27K,Resistors_SMD:R_0603,http://industrial.panasonic.com/cdbs/www-data/pdf/RDA0000/AOA0000C84.pdf,ERJ-3GEYJ273V
+R13,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
+C8,47 pF,Capacitors_SMD:C_0402,http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf,GRM1555C1H470FA01D
+C7,47 pF,Capacitors_SMD:C_0402,http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf,GRM1555C1H470FA01D
+C5,1uf,Capacitors_SMD:C_0603,http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf,CC0603ZRY5V7BB105
+R18,100something,Resistors_SMD:R_0603,
+R19,100 something,Resistors_SMD:R_0603,
+C2,4.7uF,Capacitors_SMD:C_0603,http://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL_Series_MLCC_ds.pdf,CL10B475KQ8NQNC
+D1,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,LS Q976-NR-1
+D2,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,LS Q976-NR-1
+D6,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,LS Q976-NR-1
+D7,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,LS Q976-NR-1
+C6,0.1uF,Capacitors_SMD:C_0603,http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf,CC0603ZRY5V9BB104
+P5,CONN_01X04,Pin_Headers:Pin_Header_Angled_1x04,http://sullinscorp.com/catalogs/101_PAGE114-115_.100_FEMALE_HDR.pdf,PPTC041LGBN-RC
+U5,PT5529B/L2/H2-F,libraries:PT5529B,http://www.everlight.com/file/ProductFile/PT5529B-L2-H2-F.pdf,PT5529B/L2/H2-F
+R17,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+D8,LED,LEDs:LED-3MM,http://www.mouser.com/ds/2/149/QED123-890063.pdf,QED123
+R25,36,Resistors_SMD:R_0603,http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf,RC0603JR-0736RL
+R24,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+Q4,Q_NPN_BEC,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/MMBT3904LT1-D-113169.pdf,MMBT3904LT1G
