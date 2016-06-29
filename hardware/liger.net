@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/chris/circuits/liger/hardware/liger.sch)
-    (date "Wed 29 Jun 2016 02:15:17 PM CDT")
+    (date "Wed 29 Jun 2016 03:15:25 PM CDT")
     (tool "Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -160,7 +160,10 @@
       (tstamp 576851E0))
     (comp (ref P4)
       (value CONN_01X02)
-      (footprint Pin_Headers:Pin_Header_Straight_1x02)
+      (footprint Connect:bornier2)
+      (datasheet http://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/COMBICON%20Spring-Cage%20PCB%20Term.%20Blocks.pdf)
+      (fields
+        (field (name "Part Number") 1985195))
       (libsource (lib conn) (part CONN_01X02))
       (sheetpath (names /) (tstamps /))
       (tstamp 57685A47))

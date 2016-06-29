@@ -368,8 +368,9 @@ U 1 1 57685A47
 P 9250 1700
 F 0 "P4" H 9250 1850 50  0000 C CNN
 F 1 "CONN_01X02" V 9350 1700 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 9250 1700 50  0001 C CNN
-F 3 "" H 9250 1700 50  0000 C CNN
+F 2 "Connect:bornier2" H 9250 1700 50  0001 C CNN
+F 3 "http://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/COMBICON%20Spring-Cage%20PCB%20Term.%20Blocks.pdf" H 9250 1700 50  0001 C CNN
+F 4 "1985195" H 9250 1700 60  0001 C CNN "Part Number"
 	1    9250 1700
 	1    0    0    -1  
 $EndComp
