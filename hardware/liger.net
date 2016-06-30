@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/chris/circuits/liger/hardware/liger.sch)
-    (date "Wed 29 Jun 2016 03:15:25 PM CDT")
+    (date "Thu 30 Jun 2016 10:36:42 AM CDT")
     (tool "Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -160,10 +160,10 @@
       (tstamp 576851E0))
     (comp (ref P4)
       (value CONN_01X02)
-      (footprint Connect:bornier2)
-      (datasheet http://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/COMBICON%20Spring-Cage%20PCB%20Term.%20Blocks.pdf)
+      (footprint Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol)
+      (datasheet http://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1935161.pdf)
       (fields
-        (field (name "Part Number") 1985195))
+        (field (name "Part Number") 1935161))
       (libsource (lib conn) (part CONN_01X02))
       (sheetpath (names /) (tstamps /))
       (tstamp 57685A47))
@@ -836,14 +836,14 @@
         (pin (num 1) (name +) (type input))
         (pin (num 2) (name -) (type input)))))
   (libraries
-    (library (logical liger-cache)
-      (uri /home/chris/circuits/liger/hardware/liger-cache.lib))
     (library (logical device)
       (uri /usr/share/kicad/library/device.lib))
+    (library (logical conn)
+      (uri /usr/share/kicad/library/conn.lib))
     (library (logical linear)
       (uri /usr/share/kicad/library/linear.lib))
-    (library (logical conn)
-      (uri /usr/share/kicad/library/conn.lib)))
+    (library (logical liger-cache)
+      (uri /home/chris/circuits/liger/hardware/liger-cache.lib)))
   (nets
     (net (code 1) (name "Net-(D7-Pad1)")
       (node (ref D7) (pin 1))
