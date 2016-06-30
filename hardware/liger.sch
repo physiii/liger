@@ -1107,7 +1107,7 @@ Wire Notes Line
 Wire Wire Line
 	8050 1150 7600 1150
 Wire Wire Line
-	7600 1150 7600 1450
+	7600 1050 7600 1450
 Wire Wire Line
 	7600 1750 7600 2050
 Wire Wire Line
@@ -1712,4 +1712,16 @@ F 3 "" H 4600 5950 50  0000 C CNN
 	1    4600 5950
 	0    -1   -1   0   
 $EndComp
+$Comp
+L +5V #PWR?
+U 1 1 57758382
+P 7600 1050
+F 0 "#PWR?" H 7600 900 50  0001 C CNN
+F 1 "+5V" H 7600 1190 50  0000 C CNN
+F 2 "" H 7600 1050 50  0000 C CNN
+F 3 "" H 7600 1050 50  0000 C CNN
+	1    7600 1050
+	1    0    0    -1  
+$EndComp
+Connection ~ 7600 1150
 $EndSCHEMATC
