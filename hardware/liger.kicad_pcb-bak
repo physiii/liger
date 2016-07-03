@@ -2274,7 +2274,7 @@
     (effects (font (size 1 1) (thickness 0.25)))
   )
   (gr_text "Pyfi " (at 132.588 133.096) (layer B.SilkS)
-    (effects (font (size 2 2) (thickness 0.375)))
+    (effects (font (size 2 2) (thickness 0.375)) (justify mirror))
   )
   (gr_line (start 183.388 101.854) (end 183.388 87.884) (layer Edge.Cuts) (width 0.15))
   (gr_circle (center 141.986 131.318) (end 144.526 131.318) (layer Edge.Cuts) (width 0.15) (tstamp 57742476))
