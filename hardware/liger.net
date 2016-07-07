@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/chris/circuits/liger/hardware/liger.sch)
-    (date "Fri 01 Jul 2016 06:25:24 PM CDT")
+    (date "Thu 07 Jul 2016 10:59:44 AM CDT")
     (tool "Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -547,6 +547,10 @@
       (tstamp 5776EAB6))
     (comp (ref U3)
       (value ESP-WROOM-02)
+      (footprint libraries:ESP-WROOM-02)
+      (datasheet http://espressif.com/sites/default/files/documentation/0c-esp-wroom-02_datasheet_en.pdf)
+      (fields
+        (field (name "Part Number") ESP-WROOM-02))
       (libsource (lib liger-cache) (part ESP-WROOM-02))
       (sheetpath (names /) (tstamps /))
       (tstamp 57775BA4)))
@@ -830,12 +834,12 @@
         (pin (num 1) (name +) (type input))
         (pin (num 2) (name -) (type input)))))
   (libraries
-    (library (logical conn)
-      (uri /usr/share/kicad/library/conn.lib))
     (library (logical device)
       (uri /usr/share/kicad/library/device.lib))
     (library (logical linear)
       (uri /usr/share/kicad/library/linear.lib))
+    (library (logical conn)
+      (uri /usr/share/kicad/library/conn.lib))
     (library (logical liger-cache)
       (uri /home/chris/circuits/liger/hardware/liger-cache.lib)))
   (nets

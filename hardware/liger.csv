@@ -1,7 +1,6 @@
 Reference, Value, Footprint, Datasheet, Part Number
-Relay1,V23105,garage-opener:V23105,http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1393792-2&DocType=Customer+Drawing&DocLang=English,V23105A5001A201
+Relay1,V23105,garage-opener:V23105,file:///home/chris/Downloads/ENG_SS_108-98007_L%20(3).pdf,V23105A5001A201
 P3,USB_OTG,Connect:USB_Micro-B,,10118194-0001LF
-U3,ESP-WROOM-02,garage-opener:ESP-WROOM-02,http://akizukidenshi.com/download/ds/espressifsystems/0C-ESP8266__WROOM_WiFi_Module_Datasheet__EN_v0.3.pdf,ESP-WROOM-02
 R3,2.2K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603FR-072K2L
 R11,1M,Resistors_SMD:R_0603,http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_04.pdf,RC0603FR-071ML
 R5,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
@@ -15,7 +14,7 @@ D3,ZENER,Diodes_SMD:SOD-123,http://www.mouser.com/ds/2/308/MBR120VLSFT1-D-107081
 C4,1uf,Capacitors_SMD:C_0603,http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf,CC0603ZRY5V7BB105
 D4,D,Diodes_SMD:SMA_Standard,http://www.mouser.com/ds/2/149/BAT54-888471.pdf,SS14
 Q3,Q_NPN_BEC,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/MMBT3904LT1-D-113169.pdf,MMBT3904LT1G
-P4,CONN_01X02,Connect:bornier2,http://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/COMBICON%20Spring-Cage%20PCB%20Term.%20Blocks.pdf,1985195
+P4,CONN_01X02,Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol,http://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1935161.pdf,1935161
 P1,CONN_01X10,Pin_Headers:Pin_Header_Straight_1x10,http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=5164713&DocType=Customer+Drawing&DocLang=English,1-5164713-0
 P2,CONN_01X10,Pin_Headers:Pin_Header_Straight_1x10,http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=5164713&DocType=Customer+Drawing&DocLang=English,1-5164713-0
 U4,FT230XS,Housings_SSOP:SSOP-16_3.9x4.9mm_Pitch0.635mm,http://www.mouser.com/ds/2/163/DS_FT230X-5395.pdf,FT230XS
@@ -45,8 +44,6 @@ R13,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yage
 C8,47 pF,Capacitors_SMD:C_0402,http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf,GRM1555C1H470FA01D
 C7,47 pF,Capacitors_SMD:C_0402,http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf,GRM1555C1H470FA01D
 C5,1uf,Capacitors_SMD:C_0603,http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf,CC0603ZRY5V7BB105
-R18,100something,Resistors_SMD:R_0603,
-R19,100 something,Resistors_SMD:R_0603,
 C2,4.7uF,Capacitors_SMD:C_0603,http://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL_Series_MLCC_ds.pdf,CL10B475KQ8NQNC
 D1,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,LS Q976-NR-1
 D2,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,LS Q976-NR-1
@@ -60,3 +57,5 @@ D8,LED,LEDs:LED-3MM,http://www.mouser.com/ds/2/149/QED123-890063.pdf,QED123
 R25,36,Resistors_SMD:R_0603,http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf,RC0603JR-0736RL
 R24,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
 Q4,Q_NPN_BEC,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/MMBT3904LT1-D-113169.pdf,MMBT3904LT1G
+R18,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
+U3,ESP-WROOM-02,,
