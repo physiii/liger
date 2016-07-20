@@ -62,7 +62,7 @@ P 8300 4150
 F 0 "P3" H 8625 4025 50  0000 C CNN
 F 1 "USB_OTG" H 8300 4350 50  0000 C CNN
 F 2 "Connect:USB_Micro-B" V 8250 4050 50  0001 C CNN
-F 3 "http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf" V 8250 4050 50  0000 C CNN
+F 3 "http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf" V 8250 4050 50  0001 C CNN
 F 4 "10118194-0001LF" H 8300 4150 60  0001 C CNN "Part Number"
 	1    8300 4150
 	1    0    0    -1  
