@@ -49,7 +49,7 @@ U 1 1 57633D5A
 P 8400 1550
 F 0 "Relay1" H 7750 1750 50  0000 L CNN
 F 1 "V23105" H 8850 1400 50  0000 L CNN
-F 2 "garage-opener:V23105" H 8400 1550 50  0001 C CNN
+F 2 "libraries:V23105" H 8400 1550 50  0001 C CNN
 F 3 "file:///home/chris/Downloads/ENG_SS_108-98007_L%20(3).pdf" H 8400 1550 50  0001 C CNN
 F 4 "V23105A5001A201" H 8400 1550 60  0001 C CNN "Part Number"
 	1    8400 1550
@@ -62,7 +62,7 @@ P 8300 4150
 F 0 "P3" H 8625 4025 50  0000 C CNN
 F 1 "USB_OTG" H 8300 4350 50  0000 C CNN
 F 2 "Connect:USB_Micro-B" V 8250 4050 50  0001 C CNN
-F 3 "http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf" V 8250 4050 50  0000 C CNN
+F 3 "http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf" V 8250 4050 50  0001 C CNN
 F 4 "10118194-0001LF" H 8300 4150 60  0001 C CNN "Part Number"
 	1    8300 4150
 	1    0    0    -1  

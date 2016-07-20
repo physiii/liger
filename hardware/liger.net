@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/chris/circuits/liger/hardware/liger.sch)
-    (date "Thu 07 Jul 2016 10:59:44 AM CDT")
+    (date "Wed 20 Jul 2016 01:43:29 PM CDT")
     (tool "Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -17,7 +17,7 @@
   (components
     (comp (ref Relay1)
       (value V23105)
-      (footprint garage-opener:V23105)
+      (footprint libraries:V23105)
       (datasheet "file:///home/chris/Downloads/ENG_SS_108-98007_L%20(3).pdf")
       (fields
         (field (name "Part Number") V23105A5001A201))
@@ -27,6 +27,7 @@
     (comp (ref P3)
       (value USB_OTG)
       (footprint Connect:USB_Micro-B)
+      (datasheet http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf)
       (fields
         (field (name "Part Number") 10118194-0001LF))
       (libsource (lib conn) (part USB_OTG))
@@ -775,8 +776,8 @@
         (field (name Value) SPX3819))
       (pins
         (pin (num 1) (name IN) (type openCol))
-        (pin (num 2) (name ADJ) (type input))
-        (pin (num 3) (name GND) (type power_in))
+        (pin (num 2) (name GND) (type input))
+        (pin (num 3) (name EN) (type power_in))
         (pin (num 4) (name P4) (type input))
         (pin (num 5) (name OUT) (type power_in))))
     (libpart (lib device) (part SW_PUSH)
@@ -955,7 +956,7 @@
       (node (ref C4) (pin 2))
       (node (ref Q3) (pin 2))
       (node (ref U1) (pin 2))
-      (node (ref U11) (pin 3))
+      (node (ref U11) (pin 2))
       (node (ref P2) (pin 10))
       (node (ref SW1) (pin 2))
       (node (ref R8) (pin 1))
@@ -1000,8 +1001,8 @@
     (net (code 29) (name "Net-(C4-Pad1)")
       (node (ref U11) (pin 1))
       (node (ref D3) (pin 1))
+      (node (ref U11) (pin 3))
       (node (ref R12) (pin 2))
-      (node (ref U11) (pin 2))
       (node (ref C4) (pin 1)))
     (net (code 30) (name "Net-(C1-Pad1)")
       (node (ref U1) (pin 1))

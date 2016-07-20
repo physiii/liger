@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/chris/circuits/liger/hardware/liger.sch</source>
-    <date>Wed 06 Jul 2016 12:27:18 PM CDT</date>
+    <date>Thu 07 Jul 2016 02:26:00 PM CDT</date>
     <tool>Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -33,6 +33,7 @@
     <comp ref="P3">
       <value>USB_OTG</value>
       <footprint>Connect:USB_Micro-B</footprint>
+      <datasheet>http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf</datasheet>
       <fields>
         <field name="Part Number">10118194-0001LF</field>
       </fields>
@@ -669,6 +670,11 @@
     </comp>
     <comp ref="U3">
       <value>ESP-WROOM-02</value>
+      <footprint>libraries:ESP-WROOM-02</footprint>
+      <datasheet>http://espressif.com/sites/default/files/documentation/0c-esp-wroom-02_datasheet_en.pdf</datasheet>
+      <fields>
+        <field name="Part Number">ESP-WROOM-02</field>
+      </fields>
       <libsource lib="liger-cache" part="ESP-WROOM-02"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>57775BA4</tstamp>
@@ -1033,11 +1039,11 @@
     <library logical="device">
       <uri>/usr/share/kicad/library/device.lib</uri>
     </library>
-    <library logical="conn">
-      <uri>/usr/share/kicad/library/conn.lib</uri>
-    </library>
     <library logical="linear">
       <uri>/usr/share/kicad/library/linear.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>/usr/share/kicad/library/conn.lib</uri>
     </library>
     <library logical="liger-cache">
       <uri>/home/chris/circuits/liger/hardware/liger-cache.lib</uri>

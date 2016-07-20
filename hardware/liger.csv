@@ -1,6 +1,6 @@
 Reference, Value, Footprint, Datasheet, Part Number
 Relay1,V23105,garage-opener:V23105,file:///home/chris/Downloads/ENG_SS_108-98007_L%20(3).pdf,V23105A5001A201
-P3,USB_OTG,Connect:USB_Micro-B,,10118194-0001LF
+P3,USB_OTG,Connect:USB_Micro-B,http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf,10118194-0001LF
 R3,2.2K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603FR-072K2L
 R11,1M,Resistors_SMD:R_0603,http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_04.pdf,RC0603FR-071ML
 R5,10K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
@@ -58,4 +58,4 @@ R25,36,Resistors_SMD:R_0603,http://www.yageo.com.tw/exep/pages/download/literatu
 R24,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
 Q4,Q_NPN_BEC,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/MMBT3904LT1-D-113169.pdf,MMBT3904LT1G
 R18,1K,Resistors_SMD:R_0603,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-071KL
-U3,ESP-WROOM-02,,
+U3,ESP-WROOM-02,libraries:ESP-WROOM-02,http://espressif.com/sites/default/files/documentation/0c-esp-wroom-02_datasheet_en.pdf,ESP-WROOM-02
