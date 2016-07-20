@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/chris/circuits/liger/hardware/liger.sch)
-    (date "Wed 20 Jul 2016 01:43:29 PM CDT")
+    (date "Wed 20 Jul 2016 03:45:41 PM CDT")
     (tool "Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -214,11 +214,11 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 576C671E))
     (comp (ref FB1)
-      (value BK0603HS330-T)
+      (value BK1608HS330-T)
       (footprint Resistors_SMD:R_0603)
       (datasheet http://www.yuden.co.jp/productdata/catalog/en/mlci07_e.pdf)
       (fields
-        (field (name "Part Number") BK0603HS330-T))
+        (field (name "Part Number") BK1608HS330-T))
       (libsource (lib liger-cache) (part BK0603HS330-T))
       (sheetpath (names /) (tstamps /))
       (tstamp 576C873F))
@@ -835,12 +835,12 @@
         (pin (num 1) (name +) (type input))
         (pin (num 2) (name -) (type input)))))
   (libraries
+    (library (logical conn)
+      (uri /usr/share/kicad/library/conn.lib))
     (library (logical device)
       (uri /usr/share/kicad/library/device.lib))
     (library (logical linear)
       (uri /usr/share/kicad/library/linear.lib))
-    (library (logical conn)
-      (uri /usr/share/kicad/library/conn.lib))
     (library (logical liger-cache)
       (uri /home/chris/circuits/liger/hardware/liger-cache.lib)))
   (nets
