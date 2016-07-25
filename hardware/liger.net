@@ -1,8 +1,8 @@
 (export (version D)
   (design
-    (source /home/chris/circuits/liger/hardware/liger.sch)
-    (date "Wed 20 Jul 2016 03:45:41 PM CDT")
-    (tool "Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable")
+    (source /home/physiii/circuits/liger/hardware/liger.sch)
+    (date "Mon 25 Jul 2016 05:03:01 AM CDT")
+    (tool "Eeschema 4.1.0-alpha+201606271447+6949~45~ubuntu16.04.1-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title)
@@ -26,7 +26,7 @@
       (tstamp 57633D5A))
     (comp (ref P3)
       (value USB_OTG)
-      (footprint Connect:USB_Micro-B)
+      (footprint footprints:USB_Micro-B_CIRC)
       (datasheet http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf)
       (fields
         (field (name "Part Number") 10118194-0001LF))
@@ -578,7 +578,7 @@
         (pin (num 1) (name ~) (type passive))
         (pin (num 2) (name ~) (type passive))))
     (libpart (lib conn) (part CONN_01X02)
-      (description "Connector 01x02")
+      (description "Connector, single row, 01x02")
       (footprints
         (fp Pin_Header_Straight_1X02)
         (fp Pin_Header_Angled_1X02)
@@ -591,7 +591,7 @@
         (pin (num 1) (name P1) (type passive))
         (pin (num 2) (name P2) (type passive))))
     (libpart (lib conn) (part CONN_01X04)
-      (description "Connector 01x04")
+      (description "Connector, single row, 01x04")
       (footprints
         (fp Pin_Header_Straight_1X04)
         (fp Pin_Header_Angled_1X04)
@@ -606,7 +606,7 @@
         (pin (num 3) (name P3) (type passive))
         (pin (num 4) (name P4) (type passive))))
     (libpart (lib conn) (part CONN_01X10)
-      (description "Connector 01x10")
+      (description "Connector, single row, 01x10")
       (footprints
         (fp Pin_Header_Straight_1X10)
         (fp Pin_Header_Angled_1X10)
@@ -689,13 +689,8 @@
         (pin (num 16) (name CBUS3) (type BiDi))))
     (libpart (lib device) (part LED)
       (footprints
-        (fp LED-3MM)
-        (fp LED-5MM)
-        (fp LED-10MM)
-        (fp LED-0603)
-        (fp LED-0805)
-        (fp LED-1206)
-        (fp LEDV))
+        (fp LED-*)
+        (fp LED_*))
       (fields
         (field (name Reference) D)
         (field (name Value) LED))
@@ -709,6 +704,11 @@
         (alias LM7332))
       (description "Dual Op amp (low power)")
       (docs analog-dev/op275.pdf)
+      (footprints
+        (fp DIP*)
+        (fp SOIC*)
+        (fp SOP*)
+        (fp LFCSP*))
       (fields
         (field (name Reference) U)
         (field (name Value) OP275))
@@ -789,7 +789,7 @@
         (pin (num 1) (name 1) (type passive))
         (pin (num 2) (name 2) (type passive))))
     (libpart (lib conn) (part USB_OTG)
-      (description "micro/mini connector")
+      (description "USB micro/mini connector")
       (footprints
         (fp USB*))
       (fields
@@ -835,14 +835,14 @@
         (pin (num 1) (name +) (type input))
         (pin (num 2) (name -) (type input)))))
   (libraries
-    (library (logical conn)
-      (uri /usr/share/kicad/library/conn.lib))
     (library (logical device)
       (uri /usr/share/kicad/library/device.lib))
+    (library (logical conn)
+      (uri /usr/share/kicad/library/conn.lib))
     (library (logical linear)
       (uri /usr/share/kicad/library/linear.lib))
     (library (logical liger-cache)
-      (uri /home/chris/circuits/liger/hardware/liger-cache.lib)))
+      (uri /home/physiii/circuits/liger/hardware/liger-cache.lib)))
   (nets
     (net (code 1) (name IO5)
       (node (ref U3) (pin 14))

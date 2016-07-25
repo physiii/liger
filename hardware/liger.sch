@@ -61,7 +61,7 @@ U 1 1 57633E1D
 P 8300 4150
 F 0 "P3" H 8625 4025 50  0000 C CNN
 F 1 "USB_OTG" H 8300 4350 50  0000 C CNN
-F 2 "Connect:USB_Micro-B" V 8250 4050 50  0001 C CNN
+F 2 "footprints:USB_Micro-B_CIRC" V 8250 4050 50  0001 C CNN
 F 3 "http://portal.fciconnect.com/Comergent//fci/drawing/10118194.pdf" V 8250 4050 50  0001 C CNN
 F 4 "10118194-0001LF" H 8300 4150 60  0001 C CNN "Part Number"
 	1    8300 4150
@@ -514,7 +514,7 @@ $EndComp
 Text GLabel 3300 5400 2    60   Input ~ 0
 IO0
 Text GLabel 2950 4350 2    60   Input ~ 0
-Reset
+RESET
 $Comp
 L GND #PWR019
 U 1 1 5768D6FF
@@ -992,7 +992,7 @@ RXD
 Text GLabel 6400 4450 2    60   Input ~ 0
 IO4
 Text GLabel 6400 3950 2    60   Input ~ 0
-Reset
+RESET
 Text GLabel 6400 5600 2    60   Input ~ 0
 IO5
 Text GLabel 4800 4350 0    60   Input ~ 0
@@ -1176,7 +1176,7 @@ IO5
 Text GLabel 6400 5800 2    60   Input ~ 0
 ADC
 Text GLabel 6400 5700 2    60   Input ~ 0
-Reset
+RESET
 Text GLabel 6400 5900 2    60   Input ~ 0
 IO16
 $Comp
