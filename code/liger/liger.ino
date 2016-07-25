@@ -41,15 +41,24 @@
 #include <ESP8266WiFiMulti.h>
 #include <WebSocketsClient.h>
 #include <Hash.h>
+#include <IRremoteESP8266.h>
+#include <IRremoteInt.h>
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
 
+
+#define TRIGGER 12
+#define ECHO    14
+#define RELAY   15
+IRsend irsend(14); //an IR led is connected to GPIO pin 0
+IRrecv irrecv(4);
+decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
 
 /* Set these to your desired credentials. */
-const char *ap_ssid = "Window Sensor ";
-const char *io_relay = "68.12.157.176";
+const char *ap_ssid = "Liger ";
+const char *io_relay = "68.12.126.213";
 int io_port = 4000;
 //const char *ap_password = "password";
 char html[5000] = "";
@@ -57,12 +66,28 @@ bool scan_complete = false;
 bool ap_started = false;
 bool connect_to_ap = false;
 bool got_token = false;
+bool wsConnected = false;
 const int led = 13;
 int address = 0;
 int ssid_ptr = 0;
 int password_addr = 0;
+int sum = 0;
+int sum_total = 0;
+int count = 0;
 byte value;
-char response[130] = "";
+long duration, distance, old_distance, distance_delta, distance_buffer, distance_sum;
+const int bufferSize = 2000;
+uint8_t analog_data[bufferSize];
+char analog_data_str[bufferSize] = "";
+//uint8_t analog_buffer[44100];
+byte mac[6];
+char token[200] = "init";
+char current_ssid[100];
+bool isConnected = false;
+char distance_str[50] = "";
+int magnitude = 0;
+char mac_addr[20] = "";
+char response[200] = "";
 char token_req[200] = "";
 char is_token[130] = "";
 char response_token[130] = "";
@@ -70,21 +95,67 @@ char ssid_found[50] = "";
 char ssid[50] = "";
 char new_password[50] = "";
 char password[50] = "";
-const int bufferSize = 2000;
-uint8_t analog_data[bufferSize];
-char analog_data_str[bufferSize] = "";
-//uint8_t analog_buffer[44100];
-byte mac[6];
-char token[130] = "init";
-char current_ssid[100];
-bool isConnected = false;
-char magnitude_str[50] = "";
-int magnitude = 0;
-char mac_addr[20] = "";
-ESP8266WebServer server(80);
+char count_str[50] = "";
+char message[2100] = "";
+char uptime[10] = "";
+int previous_uptime;
+char local_ip[20] = "init";
 
+ESP8266WebServer server(80);
 int ap_connect();
 void start_ap();
+
+
+// ---------------------------------------------------------------- //
+// -------------------------- IR section -------------------------- //
+// ---------------------------------------------------------------- //
+
+void sendIR(decode_results *results) {
+  //unsigned int  rawData[67] = {8600,4300, 550,550, 600,1600, 550,550, 550,1600, 600,550, 600,1600, 600,550, 600,1600, 600,1600, 600,550, 600,1600, 600,550, 550,1600, 600,550, 600,1600, 550,550, 550,1600, 600,1600, 600,550, 550,1600, 550,550, 550,550, 550,550, 600,550, 550,550, 550,550, 600,1600, 550,550, 550,1600, 600,1600, 600,1600, 600,1600, 550};  
+  // NEC 55AAD02F
+  unsigned int  ir_code = 0x55AA50AF;
+  Serial.print("Sending IR: ");
+  Serial.println(ir_code,HEX);
+  //for (int i=0; i < 3; i++,delay(500)) {
+    //irsend.sendRaw(rawData,67,38);delay(50);
+    irsend.sendNEC(ir_code,32);
+    //irsend.sendRaw(rawData,67,38);
+  //}
+}
+
+void receiveIR() {
+  if (irrecv.decode(&results)) {
+    Serial.print("received IR: ");
+    Serial.println(results.value, HEX);
+    irrecv.resume(); // Receive the next value
+    
+    char ir_code[10];
+    sprintf(ir_code, "%02x",results.value);
+    String(now()).toCharArray(uptime, 10);
+    String(distance).toCharArray(distance_str, 50);
+    strcpy(message, "{ \"mac\":\"");
+    strcat(message, mac_addr);
+    strcat(message, "\", \"device_type\":");
+    strcat(message, "\"ir_blaster\", ");
+    strcat(message,"\"local_ip\":\"");
+    strcat(message, local_ip);
+    strcat(message, "\", \"uptime\":");
+    strcat(message, uptime);
+    strcat(message, ", \"token\":\"");
+    strcat(message, token);
+    strcat(message, "\", \"ir_code\":\"");
+    strcat(message,ir_code);
+    strcat(message, "\" }");
+    //Serial.println(message);
+    webSocket.sendTXT(message);
+  }
+  sendIR(&results);
+  delay(100);
+}
+
+// ---------------------------------------------------------------- //
+// -------------------------- webserver --------------------------- //
+// ---------------------------------------------------------------- //
 /* Just a little test message.  Go to http://192.168.4.1 in a web browser
    connected to this access point to see it.
 */
@@ -234,7 +305,9 @@ void store_wifi() {
     Serial.println("connected to wifi");
     isConnected = true;
   } else {
-    Serial.println("could not connect, starting access point...");
+    Serial.print("could not connect, starting access point (");
+    Serial.print(mac_addr);
+    Serial.println(")...");
     start_ap();
     isConnected = false;
   }
@@ -247,8 +320,9 @@ void start_ap() {
   WiFi.softAP(current_ssid);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("gui access on http://");
-  Serial.println(myIP);
+  Serial.print(myIP);
 }
+
 void routes() {
   server.on("/", handleRoot);
   server.on("/store_wifi", store_wifi);
@@ -289,7 +363,6 @@ void scan() {
       Serial.print(WiFi.RSSI(i));
       Serial.print(")");
       Serial.println((WiFi.encryptionType(i) == ENC_TYPE_NONE) ? " " : "*");
-      delay(10);
     }
   }
   strcat(html, "</select><br>");
@@ -299,25 +372,54 @@ void scan() {
   //start_ap();
 }
 
+int echo_count = 0;
+int count_max = 40;
+void trigger_pulse()
+{
+  digitalWrite(TRIGGER, LOW);  
+  delayMicroseconds(2); 
+  
+  digitalWrite(TRIGGER, HIGH);
+  delayMicroseconds(10); 
+  
+  digitalWrite(TRIGGER, LOW);
+  duration = pulseIn(ECHO, HIGH);
+  distance_buffer = (duration/2) / 29.1;
+  distance_sum += distance_buffer;
+  if (count >= count_max) {
+    distance = distance_sum/count_max;
+    distance_sum = 0;
+    count = 0;    
+  }
+  count++;
+  //Serial.print(distance);
+  //Serial.println("cm");
+}
+
+// ---------------------------------------------------------------- //
+// -------------------------- websockets -------------------------- //
+// ---------------------------------------------------------------- //
+char is_command[10] = "";
+char command[50]="";
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
   switch (type) {
     case WStype_DISCONNECTED:
       Serial.println("[WSc] Disconnected!\n");
+      wsConnected = false;
+      got_token = false;
       break;
     case WStype_CONNECTED:
       {
         Serial.printf("[WSc] Connected to url: %s\n",  payload);
+        wsConnected = true;
         // send message to server when Connected
-        char data[200] = "hello from ";
-        strcat(data, current_ssid);
-        webSocket.sendTXT(data);
+        //char data[200] = "hello from ";
+        //strcat(data, current_ssid);
+        //webSocket.sendTXT(data);
         break;
       }
     case WStype_TEXT:
-      Serial.print("[");
-      Serial.print(mac_addr);
-      Serial.print("]");
-      Serial.printf("[WSc] get text: %s\n", payload);
+      WiFi.macAddress(mac);
       strcpy(response, (char *)payload);
       strncpy(is_token, response, 5);
       if (strcmp(is_token, "token") == 0) {
@@ -329,7 +431,61 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
         strcpy(token, response_token);
         got_token = true;
       }
-      // webSocket.sendTXT("message here");
+
+      strncpy(is_command, response, 7);
+      if (strcmp(is_command, "command") == 0) {
+        for (int i = 0; i < 10; i++) {
+          command[i] = response[i + 7];
+        }
+        if (strcmp(command,"open")==0) {
+          Serial.println("OPENING!");
+          digitalWrite(RELAY,1);
+          delay(500);
+          digitalWrite(RELAY,0);
+        }
+        if (strcmp(command,"close")==0) {
+          Serial.println("CLOSING!");
+          digitalWrite(RELAY,1);
+          delay(500);
+          digitalWrite(RELAY,0);
+        }
+        if (strcmp(command,"ping")==0) {
+          Serial.println("SENDING DISTANCE!");
+          delay(500);
+          String(now()).toCharArray(uptime, 10);
+          String(distance).toCharArray(distance_str, 50);
+          strcpy(message, "{ \"mac\":\"");
+          strcat(message, mac_addr);
+          strcat(message, "\", \"device_type\":");
+          strcat(message, "\"garage_opener\", ");
+          strcat(message,"\"local_ip\":\"");
+          strcat(message, local_ip);
+          strcat(message, "\", \"uptime\":");
+          strcat(message, uptime);
+          strcat(message, ", \"distance\":");
+          strcat(message, distance_str);
+          strcat(message, ", \"token\":\"");
+          strcat(message, token);
+          strcat(message, "\", \"data\":\"");
+          //strcat(message,analog_data_str);
+          strcat(message, "\" }");
+          Serial.println(message);
+          webSocket.sendTXT(message);
+        }
+      }
+      
+      if (strcmp(command, "png_test") == 0) {
+        Serial.println("received ping");
+          /*strcpy(message, "{ \"mac\":\"");
+          strcat(message, mac_addr);
+          strcat(message, ", \"token\":\"");
+          strcat(message, token);
+          strcat(message, "\", \"data\":\"");
+          strcat(message, "\" }");
+          Serial.println(message);
+          webSocket.sendTXT(message);*/
+      }
+      
       break;
     case WStype_BIN:
       Serial.printf("[WSc] get binary lenght: %u\n", lenght);
@@ -339,6 +495,9 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
   }
 }
 
+// ---------------------------------------------------------------- //
+// ----------------------------- setup ---------------------------- //
+// ---------------------------------------------------------------- //
 int ap_connect() {
   WiFi.disconnect();
   WiFi.mode(WIFI_AP);
@@ -398,27 +557,51 @@ void getmac() {
   strcpy(current_ssid, ap_ssid);
   strcat(current_ssid, mac_addr);
 }
+char png_cmd[100] = "";
+void send_ping() {
+  strcpy(png_cmd, "{ \"mac\":\"");
+  strcat(png_cmd, mac_addr);
+  strcat(png_cmd, "\", \"device_type\":");
+  strcat(png_cmd, "\"garage_opener\",");
+  strcat(png_cmd,"\"local_ip\":\"");
+  strcat(png_cmd, local_ip);  
+  strcat(png_cmd, "\", \"cmd\":");
+  strcat(png_cmd, "\"png_test\" }");
+  if (isConnected && wsConnected) {
+    Serial.println(png_cmd);    
+    webSocket.sendTXT(png_cmd);
+    delay(100);
+  }
+}
 
 void get_token() {
   strcpy(token_req, "{ \"mac\":\"");
   strcat(token_req, mac_addr);
   strcat(token_req, "\", \"device_type\":");
-  strcat(token_req, "\"window_sensor\",");
-  strcat(token_req, " \"token\":\"");
-  strcat(token_req, token);
+  strcat(token_req, "\"garage_opener\",");
+  strcat(token_req,"\"local_ip\":\"");
+  strcat(token_req, local_ip);  
   strcat(token_req, "\", \"cmd\":");
   strcat(token_req, "\"tok_req\" }");
-  Serial.println(token_req);
-  if (isConnected) {
+  if (isConnected && wsConnected) {
+    Serial.println(token_req);    
     webSocket.sendTXT(token_req);
+    delay(100);
   }
 }
 
-char local_ip[20] = "init";
 void setup() {
   Serial.begin(115200);
   EEPROM.begin(512);
+  pinMode(TRIGGER, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(RELAY, OUTPUT);
+  irrecv.enableIRIn(); // Start the receiver
+  irsend.begin();
   getmac();
+  Serial.println();
+  Serial.print("MAC: ");
+  Serial.println(mac_addr);
   scan();
   get_device_info();
   if (ap_connect()) {
@@ -432,59 +615,49 @@ void setup() {
   String(WiFi.localIP().toString()).toCharArray(local_ip, 20);
 }
 
-int count = 0;
-char count_str[50] = "";
-char message[2100] = "";
-char now_str[10] = "";
+int time_delta = 0;
 void loop() {
   server.handleClient();
   if (isConnected) {
-    webSocket.loop(); 
+    webSocket.loop();
   }
-  get_analog_data();
-  if (got_token) {
-    if ( magnitude > 500 ) {
-      String(now()).toCharArray(now_str, 10);
-      String(magnitude).toCharArray(magnitude_str, 50);
+  trigger_pulse();
+  time_delta = now() - previous_uptime;
+  if (time_delta > 60) {
+    send_ping();
+    time_delta = 0;
+    previous_uptime = now();
+  }
+  if (got_token && wsConnected) {
+    //sendIR();
+    receiveIR();
+    /*distance_delta = (old_distance - distance)*(old_distance - distance);
+    if (distance_delta > 10000 ) {
+      old_distance = distance;    
+      String(now()).toCharArray(uptime, 10);
+      String(distance).toCharArray(distance_str, 50);
       strcpy(message, "{ \"mac\":\"");
       strcat(message, mac_addr);
       strcat(message, "\", \"device_type\":");
-      strcat(message, "\"window_sensor\", ");
+      strcat(message, "\"garage_opener\", ");
       strcat(message,"\"local_ip\":\"");
       strcat(message, local_ip);
       strcat(message, "\", \"uptime\":");
-      strcat(message, now_str);
-      strcat(message, ", \"magnitude\":");
-      strcat(message, magnitude_str);
+      strcat(message, uptime);
+      strcat(message, ", \"distance\":");
+      strcat(message, distance_str);
       strcat(message, ", \"token\":\"");
       strcat(message, token);
-      strcat(message, "\", \"data\":\"");
+      strcat(message, "\", \"analog\":\"");
       //strcat(message,analog_data_str);
       strcat(message, "\" }");
       Serial.println(message);
       webSocket.sendTXT(message);
-      if (strcmp(response, "ok") == 0) {
-        strcpy(response, "reset");
-      } else {
-        Serial.print("no response from ");
-        Serial.print(io_relay);
-        Serial.print(":");
-        Serial.println(io_port);
-        count++;
-        if (count > 3) {
-          Serial.println("reconnecting...");
-          webSocket.disconnect();
-          delay(500);
-          webSocket.begin(io_relay, 4000);
-          count = 0;
-        }        
-      }      
-    }
+    }*/
   } else {
-    //delay(1000);
     get_token();
   }
-
   magnitude = 0;
-  delay(100);
+  delay(1);
 }
+
