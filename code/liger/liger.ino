@@ -43,20 +43,18 @@
 #include <Hash.h>
 #include <IRremoteESP8266.h>
 #include <IRremoteInt.h>
+//#include <Scheduler.h>
+
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
-
-
 #define TRIGGER 12
 #define ECHO    14
 #define RELAY   15
-IRsend irsend(14); //an IR led is connected to GPIO pin 0
+IRsend irsend(14);
 IRrecv irrecv(4);
 decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
-
-/* Set these to your desired credentials. */
 const char *ap_ssid = "Liger ";
 const char *io_relay = "68.12.126.213";
 int io_port = 4000;
@@ -100,27 +98,26 @@ char message[2100] = "";
 char uptime[10] = "";
 int previous_uptime;
 char local_ip[20] = "init";
-
 ESP8266WebServer server(80);
 int ap_connect();
 void start_ap();
 
-
 // ---------------------------------------------------------------- //
 // -------------------------- IR section -------------------------- //
 // ---------------------------------------------------------------- //
-
 void sendIR(decode_results *results) {
   //unsigned int  rawData[67] = {8600,4300, 550,550, 600,1600, 550,550, 550,1600, 600,550, 600,1600, 600,550, 600,1600, 600,1600, 600,550, 600,1600, 600,550, 550,1600, 600,550, 600,1600, 550,550, 550,1600, 600,1600, 600,550, 550,1600, 550,550, 550,550, 550,550, 600,550, 550,550, 550,550, 600,1600, 550,550, 550,1600, 600,1600, 600,1600, 600,1600, 550};  
   // NEC 55AAD02F
+  unsigned int  rawData[66] = {4200,650, 500,600, 1550,650, 500,600, 1550,600, 500,650, 1550,600, 500,600, 1550,600, 1550,650, 500,600, 1550,600, 500,600, 1550,650, 500,600, 1600,650, 500,650, 500,550, 1600,600, 500,600, 1550,600, 500,600, 500,600, 500,600, 500,600, 1600,600, 500,600, 1550,600, 500,600, 1550,600, 1550,600, 1550,600, 1600,650 };  
+  // UNKNOWN 26869205
   unsigned int  ir_code = 0x55AA50AF;
   Serial.print("Sending IR: ");
   Serial.println(ir_code,HEX);
-  //for (int i=0; i < 3; i++,delay(500)) {
-    //irsend.sendRaw(rawData,67,38);delay(50);
-    irsend.sendNEC(ir_code,32);
+  for (int i=0; i < 3; i++,delay(250)) {
+    irsend.sendRaw(rawData,66,38);
+    //                                                                                                                        irsend.sendNEC(ir_code,32);
     //irsend.sendRaw(rawData,67,38);
-  //}
+  }
 }
 
 void receiveIR() {
@@ -128,7 +125,6 @@ void receiveIR() {
     Serial.print("received IR: ");
     Serial.println(results.value, HEX);
     irrecv.resume(); // Receive the next value
-    
     char ir_code[10];
     sprintf(ir_code, "%02x",results.value);
     String(now()).toCharArray(uptime, 10);
@@ -136,7 +132,7 @@ void receiveIR() {
     strcpy(message, "{ \"mac\":\"");
     strcat(message, mac_addr);
     strcat(message, "\", \"device_type\":");
-    strcat(message, "\"ir_blaster\", ");
+    strcat(message, "\"media_controller\", ");
     strcat(message,"\"local_ip\":\"");
     strcat(message, local_ip);
     strcat(message, "\", \"uptime\":");
@@ -154,11 +150,8 @@ void receiveIR() {
 }
 
 // ---------------------------------------------------------------- //
-// -------------------------- webserver --------------------------- //
+// ---------------- webserver http://192.168.4.1 ------------------ //
 // ---------------------------------------------------------------- //
-/* Just a little test message.  Go to http://192.168.4.1 in a web browser
-   connected to this access point to see it.
-*/
 void handleRoot() {
   server.send(200, "text/html", html);
 }
@@ -224,9 +217,9 @@ void drawGraph() {
   server.send ( 200, "image/svg+xml", out);
 }
 
-int sample_rate = 20;
 void get_analog_data() {
-  for (int i = 0; i < bufferSize; i++) {
+  int sample_rate = 20000;
+  /*for (int i = 0; i < bufferSize; i++) {
     analog_data[i] = analogRead(A0);
     magnitude += analog_data[i];
     if (analog_data[i]) {
@@ -235,6 +228,39 @@ void get_analog_data() {
       analog_data_str[i] = 'A';
     }
     delay( 1 / sample_rate );
+  }*/
+  magnitude = 0;
+  for (int i = 0; i < sample_rate*2; i++) {
+    yield();
+    delayMicroseconds(10^6 / sample_rate);
+    //Serial.println(analogRead(A0));
+    if (analogRead(A0) != 1024)
+      magnitude += analogRead(A0);
+    //delay( 1 / sample_rate );
+  }  
+  
+  if ( magnitude > 10000 ) {
+    char now_str[10] = "";
+    char magnitude_str[50] = "";
+    String(now()).toCharArray(now_str, 10);
+    String(magnitude).toCharArray(magnitude_str, 50);
+    strcpy(message, "{ \"mac\":\"");
+    strcat(message, mac_addr);
+    strcat(message, "\", \"device_type\":");
+    strcat(message, "\"room_sensor\", ");
+    strcat(message,"\"local_ip\":\"");
+    strcat(message, local_ip);
+    strcat(message, "\", \"uptime\":");
+    strcat(message, now_str);
+    strcat(message, ", \"magnitude\":");
+    strcat(message, magnitude_str);
+    strcat(message, ", \"token\":\"");
+    strcat(message, token);
+    strcat(message, "\", \"data\":\"");
+    //strcat(message,analog_data_str);
+    strcat(message, "\" }");
+    Serial.println(message);
+    webSocket.sendTXT(message);      
   }
 }
 
@@ -245,7 +271,6 @@ void store_wifi() {
 
   strcpy(ssid, server.arg(0).c_str());
   strcpy(password, server.arg(1).c_str());
-
   char html2[500] = "";
   Serial.print("stored | SSID (");
   Serial.print(ssid);
@@ -258,7 +283,7 @@ void store_wifi() {
   strcat(html2, password);
   strcat(html2, "<br><br>Enter your device ID (<b>");
   strcat(html2,mac_addr);  
-  strcat(html2, "</b>) at <a href='http://dev.pyfi.org'>pyfi.org</a>");
+  strcat(html2, "</b>) at <a href='http://pyfi.org'>pyfi.org</a>");
   server.send(200, "text/html", html2);
   
   Serial.println(ssid);
@@ -376,8 +401,8 @@ int echo_count = 0;
 int count_max = 40;
 void trigger_pulse()
 {
-  digitalWrite(TRIGGER, LOW);  
-  delayMicroseconds(2); 
+  digitalWrite(TRIGGER, LOW);
+  delayMicroseconds(2);
   
   digitalWrite(TRIGGER, HIGH);
   delayMicroseconds(10); 
@@ -433,6 +458,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
       }
 
       strncpy(is_command, response, 7);
+      Serial.println(response);
       if (strcmp(is_command, "command") == 0) {
         for (int i = 0; i < 10; i++) {
           command[i] = response[i + 7];
@@ -449,8 +475,14 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
           delay(500);
           digitalWrite(RELAY,0);
         }
+        if (strcmp(command,"test_siren")==0) {
+          Serial.println("TESTING SIREN!");
+          digitalWrite(RELAY,1);
+          delay(500);
+          digitalWrite(RELAY,0);
+        }        
         if (strcmp(command,"ping")==0) {
-          Serial.println("SENDING DISTANCE!");
+          Serial.println("RECEIVED PING");
           delay(500);
           String(now()).toCharArray(uptime, 10);
           String(distance).toCharArray(distance_str, 50);
@@ -562,7 +594,7 @@ void send_ping() {
   strcpy(png_cmd, "{ \"mac\":\"");
   strcat(png_cmd, mac_addr);
   strcat(png_cmd, "\", \"device_type\":");
-  strcat(png_cmd, "\"garage_opener\",");
+  strcat(png_cmd, "\"media_controller\",");
   strcat(png_cmd,"\"local_ip\":\"");
   strcat(png_cmd, local_ip);  
   strcat(png_cmd, "\", \"cmd\":");
@@ -578,7 +610,7 @@ void get_token() {
   strcpy(token_req, "{ \"mac\":\"");
   strcat(token_req, mac_addr);
   strcat(token_req, "\", \"device_type\":");
-  strcat(token_req, "\"garage_opener\",");
+  strcat(token_req, "\"media_controller\",");
   strcat(token_req,"\"local_ip\":\"");
   strcat(token_req, local_ip);  
   strcat(token_req, "\", \"cmd\":");
@@ -630,7 +662,8 @@ void loop() {
   }
   if (got_token && wsConnected) {
     //sendIR();
-    receiveIR();
+    get_analog_data();
+    //receiveIR();
     /*distance_delta = (old_distance - distance)*(old_distance - distance);
     if (distance_delta > 10000 ) {
       old_distance = distance;    
