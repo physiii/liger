@@ -105,17 +105,17 @@ void start_ap();
 // ---------------------------------------------------------------- //
 // -------------------------- IR section -------------------------- //
 // ---------------------------------------------------------------- //
-void sendIR(decode_results *results) {
+//void sendIR(decode_results *results) {
+void sendIR() {
   //unsigned int  rawData[67] = {8600,4300, 550,550, 600,1600, 550,550, 550,1600, 600,550, 600,1600, 600,550, 600,1600, 600,1600, 600,550, 600,1600, 600,550, 550,1600, 600,550, 600,1600, 550,550, 550,1600, 600,1600, 600,550, 550,1600, 550,550, 550,550, 550,550, 600,550, 550,550, 550,550, 600,1600, 550,550, 550,1600, 600,1600, 600,1600, 600,1600, 550};  
   // NEC 55AAD02F
   unsigned int  rawData[66] = {4200,650, 500,600, 1550,650, 500,600, 1550,600, 500,650, 1550,600, 500,600, 1550,600, 1550,650, 500,600, 1550,600, 500,600, 1550,650, 500,600, 1600,650, 500,650, 500,550, 1600,600, 500,600, 1550,600, 500,600, 500,600, 500,600, 500,600, 1600,600, 500,600, 1550,600, 500,600, 1550,600, 1550,600, 1550,600, 1600,650 };  
   // UNKNOWN 26869205
-  unsigned int  ir_code = 0x55AA50AF;
+  unsigned int  ir_code = 0x4BB6C03F;
   Serial.print("Sending IR: ");
   Serial.println(ir_code,HEX);
-  for (int i=0; i < 3; i++,delay(250)) {
-    irsend.sendRaw(rawData,66,38);
-    //                                                                                                                        irsend.sendNEC(ir_code,32);
+  for (int i=0; i < 3; i++,delay(250)) {   
+    irsend.sendNEC(ir_code,32);
     //irsend.sendRaw(rawData,67,38);
   }
 }
@@ -142,10 +142,10 @@ void receiveIR() {
     strcat(message, "\", \"ir_code\":\"");
     strcat(message,ir_code);
     strcat(message, "\" }");
-    //Serial.println(message);
-    webSocket.sendTXT(message);
+    Serial.println(message);
+    //webSocket.sendTXT(message);
   }
-  sendIR(&results);
+  //sendIR(&results);
   delay(100);
 }
 
@@ -218,7 +218,7 @@ void drawGraph() {
 }
 
 void get_analog_data() {
-  int sample_rate = 20000;
+  int sample_rate = 2000;
   /*for (int i = 0; i < bufferSize; i++) {
     analog_data[i] = analogRead(A0);
     magnitude += analog_data[i];
@@ -230,15 +230,14 @@ void get_analog_data() {
     delay( 1 / sample_rate );
   }*/
   magnitude = 0;
-  for (int i = 0; i < sample_rate*2; i++) {
+  for (int i = 0; i < sample_rate; i++) {
     yield();
     delayMicroseconds(10^6 / sample_rate);
-    //Serial.println(analogRead(A0));
-    if (analogRead(A0) != 1024)
+    if (analogRead(A0) > 360 && analogRead(A0) < 340) {
+      Serial.println(analogRead(A0));
       magnitude += analogRead(A0);
-    //delay( 1 / sample_rate );
-  }  
-  
+    }
+  }
   if ( magnitude > 10000 ) {
     char now_str[10] = "";
     char magnitude_str[50] = "";
@@ -259,8 +258,8 @@ void get_analog_data() {
     strcat(message, "\", \"data\":\"");
     //strcat(message,analog_data_str);
     strcat(message, "\" }");
-    Serial.println(message);
-    webSocket.sendTXT(message);      
+    //Serial.println(message);
+    //webSocket.sendTXT(message);      
   }
 }
 
@@ -649,7 +648,8 @@ void setup() {
 
 int time_delta = 0;
 void loop() {
-  server.handleClient();
+  get_analog_data();
+  /*server.handleClient();
   if (isConnected) {
     webSocket.loop();
   }
@@ -687,10 +687,10 @@ void loop() {
       Serial.println(message);
       webSocket.sendTXT(message);
     }*/
-  } else {
+  /*} else {
     get_token();
   }
-  magnitude = 0;
-  delay(1);
+  magnitude = 0;*/
+  //delay(1);
 }
 
