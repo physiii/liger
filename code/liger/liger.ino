@@ -56,7 +56,7 @@ decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
 const char *ap_ssid = "Liger ";
-const char *io_relay = "68.12.126.213";
+const char *io_relay = "68.12.120.180";
 int io_port = 4000;
 //const char *ap_password = "password";
 char html[5000] = "";
@@ -72,6 +72,7 @@ int password_addr = 0;
 int sum = 0;
 int sum_total = 0;
 int count = 0;
+int time_delta = 0;
 byte value;
 long duration, distance, old_distance, distance_delta, distance_buffer, distance_sum;
 const int bufferSize = 2000;
@@ -103,7 +104,166 @@ int ap_connect();
 void start_ap();
 
 // ---------------------------------------------------------------- //
-// -------------------------- IR section -------------------------- //
+// -------------------------- websockets -------------------------- //
+// ---------------------------------------------------------------- //
+char is_command[10] = "";
+char command[50]="";
+void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
+  switch (type) {
+    case WStype_DISCONNECTED:
+      Serial.println("[WSc] Disconnected!\n");
+      wsConnected = false;
+      got_token = false;
+      break;
+    case WStype_CONNECTED:
+      {
+        Serial.printf("[WSc] Connected to url: %s\n",  payload);
+        wsConnected = true;
+        // send message to server when Connected
+        //char data[200] = "hello from ";
+        //strcat(data, current_ssid);
+        //webSocket.sendTXT(data);
+        break;
+      }
+    case WStype_TEXT:
+      WiFi.macAddress(mac);
+      strcpy(response, (char *)payload);
+      strncpy(is_token, response, 5);
+      if (strcmp(is_token, "token") == 0) {
+        for (int i = 0; i < sizeof(response); i++) {
+          response_token[i] = response[i + 5];
+        }
+        Serial.print("setting token | ");
+        Serial.println(response_token);
+        strcpy(token, response_token);
+        got_token = true;
+      }
+
+      strncpy(is_command, response, 7);
+      Serial.println(response);
+      if (strcmp(is_command, "command") == 0) {
+        for (int i = 0; i < 10; i++) {
+          command[i] = response[i + 7];
+        }
+        if (strcmp(command,"open")==0) {
+          Serial.println("OPENING!");
+          digitalWrite(RELAY,1);
+          delay(500);
+          digitalWrite(RELAY,0);
+        }
+        if (strcmp(command,"close")==0) {
+          Serial.println("CLOSING!");
+          digitalWrite(RELAY,1);
+          delay(500);
+          digitalWrite(RELAY,0);
+        }
+        if (strcmp(command,"test_siren")==0) {
+          Serial.println("TESTING SIREN!");
+          digitalWrite(RELAY,1);
+          delay(500);
+          digitalWrite(RELAY,0);
+        }        
+        if (strcmp(command,"ping")==0) {
+          Serial.println("RECEIVED PING");
+          delay(500);
+          String(now()).toCharArray(uptime, 10);
+          String(distance).toCharArray(distance_str, 50);
+          strcpy(message, "{ \"mac\":\"");
+          strcat(message, mac_addr);
+          strcat(message, "\", \"device_type\":");
+          strcat(message, "\"garage_opener\", ");
+          strcat(message,"\"local_ip\":\"");
+          strcat(message, local_ip);
+          strcat(message, "\", \"uptime\":");
+          strcat(message, uptime);
+          strcat(message, ", \"distance\":");
+          strcat(message, distance_str);
+          strcat(message, ", \"token\":\"");
+          strcat(message, token);
+          strcat(message, "\", \"data\":\"");
+          //strcat(message,analog_data_str);
+          strcat(message, "\" }");
+          Serial.println(message);
+          webSocket.sendTXT(message);
+        }
+      }
+      
+      if (strcmp(command, "png_test") == 0) {
+        Serial.println("received ping");
+          /*strcpy(message, "{ \"mac\":\"");
+          strcat(message, mac_addr);
+          strcat(message, ", \"token\":\"");
+          strcat(message, token);
+          strcat(message, "\", \"data\":\"");
+          strcat(message, "\" }");
+          Serial.println(message);
+          webSocket.sendTXT(message);*/
+      }
+      
+      break;
+    case WStype_BIN:
+      Serial.printf("[WSc] get binary lenght: %u\n", lenght);
+      hexdump(payload, lenght);
+      // webSocket.sendBIN(payload, lenght);
+      break;
+  }
+}
+
+// ---------------------------------------------------------------- //
+// ----------------------- ultra-sonic sensor --------------------- //
+// ---------------------------------------------------------------- //
+void get_distance() {
+  distance_delta = (old_distance - distance)*(old_distance - distance);
+  if (distance_delta > 10000 ) {
+    old_distance = distance;    
+    String(now()).toCharArray(uptime, 10);
+    String(distance).toCharArray(distance_str, 50);
+    strcpy(message, "{ \"mac\":\"");
+    strcat(message, mac_addr);
+    strcat(message, "\", \"device_type\":");
+    strcat(message, "\"garage_opener\", ");
+    strcat(message,"\"local_ip\":\"");
+    strcat(message, local_ip);
+    strcat(message, "\", \"uptime\":");
+    strcat(message, uptime);
+    strcat(message, ", \"distance\":");
+    strcat(message, distance_str);
+    strcat(message, ", \"token\":\"");
+    strcat(message, token);
+    strcat(message, "\", \"analog\":\"");
+    //strcat(message,analog_data_str);
+    strcat(message, "\" }");
+    Serial.println(message);
+    webSocket.sendTXT(message);
+  }
+}
+
+int echo_count = 0;
+int count_max = 40;
+void trigger_pulse()
+{
+  digitalWrite(TRIGGER, LOW);
+  delayMicroseconds(2);
+  
+  digitalWrite(TRIGGER, HIGH);
+  delayMicroseconds(10); 
+  
+  digitalWrite(TRIGGER, LOW);
+  duration = pulseIn(ECHO, HIGH);
+  distance_buffer = (duration/2) / 29.1;
+  distance_sum += distance_buffer;
+  if (count >= count_max) {
+    distance = distance_sum/count_max;
+    distance_sum = 0;
+    count = 0;    
+  }
+  count++;
+  //Serial.print(distance);
+  //Serial.println("cm");
+}
+
+// ---------------------------------------------------------------- //
+// ------------------------ IR tx and rx -------------------------- //
 // ---------------------------------------------------------------- //
 //void sendIR(decode_results *results) {
 void sendIR() {
@@ -147,6 +307,58 @@ void receiveIR() {
   }
   //sendIR(&results);
   delay(100);
+}
+
+// ---------------------------------------------------------------- //
+// ------------------------- microphone --------------------------- //
+// ---------------------------------------------------------------- //
+void get_analog_data() {
+  int sample_rate = 20000;
+  int sample_size = sample_rate;
+  int bias = 432;
+  magnitude = 0;
+  /*for (int i = 0; i < bufferSize; i++) {
+    analog_data[i] = analogRead(A0);
+    magnitude += analog_data[i];
+    if (analog_data[i]) {
+      analog_data_str[i] = analog_data[i];
+    } else {
+      analog_data_str[i] = 'A';
+    }
+    delay( 1 / sample_rate );
+  }*/
+  int raw_sound[sample_size];
+  for (int i = 0; i < sample_rate; i++) {
+    yield();
+    delayMicroseconds(10^6 / sample_rate);
+    //raw_sound[i] = analogRead(A0);
+    magnitude += (analogRead(A0) - bias)*(analogRead(A0) - bias);
+  }
+  magnitude = magnitude / sample_rate;
+  
+  if ( magnitude > 20 ) {
+    char now_str[10] = "";
+    char magnitude_str[50] = "";
+    String(now()).toCharArray(now_str, 10);
+    String(magnitude).toCharArray(magnitude_str, 50);
+    strcpy(message, "{ \"mac\":\"");
+    strcat(message, mac_addr);
+    strcat(message, "\", \"device_type\":");
+    strcat(message, "\"room_sensor\", ");
+    strcat(message,"\"local_ip\":\"");
+    strcat(message, local_ip);
+    strcat(message, "\", \"uptime\":");
+    strcat(message, now_str);
+    strcat(message, ", \"magnitude\":");
+    strcat(message, magnitude_str);
+    strcat(message, ", \"token\":\"");
+    strcat(message, token);
+    strcat(message, "\", \"data\":\"");
+    //strcat(message,analog_data_str);
+    strcat(message, "\" }");
+    Serial.println(message);
+    webSocket.sendTXT(message);      
+  }
 }
 
 // ---------------------------------------------------------------- //
@@ -217,52 +429,9 @@ void drawGraph() {
   server.send ( 200, "image/svg+xml", out);
 }
 
-void get_analog_data() {
-  int sample_rate = 2000;
-  /*for (int i = 0; i < bufferSize; i++) {
-    analog_data[i] = analogRead(A0);
-    magnitude += analog_data[i];
-    if (analog_data[i]) {
-      analog_data_str[i] = analog_data[i];
-    } else {
-      analog_data_str[i] = 'A';
-    }
-    delay( 1 / sample_rate );
-  }*/
-  magnitude = 0;
-  for (int i = 0; i < sample_rate; i++) {
-    yield();
-    delayMicroseconds(10^6 / sample_rate);
-    if (analogRead(A0) > 360 && analogRead(A0) < 340) {
-      Serial.println(analogRead(A0));
-      magnitude += analogRead(A0);
-    }
-  }
-  if ( magnitude > 10000 ) {
-    char now_str[10] = "";
-    char magnitude_str[50] = "";
-    String(now()).toCharArray(now_str, 10);
-    String(magnitude).toCharArray(magnitude_str, 50);
-    strcpy(message, "{ \"mac\":\"");
-    strcat(message, mac_addr);
-    strcat(message, "\", \"device_type\":");
-    strcat(message, "\"room_sensor\", ");
-    strcat(message,"\"local_ip\":\"");
-    strcat(message, local_ip);
-    strcat(message, "\", \"uptime\":");
-    strcat(message, now_str);
-    strcat(message, ", \"magnitude\":");
-    strcat(message, magnitude_str);
-    strcat(message, ", \"token\":\"");
-    strcat(message, token);
-    strcat(message, "\", \"data\":\"");
-    //strcat(message,analog_data_str);
-    strcat(message, "\" }");
-    //Serial.println(message);
-    //webSocket.sendTXT(message);      
-  }
-}
-
+// ---------------------------------------------------------------- //
+// ---------------------- wifi managment -------------------------- //
+// ---------------------------------------------------------------- //
 void store_wifi() {
   int j = 0;
   int i = 0;
@@ -396,139 +565,6 @@ void scan() {
   //start_ap();
 }
 
-int echo_count = 0;
-int count_max = 40;
-void trigger_pulse()
-{
-  digitalWrite(TRIGGER, LOW);
-  delayMicroseconds(2);
-  
-  digitalWrite(TRIGGER, HIGH);
-  delayMicroseconds(10); 
-  
-  digitalWrite(TRIGGER, LOW);
-  duration = pulseIn(ECHO, HIGH);
-  distance_buffer = (duration/2) / 29.1;
-  distance_sum += distance_buffer;
-  if (count >= count_max) {
-    distance = distance_sum/count_max;
-    distance_sum = 0;
-    count = 0;    
-  }
-  count++;
-  //Serial.print(distance);
-  //Serial.println("cm");
-}
-
-// ---------------------------------------------------------------- //
-// -------------------------- websockets -------------------------- //
-// ---------------------------------------------------------------- //
-char is_command[10] = "";
-char command[50]="";
-void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
-  switch (type) {
-    case WStype_DISCONNECTED:
-      Serial.println("[WSc] Disconnected!\n");
-      wsConnected = false;
-      got_token = false;
-      break;
-    case WStype_CONNECTED:
-      {
-        Serial.printf("[WSc] Connected to url: %s\n",  payload);
-        wsConnected = true;
-        // send message to server when Connected
-        //char data[200] = "hello from ";
-        //strcat(data, current_ssid);
-        //webSocket.sendTXT(data);
-        break;
-      }
-    case WStype_TEXT:
-      WiFi.macAddress(mac);
-      strcpy(response, (char *)payload);
-      strncpy(is_token, response, 5);
-      if (strcmp(is_token, "token") == 0) {
-        for (int i = 0; i < sizeof(response); i++) {
-          response_token[i] = response[i + 5];
-        }
-        Serial.print("setting token | ");
-        Serial.println(response_token);
-        strcpy(token, response_token);
-        got_token = true;
-      }
-
-      strncpy(is_command, response, 7);
-      Serial.println(response);
-      if (strcmp(is_command, "command") == 0) {
-        for (int i = 0; i < 10; i++) {
-          command[i] = response[i + 7];
-        }
-        if (strcmp(command,"open")==0) {
-          Serial.println("OPENING!");
-          digitalWrite(RELAY,1);
-          delay(500);
-          digitalWrite(RELAY,0);
-        }
-        if (strcmp(command,"close")==0) {
-          Serial.println("CLOSING!");
-          digitalWrite(RELAY,1);
-          delay(500);
-          digitalWrite(RELAY,0);
-        }
-        if (strcmp(command,"test_siren")==0) {
-          Serial.println("TESTING SIREN!");
-          digitalWrite(RELAY,1);
-          delay(500);
-          digitalWrite(RELAY,0);
-        }        
-        if (strcmp(command,"ping")==0) {
-          Serial.println("RECEIVED PING");
-          delay(500);
-          String(now()).toCharArray(uptime, 10);
-          String(distance).toCharArray(distance_str, 50);
-          strcpy(message, "{ \"mac\":\"");
-          strcat(message, mac_addr);
-          strcat(message, "\", \"device_type\":");
-          strcat(message, "\"garage_opener\", ");
-          strcat(message,"\"local_ip\":\"");
-          strcat(message, local_ip);
-          strcat(message, "\", \"uptime\":");
-          strcat(message, uptime);
-          strcat(message, ", \"distance\":");
-          strcat(message, distance_str);
-          strcat(message, ", \"token\":\"");
-          strcat(message, token);
-          strcat(message, "\", \"data\":\"");
-          //strcat(message,analog_data_str);
-          strcat(message, "\" }");
-          Serial.println(message);
-          webSocket.sendTXT(message);
-        }
-      }
-      
-      if (strcmp(command, "png_test") == 0) {
-        Serial.println("received ping");
-          /*strcpy(message, "{ \"mac\":\"");
-          strcat(message, mac_addr);
-          strcat(message, ", \"token\":\"");
-          strcat(message, token);
-          strcat(message, "\", \"data\":\"");
-          strcat(message, "\" }");
-          Serial.println(message);
-          webSocket.sendTXT(message);*/
-      }
-      
-      break;
-    case WStype_BIN:
-      Serial.printf("[WSc] get binary lenght: %u\n", lenght);
-      hexdump(payload, lenght);
-      // webSocket.sendBIN(payload, lenght);
-      break;
-  }
-}
-
-// ---------------------------------------------------------------- //
-// ----------------------------- setup ---------------------------- //
-// ---------------------------------------------------------------- //
 int ap_connect() {
   WiFi.disconnect();
   WiFi.mode(WIFI_AP);
@@ -557,6 +593,9 @@ int ap_connect() {
   return 1;
 }
 
+// ---------------------------------------------------------------- //
+// ------------------------- device info -------------------------- //
+// ---------------------------------------------------------------- //
 void get_device_info() {
   Serial.println();
   Serial.println("getting wifi info...");
@@ -621,6 +660,9 @@ void get_token() {
   }
 }
 
+// ---------------------------------------------------------------- //
+// -------------------------- setup ------------------------------- //
+// ---------------------------------------------------------------- //
 void setup() {
   Serial.begin(115200);
   EEPROM.begin(512);
@@ -646,10 +688,11 @@ void setup() {
   String(WiFi.localIP().toString()).toCharArray(local_ip, 20);
 }
 
-int time_delta = 0;
+// ---------------------------------------------------------------- //
+// -------------------------- loop -------------------------------- //
+// ---------------------------------------------------------------- //
 void loop() {
-  get_analog_data();
-  /*server.handleClient();
+  server.handleClient();
   if (isConnected) {
     webSocket.loop();
   }
@@ -664,33 +707,11 @@ void loop() {
     //sendIR();
     get_analog_data();
     //receiveIR();
-    /*distance_delta = (old_distance - distance)*(old_distance - distance);
-    if (distance_delta > 10000 ) {
-      old_distance = distance;    
-      String(now()).toCharArray(uptime, 10);
-      String(distance).toCharArray(distance_str, 50);
-      strcpy(message, "{ \"mac\":\"");
-      strcat(message, mac_addr);
-      strcat(message, "\", \"device_type\":");
-      strcat(message, "\"garage_opener\", ");
-      strcat(message,"\"local_ip\":\"");
-      strcat(message, local_ip);
-      strcat(message, "\", \"uptime\":");
-      strcat(message, uptime);
-      strcat(message, ", \"distance\":");
-      strcat(message, distance_str);
-      strcat(message, ", \"token\":\"");
-      strcat(message, token);
-      strcat(message, "\", \"analog\":\"");
-      //strcat(message,analog_data_str);
-      strcat(message, "\" }");
-      Serial.println(message);
-      webSocket.sendTXT(message);
-    }*/
-  /*} else {
+    get_distance();
+  } else {
     get_token();
   }
-  magnitude = 0;*/
+  magnitude = 0;
   //delay(1);
 }
 
