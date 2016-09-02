@@ -171,7 +171,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
           strcpy(message, "{ \"mac\":\"");
           strcat(message, mac_addr);
           strcat(message, "\", \"device_type\":");
-          strcat(message, "\"garage_opener\", ");
+          strcat(message, "[\"garage_opener\"],");
           strcat(message,"\"local_ip\":\"");
           strcat(message, local_ip);
           strcat(message, "\", \"uptime\":");
@@ -344,7 +344,7 @@ void get_analog_data() {
     strcpy(message, "{ \"mac\":\"");
     strcat(message, mac_addr);
     strcat(message, "\", \"device_type\":");
-    strcat(message, "\"room_sensor\", ");
+    strcat(message, "[\"room_sensor\"],");
     strcat(message,"\"local_ip\":\"");
     strcat(message, local_ip);
     strcat(message, "\", \"uptime\":");
@@ -632,7 +632,7 @@ void send_ping() {
   strcpy(png_cmd, "{ \"mac\":\"");
   strcat(png_cmd, mac_addr);
   strcat(png_cmd, "\", \"device_type\":");
-  strcat(png_cmd, "\"media_controller\",");
+  strcat(png_cmd, "[\"media_controller\",\"room_sensor\"],");
   strcat(png_cmd,"\"local_ip\":\"");
   strcat(png_cmd, local_ip);  
   strcat(png_cmd, "\", \"cmd\":");
@@ -648,7 +648,7 @@ void get_token() {
   strcpy(token_req, "{ \"mac\":\"");
   strcat(token_req, mac_addr);
   strcat(token_req, "\", \"device_type\":");
-  strcat(token_req, "\"media_controller\",");
+  strcat(token_req, "[\"media_controller\",\"room_sensor\"],");
   strcat(token_req,"\"local_ip\":\"");
   strcat(token_req, local_ip);  
   strcat(token_req, "\", \"cmd\":");
