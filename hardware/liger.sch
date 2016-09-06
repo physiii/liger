@@ -1769,47 +1769,48 @@ $EndComp
 $Comp
 L C C?
 U 1 1 57C8658B
-P 5050 6650
-F 0 "C?" H 5150 6750 50  0000 L CNN
-F 1 "330pF" H 5100 6550 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 5165 6605 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 5165 6514 50  0001 L CNN
-	1    5050 6650
+P 12400 7550
+F 0 "C?" H 12500 7650 50  0000 L CNN
+F 1 "330pF" H 12450 7450 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 12515 7505 50  0001 L CNN
+F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 12515 7414 50  0001 L CNN
+	1    12400 7550
 	-1   0    0    1   
 $EndComp
 $Comp
 L CP1 C?
 U 1 1 57C87C6C
-P 8050 7600
-F 0 "C?" H 8165 7646 50  0000 L CNN
-F 1 "100uF" H 8165 7555 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Radial_D16_L31.5_P7.5" H 8165 7555 50  0001 L CNN
-F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 8165 7464 50  0001 L CNN
-	1    8050 7600
+P 6250 8900
+F 0 "C?" H 6365 8946 50  0000 L CNN
+F 1 "100uF" H 6365 8855 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D10_L20_P7.5" H 6365 8855 50  0001 L CNN
+F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 6365 8764 50  0001 L CNN
+F 4 "UPZ2G101MHD" H 6250 8900 60  0001 C CNN "Part Number"
+	1    6250 8900
 	1    0    0    -1  
 $EndComp
 $Comp
 L C C?
 U 1 1 57C8DD11
-P 8650 7050
-F 0 "C?" H 8750 7150 50  0000 L CNN
-F 1 "4.7nF" H 8700 6950 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Rect_L13_W4_P10" H 8765 7005 50  0001 L CNN
-F 3 "http://www.mouser.com/ProductDetail/EPCOS-TDK/B32641B0472K/?qs=sGAEpiMZZMv1cc3ydrPrFzRLALvOkyF1YTrqCCdx%2fGdcBMeHHlEFGg%3d%3d" H 8765 6914 50  0001 L CNN
-F 4 "B32641B0472K" H 8650 7050 60  0001 C CNN "Part Number"
-	1    8650 7050
+P 12400 7100
+F 0 "C?" H 12500 7200 50  0000 L CNN
+F 1 "4.7nF" H 12450 7000 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Rect_L13_W4_P10" H 12515 7055 50  0001 L CNN
+F 3 "http://www.mouser.com/ProductDetail/EPCOS-TDK/B32641B0472K/?qs=sGAEpiMZZMv1cc3ydrPrFzRLALvOkyF1YTrqCCdx%2fGdcBMeHHlEFGg%3d%3d" H 12515 6964 50  0001 L CNN
+F 4 "B32641B0472K" H 12400 7100 60  0001 C CNN "Part Number"
+	1    12400 7100
 	1    0    0    -1  
 $EndComp
 $Comp
 L D D?
 U 1 1 57C8E8E8
-P 8700 8200
-F 0 "D?" H 8700 8415 50  0000 C CNN
-F 1 "D" H 8700 8324 50  0000 C CNN
-F 2 "Diodes_SMD:SMB_Handsoldering" H 8700 8415 50  0001 C CNN
-F 3 "http://www.mouser.com/ProductDetail/Fairchild-Semiconductor/S1M/?qs=sGAEpiMZZMtbRapU8LlZD6Aoap19JQAxIRiMhMkksfk%3d" H 8700 8324 50  0001 C CNN
-F 4 "S1M" H 8700 8200 60  0001 C CNN "Part Number"
-	1    8700 8200
+P 12400 6800
+F 0 "D?" H 12400 7015 50  0000 C CNN
+F 1 "D" H 12400 6924 50  0000 C CNN
+F 2 "Diodes_SMD:SMB_Handsoldering" H 12400 7015 50  0001 C CNN
+F 3 "http://www.mouser.com/ProductDetail/Fairchild-Semiconductor/S1M/?qs=sGAEpiMZZMtbRapU8LlZD6Aoap19JQAxIRiMhMkksfk%3d" H 12400 6924 50  0001 C CNN
+F 4 "S1M" H 12400 6800 60  0001 C CNN "Part Number"
+	1    12400 6800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
