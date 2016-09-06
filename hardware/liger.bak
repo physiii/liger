@@ -1735,57 +1735,46 @@ $EndComp
 $Comp
 L VDDA #PWR?
 U 1 1 57C657E4
-P 1950 10600
-F 0 "#PWR?" H 1950 10450 50  0001 C CNN
-F 1 "VDDA" V 1968 10728 50  0000 L CNN
-F 2 "" H 1950 10600 50  0000 C CNN
-F 3 "" H 1950 10600 50  0000 C CNN
-	1    1950 10600
-	-1   0    0    1   
-$EndComp
-$Comp
-L TRANSFO2 T?
-U 1 1 57C7BD39
-P 7550 7850
-F 0 "T?" H 7550 8428 50  0000 C CNN
-F 1 "TRANSFO2" H 7550 8337 50  0000 C CNN
-F 2 "" H 7550 7850 50  0000 C CNN
-F 3 "" H 7550 7850 50  0000 C CNN
-	1    7550 7850
-	1    0    0    -1  
+P 2800 9750
+F 0 "#PWR?" H 2800 9600 50  0001 C CNN
+F 1 "VDDA" V 2818 9878 50  0000 L CNN
+F 2 "" H 2800 9750 50  0000 C CNN
+F 3 "" H 2800 9750 50  0000 C CNN
+	1    2800 9750
+	0    -1   -1   0   
 $EndComp
 $Comp
 L Diode_Bridge D?
 U 1 1 57C81314
-P 1750 7500
-F 0 "D?" H 1400 7800 50  0000 L CNN
-F 1 "Diode_Bridge" H 1150 7800 50  0001 L CNN
-F 2 "" H 1750 7500 50  0000 C CNN
-F 3 "" H 1750 7500 50  0000 C CNN
-	1    1750 7500
-	1    0    0    -1  
+P 3600 9250
+F 0 "D?" H 3250 9550 50  0000 L CNN
+F 1 "Diode_Bridge" H 3000 9550 50  0001 L CNN
+F 2 "" H 3600 9250 50  0000 C CNN
+F 3 "" H 3600 9250 50  0000 C CNN
+	1    3600 9250
+	0    -1   -1   0   
 $EndComp
 $Comp
 L common-mode-choke U?
 U 1 1 57C84532
-P 1800 9250
-F 0 "U?" V 1400 9000 60  0000 C CNN
-F 1 "common-mode-choke" V 2200 9250 60  0000 C CNN
-F 2 "" V 1800 9300 60  0001 C CNN
-F 3 "" V 1800 9300 60  0001 C CNN
-	1    1800 9250
+P -700 8950
+F 0 "U?" V -1100 8700 60  0000 C CNN
+F 1 "common-mode-choke" V -300 8950 60  0000 C CNN
+F 2 "" V -700 9000 60  0001 C CNN
+F 3 "" V -700 9000 60  0001 C CNN
+	1    -700 8950
 	0    -1   -1   0   
 $EndComp
 $Comp
 L VDD #PWR?
 U 1 1 57C65667
-P 1550 10600
-F 0 "#PWR?" H 1550 10450 50  0001 C CNN
-F 1 "VDD" V 1568 10727 50  0000 L CNN
-F 2 "" H 1550 10600 50  0000 C CNN
-F 3 "" H 1550 10600 50  0000 C CNN
-	1    1550 10600
-	-1   0    0    1   
+P 2800 9250
+F 0 "#PWR?" H 2800 9100 50  0001 C CNN
+F 1 "VDD" V 2818 9377 50  0000 L CNN
+F 2 "" H 2800 9250 50  0000 C CNN
+F 3 "" H 2800 9250 50  0000 C CNN
+	1    2800 9250
+	0    -1   -1   0   
 $EndComp
 $Comp
 L R R?
@@ -1824,12 +1813,12 @@ $EndComp
 $Comp
 L CP1 C?
 U 1 1 57C87C6C
-P 3000 7400
-F 0 "C?" H 3115 7446 50  0000 L CNN
-F 1 "100uF" H 3115 7355 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Radial_D16_L31.5_P7.5" H 3115 7355 50  0001 L CNN
-F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 3115 7264 50  0001 L CNN
-	1    3000 7400
+P 3000 7350
+F 0 "C?" H 3115 7396 50  0000 L CNN
+F 1 "100uF" H 3115 7305 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D16_L31.5_P7.5" H 3115 7305 50  0001 L CNN
+F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 3115 7214 50  0001 L CNN
+	1    3000 7350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -1862,4 +1851,90 @@ Connection ~ 1550 8450
 Wire Wire Line
 	2150 8450 2150 7500
 Connection ~ 1950 8450
+Wire Wire Line
+	1750 7100 1750 7000
+Wire Wire Line
+	1750 7000 3000 7000
+Wire Wire Line
+	3000 7000 3000 7200
+$Comp
+L R R?
+U 1 1 57C8D036
+P 3650 7400
+F 0 "R?" V 3730 7400 50  0000 C CNN
+F 1 "68k" V 3650 7400 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM15mm" V 3580 7400 50  0001 C CNN
+F 3 "http://www.mouser.com/ProductDetail/KOA-Speer/MOS1CT52R683J/?qs=sGAEpiMZZMvmQ%252bOLa8n%2fM5uRxY2%252b5i%252be7fZ9KNc%2fiAE%3d" H 3650 7400 50  0001 C CNN
+F 4 "MOS1CT52R683J" V 3650 7400 60  0001 C CNN "Part Number"
+	1    3650 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 57C8D364
+P 4200 7400
+F 0 "R?" V 4280 7400 50  0000 C CNN
+F 1 "33k" V 4200 7400 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM15mm" V 4130 7400 50  0001 C CNN
+F 3 "http://www.mouser.com/ProductDetail/KOA-Speer/MOS1CT52R333J/?qs=sGAEpiMZZMvmQ%252bOLa8n%2fM5uRxY2%252b5i%252bexuZg3F3Uq%252bw%3d" H 4200 7400 50  0001 C CNN
+F 4 "MOS1CT52R333J" V 4200 7400 60  0001 C CNN "Part Number"
+	1    4200 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 57C8DD11
+P 4700 7400
+F 0 "C?" H 4800 7500 50  0000 L CNN
+F 1 "4.7nF" H 4750 7300 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Rect_L13_W4_P10" H 4815 7355 50  0001 L CNN
+F 3 "http://www.mouser.com/ProductDetail/EPCOS-TDK/B32641B0472K/?qs=sGAEpiMZZMv1cc3ydrPrFzRLALvOkyF1YTrqCCdx%2fGdcBMeHHlEFGg%3d%3d" H 4815 7264 50  0001 L CNN
+F 4 "B32641B0472K" H 4700 7400 60  0001 C CNN "Part Number"
+	1    4700 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 57C8E41E
+P 5050 7800
+F 0 "R?" V 5130 7800 50  0000 C CNN
+F 1 "6.8" V 5050 7800 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM15mm" V 4980 7800 50  0001 C CNN
+F 3 "http://www.mouser.com/ProductDetail/KOA-Speer/MOS1CT52R333J/?qs=sGAEpiMZZMvmQ%252bOLa8n%2fM5uRxY2%252b5i%252bexuZg3F3Uq%252bw%3d" H 5050 7800 50  0001 C CNN
+F 4 "MOS1CT52R333J" V 5050 7800 60  0001 C CNN "Part Number"
+	1    5050 7800
+	0    1    1    0   
+$EndComp
+$Comp
+L D D?
+U 1 1 57C8E8E8
+P 5600 7800
+F 0 "D?" H 5600 8015 50  0000 C CNN
+F 1 "D" H 5600 7924 50  0000 C CNN
+F 2 "Diodes_SMD:SMB_Handsoldering" H 5600 8015 50  0001 C CNN
+F 3 "http://www.mouser.com/ProductDetail/Fairchild-Semiconductor/S1M/?qs=sGAEpiMZZMtbRapU8LlZD6Aoap19JQAxIRiMhMkksfk%3d" H 5600 7924 50  0001 C CNN
+F 4 "S1M" H 5600 7800 60  0001 C CNN "Part Number"
+	1    5600 7800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 9250 3200 9250
+$Comp
+L R RT?
+U 1 1 57CEDD2A
+P 3150 9750
+F 0 "RT?" V 3050 9750 50  0000 C CNN
+F 1 "5" V 3150 9750 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 3080 9750 50  0001 C CNN
+F 3 "http://www.digikey.com/scripts/DkSearch/dksus.dll?Detail&itemSeq=206246827&uq=636087498279562389" H 3150 9750 50  0001 C CNN
+F 4 "SL05 5R001-A" V 3150 9750 60  0001 C CNN "Part Number"
+	1    3150 9750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2800 9750 3000 9750
+Wire Wire Line
+	3300 9750 4000 9750
+Wire Wire Line
+	4000 9750 4000 9250
 $EndSCHEMATC

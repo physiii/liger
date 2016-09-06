@@ -605,22 +605,6 @@ X A 2 200 0 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# common-mode-choke
-#
-DEF common-mode-choke U 0 40 Y Y 1 F N
-F0 "U" 300 -350 60 H V C CNN
-F1 "common-mode-choke" 0 500 60 H V C CNN
-F2 "" 0 50 60 V I C CNN
-F3 "" 0 50 60 V I C CNN
-DRAW
-S 350 -300 -350 400 1 1 0 f
-X ~ 1 -550 250 200 R 50 50 1 1 I
-X ~ 2 550 250 200 L 50 50 1 1 I
-X ~ 3 550 -150 200 L 50 50 1 1 I
-X ~ 4 -550 -150 200 R 50 50 1 1 I
-ENDDRAW
-ENDDEF
-#
 # electret_microphone
 #
 DEF electret_microphone U 0 40 Y Y 1 F N
