@@ -1342,7 +1342,7 @@ U 1 1 57C81314
 P 3600 9250
 F 0 "BR1" H 3250 9550 50  0000 L CNN
 F 1 "DF08S" H 3000 9550 50  0001 L CNN
-F 2 "tba" H 3600 9250 50  0001 C CNN
+F 2 "Diodes_ThroughHole:Diode_Bridge_15.7x15.7" H 3600 9250 50  0001 C CNN
 F 3 "http://www.digikey.com/scripts/DkSearch/dksus.dll?Detail&itemSeq=206259955&uq=636087571188496593" H 3600 9250 50  0001 C CNN
 F 4 "DF08S" H 3600 9250 60  0001 C CNN "Part Number"
 	1    3600 9250
