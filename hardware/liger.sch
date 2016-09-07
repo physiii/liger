@@ -56,165 +56,15 @@ F 4 "V23105A5001A201" H 8400 1550 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R3
-U 1 1 57633FAF
-P 1450 1300
-F 0 "R3" V 1530 1300 50  0000 C CNN
-F 1 "2.2K" V 1450 1300 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 1380 1300 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 1450 1300 50  0001 C CNN
-F 4 "RC0603FR-072K2L" V 1450 1300 60  0001 C CNN "Part Number"
-	1    1450 1300
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R11
-U 1 1 57634014
-P 3050 950
-F 0 "R11" V 3130 950 50  0000 C CNN
-F 1 "1M" V 3050 950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2980 950 50  0001 C CNN
-F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_04.pdf" H 3050 950 50  0001 C CNN
-F 4 "RC0603FR-071ML" V 3050 950 60  0001 C CNN "Part Number"
-	1    3050 950 
-	0    1    1    0   
-$EndComp
-$Comp
-L R R5
-U 1 1 5763405B
-P 2200 1650
-F 0 "R5" V 2280 1650 50  0000 C CNN
-F 1 "10K" V 2200 1650 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2130 1650 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2200 1650 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 2200 1650 60  0001 C CNN "Part Number"
-	1    2200 1650
-	0    1    1    0   
-$EndComp
-$Comp
-L C C1
-U 1 1 576341A5
-P 1700 1650
-F 0 "C1" V 1750 1700 50  0000 L CNN
-F 1 "4.7uF" V 1750 1400 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1738 1500 50  0001 C CNN
-F 3 "http://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL_Series_MLCC_ds.pdf" H 1700 1650 50  0001 C CNN
-F 4 "CL10B475KQ8NQNC" H 1700 1650 60  0001 C CNN "Part Number"
-	1    1700 1650
-	0    -1   -1   0   
-$EndComp
-$Comp
-L C C3
-U 1 1 57634222
-P 2250 2150
-F 0 "C3" H 2275 2250 50  0000 L CNN
-F 1 "10uF" H 2050 2050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 2288 2000 50  0001 C CNN
-F 3 "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf" H 2250 2150 50  0001 C CNN
-F 4 "GRM188R60G106ME47D" H 2250 2150 60  0001 C CNN "Part Number"
-	1    2250 2150
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C10
-U 1 1 57634242
-P 3050 750
-F 0 "C10" V 3100 800 50  0000 L CNN
-F 1 "12pF" V 3100 500 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0402" H 3088 600 50  0001 C CNN
-F 3 "http://www.kemet.com/Lists/ProductCatalog/Attachments/46/KEM_C1003_C0G_SMD.pdf" H 3050 750 50  0001 C CNN
-F 4 "C0402C120J5GACTU" H 3050 750 60  0001 C CNN "Part Number"
-	1    3050 750 
-	0    -1   -1   0   
-$EndComp
-$Comp
 L ADA4075 U2
 U 1 1 576343F3
-P 3050 1750
-F 0 "U2" H 3050 1900 50  0000 L CNN
-F 1 "ADA4075" H 3050 1600 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 2950 1800 50  0001 C CNN
-F 3 "http://www.mouser.com/ds/2/609/OP275-879536.pdf" H 3050 1900 50  0001 C CNN
-F 4 "OPA344NA/3K" H 3050 1750 60  0001 C CNN "Part Number"
-	1    3050 1750
-	1    0    0    -1  
-$EndComp
-$Comp
-L electret_microphone U1
-U 1 1 57634A59
-P 750 1850
-F 0 "U1" H 900 1600 60  0000 C CNN
-F 1 "electret_microphone" H 750 2350 60  0000 C CNN
-F 2 "libraries:Electret" H 650 2000 60  0001 C CNN
-F 3 "http://www.mouser.com/ds/2/670/cmc-5044pf-a-515902.pdf" H 650 2000 60  0001 C CNN
-F 4 "CMC-5044PF-A" H 750 1850 60  0001 C CNN "Part Number"
-	1    750  1850
-	1    0    0    -1  
-$EndComp
-$Comp
-L +3.3V #PWR01
-U 1 1 57635FF7
-P 1450 1000
-F 0 "#PWR01" H 1450 850 50  0001 C CNN
-F 1 "+3.3V" H 1450 1140 50  0000 C CNN
-F 2 "" H 1450 1000 50  0000 C CNN
-F 3 "" H 1450 1000 50  0000 C CNN
-	1    1450 1000
-	1    0    0    -1  
-$EndComp
-$Comp
-L +3.3V #PWR02
-U 1 1 57636057
-P 2450 1050
-F 0 "#PWR02" H 2450 900 50  0001 C CNN
-F 1 "+3.3V" H 2450 1190 50  0000 C CNN
-F 2 "" H 2450 1050 50  0000 C CNN
-F 3 "" H 2450 1050 50  0000 C CNN
-	1    2450 1050
-	1    0    0    -1  
-$EndComp
-$Comp
-L +3.3V #PWR03
-U 1 1 57636091
-P 2950 1350
-F 0 "#PWR03" H 2950 1200 50  0001 C CNN
-F 1 "+3.3V" H 2950 1490 50  0000 C CNN
-F 2 "" H 2950 1350 50  0000 C CNN
-F 3 "" H 2950 1350 50  0000 C CNN
-	1    2950 1350
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR04
-U 1 1 57636188
-P 1150 2150
-F 0 "#PWR04" H 1150 1900 50  0001 C CNN
-F 1 "GND" H 1150 2000 50  0000 C CNN
-F 2 "" H 1150 2150 50  0000 C CNN
-F 3 "" H 1150 2150 50  0000 C CNN
-	1    1150 2150
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR05
-U 1 1 576361F5
-P 2450 2700
-F 0 "#PWR05" H 2450 2450 50  0001 C CNN
-F 1 "GND" H 2450 2550 50  0000 C CNN
-F 2 "" H 2450 2700 50  0000 C CNN
-F 3 "" H 2450 2700 50  0000 C CNN
-	1    2450 2700
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR06
-U 1 1 57636208
-P 2950 2300
-F 0 "#PWR06" H 2950 2050 50  0001 C CNN
-F 1 "GND" H 2950 2150 50  0000 C CNN
-F 2 "" H 2950 2300 50  0000 C CNN
-F 3 "" H 2950 2300 50  0000 C CNN
-	1    2950 2300
+P 3100 1600
+F 0 "U2" H 3100 1750 50  0000 L CNN
+F 1 "ADA4075" H 3100 1450 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 3000 1650 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/609/OP275-879536.pdf" H 3100 1750 50  0001 C CNN
+F 4 "OPA344NA/3K" H 3100 1600 60  0001 C CNN "Part Number"
+	1    3100 1600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -310,7 +160,7 @@ F 3 "" H 6050 1350 50  0000 C CNN
 $EndComp
 Text Label 4300 750  0    60   ~ 0
 Regulator
-Text Label 650  750  0    60   ~ 0
+Text Label -50  100  0    60   ~ 0
 Mic_pre-amp
 $Comp
 L D D4
@@ -595,30 +445,6 @@ F 4 "RC0603JR-071KL" V 7000 2250 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L R R7
-U 1 1 576E475A
-P 2450 1400
-F 0 "R7" H 2550 1350 50  0000 C CNN
-F 1 "10K" V 2450 1400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2380 1400 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2450 1400 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 2450 1400 60  0001 C CNN "Part Number"
-	1    2450 1400
-	-1   0    0    1   
-$EndComp
-$Comp
-L R R8
-U 1 1 576E479D
-P 2450 2150
-F 0 "R8" H 2350 2100 50  0000 C CNN
-F 1 "10K" V 2450 2150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2380 2150 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2450 2150 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 2450 2150 60  0001 C CNN "Part Number"
-	1    2450 2150
-	-1   0    0    1   
-$EndComp
-$Comp
 L R R12
 U 1 1 576E4AC5
 P 4400 2000
@@ -704,7 +530,7 @@ F 4 "CC0603ZRY5V9BB104" H 6300 1750 60  0001 C CNN "Part Number"
 $EndComp
 Text GLabel 6400 3850 2    60   Input ~ 0
 ADC
-Text GLabel 3500 1750 2    60   Input ~ 0
+Text GLabel 3500 1600 2    60   Input ~ 0
 ADC
 Text GLabel 4800 4150 0    60   Input ~ 0
 IO15
@@ -988,6 +814,351 @@ F 3 "" H 6750 4200 50  0000 C CNN
 	1    6750 4200
 	1    0    0    -1  
 $EndComp
+$Comp
+L +3.3V #PWR032
+U 1 1 577743ED
+P 6750 5050
+F 0 "#PWR032" H 6750 4900 50  0001 C CNN
+F 1 "+3.3V" H 6750 5190 50  0000 C CNN
+F 2 "" H 6750 5050 50  0000 C CNN
+F 3 "" H 6750 5050 50  0000 C CNN
+	1    6750 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L ESP-WROOM-02 U3
+U 1 1 57775BA4
+P 4850 3300
+F 0 "U3" H 5900 2000 60  0000 C CNN
+F 1 "ESP-WROOM-02" H 5550 3150 60  0000 C CNN
+F 2 "libraries:ESP-WROOM-02" H 4850 3300 60  0001 C CNN
+F 3 "http://espressif.com/sites/default/files/documentation/0c-esp-wroom-02_datasheet_en.pdf" H 4850 3300 60  0001 C CNN
+F 4 "ESP-WROOM-02" H 4850 3300 60  0001 C CNN "Part Number"
+	1    4850 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L VDDA #PWR033
+U 1 1 57C657E4
+P 2800 9750
+F 0 "#PWR033" H 2800 9600 50  0001 C CNN
+F 1 "VDDA" V 2818 9878 50  0000 L CNN
+F 2 "" H 2800 9750 50  0000 C CNN
+F 3 "" H 2800 9750 50  0000 C CNN
+	1    2800 9750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Diode_Bridge BR1
+U 1 1 57C81314
+P 3600 9250
+F 0 "BR1" H 3250 9550 50  0000 L CNN
+F 1 "DF08S" H 3000 9550 50  0001 L CNN
+F 2 "Diodes_ThroughHole:Diode_Bridge_15.7x15.7" H 3600 9250 50  0001 C CNN
+F 3 "http://www.digikey.com/scripts/DkSearch/dksus.dll?Detail&itemSeq=206259955&uq=636087571188496593" H 3600 9250 50  0001 C CNN
+F 4 "DF08S" H 3600 9250 60  0001 C CNN "Part Number"
+	1    3600 9250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L VDD #PWR034
+U 1 1 57C65667
+P 2800 9250
+F 0 "#PWR034" H 2800 9100 50  0001 C CNN
+F 1 "VDD" V 2818 9377 50  0000 L CNN
+F 2 "" H 2800 9250 50  0000 C CNN
+F 3 "" H 2800 9250 50  0000 C CNN
+	1    2800 9250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C C12
+U 1 1 57C8658B
+P 12400 7550
+F 0 "C12" H 12500 7650 50  0000 L CNN
+F 1 "330pF" H 12450 7450 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 12515 7505 50  0001 L CNN
+F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 12515 7414 50  0001 L CNN
+	1    12400 7550
+	-1   0    0    1   
+$EndComp
+$Comp
+L CP1 C9
+U 1 1 57C87C6C
+P 6250 8900
+F 0 "C9" H 6365 8946 50  0000 L CNN
+F 1 "100uF" H 6365 8855 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D10_L20_P7.5" H 6365 8855 50  0001 L CNN
+F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 6365 8764 50  0001 L CNN
+F 4 "UPZ2G101MHD" H 6250 8900 60  0001 C CNN "Part Number"
+	1    6250 8900
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C11
+U 1 1 57C8DD11
+P 2150 1700
+F 0 "C11" V 2100 1750 50  0000 L CNN
+F 1 "220nF" V 2300 1600 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Rect_L13_W4_P10" H 2265 1655 50  0001 L CNN
+F 3 "http://www.mouser.com/ProductDetail/EPCOS-TDK/B32641B0472K/?qs=sGAEpiMZZMv1cc3ydrPrFzRLALvOkyF1YTrqCCdx%2fGdcBMeHHlEFGg%3d%3d" H 2265 1564 50  0001 L CNN
+F 4 "B32641B0472K" H 2150 1700 60  0001 C CNN "Part Number"
+	1    2150 1700
+	0    1    1    0   
+$EndComp
+$Comp
+L D D5
+U 1 1 57C8E8E8
+P 12400 6800
+F 0 "D5" H 12400 7015 50  0000 C CNN
+F 1 "D" H 12400 6924 50  0000 C CNN
+F 2 "Diodes_SMD:SMB_Handsoldering" H 12400 7015 50  0001 C CNN
+F 3 "http://www.mouser.com/ProductDetail/Fairchild-Semiconductor/S1M/?qs=sGAEpiMZZMtbRapU8LlZD6Aoap19JQAxIRiMhMkksfk%3d" H 12400 6924 50  0001 C CNN
+F 4 "S1M" H 12400 6800 60  0001 C CNN "Part Number"
+	1    12400 6800
+	1    0    0    -1  
+$EndComp
+$Comp
+L R RT1
+U 1 1 57CEDD2A
+P 3150 9750
+F 0 "RT1" V 3050 9750 50  0000 C CNN
+F 1 "5" V 3150 9750 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 3080 9750 50  0001 C CNN
+F 3 "http://www.digikey.com/scripts/DkSearch/dksus.dll?Detail&itemSeq=206246827&uq=636087498279562389" H 3150 9750 50  0001 C CNN
+F 4 "SL05 5R001-A" V 3150 9750 60  0001 C CNN "Part Number"
+	1    3150 9750
+	0    1    1    0   
+$EndComp
+$Comp
+L BK0603HS330-T L1
+U 1 1 57CF1BCD
+P 4700 10100
+F 0 "L1" H 4800 10050 60  0000 C CNN
+F 1 "BEAD" H 4850 9950 60  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" H 4700 10100 60  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/MMZ2012D121BT000/445-2188-1-ND/765218" H 4700 10100 60  0001 C CNN
+F 4 "MMZ2012D121BT000" H 4700 10100 60  0001 C CNN "Part Number"
+	1    4700 10100
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1 C8
+U 1 1 57CF4182
+P 5300 9200
+F 0 "C8" H 5415 9246 50  0000 L CNN
+F 1 "12uF" H 5415 9155 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 5415 9155 50  0001 L CNN
+F 3 "http://www.digikey.com/product-detail/en/rubycon/400AX12MEFC10X12.5/1189-3120-ND/6049840" H 5415 9064 50  0001 L CNN
+	1    5300 9200
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1 C7
+U 1 1 57CF494B
+P 4350 9200
+F 0 "C7" H 4465 9246 50  0000 L CNN
+F 1 "12uF" H 4465 9155 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 4465 9155 50  0001 L CNN
+F 3 "http://www.digikey.com/product-detail/en/rubycon/400AX12MEFC10X12.5/1189-3120-ND/6049840" H 4465 9064 50  0001 L CNN
+	1    4350 9200
+	1    0    0    -1  
+$EndComp
+$Comp
+L BK0603HS330-T L2
+U 1 1 57CF6277
+P 4750 8600
+F 0 "L2" H 4850 8550 60  0000 C CNN
+F 1 "470uH" H 4900 8450 60  0000 C CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 4750 8600 60  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/bourns-inc/RLB0608-471KL/RLB0608-471KL-ND/2352761" H 4750 8600 60  0001 C CNN
+F 4 "BK1608HS330-T" H 4750 8600 60  0001 C CNN "Part Number"
+	1    4750 8600
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R16
+U 1 1 57CFCBB5
+P 5700 10550
+F 0 "R16" V 5700 10550 50  0000 C CNN
+F 1 "0.91" V 5800 10550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 5630 10550 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 5700 10550 50  0001 C CNN
+F 4 "RL1220S-R91-F" V 5700 10550 60  0001 C CNN "Part Number"
+	1    5700 10550
+	0    1    1    0   
+$EndComp
+$Comp
+L R R15
+U 1 1 57CFCDF7
+P 5050 10500
+F 0 "R15" V 5050 10500 50  0000 C CNN
+F 1 "0.82" V 5150 10500 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4980 10500 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R82-F/RL12S.82FCT-ND/433031" H 5050 10500 50  0001 C CNN
+F 4 "RL1220S-R82-F" V 5050 10500 60  0001 C CNN "Part Number"
+	1    5050 10500
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57D0735A
+P 750 1950
+F 0 "#PWR?" H 750 1700 50  0001 C CNN
+F 1 "GND" H 750 1800 50  0000 C CNN
+F 2 "" H 750 1950 50  0000 C CNN
+F 3 "" H 750 1950 50  0000 C CNN
+	1    750  1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3.3V #PWR?
+U 1 1 57D0788E
+P 750 1650
+F 0 "#PWR?" H 750 1500 50  0001 C CNN
+F 1 "+3.3V" H 750 1790 50  0000 C CNN
+F 2 "" H 750 1650 50  0000 C CNN
+F 3 "" H 750 1650 50  0000 C CNN
+	1    750  1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L MEMS-SPM0408LE5H U?
+U 1 1 57D08DA5
+P 1350 1850
+F 0 "U?" H 1650 2150 60  0000 C CNN
+F 1 "MEMS-SPM0408LE5H" H 1450 1700 60  0000 C CNN
+F 2 "" H 1350 1850 60  0001 C CNN
+F 3 "" H 1350 1850 60  0001 C CNN
+	1    1350 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 57D0B27F
+P 2550 1700
+F 0 "R?" V 2630 1700 50  0000 C CNN
+F 1 "1K" V 2550 1700 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2480 1700 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2550 1700 50  0001 C CNN
+F 4 "RC0603FR-072K2L" V 2550 1700 60  0001 C CNN "Part Number"
+	1    2550 1700
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 57D0BD12
+P 3100 2550
+F 0 "R?" V 3180 2550 50  0000 C CNN
+F 1 "10K" V 3100 2550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 3030 2550 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 3100 2550 50  0001 C CNN
+F 4 "RC0603FR-072K2L" V 3100 2550 60  0001 C CNN "Part Number"
+	1    3100 2550
+	0    1    1    0   
+$EndComp
+$Comp
+L +3.3V #PWR?
+U 1 1 57D0CF6C
+P 3000 1200
+F 0 "#PWR?" H 3000 1050 50  0001 C CNN
+F 1 "+3.3V" H 3000 1340 50  0000 C CNN
+F 2 "" H 3000 1200 50  0000 C CNN
+F 3 "" H 3000 1200 50  0000 C CNN
+	1    3000 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57D0CF72
+P 3000 2100
+F 0 "#PWR?" H 3000 1850 50  0001 C CNN
+F 1 "GND" H 3000 1950 50  0000 C CNN
+F 2 "" H 3000 2100 50  0000 C CNN
+F 3 "" H 3000 2100 50  0000 C CNN
+	1    3000 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 57D0E401
+P 2400 1150
+F 0 "R?" V 2480 1150 50  0000 C CNN
+F 1 "1K" V 2400 1150 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2330 1150 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2400 1150 50  0001 C CNN
+F 4 "RC0603FR-072K2L" V 2400 1150 60  0001 C CNN "Part Number"
+	1    2400 1150
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 57D0E6CD
+P 2100 950
+F 0 "R?" V 2180 950 50  0000 C CNN
+F 1 "22K" V 2100 950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2030 950 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2100 950 50  0001 C CNN
+F 4 "RC0603FR-072K2L" V 2100 950 60  0001 C CNN "Part Number"
+	1    2100 950 
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 57D0E858
+P 2100 1300
+F 0 "R?" V 2180 1300 50  0000 C CNN
+F 1 "3.3K" V 2100 1300 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2030 1300 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2100 1300 50  0001 C CNN
+F 4 "RC0603FR-072K2L" V 2100 1300 60  0001 C CNN "Part Number"
+	1    2100 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57D10918
+P 1900 1300
+F 0 "#PWR?" H 1900 1050 50  0001 C CNN
+F 1 "GND" H 1900 1150 50  0000 C CNN
+F 2 "" H 1900 1300 50  0000 C CNN
+F 3 "" H 1900 1300 50  0000 C CNN
+	1    1900 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L +3.3V #PWR?
+U 1 1 57D10AE9
+P 1900 950
+F 0 "#PWR?" H 1900 800 50  0001 C CNN
+F 1 "+3.3V" H 1900 1090 50  0000 C CNN
+F 2 "" H 1900 950 50  0000 C CNN
+F 3 "" H 1900 950 50  0000 C CNN
+	1    1900 950 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L CP1 C?
+U 1 1 57D112C9
+P 2050 2200
+F 0 "C?" H 2165 2246 50  0000 L CNN
+F 1 "4.7uF" H 2165 2155 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 2165 2155 50  0001 L CNN
+F 3 "http://www.digikey.com/product-detail/en/rubycon/400AX12MEFC10X12.5/1189-3120-ND/6049840" H 2165 2064 50  0001 L CNN
+	1    2050 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57D13092
+P 2050 2400
+F 0 "#PWR?" H 2050 2150 50  0001 C CNN
+F 1 "GND" H 2050 2250 50  0000 C CNN
+F 2 "" H 2050 2400 50  0000 C CNN
+F 3 "" H 2050 2400 50  0000 C CNN
+	1    2050 2400
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	6900 5200 6900 5150
 Wire Wire Line
@@ -1107,8 +1278,6 @@ Wire Wire Line
 	4900 4150 4800 4150
 Wire Wire Line
 	6150 3850 6400 3850
-Wire Wire Line
-	3350 1750 3500 1750
 Wire Notes Line
 	500  550  13000 550 
 Wire Notes Line
@@ -1252,220 +1421,19 @@ Wire Wire Line
 Wire Wire Line
 	5950 1550 6300 1550
 Wire Wire Line
-	1450 1150 1450 1000
-Wire Wire Line
-	2450 1250 2450 1050
-Connection ~ 2450 2400
-Wire Wire Line
-	2250 2400 2450 2400
-Wire Wire Line
-	2250 2300 2250 2400
-Wire Wire Line
-	2450 2300 2450 2700
-Wire Wire Line
-	2250 1850 2250 2000
-Connection ~ 2450 1850
-Wire Wire Line
-	2450 1550 2450 2000
-Wire Wire Line
-	2250 1850 2750 1850
-Wire Wire Line
-	2950 2050 2950 2300
-Connection ~ 3400 1750
-Wire Wire Line
-	2950 1450 2950 1350
-Wire Wire Line
-	2350 1650 2750 1650
-Connection ~ 2700 1650
-Connection ~ 3400 950 
-Wire Wire Line
-	3400 950  3200 950 
-Wire Wire Line
-	3400 750  3400 1750
-Wire Wire Line
-	3200 750  3400 750 
-Wire Wire Line
-	2700 750  2900 750 
-Wire Wire Line
-	2700 750  2700 1650
-Connection ~ 2700 950 
-Wire Wire Line
-	2700 950  2900 950 
-Wire Wire Line
-	1850 1650 2050 1650
-Wire Wire Line
-	950  1650 1550 1650
-Connection ~ 1450 1650
-Wire Wire Line
-	1450 1650 1450 1450
-Wire Wire Line
-	1150 1950 1150 2150
-Wire Wire Line
-	950  1950 1150 1950
-$Comp
-L +3.3V #PWR032
-U 1 1 577743ED
-P 6750 5050
-F 0 "#PWR032" H 6750 4900 50  0001 C CNN
-F 1 "+3.3V" H 6750 5190 50  0000 C CNN
-F 2 "" H 6750 5050 50  0000 C CNN
-F 3 "" H 6750 5050 50  0000 C CNN
-	1    6750 5050
-	1    0    0    -1  
-$EndComp
-$Comp
-L ESP-WROOM-02 U3
-U 1 1 57775BA4
-P 4850 3300
-F 0 "U3" H 5900 2000 60  0000 C CNN
-F 1 "ESP-WROOM-02" H 5550 3150 60  0000 C CNN
-F 2 "libraries:ESP-WROOM-02" H 4850 3300 60  0001 C CNN
-F 3 "http://espressif.com/sites/default/files/documentation/0c-esp-wroom-02_datasheet_en.pdf" H 4850 3300 60  0001 C CNN
-F 4 "ESP-WROOM-02" H 4850 3300 60  0001 C CNN "Part Number"
-	1    4850 3300
-	1    0    0    -1  
-$EndComp
-$Comp
-L VDDA #PWR033
-U 1 1 57C657E4
-P 2800 9750
-F 0 "#PWR033" H 2800 9600 50  0001 C CNN
-F 1 "VDDA" V 2818 9878 50  0000 L CNN
-F 2 "" H 2800 9750 50  0000 C CNN
-F 3 "" H 2800 9750 50  0000 C CNN
-	1    2800 9750
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Diode_Bridge BR1
-U 1 1 57C81314
-P 3600 9250
-F 0 "BR1" H 3250 9550 50  0000 L CNN
-F 1 "DF08S" H 3000 9550 50  0001 L CNN
-F 2 "Diodes_ThroughHole:Diode_Bridge_15.7x15.7" H 3600 9250 50  0001 C CNN
-F 3 "http://www.digikey.com/scripts/DkSearch/dksus.dll?Detail&itemSeq=206259955&uq=636087571188496593" H 3600 9250 50  0001 C CNN
-F 4 "DF08S" H 3600 9250 60  0001 C CNN "Part Number"
-	1    3600 9250
-	0    -1   -1   0   
-$EndComp
-$Comp
-L VDD #PWR034
-U 1 1 57C65667
-P 2800 9250
-F 0 "#PWR034" H 2800 9100 50  0001 C CNN
-F 1 "VDD" V 2818 9377 50  0000 L CNN
-F 2 "" H 2800 9250 50  0000 C CNN
-F 3 "" H 2800 9250 50  0000 C CNN
-	1    2800 9250
-	0    -1   -1   0   
-$EndComp
-$Comp
-L C C12
-U 1 1 57C8658B
-P 12400 7550
-F 0 "C12" H 12500 7650 50  0000 L CNN
-F 1 "330pF" H 12450 7450 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 12515 7505 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 12515 7414 50  0001 L CNN
-	1    12400 7550
-	-1   0    0    1   
-$EndComp
-$Comp
-L CP1 C9
-U 1 1 57C87C6C
-P 6250 8900
-F 0 "C9" H 6365 8946 50  0000 L CNN
-F 1 "100uF" H 6365 8855 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Radial_D10_L20_P7.5" H 6365 8855 50  0001 L CNN
-F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 6365 8764 50  0001 L CNN
-F 4 "UPZ2G101MHD" H 6250 8900 60  0001 C CNN "Part Number"
-	1    6250 8900
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C11
-U 1 1 57C8DD11
-P 12400 7100
-F 0 "C11" H 12500 7200 50  0000 L CNN
-F 1 "4.7nF" H 12450 7000 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Rect_L13_W4_P10" H 12515 7055 50  0001 L CNN
-F 3 "http://www.mouser.com/ProductDetail/EPCOS-TDK/B32641B0472K/?qs=sGAEpiMZZMv1cc3ydrPrFzRLALvOkyF1YTrqCCdx%2fGdcBMeHHlEFGg%3d%3d" H 12515 6964 50  0001 L CNN
-F 4 "B32641B0472K" H 12400 7100 60  0001 C CNN "Part Number"
-	1    12400 7100
-	1    0    0    -1  
-$EndComp
-$Comp
-L D D5
-U 1 1 57C8E8E8
-P 12400 6800
-F 0 "D5" H 12400 7015 50  0000 C CNN
-F 1 "D" H 12400 6924 50  0000 C CNN
-F 2 "Diodes_SMD:SMB_Handsoldering" H 12400 7015 50  0001 C CNN
-F 3 "http://www.mouser.com/ProductDetail/Fairchild-Semiconductor/S1M/?qs=sGAEpiMZZMtbRapU8LlZD6Aoap19JQAxIRiMhMkksfk%3d" H 12400 6924 50  0001 C CNN
-F 4 "S1M" H 12400 6800 60  0001 C CNN "Part Number"
-	1    12400 6800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
 	2800 9250 3200 9250
-$Comp
-L R RT1
-U 1 1 57CEDD2A
-P 3150 9750
-F 0 "RT1" V 3050 9750 50  0000 C CNN
-F 1 "5" V 3150 9750 50  0000 C CNN
-F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 3080 9750 50  0001 C CNN
-F 3 "http://www.digikey.com/scripts/DkSearch/dksus.dll?Detail&itemSeq=206246827&uq=636087498279562389" H 3150 9750 50  0001 C CNN
-F 4 "SL05 5R001-A" V 3150 9750 60  0001 C CNN "Part Number"
-	1    3150 9750
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2800 9750 3000 9750
 Wire Wire Line
 	3300 9750 4000 9750
 Wire Wire Line
 	4000 9750 4000 9250
-$Comp
-L BK0603HS330-T L1
-U 1 1 57CF1BCD
-P 4700 10100
-F 0 "L1" H 4800 10050 60  0000 C CNN
-F 1 "BEAD" H 4850 9950 60  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" H 4700 10100 60  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/MMZ2012D121BT000/445-2188-1-ND/765218" H 4700 10100 60  0001 C CNN
-F 4 "MMZ2012D121BT000" H 4700 10100 60  0001 C CNN "Part Number"
-	1    4700 10100
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3600 9650 3600 10150
 Wire Wire Line
 	3600 10150 4600 10150
-$Comp
-L CP1 C8
-U 1 1 57CF4182
-P 5300 9200
-F 0 "C8" H 5415 9246 50  0000 L CNN
-F 1 "12uF" H 5415 9155 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 5415 9155 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/rubycon/400AX12MEFC10X12.5/1189-3120-ND/6049840" H 5415 9064 50  0001 L CNN
-	1    5300 9200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5300 10150 5300 9350
-$Comp
-L CP1 C7
-U 1 1 57CF494B
-P 4350 9200
-F 0 "C7" H 4465 9246 50  0000 L CNN
-F 1 "12uF" H 4465 9155 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 4465 9155 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/rubycon/400AX12MEFC10X12.5/1189-3120-ND/6049840" H 4465 9064 50  0001 L CNN
-	1    4350 9200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4350 9350 4350 10150
 Connection ~ 4350 10150
@@ -1475,18 +1443,6 @@ Wire Wire Line
 	4350 9050 4350 8650
 Wire Wire Line
 	5300 8650 5300 9050
-$Comp
-L BK0603HS330-T L2
-U 1 1 57CF6277
-P 4750 8600
-F 0 "L2" H 4850 8550 60  0000 C CNN
-F 1 "470uH" H 4900 8450 60  0000 C CNN
-F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 4750 8600 60  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/bourns-inc/RLB0608-471KL/RLB0608-471KL-ND/2352761" H 4750 8600 60  0001 C CNN
-F 4 "BK1608HS330-T" H 4750 8600 60  0001 C CNN "Part Number"
-	1    4750 8600
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3600 8650 4650 8650
 Wire Wire Line
@@ -1494,28 +1450,53 @@ Wire Wire Line
 Wire Wire Line
 	3600 8850 3600 8650
 Connection ~ 4350 8650
-$Comp
-L R R16
-U 1 1 57CFCBB5
-P 5700 10550
-F 0 "R16" V 5700 10550 50  0000 C CNN
-F 1 "0.91" V 5800 10550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 5630 10550 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 5700 10550 50  0001 C CNN
-F 4 "RL1220S-R91-F" V 5700 10550 60  0001 C CNN "Part Number"
-	1    5700 10550
-	0    1    1    0   
-$EndComp
-$Comp
-L R R15
-U 1 1 57CFCDF7
-P 5050 10500
-F 0 "R15" V 5050 10500 50  0000 C CNN
-F 1 "0.82" V 5150 10500 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 4980 10500 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R82-F/RL12S.82FCT-ND/433031" H 5050 10500 50  0001 C CNN
-F 4 "RL1220S-R82-F" V 5050 10500 60  0001 C CNN "Part Number"
-	1    5050 10500
-	0    1    1    0   
-$EndComp
+Wire Wire Line
+	750  1650 750  1700
+Wire Wire Line
+	750  1700 800  1700
+Wire Wire Line
+	3000 1300 3000 1200
+Wire Wire Line
+	2250 950  2250 1300
+Connection ~ 2250 1150
+Wire Wire Line
+	1950 1300 1900 1300
+Wire Wire Line
+	1950 950  1900 950 
+Wire Wire Line
+	750  1950 750  1900
+Wire Wire Line
+	750  1900 800  1900
+Wire Wire Line
+	1900 1700 2000 1700
+Wire Wire Line
+	2300 1700 2400 1700
+Wire Wire Line
+	1900 1900 2050 1900
+Wire Wire Line
+	2550 1150 2700 1150
+Wire Wire Line
+	2700 1150 2700 1500
+Wire Wire Line
+	2700 1500 2800 1500
+Wire Wire Line
+	3000 1900 3000 2100
+Wire Wire Line
+	2050 2350 2050 2400
+Wire Wire Line
+	2050 1900 2050 2050
+Wire Wire Line
+	2700 1700 2800 1700
+Wire Wire Line
+	2750 1700 2750 2550
+Wire Wire Line
+	2750 2550 2950 2550
+Connection ~ 2750 1700
+Wire Wire Line
+	3400 1600 3500 1600
+Wire Wire Line
+	3450 2550 3450 1600
+Connection ~ 3450 1600
+Wire Wire Line
+	3250 2550 3450 2550
 $EndSCHEMATC
