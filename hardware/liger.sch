@@ -50,8 +50,8 @@ P 8400 1550
 F 0 "Relay1" H 7750 1750 50  0000 L CNN
 F 1 "V23105" H 8850 1400 50  0000 L CNN
 F 2 "libraries:V23105" H 8400 1550 50  0001 C CNN
-F 3 "file:///home/chris/Downloads/ENG_SS_108-98007_L%20(3).pdf" H 8400 1550 50  0001 C CNN
-F 4 "V23105A5001A201" H 8400 1550 60  0001 C CNN "Part Number"
+F 3 "http://www.digikey.com/product-detail/en/te-connectivity-potter-brumfield-relays/ORWH-SH-105D1F,000/PB2032-ND/4925028" H 8400 1550 50  0001 C CNN
+F 4 "ORWH-SH-105D1F,000" H 8400 1550 60  0001 C CNN "Part Number"
 	1    8400 1550
 	1    0    0    -1  
 $EndComp
@@ -960,8 +960,8 @@ P 5750 10400
 F 0 "R16" V 5750 10400 50  0000 C CNN
 F 1 "0.91" H 5600 10350 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 5680 10400 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 5750 10400 50  0001 C CNN
-F 4 "RL1220S-R91-F" V 5750 10400 60  0001 C CNN "Part Number"
+F 3 "http://www.digikey.com/product-detail/en/te-connectivity-amp-connectors/RLP73K1JR91JTD/A109781CT-ND/4032547" H 5750 10400 50  0001 C CNN
+F 4 "RLP73K1JR91JTD" V 5750 10400 60  0001 C CNN "Part Number"
 	1    5750 10400
 	-1   0    0    1   
 $EndComp
@@ -972,8 +972,8 @@ P 5550 10400
 F 0 "R15" V 5550 10400 50  0000 C CNN
 F 1 "0.82" H 5700 10350 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 5480 10400 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R82-F/RL12S.82FCT-ND/433031" H 5550 10400 50  0001 C CNN
-F 4 "RL1220S-R82-F" V 5550 10400 60  0001 C CNN "Part Number"
+F 3 "http://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3RQFR82V/P.82AJCT-ND/308109" H 5550 10400 50  0001 C CNN
+F 4 "ERJ-3RQFR82V" V 5550 10400 60  0001 C CNN "Part Number"
 	1    5550 10400
 	-1   0    0    1   
 $EndComp
@@ -1120,8 +1120,8 @@ P 6100 10150
 F 0 "R?" V 6100 10150 50  0000 C CNN
 F 1 "270" V 6200 10150 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 6030 10150 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 6100 10150 50  0001 C CNN
-F 4 "RL1220S-R91-F" V 6100 10150 60  0001 C CNN "Part Number"
+F 3 "http://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT270R/RMCF0603JT270RCT-ND/1943163" H 6100 10150 50  0001 C CNN
+F 4 "RMCF0603JT270R" V 6100 10150 60  0001 C CNN "Part Number"
 	1    6100 10150
 	0    -1   -1   0   
 $EndComp
@@ -1138,37 +1138,13 @@ F 3 "" H 6900 10000 60  0001 C CNN
 $EndComp
 $Comp
 L R R?
-U 1 1 57D22E6C
-P 7500 10150
-F 0 "R?" V 7500 10150 50  0000 C CNN
-F 1 "270" V 7550 9950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7430 10150 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 7500 10150 50  0001 C CNN
-F 4 "RL1220S-R91-F" V 7500 10150 60  0001 C CNN "Part Number"
-	1    7500 10150
-	0    -1   -1   0   
-$EndComp
-$Comp
-L R R?
-U 1 1 57D235B0
-P 7400 9650
-F 0 "R?" V 7400 9650 50  0000 C CNN
-F 1 "27M" H 7250 9600 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7330 9650 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 7400 9650 50  0001 C CNN
-F 4 "RL1220S-R91-F" V 7400 9650 60  0001 C CNN "Part Number"
-	1    7400 9650
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R?
 U 1 1 57D236D4
 P 7400 9200
 F 0 "R?" V 7400 9200 50  0000 C CNN
 F 1 "27M" H 7250 9150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7330 9200 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 7400 9200 50  0001 C CNN
-F 4 "RL1220S-R91-F" V 7400 9200 60  0001 C CNN "Part Number"
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 7330 9200 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/yageo/RV1206JR-0727ML/311-27MNJCT-ND/2828056" H 7400 9200 50  0001 C CNN
+F 4 "RV1206JR-0727ML" V 7400 9200 60  0001 C CNN "Part Number"
 	1    7400 9200
 	1    0    0    -1  
 $EndComp
@@ -1207,18 +1183,6 @@ F 3 "http://www.mouser.com/ProductDetail/Fairchild-Semiconductor/S1M/?qs=sGAEpiM
 F 4 "S1M" H 8100 9100 60  0001 C CNN "Part Number"
 	1    8100 9100
 	0    1    1    0   
-$EndComp
-$Comp
-L R R?
-U 1 1 57D26252
-P 8100 8700
-F 0 "R?" V 8100 8700 50  0000 C CNN
-F 1 "27M" H 8200 8550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 8030 8700 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 8100 8700 50  0001 C CNN
-F 4 "RL1220S-R91-F" V 8100 8700 60  0001 C CNN "Part Number"
-	1    8100 8700
-	1    0    0    -1  
 $EndComp
 $Comp
 L EPC1716D U?
@@ -1405,6 +1369,17 @@ F 3 "" H 12400 8750 50  0000 C CNN
 	1    12400 8750
 	1    0    0    -1  
 $EndComp
+$Comp
+L +5V #PWR?
+U 1 1 57D12FB5
+P 4000 1300
+F 0 "#PWR?" H 4000 1150 50  0001 C CNN
+F 1 "+5V" H 4015 1473 50  0000 C CNN
+F 2 "" H 4000 1300 50  0000 C CNN
+F 3 "" H 4000 1300 50  0000 C CNN
+	1    4000 1300
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	4000 1300 4000 1850
 Connection ~ 7650 10400
@@ -1504,9 +1479,9 @@ Wire Wire Line
 Wire Wire Line
 	9300 8150 9800 8150
 Wire Wire Line
-	8500 8150 8500 8550
+	8500 8550 8500 8150
 Wire Wire Line
-	9000 8150 8500 8150
+	8500 8150 9000 8150
 Wire Wire Line
 	9650 8550 10200 8550
 Connection ~ 8500 8550
@@ -1514,9 +1489,8 @@ Wire Wire Line
 	8650 9650 8100 9650
 Wire Wire Line
 	8650 8900 8650 9650
-Connection ~ 8100 8550
 Wire Wire Line
-	8100 9600 8100 9650
+	8100 9650 8100 9600
 Wire Wire Line
 	8100 9250 8100 9300
 Wire Wire Line
@@ -1524,10 +1498,6 @@ Wire Wire Line
 Wire Wire Line
 	7800 8850 8100 8850
 Connection ~ 7800 8550
-Wire Wire Line
-	7400 8550 8650 8550
-Wire Wire Line
-	7400 8550 7400 9050
 Connection ~ 7400 8650
 Wire Wire Line
 	8100 10050 7250 10050
@@ -1535,8 +1505,6 @@ Wire Wire Line
 	7800 9950 7800 9850
 Connection ~ 7400 9950
 Connection ~ 5300 8650
-Wire Wire Line
-	7400 9500 7400 9350
 Wire Wire Line
 	7400 9950 7400 9800
 Wire Wire Line
@@ -1902,17 +1870,6 @@ Wire Wire Line
 Wire Wire Line
 	6900 5200 6900 5150
 $Comp
-L +5V #PWR?
-U 1 1 57D12FB5
-P 4000 1300
-F 0 "#PWR?" H 4000 1150 50  0001 C CNN
-F 1 "+5V" H 4015 1473 50  0000 C CNN
-F 2 "" H 4000 1300 50  0000 C CNN
-F 3 "" H 4000 1300 50  0000 C CNN
-	1    4000 1300
-	1    0    0    -1  
-$EndComp
-$Comp
 L C C?
 U 1 1 57D31D9B
 P 2050 2200
@@ -1935,5 +1892,48 @@ F 3 "http://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-
 F 4 "RC0603JR-071KL" V 2550 1700 60  0001 C CNN "Part Number"
 	1    2550 1700
 	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7400 9500 7400 9350
+Wire Wire Line
+	7400 8550 7400 9050
+$Comp
+L R R?
+U 1 1 57D48312
+P 7400 9650
+F 0 "R?" V 7400 9650 50  0000 C CNN
+F 1 "27M" H 7250 9600 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 7330 9650 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/yageo/RV1206JR-0727ML/311-27MNJCT-ND/2828056" H 7400 9650 50  0001 C CNN
+F 4 "RV1206JR-0727ML" V 7400 9650 60  0001 C CNN "Part Number"
+	1    7400 9650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 57D483A2
+P 8100 8700
+F 0 "R?" V 8100 8700 50  0000 C CNN
+F 1 "27M" H 7950 8650 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 8030 8700 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/yageo/RV1206JR-0727ML/311-27MNJCT-ND/2828056" H 8100 8700 50  0001 C CNN
+F 4 "RV1206JR-0727ML" V 8100 8700 60  0001 C CNN "Part Number"
+	1    8100 8700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7400 8550 8650 8550
+Connection ~ 8100 8550
+$Comp
+L R R?
+U 1 1 57D498FF
+P 7500 10150
+F 0 "R?" V 7500 10150 50  0000 C CNN
+F 1 "270" V 7600 10150 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7430 10150 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT270R/RMCF0603JT270RCT-ND/1943163" H 7500 10150 50  0001 C CNN
+F 4 "RMCF0603JT270R" V 7500 10150 60  0001 C CNN "Part Number"
+	1    7500 10150
+	0    -1   -1   0   
 $EndComp
 $EndSCHEMATC
