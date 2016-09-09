@@ -61,8 +61,8 @@ U 1 1 576343F3
 P 3100 1600
 F 0 "U2" H 3100 1750 50  0000 L CNN
 F 1 "ADA4075" H 3100 1450 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 3000 1650 50  0001 C CNN
-F 3 "http://www.mouser.com/ds/2/609/OP275-879536.pdf" H 3100 1750 50  0001 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 3000 1650 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/texas-instruments/OPA344NA-3K/296-41475-1-ND/5222851" H 3100 1750 50  0001 C CNN
 F 4 "OPA344NA/3K" H 3100 1600 60  0001 C CNN "Part Number"
 	1    3100 1600
 	1    0    0    -1  
@@ -877,9 +877,9 @@ U 1 1 57C8DD11
 P 2150 1700
 F 0 "C11" V 2100 1750 50  0000 L CNN
 F 1 "220nF" V 2300 1600 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Rect_L13_W4_P10" H 2265 1655 50  0001 L CNN
-F 3 "http://www.mouser.com/ProductDetail/EPCOS-TDK/B32641B0472K/?qs=sGAEpiMZZMv1cc3ydrPrFzRLALvOkyF1YTrqCCdx%2fGdcBMeHHlEFGg%3d%3d" H 2265 1564 50  0001 L CNN
-F 4 "B32641B0472K" H 2150 1700 60  0001 C CNN "Part Number"
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 2265 1655 50  0001 L CNN
+F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690" H 2265 1564 50  0001 L CNN
+F 4 "C1608X7R1C224K080AC" H 2150 1700 60  0001 C CNN "Part Number"
 	1    2150 1700
 	0    1    1    0   
 $EndComp
@@ -1040,7 +1040,7 @@ F 0 "R?" V 2180 950 50  0000 C CNN
 F 1 "22K" V 2100 950 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 2030 950 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2100 950 50  0001 C CNN
-F 4 "RC0603FR-072K2L" V 2100 950 60  0001 C CNN "Part Number"
+F 4 "RC0603JR-0722KL" V 2100 950 60  0001 C CNN "Part Number"
 	1    2100 950 
 	0    1    1    0   
 $EndComp
@@ -1051,8 +1051,8 @@ P 2100 1300
 F 0 "R?" V 2180 1300 50  0000 C CNN
 F 1 "3.3K" V 2100 1300 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 2030 1300 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2100 1300 50  0001 C CNN
-F 4 "RC0603FR-072K2L" V 2100 1300 60  0001 C CNN "Part Number"
+F 3 "http://www.digikey.com/product-detail/en/yageo/RC0603JR-073K3L/311-3.3KGRCT-ND/729704" H 2100 1300 50  0001 C CNN
+F 4 "RC0603JR-073K3L" V 2100 1300 60  0001 C CNN "Part Number"
 	1    2100 1300
 	0    1    1    0   
 $EndComp
@@ -1079,17 +1079,6 @@ F 3 "" H 1900 950 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L CP1 C?
-U 1 1 57D112C9
-P 2050 2200
-F 0 "C?" H 2165 2246 50  0000 L CNN
-F 1 "4.7uF" H 2165 2155 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Radial_D10_L13_P5" H 2165 2155 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/rubycon/400AX12MEFC10X12.5/1189-3120-ND/6049840" H 2165 2064 50  0001 L CNN
-	1    2050 2200
-	1    0    0    -1  
-$EndComp
-$Comp
 L GND #PWR?
 U 1 1 57D13092
 P 2050 2400
@@ -1099,18 +1088,6 @@ F 2 "" H 2050 2400 50  0000 C CNN
 F 3 "" H 2050 2400 50  0000 C CNN
 	1    2050 2400
 	1    0    0    -1  
-$EndComp
-$Comp
-L R R?
-U 1 1 57D1D2C5
-P 2550 1700
-F 0 "R?" V 2630 1700 50  0000 C CNN
-F 1 "1K" V 2550 1700 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 2480 1700 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2550 1700 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 2550 1700 60  0001 C CNN "Part Number"
-	1    2550 1700
-	0    1    1    0   
 $EndComp
 $Comp
 L R R?
@@ -1131,7 +1108,7 @@ P 2400 1150
 F 0 "R?" V 2480 1150 50  0000 C CNN
 F 1 "1K" V 2400 1150 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 2330 1150 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2400 1150 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" H 2400 1150 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 2400 1150 60  0001 C CNN "Part Number"
 	1    2400 1150
 	0    1    1    0   
@@ -1934,5 +1911,29 @@ F 2 "" H 4000 1300 50  0000 C CNN
 F 3 "" H 4000 1300 50  0000 C CNN
 	1    4000 1300
 	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 57D31D9B
+P 2050 2200
+F 0 "C?" V 2000 2250 50  0000 L CNN
+F 1 "4.7uf" V 2200 2100 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 2165 2155 50  0001 L CNN
+F 3 "http://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173" H 2165 2064 50  0001 L CNN
+F 4 "CL10B475KQ8NQNC" H 2050 2200 60  0001 C CNN "Part Number"
+	1    2050 2200
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R?
+U 1 1 57D32F11
+P 2550 1700
+F 0 "R?" V 2630 1700 50  0000 C CNN
+F 1 "1K" V 2550 1700 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2480 1700 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" H 2550 1700 50  0001 C CNN
+F 4 "RC0603JR-071KL" V 2550 1700 60  0001 C CNN "Part Number"
+	1    2550 1700
+	0    1    1    0   
 $EndComp
 $EndSCHEMATC
