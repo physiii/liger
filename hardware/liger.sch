@@ -80,18 +80,6 @@ F 4 "SPX3819" H 5550 1750 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L ZENER D3
-U 1 1 57682607
-P 4000 1150
-F 0 "D3" V 4100 1200 50  0000 C CNN
-F 1 "ZENER" V 4100 1000 50  0000 C CNN
-F 2 "Diodes_SMD:SOD-123" H 4000 1150 50  0001 C CNN
-F 3 "http://www.mouser.com/ds/2/308/MBR120VLSFT1-D-107081.pdf" H 4000 1150 50  0001 C CNN
-F 4 "MBR120VLSFT1G" H 4000 1150 60  0001 C CNN "Part Number"
-	1    4000 1150
-	0    -1   -1   0   
-$EndComp
-$Comp
 L C C4
 U 1 1 5768271E
 P 4000 2000
@@ -134,17 +122,6 @@ F 1 "GND" H 6050 1950 50  0000 C CNN
 F 2 "" H 6050 2100 50  0000 C CNN
 F 3 "" H 6050 2100 50  0000 C CNN
 	1    6050 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L +5V #PWR010
-U 1 1 57682E51
-P 4000 850
-F 0 "#PWR010" H 4000 700 50  0001 C CNN
-F 1 "+5V" H 4000 990 50  0000 C CNN
-F 2 "" H 4000 850 50  0000 C CNN
-F 3 "" H 4000 850 50  0000 C CNN
-	1    4000 850 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -254,7 +231,7 @@ U 1 1 57689507
 P 650 4900
 F 0 "R1" V 730 4900 50  0000 C CNN
 F 1 "1K" V 650 4900 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 580 4900 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 580 4900 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 650 4900 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 650 4900 60  0001 C CNN "Part Number"
 	1    650  4900
@@ -378,7 +355,7 @@ U 1 1 576DE8EB
 P 1050 4900
 F 0 "R2" V 1130 4900 50  0000 C CNN
 F 1 "1K" V 1050 4900 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 980 4900 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 980 4900 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 1050 4900 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 1050 4900 60  0001 C CNN "Part Number"
 	1    1050 4900
@@ -390,7 +367,7 @@ U 1 1 576DE941
 P 1500 5150
 F 0 "R4" V 1580 5150 50  0000 C CNN
 F 1 "1K" V 1500 5150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 1430 5150 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 1430 5150 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 1500 5150 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 1500 5150 60  0001 C CNN "Part Number"
 	1    1500 5150
@@ -402,7 +379,7 @@ U 1 1 576DEB45
 P 2250 4850
 F 0 "R6" V 2330 4850 50  0000 C CNN
 F 1 "1K" V 2250 4850 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2180 4850 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2180 4850 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2250 4850 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 2250 4850 60  0001 C CNN "Part Number"
 	1    2250 4850
@@ -414,7 +391,7 @@ U 1 1 576DEF74
 P 2700 4100
 F 0 "R9" V 2780 4100 50  0000 C CNN
 F 1 "1K" V 2700 4100 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2630 4100 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2630 4100 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2700 4100 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 2700 4100 60  0001 C CNN "Part Number"
 	1    2700 4100
@@ -426,7 +403,7 @@ U 1 1 576DF049
 P 3000 5400
 F 0 "R10" V 3080 5400 50  0000 C CNN
 F 1 "1K" V 3000 5400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2930 5400 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2930 5400 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 3000 5400 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 3000 5400 60  0001 C CNN "Part Number"
 	1    3000 5400
@@ -438,7 +415,7 @@ U 1 1 576E06B8
 P 7000 2250
 F 0 "R14" V 7080 2250 50  0000 C CNN
 F 1 "1K" V 7000 2250 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 6930 2250 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6930 2250 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 7000 2250 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 7000 2250 60  0001 C CNN "Part Number"
 	1    7000 2250
@@ -450,7 +427,7 @@ U 1 1 576E4AC5
 P 4400 2000
 F 0 "R12" V 4480 2000 50  0000 C CNN
 F 1 "10K" V 4400 2000 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 4330 2000 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4330 2000 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4400 2000 50  0001 C CNN
 F 4 "RC0603JR-0710KL" V 4400 2000 60  0001 C CNN "Part Number"
 	1    4400 2000
@@ -462,7 +439,7 @@ U 1 1 576E9D8A
 P 4750 3550
 F 0 "R13" V 4830 3550 50  0000 C CNN
 F 1 "10K" V 4750 3550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 4680 3550 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4680 3550 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4750 3550 50  0001 C CNN
 F 4 "RC0603JR-0710KL" V 4750 3550 60  0001 C CNN "Part Number"
 	1    4750 3550
@@ -640,7 +617,7 @@ U 1 1 5771E483
 P 11300 1100
 F 0 "R17" V 11380 1100 50  0000 C CNN
 F 1 "1K" V 11300 1100 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 11230 1100 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 11230 1100 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 11300 1100 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 11300 1100 60  0001 C CNN "Part Number"
 	1    11300 1100
@@ -664,7 +641,7 @@ U 1 1 577249CF
 P 12700 1250
 F 0 "R25" V 12780 1250 50  0000 C CNN
 F 1 "36" V 12700 1250 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 12630 1250 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 12630 1250 50  0001 C CNN
 F 3 "http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf" H 12700 1250 50  0001 C CNN
 F 4 "RC0603JR-0736RL" V 12700 1250 60  0001 C CNN "Part Number"
 	1    12700 1250
@@ -676,7 +653,7 @@ U 1 1 5772613E
 P 12000 2200
 F 0 "R24" V 12080 2200 50  0000 C CNN
 F 1 "1K" V 12000 2200 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 11930 2200 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 11930 2200 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 12000 2200 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 12000 2200 60  0001 C CNN "Part Number"
 	1    12000 2200
@@ -887,7 +864,7 @@ L CP1 C9
 U 1 1 57C87C6C
 P 11500 8450
 F 0 "C9" H 11300 8550 50  0000 L CNN
-F 1 "100uF" H 11250 8300 50  0000 L CNN
+F 1 "560uF" H 11250 8300 50  0000 L CNN
 F 2 "Capacitors_ThroughHole:C_Radial_D10_L20_P7.5" H 11615 8405 50  0001 L CNN
 F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 11615 8314 50  0001 L CNN
 F 4 "UPZ2G101MHD" H 11500 8450 60  0001 C CNN "Part Number"
@@ -982,7 +959,7 @@ U 1 1 57CFCBB5
 P 5750 10400
 F 0 "R16" V 5750 10400 50  0000 C CNN
 F 1 "0.91" H 5600 10350 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 5680 10400 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 5680 10400 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 5750 10400 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 5750 10400 60  0001 C CNN "Part Number"
 	1    5750 10400
@@ -994,7 +971,7 @@ U 1 1 57CFCDF7
 P 5550 10400
 F 0 "R15" V 5550 10400 50  0000 C CNN
 F 1 "0.82" H 5700 10350 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 5480 10400 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 5480 10400 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R82-F/RL12S.82FCT-ND/433031" H 5550 10400 50  0001 C CNN
 F 4 "RL1220S-R82-F" V 5550 10400 60  0001 C CNN "Part Number"
 	1    5550 10400
@@ -1061,7 +1038,7 @@ U 1 1 57D0E6CD
 P 2100 950
 F 0 "R?" V 2180 950 50  0000 C CNN
 F 1 "22K" V 2100 950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2030 950 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2030 950 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2100 950 50  0001 C CNN
 F 4 "RC0603FR-072K2L" V 2100 950 60  0001 C CNN "Part Number"
 	1    2100 950 
@@ -1073,7 +1050,7 @@ U 1 1 57D0E858
 P 2100 1300
 F 0 "R?" V 2180 1300 50  0000 C CNN
 F 1 "3.3K" V 2100 1300 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2030 1300 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2030 1300 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2100 1300 50  0001 C CNN
 F 4 "RC0603FR-072K2L" V 2100 1300 60  0001 C CNN "Part Number"
 	1    2100 1300
@@ -1129,7 +1106,7 @@ U 1 1 57D1D2C5
 P 2550 1700
 F 0 "R?" V 2630 1700 50  0000 C CNN
 F 1 "1K" V 2550 1700 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2480 1700 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2480 1700 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2550 1700 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 2550 1700 60  0001 C CNN "Part Number"
 	1    2550 1700
@@ -1141,7 +1118,7 @@ U 1 1 57D1D84F
 P 3100 2550
 F 0 "R?" V 3180 2550 50  0000 C CNN
 F 1 "10K" V 3100 2550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 3030 2550 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3030 2550 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 3100 2550 50  0001 C CNN
 F 4 "RC0603JR-0710KL" V 3100 2550 60  0001 C CNN "Part Number"
 	1    3100 2550
@@ -1153,7 +1130,7 @@ U 1 1 57D1D9BA
 P 2400 1150
 F 0 "R?" V 2480 1150 50  0000 C CNN
 F 1 "1K" V 2400 1150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 2330 1150 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2330 1150 50  0001 C CNN
 F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2400 1150 50  0001 C CNN
 F 4 "RC0603JR-071KL" V 2400 1150 60  0001 C CNN "Part Number"
 	1    2400 1150
@@ -1165,7 +1142,7 @@ U 1 1 57D1FC72
 P 6100 10150
 F 0 "R?" V 6100 10150 50  0000 C CNN
 F 1 "270" V 6200 10150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 6030 10150 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6030 10150 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 6100 10150 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 6100 10150 60  0001 C CNN "Part Number"
 	1    6100 10150
@@ -1188,7 +1165,7 @@ U 1 1 57D22E6C
 P 7500 10150
 F 0 "R?" V 7500 10150 50  0000 C CNN
 F 1 "270" V 7550 9950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 7430 10150 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7430 10150 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 7500 10150 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 7500 10150 60  0001 C CNN "Part Number"
 	1    7500 10150
@@ -1200,7 +1177,7 @@ U 1 1 57D235B0
 P 7400 9650
 F 0 "R?" V 7400 9650 50  0000 C CNN
 F 1 "27M" H 7250 9600 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 7330 9650 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7330 9650 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 7400 9650 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 7400 9650 60  0001 C CNN "Part Number"
 	1    7400 9650
@@ -1212,7 +1189,7 @@ U 1 1 57D236D4
 P 7400 9200
 F 0 "R?" V 7400 9200 50  0000 C CNN
 F 1 "27M" H 7250 9150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 7330 9200 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7330 9200 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 7400 9200 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 7400 9200 60  0001 C CNN "Part Number"
 	1    7400 9200
@@ -1235,8 +1212,8 @@ L R R?
 U 1 1 57D25761
 P 8100 9450
 F 0 "R?" V 8100 9450 50  0000 C CNN
-F 1 "27M" H 7950 9400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 8030 9450 50  0001 C CNN
+F 1 "300" H 7950 9400 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 8030 9450 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 8100 9450 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 8100 9450 60  0001 C CNN "Part Number"
 	1    8100 9450
@@ -1260,7 +1237,7 @@ U 1 1 57D26252
 P 8100 8700
 F 0 "R?" V 8100 8700 50  0000 C CNN
 F 1 "27M" H 8200 8550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 8030 8700 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 8030 8700 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 8100 8700 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 8100 8700 60  0001 C CNN "Part Number"
 	1    8100 8700
@@ -1277,428 +1254,24 @@ F 3 "" H 9100 8800 60  0001 C CNN
 	1    9100 8800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6900 5200 6900 5150
-Wire Wire Line
-	6750 5100 6750 5050
-Wire Wire Line
-	6150 4350 6400 4350
-Wire Wire Line
-	6750 4150 6750 4200
-Wire Wire Line
-	6150 4150 6750 4150
-Wire Wire Line
-	9000 1650 9050 1650
-Wire Wire Line
-	9000 1950 9000 1650
-Wire Wire Line
-	8750 1950 9000 1950
-Connection ~ 7600 1150
-Connection ~ 4600 5050
-Wire Wire Line
-	4600 5150 4600 5050
-Connection ~ 4750 3750
-Wire Wire Line
-	6100 5200 6900 5200
-Wire Wire Line
-	4600 5950 4900 5950
-Wire Wire Line
-	4600 5850 4900 5850
-Wire Wire Line
-	4600 5750 4900 5750
-Wire Wire Line
-	4600 5650 4900 5650
-Wire Wire Line
-	4600 5550 4900 5550
-Wire Wire Line
-	4600 5450 4900 5450
-Wire Wire Line
-	4600 5350 4900 5350
-Wire Wire Line
-	4600 5250 4900 5250
-Wire Wire Line
-	4600 5150 4900 5150
-Wire Wire Line
-	4550 5050 4900 5050
-Wire Wire Line
-	6100 5900 6400 5900
-Wire Wire Line
-	6100 5800 6400 5800
-Wire Wire Line
-	6100 5700 6400 5700
-Wire Wire Line
-	6100 5600 6400 5600
-Wire Wire Line
-	6100 5500 6400 5500
-Wire Wire Line
-	6100 5400 6400 5400
-Wire Wire Line
-	6100 5300 6400 5300
-Wire Wire Line
-	6100 5100 6750 5100
-Wire Wire Line
-	6100 5000 6400 5000
-Wire Wire Line
-	4650 3750 4900 3750
-Wire Wire Line
-	11850 2200 11550 2200
-Wire Wire Line
-	12700 2400 12700 2600
-Wire Wire Line
-	12150 2200 12400 2200
-Wire Wire Line
-	12700 2000 12700 1900
-Wire Wire Line
-	12700 1400 12700 1500
-Wire Wire Line
-	12700 950  12700 1100
-Wire Wire Line
-	11150 1100 11050 1100
-Wire Wire Line
-	12050 1100 12050 1000
-Wire Wire Line
-	11850 1100 12050 1100
-Wire Wire Line
-	11850 1000 11850 1100
-Wire Wire Line
-	11750 1000 11750 1150
-Wire Wire Line
-	11650 1100 11450 1100
-Wire Wire Line
-	11650 1000 11650 1100
-Wire Notes Line
-	10750 550  10750 2950
-Wire Wire Line
-	4800 4550 4800 4450
-Wire Wire Line
-	6150 3750 6400 3750
-Wire Wire Line
-	4800 3850 4900 3850
-Wire Wire Line
-	4800 3950 4900 3950
-Wire Wire Line
-	4800 4050 4900 4050
-Wire Wire Line
-	4800 4250 4900 4250
-Wire Wire Line
-	4800 4350 4900 4350
-Wire Wire Line
-	4800 4450 4900 4450
-Wire Wire Line
-	6150 4050 6400 4050
-Wire Wire Line
-	6150 3950 6400 3950
-Wire Wire Line
-	6150 4250 6400 4250
-Wire Wire Line
-	6150 4450 6400 4450
-Wire Wire Line
-	4900 4150 4800 4150
-Wire Wire Line
-	6150 3850 6400 3850
-Wire Notes Line
-	500  550  13000 550 
-Wire Notes Line
-	9650 550  9650 2950
-Wire Notes Line
-	13000 550  13000 6250
-Wire Notes Line
-	500  2950 13000 2950
-Wire Notes Line
-	500  6250 500  550 
-Wire Notes Line
-	7900 6250 7900 2950
-Wire Notes Line
-	13000 6250 500  6250
-Wire Notes Line
-	3550 2950 3550 6250
-Wire Wire Line
-	2700 3450 2700 3350
-Wire Wire Line
-	3150 5400 3300 5400
-Wire Wire Line
-	2700 5050 2700 5550
-Wire Wire Line
-	2450 5400 2850 5400
-Wire Wire Line
-	2000 5050 2250 5050
-Connection ~ 2000 5400
-Wire Wire Line
-	2000 5350 2000 5550
-Wire Wire Line
-	2050 5400 2000 5400
-Connection ~ 2250 5050
-Wire Wire Line
-	2250 5000 2250 5100
-Connection ~ 2700 4350
-Wire Wire Line
-	2700 4250 2700 4450
-Wire Wire Line
-	2550 4350 2950 4350
-Wire Wire Line
-	2250 4700 2250 4550
-Connection ~ 2700 3900
-Wire Wire Line
-	2250 3900 2250 4150
-Wire Wire Line
-	2700 3900 2250 3900
-Wire Wire Line
-	2700 3850 2700 3950
-Wire Wire Line
-	1500 4350 1500 4100
-Wire Wire Line
-	1500 5300 1500 5550
-Wire Wire Line
-	1500 5000 1500 4750
-Wire Wire Line
-	1050 4750 1050 4400
-Wire Wire Line
-	1050 5050 1050 5300
-Wire Wire Line
-	650  5050 650  5250
-Wire Wire Line
-	650  4750 650  4500
-Wire Wire Line
-	6200 3650 6200 3600
-Wire Wire Line
-	6150 3650 6200 3650
-Wire Wire Line
-	4750 3700 4750 3750
-Connection ~ 4800 3400
-Wire Wire Line
-	4800 3400 4800 3250
-Wire Wire Line
-	4750 3400 4900 3400
-Wire Wire Line
-	4900 3400 4900 3650
-Wire Wire Line
-	7600 2450 7600 2550
-Wire Wire Line
-	9050 2050 9050 1750
-Wire Wire Line
-	8550 2050 9050 2050
-Wire Wire Line
-	8550 1950 8550 2050
-Wire Wire Line
-	6850 2250 6800 2250
-Wire Wire Line
-	7300 2250 7150 2250
-Connection ~ 7600 1950
-Wire Wire Line
-	7600 1950 8050 1950
-Wire Wire Line
-	7600 1750 7600 2050
-Wire Wire Line
-	7600 1050 7600 1450
-Wire Wire Line
-	8050 1150 7600 1150
-Wire Notes Line
-	6500 550  6500 2950
-Wire Notes Line
-	3850 2950 3850 550 
-Wire Wire Line
-	4000 950  4000 850 
-Connection ~ 6050 2000
-Wire Wire Line
-	6050 1900 6050 2100
-Wire Wire Line
-	6300 2000 6050 2000
-Wire Wire Line
-	6300 1900 6300 2000
-Wire Wire Line
-	4000 2150 4000 2350
-Connection ~ 5000 1550
-Wire Wire Line
-	5000 1550 5000 1950
-Wire Wire Line
-	5000 1950 5150 1950
-Connection ~ 4550 2250
-Wire Wire Line
-	4550 2250 4550 2300
-Wire Wire Line
-	4400 2250 4400 2150
-Wire Wire Line
-	4400 2250 4750 2250
-Wire Wire Line
-	4750 2250 4750 1750
-Wire Wire Line
-	4750 1750 5150 1750
-Connection ~ 4000 1550
-Connection ~ 4400 1550
-Wire Wire Line
-	4400 1850 4400 1550
-Wire Wire Line
-	4000 1350 4000 1850
-Wire Wire Line
-	4000 1550 5150 1550
-Connection ~ 6050 1550
-Wire Wire Line
-	6300 1550 6300 1600
-Wire Wire Line
-	6050 1350 6050 1600
-Wire Wire Line
-	5950 1550 6300 1550
-Wire Wire Line
-	2800 9250 3200 9250
-Wire Wire Line
-	2800 9750 3000 9750
-Wire Wire Line
-	3300 9750 4000 9750
-Wire Wire Line
-	4000 9750 4000 9250
-Wire Wire Line
-	3600 9650 3600 10150
-Wire Wire Line
-	3600 10150 4600 10150
-Wire Wire Line
-	5300 10150 5300 9350
-Wire Wire Line
-	4350 9350 4350 10150
-Connection ~ 4350 10150
-Wire Wire Line
-	4350 9050 4350 8650
-Wire Wire Line
-	5300 8650 5300 9050
-Wire Wire Line
-	3600 8650 4650 8650
-Wire Wire Line
-	5100 8650 7400 8650
-Wire Wire Line
-	3600 8850 3600 8650
-Connection ~ 4350 8650
-Wire Wire Line
-	750  1650 750  1700
-Wire Wire Line
-	750  1700 800  1700
-Wire Wire Line
-	3000 1300 3000 1200
-Wire Wire Line
-	2250 950  2250 1300
-Connection ~ 2250 1150
-Wire Wire Line
-	1950 1300 1900 1300
-Wire Wire Line
-	1950 950  1900 950 
-Wire Wire Line
-	750  1950 750  1900
-Wire Wire Line
-	750  1900 800  1900
-Wire Wire Line
-	1900 1700 2000 1700
-Wire Wire Line
-	2300 1700 2400 1700
-Wire Wire Line
-	1900 1900 2050 1900
-Wire Wire Line
-	2550 1150 2700 1150
-Wire Wire Line
-	2700 1150 2700 1500
-Wire Wire Line
-	2700 1500 2800 1500
-Wire Wire Line
-	3000 1900 3000 2100
-Wire Wire Line
-	2050 2350 2050 2400
-Wire Wire Line
-	2050 1900 2050 2050
-Wire Wire Line
-	2700 1700 2800 1700
-Wire Wire Line
-	2750 1700 2750 2550
-Wire Wire Line
-	2750 2550 2950 2550
-Connection ~ 2750 1700
-Wire Wire Line
-	3400 1600 3500 1600
-Wire Wire Line
-	3450 2550 3450 1600
-Connection ~ 3450 1600
-Wire Wire Line
-	3250 2550 3450 2550
-Connection ~ 5300 10150
-Wire Wire Line
-	5550 10250 5550 10150
-Connection ~ 5550 10150
-Wire Wire Line
-	5750 10150 5750 10250
-Connection ~ 5750 10150
-Wire Wire Line
-	5050 10150 5950 10150
-Wire Wire Line
-	6450 10150 6250 10150
-Wire Wire Line
-	6450 10550 6450 10250
-Wire Wire Line
-	5550 10550 9750 10550
-Connection ~ 5750 10550
-Wire Wire Line
-	7250 10150 7350 10150
-Wire Wire Line
-	7650 10150 7650 10400
-Wire Wire Line
-	6350 10400 9150 10400
-Wire Wire Line
-	6350 10400 6350 9950
-Wire Wire Line
-	6350 9950 6450 9950
-Wire Wire Line
-	7250 9950 7800 9950
-Wire Wire Line
-	7400 9950 7400 9800
-Wire Wire Line
-	7400 9500 7400 9350
-Connection ~ 5300 8650
-Connection ~ 7400 9950
-Wire Wire Line
-	7800 9950 7800 9850
-Wire Wire Line
-	8100 10050 7250 10050
-Connection ~ 7400 8650
-Wire Wire Line
-	7400 8550 7400 9050
-Wire Wire Line
-	7400 8550 8650 8550
-Connection ~ 7800 8550
-Wire Wire Line
-	7800 8850 8100 8850
-Wire Wire Line
-	8100 8850 8100 8950
-Wire Wire Line
-	8100 9250 8100 9300
-Wire Wire Line
-	8100 9600 8100 9650
-Connection ~ 8100 8550
-Wire Wire Line
-	8650 8900 8650 9650
-Wire Wire Line
-	8650 9650 8100 9650
 $Comp
 L C C?
 U 1 1 57D2B375
 P 9150 8150
 F 0 "C?" V 9200 8250 50  0000 L CNN
-F 1 "330pF" V 9200 7850 50  0000 L CNN
+F 1 "100pF" V 9200 7850 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 9265 8105 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 9265 8014 50  0001 L CNN
 	1    9150 8150
 	0    -1   -1   0   
 $EndComp
-Connection ~ 8500 8550
-Wire Wire Line
-	9650 8550 10200 8550
-Wire Wire Line
-	9000 8150 8500 8150
-Wire Wire Line
-	8500 8150 8500 8550
-Wire Wire Line
-	9300 8150 9800 8150
 $Comp
 L R R?
 U 1 1 57D2C838
 P 10000 10450
 F 0 "R?" V 10000 10450 50  0000 C CNN
-F 1 "27M" H 9850 10400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 9930 10450 50  0001 C CNN
+F 1 "3K" H 9850 10400 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 9930 10450 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 10000 10450 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 10000 10450 60  0001 C CNN "Part Number"
 	1    10000 10450
@@ -1709,22 +1282,20 @@ L R R?
 U 1 1 57D2C83F
 P 10000 10000
 F 0 "R?" V 10000 10000 50  0000 C CNN
-F 1 "27M" H 9850 9950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 9930 10000 50  0001 C CNN
+F 1 "620" H 9850 9950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 9930 10000 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 10000 10000 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 10000 10000 60  0001 C CNN "Part Number"
 	1    10000 10000
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	10000 10150 10000 10300
 $Comp
 L R R?
 U 1 1 57D2CBAE
 P 10000 9350
 F 0 "R?" V 10000 9350 50  0000 C CNN
-F 1 "27M" H 9850 9300 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 9930 9350 50  0001 C CNN
+F 1 "9.1K" H 9850 9300 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 9930 9350 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 10000 9350 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 10000 9350 60  0001 C CNN "Part Number"
 	1    10000 9350
@@ -1735,8 +1306,8 @@ L R R?
 U 1 1 57D2D55A
 P 10750 9350
 F 0 "R?" V 10750 9350 50  0000 C CNN
-F 1 "27M" H 10600 9300 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 10680 9350 50  0001 C CNN
+F 1 "1" H 10600 9300 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 10680 9350 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 10750 9350 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 10750 9350 60  0001 C CNN "Part Number"
 	1    10750 9350
@@ -1747,7 +1318,7 @@ L C C?
 U 1 1 57D2D706
 P 10750 10250
 F 0 "C?" H 10850 10350 50  0000 L CNN
-F 1 "330pF" H 10800 10150 50  0000 L CNN
+F 1 "2.2uF" H 10800 10150 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 10865 10205 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 10865 10114 50  0001 L CNN
 	1    10750 10250
@@ -1758,51 +1329,12 @@ L C C?
 U 1 1 57D2DA6C
 P 11150 10250
 F 0 "C?" H 11250 10350 50  0000 L CNN
-F 1 "330pF" H 11200 10150 50  0000 L CNN
+F 1 "2.2pF" H 11200 10150 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 11265 10205 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 11265 10114 50  0001 L CNN
 	1    11150 10250
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7250 10250 10000 10250
-Connection ~ 10000 10250
-Wire Wire Line
-	9750 10550 9750 10600
-Wire Wire Line
-	9750 10600 10750 10600
-Connection ~ 6450 10550
-Wire Wire Line
-	9650 8900 9700 8900
-Wire Wire Line
-	9700 8900 9700 10550
-Connection ~ 9700 10550
-Wire Wire Line
-	10000 9850 10000 9500
-Wire Wire Line
-	9650 8800 10200 8800
-Wire Wire Line
-	10000 9200 10000 8800
-Connection ~ 10000 8800
-Wire Wire Line
-	10500 8800 10750 8800
-Wire Wire Line
-	10750 8800 10750 9200
-Wire Wire Line
-	11150 10100 11150 9950
-Wire Wire Line
-	11150 9950 10750 9950
-Connection ~ 10750 9950
-Wire Wire Line
-	10750 10600 10750 10400
-Connection ~ 10000 10600
-Wire Wire Line
-	11150 10400 11150 10600
-Wire Wire Line
-	11150 10600 10700 10600
-Connection ~ 10700 10600
-Wire Wire Line
-	10750 9500 10750 10100
 $Comp
 L D D?
 U 1 1 57D2FDC4
@@ -1832,8 +1364,8 @@ L R R?
 U 1 1 57D306BA
 P 10100 8100
 F 0 "R?" V 10100 8100 50  0000 C CNN
-F 1 "27M" V 10200 8100 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 10030 8100 50  0001 C CNN
+F 1 "4.7" V 10200 8100 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 10030 8100 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 10100 8100 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 10100 8100 60  0001 C CNN "Part Number"
 	1    10100 8100
@@ -1844,74 +1376,36 @@ L C C?
 U 1 1 57D3083D
 P 10650 8100
 F 0 "C?" V 10600 8150 50  0000 L CNN
-F 1 "330pF" V 10700 8150 50  0000 L CNN
+F 1 "1000pF" V 10700 8150 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 10765 8055 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/kemet/C0805C331KCRACTU/399-7151-1-ND/3439391" H 10765 7964 50  0001 L CNN
 	1    10650 8100
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	9950 8100 9950 8550
-Connection ~ 9950 8550
-Wire Wire Line
-	10200 8350 10100 8350
-Wire Wire Line
-	10100 8350 10100 8550
-Connection ~ 10100 8550
-Wire Wire Line
-	10500 8100 10250 8100
-Wire Wire Line
-	10500 8550 11200 8550
-Wire Wire Line
-	10950 8550 10950 8100
-Wire Wire Line
-	10950 8100 10800 8100
-Wire Wire Line
-	10500 8350 10600 8350
-Wire Wire Line
-	10600 8350 10600 8550
-Connection ~ 10600 8550
-Wire Wire Line
-	9650 8650 12400 8650
-Wire Wire Line
-	11500 8650 11500 8600
 $Comp
 L CP1 C?
 U 1 1 57D3259A
 P 11800 8450
 F 0 "C?" H 11850 8550 50  0000 L CNN
-F 1 "100uF" H 11850 8300 50  0000 L CNN
+F 1 "560uF" H 11850 8300 50  0000 L CNN
 F 2 "Capacitors_ThroughHole:C_Radial_D10_L20_P7.5" H 11915 8405 50  0001 L CNN
 F 3 "http://www.mouser.com/Search/ProductDetail.aspx?R=UPZ2G101MHDvirtualkey64700000virtualkey647-UPZ2G101MHD" H 11915 8314 50  0001 L CNN
 F 4 "UPZ2G101MHD" H 11800 8450 60  0001 C CNN "Part Number"
 	1    11800 8450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	11800 8650 11800 8600
-Connection ~ 11500 8650
-Wire Wire Line
-	11200 8550 11200 8300
-Wire Wire Line
-	11200 8300 12400 8300
-Connection ~ 10950 8550
-Connection ~ 11500 8300
 $Comp
 L R R?
 U 1 1 57D33168
 P 12300 8450
 F 0 "R?" V 12300 8450 50  0000 C CNN
 F 1 "5.1K" H 12200 8600 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 12230 8450 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 12230 8450 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/susumu/RL1220S-R91-F/RL12S.91FCT-ND/567353" H 12300 8450 50  0001 C CNN
 F 4 "RL1220S-R91-F" V 12300 8450 60  0001 C CNN "Part Number"
 	1    12300 8450
 	-1   0    0    1   
 $EndComp
-Connection ~ 11800 8300
-Wire Wire Line
-	12300 8650 12300 8600
-Connection ~ 11800 8650
 $Comp
 L +5V #PWR?
 U 1 1 57D346BD
@@ -1923,9 +1417,6 @@ F 3 "" H 12400 8200 50  0000 C CNN
 	1    12400 8200
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	12400 8300 12400 8200
-Connection ~ 12300 8300
 $Comp
 L GND #PWR?
 U 1 1 57D35411
@@ -1938,15 +1429,510 @@ F 3 "" H 12400 8750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	12400 8650 12400 8750
-Connection ~ 12300 8650
-Wire Wire Line
-	9800 8150 9800 8650
-Connection ~ 9800 8650
-Wire Wire Line
-	9150 10400 9150 9700
+	4000 1300 4000 1850
+Connection ~ 7650 10400
+Connection ~ 10750 9700
 Wire Wire Line
 	9150 9700 10750 9700
-Connection ~ 10750 9700
-Connection ~ 7650 10400
+Wire Wire Line
+	9150 10400 9150 9700
+Connection ~ 9800 8650
+Wire Wire Line
+	9800 8150 9800 8650
+Connection ~ 12300 8650
+Wire Wire Line
+	12400 8650 12400 8750
+Connection ~ 12300 8300
+Wire Wire Line
+	12400 8300 12400 8200
+Connection ~ 11800 8650
+Wire Wire Line
+	12300 8650 12300 8600
+Connection ~ 11800 8300
+Connection ~ 11500 8300
+Connection ~ 10950 8550
+Wire Wire Line
+	11200 8300 12400 8300
+Wire Wire Line
+	11200 8550 11200 8300
+Connection ~ 11500 8650
+Wire Wire Line
+	11800 8650 11800 8600
+Wire Wire Line
+	11500 8650 11500 8600
+Wire Wire Line
+	9650 8650 12400 8650
+Connection ~ 10600 8550
+Wire Wire Line
+	10600 8350 10600 8550
+Wire Wire Line
+	10500 8350 10600 8350
+Wire Wire Line
+	10950 8100 10800 8100
+Wire Wire Line
+	10950 8550 10950 8100
+Wire Wire Line
+	10500 8550 11200 8550
+Wire Wire Line
+	10500 8100 10250 8100
+Connection ~ 10100 8550
+Wire Wire Line
+	10100 8350 10100 8550
+Wire Wire Line
+	10200 8350 10100 8350
+Connection ~ 9950 8550
+Wire Wire Line
+	9950 8100 9950 8550
+Wire Wire Line
+	10750 9500 10750 10100
+Connection ~ 10700 10600
+Wire Wire Line
+	11150 10600 10700 10600
+Wire Wire Line
+	11150 10400 11150 10600
+Connection ~ 10000 10600
+Wire Wire Line
+	10750 10600 10750 10400
+Connection ~ 10750 9950
+Wire Wire Line
+	11150 9950 10750 9950
+Wire Wire Line
+	11150 10100 11150 9950
+Wire Wire Line
+	10750 8800 10750 9200
+Wire Wire Line
+	10500 8800 10750 8800
+Connection ~ 10000 8800
+Wire Wire Line
+	10000 9200 10000 8800
+Wire Wire Line
+	9650 8800 10200 8800
+Wire Wire Line
+	10000 9850 10000 9500
+Connection ~ 9700 10550
+Wire Wire Line
+	9700 8900 9700 10550
+Wire Wire Line
+	9650 8900 9700 8900
+Connection ~ 6450 10550
+Wire Wire Line
+	9750 10600 10750 10600
+Wire Wire Line
+	9750 10550 9750 10600
+Connection ~ 10000 10250
+Wire Wire Line
+	7250 10250 10000 10250
+Wire Wire Line
+	10000 10150 10000 10300
+Wire Wire Line
+	9300 8150 9800 8150
+Wire Wire Line
+	8500 8150 8500 8550
+Wire Wire Line
+	9000 8150 8500 8150
+Wire Wire Line
+	9650 8550 10200 8550
+Connection ~ 8500 8550
+Wire Wire Line
+	8650 9650 8100 9650
+Wire Wire Line
+	8650 8900 8650 9650
+Connection ~ 8100 8550
+Wire Wire Line
+	8100 9600 8100 9650
+Wire Wire Line
+	8100 9250 8100 9300
+Wire Wire Line
+	8100 8850 8100 8950
+Wire Wire Line
+	7800 8850 8100 8850
+Connection ~ 7800 8550
+Wire Wire Line
+	7400 8550 8650 8550
+Wire Wire Line
+	7400 8550 7400 9050
+Connection ~ 7400 8650
+Wire Wire Line
+	8100 10050 7250 10050
+Wire Wire Line
+	7800 9950 7800 9850
+Connection ~ 7400 9950
+Connection ~ 5300 8650
+Wire Wire Line
+	7400 9500 7400 9350
+Wire Wire Line
+	7400 9950 7400 9800
+Wire Wire Line
+	7250 9950 7800 9950
+Wire Wire Line
+	6350 9950 6450 9950
+Wire Wire Line
+	6350 10400 6350 9950
+Wire Wire Line
+	6350 10400 9150 10400
+Wire Wire Line
+	7650 10150 7650 10400
+Wire Wire Line
+	7250 10150 7350 10150
+Connection ~ 5750 10550
+Wire Wire Line
+	5550 10550 9750 10550
+Wire Wire Line
+	6450 10550 6450 10250
+Wire Wire Line
+	6450 10150 6250 10150
+Wire Wire Line
+	5050 10150 5950 10150
+Connection ~ 5750 10150
+Wire Wire Line
+	5750 10150 5750 10250
+Connection ~ 5550 10150
+Wire Wire Line
+	5550 10250 5550 10150
+Connection ~ 5300 10150
+Wire Wire Line
+	3250 2550 3450 2550
+Connection ~ 3450 1600
+Wire Wire Line
+	3450 2550 3450 1600
+Wire Wire Line
+	3400 1600 3500 1600
+Connection ~ 2750 1700
+Wire Wire Line
+	2750 2550 2950 2550
+Wire Wire Line
+	2750 1700 2750 2550
+Wire Wire Line
+	2700 1700 2800 1700
+Wire Wire Line
+	2050 1900 2050 2050
+Wire Wire Line
+	2050 2350 2050 2400
+Wire Wire Line
+	3000 1900 3000 2100
+Wire Wire Line
+	2700 1500 2800 1500
+Wire Wire Line
+	2700 1150 2700 1500
+Wire Wire Line
+	2550 1150 2700 1150
+Wire Wire Line
+	1900 1900 2050 1900
+Wire Wire Line
+	2300 1700 2400 1700
+Wire Wire Line
+	1900 1700 2000 1700
+Wire Wire Line
+	750  1900 800  1900
+Wire Wire Line
+	750  1950 750  1900
+Wire Wire Line
+	1950 950  1900 950 
+Wire Wire Line
+	1950 1300 1900 1300
+Connection ~ 2250 1150
+Wire Wire Line
+	2250 950  2250 1300
+Wire Wire Line
+	3000 1300 3000 1200
+Wire Wire Line
+	750  1700 800  1700
+Wire Wire Line
+	750  1650 750  1700
+Connection ~ 4350 8650
+Wire Wire Line
+	3600 8850 3600 8650
+Wire Wire Line
+	5100 8650 7400 8650
+Wire Wire Line
+	3600 8650 4650 8650
+Wire Wire Line
+	5300 8650 5300 9050
+Wire Wire Line
+	4350 9050 4350 8650
+Connection ~ 4350 10150
+Wire Wire Line
+	4350 9350 4350 10150
+Wire Wire Line
+	5300 10150 5300 9350
+Wire Wire Line
+	3600 10150 4600 10150
+Wire Wire Line
+	3600 9650 3600 10150
+Wire Wire Line
+	4000 9750 4000 9250
+Wire Wire Line
+	3300 9750 4000 9750
+Wire Wire Line
+	2800 9750 3000 9750
+Wire Wire Line
+	2800 9250 3200 9250
+Wire Wire Line
+	5950 1550 6300 1550
+Wire Wire Line
+	6050 1350 6050 1600
+Wire Wire Line
+	6300 1550 6300 1600
+Connection ~ 6050 1550
+Wire Wire Line
+	4000 1550 5150 1550
+Wire Wire Line
+	4400 1850 4400 1550
+Connection ~ 4400 1550
+Connection ~ 4000 1550
+Wire Wire Line
+	4750 1750 5150 1750
+Wire Wire Line
+	4750 2250 4750 1750
+Wire Wire Line
+	4400 2250 4750 2250
+Wire Wire Line
+	4400 2250 4400 2150
+Wire Wire Line
+	4550 2250 4550 2300
+Connection ~ 4550 2250
+Wire Wire Line
+	5000 1950 5150 1950
+Wire Wire Line
+	5000 1550 5000 1950
+Connection ~ 5000 1550
+Wire Wire Line
+	4000 2150 4000 2350
+Wire Wire Line
+	6300 1900 6300 2000
+Wire Wire Line
+	6300 2000 6050 2000
+Wire Wire Line
+	6050 1900 6050 2100
+Connection ~ 6050 2000
+Wire Notes Line
+	3850 2950 3850 550 
+Wire Notes Line
+	6500 550  6500 2950
+Wire Wire Line
+	8050 1150 7600 1150
+Wire Wire Line
+	7600 1050 7600 1450
+Wire Wire Line
+	7600 1750 7600 2050
+Wire Wire Line
+	7600 1950 8050 1950
+Connection ~ 7600 1950
+Wire Wire Line
+	7300 2250 7150 2250
+Wire Wire Line
+	6850 2250 6800 2250
+Wire Wire Line
+	8550 1950 8550 2050
+Wire Wire Line
+	8550 2050 9050 2050
+Wire Wire Line
+	9050 2050 9050 1750
+Wire Wire Line
+	7600 2450 7600 2550
+Wire Wire Line
+	4900 3400 4900 3650
+Wire Wire Line
+	4750 3400 4900 3400
+Wire Wire Line
+	4800 3400 4800 3250
+Connection ~ 4800 3400
+Wire Wire Line
+	4750 3700 4750 3750
+Wire Wire Line
+	6150 3650 6200 3650
+Wire Wire Line
+	6200 3650 6200 3600
+Wire Wire Line
+	650  4750 650  4500
+Wire Wire Line
+	650  5050 650  5250
+Wire Wire Line
+	1050 5050 1050 5300
+Wire Wire Line
+	1050 4750 1050 4400
+Wire Wire Line
+	1500 5000 1500 4750
+Wire Wire Line
+	1500 5300 1500 5550
+Wire Wire Line
+	1500 4350 1500 4100
+Wire Wire Line
+	2700 3850 2700 3950
+Wire Wire Line
+	2700 3900 2250 3900
+Wire Wire Line
+	2250 3900 2250 4150
+Connection ~ 2700 3900
+Wire Wire Line
+	2250 4700 2250 4550
+Wire Wire Line
+	2550 4350 2950 4350
+Wire Wire Line
+	2700 4250 2700 4450
+Connection ~ 2700 4350
+Wire Wire Line
+	2250 5000 2250 5100
+Connection ~ 2250 5050
+Wire Wire Line
+	2050 5400 2000 5400
+Wire Wire Line
+	2000 5350 2000 5550
+Connection ~ 2000 5400
+Wire Wire Line
+	2000 5050 2250 5050
+Wire Wire Line
+	2450 5400 2850 5400
+Wire Wire Line
+	2700 5050 2700 5550
+Wire Wire Line
+	3150 5400 3300 5400
+Wire Wire Line
+	2700 3450 2700 3350
+Wire Notes Line
+	3550 2950 3550 6250
+Wire Notes Line
+	13000 6250 500  6250
+Wire Notes Line
+	7900 6250 7900 2950
+Wire Notes Line
+	500  6250 500  550 
+Wire Notes Line
+	500  2950 13000 2950
+Wire Notes Line
+	13000 550  13000 6250
+Wire Notes Line
+	9650 550  9650 2950
+Wire Notes Line
+	500  550  13000 550 
+Wire Wire Line
+	6150 3850 6400 3850
+Wire Wire Line
+	4900 4150 4800 4150
+Wire Wire Line
+	6150 4450 6400 4450
+Wire Wire Line
+	6150 4250 6400 4250
+Wire Wire Line
+	6150 3950 6400 3950
+Wire Wire Line
+	6150 4050 6400 4050
+Wire Wire Line
+	4800 4450 4900 4450
+Wire Wire Line
+	4800 4350 4900 4350
+Wire Wire Line
+	4800 4250 4900 4250
+Wire Wire Line
+	4800 4050 4900 4050
+Wire Wire Line
+	4800 3950 4900 3950
+Wire Wire Line
+	4800 3850 4900 3850
+Wire Wire Line
+	6150 3750 6400 3750
+Wire Wire Line
+	4800 4550 4800 4450
+Wire Notes Line
+	10750 550  10750 2950
+Wire Wire Line
+	11650 1000 11650 1100
+Wire Wire Line
+	11650 1100 11450 1100
+Wire Wire Line
+	11750 1000 11750 1150
+Wire Wire Line
+	11850 1000 11850 1100
+Wire Wire Line
+	11850 1100 12050 1100
+Wire Wire Line
+	12050 1100 12050 1000
+Wire Wire Line
+	11150 1100 11050 1100
+Wire Wire Line
+	12700 950  12700 1100
+Wire Wire Line
+	12700 1400 12700 1500
+Wire Wire Line
+	12700 2000 12700 1900
+Wire Wire Line
+	12150 2200 12400 2200
+Wire Wire Line
+	12700 2400 12700 2600
+Wire Wire Line
+	11850 2200 11550 2200
+Wire Wire Line
+	4650 3750 4900 3750
+Wire Wire Line
+	6100 5000 6400 5000
+Wire Wire Line
+	6100 5100 6750 5100
+Wire Wire Line
+	6100 5300 6400 5300
+Wire Wire Line
+	6100 5400 6400 5400
+Wire Wire Line
+	6100 5500 6400 5500
+Wire Wire Line
+	6100 5600 6400 5600
+Wire Wire Line
+	6100 5700 6400 5700
+Wire Wire Line
+	6100 5800 6400 5800
+Wire Wire Line
+	6100 5900 6400 5900
+Wire Wire Line
+	4550 5050 4900 5050
+Wire Wire Line
+	4600 5150 4900 5150
+Wire Wire Line
+	4600 5250 4900 5250
+Wire Wire Line
+	4600 5350 4900 5350
+Wire Wire Line
+	4600 5450 4900 5450
+Wire Wire Line
+	4600 5550 4900 5550
+Wire Wire Line
+	4600 5650 4900 5650
+Wire Wire Line
+	4600 5750 4900 5750
+Wire Wire Line
+	4600 5850 4900 5850
+Wire Wire Line
+	4600 5950 4900 5950
+Wire Wire Line
+	6100 5200 6900 5200
+Connection ~ 4750 3750
+Wire Wire Line
+	4600 5150 4600 5050
+Connection ~ 4600 5050
+Connection ~ 7600 1150
+Wire Wire Line
+	8750 1950 9000 1950
+Wire Wire Line
+	9000 1950 9000 1650
+Wire Wire Line
+	9000 1650 9050 1650
+Wire Wire Line
+	6150 4150 6750 4150
+Wire Wire Line
+	6750 4150 6750 4200
+Wire Wire Line
+	6150 4350 6400 4350
+Wire Wire Line
+	6750 5100 6750 5050
+Wire Wire Line
+	6900 5200 6900 5150
+$Comp
+L +5V #PWR?
+U 1 1 57D12FB5
+P 4000 1300
+F 0 "#PWR?" H 4000 1150 50  0001 C CNN
+F 1 "+5V" H 4015 1473 50  0000 C CNN
+F 2 "" H 4000 1300 50  0000 C CNN
+F 3 "" H 4000 1300 50  0000 C CNN
+	1    4000 1300
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
