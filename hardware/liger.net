@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/chris/circuits/liger/hardware/liger.sch)
-    (date "Fri 09 Sep 2016 09:09:32 PM CDT")
+    (date "Fri 09 Sep 2016 10:31:16 PM CDT")
     (tool "Eeschema 4.1.0-alpha+201608101234+7015~46~ubuntu15.10.1-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -17,7 +17,7 @@
   (components
     (comp (ref Relay1)
       (value V23105)
-      (footprint libraries:V23105)
+      (footprint Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C)
       (datasheet http://www.digikey.com/product-detail/en/te-connectivity-potter-brumfield-relays/ORWH-SH-105D1F,000/PB2032-ND/4925028)
       (fields
         (field (name "Part Number") ORWH-SH-105D1F,000))

@@ -49,7 +49,7 @@ U 1 1 57633D5A
 P 8400 1550
 F 0 "Relay1" H 7750 1750 50  0000 L CNN
 F 1 "V23105" H 8850 1400 50  0000 L CNN
-F 2 "libraries:V23105" H 8400 1550 50  0001 C CNN
+F 2 "Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C" H 8400 1550 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/te-connectivity-potter-brumfield-relays/ORWH-SH-105D1F,000/PB2032-ND/4925028" H 8400 1550 50  0001 C CNN
 F 4 "ORWH-SH-105D1F,000" H 8400 1550 60  0001 C CNN "Part Number"
 	1    8400 1550
