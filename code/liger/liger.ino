@@ -56,7 +56,7 @@ decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
 const char *ap_ssid = "Liger ";
-const char *io_relay = "68.12.120.180";
+const char *io_relay = "68.12.114.145";
 int io_port = 4000;
 //const char *ap_password = "password";
 char html[5000] = "";
@@ -99,6 +99,9 @@ char message[2100] = "";
 char uptime[10] = "";
 int previous_uptime;
 char local_ip[20] = "init";
+int response_delay = 0;
+int response_time = 0;
+int png_time = 0;
 ESP8266WebServer server(80);
 int ap_connect();
 void start_ap();
@@ -119,6 +122,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
       {
         Serial.printf("[WSc] Connected to url: %s\n",  payload);
         wsConnected = true;
+        response_time = now();
         // send message to server when Connected
         //char data[200] = "hello from ";
         //strcat(data, current_ssid);
@@ -162,42 +166,12 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
           digitalWrite(RELAY,1);
           delay(500);
           digitalWrite(RELAY,0);
-        }        
-        if (strcmp(command,"ping")==0) {
-          Serial.println("RECEIVED PING");
-          delay(500);
-          String(now()).toCharArray(uptime, 10);
-          String(distance).toCharArray(distance_str, 50);
-          strcpy(message, "{ \"mac\":\"");
-          strcat(message, mac_addr);
-          strcat(message, "\", \"device_type\":");
-          strcat(message, "[\"garage_opener\"],");
-          strcat(message,"\"local_ip\":\"");
-          strcat(message, local_ip);
-          strcat(message, "\", \"uptime\":");
-          strcat(message, uptime);
-          strcat(message, ", \"distance\":");
-          strcat(message, distance_str);
-          strcat(message, ", \"token\":\"");
-          strcat(message, token);
-          strcat(message, "\", \"data\":\"");
-          //strcat(message,analog_data_str);
-          strcat(message, "\" }");
-          Serial.println(message);
-          webSocket.sendTXT(message);
         }
       }
       
       if (strcmp(command, "png_test") == 0) {
         Serial.println("received ping");
-          /*strcpy(message, "{ \"mac\":\"");
-          strcat(message, mac_addr);
-          strcat(message, ", \"token\":\"");
-          strcat(message, token);
-          strcat(message, "\", \"data\":\"");
-          strcat(message, "\" }");
-          Serial.println(message);
-          webSocket.sendTXT(message);*/
+        response_time = now();
       }
       
       break;
@@ -317,16 +291,6 @@ void get_analog_data() {
   int sample_size = sample_rate;
   int bias = 432;
   magnitude = 0;
-  /*for (int i = 0; i < bufferSize; i++) {
-    analog_data[i] = analogRead(A0);
-    magnitude += analog_data[i];
-    if (analog_data[i]) {
-      analog_data_str[i] = analog_data[i];
-    } else {
-      analog_data_str[i] = 'A';
-    }
-    delay( 1 / sample_rate );
-  }*/
   int raw_sound[sample_size];
   for (int i = 0; i < sample_rate; i++) {
     yield();
@@ -702,6 +666,15 @@ void loop() {
     send_ping();
     time_delta = 0;
     previous_uptime = now();
+    response_delay = now() - response_time;
+    Serial.println(response_delay);
+    if (response_delay > 120) {
+      Serial.println("no response from server\n");
+      webSocket.disconnect();
+      webSocket.begin(io_relay, 4000);
+      wsConnected = false;      
+      got_token = false;
+    }
   }
   if (got_token && wsConnected) {
     //sendIR();
