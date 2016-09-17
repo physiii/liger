@@ -142,18 +142,6 @@ $EndComp
 Text GLabel 6800 2250 0    60   Input ~ 0
 IO15
 $Comp
-L CONN_01X02 P4
-U 1 1 57685A47
-P 9200 1500
-F 0 "P4" H 9200 1650 50  0000 C CNN
-F 1 "CONN_01X02" V 9300 1500 50  0000 C CNN
-F 2 "Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H 9200 1500 50  0001 C CNN
-F 3 "http://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1935161.pdf" H 9200 1500 50  0001 C CNN
-F 4 "1935161" H 9200 1500 60  0001 C CNN "Part Number"
-	1    9200 1500
-	1    0    0    -1  
-$EndComp
-$Comp
 L GND #PWR05
 U 1 1 57685FFE
 P 7600 2550
@@ -745,17 +733,6 @@ F 4 "ESP-WROOM-02" H 4850 3300 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L VDDA #PWR024
-U 1 1 57C657E4
-P 900 8250
-F 0 "#PWR024" H 900 8100 50  0001 C CNN
-F 1 "VDDA" V 918 8378 50  0000 L CNN
-F 2 "" H 900 8250 50  0000 C CNN
-F 3 "" H 900 8250 50  0000 C CNN
-	1    900  8250
-	0    -1   -1   0   
-$EndComp
-$Comp
 L Diode_Bridge BR1
 U 1 1 57C81314
 P 1700 7750
@@ -765,17 +742,6 @@ F 2 "footprints:DF005S" H 1700 7750 50  0001 C CNN
 F 3 "http://www.digikey.com/scripts/DkSearch/dksus.dll?Detail&itemSeq=206259955&uq=636087571188496593" H 1700 7750 50  0001 C CNN
 F 4 "DF08S" H 1700 7750 60  0001 C CNN "Part Number"
 	1    1700 7750
-	0    -1   -1   0   
-$EndComp
-$Comp
-L VDD #PWR025
-U 1 1 57C65667
-P 900 7750
-F 0 "#PWR025" H 900 7600 50  0001 C CNN
-F 1 "VDD" V 918 7877 50  0000 L CNN
-F 2 "" H 900 7750 50  0000 C CNN
-F 3 "" H 900 7750 50  0000 C CNN
-	1    900  7750
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -1442,14 +1408,6 @@ F 3 "http://www.digikey.com/product-detail/en/te-connectivity-potter-brumfield-r
 $EndComp
 Wire Wire Line
 	8750 1050 8750 1150
-Wire Wire Line
-	9000 1050 8750 1050
-Wire Wire Line
-	9000 1450 9000 1050
-Wire Wire Line
-	9000 1950 8650 1950
-Wire Wire Line
-	9000 1550 9000 1950
 Connection ~ 7600 1950
 Wire Wire Line
 	8050 1950 7600 1950
@@ -1952,4 +1910,129 @@ Connection ~ 8850 8200
 Connection ~ 5750 8900
 Wire Wire Line
 	4000 1300 4000 1850
+$Comp
+L CONN_01X03 P?
+U 1 1 57DBF2D6
+P 1100 9100
+F 0 "P?" V 1000 9250 50  0000 L CNN
+F 1 "CONN_01X03" V 1200 8900 50  0000 L CNN
+F 2 "" H 1100 9100 50  0000 C CNN
+F 3 "" H 1100 9100 50  0000 C CNN
+	1    1100 9100
+	0    1    1    0   
+$EndComp
+Text GLabel 900  8250 0    60   Input ~ 0
+HV-
+Text GLabel 900  7750 0    60   Input ~ 0
+HV+
+Text GLabel 950  8800 0    60   Input ~ 0
+RELAY
+Wire Wire Line
+	950  8800 1000 8800
+Wire Wire Line
+	1000 8800 1000 8900
+Text GLabel 8650 2050 3    60   Input ~ 0
+HV-
+Wire Wire Line
+	8650 1950 8650 2050
+Text GLabel 8750 1050 1    60   Input ~ 0
+RELAY
+$Comp
+L CONN_01X03 P?
+U 1 1 57DCEDF1
+P 10250 8550
+F 0 "P?" V 10150 8700 50  0000 L CNN
+F 1 "CONN_01X03" V 10350 8350 50  0001 L CNN
+F 2 "Connectors_Hirose:Hirose_DF13-03P-1.25DS_03x1.25mm_Angled" H 10250 8550 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735" H 10250 8550 50  0001 C CNN
+	1    10250 8550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57DCFF45
+P 10000 8700
+F 0 "#PWR?" H 10000 8450 50  0001 C CNN
+F 1 "GND" H 10000 8550 50  0000 C CNN
+F 2 "" H 10000 8700 50  0000 C CNN
+F 3 "" H 10000 8700 50  0000 C CNN
+	1    10000 8700
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 57DD0164
+P 10000 8400
+F 0 "#PWR?" H 10000 8250 50  0001 C CNN
+F 1 "+5V" H 10000 8540 50  0000 C CNN
+F 2 "" H 10000 8400 50  0000 C CNN
+F 3 "" H 10000 8400 50  0000 C CNN
+	1    10000 8400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10000 8400 10000 8450
+Wire Wire Line
+	10000 8450 10050 8450
+Wire Wire Line
+	10000 8700 10000 8650
+Wire Wire Line
+	10000 8650 10050 8650
+Text GLabel 9950 8550 0    60   Input ~ 0
+IO15
+Wire Wire Line
+	9950 8550 10050 8550
+$Comp
+L CONN_01X03 P?
+U 1 1 57DDC8F3
+P 5550 2550
+F 0 "P?" H 5450 2750 50  0000 L CNN
+F 1 "CONN_01X03" V 5650 2300 50  0001 L CNN
+F 2 "Connectors_Hirose:Hirose_DF13-03P-1.25DSA_03x1.25mm_Straight" H 5550 2550 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735" H 5550 2550 50  0001 C CNN
+	1    5550 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57DDC8F9
+P 5300 2700
+F 0 "#PWR?" H 5300 2450 50  0001 C CNN
+F 1 "GND" H 5300 2550 50  0000 C CNN
+F 2 "" H 5300 2700 50  0000 C CNN
+F 3 "" H 5300 2700 50  0000 C CNN
+	1    5300 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 57DDC8FF
+P 5300 2400
+F 0 "#PWR?" H 5300 2250 50  0001 C CNN
+F 1 "+5V" H 5300 2540 50  0000 C CNN
+F 2 "" H 5300 2400 50  0000 C CNN
+F 3 "" H 5300 2400 50  0000 C CNN
+	1    5300 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 2400 5300 2450
+Wire Wire Line
+	5300 2450 5350 2450
+Wire Wire Line
+	5300 2700 5300 2650
+Wire Wire Line
+	5300 2650 5350 2650
+Text GLabel 5250 2550 0    60   Input ~ 0
+IO15
+Wire Wire Line
+	5250 2550 5350 2550
+Text GLabel 1100 8700 1    60   Input ~ 0
+HV-
+Text GLabel 1200 8700 1    60   Input ~ 0
+HV+
+Wire Wire Line
+	1100 8700 1100 8900
+Wire Wire Line
+	1200 8900 1200 8700
 $EndSCHEMATC
