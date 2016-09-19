@@ -1910,33 +1910,18 @@ Connection ~ 8850 8200
 Connection ~ 5750 8900
 Wire Wire Line
 	4000 1300 4000 1850
-$Comp
-L CONN_01X03 P?
-U 1 1 57DBF2D6
-P 1100 9100
-F 0 "P?" V 1000 9250 50  0000 L CNN
-F 1 "CONN_01X03" V 1200 8900 50  0000 L CNN
-F 2 "" H 1100 9100 50  0000 C CNN
-F 3 "" H 1100 9100 50  0000 C CNN
-	1    1100 9100
-	0    1    1    0   
-$EndComp
 Text GLabel 900  8250 0    60   Input ~ 0
 HV-
 Text GLabel 900  7750 0    60   Input ~ 0
 HV+
-Text GLabel 950  8800 0    60   Input ~ 0
+Text GLabel 1200 9200 0    60   Input ~ 0
 RELAY
-Wire Wire Line
-	950  8800 1000 8800
-Wire Wire Line
-	1000 8800 1000 8900
 Text GLabel 8650 2050 3    60   Input ~ 0
 HV-
 Wire Wire Line
 	8650 1950 8650 2050
 Text GLabel 8750 1050 1    60   Input ~ 0
-HV-
+RELAY
 $Comp
 L CONN_01X03 P?
 U 1 1 57DCEDF1
@@ -2027,12 +2012,41 @@ Text GLabel 5250 2550 0    60   Input ~ 0
 IO15
 Wire Wire Line
 	5250 2550 5350 2550
-Text GLabel 1100 8700 1    60   Input ~ 0
+$Comp
+L CONN_01X02 P?
+U 1 1 57DE9B7C
+P 1500 8850
+F 0 "P?" H 1578 8891 50  0000 L CNN
+F 1 "CONN_01X02" H 1578 8800 50  0000 L CNN
+F 2 "footprints:pheonix-connector-01x02-5mm" H 1500 8850 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/phoenix-contact/1935161/277-1667-ND/568614" H 1500 8850 50  0001 C CNN
+	1    1500 8850
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 P?
+U 1 1 57DEA09D
+P 1500 9150
+F 0 "P?" H 1578 9191 50  0000 L CNN
+F 1 "CONN_01X02" H 1578 9100 50  0000 L CNN
+F 2 "footprints:pheonix-connector-01x02-5mm" H 1500 9150 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/phoenix-contact/1935161/277-1667-ND/568614" H 1500 9150 50  0001 C CNN
+	1    1500 9150
+	1    0    0    -1  
+$EndComp
+Text GLabel 1200 9100 0    60   Input ~ 0
 HV-
-Text GLabel 1200 8700 1    60   Input ~ 0
+Text GLabel 1200 8800 0    60   Input ~ 0
 HV+
 Wire Wire Line
-	1100 8700 1100 8900
+	1200 8800 1300 8800
 Wire Wire Line
-	1200 8900 1200 8700
+	1300 8900 1250 8900
+Wire Wire Line
+	1250 8900 1250 8800
+Connection ~ 1250 8800
+Wire Wire Line
+	1200 9100 1300 9100
+Wire Wire Line
+	1200 9200 1300 9200
 $EndSCHEMATC

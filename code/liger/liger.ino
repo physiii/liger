@@ -56,7 +56,7 @@ decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
 const char *ap_ssid = "Liger ";
-const char *io_relay = "68.12.114.145";
+const char *io_relay = "24.253.223.242";
 int io_port = 4000;
 //const char *ap_password = "password";
 char html[5000] = "";
@@ -287,19 +287,29 @@ void receiveIR() {
 // ------------------------- microphone --------------------------- //
 // ---------------------------------------------------------------- //
 void get_analog_data() {
-  int sample_rate = 20000;
+  int sample_rate = 20;
   int sample_size = sample_rate;
   int bias = 432;
   magnitude = 0;
   int raw_sound[sample_size];
+  yield();
+  int start_time = micros();
   for (int i = 0; i < sample_rate; i++) {
-    yield();
-    delayMicroseconds(10^6 / sample_rate);
+    delayMicroseconds(100);
+    //delayMicroseconds(1000);
     //raw_sound[i] = analogRead(A0);
-    magnitude += (analogRead(A0) - bias)*(analogRead(A0) - bias);
+    //magnitude += (analogRead(A0) - bias)*(analogRead(A0) - bias);
+    int val = analogRead(A0);
+    magnitude += val^2;
   }
   magnitude = magnitude / sample_rate;
+  int tested_sample_rate = micros() - start_time;
+  tested_sample_rate = tested_sample_rate / sample_rate;
+  tested_sample_rate = tested_sample_rate * 10^6;
   
+  Serial.print("sample rate: " );
+  Serial.print(tested_sample_rate);
+  Serial.println(" samples/second" );
   if ( magnitude > 20 ) {
     char now_str[10] = "";
     char magnitude_str[50] = "";
