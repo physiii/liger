@@ -1,3 +1,6 @@
+#include <Scheduler.h>
+#include <Task.h>
+
 /*
    Copyright (c) 2015, Majenko Technologies
    All rights reserved.
@@ -32,6 +35,7 @@
 
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
+#include <Ticker.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 #include <EEPROM.h>
@@ -43,13 +47,17 @@
 #include <Hash.h>
 #include <IRremoteESP8266.h>
 #include <IRremoteInt.h>
-//#include <Scheduler.h>
+#include <Scheduler.h>
 
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
 #define TRIGGER 12
 #define ECHO    14
 #define RELAY   15
+#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
+#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
+int numSamples=0;
+long t, t0;
 IRsend irsend(14);
 IRrecv irrecv(4);
 decode_results results;
@@ -84,7 +92,6 @@ char token[200] = "init";
 char current_ssid[100];
 bool isConnected = false;
 char distance_str[50] = "";
-int magnitude = 0;
 char mac_addr[20] = "";
 char response[200] = "";
 char token_req[200] = "";
@@ -286,7 +293,67 @@ void receiveIR() {
 // ---------------------------------------------------------------- //
 // ------------------------- microphone --------------------------- //
 // ---------------------------------------------------------------- //
-void get_analog_data() {
+long previousMillis = 0;        // will store last time LED was updated
+long interval = 1000;
+int samples = 0;
+int sample = 0;
+const int sample_size = 100;
+int audio_buffer[sample_size];
+int bias = 0;
+int magnitude = 0;
+
+void fft(int audio_buffer[]) {
+  for (int i = 0; i < sample_size; i++) {
+    magnitude+=magnitude;
+    Serial.print(audio_buffer[i]);
+    Serial.print("|");
+  }
+  Serial.println();
+}
+
+
+void read_mic(int sample) {
+  samples += sample;
+  magnitude += (sample - bias)*(sample - bias);
+  audio_buffer[numSamples] = sample;
+  //Serial.println(audio_buffer[numSamples]);
+  numSamples++;
+  if (numSamples>=sample_size)
+  {
+    fft(audio_buffer);
+    t = micros()-t0;  // calculate elapsed time
+    int avg_magnitude = magnitude / sample_size;
+    if (avg_magnitude > 20*9999999) {
+      Serial.print("Sampling frequency: ");
+      Serial.print((float)1000000/t);
+      Serial.print(" KHz | ");
+      Serial.print("magnitude: ");
+      Serial.println(avg_magnitude);      
+    }
+    //delay(2000);
+    magnitude = 0;
+    // restart
+    t0 = micros();
+    numSamples = 0;
+    bias = samples / sample_size;
+    samples = 0;
+  } 
+  /*unsigned long currentMillis = millis();
+ 
+  if(currentMillis - previousMillis > interval) {
+    // save the last time you blinked the LED 
+    previousMillis = currentMillis;   
+ 
+    // if the LED is off turn it on and vice-versa:
+    if (ledState == LOW)
+      ledState = HIGH;
+    else
+      ledState = LOW;
+ 
+    // set the LED with the ledState of the variable:
+    //digitalWrite(ledPin, ledState);
+  }*/
+  /* 
   int sample_rate = 20;
   int sample_size = sample_rate;
   int bias = 432;
@@ -295,7 +362,7 @@ void get_analog_data() {
   yield();
   int start_time = micros();
   for (int i = 0; i < sample_rate; i++) {
-    delayMicroseconds(100);
+    delayMicroseconds(110);
     //delayMicroseconds(1000);
     //raw_sound[i] = analogRead(A0);
     //magnitude += (analogRead(A0) - bias)*(analogRead(A0) - bias);
@@ -332,7 +399,7 @@ void get_analog_data() {
     strcat(message, "\" }");
     Serial.println(message);
     webSocket.sendTXT(message);      
-  }
+  }*/
 }
 
 // ---------------------------------------------------------------- //
@@ -666,35 +733,7 @@ void setup() {
 // -------------------------- loop -------------------------------- //
 // ---------------------------------------------------------------- //
 void loop() {
-  server.handleClient();
-  if (isConnected) {
-    webSocket.loop();
-  }
-  trigger_pulse();
-  time_delta = now() - previous_uptime;
-  if (time_delta > 60) {
-    send_ping();
-    time_delta = 0;
-    previous_uptime = now();
-    response_delay = now() - response_time;
-    Serial.println(response_delay);
-    if (response_delay > 120) {
-      Serial.println("no response from server\n");
-      webSocket.disconnect();
-      webSocket.begin(io_relay, 4000);
-      wsConnected = false;      
-      got_token = false;
-    }
-  }
-  if (got_token && wsConnected) {
-    //sendIR();
-    get_analog_data();
-    //receiveIR();
-    get_distance();
-  } else {
-    get_token();
-  }
-  magnitude = 0;
+  read_mic(analogRead(A0));
   //delay(1);
 }
 
