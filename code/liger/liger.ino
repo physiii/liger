@@ -48,18 +48,22 @@
 #include <IRremoteESP8266.h>
 #include <IRremoteInt.h>
 #include <Scheduler.h>
+#include <ArduinoJson.h>
 
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
 #define TRIGGER 12
 #define ECHO    14
 #define RELAY   15
+#define MIC     A0
+#define PIR     16
+#define IR_RX   13
+#define IR_TX   14
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
 int numSamples=0;
 long t, t0;
-IRsend irsend(14);
-IRrecv irrecv(4);
+
 decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
@@ -104,20 +108,34 @@ char password[50] = "";
 char count_str[50] = "";
 char message[2100] = "";
 char uptime[10] = "";
+char now_str[10] = "";
+char magnitude_str[50] = "";
+char motion_status_str[50] = "";
+char PIR_width_str[50] = "";
+String motion_status = "No Motion Detected";
 int previous_uptime;
 char local_ip[20] = "init";
 int response_delay = 0;
 int response_time = 0;
 int png_time = 0;
+int PIR_t = 0;
+int PIR_t0 = millis();
+int PIR_count = 0;
+int threshold = 4000;
+bool detected_pulse = false;
+bool motion_started = false;
 ESP8266WebServer server(80);
 int ap_connect();
 void start_ap();
+void sendIR(unsigned int ir_code);
 
 // ---------------------------------------------------------------- //
 // -------------------------- websockets -------------------------- //
 // ---------------------------------------------------------------- //
 char is_command[10] = "";
-char command[50]="";
+//char command[50]="";
+char ir_code_str[7]="";
+
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
   switch (type) {
     case WStype_DISCONNECTED:
@@ -137,8 +155,33 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
         break;
       }
     case WStype_TEXT:
+      {
+      StaticJsonBuffer<200> jsonBuffer;
       WiFi.macAddress(mac);
       strcpy(response, (char *)payload);
+      Serial.println(response);
+      //JsonObject& json = parse_json(response);
+      JsonObject& json = jsonBuffer.parseObject(response);
+      const char* command = json["command"];
+      double sendIR_str = json["sendIR"];
+      const char* token_str = json["token"];
+      Serial.println(token_str);
+      if (token_str) {
+        Serial.print("setting token | ");
+        Serial.println(token_str);
+        strcpy(token, token_str);
+        got_token = true;
+      }
+      if (sendIR_str) {
+        unsigned int IR_code = json["sendIR"][0];
+        sendIR(IR_code);
+      }
+      /*char* command = strtok(response, ",");
+      while (command != 0)
+      {
+        // Find the next command in input string
+        command = strtok(0, "&");
+      }
       strncpy(is_token, response, 5);
       if (strcmp(is_token, "token") == 0) {
         for (int i = 0; i < sizeof(response); i++) {
@@ -151,16 +194,31 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
       }
 
       strncpy(is_command, response, 7);
-      Serial.println(response);
       if (strcmp(is_command, "command") == 0) {
         for (int i = 0; i < 10; i++) {
           command[i] = response[i + 7];
+        }
+        if (strcmp(command,"sendIR")==0) {
+          for (int i = 0; i < 8; i++) {
+            ir_code_str[i] = response[i + 13];
+            Serial.print("Sending IR: ");
+            Serial.println(ir_code_str);
+          }
+          Serial.println("OPENING!");
+          digitalWrite(RELAY,1);
+          delay(500);
+          digitalWrite(RELAY,0);
         }
         if (strcmp(command,"open")==0) {
           Serial.println("OPENING!");
           digitalWrite(RELAY,1);
           delay(500);
           digitalWrite(RELAY,0);
+        }
+        if (strcmp(command,"mute")==0) {
+          Serial.println("MUTE!");
+          unsigned int ir_code = 0x4BB6A05F;
+          sendIR(ir_code);
         }
         if (strcmp(command,"close")==0) {
           Serial.println("CLOSING!");
@@ -179,9 +237,10 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
       if (strcmp(command, "png_test") == 0) {
         Serial.println("received ping");
         response_time = now();
-      }
+      }*/
       
       break;
+      }
     case WStype_BIN:
       Serial.printf("[WSc] get binary lenght: %u\n", lenght);
       hexdump(payload, lenght);
@@ -246,28 +305,24 @@ void trigger_pulse()
 // ---------------------------------------------------------------- //
 // ------------------------ IR tx and rx -------------------------- //
 // ---------------------------------------------------------------- //
-//void sendIR(decode_results *results) {
-void sendIR() {
-  //unsigned int  rawData[67] = {8600,4300, 550,550, 600,1600, 550,550, 550,1600, 600,550, 600,1600, 600,550, 600,1600, 600,1600, 600,550, 600,1600, 600,550, 550,1600, 600,550, 600,1600, 550,550, 550,1600, 600,1600, 600,550, 550,1600, 550,550, 550,550, 550,550, 600,550, 550,550, 550,550, 600,1600, 550,550, 550,1600, 600,1600, 600,1600, 600,1600, 550};  
-  // NEC 55AAD02F
-  unsigned int  rawData[66] = {4200,650, 500,600, 1550,650, 500,600, 1550,600, 500,650, 1550,600, 500,600, 1550,600, 1550,650, 500,600, 1550,600, 500,600, 1550,650, 500,600, 1600,650, 500,650, 500,550, 1600,600, 500,600, 1550,600, 500,600, 500,600, 500,600, 500,600, 1600,600, 500,600, 1550,600, 500,600, 1550,600, 1550,600, 1550,600, 1600,650 };  
-  // UNKNOWN 26869205
-  unsigned int  ir_code = 0x4BB6C03F;
+IRsend irsend(IR_TX);
+IRrecv irrecv(IR_RX);
+void sendIR(unsigned int ir_code) {
   Serial.print("Sending IR: ");
   Serial.println(ir_code,HEX);
-  for (int i=0; i < 3; i++,delay(250)) {   
-    irsend.sendNEC(ir_code,32);
-    //irsend.sendRaw(rawData,67,38);
-  }
+  irsend.sendNEC(ir_code,32);
+  //delay(500);
 }
 
 void receiveIR() {
   if (irrecv.decode(&results)) {
     Serial.print("received IR: ");
-    Serial.println(results.value, HEX);
+    //Serial.println(results.value, HEX);
     irrecv.resume(); // Receive the next value
     char ir_code[10];
-    sprintf(ir_code, "%02x",results.value);
+    //sprintf(ir_code, "%02x",results.value);
+    sprintf(ir_code, "%d",results.value);
+    Serial.println(ir_code);
     String(now()).toCharArray(uptime, 10);
     String(distance).toCharArray(distance_str, 50);
     strcpy(message, "{ \"mac\":\"");
@@ -280,11 +335,11 @@ void receiveIR() {
     strcat(message, uptime);
     strcat(message, ", \"token\":\"");
     strcat(message, token);
-    strcat(message, "\", \"ir_code\":\"");
+    strcat(message, "\", \"ir_code\":");
     strcat(message,ir_code);
-    strcat(message, "\" }");
+    strcat(message, " }");
     Serial.println(message);
-    //webSocket.sendTXT(message);
+    webSocket.sendTXT(message);
   }
   //sendIR(&results);
   delay(100);
@@ -295,7 +350,7 @@ void receiveIR() {
 // ---------------------------------------------------------------- //
 long previousMillis = 0;        // will store last time LED was updated
 long interval = 1000;
-int samples = 0;
+int total = 0;
 int sample = 0;
 const int sample_size = 100;
 int audio_buffer[sample_size];
@@ -311,33 +366,60 @@ void fft(int audio_buffer[]) {
   Serial.println();
 }
 
+void read_mic() {
+  t0 = micros();
+  for (int i = 0; i < sample_size; i++) {
+    sample = analogRead(A0);
+    magnitude += (sample - bias)*(sample - bias);
+    total += sample;
+    audio_buffer[i] = sample;
+    //fft(audio_buffer);
+    delay(1);
+  }
+  t = micros()-t0;  // calculate elapsed time
+  magnitude = magnitude / sample_size;
+  bias = total / sample_size;
+  if (magnitude > 200) {
+    Serial.print("Sampling frequency: ");
+    Serial.print((float)1000000/t);
+    Serial.print(" KHz | ");
+    Serial.print("magnitude: ");
+    Serial.println(magnitude);
 
-void read_mic(int sample) {
-  samples += sample;
-  magnitude += (sample - bias)*(sample - bias);
-  audio_buffer[numSamples] = sample;
+    String(now()).toCharArray(now_str, 10);
+    String(magnitude).toCharArray(magnitude_str, 50);
+    String(PIR_t).toCharArray(PIR_width_str, 50);    
+    motion_status.toCharArray(motion_status_str, 50);
+    strcpy(message, "{ \"mac\":\"");
+    strcat(message, mac_addr);
+    strcat(message, "\", \"device_type\":");
+    strcat(message, "[\"room_sensor\"],");
+    strcat(message,"\"local_ip\":\"");
+    strcat(message, local_ip);
+    strcat(message, "\", \"uptime\":");
+    strcat(message, now_str);
+    strcat(message, ", \"motion\":\"");
+    strcat(message, motion_status_str);
+    strcat(message, "\", \"PIR_width\":");
+    strcat(message, PIR_width_str);
+    strcat(message, ", \"magnitude\":");
+    strcat(message, magnitude_str);
+    strcat(message, ", \"token\":\"");
+    strcat(message, token);
+    strcat(message, "\", \"data\":\"");
+    //strcat(message,analog_data_str);
+    strcat(message, "\" }");
+    //Serial.println(message);
+    webSocket.sendTXT(message);    
+  }
+  total = 0;
+  magnitude = 0;
   //Serial.println(audio_buffer[numSamples]);
-  numSamples++;
-  if (numSamples>=sample_size)
+  /*if (numSamples>=sample_size)
   {
-    fft(audio_buffer);
-    t = micros()-t0;  // calculate elapsed time
-    int avg_magnitude = magnitude / sample_size;
-    if (avg_magnitude > 20*9999999) {
-      Serial.print("Sampling frequency: ");
-      Serial.print((float)1000000/t);
-      Serial.print(" KHz | ");
-      Serial.print("magnitude: ");
-      Serial.println(avg_magnitude);      
-    }
-    //delay(2000);
-    magnitude = 0;
-    // restart
-    t0 = micros();
-    numSamples = 0;
-    bias = samples / sample_size;
-    samples = 0;
-  } 
+  }*/
+
+  
   /*unsigned long currentMillis = millis();
  
   if(currentMillis - previousMillis > interval) {
@@ -702,13 +784,91 @@ void get_token() {
 }
 
 // ---------------------------------------------------------------- //
+// -------------------------- motion ------------------------------ //
+// ---------------------------------------------------------------- //
+// ---- measure pulse width and send alert if greater than -------- //
+// ---- threshold ------------------------------------------------- //
+// ---------------------------------------------------------------- //
+void detect_motion() {
+  int sample = digitalRead(PIR);
+  if (sample) {
+    if (!detected_pulse) {
+      PIR_t0 = millis();
+      detected_pulse = true;
+    }
+    PIR_t = millis() - PIR_t0;
+    if (PIR_t > threshold) {
+      if (!motion_started) {
+        String(now()).toCharArray(now_str, 10);
+        String(PIR_t).toCharArray(PIR_width_str, 50);
+        motion_status = "Motion Detected";
+        motion_status.toCharArray(motion_status_str, 50);
+        strcpy(message, "{ \"mac\":\"");
+        strcat(message, mac_addr);
+        strcat(message, "\", \"device_type\":");
+        strcat(message, "[\"room_sensor\"],");
+        strcat(message,"\"local_ip\":\"");
+        strcat(message, local_ip);
+        strcat(message, "\", \"uptime\":");
+        strcat(message, now_str);
+        strcat(message, ", \"motion\":\"");
+        strcat(message, motion_status_str); 
+        strcat(message, "\", \"PIR_width\":");
+        strcat(message, PIR_width_str);
+        strcat(message, ", \"token\":\"");
+        strcat(message, token);
+        strcat(message, "\", \"data\":\"");
+        //strcat(message,analog_data_str);
+        strcat(message, "\" }");
+        Serial.println(message);
+        webSocket.sendTXT(message);
+        motion_started = true;
+      }
+    }
+  } else {
+    if (detected_pulse) {
+        String(now()).toCharArray(now_str, 10);
+        String(PIR_t).toCharArray(PIR_width_str, 50);
+        motion_status.toCharArray(motion_status_str, 50);
+        motion_status = "No Motion Detected";
+        strcpy(message, "{ \"mac\":\"");
+        strcat(message, mac_addr);
+        strcat(message, "\", \"device_type\":");
+        strcat(message, "[\"room_sensor\"],");
+        strcat(message,"\"local_ip\":\"");
+        strcat(message, local_ip);
+        strcat(message, "\", \"uptime\":");
+        strcat(message, now_str);
+        strcat(message, ", \"motion\":\"");
+        strcat(message, motion_status_str);
+        strcat(message, "\", \"PIR_width\":");
+        strcat(message, PIR_width_str);
+        strcat(message, ", \"token\":\"");
+        strcat(message, token);
+        strcat(message, "\", \"data\":\"");
+        //strcat(message,analog_data_str);
+        strcat(message, "\" }");
+        Serial.println(message);
+        webSocket.sendTXT(message);
+        motion_started = true;
+    } else {
+      
+    }
+    PIR_t = 0;
+    detected_pulse = false;
+    motion_started = false;
+  }
+}
+
+// ---------------------------------------------------------------- //
 // -------------------------- setup ------------------------------- //
 // ---------------------------------------------------------------- //
 void setup() {
   Serial.begin(115200);
   EEPROM.begin(512);
-  pinMode(TRIGGER, OUTPUT);
+  pinMode(PIR, INPUT);
   pinMode(ECHO, INPUT);
+  pinMode(TRIGGER, OUTPUT);
   pinMode(RELAY, OUTPUT);
   irrecv.enableIRIn(); // Start the receiver
   irsend.begin();
@@ -733,7 +893,36 @@ void setup() {
 // -------------------------- loop -------------------------------- //
 // ---------------------------------------------------------------- //
 void loop() {
-  read_mic(analogRead(A0));
-  //delay(1);
+  server.handleClient();
+  if (isConnected) {
+    webSocket.loop();
+  }
+  time_delta = now() - previous_uptime;
+  if (time_delta > 60) {
+    //send_ping();
+    time_delta = 0;
+    previous_uptime = now();
+    response_delay = now() - response_time;
+    Serial.println(response_delay);
+    if (response_delay > 120) {
+      Serial.println("no response from server\n");
+      webSocket.disconnect();
+      webSocket.begin(io_relay, 4000);
+      wsConnected = false;      
+      got_token = false;
+    }
+  }
+  if (got_token && wsConnected) {
+    detect_motion();
+    //sendIR();
+    //read_mic();
+    receiveIR();
+    //get_distance();
+    //trigger_pulse();
+  } else {
+    get_token();
+  }
+  delay(1);
 }
+
 
