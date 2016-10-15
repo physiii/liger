@@ -57,8 +57,11 @@ WebSocketsClient webSocket;
 #define RELAY   15
 #define MIC     A0
 #define PIR     16
-#define IR_RX   13
+#define IR_RX   4
 #define IR_TX   14
+#define SW      2
+#define SW_LED  5
+ 
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
 int numSamples=0;
@@ -409,7 +412,7 @@ void read_mic() {
     strcat(message, "\", \"data\":\"");
     //strcat(message,analog_data_str);
     strcat(message, "\" }");
-    //Serial.println(message);
+    Serial.println(message);
     webSocket.sendTXT(message);    
   }
   total = 0;
@@ -868,6 +871,8 @@ void setup() {
   EEPROM.begin(512);
   pinMode(PIR, INPUT);
   pinMode(ECHO, INPUT);
+  pinMode(SW, INPUT);
+  pinMode(SW_LED, OUTPUT);
   pinMode(TRIGGER, OUTPUT);
   pinMode(RELAY, OUTPUT);
   irrecv.enableIRIn(); // Start the receiver
@@ -915,10 +920,14 @@ void loop() {
   if (got_token && wsConnected) {
     detect_motion();
     //sendIR();
-    //read_mic();
+    read_mic();
     receiveIR();
     //get_distance();
     //trigger_pulse();
+    if (digitalRead(SW)) {
+      Serial.println("Front switch pressed!");
+      digitalWrite(SW_LED, 0);
+    }
   } else {
     get_token();
   }
