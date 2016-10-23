@@ -919,13 +919,12 @@ void loop() {
   }
   if (got_token && wsConnected) {
     detect_motion();
-    //sendIR();
-    read_mic();
+    //read_mic();
     receiveIR();
     //get_distance();
     //trigger_pulse();
     if (digitalRead(SW)) {
-      Serial.println("Front switch pressed!");
+      //Serial.println("Front switch pressed!");
       digitalWrite(SW_LED, 0);
     }
   } else {
