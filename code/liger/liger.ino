@@ -1,5 +1,5 @@
-#include <Scheduler.h>
-#include <Task.h>
+//#include <Scheduler.h>
+//#include <Task.h>
 
 /*
    Copyright (c) 2015, Majenko Technologies
@@ -49,6 +49,9 @@
 #include <IRremoteInt.h>
 #include <Scheduler.h>
 #include <ArduinoJson.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
+#include "ESP8266httpUpdate.h"
 
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
@@ -70,8 +73,9 @@ long t, t0;
 decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
-const char *ap_ssid = "Liger ";
+const char *ap_ssid = "room_sensor ";
 const char *io_relay = "24.253.223.242";
+const char *version_number = "room_sensor_v0.1";
 int io_port = 4000;
 //const char *ap_password = "password";
 char html[5000] = "";
@@ -132,6 +136,58 @@ int ap_connect();
 void start_ap();
 void sendIR(unsigned int ir_code);
 
+
+
+// ---------------------------------------------------------------- //
+// -------------------------- OTA_update -------------------------- //
+// ---------------------------------------------------------------- //
+void OTA_update() {
+  // Port defaults to 8266
+  // ArduinoOTA.setPort(8266);
+
+  // Hostname defaults to esp8266-[ChipID]
+  // ArduinoOTA.setHostname("myesp8266");
+
+  // No authentication by default
+  ArduinoOTA.setPassword((const char *)"qweasdzxc");
+
+  ArduinoOTA.onStart([]() {
+    Serial.println("Start");
+  });
+  ArduinoOTA.onEnd([]() {
+    Serial.println("\nEnd");
+  });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  ArduinoOTA.onError([](ota_error_t error) {
+    Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
+    else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
+    else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
+    else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
+    else if (error == OTA_END_ERROR) Serial.println("End Failed");
+  });
+  ArduinoOTA.begin();
+}
+
+void http_update() {
+  /*t_httpUpdate_return ret = ESPhttpUpdate.update("24.253.223.242", 8080, "/open-automation.org/php/device_update.php", "liger v0.1");
+  switch(ret) {
+    case HTTP_UPDATE_FAILED:
+        Serial.println("[update] Update failed.");
+        break;
+    case HTTP_UPDATE_NO_UPDATES:
+        Serial.println("[update] Update no Update.");
+        break;
+    case HTTP_UPDATE_OK:
+        Serial.println("[update] Update ok."); // may not called we reboot the ESP
+        break;
+  }*/
+  //char update_url[100] = "/open-automation.org/downloads/";
+  //strcat(update_url,version_number);
+  ESPhttpUpdate.update(io_relay, 8080, "/open-automation.org/downloads/liger.ino.nodemcu.bin");
+}
 // ---------------------------------------------------------------- //
 // -------------------------- websockets -------------------------- //
 // ---------------------------------------------------------------- //
@@ -168,6 +224,12 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t lenght) {
       const char* command = json["command"];
       double sendIR_str = json["sendIR"];
       const char* token_str = json["token"];
+      bool update = json["update"];
+      if (update) {
+        http_update();
+        Serial.println("HTTP UPDATE!");
+        
+      }
       Serial.println(token_str);
       if (token_str) {
         Serial.print("setting token | ");
@@ -786,6 +848,25 @@ void get_token() {
   }
 }
 
+void send_device_info() {
+  strcpy(token_req, "{ \"mac\":\"");
+  strcat(token_req, mac_addr);
+  strcat(token_req, "\", \"device_type\":");
+  strcat(token_req, "[\"media_controller\",\"room_sensor\"],");
+  strcat(token_req,"\"local_ip\":\"");
+  strcat(token_req, local_ip);
+  strcat(token_req,"\", \"version\":\"");
+  strcat(token_req, version_number);
+  strcat(token_req, "\", \"cmd\":");
+  strcat(token_req, "\"version\" }");
+  if (isConnected && wsConnected) {
+    Serial.println(token_req);    
+    webSocket.sendTXT(token_req);
+    delay(100);
+  }
+}
+
+
 // ---------------------------------------------------------------- //
 // -------------------------- motion ------------------------------ //
 // ---------------------------------------------------------------- //
@@ -891,6 +972,7 @@ void setup() {
     start_ap();
   }
   routes();
+  //OTA_update();
   String(WiFi.localIP().toString()).toCharArray(local_ip, 20);
 }
 
@@ -929,6 +1011,7 @@ void loop() {
     }
   } else {
     get_token();
+    send_device_info();
   }
   delay(1);
 }
