@@ -1,5 +1,5 @@
-//#include <Scheduler.h>
-//#include <Task.h>
+#include <Scheduler.h>
+#include <Task.h>
 
 /*
    Copyright (c) 2015, Majenko Technologies

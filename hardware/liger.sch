@@ -154,7 +154,7 @@ $EndComp
 Text GLabel 1750 4400 3    60   Input ~ 0
 IO5
 Text GLabel 600  4300 1    60   Input ~ 0
-IO2
+IO13
 $Comp
 L SW_PUSH PROG1
 U 1 1 5768B31A
@@ -191,17 +191,6 @@ F 1 "GND" H 2000 5300 50  0000 C CNN
 F 2 "" H 2000 5450 50  0000 C CNN
 F 3 "" H 2000 5450 50  0000 C CNN
 	1    2000 5450
-	1    0    0    -1  
-$EndComp
-$Comp
-L +3.3V #PWR07
-U 1 1 5768DCF5
-P 2700 3250
-F 0 "#PWR07" H 2700 3100 50  0001 C CNN
-F 1 "+3.3V" H 2700 3390 50  0000 C CNN
-F 2 "" H 2700 3250 50  0000 C CNN
-F 3 "" H 2700 3250 50  0000 C CNN
-	1    2700 3250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -277,18 +266,6 @@ F 4 "RC0603JR-0710KL" V 4400 2000 60  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R13
-U 1 1 576E9D8A
-P 4750 3550
-F 0 "R13" V 4830 3550 50  0000 C CNN
-F 1 "10K" V 4750 3550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4680 3550 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4750 3550 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 4750 3550 60  0001 C CNN "Part Number"
-	1    4750 3550
-	-1   0    0    1   
-$EndComp
-$Comp
 L C C5
 U 1 1 576FFA59
 P 6050 1750
@@ -340,7 +317,7 @@ Text GLabel 6400 3850 2    60   Input ~ 0
 ADC
 Text GLabel 3500 1600 2    60   Input ~ 0
 ADC
-Text GLabel 4800 4150 0    60   Input ~ 0
+Text GLabel 4300 4150 0    60   Input ~ 0
 IO15
 Text GLabel 4800 4050 0    60   Input ~ 0
 IO13
@@ -367,12 +344,12 @@ IO16
 $Comp
 L GND #PWR08
 U 1 1 57704A85
-P 4800 4550
-F 0 "#PWR08" H 4800 4300 50  0001 C CNN
-F 1 "GND" H 4800 4400 50  0000 C CNN
-F 2 "" H 4800 4550 50  0000 C CNN
-F 3 "" H 4800 4550 50  0000 C CNN
-	1    4800 4550
+P 4800 4650
+F 0 "#PWR08" H 4800 4400 50  0001 C CNN
+F 1 "GND" H 4800 4500 50  0000 C CNN
+F 2 "" H 4800 4650 50  0000 C CNN
+F 3 "" H 4800 4650 50  0000 C CNN
+	1    4800 4650
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -575,7 +552,7 @@ IO0
 Text GLabel 4600 5350 0    60   Input ~ 0
 IO2
 Text GLabel 4650 3750 0    60   Input ~ 0
-EN
+3v3
 Text GLabel 4600 5850 0    60   Input ~ 0
 EN
 $Comp
@@ -878,6 +855,124 @@ F 3 "http://www.digikey.com/product-detail/en/texas-instruments/OPA344NA-3K/296-
 	1    3100 1600
 	1    0    0    -1  
 $EndComp
+$Comp
+L CONN_01X03 P6
+U 1 1 57DDC8F3
+P 5550 2550
+F 0 "P6" H 5450 2750 50  0000 L CNN
+F 1 "CONN_01X03" V 5650 2300 50  0001 L CNN
+F 2 "Connectors_Molex:Molex_KK-6410-03_03x2.54mm_Straight" H 5550 2550 50  0001 C CNN
+F 3 "http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735" H 5550 2550 50  0001 C CNN
+	1    5550 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR030
+U 1 1 57DDC8F9
+P 5300 2400
+F 0 "#PWR030" H 5300 2150 50  0001 C CNN
+F 1 "GND" H 5300 2250 50  0000 C CNN
+F 2 "" H 5300 2400 50  0000 C CNN
+F 3 "" H 5300 2400 50  0000 C CNN
+	1    5300 2400
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR031
+U 1 1 57DDC8FF
+P 5300 2700
+F 0 "#PWR031" H 5300 2550 50  0001 C CNN
+F 1 "+5V" H 5300 2840 50  0000 C CNN
+F 2 "" H 5300 2700 50  0000 C CNN
+F 3 "" H 5300 2700 50  0000 C CNN
+	1    5300 2700
+	-1   0    0    1   
+$EndComp
+Text GLabel 5250 2550 0    60   Input ~ 0
+IO15
+$Comp
+L +3.3V #PWR032
+U 1 1 57E248C2
+P 6050 1350
+F 0 "#PWR032" H 6050 1200 50  0001 C CNN
+F 1 "+3.3V" H 6050 1490 50  0000 C CNN
+F 2 "" H 6050 1350 50  0000 C CNN
+F 3 "" H 6050 1350 50  0000 C CNN
+	1    6050 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3.3V #PWR033
+U 1 1 57E1BD58
+P 10150 4200
+F 0 "#PWR033" H 10150 4050 50  0001 C CNN
+F 1 "+3.3V" H 10150 4340 50  0000 C CNN
+F 2 "" H 10150 4200 50  0000 C CNN
+F 3 "" H 10150 4200 50  0000 C CNN
+	1    10150 4200
+	1    0    0    -1  
+$EndComp
+Text Label 7600 1250 0    60   ~ 0
+PIR
+$Comp
+L CONN_01X03 P8
+U 1 1 57E1EB19
+P 7900 2000
+F 0 "P8" H 7850 2200 50  0000 L CNN
+F 1 "CONN_01X03" H 7850 1800 50  0001 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03" H 7977 1904 50  0001 L CNN
+F 3 "http://sullinscorp.com/catalogs/101_PAGE114-115_.100_FEMALE_HDR.pdf" H 7900 2000 50  0001 C CNN
+	1    7900 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR034
+U 1 1 57E1FCBC
+P 7650 1850
+F 0 "#PWR034" H 7650 1600 50  0001 C CNN
+F 1 "GND" H 7650 1700 50  0000 C CNN
+F 2 "" H 7650 1850 50  0000 C CNN
+F 3 "" H 7650 1850 50  0000 C CNN
+	1    7650 1850
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR035
+U 1 1 57E20222
+P 7650 2150
+F 0 "#PWR035" H 7650 2000 50  0001 C CNN
+F 1 "+5V" H 7650 2290 50  0000 C CNN
+F 2 "" H 7650 2150 50  0000 C CNN
+F 3 "" H 7650 2150 50  0000 C CNN
+	1    7650 2150
+	-1   0    0    1   
+$EndComp
+Text GLabel 7600 2000 0    60   Input ~ 0
+IO16
+$Comp
+L GND #PWR036
+U 1 1 58029261
+P 700 4850
+F 0 "#PWR036" H 700 4600 50  0001 C CNN
+F 1 "GND" H 700 4700 50  0000 C CNN
+F 2 "" H 700 4850 50  0000 C CNN
+F 3 "" H 700 4850 50  0000 C CNN
+	1    700  4850
+	1    0    0    -1  
+$EndComp
+Text Label 9200 5050 0    60   ~ 0
+IR-Transmit
+$Comp
+L +5V #PWR?
+U 1 1 582A1DED
+P 2700 3250
+F 0 "#PWR?" H 2700 3100 50  0001 C CNN
+F 1 "+5V" H 2700 3390 50  0000 C CNN
+F 2 "" H 2700 3250 50  0000 C CNN
+F 3 "" H 2700 3250 50  0000 C CNN
+	1    2700 3250
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	9450 1900 9450 2100
 Wire Wire Line
@@ -1005,7 +1100,7 @@ Wire Wire Line
 Wire Notes Line
 	10750 9350 10750 550 
 Wire Wire Line
-	4800 4550 4800 4450
+	4800 4450 4800 4650
 Wire Wire Line
 	6150 3750 6400 3750
 Wire Wire Line
@@ -1029,7 +1124,7 @@ Wire Wire Line
 Wire Wire Line
 	6150 4450 6400 4450
 Wire Wire Line
-	4900 4150 4800 4150
+	4300 4150 4900 4150
 Wire Wire Line
 	6150 3850 6400 3850
 Wire Notes Line
@@ -1077,8 +1172,7 @@ Wire Wire Line
 Wire Wire Line
 	6150 3650 6200 3650
 Wire Wire Line
-	4750 3700 4750 3750
-Connection ~ 4800 3400
+	4750 3400 4750 3750
 Wire Wire Line
 	4800 3400 4800 3250
 Wire Wire Line
@@ -1178,39 +1272,6 @@ Wire Wire Line
 	3250 2550 3450 2550
 Wire Wire Line
 	4000 1300 4000 1850
-$Comp
-L CONN_01X03 P6
-U 1 1 57DDC8F3
-P 5550 2550
-F 0 "P6" H 5450 2750 50  0000 L CNN
-F 1 "CONN_01X03" V 5650 2300 50  0001 L CNN
-F 2 "Connectors_Molex:Molex_KK-6410-03_03x2.54mm_Straight" H 5550 2550 50  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735" H 5550 2550 50  0001 C CNN
-	1    5550 2550
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR030
-U 1 1 57DDC8F9
-P 5300 2400
-F 0 "#PWR030" H 5300 2150 50  0001 C CNN
-F 1 "GND" H 5300 2250 50  0000 C CNN
-F 2 "" H 5300 2400 50  0000 C CNN
-F 3 "" H 5300 2400 50  0000 C CNN
-	1    5300 2400
-	-1   0    0    1   
-$EndComp
-$Comp
-L +5V #PWR031
-U 1 1 57DDC8FF
-P 5300 2700
-F 0 "#PWR031" H 5300 2550 50  0001 C CNN
-F 1 "+5V" H 5300 2840 50  0000 C CNN
-F 2 "" H 5300 2700 50  0000 C CNN
-F 3 "" H 5300 2700 50  0000 C CNN
-	1    5300 2700
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	5300 2400 5300 2450
 Wire Wire Line
@@ -1219,77 +1280,16 @@ Wire Wire Line
 	5300 2700 5300 2650
 Wire Wire Line
 	5300 2650 5350 2650
-Text GLabel 5250 2550 0    60   Input ~ 0
-IO15
 Wire Wire Line
 	5250 2550 5350 2550
-$Comp
-L +3.3V #PWR032
-U 1 1 57E248C2
-P 6050 1350
-F 0 "#PWR032" H 6050 1200 50  0001 C CNN
-F 1 "+3.3V" H 6050 1490 50  0000 C CNN
-F 2 "" H 6050 1350 50  0000 C CNN
-F 3 "" H 6050 1350 50  0000 C CNN
-	1    6050 1350
-	1    0    0    -1  
-$EndComp
-$Comp
-L +3.3V #PWR033
-U 1 1 57E1BD58
-P 10150 4200
-F 0 "#PWR033" H 10150 4050 50  0001 C CNN
-F 1 "+3.3V" H 10150 4340 50  0000 C CNN
-F 2 "" H 10150 4200 50  0000 C CNN
-F 3 "" H 10150 4200 50  0000 C CNN
-	1    10150 4200
-	1    0    0    -1  
-$EndComp
-Text Label 7600 1250 0    60   ~ 0
-PIR
-$Comp
-L CONN_01X03 P8
-U 1 1 57E1EB19
-P 7900 2000
-F 0 "P8" H 7850 2200 50  0000 L CNN
-F 1 "CONN_01X03" H 7850 1800 50  0001 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03" H 7977 1904 50  0001 L CNN
-F 3 "http://sullinscorp.com/catalogs/101_PAGE114-115_.100_FEMALE_HDR.pdf" H 7900 2000 50  0001 C CNN
-	1    7900 2000
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR034
-U 1 1 57E1FCBC
-P 7650 1850
-F 0 "#PWR034" H 7650 1600 50  0001 C CNN
-F 1 "GND" H 7650 1700 50  0000 C CNN
-F 2 "" H 7650 1850 50  0000 C CNN
-F 3 "" H 7650 1850 50  0000 C CNN
-	1    7650 1850
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	7650 1850 7650 1900
 Wire Wire Line
 	7650 1900 7700 1900
-$Comp
-L +5V #PWR035
-U 1 1 57E20222
-P 7650 2150
-F 0 "#PWR035" H 7650 2000 50  0001 C CNN
-F 1 "+5V" H 7650 2290 50  0000 C CNN
-F 2 "" H 7650 2150 50  0000 C CNN
-F 3 "" H 7650 2150 50  0000 C CNN
-	1    7650 2150
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	7700 2100 7650 2100
 Wire Wire Line
 	7650 2100 7650 2150
-Text GLabel 7600 2000 0    60   Input ~ 0
-IO16
 Wire Wire Line
 	7600 2000 7700 2000
 Wire Wire Line
@@ -1297,17 +1297,23 @@ Wire Wire Line
 Wire Wire Line
 	600  4300 600  4350
 Connection ~ 700  4350
+Connection ~ 4800 3400
 $Comp
-L GND #PWR036
-U 1 1 58029261
-P 700 4850
-F 0 "#PWR036" H 700 4600 50  0001 C CNN
-F 1 "GND" H 700 4700 50  0000 C CNN
-F 2 "" H 700 4850 50  0000 C CNN
-F 3 "" H 700 4850 50  0000 C CNN
-	1    700  4850
-	1    0    0    -1  
+L R R13
+U 1 1 576E9D8A
+P 4550 4550
+F 0 "R13" V 4630 4550 50  0000 C CNN
+F 1 "10K" V 4550 4550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 4480 4550 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4550 4550 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 4550 4550 60  0001 C CNN "Part Number"
+	1    4550 4550
+	0    -1   -1   0   
 $EndComp
-Text Label 9200 5050 0    60   ~ 0
-IR-Transmit
+Wire Wire Line
+	4700 4550 4800 4550
+Connection ~ 4800 4550
+Wire Wire Line
+	4400 4550 4400 4150
+Connection ~ 4400 4150
 $EndSCHEMATC
