@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/physiii/circuits/liger/hardware/liger.sch)
-    (date "Mon 14 Nov 2016 04:42:36 PM CST")
+    (date "Tue 15 Nov 2016 02:18:01 PM CST")
     (tool "Eeschema 201611132049+7352~55~ubuntu16.04.1-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -328,8 +328,10 @@
       (tstamp 57DBFA97))
     (comp (ref P6)
       (value CONN_01X03)
-      (footprint Connectors_Molex:Molex_KK-6410-03_03x2.54mm_Straight)
+      (footprint footprints:connector_3pos_KR)
       (datasheet "http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735")
+      (fields
+        (field (name "Part Number") A04KR04DA28W51B))
       (libsource (lib conn) (part CONN_01X03))
       (sheetpath (names /) (tstamps /))
       (tstamp 57DDC8F3))
@@ -554,12 +556,12 @@
         (pin (num 1) (name 1) (type passive))
         (pin (num 2) (name 2) (type passive)))))
   (libraries
-    (library (logical device)
-      (uri /usr/share/kicad/library/device.lib))
+    (library (logical liger-cache)
+      (uri /home/physiii/circuits/liger/hardware/liger-cache.lib))
     (library (logical conn)
       (uri /usr/share/kicad/library/conn.lib))
-    (library (logical liger-cache)
-      (uri /home/physiii/circuits/liger/hardware/liger-cache.lib)))
+    (library (logical device)
+      (uri /usr/share/kicad/library/device.lib)))
   (nets
     (net (code 1) (name EN)
       (node (ref P1) (pin 9)))

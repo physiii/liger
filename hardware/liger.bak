@@ -154,7 +154,7 @@ $EndComp
 Text GLabel 1750 4400 3    60   Input ~ 0
 IO5
 Text GLabel 600  4300 1    60   Input ~ 0
-IO2
+IO13
 $Comp
 L SW_PUSH PROG1
 U 1 1 5768B31A
