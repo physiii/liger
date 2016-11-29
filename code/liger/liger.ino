@@ -1,5 +1,4 @@
-#include <Scheduler.h>
-#include <Task.h>
+
 
 /*
    Copyright (c) 2015, Majenko Technologies
@@ -47,7 +46,6 @@
 #include <Hash.h>
 #include <IRremoteESP8266.h>
 #include <IRremoteInt.h>
-#include <Scheduler.h>
 #include <ArduinoJson.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>

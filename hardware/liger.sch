@@ -317,7 +317,7 @@ Text GLabel 6400 3850 2    60   Input ~ 0
 ADC
 Text GLabel 3500 1600 2    60   Input ~ 0
 ADC
-Text GLabel 4300 4150 0    60   Input ~ 0
+Text GLabel 3750 3900 1    60   Input ~ 0
 IO15
 Text GLabel 4800 4050 0    60   Input ~ 0
 IO13
@@ -344,12 +344,12 @@ IO16
 $Comp
 L GND #PWR07
 U 1 1 57704A85
-P 4800 4650
-F 0 "#PWR07" H 4800 4400 50  0001 C CNN
-F 1 "GND" H 4800 4500 50  0000 C CNN
-F 2 "" H 4800 4650 50  0000 C CNN
-F 3 "" H 4800 4650 50  0000 C CNN
-	1    4800 4650
+P 4800 4500
+F 0 "#PWR07" H 4800 4250 50  0001 C CNN
+F 1 "GND" H 4800 4350 50  0000 C CNN
+F 2 "" H 4800 4500 50  0000 C CNN
+F 3 "" H 4800 4500 50  0000 C CNN
+	1    4800 4500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -974,6 +974,18 @@ F 3 "" H 2700 3250 50  0000 C CNN
 	1    2700 3250
 	1    0    0    -1  
 $EndComp
+$Comp
+L R R13
+U 1 1 576E9D8A
+P 3750 4200
+F 0 "R13" V 3830 4200 50  0000 C CNN
+F 1 "10K" V 3750 4200 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3680 4200 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 3750 4200 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 3750 4200 60  0001 C CNN "Part Number"
+	1    3750 4200
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	9450 1900 9450 2100
 Wire Wire Line
@@ -1101,8 +1113,6 @@ Wire Wire Line
 Wire Notes Line
 	10750 9350 10750 550 
 Wire Wire Line
-	4800 4450 4800 4650
-Wire Wire Line
 	6150 3750 6400 3750
 Wire Wire Line
 	4800 3850 4900 3850
@@ -1115,8 +1125,6 @@ Wire Wire Line
 Wire Wire Line
 	4800 4350 4900 4350
 Wire Wire Line
-	4800 4450 4900 4450
-Wire Wire Line
 	6150 4050 6400 4050
 Wire Wire Line
 	6150 3950 6400 3950
@@ -1124,8 +1132,6 @@ Wire Wire Line
 	6150 4250 6400 4250
 Wire Wire Line
 	6150 4450 6400 4450
-Wire Wire Line
-	4300 4150 4900 4150
 Wire Wire Line
 	6150 3850 6400 3850
 Wire Notes Line
@@ -1300,21 +1306,46 @@ Wire Wire Line
 Connection ~ 700  4350
 Connection ~ 4800 3400
 $Comp
-L R R13
-U 1 1 576E9D8A
-P 4550 4550
-F 0 "R13" V 4630 4550 50  0000 C CNN
-F 1 "10K" V 4550 4550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4480 4550 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4550 4550 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 4550 4550 60  0001 C CNN "Part Number"
-	1    4550 4550
-	0    -1   -1   0   
+L GND #PWR?
+U 1 1 583E8B95
+P 3750 4450
+F 0 "#PWR?" H 3750 4200 50  0001 C CNN
+F 1 "GND" H 3750 4300 50  0000 C CNN
+F 2 "" H 3750 4450 50  0000 C CNN
+F 3 "" H 3750 4450 50  0000 C CNN
+	1    3750 4450
+	1    0    0    -1  
+$EndComp
+Text GLabel 4800 4150 0    60   Input ~ 0
+IO15
+Wire Wire Line
+	4800 4150 4900 4150
+Wire Wire Line
+	4800 4500 4800 4450
+Wire Wire Line
+	4800 4450 4900 4450
+Wire Wire Line
+	3750 3900 3750 4050
+Wire Wire Line
+	3750 4350 3750 4450
+Text GLabel 4000 4450 3    60   Input ~ 0
+IO2
+$Comp
+L R R?
+U 1 1 583E9909
+P 4000 4200
+F 0 "R?" V 4080 4200 50  0000 C CNN
+F 1 "10K" V 4000 4200 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3930 4200 50  0001 C CNN
+F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4000 4200 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 4000 4200 60  0001 C CNN "Part Number"
+	1    4000 4200
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4700 4550 4800 4550
-Connection ~ 4800 4550
+	4000 4450 4000 4350
+Text GLabel 4000 3850 1    60   Input ~ 0
+3v3
 Wire Wire Line
-	4400 4550 4400 4150
-Connection ~ 4400 4150
+	4000 3850 4000 4050
 $EndSCHEMATC
