@@ -1,5 +1,4 @@
-#include <Scheduler.h>
-#include <Task.h>
+
 
 /*
    Copyright (c) 2015, Majenko Technologies
@@ -47,7 +46,6 @@
 #include <Hash.h>
 #include <IRremoteESP8266.h>
 #include <IRremoteInt.h>
-#include <Scheduler.h>
 #include <ArduinoJson.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
@@ -62,7 +60,7 @@ WebSocketsClient webSocket;
 #define PIR     16
 #define IR_RX   4
 #define IR_TX   14
-#define SW      2
+#define SW      13
 #define SW_LED  5
  
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
@@ -1006,13 +1004,18 @@ void loop() {
     //get_distance();
     //trigger_pulse();
     if (digitalRead(SW)) {
-      //Serial.println("Front switch pressed!");
+      Serial.println("Front switch pressed!");
       digitalWrite(SW_LED, 0);
+      digitalWrite(RELAY, 1);
+    } else {
+      digitalWrite(RELAY,0);
     }
   } else {
+    
     get_token();
     send_device_info();
   }
+  
   delay(1);
 }
 
