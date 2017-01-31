@@ -72,7 +72,7 @@ decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
 const char *ap_ssid = "room_sensor ";
-const char *io_relay = "24.253.223.242";
+const char *io_relay = "98.168.142.41";
 const char *version_number = "room_sensor_v0.1";
 int io_port = 4000;
 //const char *ap_password = "password";
@@ -977,18 +977,36 @@ void setup() {
 // ---------------------------------------------------------------- //
 // -------------------------- loop -------------------------------- //
 // ---------------------------------------------------------------- //
+int button_start_time = 0;
+int button_press_time = 0;
 void loop() {
+  //put in interrupt
+  if (digitalRead(SW)) {
+    Serial.println("Front switch pressed!");
+    digitalWrite(SW_LED, 0);
+    digitalWrite(RELAY, 1);
+    button_press_time = now() - button_start_time;
+    Serial.println(button_press_time);
+    if (button_press_time > 10) {
+      while(1); //software reset
+    }
+  } else {
+    button_start_time = now();
+    digitalWrite(RELAY,0);
+  }
+  
   server.handleClient();
   if (isConnected) {
     webSocket.loop();
   }
-  time_delta = now() - previous_uptime;
+  
+  /*time_delta = now() - previous_uptime;
   if (time_delta > 60) {
-    //send_ping();
+    send_ping();
     time_delta = 0;
     previous_uptime = now();
     response_delay = now() - response_time;
-    Serial.println(response_delay);
+    //Serial.println(response_delay);
     if (response_delay > 120) {
       Serial.println("no response from server\n");
       webSocket.disconnect();
@@ -996,20 +1014,14 @@ void loop() {
       wsConnected = false;      
       got_token = false;
     }
-  }
+  }*/
+  
   if (got_token && wsConnected) {
     detect_motion();
     //read_mic();
     receiveIR();
     //get_distance();
     //trigger_pulse();
-    if (digitalRead(SW)) {
-      Serial.println("Front switch pressed!");
-      digitalWrite(SW_LED, 0);
-      digitalWrite(RELAY, 1);
-    } else {
-      digitalWrite(RELAY,0);
-    }
   } else {
     
     get_token();
