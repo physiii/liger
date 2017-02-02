@@ -126,7 +126,7 @@ int png_time = 0;
 int PIR_t = 0;
 int PIR_t0 = millis();
 int PIR_count = 0;
-int threshold = 4000;
+int threshold = 1000;
 bool detected_pulse = false;
 bool motion_started = false;
 ESP8266WebServer server(80);
@@ -184,7 +184,7 @@ void http_update() {
   }*/
   //char update_url[100] = "/open-automation.org/downloads/";
   //strcat(update_url,version_number);
-  ESPhttpUpdate.update(io_relay, 8080, "/open-automation.org/downloads/liger.ino.nodemcu.bin");
+  ESPhttpUpdate.update(io_relay, 5000, "/downloads/liger.ino.nodemcu.bin");
 }
 // ---------------------------------------------------------------- //
 // -------------------------- websockets -------------------------- //
@@ -872,7 +872,7 @@ void send_device_info() {
 // ---- threshold ------------------------------------------------- //
 // ---------------------------------------------------------------- //
 void detect_motion() {
-  int sample = digitalRead(PIR);
+  int sample = !digitalRead(PIR);
   if (sample) {
     if (!detected_pulse) {
       PIR_t0 = millis();
