@@ -871,9 +871,40 @@ void send_device_info() {
 // ---- measure pulse width and send alert if greater than -------- //
 // ---- threshold ------------------------------------------------- //
 // ---------------------------------------------------------------- //
+int previous_sample = 0;
+int prev_motion_time = 0;
+int delta = 0;
+char value_str[5] = "";
+char delta_str[5] = "";
 void detect_motion() {
-  int sample = !digitalRead(PIR);
+  int sample = digitalRead(PIR);
+  if (previous_sample == sample) return;
   if (sample) {
+    strcpy(value_str, "high");
+  } else {
+    strcpy(value_str, "low");
+  }
+  delta = now() - prev_motion_time;
+  String(delta).toCharArray(delta_str, 10);
+  String(now()).toCharArray(now_str, 10);
+  strcpy(message, "{ \"mac\":\"");
+  strcat(message, mac_addr);
+  strcat(message, "\", \"device_type\":");
+  strcat(message, "[\"room_sensor\"],");
+  strcat(message,"\"local_ip\":\"");
+  strcat(message, local_ip);
+  strcat(message, "\", \"uptime\":");
+  strcat(message, now_str);
+  strcat(message, ", \"value\":\"");
+  strcat(message, value_str); 
+  strcat(message, ", \"token\":\"");
+  strcat(message, token);
+  strcat(message, "\" }");
+  Serial.println(message);
+  webSocket.sendTXT(message);
+  previous_sample = sample;
+  prev_motion_time = now();
+  /*if (sample) {
     if (!detected_pulse) {
       PIR_t0 = millis();
       detected_pulse = true;
@@ -939,7 +970,7 @@ void detect_motion() {
     PIR_t = 0;
     detected_pulse = false;
     motion_started = false;
-  }
+  }*/
 }
 
 // ---------------------------------------------------------------- //
