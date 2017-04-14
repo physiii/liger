@@ -1,0 +1,155 @@
+/*
+ * Example ESP32 app code using Libwebsockets
+ *
+ * Copyright (C) 2017 Andy Green <andy@warmcat.com>
+ *
+ * This file is made available under the Creative Commons CC0 1.0
+ * Universal Public Domain Dedication.
+ *
+ * The person who associated a work with this deed has dedicated
+ * the work to the public domain by waiving all of his or her rights
+ * to the work worldwide under copyright law, including all related
+ * and neighboring rights, to the extent allowed by law. You can copy,
+ * modify, distribute and perform the work, even for commercial purposes,
+ * all without asking permission.
+ *
+ * The test apps are intended to be adapted for use in your code, which
+ * may be proprietary.	So unlike the library itself, they are licensed
+ * Public Domain.
+ *
+ */
+#include <libwebsockets.h>
+#include <nvs_flash.h>
+
+/*
+ * Configuration for normal station website
+ *
+ * We implement the generic lws test server features using
+ * generic plugin code from lws.  Normally these plugins
+ * are dynamically loaded at runtime, but we use them by
+ * statically including them.
+ *
+ * To customize for your own device, you would remove these
+ * and put your own plugin include here
+ */
+#include "plugins/protocol_dumb_increment.c"
+#include "plugins/protocol_lws_mirror.c"
+#include "plugins/protocol_post_demo.c"
+#include "plugins/protocol_lws_status.c"
+#include "plugins/test.c"
+#include <protocol_esp32_lws_reboot_to_factory.c>
+
+static const struct lws_protocols protocols_station[] = {
+	{
+		"http-only",
+		lws_callback_http_dummy,
+		0,
+		1024, 0, NULL, 900
+	},
+	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
+	LWS_PLUGIN_PROTOCOL_DUMB_INCREMENT, /* demo... */
+	LWS_PLUGIN_PROTOCOL_MIRROR,	    /* replace with */
+	LWS_PLUGIN_PROTOCOL_POST_DEMO,	    /* your own */
+	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
+	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
+	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
+};
+
+static const struct lws_protocol_vhost_options pvo_headers = {
+        NULL,
+        NULL,
+        "Keep-Alive:",
+        "timeout=5, max=20",
+};
+
+/* reset to factory mount */
+static const struct lws_http_mount mount_station_rtf = {
+	.mountpoint		= "/esp32-rtf",
+	.origin			= "esplws-rtf",
+	.origin_protocol	= LWSMPRO_CALLBACK,
+	.mountpoint_len		= 10,
+};
+
+/*
+ * this makes a special URL "/formtest" which gets passed to
+ * the "protocol-post-demo" plugin protocol for handling
+ */
+static const struct lws_http_mount mount_station_post = {
+	.mount_next		= &mount_station_rtf,
+	.mountpoint		= "/formtest",
+	.origin			= "protocol-post-demo",
+	.origin_protocol	= LWSMPRO_CALLBACK,
+	.mountpoint_len		= 9,
+};
+
+/*
+ * this serves "/station/..." in the romfs at "/" in the URL namespace
+ */
+static const struct lws_http_mount mount_station = {
+        .mount_next		= &mount_station_post,
+        .mountpoint		= "/",
+        .origin			= "/station",
+        .def			= "test.html",
+        .origin_protocol	= LWSMPRO_FILE,
+        .mountpoint_len		= 1,
+};
+
+esp_err_t event_handler(void *ctx, system_event_t *event)
+{
+	/* deal with your own user events here first */
+
+	return lws_esp32_event_passthru(ctx, event);
+}
+
+/*
+ * This is called when the user asks to "Identify physical device"
+ * he is configuring, by pressing the Identify button on the AP
+ * setup page for the device.
+ *
+ * It should do something device-specific that
+ * makes it easy to identify which physical device is being
+ * addressed, like flash an LED on the device on a timer for a
+ * few seconds.
+ */
+void
+lws_esp32_identify_physical_device(void)
+{
+	lwsl_notice("%s\n", __func__);
+}
+
+void app_main(void)
+{
+	static struct lws_context_creation_info info;
+	struct lws_context *context;
+
+	memset(&info, 0, sizeof(info));
+
+	info.port = 443;
+	info.fd_limit_per_thread = 30;
+	info.max_http_header_pool = 4;
+	info.max_http_header_data = 512;
+	info.pt_serv_buf_size = 900;
+	info.keepalive_timeout = 5;
+	info.simultaneous_ssl_restriction = 4;
+	info.options = LWS_SERVER_OPTION_EXPLICIT_VHOSTS |
+		       LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
+
+	info.ssl_cert_filepath = "ssl-pub.der";
+	info.ssl_private_key_filepath = "ssl-pri.der";
+
+	info.vhost_name = "station";
+	info.protocols = protocols_station;
+	info.mounts = &mount_station;
+	info.headers = &pvo_headers;
+
+	nvs_flash_init();
+	lws_esp32_wlan_config();
+
+	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
+
+	lws_esp32_wlan_start_station();
+	context = lws_esp32_init(&info);
+
+	while (!lws_service(context, 50))
+		taskYIELD();
+}
