@@ -36,7 +36,7 @@
 #include "plugins/protocol_lws_mirror.c"
 #include "plugins/protocol_post_demo.c"
 #include "plugins/protocol_lws_status.c"
-#include "plugins/test.c"
+#include "plugins/protocol_lws_microphone.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
 static const struct lws_protocols protocols_station[] = {
