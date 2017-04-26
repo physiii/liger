@@ -41,9 +41,17 @@
 
 struct per_vhost_data__microphone {
 	uv_timer_t timeout_watcher;
+
+	TimerHandle_t timer, reboot_timer;
+	struct per_session_data__esplws_scan *live_pss_list;
 	struct lws_context *context;
 	struct lws_vhost *vhost;
 	const struct lws_protocols *protocol;
+
+	struct lws *cwsi;
+	char json[1024];
+	int json_len;
+	bool is_connecting;
 };
 
 struct per_session_data__microphone {
@@ -71,7 +79,7 @@ uv_timeout_cb_microphone(uv_timer_t *w
 
 #define MIC_CHANNEL (4)
 
-void adc1task(struct lws * wsi)
+/*void adc1task(struct lws * wsi)
 {
   // initialize ADC
   adc1_config_width(ADC_WIDTH_12Bit);
@@ -101,7 +109,9 @@ void adc1task(struct lws * wsi)
       printf("adc1 value:%s\n",voltage);
       vTaskDelay(1000/portTICK_PERIOD_MS);
   }
-}
+}*/
+
+
 
 static int
 callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
@@ -116,8 +126,10 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 	unsigned char buf[LWS_PRE + 20];
 	unsigned char *p = &buf[LWS_PRE];
 	int n, m;
+        //pss->is_connecting = false;
 	switch (reason) {
 	case LWS_CALLBACK_PROTOCOL_INIT:
+      		lwsl_notice("< ----- callback_microphone: %d ----- >\n",reason);
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
 				sizeof(struct per_vhost_data__microphone));
@@ -169,7 +181,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 	default:
 		break;
 	}
-        xTaskCreate(adc1task, "adc1task", 1024*3, wsi, 10, NULL);
+        //xTaskCreate(adc1task, "adc1task", 1024*3, wsi, 10, NULL);
 	return 0;
 }
 

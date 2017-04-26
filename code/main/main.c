@@ -36,8 +36,8 @@
 #include "plugins/protocol_lws_mirror.c"
 #include "plugins/protocol_post_demo.c"
 #include "plugins/protocol_lws_status.c"
-#include "plugins/protocol_lws_microphone.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
+#include "plugins/protocol_lws_microphone.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -101,6 +101,58 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 	return lws_esp32_event_passthru(ctx, event);
 }
 
+/*static int
+test()
+{
+	static struct lws_client_connect_info i;
+	memset(&i, 0, sizeof i);
+	i.context = vhd->context;
+	i.address = "192.168.0.2";
+	i.port = 4000;
+	i.host = i.address;
+	i.origin = i.address;
+	i.vhost = vhd->vhost;
+	//i.method = "RAW";
+	i.path = "/";
+	//i.protocol = "microphone-protocol";
+	i.pwsi = &vhd->cwsi;
+        i.ietf_version_or_minus_one = -1;
+
+	static struct lws_client_connect_info i;
+	char path[256] = "/";
+
+	memset(&i, 0, sizeof i);
+
+	i.context = vhd->context;
+	i.address = "192.168.0.2";
+        i.port = 4000;
+	i.ssl_connection = 0;
+	i.host = i.address;
+	i.origin = i.host;
+	i.vhost = vhd->vhost;
+	//i.method = "RAW";
+	i.path = path;
+	i.protocol = "microphone-protocol";
+	i.pwsi = &vhd->cwsi;
+
+	lwsl_notice("connecting to %s\n",i.address);
+        if (vhd->is_connecting) {
+        	lwsl_notice(".");
+		return 0;
+        }
+	vhd->is_connecting = true;
+	vhd->cwsi = lws_client_connect_via_info(&i);
+	if (!vhd->cwsi) {
+		lwsl_notice("NULL return\n");
+		return 1;
+	}
+	lwsl_notice("is_connecting %d\n",vhd->is_connecting);
+	//lws_service(vhd->context, 500);
+	//lws_callback_on_writable(vhd->cwsi);
+	return 0; 
+}*/
+
+
 /*
  * This is called when the user asks to "Identify physical device"
  * he is configuring, by pressing the Identify button on the AP
@@ -120,35 +172,43 @@ lws_esp32_identify_physical_device(void)
 void app_main(void)
 {
 	static struct lws_context_creation_info info;
+	static struct lws_client_connect_info i;
 	struct lws_context *context;
+        struct lws *wsi;
 
 	memset(&info, 0, sizeof(info));
-
-	info.port = 443;
-	info.fd_limit_per_thread = 30;
-	info.max_http_header_pool = 4;
-	info.max_http_header_data = 512;
-	info.pt_serv_buf_size = 900;
-	info.keepalive_timeout = 5;
-	info.simultaneous_ssl_restriction = 4;
-	info.options = LWS_SERVER_OPTION_EXPLICIT_VHOSTS |
-		       LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
-
-	info.ssl_cert_filepath = "ssl-pub.der";
-	info.ssl_private_key_filepath = "ssl-pri.der";
-
-	info.vhost_name = "station";
+	info.port = CONTEXT_PORT_NO_LISTEN;
 	info.protocols = protocols_station;
-	info.mounts = &mount_station;
-	info.headers = &pvo_headers;
+	info.gid = -1;
+	info.uid = -1;
+	info.ws_ping_pong_interval = 10;
+	//info.extensions = exts;
 
 	nvs_flash_init();
 	lws_esp32_wlan_config();
-
 	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
 
-	lws_esp32_wlan_start_station();
+	//lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info);
+	//context = lws_create_context(&info);
+	if (context == NULL) fprintf(stderr, "Creating libwebsocket context failed\n");
+
+	memset(&i, 0, sizeof i);
+	i.address = "192.168.0.2";
+        i.port = 4000;
+	i.ssl_connection = 0;
+	i.host = i.address;
+	i.origin = i.host;
+        i.ietf_version_or_minus_one = -1;
+	i.path = "/";
+	i.protocol = "microphone-protocol";
+	i.pwsi = &wsi;
+	i.context = context;
+
+	lwsl_notice("connecting to %s\n",i.address);
+        wsi = lws_client_connect_via_info(&i);
+	if (wsi == NULL) lwsl_notice("NULL return\n");
+	else lws_callback_on_writable(wsi);
 
 	while (!lws_service(context, 50))
 		taskYIELD();

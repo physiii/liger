@@ -72,7 +72,7 @@ decode_results results;
 /** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
 int addr = 0;
 const char *ap_ssid = "room_sensor ";
-const char *io_relay = "98.168.142.41";
+const char *io_relay = "192.168.0.2";
 const char *version_number = "room_sensor_v0.1";
 int io_port = 4000;
 //const char *ap_password = "password";
