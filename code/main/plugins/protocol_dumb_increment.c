@@ -89,6 +89,7 @@ callback_dumb_increment(struct lws *wsi, enum lws_callback_reasons reason,
 			      &vhd->timeout_watcher);
 		uv_timer_start(&vhd->timeout_watcher,
 			       uv_timeout_cb_dumb_increment, DUMB_PERIOD, DUMB_PERIOD);
+
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_DESTROY:

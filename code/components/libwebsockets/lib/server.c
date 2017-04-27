@@ -1161,7 +1161,6 @@ transaction_result_n:
 #endif
 }
 
-
 int
 lws_handshake_server(struct lws *wsi, unsigned char **buf, size_t len)
 {
@@ -1498,30 +1497,7 @@ upgrade_ws:
 			goto bail_nuke_ah;
 		}
 
-		/*
-		 * stitch protocol choice into the vh protocol linked list
-		 * We always insert ourselves at the start of the list
-		 *
-		 * X <-> B
-		 * X <-> pAn <-> pB
-		 */
-		//lwsl_err("%s: pre insert vhost start wsi %p, that wsi prev == %p\n",
-		//		__func__,
-		//		wsi->vhost->same_vh_protocol_list[n],
-		//		wsi->same_vh_protocol_prev);
-		wsi->same_vh_protocol_prev = /* guy who points to us */
-			&wsi->vhost->same_vh_protocol_list[n];
-		wsi->same_vh_protocol_next = /* old first guy is our next */
-				wsi->vhost->same_vh_protocol_list[n];
-		/* we become the new first guy */
-		wsi->vhost->same_vh_protocol_list[n] = wsi;
-
-		if (wsi->same_vh_protocol_next)
-			/* old first guy points back to us now */
-			wsi->same_vh_protocol_next->same_vh_protocol_prev =
-					&wsi->same_vh_protocol_next;
-
-
+		lws_same_vh_protocol_insert(wsi, n);
 
 		/* we are upgrading to ws, so http/1.1 and keepalive +
 		 * pipelined header considerations about keeping the ah around
@@ -1753,7 +1729,9 @@ lws_http_transaction_completed(struct lws *wsi)
 			 */
 
 			if (wsi->vhost->use_ssl &&
-			    wsi->context->simultaneous_ssl == wsi->context->simultaneous_ssl_restriction) {
+			    wsi->context->simultaneous_ssl_restriction &&
+			    wsi->context->simultaneous_ssl ==
+				   wsi->context->simultaneous_ssl_restriction) {
 				lwsl_info("%s: simultaneous_ssl_restriction and nothing pipelined\n", __func__);
 				return 1;
 			}
@@ -1806,16 +1784,25 @@ lws_adopt_descriptor_vhost(struct lws_vhost *vh, lws_adoption_type type,
 		if (lws_ensure_user_space(new_wsi))
 			goto bail;
 	} else
-		new_wsi->protocol = &context->vhost_list->
-					protocols[vh->default_protocol_index];
+		if (type & LWS_ADOPT_HTTP) /* he will transition later */
+			new_wsi->protocol =
+				&vh->protocols[vh->default_protocol_index];
+		else { /* this is the only time he will transition */
+			lws_bind_protocol(new_wsi,
+				&vh->protocols[vh->raw_protocol_index]);
+			lws_union_transition(new_wsi, LWSCM_RAW);
+		}
 
 	if (type & LWS_ADOPT_SOCKET) { /* socket desc */
 		lwsl_debug("%s: new wsi %p, sockfd %d\n", __func__, new_wsi,
 			   (int)(size_t)fd.sockfd);
 
-		/* the transport is accepted... give him time to negotiate */
-		lws_set_timeout(new_wsi, PENDING_TIMEOUT_ESTABLISH_WITH_SERVER,
-				context->timeout_secs);
+		if (type & LWS_ADOPT_HTTP)
+			/* the transport is accepted...
+			 * give him time to negotiate */
+			lws_set_timeout(new_wsi,
+					PENDING_TIMEOUT_ESTABLISH_WITH_SERVER,
+					context->timeout_secs);
 
 #if LWS_POSIX == 0
 #if defined(LWS_WITH_ESP8266)
@@ -1838,15 +1825,6 @@ lws_adopt_descriptor_vhost(struct lws_vhost *vh, lws_adoption_type type,
 			n = LWS_CALLBACK_RAW_ADOPT_FILE;
 		else
 			n = LWS_CALLBACK_RAW_ADOPT;
-	}
-	if ((new_wsi->protocol->callback)(
-			new_wsi, n, NULL, NULL, 0)) {
-		if (type & LWS_ADOPT_SOCKET) {
-			/* force us off the timeout list by hand */
-			lws_set_timeout(new_wsi, NO_PENDING_TIMEOUT, 0);
-			compatible_close(new_wsi->desc.sockfd);
-		}
-		goto bail;
 	}
 
 	if (!LWS_SSL_ENABLED(new_wsi->vhost) || !(type & LWS_ADOPT_ALLOW_SSL) ||
@@ -1882,6 +1860,14 @@ lws_adopt_descriptor_vhost(struct lws_vhost *vh, lws_adoption_type type,
 			lwsl_err("%s: fail ssl negotiation\n", __func__);
 			goto fail;
 		}
+
+	/*
+	 *  by deferring callback to this point, after insertion to fds,
+	 * lws_callback_on_writable() can work from the callback
+	 */
+	if ((new_wsi->protocol->callback)(
+			new_wsi, n, new_wsi->user_space, NULL, 0))
+		goto fail;
 
 	if (type & LWS_ADOPT_HTTP)
 		if (!lws_header_table_attach(new_wsi, 0))
@@ -2018,6 +2004,8 @@ lws_server_socket_service(struct lws_context *context, struct lws *wsi,
 	struct lws_context_per_thread *pt = &context->pt[(int)wsi->tsi];
 	lws_sockfd_type accept_fd = LWS_SOCK_INVALID;
 	struct allocated_headers *ah;
+	lws_sock_file_fd_type fd;
+	int opts = LWS_ADOPT_SOCKET | LWS_ADOPT_ALLOW_SSL;
 #if LWS_POSIX
 	struct sockaddr_in cli_addr;
 	socklen_t clilen;
@@ -2254,7 +2242,9 @@ try_pollout:
 			 */
 
 			if (wsi->vhost->use_ssl &&
-			    context->simultaneous_ssl == context->simultaneous_ssl_restriction)
+			    context->simultaneous_ssl_restriction &&
+			    context->simultaneous_ssl ==
+					  context->simultaneous_ssl_restriction)
 				/* no... ignore it, he won't come again until we are
 				 * below the simultaneous_ssl_restriction limit and
 				 * POLLIN is enabled on him again
@@ -2301,7 +2291,12 @@ try_pollout:
 				break;
 			}
 
-			if (!lws_adopt_socket_vhost(wsi->vhost, accept_fd))
+			if (!(wsi->vhost->options & LWS_SERVER_OPTION_ONLY_RAW))
+				opts |= LWS_ADOPT_HTTP;
+
+			fd.sockfd = accept_fd;
+			if (!lws_adopt_descriptor_vhost(wsi->vhost, opts, fd,
+							NULL, NULL))
 				/* already closed cleanly as necessary */
 				return 1;
 

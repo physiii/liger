@@ -1,0 +1,163 @@
+/*
+ * Example ESP32 app code using Libwebsockets
+ *
+ * Copyright (C) 2017 Andy Green <andy@warmcat.com>
+ *
+ * This file is made available under the Creative Commons CC0 1.0
+ * Universal Public Domain Dedication.
+ *
+ * The person who associated a work with this deed has dedicated
+ * the work to the public domain by waiving all of his or her rights
+ * to the work worldwide under copyright law, including all related
+ * and neighboring rights, to the extent allowed by law. You can copy,
+ * modify, distribute and perform the work, even for commercial purposes,
+ * all without asking permission.
+ *
+ * The test apps are intended to be adapted for use in your code, which
+ * may be proprietary.	So unlike the library itself, they are licensed
+ * Public Domain.
+ *
+ */
+#include <libwebsockets.h>
+#include <nvs_flash.h>
+
+/*
+ * Configuration for normal station website
+ *
+ * We implement the generic lws test server features using
+ * generic plugin code from lws.  Normally these plugins
+ * are dynamically loaded at runtime, but we use them by
+ * statically including them.
+ *
+ * To customize for your own device, you would remove these
+ * and put your own plugin include here
+ */
+#include "plugins/protocol_dumb_increment.c"
+#include "plugins/protocol_lws_mirror.c"
+#include "plugins/protocol_post_demo.c"
+#include "plugins/protocol_lws_status.c"
+#include <protocol_esp32_lws_reboot_to_factory.c>
+#include "plugins/protocol_lws_microphone.c"
+
+static const struct lws_protocols protocols_station[] = {
+	{
+		"http-only",
+		lws_callback_http_dummy,
+		0,
+		1024, 0, NULL, 900
+	},
+	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
+	LWS_PLUGIN_PROTOCOL_DUMB_INCREMENT, /* demo... */
+	LWS_PLUGIN_PROTOCOL_MIRROR,	    /* replace with */
+	LWS_PLUGIN_PROTOCOL_POST_DEMO,	    /* your own */
+	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
+	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
+	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
+};
+
+static const struct lws_protocol_vhost_options pvo_headers = {
+        NULL,
+        NULL,
+        "Keep-Alive:",
+        "timeout=5, max=20",
+};
+
+/* reset to factory mount */
+static const struct lws_http_mount mount_station_rtf = {
+	.mountpoint		= "/esp32-rtf",
+	.origin			= "esplws-rtf",
+	.origin_protocol	= LWSMPRO_CALLBACK,
+	.mountpoint_len		= 10,
+};
+
+/*
+ * this makes a special URL "/formtest" which gets passed to
+ * the "protocol-post-demo" plugin protocol for handling
+ */
+static const struct lws_http_mount mount_station_post = {
+	.mount_next		= &mount_station_rtf,
+	.mountpoint		= "/formtest",
+	.origin			= "protocol-post-demo",
+	.origin_protocol	= LWSMPRO_CALLBACK,
+	.mountpoint_len		= 9,
+};
+
+/*
+ * this serves "/station/..." in the romfs at "/" in the URL namespace
+ */
+static const struct lws_http_mount mount_station = {
+        .mount_next		= &mount_station_post,
+        .mountpoint		= "/",
+        .origin			= "/station",
+        .def			= "test.html",
+        .origin_protocol	= LWSMPRO_FILE,
+        .mountpoint_len		= 1,
+};
+
+esp_err_t event_handler(void *ctx, system_event_t *event)
+{
+	/* deal with your own user events here first */
+
+	return lws_esp32_event_passthru(ctx, event);
+}
+
+/*
+ * This is called when the user asks to "Identify physical device"
+ * he is configuring, by pressing the Identify button on the AP
+ * setup page for the device.
+ *
+ * It should do something device-specific that
+ * makes it easy to identify which physical device is being
+ * addressed, like flash an LED on the device on a timer for a
+ * few seconds.
+ */
+void
+lws_esp32_identify_physical_device(void)
+{
+	lwsl_notice("%s\n", __func__);
+}
+
+void app_main(void)
+{
+	static struct lws_context_creation_info info;
+	static struct lws_client_connect_info i;
+	struct lws_context *context;
+        struct lws *wsi;
+
+	memset(&info, 0, sizeof(info));
+	info.port = CONTEXT_PORT_NO_LISTEN;
+	info.protocols = protocols_station;
+	info.gid = -1;
+	info.uid = -1;
+	info.ws_ping_pong_interval = 10;
+	//info.extensions = exts;
+
+	nvs_flash_init();
+	lws_esp32_wlan_config();
+	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
+
+	lws_esp32_wlan_start_station();
+	context = lws_esp32_init(&info);
+	//context = lws_create_context(&info);
+	if (context == NULL) fprintf(stderr, "Creating libwebsocket context failed\n");
+
+	memset(&i, 0, sizeof i);
+	i.address = "192.168.0.2";
+        i.port = 4000;
+	i.ssl_connection = 0;
+	i.host = i.address;
+	i.origin = i.host;
+        i.ietf_version_or_minus_one = -1;
+	i.path = "/";
+	i.protocol = "microphone-protocol";
+	i.pwsi = &wsi;
+	i.context = context;
+
+	lwsl_notice("connecting to %s\n",i.address);
+        wsi = lws_client_connect_via_info(&i);
+	if (wsi == NULL) lwsl_notice("NULL return\n");
+	else lws_callback_on_writable(wsi);
+
+	while (!lws_service(context, 50))
+		taskYIELD();
+}
