@@ -108,6 +108,10 @@ LWS_VISIBLE int lws_get_random(struct lws_context *context,
 
 LWS_VISIBLE int lws_send_pipe_choked(struct lws *wsi)
 {
+	/* treat the fact we got a truncated send pending as if we're choked */
+	if (wsi->trunc_len)
+		return 1;
+
 	return (int)wsi->sock_send_blocking;
 }
 
@@ -522,7 +526,7 @@ lws_plat_inet_ntop(int af, const void *src, char *dst, int cnt)
 }
 
 LWS_VISIBLE lws_fop_fd_t
-_lws_plat_file_open(struct lws_plat_file_ops *fops, const char *filename,
+_lws_plat_file_open(const struct lws_plat_file_ops *fops, const char *filename,
 		    const char *vpath, lws_fop_flags_t *flags)
 {
 	HANDLE ret;
@@ -534,8 +538,8 @@ _lws_plat_file_open(struct lws_plat_file_ops *fops, const char *filename,
 		ret = CreateFileW(buf, GENERIC_READ, FILE_SHARE_READ,
 			  NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	} else {
-		lwsl_err("%s: open for write not implemented\n", __func__);
-		goto bail;
+		ret = CreateFileW(buf, GENERIC_WRITE, 0, NULL,
+			  CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	}
 
 	if (ret == LWS_INVALID_FILE)
@@ -599,16 +603,18 @@ LWS_VISIBLE int
 _lws_plat_file_write(lws_fop_fd_t fop_fd, lws_filepos_t *amount,
 			 uint8_t* buf, lws_filepos_t len)
 {
-	(void)fop_fd;
-	(void)amount;
-	(void)buf;
-	(void)len;
+	DWORD _amount;
 
-	fop_fd->pos += len;
+	if (!WriteFile((HANDLE)fop_fd->fd, buf, (DWORD)len, &_amount, NULL)) {
+		*amount = 0;
 
-	lwsl_err("%s: not implemented yet on this platform\n", __func__);
+		return 1;
+	}
 
-	return -1;
+	fop_fd->pos += _amount;
+	*amount = (unsigned long)_amount;
+
+	return 0;
 }
 
 LWS_VISIBLE int

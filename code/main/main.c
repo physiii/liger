@@ -131,7 +131,6 @@ test() {
 	info.gid = -1;
 	info.uid = -1;
 	info.ws_ping_pong_interval = 10;
-	//info.extensions = exts;
 	context = lws_esp32_init(&info);
 
 	memset(&i, 0, sizeof i);
@@ -151,8 +150,7 @@ test() {
 		taskYIELD();
         }
 
-	lws_callback_on_writable(wsi);
-	while (!lws_service(context, 50)) {
+	while (!lws_service(context, 500)) {
 		lwsl_notice("lws_service\n");
 		taskYIELD();
 	}
@@ -211,9 +209,7 @@ void app_main(void)
 	lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info);
 
-	if (!test()) {
-		lwsl_notice("connected\n");
-        } else 	lwsl_notice("connection failed\n");
+	test();
 
 	while (!lws_service(context, 50))
 		taskYIELD();

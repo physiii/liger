@@ -127,9 +127,12 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 	unsigned char *p = &buf[LWS_PRE];
 	int n, m;
         //pss->is_connecting = false;
+   	lwsl_notice("\ncallback_microphone: %d\n",reason);
 	switch (reason) {
+	case 1: //conn err
+		lwsl_notice("\nthe request client connection has been unable to complete a handshake with the remote server.\n");
+		break;
 	case LWS_CALLBACK_PROTOCOL_INIT:
-      		lwsl_notice("< ----- callback_microphone: %d ----- >\n",reason);
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
 				sizeof(struct per_vhost_data__microphone));
