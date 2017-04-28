@@ -52,11 +52,15 @@ struct per_vhost_data__microphone {
 	char json[1024];
 	int json_len;
 	bool is_connecting;
+	int value[1024];
 };
 
 struct per_session_data__microphone {
 	int number;
+	int value;
 };
+
+//extern int value[1024];
 
 static void
 uv_timeout_cb_microphone(uv_timer_t *w
@@ -78,61 +82,69 @@ uv_timeout_cb_microphone(uv_timer_t *w
 
 
 #define MIC_CHANNEL (4)
+#define SAMPLE_SIZE (1024)
+#define SAMPLE_RATE (44100)
 
-/*void adc1task(struct lws * wsi)
+
+
+static TimerHandle_t adc_timer;
+static void adc_timer_cb(TimerHandle_t t)
 {
-  // initialize ADC
-  adc1_config_width(ADC_WIDTH_12Bit);
-  adc1_config_channel_atten(MIC_CHANNEL,ADC_ATTEN_11db);
-  int n, m;
+	TickType_t xTimerPeriod;
+	xTimerPeriod = xTimerGetPeriod( t );
+	printf("timer count: %d\n",xTimerPeriod);
+	//xTimerStop(adc_timer, 0);
+	/*if (flashes & 1)
+		gpio_output_set(0, 1 << GPIO_ID, 1 << GPIO_ID, 0);
+	else
+		gpio_output_set(1 << GPIO_ID, 0, 1 << GPIO_ID, 0);*/
+}
 
-  // connect to ws server
-  struct lws_client_connect_info i;
-  struct lws_context *context = lws_get_context(wsi);
-  memset(&i, 0, sizeof(i));
-  i.address = "192.168.0.2";
-  i.host = "192.168.0.2:4000";
-  i.origin = NULL;
-  i.port = 4000;
-  i.context = context;
-  i.ietf_version_or_minus_one = -1;
-  lws_client_connect_via_info(&i);
-
-  unsigned char buf[LWS_PRE + 20];
-  unsigned char *voltage = &buf[LWS_PRE];
-
-  while(1){
-      n = lws_snprintf((char *)voltage, sizeof(buf) - LWS_PRE, "%d", adc1_get_voltage(MIC_CHANNEL));
-      m = lws_write(wsi, voltage, n, LWS_WRITE_TEXT);
-      if (m < n)
-        printf("ERROR %d writing to socket\n", n);
-      printf("adc1 value:%s\n",voltage);
-      vTaskDelay(1000/portTICK_PERIOD_MS);
-  }
-}*/
-
+static int value[SAMPLE_SIZE];
+void adc1task(struct per_vhost_data__microphone *vhd)
+{
+	adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
+		(TimerCallbackFunction_t)adc_timer_cb);
+	xTimerStart(adc_timer, 0);
+	while(1){
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+		int sum = 0;
+		for (int i = 0; i < SAMPLE_SIZE; i++) {
+			value[i] = adc1_get_voltage(MIC_CHANNEL);
+			sum+=value[i];
+		}
+		printf("sum: %d\n",sum);
+	}
+}
 
 
 static int
 callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
+
 	struct per_session_data__microphone *pss =
 			(struct per_session_data__microphone *)user;
 	struct per_vhost_data__microphone *vhd =
 			(struct per_vhost_data__microphone *)
 			lws_protocol_vh_priv_get(lws_get_vhost(wsi),
 					lws_get_protocol(wsi));
+
 	unsigned char buf[LWS_PRE + 20];
 	unsigned char *p = &buf[LWS_PRE];
 	int n, m;
-        //pss->is_connecting = false;
-   	lwsl_notice("\ncallback_microphone: %d\n",reason);
+
 	switch (reason) {
 	case 1: //conn err
 		lwsl_notice("\nthe request client connection has been unable to complete a handshake with the remote server.\n");
 		break;
+
 	case LWS_CALLBACK_PROTOCOL_INIT:
+		xTaskCreate(adc1task, "adc1task", 1024*3, &vhd, 10, NULL);
+		// initialize ADC
+		adc1_config_width(ADC_WIDTH_12Bit);
+		adc1_config_channel_atten(MIC_CHANNEL,ADC_ATTEN_11db);
+
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
 				sizeof(struct per_vhost_data__microphone));
@@ -159,13 +171,14 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		pss->number = 0;
 		break;
 
-	case LWS_CALLBACK_SERVER_WRITEABLE:
-		n = lws_snprintf((char *)p, sizeof(buf) - LWS_PRE, "%d", pss->number++);
+	case LWS_CALLBACK_CLIENT_WRITEABLE:
+		//pss->value = adc1_get_voltage(MIC_CHANNEL);
+		n = lws_snprintf((char *)p, sizeof(buf) - LWS_PRE, "%s", (char *)value);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
-		if (m < n) {
+		if (m < n) 
 			lwsl_err("ERROR %d writing to di socket\n", n);
-			return -1;
-		}
+		else
+			//printf("send: %s\n",(char *)value);
 		break;
 
 	case LWS_CALLBACK_RECEIVE:
@@ -182,9 +195,10 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	default:
+	   	printf("callback_microphone: %d\n",reason);
 		break;
 	}
-        //xTaskCreate(adc1task, "adc1task", 1024*3, wsi, 10, NULL);
+
 	return 0;
 }
 

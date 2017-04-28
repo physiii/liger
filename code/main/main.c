@@ -148,10 +148,10 @@ test() {
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);
 		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
 	while (!lws_service(context, 500)) {
-		lwsl_notice("lws_service\n");
 		taskYIELD();
 	}
 
@@ -160,7 +160,6 @@ test() {
 
 
 static TimerHandle_t flash_timer;
-
 static void flash_timer_cb(TimerHandle_t t)
 {
 	//flashes++;
