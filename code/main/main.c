@@ -134,7 +134,7 @@ test() {
 	context = lws_esp32_init(&info);
 
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.2";
+	i.address = "pyfi.org";
         i.port = 4000;
 	i.ssl_connection = 0;
 	i.host = i.address;

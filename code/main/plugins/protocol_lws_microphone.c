@@ -85,14 +85,16 @@ uv_timeout_cb_microphone(uv_timer_t *w
 #define SAMPLE_SIZE (1024)
 #define SAMPLE_RATE (44100)
 
-
-
 static TimerHandle_t adc_timer;
 static void adc_timer_cb(TimerHandle_t t)
 {
-	TickType_t xTimerPeriod;
-	xTimerPeriod = xTimerGetPeriod( t );
-	printf("timer count: %d\n",xTimerPeriod);
+	uint32_t ulCount;
+	ulCount = ( uint32_t ) pvTimerGetTimerID( t );
+	ulCount++;
+	/*TickType_t xTimerPeriod;
+	xTimerPeriod = xTimerGetPeriod( t );*/
+	printf("timer count: %d\n", ulCount);
+	//vTimerSetTimerID( t, ( void * ) ulCount );
 	//xTimerStop(adc_timer, 0);
 	/*if (flashes & 1)
 		gpio_output_set(0, 1 << GPIO_ID, 1 << GPIO_ID, 0);
@@ -103,9 +105,9 @@ static void adc_timer_cb(TimerHandle_t t)
 static int value[SAMPLE_SIZE];
 void adc1task(struct per_vhost_data__microphone *vhd)
 {
-	adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
+	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
 		(TimerCallbackFunction_t)adc_timer_cb);
-	xTimerStart(adc_timer, 0);
+	xTimerStart(adc_timer, 0);*/
 	while(1){
 		vTaskDelay(1000/portTICK_PERIOD_MS);
 		int sum = 0;
@@ -116,7 +118,6 @@ void adc1task(struct per_vhost_data__microphone *vhd)
 		printf("sum: %d\n",sum);
 	}
 }
-
 
 static int
 callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
@@ -172,7 +173,6 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
-		//pss->value = adc1_get_voltage(MIC_CHANNEL);
 		n = lws_snprintf((char *)p, sizeof(buf) - LWS_PRE, "%s", (char *)value);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) 
