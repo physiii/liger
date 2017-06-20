@@ -49,10 +49,10 @@ L C C7
 U 1 1 590C9F1F
 P 5000 3100
 F 0 "C7" V 4950 3150 50  0000 L CNN
-F 1 "0.1u" V 5150 3000 50  0000 L CNN
+F 1 "100nF" V 5150 3000 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5115 3055 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690" H 5115 2964 50  0001 L CNN
-F 4 "C1608X7R1C224K080AC" H 5000 3100 60  0001 C CNN "Part Number"
+F 4 "GRM188R71C104KA01D" H 5000 3100 60  0001 C CNN "Part Number"
 	1    5000 3100
 	0    1    1    0   
 $EndComp
@@ -67,8 +67,8 @@ P 5800 3900
 F 0 "R23" V 5880 3900 50  0000 C CNN
 F 1 "100K" V 5800 3900 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 5730 3900 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 5800 3900 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 5800 3900 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5800 3900 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 5800 3900 60  0001 C CNN "Part Number"
 	1    5800 3900
 	0    -1   -1   0   
 $EndComp
@@ -88,10 +88,10 @@ L C C8
 U 1 1 590CBCB3
 P 6400 3200
 F 0 "C8" V 6350 3250 50  0000 L CNN
-F 1 "0.1u" V 6550 3100 50  0000 L CNN
+F 1 "100nF" V 6550 3100 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6515 3155 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690" H 6515 3064 50  0001 L CNN
-F 4 "C1608X7R1C224K080AC" H 6400 3200 60  0001 C CNN "Part Number"
+F 4 "GRM188R71C104KA01D" H 6400 3200 60  0001 C CNN "Part Number"
 	1    6400 3200
 	0    1    1    0   
 $EndComp
@@ -102,8 +102,8 @@ P 5250 3900
 F 0 "R21" V 5330 3900 50  0000 C CNN
 F 1 "100K" V 5250 3900 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 5180 3900 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 5250 3900 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 5250 3900 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5250 3900 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 5250 3900 60  0001 C CNN "Part Number"
 	1    5250 3900
 	0    1    1    0   
 $EndComp
@@ -114,8 +114,8 @@ P 5450 2850
 F 0 "R22" V 5530 2850 50  0000 C CNN
 F 1 "100K" V 5450 2850 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 5380 2850 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 5450 2850 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 5450 2850 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5450 2850 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 5450 2850 60  0001 C CNN "Part Number"
 	1    5450 2850
 	0    -1   -1   0   
 $EndComp
@@ -126,8 +126,8 @@ P 5250 3350
 F 0 "R20" V 5330 3350 50  0000 C CNN
 F 1 "100K" V 5250 3350 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 5180 3350 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 5250 3350 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 5250 3350 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5250 3350 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 5250 3350 60  0001 C CNN "Part Number"
 	1    5250 3350
 	-1   0    0    1   
 $EndComp
@@ -147,10 +147,10 @@ L C C6
 U 1 1 590D0C50
 P 4800 3900
 F 0 "C6" V 4750 3950 50  0000 L CNN
-F 1 "0.1u" V 4950 3800 50  0000 L CNN
+F 1 "100nF" V 4950 3800 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4915 3855 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690" H 4915 3764 50  0001 L CNN
-F 4 "C1608X7R1C224K080AC" H 4800 3900 60  0001 C CNN "Part Number"
+F 4 "GRM188R71C104KA01D" H 4800 3900 60  0001 C CNN "Part Number"
 	1    4800 3900
 	0    1    1    0   
 $EndComp
@@ -209,6 +209,7 @@ F 0 "LS1" H 6900 3425 50  0000 R CNN
 F 1 "Speaker" H 6900 3350 50  0000 R CNN
 F 2 "footprints:speaker-1508" H 6850 3000 50  0001 C CNN
 F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 6840 3150 50  0001 C CNN
+F 4 "CVS-1508" H 6850 3200 60  0001 C CNN "Part Number"
 	1    6850 3200
 	1    0    0    -1  
 $EndComp
@@ -237,6 +238,7 @@ F 0 "U11" H 5800 3350 50  0000 L CNN
 F 1 "OPA344" H 5800 3050 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 5700 3250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/opa344.pdf" H 5800 3350 50  0001 C CNN
+F 4 "296-41475-1-ND" H 5800 3200 60  0001 C CNN "Part Number"
 	1    5800 3200
 	1    0    0    -1  
 $EndComp

@@ -55,8 +55,8 @@ P 4750 3450
 F 0 "R24" V 4830 3450 50  0000 C CNN
 F 1 "100K" V 4750 3450 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 4680 3450 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4750 3450 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 4750 3450 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 4750 3450 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 4750 3450 60  0001 C CNN "Part Number"
 	1    4750 3450
 	1    0    0    -1  
 $EndComp

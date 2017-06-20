@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/physiii/circuits/liger/hardware/liger.sch)
-    (date "Fri 12 May 2017 09:14:36 AM CDT")
+    (date "Fri 02 Jun 2017 05:32:01 PM CDT")
     (tool "Eeschema 4.0.5+dfsg1-4")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -270,7 +270,7 @@
       (sheetpath (names /Microphone/) (tstamps /5909A781/))
       (tstamp 59091962))
     (comp (ref C1)
-      (value 4.7uf)
+      (value 4.7uF)
       (footprint Capacitors_SMD:C_0603_HandSoldering)
       (datasheet http://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173)
       (fields
@@ -333,7 +333,7 @@
       (sheetpath (names /Power/) (tstamps /5909D8E3/))
       (tstamp 5909DD63))
     (comp (ref C3)
-      (value 1uf)
+      (value 1uF)
       (footprint Capacitors_SMD:C_0603_HandSoldering)
       (datasheet http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf)
       (fields
@@ -351,7 +351,7 @@
       (sheetpath (names /Power/) (tstamps /5909D8E3/))
       (tstamp 5909DD71))
     (comp (ref C4)
-      (value 1uf)
+      (value 1uF)
       (footprint Capacitors_SMD:C_0603_HandSoldering)
       (datasheet http://www.yageo.com/documents/recent/UPY-GPHC_Y5V_6.3V-to-50V_6.pdf)
       (fields
@@ -499,7 +499,7 @@
       (sheetpath (names /Switches/) (tstamps /59092AD4/))
       (tstamp 590F8D3B))
     (comp (ref C7)
-      (value 0.1u)
+      (value 100nF)
       (footprint Capacitors_SMD:C_0603_HandSoldering)
       (datasheet http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690)
       (fields
@@ -517,7 +517,7 @@
       (sheetpath (names /Speaker/) (tstamps /590C715D/))
       (tstamp 590C74FA))
     (comp (ref C8)
-      (value 0.1u)
+      (value 100uF)
       (footprint Capacitors_SMD:C_0603_HandSoldering)
       (datasheet http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690)
       (fields
@@ -553,7 +553,7 @@
       (sheetpath (names /Speaker/) (tstamps /590C715D/))
       (tstamp 590D0B81))
     (comp (ref C6)
-      (value 0.1u)
+      (value 100nF)
       (footprint Capacitors_SMD:C_0603_HandSoldering)
       (datasheet http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690)
       (fields
@@ -565,6 +565,8 @@
       (value Speaker)
       (footprint footprints:speaker-1508)
       (datasheet http://www.cui.com/product/resource/cvs-1508.pdf)
+      (fields
+        (field (name "Part Number") CVS-1508))
       (libsource (lib device) (part Speaker))
       (sheetpath (names /Speaker/) (tstamps /590C715D/))
       (tstamp 590F705D))
@@ -835,10 +837,10 @@
       (pins
         (pin (num 1) (name ~) (type input)))))
   (libraries
-    (library (logical conn)
-      (uri /usr/share/kicad/library/conn.lib))
     (library (logical device)
       (uri /usr/share/kicad/library/device.lib))
+    (library (logical conn)
+      (uri /usr/share/kicad/library/conn.lib))
     (library (logical open-automation)
       (uri /home/physiii/circuits/kicad-parts/libraries/open-automation.lib)))
   (nets

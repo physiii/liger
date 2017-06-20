@@ -52,7 +52,7 @@ F 0 "U2" H 7000 2500 60  0000 C CNN
 F 1 "PT5529B/L2/H2-F" H 7350 2800 60  0000 C CNN
 F 2 "footprints:PT5529" H 7300 2600 60  0001 C CNN
 F 3 "http://www.everlight.com/file/ProductFile/PT5529B-L2-H2-F.pdf" H 7300 2600 60  0001 C CNN
-F 4 "PT5529B/L2/H2-F" H 7300 2600 60  0001 C CNN "Part Number"
+F 4 "1080-1161-ND" H 7300 2600 60  0001 C CNN "Part Number"
 	1    7300 2600
 	1    0    0    -1  
 $EndComp
@@ -126,8 +126,8 @@ P 7600 5100
 F 0 "Q1" H 7900 5150 50  0000 R CNN
 F 1 "Q_NPN_BEC" H 8200 5050 50  0000 R CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 7800 5200 50  0001 C CNN
-F 3 "http://www.mouser.com/ds/2/308/MMBT3904LT1-D-113169.pdf" H 7600 5100 50  0001 C CNN
-F 4 "MMBT3904LT1G" H 7600 5100 60  0001 C CNN "Part Number"
+F 3 "http://www.onsemi.com/pub/Collateral/MMBT3904LT1-D.PDF" H 7600 5100 50  0001 C CNN
+F 4 "MMBT3904LT1GOSCT-ND" H 7600 5100 60  0001 C CNN "Part Number"
 	1    7600 5100
 	1    0    0    -1  
 $EndComp
@@ -180,6 +180,7 @@ F 0 "U6" H 4550 2950 50  0000 L CNN
 F 1 "OPA344" H 4500 2600 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 4450 2850 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/texas-instruments/OPA344NA-3K/296-41475-1-ND/5222851" H 4550 2950 50  0001 C CNN
+F 4 "296-41475-1-ND" H 4550 2800 60  0001 C CNN "Part Number"
 	1    4550 2800
 	1    0    0    -1  
 $EndComp
@@ -202,8 +203,8 @@ P 4450 3550
 F 0 "R19" V 4530 3550 50  0000 C CNN
 F 1 "180K" V 4450 3550 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 4380 3550 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4450 3550 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 4450 3550 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 4450 3550 50  0001 C CNN
+F 4 "RC0603JR-07180KL" V 4450 3550 60  0001 C CNN "Part Number"
 	1    4450 3550
 	0    -1   -1   0   
 $EndComp
@@ -214,8 +215,8 @@ P 4000 2900
 F 0 "R17" V 4080 2900 50  0000 C CNN
 F 1 "22K" V 4000 2900 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 3930 2900 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4000 2900 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 4000 2900 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 4000 2900 50  0001 C CNN
+F 4 "RC0603JR-0722KL" V 4000 2900 60  0001 C CNN "Part Number"
 	1    4000 2900
 	0    1    1    0   
 $EndComp
@@ -226,8 +227,8 @@ P 4200 2400
 F 0 "R18" V 4280 2400 50  0000 C CNN
 F 1 "1M" V 4200 2400 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 4130 2400 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4200 2400 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 4200 2400 60  0001 C CNN "Part Number"
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 4200 2400 50  0001 C CNN
+F 4 "RC0603FR-071ML" V 4200 2400 60  0001 C CNN "Part Number"
 	1    4200 2400
 	-1   0    0    1   
 $EndComp

@@ -101,6 +101,7 @@ F 0 "U4" H 6600 3950 50  0000 L CNN
 F 1 "OPA344" H 6550 3600 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 6500 3850 50  0001 C CNN
 F 3 "http://www.digikey.com/product-detail/en/texas-instruments/OPA344NA-3K/296-41475-1-ND/5222851" H 6600 3950 50  0001 C CNN
+F 4 "296-41475-1-ND" H 6600 3800 60  0001 C CNN "Part Number"
 	1    6600 3800
 	1    0    0    -1  
 $EndComp
@@ -133,7 +134,7 @@ L C C1
 U 1 1 59091963
 P 5550 4400
 F 0 "C1" V 5500 4450 50  0000 L CNN
-F 1 "4.7uf" V 5700 4300 50  0000 L CNN
+F 1 "4.7uF" V 5700 4300 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5665 4355 50  0001 L CNN
 F 3 "http://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173" H 5665 4264 50  0001 L CNN
 F 4 "CL10B475KQ8NQNC" H 5550 4400 60  0001 C CNN "Part Number"

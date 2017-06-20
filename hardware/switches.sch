@@ -103,8 +103,8 @@ P 5850 3900
 F 0 "Q3" H 6150 3950 50  0000 R CNN
 F 1 "Q_PMOS_GSD" H 6150 3700 50  0000 R CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 6050 4000 50  0001 C CNN
-F 3 "http://www.mouser.com/ds/2/308/BSS84LT1-D-105913.pdf" H 5850 3900 50  0001 C CNN
-F 4 "BSS84LT1G" H 5850 3900 60  0001 C CNN "Part Number"
+F 3 "https://www.fairchildsemi.com/datasheets/BS/BSS84.pdf" H 5850 3900 50  0001 C CNN
+F 4 "BSS84" H 5850 3900 60  0001 C CNN "Part Number"
 	1    5850 3900
 	-1   0    0    1   
 $EndComp
@@ -176,7 +176,7 @@ F 0 "D2" H 6200 3300 50  0000 C CNN
 F 1 "LED" H 6350 3150 50  0000 C CNN
 F 2 "LEDs:LED_0603" H 6200 3200 50  0001 C CNN
 F 3 "http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf" H 6200 3200 50  0001 C CNN
-F 4 "LS Q976-NR-1" H 6200 3200 60  0001 C CNN "Part Number"
+F 4 "475-2512-2-ND" H 6200 3200 60  0001 C CNN "Part Number"
 	1    6200 3200
 	0    -1   -1   0   
 $EndComp
@@ -189,7 +189,8 @@ P 3400 4050
 F 0 "SW1" H 3500 4250 60  0000 C CNN
 F 1 "LED-switch" H 3350 3750 60  0000 C CNN
 F 2 "footprints:SMT-led-switch" H 3400 4050 60  0001 C CNN
-F 3 "http://www.digikey.com/product-detail/en/c-k-components/K8WH41GLFS/CKN10530TR-ND/4176636" H 3400 4050 60  0001 C CNN
+F 3 "http://www.ckswitches.com/media/1481/k8.pdf" H 3400 4050 60  0001 C CNN
+F 4 "CKN10530TR-ND" H 3400 4050 60  0001 C CNN "Part Number"
 	1    3400 4050
 	1    0    0    -1  
 $EndComp

@@ -113,9 +113,12 @@ void adc1task(struct per_vhost_data__microphone *vhd)
 		int sum = 0;
 		for (int i = 0; i < SAMPLE_SIZE; i++) {
 			value[i] = adc1_get_voltage(MIC_CHANNEL);
-			sum+=value[i];
+			sum+=value[i];	
 		}
-		printf("sum: %d\n",sum);
+		//printf("sum: %d\n",sum);
+		if (sum > 20000) {
+		  printf("Button Pressed! %d\n",sum);
+		}
 	}
 }
 
@@ -207,7 +210,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		"microphone-protocol", \
 		callback_microphone, \
 		sizeof(struct per_session_data__microphone), \
-		10, /* rx buf size must be >= permessage-deflate rx size */ \
+		100, /* rx buf size must be >= permessage-deflate rx size */ \
 		0, NULL, 0 \
 	}
 
