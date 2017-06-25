@@ -512,7 +512,7 @@ extern void esp32_uvtimer_cb(TimerHandle_t t);
 
 static inline void uv_timer_start(uv_timer_t *t, uv_cb_t *cb, int first, int rep)
 {
-	struct timer_mapping *tm = malloc(sizeof(*tm));
+	struct timer_mapping *tm = (struct timer_mapping *)malloc(sizeof(*tm));
 
 	if (!tm)
 		return;
@@ -555,8 +555,26 @@ lws_esp32_identify_physical_device(void);
 
 /* lws-plat-esp32 provides these */
 
-extern void (*lws_cb_scan_done)(void *);
-extern void *lws_cb_scan_done_arg;
+typedef void (*lws_cb_scan_done)(uint16_t count, wifi_ap_record_t *recs, void *arg);
+
+struct lws_group_member {
+	struct lws_group_member *next;
+	uint64_t last_seen;
+	char model[16];
+	char role[16];
+	char host[32];
+	char mac[20];
+	int width, height;
+	struct ip4_addr addr;
+	struct ip6_addr addrv6;
+	uint8_t	flags;
+};
+
+#define LWS_SYSTEM_GROUP_MEMBER_ADD		1
+#define LWS_SYSTEM_GROUP_MEMBER_CHANGE		2
+#define LWS_SYSTEM_GROUP_MEMBER_REMOVE		3
+
+#define LWS_GROUP_FLAG_SELF 1
 
 struct lws_esp32 {
 	char sta_ip[16];
@@ -565,10 +583,21 @@ struct lws_esp32 {
 	char serial[16];
 	char opts[16];
 	char model[16];
+	char group[16];
+	char role[16];
+	char ssid[4][16];
+	char password[4][32];
+	char active_ssid[32];
 	char access_pw[16];
+	char hostname[32];
+	char mac[20];
 	mdns_server_t *mdns;
        	char region;
        	char inet;
+	lws_cb_scan_done scan_consumer;
+	void *scan_consumer_arg;
+	struct lws_group_member *first;
+	int extant_group_members;
 };
 
 struct lws_esp32_image {
@@ -595,6 +624,8 @@ extern struct lws_context *
 lws_esp32_init(struct lws_context_creation_info *);
 extern int
 lws_esp32_wlan_nvs_get(int retry);
+extern esp_err_t
+lws_nvs_set_str(nvs_handle handle, const char* key, const char* value);
 extern void
 lws_esp32_restart_guided(uint32_t type);
 extern const esp_partition_t *
@@ -602,6 +633,10 @@ lws_esp_ota_get_boot_partition(void);
 extern int
 lws_esp32_get_image_info(const esp_partition_t *part, struct lws_esp32_image *i, char *json, int json_len);
 extern uint32_t lws_esp32_get_reboot_type(void);
+extern uint16_t lws_esp32_sine_interp(int n);
+
+/* required in external code by esp32 plat (may just return if no leds) */
+extern void lws_esp32_leds_timer_cb(TimerHandle_t th);
 #else
 typedef int lws_sockfd_type;
 typedef int lws_filefd_type;
@@ -4779,6 +4814,56 @@ lws_email_destroy(struct lws_email *email);
 
 #endif
 //@}
+
+/*
+ * Stats are all uint64_t numbers that start at 0.
+ * Index names here have the convention
+ *
+ *  _C_ counter
+ *  _B_ byte count
+ *  _MS_ millisecond count
+ */
+
+enum {
+	LWSSTATS_C_CONNECTIONS, /**< count incoming connections */
+	LWSSTATS_C_API_CLOSE, /**< count calls to close api */
+	LWSSTATS_C_API_READ, /**< count calls to read from socket api */
+	LWSSTATS_C_API_LWS_WRITE, /**< count calls to lws_write API */
+	LWSSTATS_C_API_WRITE, /**< count calls to write API */
+	LWSSTATS_C_WRITE_PARTIALS, /**< count of partial writes */
+	LWSSTATS_C_WRITEABLE_CB_REQ, /**< count of writable callback requests */
+	LWSSTATS_C_WRITEABLE_CB_EFF_REQ, /**< count of effective writable callback requests */
+	LWSSTATS_C_WRITEABLE_CB, /**< count of writable callbacks */
+	LWSSTATS_C_SSL_CONNECTIONS_FAILED, /**< count of failed SSL connections */
+	LWSSTATS_C_SSL_CONNECTIONS_ACCEPTED, /**< count of accepted SSL connections */
+	LWSSTATS_C_SSL_CONNS_HAD_RX, /**< count of accepted SSL conns that have had some RX */
+	LWSSTATS_C_TIMEOUTS, /**< count of timed-out connections */
+	LWSSTATS_C_SERVICE_ENTRY, /**< count of entries to lws service loop */
+	LWSSTATS_B_READ, /**< aggregate bytes read */
+	LWSSTATS_B_WRITE, /**< aggregate bytes written */
+	LWSSTATS_B_PARTIALS_ACCEPTED_PARTS, /**< aggreate of size of accepted write data from new partials */
+	LWSSTATS_MS_SSL_CONNECTIONS_ACCEPTED_DELAY, /**< aggregate delay in accepting connection */
+	LWSSTATS_MS_WRITABLE_DELAY, /**< aggregate delay between asking for writable and getting cb */
+	LWSSTATS_MS_WORST_WRITABLE_DELAY, /**< single worst delay between asking for writable and getting cb */
+	LWSSTATS_MS_SSL_RX_DELAY, /**< aggregate delay between ssl accept complete and first RX */
+
+	/* Add new things just above here ---^
+	 * This is part of the ABI, don't needlessly break compatibility */
+	LWSSTATS_SIZE
+};
+
+#if defined(LWS_WITH_STATS)
+
+LWS_VISIBLE LWS_EXTERN uint64_t
+lws_stats_get(struct lws_context *context, int index);
+LWS_VISIBLE LWS_EXTERN void
+lws_stats_log_dump(struct lws_context *context);
+#else
+static inline uint64_t
+lws_stats_get(struct lws_context *context, int index) { return 0; }
+static inline void
+lws_stats_log_dump(struct lws_context *context) { }
+#endif
 
 #ifdef __cplusplus
 }
