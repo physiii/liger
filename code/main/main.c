@@ -32,11 +32,12 @@
  * To customize for your own device, you would remove these
  * and put your own plugin include here
  */
-#include "plugins/protocol_dumb_increment.c"
-#include "plugins/protocol_lws_mirror.c"
-#include "plugins/protocol_post_demo.c"
-#include "plugins/protocol_lws_status.c"
+//#include "plugins/protocol_dumb_increment.c"
+//#include "plugins/protocol_lws_mirror.c"
+//#include "plugins/protocol_post_demo.c"
+//#include "plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
+#include "plugins/protocol_lws_microphone.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -45,10 +46,11 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	LWS_PLUGIN_PROTOCOL_DUMB_INCREMENT, /* demo... */
-	LWS_PLUGIN_PROTOCOL_MIRROR,	    /* replace with */
-	LWS_PLUGIN_PROTOCOL_POST_DEMO,	    /* your own */
-	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
+	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
+	//LWS_PLUGIN_PROTOCOL_DUMB_INCREMENT, /* demo... */
+	//LWS_PLUGIN_PROTOCOL_MIRROR,	    /* replace with */
+	//LWS_PLUGIN_PROTOCOL_POST_DEMO,	    /* your own */
+	//LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
 };
@@ -119,13 +121,70 @@ void lws_esp32_leds_timer_cb(TimerHandle_t th)
 {
 }
 
+int
+test() {
+	lwsl_notice("testing...\n");
+	static struct lws_context_creation_info info;
+	static struct lws_client_connect_info i;
+	struct lws_context *context;
+        struct lws *wsi;
+
+	memset(&info, 0, sizeof(info));
+	info.port = CONTEXT_PORT_NO_LISTEN;
+	info.protocols = protocols_station;
+	info.gid = -1;
+	info.uid = -1;
+	info.ws_ping_pong_interval = 10;
+	context = lws_esp32_init(&info);
+
+	memset(&i, 0, sizeof i);
+	i.address = "pyfi.org";
+        i.port = 4000;
+	i.ssl_connection = 0;
+	i.host = i.address;
+	i.origin = i.host;
+        i.ietf_version_or_minus_one = -1;
+	i.path = "/";
+	i.protocol = "microphone-protocol";
+	i.pwsi = &wsi;
+	i.context = context;
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+
+	while (!lws_service(context, 100)) {
+		taskYIELD();
+	}
+	lwsl_notice("!!!!!!!! CLOSED !!!!!!!!!!!!! ---->\n");
+        return 0;
+}
+
+
+static TimerHandle_t flash_timer;
+static void flash_timer_cb(TimerHandle_t t)
+{
+	//flashes++;
+	//lwsl_notice("timer....\n");
+	//xTimerStop(flash_timer, 0);
+	/*if (flashes & 1)
+		gpio_output_set(0, 1 << GPIO_ID, 1 << GPIO_ID, 0);
+	else
+		gpio_output_set(1 << GPIO_ID, 0, 1 << GPIO_ID, 0);*/
+}
 
 void app_main(void)
 {
-	static struct lws_context_creation_info info;
-	struct lws_context *context;
+	//static struct lws_context_creation_info info;
+	//struct lws_context *context;
 
-	memset(&info, 0, sizeof(info));
+	/*flash_timer = xTimerCreate("x", pdMS_TO_TICKS(8000), 1, NULL,
+		(TimerCallbackFunction_t)flash_timer_cb);
+	xTimerStart(flash_timer, 0);*/
+
+	/*memset(&info, 0, sizeof(info));
 
 	info.port = 443;
 	info.fd_limit_per_thread = 30;
@@ -133,26 +192,27 @@ void app_main(void)
 	info.max_http_header_data = 512;
 	info.pt_serv_buf_size = 900;
 	info.keepalive_timeout = 5;
-	info.simultaneous_ssl_restriction = 7;
+	info.simultaneous_ssl_restriction = 4;
 	info.options = LWS_SERVER_OPTION_EXPLICIT_VHOSTS |
 		       LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
 
-	info.ssl_cert_filepath = "ssl-pub.pem";
-	info.ssl_private_key_filepath = "ssl-pri.pem";
+	info.ssl_cert_filepath = "ssl-pub.der";
+	info.ssl_private_key_filepath = "ssl-pri.der";
 
 	info.vhost_name = "station";
 	info.protocols = protocols_station;
 	info.mounts = &mount_station;
-	info.headers = &pvo_headers;
+	info.headers = &pvo_headers;*/
 
 	nvs_flash_init();
 	lws_esp32_wlan_config();
-
 	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
-
 	lws_esp32_wlan_start_station();
-	context = lws_esp32_init(&info);
+	test();
 
-	while (!lws_service(context, 50))
-		taskYIELD();
+	//context = lws_esp32_init(&info);
+
+
+	/*while (!lws_service(context, 50))
+		taskYIELD();*/
 }
