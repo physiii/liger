@@ -82,13 +82,13 @@ uv_timeout_cb_microphone(uv_timer_t *w
 
 
 #define MIC_CHANNEL (4)
-#define SAMPLE_SIZE (1024)
+#define SAMPLE_SIZE (128)
 #define SAMPLE_RATE (44100)
+uint32_t ulCount;
 
 static TimerHandle_t adc_timer;
 static void adc_timer_cb(TimerHandle_t t)
 {
-	uint32_t ulCount;
 	ulCount = ( uint32_t ) pvTimerGetTimerID( t );
 	ulCount++;
 	/*TickType_t xTimerPeriod;
@@ -108,17 +108,17 @@ char temp_str[50];
 int sum = 0;
 void adc1task(struct per_vhost_data__microphone *vhd)
 {
-	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
+	adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
 		(TimerCallbackFunction_t)adc_timer_cb);
-	xTimerStart(adc_timer, 0);*/
+	xTimerStart(adc_timer, 0);
 	while(1){
-		vTaskDelay(100/portTICK_PERIOD_MS);
-		sum = adc1_get_voltage(MIC_CHANNEL);
-		/*for (int i = 0; i < SAMPLE_SIZE; i++) {
+		//sum = adc1_get_voltage(MIC_CHANNEL);
+		for (int i = 0; i < SAMPLE_SIZE; i++) {
 			value[i] = adc1_get_voltage(MIC_CHANNEL);
-			sum+=value[i];	
-		}*/
-		//printf("sum: %d\n",sum);
+			sum+=value[i];
+   		        vTaskDelay(1/portTICK_PERIOD_MS);
+		}
+		printf("[protocol_lws_microphone.c] sum: %d\n",sum);
 	}
 }
 
@@ -137,6 +137,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 	unsigned char buf[LWS_PRE + 20];
 	unsigned char *p = &buf[LWS_PRE];
 	char button_value_str[1024];
+	uint32_t count;
 	int n, m;
 	switch (reason) {
 	case 1: //conn err
@@ -184,7 +185,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		strcat(button_value_str,"}");
 		strcpy(temp_str,"");
                 strcpy(button_value_str, "{\"count\":");
-		snprintf(temp_str, 10, "%d",count++);
+		snprintf(temp_str, 10, "%d",ulCount);
 		strcat(button_value_str,temp_str);
 		strcat(button_value_str,"}");
 
