@@ -91,8 +91,8 @@ static void adc_timer_cb(TimerHandle_t t)
 	uint32_t ulCount;
 	ulCount = ( uint32_t ) pvTimerGetTimerID( t );
 	ulCount++;
-	TickType_t xTimerPeriod;
-	xTimerPeriod = xTimerGetPeriod( t );
+	/*TickType_t xTimerPeriod;
+	xTimerPeriod = xTimerGetPeriod( t );*/
 	printf("timer count: %d\n", ulCount);
 	//vTimerSetTimerID( t, ( void * ) ulCount );
 	//xTimerStop(adc_timer, 0);
