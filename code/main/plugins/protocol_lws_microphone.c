@@ -82,7 +82,7 @@ uv_timeout_cb_microphone(uv_timer_t *w
 
 
 #define MIC_CHANNEL (4)
-#define SAMPLE_SIZE (1024)
+#define SAMPLE_SIZE (128)
 #define SAMPLE_RATE (44100)
 
 static TimerHandle_t adc_timer;
@@ -112,12 +112,13 @@ void adc1task(struct per_vhost_data__microphone *vhd)
 		(TimerCallbackFunction_t)adc_timer_cb);
 	xTimerStart(adc_timer, 0);*/
 	while(1){
-		vTaskDelay(100/portTICK_PERIOD_MS);
-		sum = adc1_get_voltage(MIC_CHANNEL);
-		/*for (int i = 0; i < SAMPLE_SIZE; i++) {
+		//sum = adc1_get_voltage(MIC_CHANNEL);
+		sum = 0;
+		for (int i = 0; i < SAMPLE_SIZE; i++) {
 			value[i] = adc1_get_voltage(MIC_CHANNEL);
 			sum+=value[i];	
-		}*/
+		}
+		vTaskDelay(100/portTICK_PERIOD_MS);
 		//printf("sum: %d\n",sum);
 	}
 }
@@ -127,6 +128,13 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
 
+	uint8_t mac[6];
+	char mac_str[20];
+	char TAG[50] = "[microphone-protocol]";
+        esp_wifi_get_mac(WIFI_IF_STA,mac);
+	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
+           mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
+           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
 	struct per_session_data__microphone *pss =
 			(struct per_session_data__microphone *)user;
 	struct per_vhost_data__microphone *vhd =
@@ -144,6 +152,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
+		printf("%s initialize\n",TAG);
 		xTaskCreate(adc1task, "adc1task", 1024*3, &vhd, 10, NULL);
 		// initialize ADC
 		adc1_config_width(ADC_WIDTH_12Bit);
@@ -177,22 +186,25 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] sum: %d\n",sum);
-		if (sum < 1000) break;
-                strcpy(button_value_str, "{\"button_value\":");
+		if (sum < 10000) break;
 		snprintf(temp_str, 10, "%d",sum);
+                strcpy(button_value_str, "{\"front_button\":");
 		strcat(button_value_str,temp_str);
-		strcat(button_value_str,"}");
+                strcat(button_value_str, ",\"mac\":\"");
+		strcat(button_value_str,mac_str);
+		strcat(button_value_str,"\"}");
 		n = lws_snprintf((char *)p, sizeof(button_value_str) - LWS_PRE, "%s", button_value_str);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) 
 			lwsl_err("ERROR %d writing to di socket\n", n);
 		else
-			printf("[LWS_CALLBACK_CLIENT_WRITEABLE] %s\n",button_value_str);
+			printf("%s %s\n",TAG,button_value_str);
 		break;
 
-	case LWS_CALLBACK_RECEIVE:
+	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 6)
 			break;
+		printf("%s %s\n",TAG,(const char *)in);
 		if (strcmp((const char *)in, "reset\n") == 0)
 			pss->number = 0;
 		if (strcmp((const char *)in, "closeme\n") == 0) {
@@ -216,7 +228,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		"microphone-protocol", \
 		callback_microphone, \
 		sizeof(struct per_session_data__microphone), \
-		100, /* rx buf size must be >= permessage-deflate rx size */ \
+		1000, /* rx buf size must be >= permessage-deflate rx size */ \
 		0, NULL, 0 \
 	}
 

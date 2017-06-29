@@ -130,8 +130,9 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs_flash.h \
  /home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins/protocol_esp32_lws_reboot_to_factory.c \
  /home/physiii/esp/esp-idf/components/app_update/include/esp_ota_ops.h \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_lws_microphone.c \
- /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_token.c \
+ /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h \
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_lws_microphone.c
 
 /home/physiii/circuits/liger/code/components/libwebsockets/../../../../../../../../..//home/physiii/circuits/liger/code/build/libwebsockets/include/libwebsockets.h:
 
@@ -395,6 +396,8 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 
 /home/physiii/esp/esp-idf/components/app_update/include/esp_ota_ops.h:
 
-/home/physiii/circuits/liger/code/main/./plugins/protocol_lws_microphone.c:
+/home/physiii/circuits/liger/code/main/./plugins/protocol_token.c:
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h:
+
+/home/physiii/circuits/liger/code/main/./plugins/protocol_lws_microphone.c:
