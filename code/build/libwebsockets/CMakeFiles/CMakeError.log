@@ -1,591 +1,591 @@
 Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
 Compiler: /home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc 
-Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/esp/esp-idf/components/mdns/include;	-I/home/physiii/esp/esp-idf/components/driver/include;	-I/home/physiii/esp/esp-idf/components/spi_flash/include;	-I/home/physiii/esp/esp-idf/components/nvs_flash/include;	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/esp/esp-idf/components/esp32/include/;	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/;	-I/home/physiii/esp/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/esp/esp-idf/components/freertos/include
+Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/code/esp-idf/components/mdns/include;	-I/home/physiii/code/esp-idf/components/driver/include;	-I/home/physiii/code/esp-idf/components/spi_flash/include;	-I/home/physiii/code/esp-idf/components/nvs_flash/include;	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/code/esp-idf/components/esp32/include/;	-I/home/physiii/code/esp-idf/components/bootloader_support/include/;	-I/home/physiii/code/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/code/esp-idf/components/freertos/include
 Id flags: 
 
 The output was:
 1
 xtensa-esp32-elf-gcc: error: 	-I/home/physiii/circuits/liger/code/build/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/mdns/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/driver/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/spi_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/esp32/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/app_update/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/mdns/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/driver/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/spi_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/esp32/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/app_update/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-I$(IDF_PATH)/components/soc/esp32/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-std=gnu99: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/freertos/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/freertos/include: No such file or directory
 
 
 Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
 Compiler: /home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc 
-Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/esp/esp-idf/components/mdns/include;	-I/home/physiii/esp/esp-idf/components/driver/include;	-I/home/physiii/esp/esp-idf/components/spi_flash/include;	-I/home/physiii/esp/esp-idf/components/nvs_flash/include;	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/esp/esp-idf/components/esp32/include/;	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/;	-I/home/physiii/esp/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/esp/esp-idf/components/freertos/include
+Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/code/esp-idf/components/mdns/include;	-I/home/physiii/code/esp-idf/components/driver/include;	-I/home/physiii/code/esp-idf/components/spi_flash/include;	-I/home/physiii/code/esp-idf/components/nvs_flash/include;	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/code/esp-idf/components/esp32/include/;	-I/home/physiii/code/esp-idf/components/bootloader_support/include/;	-I/home/physiii/code/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/code/esp-idf/components/freertos/include
 Id flags: -c
 
 The output was:
 1
 xtensa-esp32-elf-gcc: error: 	-I/home/physiii/circuits/liger/code/build/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/mdns/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/driver/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/spi_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/esp32/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/app_update/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/mdns/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/driver/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/spi_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/esp32/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/app_update/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-I$(IDF_PATH)/components/soc/esp32/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-std=gnu99: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/freertos/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/freertos/include: No such file or directory
 
 
 Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
 Compiler: /home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc 
-Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/esp/esp-idf/components/mdns/include;	-I/home/physiii/esp/esp-idf/components/driver/include;	-I/home/physiii/esp/esp-idf/components/spi_flash/include;	-I/home/physiii/esp/esp-idf/components/nvs_flash/include;	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/esp/esp-idf/components/esp32/include/;	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/;	-I/home/physiii/esp/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/esp/esp-idf/components/freertos/include
+Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/code/esp-idf/components/mdns/include;	-I/home/physiii/code/esp-idf/components/driver/include;	-I/home/physiii/code/esp-idf/components/spi_flash/include;	-I/home/physiii/code/esp-idf/components/nvs_flash/include;	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/code/esp-idf/components/esp32/include/;	-I/home/physiii/code/esp-idf/components/bootloader_support/include/;	-I/home/physiii/code/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/code/esp-idf/components/freertos/include
 Id flags: -Aa
 
 The output was:
 1
 xtensa-esp32-elf-gcc: error: 	-I/home/physiii/circuits/liger/code/build/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/mdns/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/driver/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/spi_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/esp32/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/app_update/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/mdns/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/driver/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/spi_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/esp32/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/app_update/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-I$(IDF_PATH)/components/soc/esp32/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-std=gnu99: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/freertos/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/freertos/include: No such file or directory
 
 
 Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
 Compiler: /home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc 
-Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/esp/esp-idf/components/mdns/include;	-I/home/physiii/esp/esp-idf/components/driver/include;	-I/home/physiii/esp/esp-idf/components/spi_flash/include;	-I/home/physiii/esp/esp-idf/components/nvs_flash/include;	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip;	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/esp/esp-idf/components/esp32/include/;	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/;	-I/home/physiii/esp/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/esp/esp-idf/components/freertos/include
+Build flags: -nostdlib;-Wall;-Werror;	-I/home/physiii/circuits/liger/code/build/include;	-I/home/physiii/code/esp-idf/components/mdns/include;	-I/home/physiii/code/esp-idf/components/driver/include;	-I/home/physiii/code/esp-idf/components/spi_flash/include;	-I/home/physiii/code/esp-idf/components/nvs_flash/include;	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip;	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port;	-I/home/physiii/code/esp-idf/components/esp32/include/;	-I/home/physiii/code/esp-idf/components/bootloader_support/include/;	-I/home/physiii/code/esp-idf/components/app_update/include/;	-I$(IDF_PATH)/components/soc/esp32/include/;	-std=gnu99;-Os;-ggdb;-ffunction-sections;-fdata-sections;-fstrict-volatile-bitfields;-mlongcalls;-nostdlib;-Wall;-Werror=all;-Wno-error=unused-function;-Wno-error=unused-but-set-variable;-Wno-error=unused-variable;-Wno-error=deprecated-declarations;-Wextra;-Wno-unused-parameter;-Wno-sign-compare;-Wno-old-style-declaration;-DWITH_POSIX;-DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h';-DHAVE_CONFIG_H;-I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins;;-DLWS_IS_FACTORY_APPLICATION=0;-DNDEBUG=1;-Os;	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host;	-I/home/physiii/code/esp-idf/components/freertos/include
 Id flags: -D__CLASSIC_C__
 
 The output was:
 1
 xtensa-esp32-elf-gcc: error: 	-I/home/physiii/circuits/liger/code/build/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/mdns/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/driver/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/spi_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/esp32/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/app_update/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/mdns/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/driver/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/spi_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/esp32/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/app_update/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-I$(IDF_PATH)/components/soc/esp32/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-std=gnu99: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/freertos/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/freertos/include: No such file or directory
 
 
 Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
 xtensa-esp32-elf-gcc: error: 	-I/home/physiii/circuits/liger/code/build/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/mdns/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/driver/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/spi_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/esp32/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/app_update/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/mdns/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/driver/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/spi_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/esp32/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/app_update/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-I$(IDF_PATH)/components/soc/esp32/include/: No such file or directory
 xtensa-esp32-elf-gcc: error: 	-std=gnu99: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
-xtensa-esp32-elf-gcc: error: 	-I/home/physiii/esp/esp-idf/components/freertos/include: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host: No such file or directory
+xtensa-esp32-elf-gcc: error: 	-I/home/physiii/code/esp-idf/components/freertos/include: No such file or directory
 xtensa-esp32-elf-gcc: fatal error: no input files
 compilation terminated.
 Determining if the function bzero exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e1a1a/fast"
+Run Build Command:"/usr/bin/make" "cmTC_f5f05/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_e1a1a.dir/build.make CMakeFiles/cmTC_e1a1a.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_f5f05.dir/build.make CMakeFiles/cmTC_f5f05.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e1a1a.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=bzero   -o CMakeFiles/cmTC_e1a1a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Building C object CMakeFiles/cmTC_f5f05.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=bzero   -o CMakeFiles/cmTC_f5f05.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
 <command-line>:0:23: error: conflicting types for built-in function 'bzero' [-Werror]
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro 'CHECK_FUNCTION_EXISTS'
    CHECK_FUNCTION_EXISTS();
    ^
 cc1: all warnings being treated as errors
-CMakeFiles/cmTC_e1a1a.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_e1a1a.dir/CheckFunctionExists.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_e1a1a.dir/CheckFunctionExists.c.o] Error 1
+CMakeFiles/cmTC_f5f05.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_f5f05.dir/CheckFunctionExists.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_f5f05.dir/CheckFunctionExists.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_e1a1a/fast' failed
-make[2]: *** [cmTC_e1a1a/fast] Error 2
+Makefile:126: recipe for target 'cmTC_f5f05/fast' failed
+make[2]: *** [cmTC_f5f05/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function fork exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7f308/fast"
+Run Build Command:"/usr/bin/make" "cmTC_38d2c/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_7f308.dir/build.make CMakeFiles/cmTC_7f308.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_38d2c.dir/build.make CMakeFiles/cmTC_38d2c.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_7f308.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=fork   -o CMakeFiles/cmTC_7f308.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Building C object CMakeFiles/cmTC_38d2c.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=fork   -o CMakeFiles/cmTC_38d2c.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
 <command-line>:0:23: error: conflicting types for built-in function 'fork' [-Werror]
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro 'CHECK_FUNCTION_EXISTS'
    CHECK_FUNCTION_EXISTS();
    ^
 cc1: all warnings being treated as errors
-CMakeFiles/cmTC_7f308.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_7f308.dir/CheckFunctionExists.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_7f308.dir/CheckFunctionExists.c.o] Error 1
+CMakeFiles/cmTC_38d2c.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_38d2c.dir/CheckFunctionExists.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_38d2c.dir/CheckFunctionExists.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_7f308/fast' failed
-make[2]: *** [cmTC_7f308/fast] Error 2
+Makefile:126: recipe for target 'cmTC_38d2c/fast' failed
+make[2]: *** [cmTC_38d2c/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function getenv exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4014f/fast"
+Run Build Command:"/usr/bin/make" "cmTC_640c4/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_4014f.dir/build.make CMakeFiles/cmTC_4014f.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_640c4.dir/build.make CMakeFiles/cmTC_640c4.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4014f.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getenv   -o CMakeFiles/cmTC_4014f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_4014f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4014f.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getenv    CMakeFiles/cmTC_4014f.dir/CheckFunctionExists.c.o  -o cmTC_4014f  
+Building C object CMakeFiles/cmTC_640c4.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getenv   -o CMakeFiles/cmTC_640c4.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_640c4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_640c4.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getenv    CMakeFiles/cmTC_640c4.dir/CheckFunctionExists.c.o  -o cmTC_640c4  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_4014f.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `getenv'
-CMakeFiles/cmTC_4014f.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_640c4.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `getenv'
+CMakeFiles/cmTC_640c4.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `getenv'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_4014f.dir/build.make:97: recipe for target 'cmTC_4014f' failed
-make[3]: *** [cmTC_4014f] Error 1
+CMakeFiles/cmTC_640c4.dir/build.make:97: recipe for target 'cmTC_640c4' failed
+make[3]: *** [cmTC_640c4] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_4014f/fast' failed
-make[2]: *** [cmTC_4014f/fast] Error 2
+Makefile:126: recipe for target 'cmTC_640c4/fast' failed
+make[2]: *** [cmTC_640c4/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function memset exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5f230/fast"
+Run Build Command:"/usr/bin/make" "cmTC_a2853/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_5f230.dir/build.make CMakeFiles/cmTC_5f230.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_a2853.dir/build.make CMakeFiles/cmTC_a2853.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_5f230.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=memset   -o CMakeFiles/cmTC_5f230.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Building C object CMakeFiles/cmTC_a2853.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=memset   -o CMakeFiles/cmTC_a2853.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
 <command-line>:0:23: error: conflicting types for built-in function 'memset' [-Werror]
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro 'CHECK_FUNCTION_EXISTS'
    CHECK_FUNCTION_EXISTS();
    ^
 cc1: all warnings being treated as errors
-CMakeFiles/cmTC_5f230.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_5f230.dir/CheckFunctionExists.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_5f230.dir/CheckFunctionExists.c.o] Error 1
+CMakeFiles/cmTC_a2853.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_a2853.dir/CheckFunctionExists.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_a2853.dir/CheckFunctionExists.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_5f230/fast' failed
-make[2]: *** [cmTC_5f230/fast] Error 2
+Makefile:126: recipe for target 'cmTC_a2853/fast' failed
+make[2]: *** [cmTC_a2853/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function socket exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4d239/fast"
+Run Build Command:"/usr/bin/make" "cmTC_f511f/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_4d239.dir/build.make CMakeFiles/cmTC_4d239.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_f511f.dir/build.make CMakeFiles/cmTC_f511f.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4d239.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=socket   -o CMakeFiles/cmTC_4d239.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_4d239
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d239.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=socket    CMakeFiles/cmTC_4d239.dir/CheckFunctionExists.c.o  -o cmTC_4d239  
+Building C object CMakeFiles/cmTC_f511f.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=socket   -o CMakeFiles/cmTC_f511f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f511f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f511f.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=socket    CMakeFiles/cmTC_f511f.dir/CheckFunctionExists.c.o  -o cmTC_f511f  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_4d239.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `socket'
-CMakeFiles/cmTC_4d239.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_f511f.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `socket'
+CMakeFiles/cmTC_f511f.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `socket'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_4d239.dir/build.make:97: recipe for target 'cmTC_4d239' failed
-make[3]: *** [cmTC_4d239] Error 1
+CMakeFiles/cmTC_f511f.dir/build.make:97: recipe for target 'cmTC_f511f' failed
+make[3]: *** [cmTC_f511f] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_4d239/fast' failed
-make[2]: *** [cmTC_4d239/fast] Error 2
+Makefile:126: recipe for target 'cmTC_f511f/fast' failed
+make[2]: *** [cmTC_f511f/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function strerror exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a5085/fast"
+Run Build Command:"/usr/bin/make" "cmTC_6801d/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_a5085.dir/build.make CMakeFiles/cmTC_a5085.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_6801d.dir/build.make CMakeFiles/cmTC_6801d.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a5085.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=strerror   -o CMakeFiles/cmTC_a5085.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_a5085
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5085.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=strerror    CMakeFiles/cmTC_a5085.dir/CheckFunctionExists.c.o  -o cmTC_a5085  
+Building C object CMakeFiles/cmTC_6801d.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=strerror   -o CMakeFiles/cmTC_6801d.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_6801d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6801d.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=strerror    CMakeFiles/cmTC_6801d.dir/CheckFunctionExists.c.o  -o cmTC_6801d  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_a5085.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `strerror'
-CMakeFiles/cmTC_a5085.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_6801d.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `strerror'
+CMakeFiles/cmTC_6801d.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `strerror'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_a5085.dir/build.make:97: recipe for target 'cmTC_a5085' failed
-make[3]: *** [cmTC_a5085] Error 1
+CMakeFiles/cmTC_6801d.dir/build.make:97: recipe for target 'cmTC_6801d' failed
+make[3]: *** [cmTC_6801d] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_a5085/fast' failed
-make[2]: *** [cmTC_a5085/fast] Error 2
+Makefile:126: recipe for target 'cmTC_6801d/fast' failed
+make[2]: *** [cmTC_6801d/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function vfork exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9fec4/fast"
+Run Build Command:"/usr/bin/make" "cmTC_060ea/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_9fec4.dir/build.make CMakeFiles/cmTC_9fec4.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_060ea.dir/build.make CMakeFiles/cmTC_060ea.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_9fec4.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=vfork   -o CMakeFiles/cmTC_9fec4.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_9fec4
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9fec4.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=vfork    CMakeFiles/cmTC_9fec4.dir/CheckFunctionExists.c.o  -o cmTC_9fec4  
+Building C object CMakeFiles/cmTC_060ea.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=vfork   -o CMakeFiles/cmTC_060ea.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_060ea
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_060ea.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=vfork    CMakeFiles/cmTC_060ea.dir/CheckFunctionExists.c.o  -o cmTC_060ea  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_9fec4.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `vfork'
-CMakeFiles/cmTC_9fec4.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_060ea.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `vfork'
+CMakeFiles/cmTC_060ea.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `vfork'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_9fec4.dir/build.make:97: recipe for target 'cmTC_9fec4' failed
-make[3]: *** [cmTC_9fec4] Error 1
+CMakeFiles/cmTC_060ea.dir/build.make:97: recipe for target 'cmTC_060ea' failed
+make[3]: *** [cmTC_060ea] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_9fec4/fast' failed
-make[2]: *** [cmTC_9fec4/fast] Error 2
+Makefile:126: recipe for target 'cmTC_060ea/fast' failed
+make[2]: *** [cmTC_060ea/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function execvpe exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_07531/fast"
+Run Build Command:"/usr/bin/make" "cmTC_60ca1/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_07531.dir/build.make CMakeFiles/cmTC_07531.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_60ca1.dir/build.make CMakeFiles/cmTC_60ca1.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_07531.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=execvpe   -o CMakeFiles/cmTC_07531.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_07531
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07531.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=execvpe    CMakeFiles/cmTC_07531.dir/CheckFunctionExists.c.o  -o cmTC_07531  
+Building C object CMakeFiles/cmTC_60ca1.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=execvpe   -o CMakeFiles/cmTC_60ca1.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_60ca1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60ca1.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=execvpe    CMakeFiles/cmTC_60ca1.dir/CheckFunctionExists.c.o  -o cmTC_60ca1  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_07531.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `execvpe'
-CMakeFiles/cmTC_07531.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_60ca1.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `execvpe'
+CMakeFiles/cmTC_60ca1.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `execvpe'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_07531.dir/build.make:97: recipe for target 'cmTC_07531' failed
-make[3]: *** [cmTC_07531] Error 1
+CMakeFiles/cmTC_60ca1.dir/build.make:97: recipe for target 'cmTC_60ca1' failed
+make[3]: *** [cmTC_60ca1] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_07531/fast' failed
-make[2]: *** [cmTC_07531/fast] Error 2
+Makefile:126: recipe for target 'cmTC_60ca1/fast' failed
+make[2]: *** [cmTC_60ca1/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function snprintf exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_39c73/fast"
+Run Build Command:"/usr/bin/make" "cmTC_b91c6/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_39c73.dir/build.make CMakeFiles/cmTC_39c73.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_b91c6.dir/build.make CMakeFiles/cmTC_b91c6.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_39c73.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=snprintf   -o CMakeFiles/cmTC_39c73.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Building C object CMakeFiles/cmTC_b91c6.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=snprintf   -o CMakeFiles/cmTC_b91c6.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
 <command-line>:0:23: error: conflicting types for built-in function 'snprintf' [-Werror]
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro 'CHECK_FUNCTION_EXISTS'
    CHECK_FUNCTION_EXISTS();
    ^
 cc1: all warnings being treated as errors
-CMakeFiles/cmTC_39c73.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_39c73.dir/CheckFunctionExists.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_39c73.dir/CheckFunctionExists.c.o] Error 1
+CMakeFiles/cmTC_b91c6.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_b91c6.dir/CheckFunctionExists.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_b91c6.dir/CheckFunctionExists.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_39c73/fast' failed
-make[2]: *** [cmTC_39c73/fast] Error 2
+Makefile:126: recipe for target 'cmTC_b91c6/fast' failed
+make[2]: *** [cmTC_b91c6/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function _snprintf exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_75658/fast"
+Run Build Command:"/usr/bin/make" "cmTC_4f404/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_75658.dir/build.make CMakeFiles/cmTC_75658.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_4f404.dir/build.make CMakeFiles/cmTC_4f404.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_75658.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_snprintf   -o CMakeFiles/cmTC_75658.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_75658
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_75658.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_snprintf    CMakeFiles/cmTC_75658.dir/CheckFunctionExists.c.o  -o cmTC_75658  
+Building C object CMakeFiles/cmTC_4f404.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_snprintf   -o CMakeFiles/cmTC_4f404.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_4f404
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f404.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_snprintf    CMakeFiles/cmTC_4f404.dir/CheckFunctionExists.c.o  -o cmTC_4f404  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_75658.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `_snprintf'
-CMakeFiles/cmTC_75658.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_4f404.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `_snprintf'
+CMakeFiles/cmTC_4f404.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `_snprintf'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_75658.dir/build.make:97: recipe for target 'cmTC_75658' failed
-make[3]: *** [cmTC_75658] Error 1
+CMakeFiles/cmTC_4f404.dir/build.make:97: recipe for target 'cmTC_4f404' failed
+make[3]: *** [cmTC_4f404] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_75658/fast' failed
-make[2]: *** [cmTC_75658/fast] Error 2
+Makefile:126: recipe for target 'cmTC_4f404/fast' failed
+make[2]: *** [cmTC_4f404/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function _vsnprintf exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7c95c/fast"
+Run Build Command:"/usr/bin/make" "cmTC_a0062/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_7c95c.dir/build.make CMakeFiles/cmTC_7c95c.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_a0062.dir/build.make CMakeFiles/cmTC_a0062.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_7c95c.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_vsnprintf   -o CMakeFiles/cmTC_7c95c.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_7c95c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7c95c.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_vsnprintf    CMakeFiles/cmTC_7c95c.dir/CheckFunctionExists.c.o  -o cmTC_7c95c  
+Building C object CMakeFiles/cmTC_a0062.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_vsnprintf   -o CMakeFiles/cmTC_a0062.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a0062
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a0062.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=_vsnprintf    CMakeFiles/cmTC_a0062.dir/CheckFunctionExists.c.o  -o cmTC_a0062  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_7c95c.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `_vsnprintf'
-CMakeFiles/cmTC_7c95c.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_a0062.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `_vsnprintf'
+CMakeFiles/cmTC_a0062.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `_vsnprintf'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_7c95c.dir/build.make:97: recipe for target 'cmTC_7c95c' failed
-make[3]: *** [cmTC_7c95c] Error 1
+CMakeFiles/cmTC_a0062.dir/build.make:97: recipe for target 'cmTC_a0062' failed
+make[3]: *** [cmTC_a0062] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_7c95c/fast' failed
-make[2]: *** [cmTC_7c95c/fast] Error 2
+Makefile:126: recipe for target 'cmTC_a0062/fast' failed
+make[2]: *** [cmTC_a0062/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function getloadavg exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6cfb4/fast"
+Run Build Command:"/usr/bin/make" "cmTC_c2dfa/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_6cfb4.dir/build.make CMakeFiles/cmTC_6cfb4.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_c2dfa.dir/build.make CMakeFiles/cmTC_c2dfa.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6cfb4.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getloadavg   -o CMakeFiles/cmTC_6cfb4.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_6cfb4
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6cfb4.dir/link.txt --verbose=1
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getloadavg    CMakeFiles/cmTC_6cfb4.dir/CheckFunctionExists.c.o  -o cmTC_6cfb4  
+Building C object CMakeFiles/cmTC_c2dfa.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getloadavg   -o CMakeFiles/cmTC_c2dfa.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c2dfa
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2dfa.dir/link.txt --verbose=1
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I$(IDF_PATH)/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=getloadavg    CMakeFiles/cmTC_c2dfa.dir/CheckFunctionExists.c.o  -o cmTC_c2dfa  
 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000400054
-CMakeFiles/cmTC_6cfb4.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `getloadavg'
-CMakeFiles/cmTC_6cfb4.dir/CheckFunctionExists.c.o: In function `main':
+CMakeFiles/cmTC_c2dfa.dir/CheckFunctionExists.c.o:(.literal.startup.main+0x0): undefined reference to `getloadavg'
+CMakeFiles/cmTC_c2dfa.dir/CheckFunctionExists.c.o: In function `main':
 /usr/share/cmake-3.7/Modules/CheckFunctionExists.c:17: undefined reference to `getloadavg'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_6cfb4.dir/build.make:97: recipe for target 'cmTC_6cfb4' failed
-make[3]: *** [cmTC_6cfb4] Error 1
+CMakeFiles/cmTC_c2dfa.dir/build.make:97: recipe for target 'cmTC_c2dfa' failed
+make[3]: *** [cmTC_c2dfa] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_6cfb4/fast' failed
-make[2]: *** [cmTC_6cfb4/fast] Error 2
+Makefile:126: recipe for target 'cmTC_c2dfa/fast' failed
+make[2]: *** [cmTC_c2dfa/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file dlfcn.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_816ee/fast"
+Run Build Command:"/usr/bin/make" "cmTC_37c74/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_816ee.dir/build.make CMakeFiles/cmTC_816ee.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_37c74.dir/build.make CMakeFiles/cmTC_37c74.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_816ee.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_816ee.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_37c74.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_37c74.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:19: fatal error: dlfcn.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_816ee.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_816ee.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_816ee.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_37c74.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_37c74.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_37c74.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_816ee/fast' failed
-make[2]: *** [cmTC_816ee/fast] Error 2
+Makefile:126: recipe for target 'cmTC_37c74/fast' failed
+make[2]: *** [cmTC_37c74/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file in6addr.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_cb169/fast"
+Run Build Command:"/usr/bin/make" "cmTC_dc028/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_cb169.dir/build.make CMakeFiles/cmTC_cb169.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_dc028.dir/build.make CMakeFiles/cmTC_dc028.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_cb169.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_cb169.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_dc028.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_dc028.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:21: fatal error: in6addr.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_cb169.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_cb169.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_cb169.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_dc028.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_dc028.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_dc028.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_cb169/fast' failed
-make[2]: *** [cmTC_cb169/fast] Error 2
+Makefile:126: recipe for target 'cmTC_dc028/fast' failed
+make[2]: *** [cmTC_dc028/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file memory.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f51bb/fast"
+Run Build Command:"/usr/bin/make" "cmTC_88ff5/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_f51bb.dir/build.make CMakeFiles/cmTC_f51bb.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_88ff5.dir/build.make CMakeFiles/cmTC_88ff5.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f51bb.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_f51bb.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_88ff5.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_88ff5.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:20: fatal error: memory.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_f51bb.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_f51bb.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_f51bb.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_88ff5.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_88ff5.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_88ff5.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_f51bb/fast' failed
-make[2]: *** [cmTC_f51bb/fast] Error 2
+Makefile:126: recipe for target 'cmTC_88ff5/fast' failed
+make[2]: *** [cmTC_88ff5/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file sys/prctl.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_299e1/fast"
+Run Build Command:"/usr/bin/make" "cmTC_5a6f4/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_299e1.dir/build.make CMakeFiles/cmTC_299e1.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_5a6f4.dir/build.make CMakeFiles/cmTC_5a6f4.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_299e1.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_299e1.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_5a6f4.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_5a6f4.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:23: fatal error: sys/prctl.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_299e1.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_299e1.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_299e1.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_5a6f4.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_5a6f4.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_5a6f4.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_299e1/fast' failed
-make[2]: *** [cmTC_299e1/fast] Error 2
+Makefile:126: recipe for target 'cmTC_5a6f4/fast' failed
+make[2]: *** [cmTC_5a6f4/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file sys/sockio.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_18746/fast"
+Run Build Command:"/usr/bin/make" "cmTC_36ee1/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_18746.dir/build.make CMakeFiles/cmTC_18746.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_36ee1.dir/build.make CMakeFiles/cmTC_36ee1.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_18746.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_18746.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_36ee1.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_36ee1.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:24: fatal error: sys/sockio.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_18746.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_18746.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_18746.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_36ee1.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_36ee1.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_36ee1.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_18746/fast' failed
-make[2]: *** [cmTC_18746/fast] Error 2
+Makefile:126: recipe for target 'cmTC_36ee1/fast' failed
+make[2]: *** [cmTC_36ee1/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file vfork.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_252b1/fast"
+Run Build Command:"/usr/bin/make" "cmTC_f290b/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_252b1.dir/build.make CMakeFiles/cmTC_252b1.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_f290b.dir/build.make CMakeFiles/cmTC_f290b.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_252b1.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_252b1.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_f290b.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_f290b.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:19: fatal error: vfork.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_252b1.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_252b1.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_252b1.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_f290b.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_f290b.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_f290b.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_252b1/fast' failed
-make[2]: *** [cmTC_252b1/fast] Error 2
+Makefile:126: recipe for target 'cmTC_f290b/fast' failed
+make[2]: *** [cmTC_f290b/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file zlib.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1f102/fast"
+Run Build Command:"/usr/bin/make" "cmTC_4803d/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_1f102.dir/build.make CMakeFiles/cmTC_1f102.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_4803d.dir/build.make CMakeFiles/cmTC_4803d.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1f102.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_1f102.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_4803d.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_4803d.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:18: fatal error: zlib.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_1f102.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_1f102.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_1f102.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_4803d.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_4803d.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_4803d.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_1f102/fast' failed
-make[2]: *** [cmTC_1f102/fast] Error 2
+Makefile:126: recipe for target 'cmTC_4803d/fast' failed
+make[2]: *** [cmTC_4803d/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the include file openssl/ecdh.h exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_71b7f/fast"
+Run Build Command:"/usr/bin/make" "cmTC_b8d47/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_71b7f.dir/build.make CMakeFiles/cmTC_71b7f.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_b8d47.dir/build.make CMakeFiles/cmTC_b8d47.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_71b7f.dir/CheckIncludeFile.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline -I/home/physiii/esp/esp-idf/components/openssl/include  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_71b7f.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_b8d47.dir/CheckIncludeFile.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline -I/home/physiii/code/esp-idf/components/openssl/include  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include    -o CMakeFiles/cmTC_b8d47.dir/CheckIncludeFile.c.o   -c /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:26: fatal error: openssl/ecdh.h: No such file or directory
 compilation terminated.
-CMakeFiles/cmTC_71b7f.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_71b7f.dir/CheckIncludeFile.c.o' failed
-make[3]: *** [CMakeFiles/cmTC_71b7f.dir/CheckIncludeFile.c.o] Error 1
+CMakeFiles/cmTC_b8d47.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_b8d47.dir/CheckIncludeFile.c.o' failed
+make[3]: *** [CMakeFiles/cmTC_b8d47.dir/CheckIncludeFile.c.o] Error 1
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_71b7f/fast' failed
-make[2]: *** [cmTC_71b7f/fast] Error 2
+Makefile:126: recipe for target 'cmTC_b8d47/fast' failed
+make[2]: *** [cmTC_b8d47/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function SSL_CTX_set1_param exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_117ba/fast"
+Run Build Command:"/usr/bin/make" "cmTC_a82f9/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_117ba.dir/build.make CMakeFiles/cmTC_117ba.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_a82f9.dir/build.make CMakeFiles/cmTC_a82f9.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_117ba.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline -I/home/physiii/esp/esp-idf/components/openssl/include  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=SSL_CTX_set1_param   -o CMakeFiles/cmTC_117ba.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-make[3]: *** No rule to make target '/home/physiii/circuits/liger/code/build/zlib/libzlib.a', needed by 'cmTC_117ba'.  Stop.
+Building C object CMakeFiles/cmTC_a82f9.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline -I/home/physiii/code/esp-idf/components/openssl/include  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=SSL_CTX_set1_param   -o CMakeFiles/cmTC_a82f9.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+make[3]: *** No rule to make target '/home/physiii/circuits/liger/code/build/zlib/libzlib.a', needed by 'cmTC_a82f9'.  Stop.
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_117ba/fast' failed
-make[2]: *** [cmTC_117ba/fast] Error 2
+Makefile:126: recipe for target 'cmTC_a82f9/fast' failed
+make[2]: *** [cmTC_a82f9/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 
 Determining if the function X509_VERIFY_PARAM_set1_host exists failed with the following output:
 Change Dir: /home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9664e/fast"
+Run Build Command:"/usr/bin/make" "cmTC_a43fb/fast"
 make[2]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-/usr/bin/make -f CMakeFiles/cmTC_9664e.dir/build.make CMakeFiles/cmTC_9664e.dir/build
+/usr/bin/make -f CMakeFiles/cmTC_a43fb.dir/build.make CMakeFiles/cmTC_a43fb.dir/build
 make[3]: Entering directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_9664e.dir/CheckFunctionExists.c.o
-/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline -I/home/physiii/esp/esp-idf/components/openssl/include  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/esp/esp-idf/components/mdns/include 	-I/home/physiii/esp/esp-idf/components/driver/include 	-I/home/physiii/esp/esp-idf/components/spi_flash/include 	-I/home/physiii/esp/esp-idf/components/nvs_flash/include 	-I/home/physiii/esp/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip 	-I/home/physiii/esp/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/esp/esp-idf/components/esp32/include/ 	-I/home/physiii/esp/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/esp/esp-idf/components/app_update/include/ 	-I/home/physiii/esp/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/esp/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/esp/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=X509_VERIFY_PARAM_set1_host   -o CMakeFiles/cmTC_9664e.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
-make[3]: *** No rule to make target '/home/physiii/circuits/liger/code/build/zlib/libzlib.a', needed by 'cmTC_9664e'.  Stop.
+Building C object CMakeFiles/cmTC_a43fb.dir/CheckFunctionExists.c.o
+/home/physiii/xtensa-esp32-elf/bin/../bin/xtensa-esp32-elf-gcc  -DKEYWORD=__inline -I/home/physiii/code/esp-idf/components/openssl/include  -nostdlib -Wall -Werror 	-I/home/physiii/circuits/liger/code/build/include 	-I/home/physiii/code/esp-idf/components/mdns/include 	-I/home/physiii/code/esp-idf/components/driver/include 	-I/home/physiii/code/esp-idf/components/spi_flash/include 	-I/home/physiii/code/esp-idf/components/nvs_flash/include 	-I/home/physiii/code/esp-idf/components/tcpip_adapter/include 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/posix 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip 	-I/home/physiii/code/esp-idf/components/lwip/include/lwip/port 	-I/home/physiii/code/esp-idf/components/esp32/include/ 	-I/home/physiii/code/esp-idf/components/bootloader_support/include/ 	-I/home/physiii/code/esp-idf/components/app_update/include/ 	-I/home/physiii/code/esp-idf/components/soc/esp32/include/ 	-std=gnu99 -Os -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='mbedtls/esp_config.h' -DHAVE_CONFIG_H -I/home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins  -DLWS_IS_FACTORY_APPLICATION=0 -DNDEBUG=1 -Os 	-I/home/physiii/code/esp-idf/components/nvs_flash/test_nvs_host 	-I/home/physiii/code/esp-idf/components/freertos/include -DCHECK_FUNCTION_EXISTS=X509_VERIFY_PARAM_set1_host   -o CMakeFiles/cmTC_a43fb.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.7/Modules/CheckFunctionExists.c
+make[3]: *** No rule to make target '/home/physiii/circuits/liger/code/build/zlib/libzlib.a', needed by 'cmTC_a43fb'.  Stop.
 make[3]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_9664e/fast' failed
-make[2]: *** [cmTC_9664e/fast] Error 2
+Makefile:126: recipe for target 'cmTC_a43fb/fast' failed
+make[2]: *** [cmTC_a43fb/fast] Error 2
 make[2]: Leaving directory '/home/physiii/circuits/liger/code/build/libwebsockets/CMakeFiles/CMakeTmp'
 
 

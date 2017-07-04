@@ -1,12 +1,12 @@
 {
  "schema": "lws1",
  "model": "lws",
- "builder": "desktop",
+ "builder": "laptop",
  "app": "liger",
  "user": "physiii",
- "git": "f3eb184-dirty",
- "date": "Fri Jun 30 08:44:33 CDT 2017",
- "unixtime": "1498830273",
- "file": "liger-1498830273.bin",
+ "git": "419dcf8-dirty",
+ "date": "Tue Jul  4 07:56:05 CDT 2017",
+ "unixtime": "1499172965",
+ "file": "liger-1499172965.bin",
  "factory": "0"
 }
