@@ -39,10 +39,16 @@
 #define DUMB_PERIOD 50
 #endif
 
-char tag[50] = "[token-protocol]";
-char token[256];
+#define BUTTON1 (4)
 
-struct per_vhost_data__token {
+uint8_t mac[6];
+char mac_str[20];
+int value[SAMPLE_SIZE];
+int button_value;
+char temp_str[50];
+int button_sum = 0;
+
+struct per_vhost_data__buttons {
 	uv_timer_t timeout_watcher;
 
 	TimerHandle_t timer, reboot_timer;
@@ -58,39 +64,49 @@ struct per_vhost_data__token {
 	int value[1024];
 };
 
-struct per_session_data__token {
+struct per_session_data__buttons {
 	int number;
 	int value;
 };
 
+//extern int value[1024];
+
 static void
-uv_timeout_cb_token(uv_timer_t *w
+uv_timeout_cb_buttons(uv_timer_t *w
 #if UV_VERSION_MAJOR == 0
 		, int status
 #endif
 )
 {
-	struct per_vhost_data__token *vhd;
+	struct per_vhost_data__buttons *vhd;
        
 //	w = pvTimerGetTimerID((uv_timer_t)w);
 
 	vhd = lws_container_of(w,
-			struct per_vhost_data__token, timeout_watcher);
+			struct per_vhost_data__buttons, timeout_watcher);
 
 	if (vhd->vhost)
 		lws_callback_on_writable_all_protocol_vhost(vhd->vhost, vhd->protocol);
 }
 
+void adc2task(struct per_vhost_data__buttons *vhd)
+{
+	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
+		(TimerCallbackFunction_t)adc_timer_cb);
+	xTimerStart(adc_timer, 0);*/
+	while(1){
+		//button_sum = adc1_get_voltage(BUTTON1);
+		button_sum = 0;
+		for (int i = 0; i < SAMPLE_SIZE; i++) {
+			value[i] = adc1_get_voltage(BUTTON1);
+			button_sum+=value[i];	
+		}
+		vTaskDelay(100/portTICK_PERIOD_MS);
+		//printf("button_sum: %d\n",button_sum);
+	}
+}
 
-#define MIC_CHANNEL (4)
-#define SAMPLE_SIZE (128)
-#define SAMPLE_RATE (44100)
-char temp_str[50];
-bool token_received = false;
-uint8_t mac[6];
-char mac_str[20];
-
-void nvs_test()
+/*void get_token(token)
 {
     // Initialize NVS
     esp_err_t err = nvs_flash_init();
@@ -152,34 +168,35 @@ void nvs_test()
     printf("\n");
 
     // Restart module
-    /*for (int i = 10; i >= 0; i--) {
+    for (int i = 10; i >= 0; i--) {
         printf("Restarting in %d seconds...\n", i);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
     printf("Restarting now.\n");
-    fflush(stdout);*/
+    fflush(stdout);
     //esp_restart();
-}
+}*/
 
 
 static int
-callback_token(struct lws *wsi, enum lws_callback_reasons reason,
+callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
+	char TAG[50] = "[buttons-protocol]";
         esp_wifi_get_mac(WIFI_IF_STA,mac);
 	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
            mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
            mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
-	struct per_session_data__token *pss =
-			(struct per_session_data__token *)user;
-	struct per_vhost_data__token *vhd =
-			(struct per_vhost_data__token *)
+	struct per_session_data__buttons *pss =
+			(struct per_session_data__buttons *)user;
+	struct per_vhost_data__buttons *vhd =
+			(struct per_vhost_data__buttons *)
 			lws_protocol_vh_priv_get(lws_get_vhost(wsi),
 					lws_get_protocol(wsi));
 
 	unsigned char buf[LWS_PRE + 1024];
 	unsigned char *p = &buf[LWS_PRE];
-	char token_req_str[1024];
+	char button_value_str[1024];
 	int n, m;
 	switch (reason) {
 	case 1: //conn err
@@ -187,10 +204,15 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
+		printf("%s initialize\n",TAG);
+		xTaskCreate(adc2task, "adc2task", 1024*3, &vhd, 10, NULL);
+		// initialize ADC
+		adc1_config_width(ADC_WIDTH_12Bit);
+		adc1_config_channel_atten(BUTTON1,ADC_ATTEN_11db);
 
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
-				sizeof(struct per_vhost_data__token));
+				sizeof(struct per_vhost_data__buttons));
 		vhd->context = lws_get_context(wsi);
 		vhd->protocol = lws_vhost_name_to_protocol(lws_get_vhost(wsi),
 					lws_get_protocol(wsi)->name);
@@ -199,7 +221,7 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		uv_timer_init(lws_uv_getloop(vhd->context, 0),
 			      &vhd->timeout_watcher);
 		uv_timer_start(&vhd->timeout_watcher,
-			       uv_timeout_cb_token, DUMB_PERIOD, DUMB_PERIOD);
+			       uv_timeout_cb_buttons, DUMB_PERIOD, DUMB_PERIOD);
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_DESTROY:
@@ -215,43 +237,52 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
-		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] sum: %d\n",sum);
-		if (token_received)
-			break;
-                strcpy(token_req_str, "{\"mac\":\"");
-		strcat(token_req_str,mac_str);
-                strcat(token_req_str, "\",\"cmd\":\"token_request\"");
-                strcat(token_req_str, ",\"device_type\":\"room_sensor\"");
-		strcat(token_req_str,"}");
-		n = lws_snprintf((char *)p, sizeof(token_req_str) - LWS_PRE, "%s", token_req_str);
+		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button_sum: %d\n",button_sum);
+		if (button_sum < 10000) break;
+		snprintf(temp_str, 10, "%d",button_sum);
+                strcpy(button_value_str, "{\"front_button\":");
+		strcat(button_value_str,temp_str);
+                strcat(button_value_str, ",\"mac\":\"");
+		strcat(button_value_str,mac_str);
+                strcat(button_value_str, "\",\"token\":\"");
+		strcat(button_value_str,token);
+		strcat(button_value_str,"\"}");
+		n = lws_snprintf((char *)p, sizeof(button_value_str) - LWS_PRE, "%s", button_value_str);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
-		if (m < n) 
+		if (m < n) {
 			lwsl_err("ERROR %d writing to di socket\n", n);
-		else
-			printf("%s %s\n",tag,token_req_str);
+			printf("%s %s\n",TAG,button_value_str);
+		} else
+			printf("%s %s\n",TAG,button_value_str);
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 6)
 			break;
-		sprintf(token,"%s",(const char *)in);
-		nvs_test();
-		token_received = true;
+		printf("%s %s\n",TAG,(const char *)in);
+		if (strcmp((const char *)in, "reset\n") == 0)
+			pss->number = 0;
+		if (strcmp((const char *)in, "closeme\n") == 0) {
+			lwsl_notice("dumb_inc: closing as requested\n");
+			lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
+					 (unsigned char *)"seeya", 5);
+			return -1;
+		}
 		break;
 
 	default:
-	   	printf("callback_token: %d\n",reason);
+	   	printf("callback_buttons: %d\n",reason);
 		break;
 	}
 
 	return 0;
 }
 
-#define LWS_PLUGIN_PROTOCOL_TOKEN \
+#define LWS_PLUGIN_PROTOCOL_BUTTONS \
 	{ \
-		"token-protocol", \
-		callback_token, \
-		sizeof(struct per_session_data__token), \
+		"buttons-protocol", \
+		callback_buttons, \
+		sizeof(struct per_session_data__buttons), \
 		1000, /* rx buf size must be >= permessage-deflate rx size */ \
 		0, NULL, 0 \
 	}
@@ -259,11 +290,11 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 #if !defined (LWS_PLUGIN_STATIC)
 		
 static const struct lws_protocols protocols[] = {
-	LWS_PLUGIN_PROTOCOL_token
+	LWS_PLUGIN_PROTOCOL_buttons
 };
 
 LWS_EXTERN LWS_VISIBLE int
-init_protocol_token(struct lws_context *context,
+init_protocol_buttons(struct lws_context *context,
 			     struct lws_plugin_capability *c)
 {
 	if (c->api_magic != LWS_PLUGIN_API_MAGIC) {
@@ -281,7 +312,7 @@ init_protocol_token(struct lws_context *context,
 }
 
 LWS_EXTERN LWS_VISIBLE int
-destroy_protocol_token(struct lws_context *context)
+destroy_protocol_buttons(struct lws_context *context)
 {
 	return 0;
 }

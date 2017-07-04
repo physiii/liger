@@ -38,7 +38,8 @@
 //#include "plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 #include "plugins/protocol_token.c"
-#include "plugins/protocol_lws_microphone.c"
+#include "plugins/protocol_microphone.c"
+#include "plugins/protocol_buttons.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -48,11 +49,8 @@ static const struct lws_protocols protocols_station[] = {
 		1024, 0, NULL, 900
 	},
 	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
+	LWS_PLUGIN_PROTOCOL_BUTTONS, /* demo... */
 	LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
-	//LWS_PLUGIN_PROTOCOL_DUMB_INCREMENT, /* demo... */
-	//LWS_PLUGIN_PROTOCOL_MIRROR,	    /* replace with */
-	//LWS_PLUGIN_PROTOCOL_POST_DEMO,	    /* your own */
-	//LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
 };
@@ -135,8 +133,15 @@ static void flash_timer_cb(TimerHandle_t t)
 		gpio_output_set(1 << GPIO_ID, 0, 1 << GPIO_ID, 0);*/
 }
 
+uint8_t mac[6];
+char mac_str[20];
 void app_main(void)
 {
+        esp_wifi_get_mac(WIFI_IF_STA,mac);
+	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
+           mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
+           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
+
 	nvs_flash_init();
 	lws_esp32_wlan_config();
 	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
@@ -144,6 +149,7 @@ void app_main(void)
 
 	static struct lws_context_creation_info info;
 	static struct lws_client_connect_info i;
+	static struct lws_client_connect_info j;
 	struct lws_context *context;
         struct lws *wsi;
 
@@ -163,9 +169,13 @@ void app_main(void)
 	i.origin = i.host;
         i.ietf_version_or_minus_one = -1;
 	i.path = "/";
-	i.protocol = "microphone-protocol,token-protocol";
 	i.pwsi = &wsi;
 	i.context = context;
+
+	// ------------------ //
+	// initiate protocols //
+	// ------------------ //
+	i.protocol = "token-protocol";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);
@@ -173,6 +183,25 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
+	i.protocol = "buttons-protocol";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+
+	/*i.protocol = "microphone-protocol";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }*/
+
+	// ----------------- //
+	// service protocols //
+	// ----------------- //
 	while (!lws_service(context, 500)) {
 		taskYIELD();
 	}
