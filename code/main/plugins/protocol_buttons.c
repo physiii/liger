@@ -45,6 +45,13 @@
 #define BUTTON2 (5)
 #define BUTTON3 (6)
 #define BUTTON4 (7)
+#define LIGHT_SWITCH    15
+#define GPIO_OUTPUT_IO_1    19
+#define GPIO_OUTPUT_PIN_SEL  ((1<<LIGHT_SWITCH) | (1<<GPIO_OUTPUT_IO_1))
+#define GPIO_INPUT_IO_0     4
+#define GPIO_INPUT_IO_1     5
+#define GPIO_INPUT_PIN_SEL  ((1<<GPIO_INPUT_IO_0) | (1<<GPIO_INPUT_IO_1))
+#define ESP_INTR_FLAG_DEFAULT 0
 
 uint8_t mac[6];
 char mac_str[20];
@@ -58,6 +65,7 @@ int button1_sum = 0;
 int button2_sum = 0;
 int button3_sum = 0;
 int button4_sum = 0;
+bool light_state = false;
 
 struct per_vhost_data__buttons {
 	uv_timer_t timeout_watcher;
@@ -105,6 +113,7 @@ void adc2task(struct per_vhost_data__buttons *vhd)
 	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
 		(TimerCallbackFunction_t)adc_timer_cb);
 	xTimerStart(adc_timer, 0);*/
+	bool button_pressed = false;
 	while(1){
 		//button_sum = adc1_get_voltage(BUTTON1);
 		button1_sum = 0;
@@ -118,25 +127,95 @@ void adc2task(struct per_vhost_data__buttons *vhd)
 			button4_sum+=adc1_get_voltage(BUTTON4);
 		}
 		vTaskDelay(100/portTICK_PERIOD_MS);
-		//printf("button3_sum: %d\n",button3_sum);
+		if (button1_sum > 100000 || button2_sum > 100000 || button3_sum > 100000 || button4_sum > 100000) {
+			if (button_pressed) continue;
+			button_pressed = true;
+			printf("Button pressed: %s\n", button_pressed ? "true" : "false");
+		        gpio_set_level(LIGHT_SWITCH, button_pressed);
+		} else {
+			if (!button_pressed) continue;
+			button_pressed = false;
+			printf("Button released: %s\n", button_pressed ? "true" : "false");
+		        gpio_set_level(LIGHT_SWITCH, button_pressed);
+		}
 	}
 }
 
-/*uint8_t temprature_sens_read(); 
-uint32_t hall_sens_read();
-void read_sens_task(void *pvParameters)
+// --------- gpio --------- //
+static xQueueHandle gpio_evt_queue = NULL;
+
+static void IRAM_ATTR gpio_isr_handler(void* arg)
 {
-    while (1) {
-	int total_b_field = 0;
-	for (int i = 0; i < 100; i++) {
-		total_b_field += hall_sens_read();
-	        vTaskDelay(10 / portTICK_PERIOD_MS);
-	}
-        //printf("ESP32 onchip Temperature = %d\n", temprature_sens_read());
-        printf("%s B_field: %d\n", tag, total_b_field /1000);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+    uint32_t gpio_num = (uint32_t) arg;
+    xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
+}
+
+static void gpio_task_example(void* arg)
+{
+    uint32_t io_num;
+    for(;;) {
+        if(xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY)) {
+            printf("GPIO[%d] intr, val: %d\n", io_num, gpio_get_level(io_num));
+        }
     }
-}*/
+}
+
+void init_gpio()
+{
+    gpio_config_t io_conf;
+    //disable interrupt
+    io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+    //set as output mode
+    io_conf.mode = GPIO_MODE_OUTPUT;
+    //bit mask of the pins that you want to set,e.g.GPIO18/19
+    io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;
+    //disable pull-down mode
+    io_conf.pull_down_en = 0;
+    //disable pull-up mode
+    io_conf.pull_up_en = 0;
+    //configure GPIO with the given settings
+    gpio_config(&io_conf);
+
+    //interrupt of rising edge
+    io_conf.intr_type = GPIO_PIN_INTR_POSEDGE;
+    //bit mask of the pins, use GPIO4/5 here
+    io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
+    //set as input mode    
+    io_conf.mode = GPIO_MODE_INPUT;
+    //enable pull-up mode
+    io_conf.pull_up_en = 1;
+    gpio_config(&io_conf);
+
+    //change gpio intrrupt type for one pin
+    gpio_set_intr_type(GPIO_INPUT_IO_0, GPIO_INTR_ANYEDGE);
+
+    //create a queue to handle gpio event from isr
+    gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
+    //start gpio task
+    xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
+
+    //install gpio isr service
+    gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
+    //hook isr handler for specific gpio pin
+    gpio_isr_handler_add(GPIO_INPUT_IO_0, gpio_isr_handler, (void*) GPIO_INPUT_IO_0);
+    //hook isr handler for specific gpio pin
+    gpio_isr_handler_add(GPIO_INPUT_IO_1, gpio_isr_handler, (void*) GPIO_INPUT_IO_1);
+
+    //remove isr handler for gpio number.
+    gpio_isr_handler_remove(GPIO_INPUT_IO_0);
+    //hook isr handler for specific gpio pin again
+    gpio_isr_handler_add(GPIO_INPUT_IO_0, gpio_isr_handler, (void*) GPIO_INPUT_IO_0);
+
+    int cnt = 0;
+    while(1) {
+        //printf("cnt: %d\n", cnt++);
+        vTaskDelay(1000 / portTICK_RATE_MS);
+        //gpio_set_level(GPIO_OUTPUT_IO_0, cnt % 2);
+        //gpio_set_level(GPIO_OUTPUT_IO_1, cnt % 2);
+    }
+}
+
+// ------------------------ //
 
 static int
 callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
@@ -166,6 +245,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 	case LWS_CALLBACK_PROTOCOL_INIT:
 		printf("%s initialize\n",TAG);
 		xTaskCreate(adc2task, "adc2task", 1024*3, &vhd, 10, NULL);
+		xTaskCreate(init_gpio, "init_gpio", 1024*3, &vhd, 10, NULL);
 		//xTaskCreate(read_sens_task, "read_sens_task", 1024*3, &vhd, 10, NULL);
 
 		// initialize ADC
@@ -199,7 +279,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
-		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button1_sum: %d\n",button1_sum);
+		printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button1_sum: %d\n",button1_sum);
 		if (button1_sum < 100000 && button2_sum < 100000 && button3_sum < 100000 && button4_sum < 100000)
 			break;
 		snprintf(button1_str, 10, "%d",button1_sum);
