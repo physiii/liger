@@ -34,7 +34,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "."
   "/home/physiii/circuits/liger/code/components/libwebsockets/lib"
   "/home/physiii/circuits/liger/code/components/zlib"
-  "/home/physiii/esp/esp-idf/components/openssl/include"
+  "/home/physiii/code/esp-idf/components/openssl/include"
   )
 
 # Targets to which this target links.
