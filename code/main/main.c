@@ -48,7 +48,10 @@ static const struct lws_protocols protocols_station[] = {
 	},
 	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
 	LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
+<<<<<<< HEAD
 	LWS_PLUGIN_PROTOCOL_BUTTONS, /* demo... */
+=======
+>>>>>>> cd5d3000b72261f998b402575babdaa00b662202
 	//LWS_PLUGIN_PROTOCOL_OTA, /* demo... */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */

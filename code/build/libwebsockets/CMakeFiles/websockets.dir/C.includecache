@@ -418,43 +418,43 @@ unixio.h
 zconf.h
 /home/physiii/circuits/liger/code/components/zlib/zconf.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl3.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl3.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_code.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_code.h
 ssl3.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl3.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl3.h
 tls1.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/tls1.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/tls1.h
 x509_vfy.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/x509_vfy.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/x509_vfy.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_pkey.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_pkey.h
 ssl_types.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_types.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_types.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_stack.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_stack.h
 ssl_types.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_types.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_types.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_types.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_types.h
 ssl_code.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_code.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_code.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_x509.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_x509.h
 ssl_types.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_types.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_types.h
 ssl_stack.h
-/home/physiii/esp/esp-idf/components/openssl/include/internal/ssl_stack.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/ssl_stack.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/tls1.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/tls1.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/internal/x509_vfy.h
+/home/physiii/code/esp-idf/components/openssl/include/internal/x509_vfy.h
 
-/home/physiii/esp/esp-idf/components/openssl/include/openssl/ssl.h
+/home/physiii/code/esp-idf/components/openssl/include/openssl/ssl.h
 internal/ssl_x509.h
-/home/physiii/esp/esp-idf/components/openssl/include/openssl/internal/ssl_x509.h
+/home/physiii/code/esp-idf/components/openssl/include/openssl/internal/ssl_x509.h
 internal/ssl_pkey.h
-/home/physiii/esp/esp-idf/components/openssl/include/openssl/internal/ssl_pkey.h
+/home/physiii/code/esp-idf/components/openssl/include/openssl/internal/ssl_pkey.h
 
 lws_config.h
 
