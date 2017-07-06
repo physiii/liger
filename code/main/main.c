@@ -32,15 +32,12 @@
  * To customize for your own device, you would remove these
  * and put your own plugin include here
  */
-//#include "plugins/protocol_dumb_increment.c"
-//#include "plugins/protocol_lws_mirror.c"
-//#include "plugins/protocol_post_demo.c"
-//#include "plugins/protocol_lws_status.c"
+
 #include <protocol_esp32_lws_reboot_to_factory.c>
 #include "plugins/protocol_token.c"
 #include "plugins/protocol_microphone.c"
 #include "plugins/protocol_buttons.c"
-#include "plugins/protocol_ota.c"
+//#include "plugins/protocol_ota.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -50,9 +47,9 @@ static const struct lws_protocols protocols_station[] = {
 		1024, 0, NULL, 900
 	},
 	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
-	LWS_PLUGIN_PROTOCOL_BUTTONS, /* demo... */
 	LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
-	LWS_PLUGIN_PROTOCOL_OTA, /* demo... */
+	LWS_PLUGIN_PROTOCOL_BUTTONS, /* demo... */
+	//LWS_PLUGIN_PROTOCOL_OTA, /* demo... */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
 };
@@ -96,12 +93,12 @@ static const struct lws_http_mount mount_station = {
         .mountpoint_len		= 1,
 };
 
-/*esp_err_t event_handler(void *ctx, system_event_t *event)
+esp_err_t event_handler(void *ctx, system_event_t *event)
 {
 	// deal with your own user events here first 
 
 	return lws_esp32_event_passthru(ctx, event);
-}*/
+}
 
 /*
  * This is called when the user asks to "Identify physical device"

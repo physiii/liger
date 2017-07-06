@@ -133,15 +133,7 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_token.c \
  /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_microphone.c \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_ota.c \
- /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h \
- /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h \
- /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/err.h \
- /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h \
- /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h \
- /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h \
- /home/physiii/esp/esp-idf/components/log/include/esp_log.h
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c
 
 /home/physiii/circuits/liger/code/components/libwebsockets/../../../../../../../../..//home/physiii/circuits/liger/code/build/libwebsockets/include/libwebsockets.h:
 
@@ -412,19 +404,3 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 /home/physiii/circuits/liger/code/main/./plugins/protocol_microphone.c:
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c:
-
-/home/physiii/circuits/liger/code/main/./plugins/protocol_ota.c:
-
-/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h:
-
-/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h:
-
-/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/err.h:
-
-/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h:
-
-/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h:
-
-/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h:
-
-/home/physiii/esp/esp-idf/components/log/include/esp_log.h:

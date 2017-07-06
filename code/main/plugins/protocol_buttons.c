@@ -263,7 +263,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		uv_timer_init(lws_uv_getloop(vhd->context, 0),
 			      &vhd->timeout_watcher);
 		uv_timer_start(&vhd->timeout_watcher,
-			       uv_timeout_cb_buttons, DUMB_PERIOD, DUMB_PERIOD);
+			        uv_timeout_cb_buttons, DUMB_PERIOD, DUMB_PERIOD);
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_DESTROY:
