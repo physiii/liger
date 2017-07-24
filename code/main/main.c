@@ -38,6 +38,8 @@
 #include "plugins/protocol_microphone.c"
 #include "plugins/protocol_buttons.c"
 //#include "plugins/protocol_ota.c"
+#include "plugins/protocol_update.c"
+#include "protocol_esp32_lws_ota.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -48,11 +50,9 @@ static const struct lws_protocols protocols_station[] = {
 	},
 	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
 	LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
-<<<<<<< HEAD
 	LWS_PLUGIN_PROTOCOL_BUTTONS, /* demo... */
-=======
->>>>>>> cd5d3000b72261f998b402575babdaa00b662202
 	//LWS_PLUGIN_PROTOCOL_OTA, /* demo... */
+	LWS_PLUGIN_PROTOCOL_ESPLWS_SCAN, /* demo... */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
 };
@@ -185,7 +185,23 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
+	i.protocol = "ota-protocol";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+
 	i.protocol = "buttons-protocol";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+
+	i.protocol = "esplws-scan";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);

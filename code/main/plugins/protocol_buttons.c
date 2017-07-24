@@ -110,12 +110,9 @@ uv_timeout_cb_buttons(uv_timer_t *w
 
 void adc2task(struct per_vhost_data__buttons *vhd)
 {
-	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
-		(TimerCallbackFunction_t)adc_timer_cb);
-	xTimerStart(adc_timer, 0);*/
+	char tag[50] = "[buttons-protocol]";
 	bool button_pressed = false;
 	while(1){
-		//button_sum = adc1_get_voltage(BUTTON1);
 		button1_sum = 0;
 		button2_sum = 0;
 		button3_sum = 0;
@@ -130,12 +127,12 @@ void adc2task(struct per_vhost_data__buttons *vhd)
 		if (button1_sum > 100000 || button2_sum > 100000 || button3_sum > 100000 || button4_sum > 100000) {
 			if (button_pressed) continue;
 			button_pressed = true;
-			printf("Button pressed: %s\n", button_pressed ? "true" : "false");
+			printf("%s Button pressed: %s\n", tag, button_pressed ? "true" : "false");
 		        gpio_set_level(LIGHT_SWITCH, button_pressed);
 		} else {
 			if (!button_pressed) continue;
 			button_pressed = false;
-			printf("Button released: %s\n", button_pressed ? "true" : "false");
+			printf("%s Button released: %s\n", tag, button_pressed ? "true" : "false");
 		        gpio_set_level(LIGHT_SWITCH, button_pressed);
 		}
 	}
@@ -221,8 +218,7 @@ static int
 callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
-
-	char TAG[50] = "[buttons-protocol]";
+	char tag[50] = "[buttons-protocol]";
         esp_wifi_get_mac(WIFI_IF_STA,mac);
 	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
            mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
@@ -243,7 +239,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
-		printf("%s initialize\n",TAG);
+		printf("%s initialize\n",tag);
 		xTaskCreate(adc2task, "adc2task", 1024*3, &vhd, 10, NULL);
 		xTaskCreate(init_gpio, "init_gpio", 1024*3, &vhd, 10, NULL);
 		//xTaskCreate(read_sens_task, "read_sens_task", 1024*3, &vhd, 10, NULL);
@@ -279,7 +275,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
-		printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button1_sum: %d\n",button1_sum);
+		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button1_sum: %d\n",button1_sum);
 		if (button1_sum < 100000 && button2_sum < 100000 && button3_sum < 100000 && button4_sum < 100000)
 			break;
 		snprintf(button1_str, 10, "%d",button1_sum);
@@ -309,15 +305,16 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) {
 			lwsl_err("ERROR %d writing to di socket\n", n);
-			printf("%s %s\n",TAG,button_value_str);
-		} else
-			printf("%s %s\n",TAG,button_value_str);
+			printf("%s %s\n",tag,button_value_str);
+		} else {
+			//printf("%s %s\n",tag,button_value_str);
+		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 6)
 			break;
-		printf("%s %s\n",TAG,(const char *)in);
+		printf("%s[LWS_CALLBACK_CLIENT_RECEIVE] %s\n",tag,(const char *)in);
 		if (strcmp((const char *)in, "reset\n") == 0)
 			pss->number = 0;
 		if (strcmp((const char *)in, "closeme\n") == 0) {
@@ -329,7 +326,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	default:
-	   	printf("callback_buttons: %d\n",reason);
+	   	printf("%s callback_buttons: %d\n",tag,reason);
 		break;
 	}
 

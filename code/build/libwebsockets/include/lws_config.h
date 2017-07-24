@@ -35,11 +35,7 @@
 #define LWS_LIBRARY_VERSION_NUMBER (LWS_LIBRARY_VERSION_MAJOR*1000000)+(LWS_LIBRARY_VERSION_MINOR*1000)+LWS_LIBRARY_VERSION_PATCH
 
 /* The current git commit hash that we're building from */
-<<<<<<< HEAD
 #define LWS_BUILD_HASH "physiii@desktop-v2.0.0-386-g3cf570e"
-=======
-#define LWS_BUILD_HASH "physiii@laptop-"
->>>>>>> cd5d3000b72261f998b402575babdaa00b662202
 
 /* Build with OpenSSL support */
 #define LWS_OPENSSL_SUPPORT

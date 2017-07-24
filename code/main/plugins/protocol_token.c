@@ -39,7 +39,13 @@
 #define DUMB_PERIOD 50
 #endif
 
-char tag[50] = "[token-protocol]";
+#define MIC_CHANNEL (4)
+#define SAMPLE_SIZE (128)
+#define SAMPLE_RATE (44100)
+char temp_str[50];
+bool token_received = false;
+uint8_t mac[6];
+char mac_str[20];
 char token[256];
 
 struct per_vhost_data__token {
@@ -82,16 +88,11 @@ uv_timeout_cb_token(uv_timer_t *w
 }
 
 
-#define MIC_CHANNEL (4)
-#define SAMPLE_SIZE (128)
-#define SAMPLE_RATE (44100)
-char temp_str[50];
-bool token_received = false;
-uint8_t mac[6];
-char mac_str[20];
+
 
 void nvs_test()
 {
+    char tag[50] = "[token-protocol]";
     // Initialize NVS
     esp_err_t err = nvs_flash_init();
     if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
@@ -106,37 +107,37 @@ void nvs_test()
     ESP_ERROR_CHECK( err );
 
     // Open
-    printf("\n");
-    printf("Opening Non-Volatile Storage (NVS) handle... ");
+    //printf("\n");
+    //printf("Opening Non-Volatile Storage (NVS) handle... ");
     nvs_handle my_handle;
     err = nvs_open("storage", NVS_READWRITE, &my_handle);
     if (err != ESP_OK) {
         printf("Error (%d) opening NVS handle!\n", err);
     } else {
-        printf("Done\n");
+        //printf(tag,"Done\n");
 	printf("%s %s\n",tag,token);
 
         // Write
-        printf("Updating token... ");
+        //printf("Updating token... ");
         err = nvs_set_str(my_handle, "token", token);
-        printf((err != ESP_OK) ? "Failed!\n" : "Done\n");
+        //printf((err != ESP_OK) ? "Failed!\n" : "Done\n");
 
         // Commit written value.
         // After setting any values, nvs_commit() must be called to ensure changes are written
         // to flash storage. Implementations may write to storage at other times,
         // but this is not guaranteed.
-        printf("Committing updates in NVS ... ");
+        //printf("Committing updates in NVS ... ");
         err = nvs_commit(my_handle);
-        printf((err != ESP_OK) ? "Failed!\n" : "Done\n");
+        //printf((err != ESP_OK) ? "Failed!\n" : "Done\n");
 
         // Read
-        printf("Reading restart counter from NVS ... ");
+        //printf("Reading restart counter from NVS ... ");
         //int32_t restart_counter = 0; // value will default to 0, if not set yet in NVS
 	size_t size;
         err = nvs_get_str(my_handle, "token", token, &size);
         switch (err) {
             case ESP_OK:
-                printf("Done\n");
+                //printf(tag,"Done\n");
                 printf("token = %s\n", token);
                 break;
             case ESP_ERR_NVS_NOT_FOUND:
@@ -166,6 +167,7 @@ static int
 callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
+	char tag[50] = "[token-protocol]";
         esp_wifi_get_mac(WIFI_IF_STA,mac);
 	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
            mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
@@ -227,8 +229,9 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) 
 			lwsl_err("ERROR %d writing to di socket\n", n);
-		else
-			printf("%s %s\n",tag,token_req_str);
+		else  {
+			//printf("%s %s\n",tag,token_req_str);
+		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
@@ -240,7 +243,7 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	default:
-	   	printf("callback_token: %d\n",reason);
+	   	printf("%s callback_token: %d\n",tag,reason);
 		break;
 	}
 
