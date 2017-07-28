@@ -37,6 +37,7 @@
 #include "plugins/protocol_token.c"
 #include "plugins/protocol_microphone.c"
 #include "plugins/protocol_buttons.c"
+#include "plugins/protocol_motion.c"
 //#include "plugins/protocol_ota.c"
 #include "plugins/protocol_update.c"
 #include "protocol_esp32_lws_ota.c"
@@ -48,11 +49,12 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	LWS_PLUGIN_PROTOCOL_MICROPHONE, /* demo... */
-	LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
-	LWS_PLUGIN_PROTOCOL_BUTTONS, /* demo... */
-	//LWS_PLUGIN_PROTOCOL_OTA, /* demo... */
-	LWS_PLUGIN_PROTOCOL_ESPLWS_SCAN, /* demo... */
+	LWS_PLUGIN_PROTOCOL_MICROPHONE,
+	LWS_PLUGIN_PROTOCOL_TOKEN,
+	LWS_PLUGIN_PROTOCOL_BUTTONS,
+	LWS_PLUGIN_PROTOCOL_MOTION,
+	//LWS_PLUGIN_PROTOCOL_OTA,
+	LWS_PLUGIN_PROTOCOL_ESPLWS_SCAN,
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
 };

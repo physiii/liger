@@ -134,6 +134,7 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_microphone.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c \
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_update.c \
  /home/physiii/circuits/liger/code/main/../components/libwebsockets/plugins/protocol_esp32_lws_ota.c
 
@@ -406,6 +407,8 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 /home/physiii/circuits/liger/code/main/./plugins/protocol_microphone.c:
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c:
+
+/home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c:
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_update.c:
 
