@@ -81,3 +81,4 @@ library/ecp_curves.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/ecp_curves.c:

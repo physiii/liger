@@ -22,6 +22,8 @@ src/secure_boot.o: \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_image_format.h \
+ /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_flash_data_types.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_secure_boot.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_flash_encrypt.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_efuse.h
@@ -70,8 +72,13 @@ src/secure_boot.o: \
 
 /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_image_format.h:
 
+/home/physiii/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/esp_flash_data_types.h:
+
 /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_secure_boot.h:
 
 /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_flash_encrypt.h:
 
 /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_efuse.h:
+/home/physiii/esp/esp-idf/components/bootloader_support/src/secure_boot.c:

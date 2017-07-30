@@ -78,3 +78,4 @@ libsodium/src/libsodium/crypto_pwhash/argon2/blake2b-long.o: \
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_pwhash/argon2/blake2b-long.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_pwhash/argon2/blake2b-long.c:

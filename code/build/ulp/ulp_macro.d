@@ -25,9 +25,10 @@ ulp_macro.o: /home/physiii/esp/esp-idf/components/ulp/./ulp_macro.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
@@ -88,11 +89,13 @@ ulp_macro.o: /home/physiii/esp/esp-idf/components/ulp/./ulp_macro.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -107,3 +110,4 @@ ulp_macro.o: /home/physiii/esp/esp-idf/components/ulp/./ulp_macro.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h:
+/home/physiii/esp/esp-idf/components/ulp/./ulp_macro.c:

@@ -110,3 +110,4 @@ zutil.o: /home/physiii/circuits/liger/code/components/zlib/./zutil.c \
 /home/physiii/esp/esp-idf/components/newlib/include/errno.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h:
+/home/physiii/circuits/liger/code/components/zlib/./zutil.c:

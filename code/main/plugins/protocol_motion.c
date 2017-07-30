@@ -102,7 +102,7 @@ void pir_task(struct per_vhost_data__motion *vhd)
 			pir_sum+=value[i];	
 		}
 		vTaskDelay(100/portTICK_PERIOD_MS);
-		printf("pir_sum: %d\n",pir_sum);
+		//printf("pir_sum: %d\n",pir_sum);
 	}
 }
 

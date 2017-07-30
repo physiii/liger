@@ -57,3 +57,4 @@ libsodium/src/libsodium/crypto_pwhash/crypto_pwhash.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/export.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_pwhash/crypto_pwhash.c:

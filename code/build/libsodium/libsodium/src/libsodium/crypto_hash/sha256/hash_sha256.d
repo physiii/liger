@@ -60,3 +60,4 @@ libsodium/src/libsodium/crypto_hash/sha256/hash_sha256.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/export.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_hash/sha256/hash_sha256.c:

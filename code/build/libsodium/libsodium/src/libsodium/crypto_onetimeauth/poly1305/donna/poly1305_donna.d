@@ -96,3 +96,4 @@ libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna.o: \
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna32.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna.c:

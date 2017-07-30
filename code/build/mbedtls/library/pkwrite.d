@@ -141,3 +141,4 @@ library/pkwrite.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/pkwrite.c:

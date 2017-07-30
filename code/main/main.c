@@ -33,14 +33,14 @@
  * and put your own plugin include here
  */
 
-#include <protocol_esp32_lws_reboot_to_factory.c>
 #include "plugins/protocol_token.c"
 #include "plugins/protocol_microphone.c"
 #include "plugins/protocol_buttons.c"
 #include "plugins/protocol_motion.c"
 //#include "plugins/protocol_ota.c"
 #include "plugins/protocol_update.c"
-#include "protocol_esp32_lws_ota.c"
+#include "plugins/protocol_esp32_lws_ota.c"
+#include "plugins/protocol_esp32_lws_reboot_to_factory.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{

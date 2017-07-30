@@ -15,13 +15,14 @@ cxx_guards.o: /home/physiii/esp/esp-idf/components/cxx/./cxx_guards.cpp \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/newlib/include/limits.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -83,6 +84,10 @@ cxx_guards.o: /home/physiii/esp/esp-idf/components/cxx/./cxx_guards.cpp \
 
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdint.h:
@@ -94,8 +99,6 @@ cxx_guards.o: /home/physiii/esp/esp-idf/components/cxx/./cxx_guards.cpp \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -152,3 +155,4 @@ cxx_guards.o: /home/physiii/esp/esp-idf/components/cxx/./cxx_guards.cpp \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/task.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/list.h:
+/home/physiii/esp/esp-idf/components/cxx/./cxx_guards.cpp:

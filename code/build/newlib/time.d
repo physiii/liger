@@ -30,6 +30,8 @@ time.o: /home/physiii/esp/esp-idf/components/newlib/./time.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
@@ -44,7 +46,6 @@ time.o: /home/physiii/esp/esp-idf/components/newlib/./time.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -133,6 +134,10 @@ time.o: /home/physiii/esp/esp-idf/components/newlib/./time.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h:
@@ -160,8 +165,6 @@ time.o: /home/physiii/esp/esp-idf/components/newlib/./time.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -212,3 +215,4 @@ time.o: /home/physiii/esp/esp-idf/components/newlib/./time.c \
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/list.h:
+/home/physiii/esp/esp-idf/components/newlib/./time.c:

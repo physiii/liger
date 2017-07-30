@@ -33,6 +33,7 @@ croutine.o: /home/physiii/esp/esp-idf/components/freertos/./croutine.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
@@ -118,6 +119,8 @@ croutine.o: /home/physiii/esp/esp-idf/components/freertos/./croutine.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
@@ -149,3 +152,4 @@ croutine.o: /home/physiii/esp/esp-idf/components/freertos/./croutine.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/list.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/croutine.h:
+/home/physiii/esp/esp-idf/components/freertos/./croutine.c:

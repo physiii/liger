@@ -87,3 +87,4 @@ nghttp2/lib/nghttp2_priority_spec.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/stdint.h:
 
 /home/physiii/esp/esp-idf/components/nghttp/port/include/nghttp2/nghttp2ver.h:
+/home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_priority_spec.c:

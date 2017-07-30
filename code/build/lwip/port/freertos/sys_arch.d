@@ -18,10 +18,21 @@ port/freertos/sys_arch.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -32,15 +43,9 @@ port/freertos/sys_arch.o: \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -58,10 +63,6 @@ port/freertos/sys_arch.o: \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h \
  /home/physiii/esp/esp-idf/components/newlib/include/time.h \
@@ -117,13 +118,35 @@ port/freertos/sys_arch.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -145,23 +168,11 @@ port/freertos/sys_arch.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
@@ -196,14 +207,6 @@ port/freertos/sys_arch.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h:
 
@@ -240,3 +243,4 @@ port/freertos/sys_arch.o: \
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/priv/memp_priv.h:
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
+/home/physiii/esp/esp-idf/components/lwip/port/freertos/sys_arch.c:

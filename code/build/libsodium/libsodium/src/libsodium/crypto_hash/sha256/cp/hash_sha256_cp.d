@@ -81,3 +81,4 @@ libsodium/src/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.o: \
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/private/common.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.c:

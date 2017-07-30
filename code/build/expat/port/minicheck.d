@@ -22,6 +22,8 @@ port/minicheck.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/setjmp.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/setjmp.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/expat/include/expat/internal.h \
  /home/physiii/esp/esp-idf/components/expat/port/include/minicheck.h
@@ -70,8 +72,13 @@ port/minicheck.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/setjmp.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/expat/include/expat/internal.h:
 
 /home/physiii/esp/esp-idf/components/expat/port/include/minicheck.h:
+/home/physiii/esp/esp-idf/components/expat/port/minicheck.c:

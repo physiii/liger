@@ -141,3 +141,4 @@ library/x509_crt.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/dirent.h:
 
 /home/physiii/esp/esp-idf/components/vfs/include/sys/dirent.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/x509_crt.c:

@@ -17,3 +17,4 @@ crc32.o: /home/physiii/esp/esp-idf/components/wear_levelling/./crc32.cpp \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/features.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
+/home/physiii/esp/esp-idf/components/wear_levelling/./crc32.cpp:

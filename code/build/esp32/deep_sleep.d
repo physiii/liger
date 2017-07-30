@@ -21,6 +21,11 @@ deep_sleep.o: /home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
@@ -48,7 +53,6 @@ deep_sleep.o: /home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtensa-versions.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-matmap.h \
  /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_clk.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/cache.h \
@@ -68,9 +72,6 @@ deep_sleep.o: /home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -130,6 +131,16 @@ deep_sleep.o: /home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h:
@@ -184,8 +195,6 @@ deep_sleep.o: /home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c \
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
 
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_clk.h:
@@ -224,12 +233,6 @@ deep_sleep.o: /home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h:
@@ -257,3 +260,4 @@ deep_sleep.o: /home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c \
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/list.h:
+/home/physiii/esp/esp-idf/components/esp32/./deep_sleep.c:

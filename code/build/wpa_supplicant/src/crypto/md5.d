@@ -8,30 +8,32 @@ src/crypto/md5.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
  /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/physiii/esp/esp-idf/components/newlib/include/newlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/config.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h \
- /home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/common.h \
- /home/physiii/esp/esp-idf/components/wpa_supplicant/port/include/os.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h \
  /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
+ /home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/common.h \
+ /home/physiii/esp/esp-idf/components/wpa_supplicant/port/include/os.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/mem.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h \
@@ -42,7 +44,6 @@ src/crypto/md5.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stat.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_task.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
@@ -98,7 +99,13 @@ src/crypto/md5.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
 
@@ -106,19 +113,7 @@ src/crypto/md5.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/config.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h:
-
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h:
-
-/home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/common.h:
-
-/home/physiii/esp/esp-idf/components/wpa_supplicant/port/include/os.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h:
 
@@ -130,6 +125,22 @@ src/crypto/md5.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
 
+/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
+
+/home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/common.h:
+
+/home/physiii/esp/esp-idf/components/wpa_supplicant/port/include/os.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/esp_types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/string.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
@@ -139,12 +150,6 @@ src/crypto/md5.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/mem.h:
 
@@ -165,8 +170,6 @@ src/crypto/md5.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stat.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_task.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h:
 
@@ -243,3 +246,4 @@ src/crypto/md5.o: \
 /home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/md5.h:
 
 /home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/crypto.h:
+/home/physiii/esp/esp-idf/components/wpa_supplicant/src/crypto/md5.c:

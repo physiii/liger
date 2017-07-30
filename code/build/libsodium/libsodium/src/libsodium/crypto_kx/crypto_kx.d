@@ -93,3 +93,4 @@ libsodium/src/libsodium/crypto_kx/crypto_kx.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_kx/crypto_kx.c:

@@ -34,6 +34,7 @@ xtensa_intr.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
@@ -117,6 +118,8 @@ xtensa_intr.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
@@ -144,3 +147,4 @@ xtensa_intr.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h:
+/home/physiii/esp/esp-idf/components/freertos/./xtensa_intr.c:

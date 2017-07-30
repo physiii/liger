@@ -123,3 +123,4 @@ library/x509write_csr.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/pem.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/x509write_csr.c:

@@ -72,3 +72,4 @@ libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphash24_ref.o
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphash_ref.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphash24_ref.c:

@@ -14,3 +14,4 @@ eri.o: /home/physiii/esp/esp-idf/components/xtensa-debug-module/./eri.c \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
 /home/physiii/esp/esp-idf/components/xtensa-debug-module/include/eri.h:
+/home/physiii/esp/esp-idf/components/xtensa-debug-module/./eri.c:

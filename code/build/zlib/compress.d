@@ -54,3 +54,4 @@ compress.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/unistd.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+/home/physiii/circuits/liger/code/components/zlib/./compress.c:

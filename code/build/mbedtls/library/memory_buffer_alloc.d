@@ -15,3 +15,4 @@ library/memory_buffer_alloc.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/memory_buffer_alloc.c:

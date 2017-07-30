@@ -72,3 +72,4 @@ port/esp_hardware.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
+/home/physiii/esp/esp-idf/components/mbedtls/port/esp_hardware.c:

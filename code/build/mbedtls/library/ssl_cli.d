@@ -50,11 +50,8 @@ library/ssl_cli.o: \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ssl_internal.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/md5.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha256.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha256_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h
 
@@ -158,16 +155,11 @@ library/ssl_cli.o: \
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha256.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha256_alt.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h:
-
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/ssl_cli.c:

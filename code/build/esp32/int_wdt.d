@@ -37,6 +37,7 @@ int_wdt.o: /home/physiii/esp/esp-idf/components/esp32/./int_wdt.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
@@ -142,6 +143,8 @@ int_wdt.o: /home/physiii/esp/esp-idf/components/esp32/./int_wdt.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
@@ -197,3 +200,4 @@ int_wdt.o: /home/physiii/esp/esp-idf/components/esp32/./int_wdt.c \
 /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_int_wdt.h:
+/home/physiii/esp/esp-idf/components/esp32/./int_wdt.c:

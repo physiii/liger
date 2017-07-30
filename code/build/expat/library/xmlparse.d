@@ -15,6 +15,11 @@ library/xmlparse.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/limits.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/time.h \
@@ -25,9 +30,6 @@ library/xmlparse.o: \
  /home/physiii/esp/esp-idf/components/expat/include/expat/expat_config.h \
  /home/physiii/esp/esp-idf/components/expat/include/expat/ascii.h \
  /home/physiii/esp/esp-idf/components/expat/include/expat/expat.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/expat/include/expat/expat_external.h \
  /home/physiii/esp/esp-idf/components/expat/include/expat/internal.h \
  /home/physiii/esp/esp-idf/components/expat/include/expat/xmltok.h \
@@ -64,6 +66,16 @@ library/xmlparse.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
@@ -84,12 +96,6 @@ library/xmlparse.o: \
 
 /home/physiii/esp/esp-idf/components/expat/include/expat/expat.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/expat/include/expat/expat_external.h:
 
 /home/physiii/esp/esp-idf/components/expat/include/expat/internal.h:
@@ -99,3 +105,4 @@ library/xmlparse.o: \
 /home/physiii/esp/esp-idf/components/expat/include/expat/xmlrole.h:
 
 /home/physiii/esp/esp-idf/components/expat/include/expat/xmltok.h:
+/home/physiii/esp/esp-idf/components/expat/library/xmlparse.c:

@@ -63,3 +63,4 @@ xtensa_context.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_rtos.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h:
+/home/physiii/esp/esp-idf/components/freertos/./xtensa_context.S:

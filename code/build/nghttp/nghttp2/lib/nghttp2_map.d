@@ -93,3 +93,4 @@ nghttp2/lib/nghttp2_map.o: \
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_int.h:
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_mem.h:
+/home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_map.c:

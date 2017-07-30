@@ -24,10 +24,6 @@ library/gcm.o: /home/physiii/esp/esp-idf/components/mbedtls/library/gcm.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aesni.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aes.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
- /home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
@@ -89,14 +85,6 @@ library/gcm.o: /home/physiii/esp/esp-idf/components/mbedtls/library/gcm.c \
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aes.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_types.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
@@ -116,3 +104,4 @@ library/gcm.o: /home/physiii/esp/esp-idf/components/mbedtls/library/gcm.c \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/gcm.c:

@@ -54,3 +54,4 @@ libsodium/src/libsodium/crypto_secretbox/crypto_secretbox.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox.c:

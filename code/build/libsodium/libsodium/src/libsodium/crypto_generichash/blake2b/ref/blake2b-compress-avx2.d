@@ -81,3 +81,4 @@ libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-avx2.o: 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/private/sse2_64_32.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/private/common.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-avx2.c:

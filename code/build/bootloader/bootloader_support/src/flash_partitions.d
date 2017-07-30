@@ -36,3 +36,4 @@ src/flash_partitions.o: \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
+/home/physiii/esp/esp-idf/components/bootloader_support/src/flash_partitions.c:

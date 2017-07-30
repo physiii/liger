@@ -20,3 +20,4 @@ log.o: /home/physiii/esp/esp-idf/components/log/./log.c \
 /home/physiii/circuits/liger/code/build/bootloader/../include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
+/home/physiii/esp/esp-idf/components/log/./log.c:

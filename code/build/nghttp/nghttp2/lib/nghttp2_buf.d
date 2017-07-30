@@ -99,3 +99,4 @@ nghttp2/lib/nghttp2_buf.o: \
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h:
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_debug.h:
+/home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_buf.c:

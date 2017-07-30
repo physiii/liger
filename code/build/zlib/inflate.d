@@ -89,3 +89,4 @@ inflate.o: /home/physiii/circuits/liger/code/components/zlib/./inflate.c \
 /home/physiii/circuits/liger/code/components/zlib/./inffast.h:
 
 /home/physiii/circuits/liger/code/components/zlib/./inffixed.h:
+/home/physiii/circuits/liger/code/components/zlib/./inflate.c:

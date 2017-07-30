@@ -75,3 +75,4 @@ libsodium/src/libsodium/crypto_core/salsa/ref/core_salsa_ref.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_core/salsa/ref/core_salsa_ref.c:

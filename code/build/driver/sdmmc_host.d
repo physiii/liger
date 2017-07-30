@@ -15,18 +15,22 @@ sdmmc_host.o: /home/physiii/esp/esp-idf/components/driver/./sdmmc_host.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/physiii/esp/esp-idf/components/newlib/include/newlib.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h \
  /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
@@ -57,9 +61,6 @@ sdmmc_host.o: /home/physiii/esp/esp-idf/components/driver/./sdmmc_host.c \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -105,19 +106,13 @@ sdmmc_host.o: /home/physiii/esp/esp-idf/components/driver/./sdmmc_host.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_err.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h:
 
@@ -128,6 +123,20 @@ sdmmc_host.o: /home/physiii/esp/esp-idf/components/driver/./sdmmc_host.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/esp_err.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h:
 
@@ -189,12 +198,6 @@ sdmmc_host.o: /home/physiii/esp/esp-idf/components/driver/./sdmmc_host.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h:
@@ -218,3 +221,4 @@ sdmmc_host.o: /home/physiii/esp/esp-idf/components/driver/./sdmmc_host.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/mpu_wrappers.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
+/home/physiii/esp/esp-idf/components/driver/./sdmmc_host.c:

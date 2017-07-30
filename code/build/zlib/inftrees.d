@@ -81,3 +81,4 @@ inftrees.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/circuits/liger/code/components/zlib/./inftrees.h:
+/home/physiii/circuits/liger/code/components/zlib/./inftrees.c:

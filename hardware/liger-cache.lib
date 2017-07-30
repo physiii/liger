@@ -6,14 +6,10 @@ EESchema-LIBRARY Version 2.3
 DEF C C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
 F1 "C" 25 -100 50 H V L CNN
-F2 "" 38 -150 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 38 -150 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 $FPLIST
- C?
- C_????_*
- C_????
- SMD*_c
- Capacitor*
+ C_*
 $ENDFPLIST
 DRAW
 P 2 0 1 20 -80 -30 80 -30 N
@@ -25,16 +21,16 @@ ENDDEF
 #
 # CONN_01X03
 #
-DEF CONN_01X03 P 0 40 Y N 1 F N
-F0 "P" 0 200 50 H V C CNN
+DEF CONN_01X03 J 0 40 Y N 1 F N
+F0 "J" 0 200 50 H V C CNN
 F1 "CONN_01X03" 100 0 50 V V C CNN
-F2 "" 0 0 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 $FPLIST
- Pin_Header_Straight_1X03
- Pin_Header_Angled_1X03
- Socket_Strip_Straight_1X03
- Socket_Strip_Angled_1X03
+ Pin_Header_Straight_1X*
+ Pin_Header_Angled_1X*
+ Socket_Strip_Straight_1X*
+ Socket_Strip_Angled_1X*
 $ENDFPLIST
 DRAW
 S -50 -95 10 -105 0 1 0 N
@@ -49,16 +45,16 @@ ENDDEF
 #
 # CONN_01X04
 #
-DEF CONN_01X04 P 0 40 Y N 1 F N
-F0 "P" 0 250 50 H V C CNN
+DEF CONN_01X04 J 0 40 Y N 1 F N
+F0 "J" 0 250 50 H V C CNN
 F1 "CONN_01X04" 100 0 50 V V C CNN
-F2 "" 0 0 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 $FPLIST
- Pin_Header_Straight_1X04
- Pin_Header_Angled_1X04
- Socket_Strip_Straight_1X04
- Socket_Strip_Angled_1X04
+ Pin_Header_Straight_1X*
+ Pin_Header_Angled_1X*
+ Socket_Strip_Straight_1X*
+ Socket_Strip_Angled_1X*
 $ENDFPLIST
 DRAW
 S -50 -145 10 -155 0 1 0 N
@@ -75,16 +71,16 @@ ENDDEF
 #
 # CONN_01X20
 #
-DEF CONN_01X20 P 0 40 Y N 1 F N
-F0 "P" 0 1050 50 H V C CNN
+DEF CONN_01X20 J 0 40 Y N 1 F N
+F0 "J" 0 1050 50 H V C CNN
 F1 "CONN_01X20" 100 0 50 V V C CNN
-F2 "" 0 0 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 $FPLIST
- Pin_Header_Straight_1X20
- Pin_Header_Angled_1X20
- Socket_Strip_Straight_1X20
- Socket_Strip_Angled_1X20
+ Pin_Header_Straight_1X*
+ Pin_Header_Angled_1X*
+ Socket_Strip_Straight_1X*
+ Socket_Strip_Angled_1X*
 $ENDFPLIST
 DRAW
 S -50 -1000 50 1000 0 1 0 N
@@ -183,8 +179,8 @@ ENDDEF
 DEF GND #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
 F1 "GND" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND 1 0 0 0 D 50 50 1 1 W N
@@ -196,8 +192,8 @@ ENDDEF
 DEF LED D 0 40 Y N 1 F N
 F0 "D" 0 100 50 H V C CNN
 F1 "LED" 0 -100 50 H V C CNN
-F2 "" 0 0 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 $FPLIST
  LED*
 $ENDFPLIST
@@ -291,8 +287,8 @@ ENDDEF
 DEF Q_NMOS_GSD Q 0 0 Y N 1 F N
 F0 "Q" 200 50 50 H V L CNN
 F1 "Q_NMOS_GSD" 200 -50 50 H V L CNN
-F2 "" 200 100 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 200 100 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 DRAW
 C 65 0 111 0 1 10 N
 C 100 -70 11 0 1 0 F
@@ -322,8 +318,8 @@ ENDDEF
 DEF Q_NPN_BEC Q 0 0 Y N 1 F N
 F0 "Q" 200 50 50 H V L CNN
 F1 "Q_NPN_BEC" 200 -50 50 H V L CNN
-F2 "" 200 100 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 200 100 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 DRAW
 C 50 0 111 0 1 10 N
 P 2 0 1 0 25 25 100 100 N
@@ -341,8 +337,8 @@ ENDDEF
 DEF Q_PMOS_GSD Q 0 0 Y N 1 F N
 F0 "Q" 200 50 50 H V L CNN
 F1 "Q_PMOS_GSD" 200 -50 50 H V L CNN
-F2 "" 200 100 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" 200 100 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
 DRAW
 C 65 0 111 0 1 10 N
 C 100 -70 11 0 1 0 F
@@ -372,11 +368,11 @@ ENDDEF
 DEF R R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
 F1 "R" 0 0 50 V V C CNN
-F2 "" -70 0 50 V V C CNN
-F3 "" 0 0 50 H V C CNN
+F2 "" -70 0 50 V I C CNN
+F3 "" 0 0 50 H I C CNN
 $FPLIST
  R_*
- Resistor_*
+ R_*
 $ENDFPLIST
 DRAW
 S -40 -100 40 100 0 1 10 N
@@ -426,13 +422,29 @@ ENDDEF
 DEF Speaker LS 0 0 Y N 1 F N
 F0 "LS" 50 225 50 H V R CNN
 F1 "Speaker" 50 150 50 H V R CNN
-F2 "" 0 -200 50 H V C CNN
-F3 "" -10 -50 50 H V C CNN
+F2 "" 0 -200 50 H I C CNN
+F3 "" -10 -50 50 H I C CNN
 DRAW
 S -100 50 40 -150 0 0 10 N
 P 4 0 0 10 40 50 140 150 140 -250 40 -150 N
 X 1 1 -200 0 100 R 50 50 1 1 I
 X 2 2 -200 -100 100 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# soft-button-4x
+#
+DEF soft-button-4x U 0 40 Y Y 1 F N
+F0 "U" 350 250 60 H V C CNN
+F1 "soft-button-4x" 450 -450 60 H V C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+S 400 -400 -200 200 0 1 0 f
+X LEFT 1 -400 -100 200 R 50 50 1 1 I
+X RIGHT 2 600 -100 200 L 50 50 1 1 I
+X UP 3 100 400 200 D 50 50 1 1 I
+X DOWN 4 100 -600 200 U 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #

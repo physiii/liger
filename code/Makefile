@@ -11,6 +11,7 @@ LWS_IS_FACTORY_APPLICATION=0
 export LWS_IS_FACTORY_APPLICATION
 
 include $(IDF_PATH)/make/project.mk
+#include /home/physiii/esp/esp-idf/make/project.mk
 include sdkconfig
 include ${PWD}/components/libwebsockets/scripts/esp32.mk
 

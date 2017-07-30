@@ -60,3 +60,4 @@ library/version_features.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/version_features.c:

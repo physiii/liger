@@ -89,7 +89,7 @@ $EndSheet
 $Sheet
 S 9100 3200 1450 1350
 U 590D271B
-F0 "thermometer" 60
-F1 "thermometer.sch" 60
+F0 "climate" 60
+F1 "climate.sch" 60
 $EndSheet
 $EndSCHEMATC

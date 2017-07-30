@@ -66,3 +66,4 @@ libsodium/src/libsodium/crypto_core/curve25519/ref10/curve25519_ref10.o: \
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_core/curve25519/ref10/base2.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_core/curve25519/ref10/base.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_core/curve25519/ref10/curve25519_ref10.c:

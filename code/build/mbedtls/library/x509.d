@@ -150,3 +150,4 @@ library/x509.o: \
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/x509_crl.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/certs.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/x509.c:

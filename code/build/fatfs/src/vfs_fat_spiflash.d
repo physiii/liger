@@ -25,6 +25,7 @@ src/vfs_fat_spiflash.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/vfs/include/esp_vfs.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
@@ -52,9 +53,8 @@ src/vfs_fat_spiflash.o: \
  /home/physiii/esp/esp-idf/components/driver/include/driver/sdmmc_types.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/sdmmc_host.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/sdmmc_types.h \
- /home/physiii/esp/esp-idf/components/fatfs/src/ff.h \
- /home/physiii/esp/esp-idf/components/fatfs/src/integer.h \
- /home/physiii/esp/esp-idf/components/fatfs/src/ffconf.h \
+ /home/physiii/esp/esp-idf/components/driver/include/driver/sdspi_host.h \
+ /home/physiii/esp/esp-idf/components/driver/include/driver/spi_master.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
@@ -80,6 +80,13 @@ src/vfs_fat_spiflash.o: \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/mpu_wrappers.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/physiii/esp/esp-idf/components/driver/include/driver/spi_common.h \
+ /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/rom/lldesc.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/rom/queue.h \
+ /home/physiii/esp/esp-idf/components/fatfs/src/ff.h \
+ /home/physiii/esp/esp-idf/components/fatfs/src/integer.h \
+ /home/physiii/esp/esp-idf/components/fatfs/src/ffconf.h \
  /home/physiii/esp/esp-idf/components/wear_levelling/include/wear_levelling.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_partition.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
@@ -137,6 +144,8 @@ src/vfs_fat_spiflash.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/vfs/include/esp_vfs.h:
@@ -191,11 +200,9 @@ src/vfs_fat_spiflash.o: \
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/sdmmc_types.h:
 
-/home/physiii/esp/esp-idf/components/fatfs/src/ff.h:
+/home/physiii/esp/esp-idf/components/driver/include/driver/sdspi_host.h:
 
-/home/physiii/esp/esp-idf/components/fatfs/src/integer.h:
-
-/home/physiii/esp/esp-idf/components/fatfs/src/ffconf.h:
+/home/physiii/esp/esp-idf/components/driver/include/driver/spi_master.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
@@ -247,6 +254,20 @@ src/vfs_fat_spiflash.o: \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
 
+/home/physiii/esp/esp-idf/components/driver/include/driver/spi_common.h:
+
+/home/physiii/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/rom/lldesc.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/rom/queue.h:
+
+/home/physiii/esp/esp-idf/components/fatfs/src/ff.h:
+
+/home/physiii/esp/esp-idf/components/fatfs/src/integer.h:
+
+/home/physiii/esp/esp-idf/components/fatfs/src/ffconf.h:
+
 /home/physiii/esp/esp-idf/components/wear_levelling/include/wear_levelling.h:
 
 /home/physiii/esp/esp-idf/components/spi_flash/include/esp_partition.h:
@@ -258,3 +279,4 @@ src/vfs_fat_spiflash.o: \
 /home/physiii/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h:
 
 /home/physiii/esp/esp-idf/components/fatfs/src/diskio_spiflash.h:
+/home/physiii/esp/esp-idf/components/fatfs/src/vfs_fat_spiflash.c:

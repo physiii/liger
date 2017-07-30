@@ -95,3 +95,4 @@ library/md.o: /home/physiii/esp/esp-idf/components/mbedtls/library/md.c \
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/md.c:

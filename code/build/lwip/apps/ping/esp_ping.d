@@ -23,13 +23,15 @@ apps/ping/esp_ping.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip_addr.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/time.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/time.h \
@@ -37,7 +39,6 @@ apps/ping/esp_ping.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stat.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_task.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
@@ -126,6 +127,16 @@ apps/ping/esp_ping.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip_addr.h:
@@ -133,12 +144,6 @@ apps/ping/esp_ping.o: \
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
@@ -153,8 +158,6 @@ apps/ping/esp_ping.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stat.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_task.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h:
 
@@ -237,3 +240,4 @@ apps/ping/esp_ping.o: \
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip4_addr.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip6_addr.h:
+/home/physiii/esp/esp-idf/components/lwip/apps/ping/esp_ping.c:

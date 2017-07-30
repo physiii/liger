@@ -37,7 +37,6 @@ library/x509write_crt.o: \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/cipher.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/asn1write.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/pem.h
@@ -116,10 +115,9 @@ library/x509write_crt.o: \
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/pem.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/x509write_crt.c:

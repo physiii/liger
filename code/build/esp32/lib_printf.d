@@ -26,6 +26,7 @@ lib_printf.o: /home/physiii/esp/esp-idf/components/esp32/./lib_printf.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h
 
@@ -83,6 +84,9 @@ lib_printf.o: /home/physiii/esp/esp-idf/components/esp32/./lib_printf.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h:
+/home/physiii/esp/esp-idf/components/esp32/./lib_printf.c:

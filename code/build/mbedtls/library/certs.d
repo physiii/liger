@@ -18,3 +18,4 @@ library/certs.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/certs.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/certs.c:

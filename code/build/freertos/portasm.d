@@ -59,3 +59,4 @@ portasm.o: /home/physiii/esp/esp-idf/components/freertos/./portasm.S \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_timer.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_rtos.h:
+/home/physiii/esp/esp-idf/components/freertos/./portasm.S:

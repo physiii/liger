@@ -54,3 +54,4 @@ src/bootloader_random.o: \
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
+/home/physiii/esp/esp-idf/components/bootloader_support/src/bootloader_random.c:

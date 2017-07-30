@@ -11,7 +11,6 @@ library/entropy.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/features.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/entropy_poll.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
@@ -58,8 +57,6 @@ library/entropy.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/entropy_poll.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
@@ -105,3 +102,4 @@ library/entropy.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/entropy.c:

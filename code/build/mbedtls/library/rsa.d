@@ -42,8 +42,7 @@ library/rsa.o: /home/physiii/esp/esp-idf/components/mbedtls/library/rsa.c \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h \
  /home/physiii/esp/esp-idf/components/newlib/include/time.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h \
- /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h
+ /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h
 
 /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h:
 
@@ -132,5 +131,4 @@ library/rsa.o: /home/physiii/esp/esp-idf/components/mbedtls/library/rsa.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h:
-
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/rsa.c:

@@ -27,6 +27,11 @@ src/diskio.o: /home/physiii/esp/esp-idf/components/fatfs/src/diskio.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/sdmmc_types.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/sdmmc_host.h \
@@ -44,7 +49,6 @@ src/diskio.o: /home/physiii/esp/esp-idf/components/fatfs/src/diskio.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
  /home/physiii/esp/esp-idf/components/fatfs/src/ffconf.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
@@ -57,9 +61,6 @@ src/diskio.o: /home/physiii/esp/esp-idf/components/fatfs/src/diskio.c \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
@@ -133,6 +134,16 @@ src/diskio.o: /home/physiii/esp/esp-idf/components/fatfs/src/diskio.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/sdmmc_types.h:
@@ -167,8 +178,6 @@ src/diskio.o: /home/physiii/esp/esp-idf/components/fatfs/src/diskio.c \
 
 /home/physiii/esp/esp-idf/components/fatfs/src/ffconf.h:
 
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
@@ -192,12 +201,6 @@ src/diskio.o: /home/physiii/esp/esp-idf/components/fatfs/src/diskio.c \
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/corebits.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -230,3 +233,4 @@ src/diskio.o: /home/physiii/esp/esp-idf/components/fatfs/src/diskio.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
 
 /home/physiii/esp/esp-idf/components/fatfs/src/ff.h:
+/home/physiii/esp/esp-idf/components/fatfs/src/diskio.c:

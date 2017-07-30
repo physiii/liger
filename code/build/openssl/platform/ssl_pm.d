@@ -30,6 +30,10 @@ platform/ssl_pm.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/malloc.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/malloc.h \
@@ -45,9 +49,6 @@ platform/ssl_pm.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/time.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/net.h \
@@ -70,12 +71,8 @@ platform/ssl_pm.o: \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/debug.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/entropy.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ctr_drbg.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aes.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/error.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/certs.h
 
@@ -139,6 +136,14 @@ platform/ssl_pm.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/malloc.h:
@@ -168,12 +173,6 @@ platform/ssl_pm.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
@@ -219,18 +218,11 @@ platform/ssl_pm.o: \
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ctr_drbg.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aes.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/error.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/certs.h:
+/home/physiii/esp/esp-idf/components/openssl/platform/ssl_pm.c:

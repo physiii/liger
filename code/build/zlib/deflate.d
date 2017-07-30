@@ -80,3 +80,4 @@ deflate.o: /home/physiii/circuits/liger/code/components/zlib/./deflate.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+/home/physiii/circuits/liger/code/components/zlib/./deflate.c:

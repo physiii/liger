@@ -14,3 +14,4 @@ library/md2.o: /home/physiii/esp/esp-idf/components/mbedtls/library/md2.c \
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/md2.c:

@@ -12,11 +12,6 @@ library/pem.o: /home/physiii/esp/esp-idf/components/mbedtls/library/pem.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/features.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aes.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/md5.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/cipher.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
@@ -29,6 +24,7 @@ library/pem.o: /home/physiii/esp/esp-idf/components/mbedtls/library/pem.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
@@ -67,16 +63,6 @@ library/pem.o: /home/physiii/esp/esp-idf/components/mbedtls/library/pem.c \
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aes.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/md5.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/cipher.h:
@@ -101,6 +87,8 @@ library/pem.o: /home/physiii/esp/esp-idf/components/mbedtls/library/pem.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
 
+/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h:
@@ -122,3 +110,4 @@ library/pem.o: /home/physiii/esp/esp-idf/components/mbedtls/library/pem.c \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/pem.c:

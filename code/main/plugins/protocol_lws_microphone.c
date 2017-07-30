@@ -81,7 +81,7 @@ uv_timeout_cb_microphone(uv_timer_t *w
 }
 
 
-#define MIC_CHANNEL (4)
+#define MIC_CHANNEL (19)
 #define SAMPLE_SIZE (128)
 #define SAMPLE_RATE (44100)
 
@@ -108,6 +108,7 @@ char temp_str[50];
 int sum = 0;
 void adc1task(struct per_vhost_data__microphone *vhd)
 {
+	char TAG[50] = "[microphone-protocol]";
 	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
 		(TimerCallbackFunction_t)adc_timer_cb);
 	xTimerStart(adc_timer, 0);*/
@@ -116,10 +117,12 @@ void adc1task(struct per_vhost_data__microphone *vhd)
 		sum = 0;
 		for (int i = 0; i < SAMPLE_SIZE; i++) {
 			value[i] = adc1_get_voltage(MIC_CHANNEL);
-			sum+=value[i];	
+			sum+=value[i];
+			printf(" ");
 		}
+		printf("%s [%d]\n",TAG,sum);
 		vTaskDelay(100/portTICK_PERIOD_MS);
-		//printf("sum: %d\n",sum);
+		//printf("%s %d\n",TAG,sum);
 	}
 }
 

@@ -34,6 +34,7 @@ FreeRTOS-openocd.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
@@ -115,6 +116,8 @@ FreeRTOS-openocd.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
@@ -138,3 +141,4 @@ FreeRTOS-openocd.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/portbenchmark.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/mpu_wrappers.h:
+/home/physiii/esp/esp-idf/components/freertos/./FreeRTOS-openocd.c:

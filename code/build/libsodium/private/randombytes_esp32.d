@@ -25,6 +25,11 @@ private/randombytes_esp32.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h \
@@ -104,6 +109,16 @@ private/randombytes_esp32.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h:
@@ -159,3 +174,4 @@ private/randombytes_esp32.o: \
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtensa-versions.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-matmap.h:
+/home/physiii/esp/esp-idf/components/libsodium/private/randombytes_esp32.c:

@@ -27,3 +27,4 @@ src/nvs_types.o: \
 /home/physiii/esp/esp-idf/components/nvs_flash/src/compressed_enum_table.hpp:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/crc.h:
+/home/physiii/esp/esp-idf/components/nvs_flash/src/nvs_types.cpp:

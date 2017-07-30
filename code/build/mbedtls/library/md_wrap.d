@@ -14,11 +14,8 @@ library/md_wrap.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ripemd160.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha256.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha256_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
@@ -68,15 +65,9 @@ library/md_wrap.o: \
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha1.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha1_alt.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha256.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha256_alt.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h:
-
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h:
 
@@ -117,3 +108,4 @@ library/md_wrap.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/md_wrap.c:

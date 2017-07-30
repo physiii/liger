@@ -101,3 +101,4 @@ library/pk.o: /home/physiii/esp/esp-idf/components/mbedtls/library/pk.c \
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ecp.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ecdsa.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/pk.c:

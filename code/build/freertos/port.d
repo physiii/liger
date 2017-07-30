@@ -34,6 +34,7 @@ port.o: /home/physiii/esp/esp-idf/components/freertos/./port.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_timer.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_rtos.h \
@@ -58,7 +59,10 @@ port.o: /home/physiii/esp/esp-idf/components/freertos/./port.c \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h \
+ /home/physiii/esp/esp-idf/components/heap/include/multi_heap.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
 
@@ -130,6 +134,8 @@ port.o: /home/physiii/esp/esp-idf/components/freertos/./port.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_timer.h:
@@ -179,3 +185,10 @@ port.o: /home/physiii/esp/esp-idf/components/freertos/./port.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
+/home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h:
+
+/home/physiii/esp/esp-idf/components/heap/include/multi_heap.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
+/home/physiii/esp/esp-idf/components/freertos/./port.c:

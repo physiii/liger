@@ -17,6 +17,8 @@ ipc.o: /home/physiii/esp/esp-idf/components/esp32/./ipc.c \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
@@ -29,7 +31,6 @@ ipc.o: /home/physiii/esp/esp-idf/components/esp32/./ipc.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -96,6 +97,10 @@ ipc.o: /home/physiii/esp/esp-idf/components/esp32/./ipc.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h:
@@ -119,8 +124,6 @@ ipc.o: /home/physiii/esp/esp-idf/components/esp32/./ipc.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -179,3 +182,4 @@ ipc.o: /home/physiii/esp/esp-idf/components/esp32/./ipc.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
+/home/physiii/esp/esp-idf/components/esp32/./ipc.c:

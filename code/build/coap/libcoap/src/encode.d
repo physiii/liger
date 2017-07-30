@@ -1,5 +1,22 @@
 libcoap/src/encode.o: \
  /home/physiii/esp/esp-idf/components/coap/libcoap/src/encode.c \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/newlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/config.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/features.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/_default_types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/physiii/esp/esp-idf/components/coap/port/include/coap_config.h \
  /home/physiii/esp/esp-idf/components/coap/port/include/coap_config_posix.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h \
@@ -7,25 +24,10 @@ libcoap/src/encode.o: \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
- /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
- /home/physiii/esp/esp-idf/components/newlib/include/newlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/config.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/features.h \
- /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h \
- /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/_default_types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/time.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/time.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/fcntl.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h \
@@ -39,6 +41,8 @@ libcoap/src/encode.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/newlib/include/errno.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
@@ -55,7 +59,6 @@ libcoap/src/encode.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -73,8 +76,6 @@ libcoap/src/encode.o: \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip_addr.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/def.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip4_addr.h \
@@ -83,6 +84,40 @@ libcoap/src/encode.o: \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h \
  /home/physiii/esp/esp-idf/components/coap/libcoap/include/coap/encode.h \
  /home/physiii/esp/esp-idf/components/newlib/include/strings.h
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/config.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/features.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/_default_types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
 /home/physiii/esp/esp-idf/components/coap/port/include/coap_config.h:
 
@@ -98,32 +133,6 @@ libcoap/src/encode.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/machine/ieeefp.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/config.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/features.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/_default_types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
@@ -131,10 +140,6 @@ libcoap/src/encode.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/types.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/time.h:
 
@@ -161,6 +166,10 @@ libcoap/src/encode.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/errno.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h:
+
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h:
 
@@ -193,8 +202,6 @@ libcoap/src/encode.o: \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
@@ -230,10 +237,6 @@ libcoap/src/encode.o: \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
-
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip_addr.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/def.h:
@@ -249,3 +252,4 @@ libcoap/src/encode.o: \
 /home/physiii/esp/esp-idf/components/coap/libcoap/include/coap/encode.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/strings.h:
+/home/physiii/esp/esp-idf/components/coap/libcoap/src/encode.c:

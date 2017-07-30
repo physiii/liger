@@ -33,10 +33,6 @@ library/error.o: \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/aes.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h \
- /home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
- /home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/base64.h \
  /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/bignum.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/bignum.h \
@@ -53,7 +49,6 @@ library/error.o: \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ecp.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/entropy.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h \
- /home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/gcm.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/hmac_drbg.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/md.h \
@@ -147,14 +142,6 @@ library/error.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_types.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/base64.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/bignum.h:
@@ -186,8 +173,6 @@ library/error.o: \
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/entropy.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/sha512.h:
-
-/home/physiii/esp/esp-idf/components/mbedtls/port/include/sha512_alt.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/gcm.h:
 
@@ -240,3 +225,4 @@ library/error.o: \
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/x509.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/xtea.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/error.c:

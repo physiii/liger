@@ -81,3 +81,4 @@ libsodium/src/libsodium/crypto_box/crypto_box_seal.o: \
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/private/common.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
+/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_box/crypto_box_seal.c:

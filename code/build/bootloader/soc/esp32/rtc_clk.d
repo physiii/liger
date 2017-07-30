@@ -74,3 +74,4 @@ esp32/rtc_clk.o: /home/physiii/esp/esp-idf/components/soc/esp32/rtc_clk.c \
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
 
 /home/physiii/circuits/liger/code/build/bootloader/../include/sdkconfig.h:
+/home/physiii/esp/esp-idf/components/soc/esp32/rtc_clk.c:

@@ -22,6 +22,11 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/lldesc.h \
@@ -29,7 +34,6 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
  /home/physiii/esp/esp-idf/components/driver/include/driver/spi_slave.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -40,9 +44,6 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
@@ -76,6 +77,7 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
  /home/physiii/esp/esp-idf/components/newlib/include/limits.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/list.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/ringbuf.h \
+ /home/physiii/esp/esp-idf/components/soc/include/soc/soc_memory_layout.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_struct.h \
@@ -83,7 +85,8 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/io_mux_reg.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/gpio.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/periph_ctrl.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_heap_alloc_caps.h
+ /home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h \
+ /home/physiii/esp/esp-idf/components/heap/include/multi_heap.h
 
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
@@ -131,6 +134,16 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
+/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h:
@@ -144,8 +157,6 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -166,12 +177,6 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/corebits.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -239,6 +244,8 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/ringbuf.h:
 
+/home/physiii/esp/esp-idf/components/soc/include/soc/soc_memory_layout.h:
+
 /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h:
@@ -253,4 +260,7 @@ spi_slave.o: /home/physiii/esp/esp-idf/components/driver/./spi_slave.c \
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/periph_ctrl.h:
 
-/home/physiii/esp/esp-idf/components/esp32/include/esp_heap_alloc_caps.h:
+/home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h:
+
+/home/physiii/esp/esp-idf/components/heap/include/multi_heap.h:
+/home/physiii/esp/esp-idf/components/driver/./spi_slave.c:

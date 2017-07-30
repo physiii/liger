@@ -84,3 +84,4 @@ library/ecdh.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
+/home/physiii/esp/esp-idf/components/mbedtls/library/ecdh.c:
