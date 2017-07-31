@@ -80,4 +80,3 @@ crc32.o: /home/physiii/circuits/liger/code/components/zlib/./crc32.c \
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/circuits/liger/code/components/zlib/./crc32.h:
-/home/physiii/circuits/liger/code/components/zlib/./crc32.c:

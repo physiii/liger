@@ -54,4 +54,3 @@ libsodium/src/libsodium/crypto_kdf/crypto_kdf.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_kdf/crypto_kdf.c:

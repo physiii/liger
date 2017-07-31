@@ -22,11 +22,6 @@ hwcrypto/aes.o: /home/physiii/esp/esp-idf/components/esp32/hwcrypto/aes.c \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h \
@@ -78,16 +73,6 @@ hwcrypto/aes.o: /home/physiii/esp/esp-idf/components/esp32/hwcrypto/aes.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h:
@@ -95,4 +80,3 @@ hwcrypto/aes.o: /home/physiii/esp/esp-idf/components/esp32/hwcrypto/aes.c \
 /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_dport_access.h:
-/home/physiii/esp/esp-idf/components/esp32/hwcrypto/aes.c:

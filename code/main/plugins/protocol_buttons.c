@@ -25,47 +25,16 @@
 #endif
 
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/queue.h"
-#include "driver/gpio.h"
-#include "driver/adc.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
+#include "esp_log.h"
 
-#if defined(LWS_WITH_ESP8266)
-#define DUMB_PERIOD 50
-#else
-#define DUMB_PERIOD 50
-#endif
+#include "driver/touch_pad.h"
+#include "soc/rtc_cntl_reg.h"
+#include "soc/sens_reg.h"
 
-#define BUTTON1 (4)
-#define BUTTON2 (5)
-#define BUTTON3 (6)
-#define BUTTON4 (7)
-#define LIGHT_SWITCH    15
-#define GPIO_OUTPUT_IO_1    19
-#define GPIO_OUTPUT_PIN_SEL  ((1<<LIGHT_SWITCH) | (1<<GPIO_OUTPUT_IO_1))
-#define GPIO_INPUT_IO_0     4
-#define GPIO_INPUT_IO_1     5
-#define GPIO_INPUT_PIN_SEL  ((1<<GPIO_INPUT_IO_0) | (1<<GPIO_INPUT_IO_1))
-#define ESP_INTR_FLAG_DEFAULT 0
 
-uint8_t mac[6];
-char mac_str[20];
-int value[SAMPLE_SIZE];
-int button_value;
-char button1_str[50];
-char button2_str[50];
-char button3_str[50];
-char button4_str[50];
-int button1_sum = 0;
-int button2_sum = 0;
-int button3_sum = 0;
-int button4_sum = 0;
-bool light_state = false;
+static const char* TAG = "[buttons-protocol]";
 
 struct per_vhost_data__buttons {
 	uv_timer_t timeout_watcher;
@@ -88,8 +57,6 @@ struct per_session_data__buttons {
 	int value;
 };
 
-//extern int value[1024];
-
 static void
 uv_timeout_cb_buttons(uv_timer_t *w
 #if UV_VERSION_MAJOR == 0
@@ -108,117 +75,91 @@ uv_timeout_cb_buttons(uv_timer_t *w
 		lws_callback_on_writable_all_protocol_vhost(vhd->vhost, vhd->protocol);
 }
 
-void adc2task(struct per_vhost_data__buttons *vhd)
+static bool s_pad_activated[TOUCH_PAD_MAX];
+
+
+/*
+  Read values sensed at all available touch pads.
+  Use half of read value as the threshold
+  to trigger interrupt when the pad is touched.
+  Note: this routine demonstrates a simple way
+  to configure activation threshold for the touch pads.
+  Do not touch any pads when this routine
+  is running (on application start).
+ */
+static void tp_example_set_thresholds(void)
 {
-	char tag[50] = "[buttons-protocol]";
-	bool button_pressed = false;
-	while(1){
-		button1_sum = 0;
-		button2_sum = 0;
-		button3_sum = 0;
-		button4_sum = 0;
-		for (int i = 0; i < SAMPLE_SIZE; i++) {
-			button1_sum+=adc1_get_voltage(BUTTON1);
-			button2_sum+=adc1_get_voltage(BUTTON2);
-			button3_sum+=adc1_get_voltage(BUTTON3);
-			button4_sum+=adc1_get_voltage(BUTTON4);
-		}
-		vTaskDelay(100/portTICK_PERIOD_MS);
-		if (button1_sum > 100000 || button2_sum > 100000 || button3_sum > 100000 || button4_sum > 100000) {
-			if (button_pressed) continue;
-			button_pressed = true;
-			printf("%s Button pressed: %s\n", tag, button_pressed ? "true" : "false");
-		        gpio_set_level(LIGHT_SWITCH, button_pressed);
-		} else {
-			if (!button_pressed) continue;
-			button_pressed = false;
-			printf("%s Button released: %s\n", tag, button_pressed ? "true" : "false");
-		        gpio_set_level(LIGHT_SWITCH, button_pressed);
-		}
-	}
+    uint16_t touch_value;
+    for (int i=0; i<TOUCH_PAD_MAX; i++) {
+        ESP_ERROR_CHECK(touch_pad_read(i, &touch_value));
+        ESP_ERROR_CHECK(touch_pad_config(i, touch_value/4));
+    }
 }
 
-// --------- gpio --------- //
-static xQueueHandle gpio_evt_queue = NULL;
-
-static void IRAM_ATTR gpio_isr_handler(void* arg)
+/*
+  Check if any of touch pads has been activated
+  by reading a table updated by rtc_intr()
+  If so, then print it out on a serial monitor.
+  Clear related entry in the table afterwards
+ */
+static void tp_example_read_task(void *pvParameter)
 {
-    uint32_t gpio_num = (uint32_t) arg;
-    xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
+    static int show_message;
+    while (1) {
+        for (int i=0; i<TOUCH_PAD_MAX; i++) {
+            if (s_pad_activated[i] == true) {
+                printf("T%d activated!\n", i);
+                // Wait a while for the pad being released
+                vTaskDelay(200 / portTICK_PERIOD_MS);
+                // Clear information on pad activation
+                s_pad_activated[i] = false;
+                // Reset the counter triggering a message
+                // that application is running
+                show_message = 1;
+            }
+        }
+        // If no pad is touched, every couple of seconds, show a message
+        // that application is running
+        if (show_message++ % 500 == 0) {
+            //printf("Waiting for any pad being touched...\n");
+        }
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
 }
 
-static void gpio_task_example(void* arg)
+/*
+  Handle an interrupt triggered when a pad is touched.
+  Recognize what pad has been touched and save it in a table.
+ */
+static void tp_example_rtc_intr(void * arg)
 {
-    uint32_t io_num;
-    for(;;) {
-        if(xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY)) {
-            printf("GPIO[%d] intr, val: %d\n", io_num, gpio_get_level(io_num));
+    uint32_t pad_intr = READ_PERI_REG(SENS_SAR_TOUCH_CTRL2_REG) & 0x3ff;
+    uint32_t rtc_intr = READ_PERI_REG(RTC_CNTL_INT_ST_REG);
+    //clear interrupt
+    WRITE_PERI_REG(RTC_CNTL_INT_CLR_REG, rtc_intr);
+    SET_PERI_REG_MASK(SENS_SAR_TOUCH_CTRL2_REG, SENS_TOUCH_MEAS_EN_CLR);
+
+    if (rtc_intr & RTC_CNTL_TOUCH_INT_ST) {
+        for (int i = 0; i < TOUCH_PAD_MAX; i++) {
+            if ((pad_intr >> i) & 0x01) {
+                s_pad_activated[i] = true;
+            }
         }
     }
 }
-
-void init_gpio()
-{
-    gpio_config_t io_conf;
-    //disable interrupt
-    io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-    //set as output mode
-    io_conf.mode = GPIO_MODE_OUTPUT;
-    //bit mask of the pins that you want to set,e.g.GPIO18/19
-    io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;
-    //disable pull-down mode
-    io_conf.pull_down_en = 0;
-    //disable pull-up mode
-    io_conf.pull_up_en = 0;
-    //configure GPIO with the given settings
-    gpio_config(&io_conf);
-
-    //interrupt of rising edge
-    io_conf.intr_type = GPIO_PIN_INTR_POSEDGE;
-    //bit mask of the pins, use GPIO4/5 here
-    io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
-    //set as input mode    
-    io_conf.mode = GPIO_MODE_INPUT;
-    //enable pull-up mode
-    io_conf.pull_up_en = 1;
-    gpio_config(&io_conf);
-
-    //change gpio intrrupt type for one pin
-    gpio_set_intr_type(GPIO_INPUT_IO_0, GPIO_INTR_ANYEDGE);
-
-    //create a queue to handle gpio event from isr
-    gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
-    //start gpio task
-    xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
-
-    //install gpio isr service
-    gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
-    //hook isr handler for specific gpio pin
-    gpio_isr_handler_add(GPIO_INPUT_IO_0, gpio_isr_handler, (void*) GPIO_INPUT_IO_0);
-    //hook isr handler for specific gpio pin
-    gpio_isr_handler_add(GPIO_INPUT_IO_1, gpio_isr_handler, (void*) GPIO_INPUT_IO_1);
-
-    //remove isr handler for gpio number.
-    gpio_isr_handler_remove(GPIO_INPUT_IO_0);
-    //hook isr handler for specific gpio pin again
-    gpio_isr_handler_add(GPIO_INPUT_IO_0, gpio_isr_handler, (void*) GPIO_INPUT_IO_0);
-
-    int cnt = 0;
-    while(1) {
-        //printf("cnt: %d\n", cnt++);
-        vTaskDelay(1000 / portTICK_RATE_MS);
-        //gpio_set_level(GPIO_OUTPUT_IO_0, cnt % 2);
-        //gpio_set_level(GPIO_OUTPUT_IO_1, cnt % 2);
-    }
-}
-
-// ------------------------ //
 
 static int
 callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
-	char tag[50] = "[buttons-protocol]";
+	        // Initialize touch pad peripheral
+	        ESP_LOGI(TAG, "Initializing touch pad");
+	        touch_pad_init();
+	        tp_example_set_thresholds();
+	        touch_pad_isr_handler_register(tp_example_rtc_intr, NULL, 0, NULL);
+	        // Start a task to show what pads have been touched
+	        xTaskCreate(&tp_example_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
+
         esp_wifi_get_mac(WIFI_IF_STA,mac);
 	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
            mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
@@ -231,22 +172,16 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 					lws_get_protocol(wsi));
 	unsigned char buf[LWS_PRE + 1024];
 	unsigned char *p = &buf[LWS_PRE];
-	char button_value_str[1024];
 	int n, m;
+
 	switch (reason) {
 	case 1: //conn err
 		lwsl_notice("\nthe request client connection has been unable to complete a handshake with the remote server.\n");
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
-		printf("%s initialize\n",tag);
-		xTaskCreate(adc2task, "adc2task", 1024*3, &vhd, 10, NULL);
-		xTaskCreate(init_gpio, "init_gpio", 1024*3, &vhd, 10, NULL);
-		//xTaskCreate(read_sens_task, "read_sens_task", 1024*3, &vhd, 10, NULL);
 
-		// initialize ADC
-		adc1_config_width(ADC_WIDTH_12Bit);
-		adc1_config_channel_atten(BUTTON1,ADC_ATTEN_11db);
+		printf("%s initialize\n",TAG);
 
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
@@ -275,46 +210,21 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
-		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button1_sum: %d\n",button1_sum);
-		if (button1_sum < 100000 && button2_sum < 100000 && button3_sum < 100000 && button4_sum < 100000)
-			break;
-		snprintf(button1_str, 10, "%d",button1_sum);
-		snprintf(button2_str, 10, "%d",button2_sum);
-		snprintf(button3_str, 10, "%d",button3_sum);
-		snprintf(button4_str, 10, "%d",button4_sum);
-                strcpy(button_value_str, "{");
-	                strcat(button_value_str, "\"mac\":\"");
-			strcat(button_value_str,mac_str);
-                strcat(button_value_str, "\",");
-	                strcat(button_value_str, "\"button1\":");
-			strcat(button_value_str,button1_str);
-                strcat(button_value_str, ",");
-        	        strcat(button_value_str, "\"button2\":");
-			strcat(button_value_str,button2_str);
-                strcat(button_value_str, ",");
-        	        strcat(button_value_str, "\"button3\":");
-			strcat(button_value_str,button3_str);
-                strcat(button_value_str, ",");
-        	        strcat(button_value_str, "\"button4\":");
-			strcat(button_value_str,button4_str);
-                strcat(button_value_str, ",");
-	       	        strcat(button_value_str, "\"token\":\"");
-			strcat(button_value_str,token);
-		strcat(button_value_str,"\"}");
-		n = lws_snprintf((char *)p, sizeof(button_value_str) - LWS_PRE, "%s", button_value_str);
-		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
+		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button_up_sum: %d\n",button_up_sum);
+		n = lws_snprintf((char *)p, sizeof("TOUCH!") - LWS_PRE, "%s", "TOUCH!");
+		/*m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) {
 			lwsl_err("ERROR %d writing to di socket\n", n);
-			printf("%s %s\n",tag,button_value_str);
+			printf("%s %s\n",TAG,"TOUCH!");
 		} else {
-			//printf("%s %s\n",tag,button_value_str);
-		}
+			//printf("%s %s\n",TAG,button_value_str);
+		}*/
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 6)
 			break;
-		printf("%s[LWS_CALLBACK_CLIENT_RECEIVE] %s\n",tag,(const char *)in);
+		printf("%s[LWS_CALLBACK_CLIENT_RECEIVE] %s\n",TAG,(const char *)in);
 		if (strcmp((const char *)in, "reset\n") == 0)
 			pss->number = 0;
 		if (strcmp((const char *)in, "closeme\n") == 0) {
@@ -326,7 +236,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	default:
-	   	printf("%s callback_buttons: %d\n",tag,reason);
+	   	printf("%s callback_buttons: %d\n",TAG,reason);
 		break;
 	}
 

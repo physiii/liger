@@ -90,4 +90,3 @@ libsodium/src/libsodium/crypto_box/curve25519xsalsa20poly1305/box_curve25519xsal
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_box/curve25519xsalsa20poly1305/box_curve25519xsalsa20poly1305.c:

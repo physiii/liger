@@ -25,21 +25,15 @@
 #endif
 
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <driver/dac.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/queue.h"
-#include "driver/gpio.h"
-#include "driver/adc.h"
+#include "esp_log.h"
+#include "soc/rtc_cntl_reg.h"
+#include "soc/sens_reg.h"
 
-#if defined(LWS_WITH_ESP8266)
-#define DUMB_PERIOD 50
-#else
-#define DUMB_PERIOD 50
-#endif
-
-struct per_vhost_data__microphone {
+struct per_vhost_data__speaker {
 	uv_timer_t timeout_watcher;
 
 	TimerHandle_t timer, reboot_timer;
@@ -55,115 +49,83 @@ struct per_vhost_data__microphone {
 	int value[1024];
 };
 
-struct per_session_data__microphone {
+struct per_session_data__speaker {
 	int number;
 	int value;
 };
 
-//extern int value[1024];
-
 static void
-uv_timeout_cb_microphone(uv_timer_t *w
+uv_timeout_cb_speaker(uv_timer_t *w
 #if UV_VERSION_MAJOR == 0
 		, int status
 #endif
 )
 {
-	struct per_vhost_data__microphone *vhd;
+	struct per_vhost_data__speaker *vhd;
        
 //	w = pvTimerGetTimerID((uv_timer_t)w);
 
 	vhd = lws_container_of(w,
-			struct per_vhost_data__microphone, timeout_watcher);
+			struct per_vhost_data__speaker, timeout_watcher);
 
 	if (vhd->vhost)
 		lws_callback_on_writable_all_protocol_vhost(vhd->vhost, vhd->protocol);
 }
 
-
-#define MIC_CHANNEL (19)
-#define SAMPLE_SIZE (128)
-#define SAMPLE_RATE (44100)
-
-static TimerHandle_t adc_timer;
-static void adc_timer_cb(TimerHandle_t t)
+void speaker_task(struct per_vhost_data__motion *vhd)
 {
-	uint32_t ulCount;
-	ulCount = ( uint32_t ) pvTimerGetTimerID( t );
-	ulCount++;
-	/*TickType_t xTimerPeriod;
-	xTimerPeriod = xTimerGetPeriod( t );*/
-	printf("timer count: %d\n", ulCount);
-	//vTimerSetTimerID( t, ( void * ) ulCount );
-	//xTimerStop(adc_timer, 0);
-	/*if (flashes & 1)
-		gpio_output_set(0, 1 << GPIO_ID, 1 << GPIO_ID, 0);
-	else
-		gpio_output_set(1 << GPIO_ID, 0, 1 << GPIO_ID, 0);*/
-}
-
-int value[SAMPLE_SIZE];
-int button_value;
-char temp_str[50];
-int sum = 0;
-void adc1task(struct per_vhost_data__microphone *vhd)
-{
-	char TAG[50] = "[microphone-protocol]";
+        static const char* TAG = "[speaker-protocol]";
+	bool push_out = true;
 	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
 		(TimerCallbackFunction_t)adc_timer_cb);
 	xTimerStart(adc_timer, 0);*/
 	while(1){
-		//sum = adc1_get_voltage(MIC_CHANNEL);
-		sum = 0;
-		for (int i = 0; i < SAMPLE_SIZE; i++) {
-			value[i] = adc1_get_voltage(MIC_CHANNEL);
-			sum+=value[i];
-			printf(" ");
+		if (push_out) {
+          		dac_output_voltage(DAC_CHANNEL_1, 1024);
+			push_out = false;
+		} else {
+          		dac_output_voltage(DAC_CHANNEL_1, 0);
+			push_out = true;
 		}
-		printf("%s [%d]\n",TAG,sum);
-		vTaskDelay(100/portTICK_PERIOD_MS);
-		//printf("%s %d\n",TAG,sum);
+		vTaskDelay(10/portTICK_PERIOD_MS);
+		printf("%s speaker active\n",TAG);
 	}
 }
 
 static int
-callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
+callback_speaker(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
+        static const char* TAG = "[speaker-protocol]";
+        dac_output_enable(DAC_CHANNEL_1);
+        xTaskCreate(&speaker_task, "speaker_task", 2048, NULL, 5, NULL);
 
-	uint8_t mac[6];
-	char mac_str[20];
-	char TAG[50] = "[microphone-protocol]";
         esp_wifi_get_mac(WIFI_IF_STA,mac);
 	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
            mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
            mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
-	struct per_session_data__microphone *pss =
-			(struct per_session_data__microphone *)user;
-	struct per_vhost_data__microphone *vhd =
-			(struct per_vhost_data__microphone *)
+	struct per_session_data__speaker *pss =
+			(struct per_session_data__speaker *)user;
+	struct per_vhost_data__speaker *vhd =
+			(struct per_vhost_data__speaker *)
 			lws_protocol_vh_priv_get(lws_get_vhost(wsi),
 					lws_get_protocol(wsi));
-
-	unsigned char buf[LWS_PRE + 20];
+	unsigned char buf[LWS_PRE + 1024];
 	unsigned char *p = &buf[LWS_PRE];
-	char button_value_str[1024];
 	int n, m;
+
 	switch (reason) {
 	case 1: //conn err
 		lwsl_notice("\nthe request client connection has been unable to complete a handshake with the remote server.\n");
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
+
 		printf("%s initialize\n",TAG);
-		xTaskCreate(adc1task, "adc1task", 1024*3, &vhd, 10, NULL);
-		// initialize ADC
-		adc1_config_width(ADC_WIDTH_12Bit);
-		adc1_config_channel_atten(MIC_CHANNEL,ADC_ATTEN_11db);
 
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
-				sizeof(struct per_vhost_data__microphone));
+				sizeof(struct per_vhost_data__speaker));
 		vhd->context = lws_get_context(wsi);
 		vhd->protocol = lws_vhost_name_to_protocol(lws_get_vhost(wsi),
 					lws_get_protocol(wsi)->name);
@@ -172,7 +134,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		uv_timer_init(lws_uv_getloop(vhd->context, 0),
 			      &vhd->timeout_watcher);
 		uv_timer_start(&vhd->timeout_watcher,
-			       uv_timeout_cb_microphone, DUMB_PERIOD, DUMB_PERIOD);
+			        uv_timeout_cb_speaker, DUMB_PERIOD, DUMB_PERIOD);
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_DESTROY:
@@ -188,26 +150,21 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
-		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] sum: %d\n",sum);
-		if (sum < 10000) break;
-		snprintf(temp_str, 10, "%d",sum);
-                strcpy(button_value_str, "{\"front_button\":");
-		strcat(button_value_str,temp_str);
-                strcat(button_value_str, ",\"mac\":\"");
-		strcat(button_value_str,mac_str);
-		strcat(button_value_str,"\"}");
-		n = lws_snprintf((char *)p, sizeof(button_value_str) - LWS_PRE, "%s", button_value_str);
-		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
-		if (m < n) 
+		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] button_up_sum: %d\n",button_up_sum);
+		n = lws_snprintf((char *)p, sizeof("TOUCH!") - LWS_PRE, "%s", "TOUCH!");
+		/*m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
+		if (m < n) {
 			lwsl_err("ERROR %d writing to di socket\n", n);
-		else
-			printf("%s %s\n",TAG,button_value_str);
+			printf("%s %s\n",TAG,"TOUCH!");
+		} else {
+			//printf("%s %s\n",TAG,button_value_str);
+		}*/
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 6)
 			break;
-		printf("%s %s\n",TAG,(const char *)in);
+		printf("%s[LWS_CALLBACK_CLIENT_RECEIVE] %s\n",TAG,(const char *)in);
 		if (strcmp((const char *)in, "reset\n") == 0)
 			pss->number = 0;
 		if (strcmp((const char *)in, "closeme\n") == 0) {
@@ -219,18 +176,18 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	default:
-	   	printf("callback_microphone: %d\n",reason);
+	   	printf("%s callback_speaker: %d\n",TAG,reason);
 		break;
 	}
 
 	return 0;
 }
 
-#define LWS_PLUGIN_PROTOCOL_MICROPHONE \
+#define LWS_PLUGIN_PROTOCOL_SPEAKER \
 	{ \
-		"microphone-protocol", \
-		callback_microphone, \
-		sizeof(struct per_session_data__microphone), \
+		"speaker-protocol", \
+		callback_speaker, \
+		sizeof(struct per_session_data__speaker), \
 		1000, /* rx buf size must be >= permessage-deflate rx size */ \
 		0, NULL, 0 \
 	}
@@ -238,11 +195,11 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 #if !defined (LWS_PLUGIN_STATIC)
 		
 static const struct lws_protocols protocols[] = {
-	LWS_PLUGIN_PROTOCOL_MICROPHONE
+	LWS_PLUGIN_PROTOCOL_speaker
 };
 
 LWS_EXTERN LWS_VISIBLE int
-init_protocol_microphone(struct lws_context *context,
+init_protocol_speaker(struct lws_context *context,
 			     struct lws_plugin_capability *c)
 {
 	if (c->api_magic != LWS_PLUGIN_API_MAGIC) {
@@ -260,7 +217,7 @@ init_protocol_microphone(struct lws_context *context,
 }
 
 LWS_EXTERN LWS_VISIBLE int
-destroy_protocol_microphone(struct lws_context *context)
+destroy_protocol_speaker(struct lws_context *context)
 {
 	return 0;
 }

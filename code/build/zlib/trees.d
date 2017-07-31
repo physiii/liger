@@ -83,4 +83,3 @@ trees.o: /home/physiii/circuits/liger/code/components/zlib/./trees.c \
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/circuits/liger/code/components/zlib/./trees.h:
-/home/physiii/circuits/liger/code/components/zlib/./trees.c:

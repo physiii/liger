@@ -27,4 +27,3 @@ esp32/rtc_init.o: \
 /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_dport_access.h:
-/home/physiii/esp/esp-idf/components/soc/esp32/rtc_init.c:

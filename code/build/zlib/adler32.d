@@ -77,4 +77,3 @@ adler32.o: /home/physiii/circuits/liger/code/components/zlib/./adler32.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-/home/physiii/circuits/liger/code/components/zlib/./adler32.c:

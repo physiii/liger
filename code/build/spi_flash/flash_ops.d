@@ -15,8 +15,6 @@ flash_ops.o: /home/physiii/esp/esp-idf/components/spi_flash/./flash_ops.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
@@ -32,6 +30,7 @@ flash_ops.o: /home/physiii/esp/esp-idf/components/spi_flash/./flash_ops.c \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -108,10 +107,6 @@ flash_ops.o: /home/physiii/esp/esp-idf/components/spi_flash/./flash_ops.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
@@ -141,6 +136,8 @@ flash_ops.o: /home/physiii/esp/esp-idf/components/spi_flash/./flash_ops.c \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -227,4 +224,3 @@ flash_ops.o: /home/physiii/esp/esp-idf/components/spi_flash/./flash_ops.c \
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
 
 /home/physiii/esp/esp-idf/components/spi_flash/./cache_utils.h:
-/home/physiii/esp/esp-idf/components/spi_flash/./flash_ops.c:

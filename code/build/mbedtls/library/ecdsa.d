@@ -96,4 +96,3 @@ library/ecdsa.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/hmac_drbg.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/ecdsa.c:

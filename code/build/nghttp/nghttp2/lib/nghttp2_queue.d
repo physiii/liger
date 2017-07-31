@@ -29,8 +29,6 @@ nghttp2/lib/nghttp2_queue.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
  /home/physiii/esp/esp-idf/components/nghttp/port/include/nghttp2/nghttp2ver.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_queue.h:
@@ -91,9 +89,4 @@ nghttp2/lib/nghttp2_queue.o: \
 
 /home/physiii/esp/esp-idf/components/nghttp/port/include/nghttp2/nghttp2ver.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
-/home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_queue.c:

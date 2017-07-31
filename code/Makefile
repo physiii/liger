@@ -2,7 +2,7 @@
 # This is a project Makefile. It is assumed the directory this Makefile resides in is a
 # project subdirectory.
 #
-PROJECT_NAME := liger
+PROJECT_NAME := code
 SSL_CERT_PEM:=${PWD}/build/libwebsockets/libwebsockets-test-server
 SSL_KEY_PEM:=${PWD}/build/libwebsockets/libwebsockets-test-server.key
 
@@ -11,7 +11,6 @@ LWS_IS_FACTORY_APPLICATION=0
 export LWS_IS_FACTORY_APPLICATION
 
 include $(IDF_PATH)/make/project.mk
-#include /home/physiii/esp/esp-idf/make/project.mk
 include sdkconfig
 include ${PWD}/components/libwebsockets/scripts/esp32.mk
 

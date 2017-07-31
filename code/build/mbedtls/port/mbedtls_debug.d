@@ -22,18 +22,17 @@ port/mbedtls_debug.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h \
  /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/check_config.h \
  /home/physiii/esp/esp-idf/components/newlib/include/limits.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/time.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/debug.h \
@@ -100,16 +99,6 @@ port/mbedtls_debug.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/platform.h:
@@ -122,7 +111,15 @@ port/mbedtls_debug.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
 
+/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
@@ -165,4 +162,3 @@ port/mbedtls_debug.o: \
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/ssl.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_debug.h:
-/home/physiii/esp/esp-idf/components/mbedtls/port/mbedtls_debug.c:

@@ -24,11 +24,10 @@ esp_ota_ops.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -61,8 +60,6 @@ esp_ota_ops.o: \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_image_format.h \
- /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_flash_data_types.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_secure_boot.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/efuse_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -124,15 +121,13 @@ esp_ota_ops.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -198,10 +193,6 @@ esp_ota_ops.o: \
 
 /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_image_format.h:
 
-/home/physiii/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_flash_data_types.h:
-
 /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_secure_boot.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/efuse_reg.h:
@@ -225,4 +216,3 @@ esp_ota_ops.o: \
 /home/physiii/esp/esp-idf/components/esp32/include/esp_dport_access.h:
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
-/home/physiii/esp/esp-idf/components/app_update/./esp_ota_ops.c:

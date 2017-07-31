@@ -39,6 +39,11 @@
 #define DUMB_PERIOD 50
 #endif
 
+
+#define MIC_CHANNEL (6)
+#define SAMPLE_SIZE (128)
+#define SAMPLE_RATE (44100)
+
 struct per_vhost_data__microphone {
 	uv_timer_t timeout_watcher;
 
@@ -80,11 +85,6 @@ uv_timeout_cb_microphone(uv_timer_t *w
 		lws_callback_on_writable_all_protocol_vhost(vhd->vhost, vhd->protocol);
 }
 
-
-#define MIC_CHANNEL (4)
-#define SAMPLE_SIZE (128)
-#define SAMPLE_RATE (44100)
-
 static TimerHandle_t adc_timer;
 static void adc_timer_cb(TimerHandle_t t)
 {
@@ -106,8 +106,9 @@ int value[SAMPLE_SIZE];
 int button_value;
 char temp_str[50];
 int sum = 0;
-void adc1task(struct per_vhost_data__microphone *vhd)
+void microphone_task(struct per_vhost_data__microphone *vhd)
 {
+	char TAG[50] = "[microphone-protocol]";
 	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
 		(TimerCallbackFunction_t)adc_timer_cb);
 	xTimerStart(adc_timer, 0);*/
@@ -116,10 +117,15 @@ void adc1task(struct per_vhost_data__microphone *vhd)
 		sum = 0;
 		for (int i = 0; i < SAMPLE_SIZE; i++) {
 			value[i] = adc1_get_voltage(MIC_CHANNEL);
-			sum+=value[i];	
+			sum+=value[i];
+		}
+		/*printf("%s",TAG);
+		for (int i = 0; i < sum; i++) {
+			printf("-");
+			i+=50;
 		}
 		vTaskDelay(100/portTICK_PERIOD_MS);
-		//printf("sum: %d\n",sum);
+		printf("[%d]\n",sum);*/
 	}
 }
 
@@ -153,7 +159,7 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
 		printf("%s initialize\n",TAG);
-		xTaskCreate(adc1task, "adc1task", 1024*3, &vhd, 10, NULL);
+		xTaskCreate(microphone_task, "microphone_task", 1024*3, &vhd, 10, NULL);
 		// initialize ADC
 		adc1_config_width(ADC_WIDTH_12Bit);
 		adc1_config_channel_atten(MIC_CHANNEL,ADC_ATTEN_11db);

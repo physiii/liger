@@ -1,2 +1,0 @@
-COMPONENT_DEPENDS:=libwebsockets
-

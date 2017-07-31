@@ -11,6 +11,7 @@ src/nvs_pagemanager.o: \
  /home/physiii/esp/esp-idf/components/nvs_flash/src/compressed_enum_table.hpp \
  /home/physiii/esp/esp-idf/components/nvs_flash/src/nvs_page.hpp \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/nvs_flash/src/intrusive_list.h \
  /home/physiii/esp/esp-idf/components/nvs_flash/src/nvs_item_hash_list.hpp
 
@@ -36,7 +37,8 @@ src/nvs_pagemanager.o: \
 
 /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/nvs_flash/src/intrusive_list.h:
 
 /home/physiii/esp/esp-idf/components/nvs_flash/src/nvs_item_hash_list.hpp:
-/home/physiii/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:

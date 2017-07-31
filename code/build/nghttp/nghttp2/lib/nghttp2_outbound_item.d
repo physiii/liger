@@ -36,8 +36,6 @@ nghttp2/lib/nghttp2_outbound_item.o: \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_int.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_mem.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_outbound_item.h:
@@ -112,9 +110,4 @@ nghttp2/lib/nghttp2_outbound_item.o: \
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
-/home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_outbound_item.c:

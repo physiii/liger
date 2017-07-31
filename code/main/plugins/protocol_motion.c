@@ -39,7 +39,7 @@
 #define DUMB_PERIOD 50
 #endif
 
-#define PIR (16)
+#define PIR (27)
 
 uint8_t mac[6];
 char mac_str[20];

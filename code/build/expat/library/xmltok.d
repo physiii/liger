@@ -39,4 +39,3 @@ library/xmltok.o: \
 /home/physiii/esp/esp-idf/components/expat/include/expat/latin1tab.h:
 
 /home/physiii/esp/esp-idf/components/expat/library/xmltok_ns.c:
-/home/physiii/esp/esp-idf/components/expat/library/xmltok.c:

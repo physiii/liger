@@ -41,8 +41,6 @@ nghttp2/lib/nghttp2_session.o: \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_outbound_item.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_pq.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_callbacks.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_net.h \
@@ -133,10 +131,6 @@ nghttp2/lib/nghttp2_session.o: \
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_callbacks.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h:
@@ -150,4 +144,3 @@ nghttp2/lib/nghttp2_session.o: \
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_http.h:
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_debug.h:
-/home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_session.c:

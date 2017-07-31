@@ -51,4 +51,3 @@ libcoap/src/hashkey.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
-/home/physiii/esp/esp-idf/components/coap/libcoap/src/hashkey.c:

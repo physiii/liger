@@ -47,4 +47,3 @@ reent_init.o: /home/physiii/esp/esp-idf/components/newlib/./reent_init.c \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h:
-/home/physiii/esp/esp-idf/components/newlib/./reent_init.c:

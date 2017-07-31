@@ -102,4 +102,3 @@ library/pkcs12.o: \
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/arc4.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/des.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/pkcs12.c:

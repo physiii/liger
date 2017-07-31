@@ -21,10 +21,6 @@ timer.o: /home/physiii/esp/esp-idf/components/driver/./timer.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
@@ -47,6 +43,9 @@ timer.o: /home/physiii/esp/esp-idf/components/driver/./timer.c \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -112,14 +111,6 @@ timer.o: /home/physiii/esp/esp-idf/components/driver/./timer.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h:
@@ -164,6 +155,12 @@ timer.o: /home/physiii/esp/esp-idf/components/driver/./timer.c \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h:
@@ -203,4 +200,3 @@ timer.o: /home/physiii/esp/esp-idf/components/driver/./timer.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_dport_access.h:
-/home/physiii/esp/esp-idf/components/driver/./timer.c:

@@ -49,7 +49,6 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
@@ -129,12 +128,14 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_partition.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs_flash.h \
- /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_token.c \
  /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_microphone.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c \
+ /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
+ /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
+ /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h \
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_speaker.c \
+ /home/physiii/esp/esp-idf/components/driver/include/driver/dac.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_update.c \
  /home/physiii/esp/esp-idf/components/app_update/include/esp_ota_ops.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_ota.c \
@@ -239,8 +240,6 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
@@ -400,17 +399,21 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 
 /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs_flash.h:
 
-/home/physiii/esp/esp-idf/components/nvs_flash/include/nvs.h:
-
 /home/physiii/circuits/liger/code/main/./plugins/protocol_token.c:
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h:
 
-/home/physiii/circuits/liger/code/main/./plugins/protocol_microphone.c:
-
 /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c:
 
-/home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c:
+/home/physiii/esp/esp-idf/components/log/include/esp_log.h:
+
+/home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
+
+/home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h:
+
+/home/physiii/circuits/liger/code/main/./plugins/protocol_speaker.c:
+
+/home/physiii/esp/esp-idf/components/driver/include/driver/dac.h:
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_update.c:
 
@@ -419,4 +422,3 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_ota.c:
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_reboot_to_factory.c:
-/home/physiii/circuits/liger/code/main/./main.c:

@@ -128,4 +128,3 @@ library/oid.o: /home/physiii/esp/esp-idf/components/mbedtls/library/oid.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/x509.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/oid.c:

@@ -7,11 +7,9 @@ Archive member included to satisfy reference by file (symbol)
 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
                               /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o) (esp_partition_table_basic_verify)
 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                              /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o) (esp_image_load)
-/home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                              /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o) (bootloader_sha256_start)
+                              /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o) (esp_image_load_header)
 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                              /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o) (bootloader_fill_random)
+                              /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o) (bootloader_random_enable)
 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
                               /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o) (esp_log_timestamp)
 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
@@ -20,9 +18,7 @@ Archive member included to satisfy reference by file (symbol)
                               /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o) (rtc_clk_slow_freq_get)
 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
                               /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o) (rtc_clk_cal_ratio)
-/home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
-                              /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o) (__bswapsi2)
-/home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+/home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
                               /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o) (__udivdi3)
 
 Allocating common symbols
@@ -33,19 +29,19 @@ esp_image_spi_freq_t
 
 Discarded input sections
 
+ .literal.print_flash_info
+                0x0000000000000000        0x4 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .text.print_flash_info
+                0x0000000000000000        0xd /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  .xt.lit        0x0000000000000000       0x30 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .xt.prop       0x0000000000000000      0x4c8 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .xt.prop       0x0000000000000000      0x4bc /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  COMMON         0x0000000000000000        0x4 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  .literal.bootloader_flash_write
                 0x0000000000000000       0x34 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_erase_sector
                 0x0000000000000000        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .text.bootloader_flash_write
                 0x0000000000000000       0xa6 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .text.bootloader_flash_erase_sector
@@ -53,31 +49,16 @@ Discarded input sections
  .xt.lit        0x0000000000000000       0x28 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .xt.prop       0x0000000000000000      0x288 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .xt.lit        0x0000000000000000        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .xt.prop       0x0000000000000000       0xb4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .literal.esp_image_verify_bootloader
-                0x0000000000000000        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .rodata        0x0000000000000000        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .text.esp_image_verify_bootloader
-                0x0000000000000000       0x30 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .xt.lit        0x0000000000000000       0x18 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .xt.prop       0x0000000000000000      0x450 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .xt.lit        0x0000000000000000       0x18 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .xt.prop       0x0000000000000000      0x180 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .xt.prop       0x0000000000000000      0x288 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .literal.bootloader_fill_random
+                0x0000000000000000        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .rodata.str1.1
-                0x0000000000000000        0x9 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .data.TAG      0x0000000000000000        0x4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .text.bootloader_fill_random
+                0x0000000000000000       0x49 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .xt.lit        0x0000000000000000       0x18 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .xt.prop       0x0000000000000000       0xd8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .literal.esp_log_buffer_hex
@@ -85,8 +66,6 @@ Discarded input sections
  .literal.esp_log_buffer_char
                 0x0000000000000000        0xc /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
  .rodata.str1.1
                 0x0000000000000000        0x9 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
  .text.esp_log_buffer_hex
@@ -108,8 +87,6 @@ Discarded input sections
  .literal.esp_rom_spiflash_erase_area
                 0x0000000000000000       0x18 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_lock
                 0x0000000000000000       0x4c /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .text.esp_rom_spiflash_config_readmode
@@ -139,12 +116,10 @@ Discarded input sections
  .literal.rtc_clk_slow_freq_get_hz
                 0x0000000000000000        0x8 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_cpu_freq_get
-                0x0000000000000000       0x20 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_cpu_freq_value
-                0x0000000000000000       0x2c /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x1c /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_32k_bootstrap
                 0x0000000000000000       0x38 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_32k_enabled
@@ -158,17 +133,13 @@ Discarded input sections
  .text.rtc_clk_slow_freq_get_hz
                 0x0000000000000000       0x1e /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_get
-                0x0000000000000000       0x7c /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x54 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_value
-                0x0000000000000000       0x45 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000000       0x3c /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.rtc_clk_cpu_freq_value
                 0x0000000000000000       0x14 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$31
                 0x0000000000000000        0xc /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .rodata.__func__$2152
-                0x0000000000000000       0x17 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .rodata.__func__$2137
-                0x0000000000000000       0x15 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .xt.lit        0x0000000000000000       0xb0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .xt.prop       0x0000000000000000      0x72c /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_cal
@@ -178,8 +149,6 @@ Discarded input sections
  .literal.rtc_time_get
                 0x0000000000000000       0x18 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
  .text          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .data          0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .bss           0x0000000000000000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
  .text.rtc_clk_cal
                 0x0000000000000000       0x54 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
  .text.rtc_time_us_to_slowclk
@@ -190,20 +159,15 @@ Discarded input sections
                 0x0000000000000000       0x50 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
  .xt.lit        0x0000000000000000       0x28 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
  .xt.prop       0x0000000000000000      0x1e0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .data          0x0000000000000000        0x0 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .bss           0x0000000000000000        0x0 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .xt.lit        0x0000000000000000        0x8 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .xt.prop       0x0000000000000000       0x30 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .data          0x0000000000000000        0x0 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
- .bss           0x0000000000000000        0x0 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
- .eh_frame      0x0000000000000000       0x28 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
- .xt.prop       0x0000000000000000      0x264 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .eh_frame      0x0000000000000000       0x28 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .xt.prop       0x0000000000000000      0x264 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
 Memory Configuration
 
 Name             Origin             Length             Attributes
 dport0_seg       0x000000003ff00000 0x0000000000000010 rw
-iram_seg         0x0000000040078000 0x0000000000008000 xrw
+iram_seg         0x0000000040080000 0x0000000000000400 xrw
+iram_pool_1_seg  0x0000000040078000 0x0000000000008000 xrw
 dram_seg         0x000000003fff0000 0x0000000000010000 rw
 *default*        0x0000000000000000 0xffffffffffffffff
 
@@ -216,17 +180,30 @@ LOAD /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a
 LOAD /home/physiii/circuits/liger/code/build/bootloader/micro-ecc/libmicro-ecc.a
 LOAD /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a
 LOAD /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a
-LOAD /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a
-LOAD /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/lib/libstdc++.a
+LOAD /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a
+LOAD /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/../../../../xtensa-esp32-elf/lib/libstdc++.a
 END GROUP
 
-.iram1.text     0x0000000040078000        0x0
-                0x0000000040078000                . = ALIGN (0x10)
+.iram1.text     0x0000000040080000       0xfb
+                0x0000000040080000                _init_start = ABSOLUTE (.)
+ *(.UserEnter.literal)
+ *(.UserEnter.text)
+                0x0000000040080000                . = ALIGN (0x10)
  *(.entry.text)
  *(.init.literal)
  *(.init)
+                0x0000000040080000                _init_end = ABSOLUTE (.)
+                0x0000000040080000                _iram_text_start = ABSOLUTE (.)
+ *(.iram1 .iram1.*)
+ .iram1.literal
+                0x0000000040080000       0x34 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                                         0x44 (size before relaxing)
+ .iram1         0x0000000040080034       0xc7 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                                         0xcb (size before relaxing)
+                0x0000000040080034                call_start_cpu0
+                0x00000000400800fb                _iram_text_end = ABSOLUTE (.)
 
-.dram0.bss      0x000000003fff0000       0x10
+.dram0.bss      0x000000003fff0000        0x8
                 0x000000003fff0000                . = ALIGN (0x8)
                 0x000000003fff0000                _bss_start = ABSOLUTE (.)
  *(.dynsbss)
@@ -239,24 +216,42 @@ END GROUP
  *(.gnu.linkonce.sb2.*)
  *(.dynbss)
  *(.bss)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .bss           0x000000003fff0000        0x0 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
  *(.bss.*)
  .bss.mapped    0x000000003fff0000        0x1 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x000000003fff0001        0x3 
- .bss.ram_obfs_value
-                0x000000003fff0004        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .bss.words_hashed
-                0x000000003fff000c        0x4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  *(.gnu.linkonce.b.*)
  *(COMMON)
-                0x000000003fff0010                . = ALIGN (0x8)
-                0x000000003fff0010                _bss_end = ABSOLUTE (.)
+                0x000000003fff0008                . = ALIGN (0x8)
+ *fill*         0x000000003fff0001        0x7 
+                0x000000003fff0008                _bss_end = ABSOLUTE (.)
 
-.dram0.data     0x000000003fff0010        0x4
-                0x000000003fff0010                _data_start = ABSOLUTE (.)
+.dram0.data     0x000000003fff0008        0x8
+                0x000000003fff0008                _data_start = ABSOLUTE (.)
  *(.data)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .data          0x000000003fff0008        0x0 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
  *(.data.*)
  .data.current_read_mapping
-                0x000000003fff0010        0x4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000003fff0008        0x4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .data.TAG      0x000000003fff000c        0x4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x000000003fff000c                TAG
  *(.gnu.linkonce.d.*)
  *(.data1)
  *(.sdata)
@@ -266,93 +261,85 @@ END GROUP
  *(.sdata2.*)
  *(.gnu.linkonce.s2.*)
  *(.jcr)
-                0x000000003fff0014                _data_end = ABSOLUTE (.)
+                0x000000003fff0010                _data_end = ABSOLUTE (.)
 
-.dram0.rodata   0x000000003fff0014      0xf94
-                0x000000003fff0014                _rodata_start = ABSOLUTE (.)
+.dram0.rodata   0x000000003fff0010      0xcc8
+                0x000000003fff0010                _rodata_start = ABSOLUTE (.)
  *(.rodata)
- .rodata        0x000000003fff0014       0x1c /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .rodata        0x000000003fff0010       0x1c /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  *(.rodata.*)
  .rodata.str1.1
-                0x000000003fff0030      0x498 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .rodata.CSWTCH$43
-                0x000000003fff04c8        0x5 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .rodata.__func__$3735
-                0x000000003fff04cd       0x10 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x000000003fff002c      0x4ad /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .rodata.CSWTCH$44
+                0x000000003fff04d9        0x5 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  .rodata.str1.1
-                0x000000003fff04dd      0x27d /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x000000003fff075a        0x2 
+                0x000000003fff04de      0x27d /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x000000003fff075b        0x1 
  .rodata.CSWTCH$17
                 0x000000003fff075c        0xc /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .rodata.str1.1
                 0x000000003fff0768       0xf6 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .rodata.str1.1
-                0x000000003fff085e      0x368 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x3a2 (size before relaxing)
+                0x000000003fff085e      0x233 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .rodata.str1.1
-                0x000000003fff0bc6       0xb1 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .rodata.padding$2489
-                0x000000003fff0c77       0x40 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .rodata.__func__$2485
-                0x000000003fff0cb7       0x19 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .rodata.__func__$2465
-                0x000000003fff0cd0       0x17 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000003fff0a91        0x9 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .rodata.str1.1
-                0x000000003fff0ce7      0x1e4 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000003fff0ecb        0x1 
+                0x000000003fff0a9a      0x162 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.rtc_clk_init
-                0x000000003fff0ecc       0x64 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0bfc       0x64 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$46
-                0x000000003fff0f30       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0c60       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$45
-                0x000000003fff0f41       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0c71       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$44
-                0x000000003fff0f52       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0c82       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$43
-                0x000000003fff0f63       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0c93       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$42
-                0x000000003fff0f74       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0ca4       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$41
-                0x000000003fff0f85       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0cb5       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.CSWTCH$36
-                0x000000003fff0f96       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff0cc6       0x11 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *(.irom1.text)
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x000000003fff0fa7                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
+                0x000000003fff0cd7                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x000000003fff0fa8                . = ((. + 0x3) & 0xfffffffffffffffc)
- *fill*         0x000000003fff0fa7        0x1 
-                0x000000003fff0fa8                __init_array_start = ABSOLUTE (.)
+                0x000000003fff0cd8                . = ((. + 0x3) & 0xfffffffffffffffc)
+ *fill*         0x000000003fff0cd7        0x1 
+                0x000000003fff0cd8                __init_array_start = ABSOLUTE (.)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x000000003fff0fa8                __init_array_end = ABSOLUTE (.)
+                0x000000003fff0cd8                __init_array_end = ABSOLUTE (.)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x000000003fff0fa8                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
+                0x000000003fff0cd8                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x000000003fff0fa8                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x000000003fff0cd8                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x000000003fff0fa8                _rodata_end = ABSOLUTE (.)
-                0x000000003fff0fa8                _lit4_start = ABSOLUTE (.)
+                0x000000003fff0cd8                _rodata_end = ABSOLUTE (.)
+                0x000000003fff0cd8                _lit4_start = ABSOLUTE (.)
  *(*.lit4)
  *(.lit4.*)
  *(.gnu.linkonce.lit4.*)
-                0x000000003fff0fa8                _lit4_end = ABSOLUTE (.)
-                0x000000003fff0fa8                . = ALIGN (0x4)
-                0x000000003fff0fa8                _heap_start = ABSOLUTE (.)
+                0x000000003fff0cd8                _lit4_end = ABSOLUTE (.)
+                0x000000003fff0cd8                . = ALIGN (0x4)
+                0x000000003fff0cd8                _heap_start = ABSOLUTE (.)
 
-.iram.text      0x0000000040078000     0x2b15
+.iram_pool_1.text
+                0x0000000040078000     0x2509
                 0x0000000040078000                _stext = .
                 0x0000000040078000                _text_start = ABSOLUTE (.)
  *(.literal .text .literal.* .text.* .stub .gnu.warning .gnu.linkonce.literal.* .gnu.linkonce.t.*.literal .gnu.linkonce.t.*)
@@ -365,357 +352,315 @@ END GROUP
                 0x0000000040078064       0x10 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
                                          0x30 (size before relaxing)
  .literal.bootloader_main
-                0x0000000040078074       0xc8 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
-                                        0x1ac (size before relaxing)
- .literal.__assert_func
-                0x000000004007813c        0x4 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x10 (size before relaxing)
- .literal.call_start_cpu0
-                0x0000000040078140       0x3c /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x68 (size before relaxing)
+                0x0000000040078074       0xd8 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                                        0x1e4 (size before relaxing)
  .literal.bootloader_mmap
-                0x000000004007817c       0x1c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000004007814c       0x1c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x50 (size before relaxing)
  .literal.bootloader_munmap
-                0x0000000040078198        0x4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078168        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x14 (size before relaxing)
  .literal.bootloader_flash_read
-                0x000000004007819c       0x14 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078170       0x14 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x60 (size before relaxing)
  .literal.esp_partition_table_basic_verify
-                0x00000000400781b0       0x14 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                0x0000000040078184       0x14 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
                                          0x30 (size before relaxing)
- .literal.should_load
-                0x00000000400781c4        0xc /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x24 (size before relaxing)
- .literal.esp_image_load
-                0x00000000400781d0       0x54 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x128 (size before relaxing)
- .literal.bootloader_sha256_start
-                0x0000000040078224        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .literal.bootloader_sha256_data
-                0x000000004007822c       0x20 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .literal.esp_image_load_header
+                0x0000000040078198       0x14 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x34 (size before relaxing)
+ .literal.esp_image_load_segment_header
+                0x00000000400781ac        0xc /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x2c (size before relaxing)
- .literal.bootloader_sha256_finish
-                0x000000004007824c       0x18 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                         0x40 (size before relaxing)
- .literal.bootloader_fill_random
-                0x0000000040078264        0x8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .literal.esp_image_basic_verify
+                0x00000000400781b8       0x10 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x5c (size before relaxing)
  .literal.bootloader_random_enable
-                0x000000004007826c       0x6c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x00000000400781c8       0x70 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
                                          0x78 (size before relaxing)
  .literal.bootloader_random_disable
-                0x00000000400782d8       0x1c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078238       0x1c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
                                          0x4c (size before relaxing)
  .literal.esp_log_early_timestamp
-                0x00000000400782f4        0x8 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+                0x0000000040078254        0x8 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
  .literal.esp_rom_spiflash_read_status
-                0x00000000400782fc       0x10 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007825c       0x10 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x14 (size before relaxing)
  .literal.esp_rom_spiflash_wait_idle
-                0x000000004007830c        0x8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007826c        0x8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                           0xc (size before relaxing)
  .literal.esp_rom_spiflash_enable_write$constprop$6
-                0x0000000040078314        0x8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040078274        0x8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x14 (size before relaxing)
  .literal.esp_rom_spiflash_program_page_internal$constprop$4
-                0x000000004007831c        0xc /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007827c        0xc /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x28 (size before relaxing)
  .literal.esp_rom_spiflash_read_statushigh
-                0x0000000040078328        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040078288        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                           0xc (size before relaxing)
  .literal.esp_rom_spiflash_write_status
-                0x0000000040078328        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040078288        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x14 (size before relaxing)
  .literal.esp_rom_spiflash_unlock
-                0x0000000040078328        0x8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040078288        0x8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x28 (size before relaxing)
  .literal.esp_rom_spiflash_erase_sector
-                0x0000000040078330       0x10 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040078290       0x14 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x34 (size before relaxing)
  .literal.esp_rom_spiflash_write
-                0x0000000040078340        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400782a4        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x24 (size before relaxing)
  .literal.esp_rom_spiflash_read
-                0x0000000040078340       0x34 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400782a4       0x34 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x70 (size before relaxing)
  .literal.rtc_clk_32k_enable_internal$constprop$2
-                0x0000000040078374       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782d8       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x14 (size before relaxing)
  .literal.rtc_clk_32k_enable
-                0x0000000040078384        0x4 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782e8        0x4 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_8m_enable
-                0x0000000040078388       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782ec       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_slow_freq_set
-                0x0000000040078398        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782fc        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_slow_freq_get
-                0x0000000040078398        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782fc        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_fast_freq_set
-                0x0000000040078398        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782fc        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_fast_freq_get
-                0x0000000040078398        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782fc        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_bbpll_set
-                0x0000000040078398       0x28 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400782fc       0x28 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x5c (size before relaxing)
  .literal.rtc_clk_xtal_freq_get
-                0x00000000400783c0        0xc /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040078324        0xc /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x14 (size before relaxing)
  .literal.rtc_clk_xtal_freq_update
-                0x00000000400783cc        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040078330        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_apb_freq_update
-                0x00000000400783cc        0x4 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040078330        0x4 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_cpu_freq_set
-                0x00000000400783d0       0x2c /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040078334       0x30 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x64 (size before relaxing)
  .literal.rtc_clk_apb_freq_get
-                0x00000000400783fc        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040078364        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_init
-                0x00000000400783fc       0x30 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040078364       0x30 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x90 (size before relaxing)
  .literal.rtc_clk_cal_internal
-                0x000000004007842c       0x20 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000040078394       0x20 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x38 (size before relaxing)
  .literal.rtc_clk_cal_ratio
-                0x000000004007844c        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x00000000400783b4        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
                                           0x8 (size before relaxing)
- .literal       0x000000004007844c        0x8 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .text.wdt_reset_info_dump
-                0x0000000040078454       0xe2 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x00000000400783b4       0xe2 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
                                          0xe6 (size before relaxing)
- *fill*         0x0000000040078536        0x2 
+ *fill*         0x0000000040078496        0x2 
  .text.ota_select_valid
-                0x0000000040078538       0x22 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- *fill*         0x000000004007855a        0x2 
+                0x0000000040078498       0x22 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ *fill*         0x00000000400784ba        0x2 
  .text.load_partition_table
-                0x000000004007855c       0xd2 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x00000000400784bc       0xd2 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
                                          0xda (size before relaxing)
-                0x000000004007855c                load_partition_table
- *fill*         0x000000004007862e        0x2 
+                0x00000000400784bc                load_partition_table
+ *fill*         0x000000004007858e        0x2 
  .text.bootloader_main
-                0x0000000040078630      0x5a8 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
-                                        0x5f0 (size before relaxing)
-                0x0000000040078630                bootloader_main
- .text.__assert_func
-                0x0000000040078bd8       0x1f /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x23 (size before relaxing)
-                0x0000000040078bd8                __assert_func
- *fill*         0x0000000040078bf7        0x1 
- .text.call_start_cpu0
-                0x0000000040078bf8      0x113 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
-                0x0000000040078bf8                call_start_cpu0
- *fill*         0x0000000040078d0b        0x1 
+                0x0000000040078590      0x614 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                                        0x680 (size before relaxing)
+                0x0000000040078590                bootloader_main
  .text.bootloader_mmap
-                0x0000000040078d0c       0xac /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078ba4       0xac /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0xb0 (size before relaxing)
-                0x0000000040078d0c                bootloader_mmap
+                0x0000000040078ba4                bootloader_mmap
  .text.bootloader_munmap
-                0x0000000040078db8       0x32 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                0x0000000040078db8                bootloader_munmap
- *fill*         0x0000000040078dea        0x2 
+                0x0000000040078c50       0x32 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078c50                bootloader_munmap
+ *fill*         0x0000000040078c82        0x2 
  .text.bootloader_flash_read
-                0x0000000040078dec      0x116 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078c84      0x116 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                         0x11a (size before relaxing)
-                0x0000000040078dec                bootloader_flash_read
- *fill*         0x0000000040078f02        0x2 
+                0x0000000040078c84                bootloader_flash_read
+ *fill*         0x0000000040078d9a        0x2 
  .text.esp_partition_table_basic_verify
-                0x0000000040078f04       0xaa /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
-                0x0000000040078f04                esp_partition_table_basic_verify
- *fill*         0x0000000040078fae        0x2 
- .text.should_load
-                0x0000000040078fb0       0x6e /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- *fill*         0x000000004007901e        0x2 
- .text.esp_image_load
-                0x0000000040079020      0x516 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x562 (size before relaxing)
-                0x0000000040079020                esp_image_load
- *fill*         0x0000000040079536        0x2 
- .text.bootloader_sha256_start
-                0x0000000040079538       0x12 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                0x0000000040079538                bootloader_sha256_start
- *fill*         0x000000004007954a        0x2 
- .text.bootloader_sha256_data
-                0x000000004007954c       0xa5 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                0x000000004007954c                bootloader_sha256_data
- *fill*         0x00000000400795f1        0x3 
- .text.bootloader_sha256_finish
-                0x00000000400795f4       0xb4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                         0xc0 (size before relaxing)
-                0x00000000400795f4                bootloader_sha256_finish
- .text.bootloader_fill_random
-                0x00000000400796a8       0x49 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x00000000400796a8                bootloader_fill_random
- *fill*         0x00000000400796f1        0x3 
+                0x0000000040078d9c       0xaa /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                0x0000000040078d9c                esp_partition_table_basic_verify
+ *fill*         0x0000000040078e46        0x2 
+ .text.esp_image_load_header
+                0x0000000040078e48       0x97 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0xa3 (size before relaxing)
+                0x0000000040078e48                esp_image_load_header
+ *fill*         0x0000000040078edf        0x1 
+ .text.esp_image_load_segment_header
+                0x0000000040078ee0       0xb2 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040078ee0                esp_image_load_segment_header
+ *fill*         0x0000000040078f92        0x2 
+ .text.esp_image_basic_verify
+                0x0000000040078f94      0x17c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x18c (size before relaxing)
+                0x0000000040078f94                esp_image_basic_verify
  .text.bootloader_random_enable
-                0x00000000400796f4      0x1d5 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x00000000400796f4                bootloader_random_enable
- *fill*         0x00000000400798c9        0x3 
+                0x0000000040079110      0x1d5 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040079110                bootloader_random_enable
+ *fill*         0x00000000400792e5        0x3 
  .text.bootloader_random_disable
-                0x00000000400798cc      0x11c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x00000000400798cc                bootloader_random_disable
+                0x00000000400792e8      0x11c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x00000000400792e8                bootloader_random_disable
  .text.esp_log_early_timestamp
-                0x00000000400799e8       0x14 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
-                0x00000000400799e8                esp_log_timestamp
-                0x00000000400799e8                esp_log_early_timestamp
+                0x0000000040079404       0x14 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+                0x0000000040079404                esp_log_timestamp
+                0x0000000040079404                esp_log_early_timestamp
  .text.esp_rom_spiflash_read_status
-                0x00000000400799fc       0x5b /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x00000000400799fc                esp_rom_spiflash_read_status
- *fill*         0x0000000040079a57        0x1 
+                0x0000000040079418       0x5b /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079418                esp_rom_spiflash_read_status
+ *fill*         0x0000000040079473        0x1 
  .text.esp_rom_spiflash_wait_idle
-                0x0000000040079a58       0x30 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x0000000040079a58                esp_rom_spiflash_wait_idle
+                0x0000000040079474       0x30 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079474                esp_rom_spiflash_wait_idle
  .text.esp_rom_spiflash_enable_write$constprop$6
-                0x0000000040079a88       0x3d /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400794a4       0x3d /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x41 (size before relaxing)
- *fill*         0x0000000040079ac5        0x3 
+ *fill*         0x00000000400794e1        0x3 
  .text.esp_rom_spiflash_program_page_internal$constprop$4
-                0x0000000040079ac8       0xce /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- *fill*         0x0000000040079b96        0x2 
+                0x00000000400794e4       0xce /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ *fill*         0x00000000400795b2        0x2 
  .text.esp_rom_spiflash_read_statushigh
-                0x0000000040079b98       0x21 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x0000000040079b98                esp_rom_spiflash_read_statushigh
- *fill*         0x0000000040079bb9        0x3 
+                0x00000000400795b4       0x21 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400795b4                esp_rom_spiflash_read_statushigh
+ *fill*         0x00000000400795d5        0x3 
  .text.esp_rom_spiflash_write_status
-                0x0000000040079bbc       0x2f /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400795d8       0x2f /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x33 (size before relaxing)
-                0x0000000040079bbc                esp_rom_spiflash_write_status
- *fill*         0x0000000040079beb        0x1 
+                0x00000000400795d8                esp_rom_spiflash_write_status
+ *fill*         0x0000000040079607        0x1 
  .text.esp_rom_spiflash_unlock
-                0x0000000040079bec       0x66 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079608       0x66 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x72 (size before relaxing)
-                0x0000000040079bec                esp_rom_spiflash_unlock
- *fill*         0x0000000040079c52        0x2 
+                0x0000000040079608                esp_rom_spiflash_unlock
+ *fill*         0x000000004007966e        0x2 
  .text.esp_rom_spiflash_erase_sector
-                0x0000000040079c54       0x89 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079670       0x89 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x8d (size before relaxing)
-                0x0000000040079c54                esp_rom_spiflash_erase_sector
- *fill*         0x0000000040079cdd        0x3 
+                0x0000000040079670                esp_rom_spiflash_erase_sector
+ *fill*         0x00000000400796f9        0x3 
  .text.esp_rom_spiflash_write
-                0x0000000040079ce0       0x9e /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000400796fc       0x9e /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0xa2 (size before relaxing)
-                0x0000000040079ce0                esp_rom_spiflash_write
- *fill*         0x0000000040079d7e        0x2 
+                0x00000000400796fc                esp_rom_spiflash_write
+ *fill*         0x000000004007979a        0x2 
  .text.esp_rom_spiflash_read
-                0x0000000040079d80      0x2e5 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007979c      0x2e5 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                         0x2e9 (size before relaxing)
-                0x0000000040079d80                esp_rom_spiflash_read
- *fill*         0x000000004007a065        0x3 
+                0x000000004007979c                esp_rom_spiflash_read
+ *fill*         0x0000000040079a81        0x3 
  .text.rtc_clk_32k_enable_internal$constprop$2
-                0x000000004007a068       0x6f /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000004007a0d7        0x1 
+                0x0000000040079a84       0x6f /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x0000000040079af3        0x1 
  .text.rtc_clk_32k_enable
-                0x000000004007a0d8       0x29 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a0d8                rtc_clk_32k_enable
- *fill*         0x000000004007a101        0x3 
+                0x0000000040079af4       0x29 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079af4                rtc_clk_32k_enable
+ *fill*         0x0000000040079b1d        0x3 
  .text.rtc_clk_8m_enable
-                0x000000004007a104       0x7e /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a104                rtc_clk_8m_enable
- *fill*         0x000000004007a182        0x2 
+                0x0000000040079b20       0x7e /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079b20                rtc_clk_8m_enable
+ *fill*         0x0000000040079b9e        0x2 
  .text.rtc_clk_slow_freq_set
-                0x000000004007a184       0x27 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a184                rtc_clk_slow_freq_set
- *fill*         0x000000004007a1ab        0x1 
+                0x0000000040079ba0       0x27 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079ba0                rtc_clk_slow_freq_set
+ *fill*         0x0000000040079bc7        0x1 
  .text.rtc_clk_slow_freq_get
-                0x000000004007a1ac       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a1ac                rtc_clk_slow_freq_get
+                0x0000000040079bc8       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079bc8                rtc_clk_slow_freq_get
  .text.rtc_clk_fast_freq_set
-                0x000000004007a1bc       0x2a /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a1bc                rtc_clk_fast_freq_set
- *fill*         0x000000004007a1e6        0x2 
+                0x0000000040079bd8       0x2a /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079bd8                rtc_clk_fast_freq_set
+ *fill*         0x0000000040079c02        0x2 
  .text.rtc_clk_fast_freq_get
-                0x000000004007a1e8       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a1e8                rtc_clk_fast_freq_get
+                0x0000000040079c04       0x10 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079c04                rtc_clk_fast_freq_get
  .text.rtc_clk_bbpll_set
-                0x000000004007a1f8      0x143 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a1f8                rtc_clk_bbpll_set
- *fill*         0x000000004007a33b        0x1 
+                0x0000000040079c14      0x143 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079c14                rtc_clk_bbpll_set
+ *fill*         0x0000000040079d57        0x1 
  .text.rtc_clk_xtal_freq_get
-                0x000000004007a33c       0x36 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a33c                rtc_get_xtal
-                0x000000004007a33c                rtc_clk_xtal_freq_get
- *fill*         0x000000004007a372        0x2 
+                0x0000000040079d58       0x36 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079d58                rtc_get_xtal
+                0x0000000040079d58                rtc_clk_xtal_freq_get
+ *fill*         0x0000000040079d8e        0x2 
  .text.rtc_clk_xtal_freq_update
-                0x000000004007a374       0x16 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a374                rtc_clk_xtal_freq_update
- *fill*         0x000000004007a38a        0x2 
+                0x0000000040079d90       0x16 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079d90                rtc_clk_xtal_freq_update
+ *fill*         0x0000000040079da6        0x2 
  .text.rtc_clk_apb_freq_update
-                0x000000004007a38c       0x19 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a38c                rtc_clk_apb_freq_update
- *fill*         0x000000004007a3a5        0x3 
+                0x0000000040079da8       0x19 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079da8                rtc_clk_apb_freq_update
+ *fill*         0x0000000040079dc1        0x3 
  .text.rtc_clk_cpu_freq_set
-                0x000000004007a3a8      0x1ae /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079dc4      0x1ae /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x1b6 (size before relaxing)
-                0x000000004007a3a8                rtc_clk_cpu_freq_set
- *fill*         0x000000004007a556        0x2 
+                0x0000000040079dc4                rtc_clk_cpu_freq_set
+ *fill*         0x0000000040079f72        0x2 
  .text.rtc_clk_apb_freq_get
-                0x000000004007a558       0x13 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a558                rtc_clk_apb_freq_get
- *fill*         0x000000004007a56b        0x1 
+                0x0000000040079f74       0x13 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079f74                rtc_clk_apb_freq_get
+ *fill*         0x0000000040079f87        0x1 
  .text.rtc_clk_init
-                0x000000004007a56c      0x1a9 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040079f88      0x1a9 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x1c5 (size before relaxing)
-                0x000000004007a56c                rtc_clk_init
- *fill*         0x000000004007a715        0x3 
+                0x0000000040079f88                rtc_clk_init
+ *fill*         0x000000004007a131        0x3 
  .text.rtc_clk_cal_internal
-                0x000000004007a718      0x132 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- *fill*         0x000000004007a84a        0x2 
+                0x000000004007a134      0x132 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ *fill*         0x000000004007a266        0x2 
  .text.rtc_clk_cal_ratio
-                0x000000004007a84c       0x20 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x000000004007a268       0x20 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x24 (size before relaxing)
-                0x000000004007a84c                rtc_clk_cal_ratio
- .text          0x000000004007a86c       0x26 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
-                0x000000004007a86c                __bswapsi2
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x0 
- *fill*         0x000000004007a892        0x2 
- .text          0x000000004007a894      0x281 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
-                0x000000004007a894                __udivdi3
- *(.iram1 .iram1.*)
+                0x000000004007a268                rtc_clk_cal_ratio
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ *fill*         0x000000004007a288        0x0 
+ .text          0x000000004007a288      0x281 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+                0x000000004007a288                __udivdi3
+ *(.irom0.text)
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x000000004007ab15                _text_end = ABSOLUTE (.)
-                0x000000004007ab15                _etext = .
+                0x000000004007a509                _text_end = ABSOLUTE (.)
+                0x000000004007a509                _etext = .
                 [!provide]                        PROVIDE (abort, 0x4000bba4)
                 [!provide]                        PROVIDE (abs, 0x40056340)
                 [!provide]                        PROVIDE (__absvdi2, 0x4006387c)
@@ -1037,7 +982,7 @@ END GROUP
                 [!provide]                        PROVIDE (md5_vector, 0x4005db80)
                 [!provide]                        PROVIDE (memccpy, 0x4000c220)
                 [!provide]                        PROVIDE (memchr, 0x4000c244)
-                0x000000004000c260                PROVIDE (memcmp, 0x4000c260)
+                [!provide]                        PROVIDE (memcmp, 0x4000c260)
                 0x000000004000c2c8                PROVIDE (memcpy, 0x4000c2c8)
                 [!provide]                        PROVIDE (memmove, 0x4000c3c0)
                 [!provide]                        PROVIDE (memrchr, 0x4000c400)
@@ -2345,8 +2290,6 @@ END GROUP
                 0x0000000040062df4                PROVIDE (esp_rom_spiflash_write_encrypted_enable, 0x40062df4)
                 0x0000000040062e1c                PROVIDE (esp_rom_spiflash_prepare_encrypted_data, 0x40062e1c)
                 [!provide]                        PROVIDE (esp_rom_spiflash_select_qio_pins, 0x40061ddc)
-                [!provide]                        PROVIDE (esp_rom_spiflash_attach, 0x40062a6c)
-                [!provide]                        PROVIDE (esp_rom_spiflash_config_clk, 0x40062bc8)
                 0x000000003ffae270                PROVIDE (g_rom_spiflash_chip, 0x3ffae270)
                 [!provide]                        PROVIDE (FilePacketSendDeflatedReqMsgProc, 0x40008b24)
                 [!provide]                        PROVIDE (FilePacketSendReqMsgProc, 0x40008860)
@@ -2461,7 +2404,7 @@ END GROUP
                 [!provide]                        PROVIDE (ets_secure_boot_rd_iv, 0x4005cb84)
                 [!provide]                        PROVIDE (ets_secure_boot_start, 0x4005ca34)
                 [!provide]                        PROVIDE (ets_sha_disable, 0x4005c0a8)
-                0x000000004005c07c                PROVIDE (ets_sha_enable, 0x4005c07c)
+                [!provide]                        PROVIDE (ets_sha_enable, 0x4005c07c)
                 [!provide]                        PROVIDE (ets_sha_finish, 0x4005c104)
                 [!provide]                        PROVIDE (ets_sha_init, 0x4005c0d4)
                 [!provide]                        PROVIDE (ets_sha_update, 0x4005c2a0)
@@ -2527,63 +2470,55 @@ END GROUP
                 0x0000000040008550                PROVIDE (ets_update_cpu_frequency, 0x40008550)
 OUTPUT(/home/physiii/circuits/liger/code/build/bootloader/bootloader.elf elf32-xtensa-le)
 
-.debug_frame    0x0000000000000000      0x750
+.debug_frame    0x0000000000000000      0x6d0
  .debug_frame   0x0000000000000000       0xa0 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  .debug_frame   0x00000000000000a0       0x88 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .debug_frame   0x0000000000000128       0x28 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .debug_frame   0x0000000000000150       0x58 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_frame   0x00000000000001a8       0x58 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_frame   0x0000000000000200       0x58 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_frame   0x0000000000000258       0x58 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .debug_frame   0x00000000000002b0      0x190 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_frame   0x0000000000000440      0x220 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_frame   0x0000000000000660       0xa0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_frame   0x0000000000000700       0x28 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_frame   0x0000000000000728       0x28 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_frame   0x00000000000001a8       0x58 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_frame   0x0000000000000200       0x58 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .debug_frame   0x0000000000000258      0x190 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_frame   0x00000000000003e8      0x220 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_frame   0x0000000000000608       0xa0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_frame   0x00000000000006a8       0x28 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_info     0x0000000000000000     0x7089
- .debug_info    0x0000000000000000     0x21de /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_info    0x00000000000021de      0xb0e /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_info    0x0000000000002cec      0x383 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_info    0x000000000000306f     0x117c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_info    0x00000000000041eb      0x35b /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_info    0x0000000000004546      0x268 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_info    0x00000000000047ae      0x2df /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .debug_info    0x0000000000004a8d      0xbbe /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_info    0x000000000000564b     0x105c /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_info    0x00000000000066a7      0x34d /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_info    0x00000000000069f4       0xcd /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_info    0x0000000000006ac1      0x5c8 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_info     0x0000000000000000     0x61c3
+ .debug_info    0x0000000000000000     0x21bc /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_info    0x00000000000021bc      0xb0e /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_info    0x0000000000002cca      0x383 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_info    0x000000000000304d      0x799 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_info    0x00000000000037e6      0x268 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_info    0x0000000000003a4e      0x2df /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .debug_info    0x0000000000003d2d      0xbbe /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_info    0x00000000000048eb      0xfc3 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_info    0x00000000000058ae      0x34d /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_info    0x0000000000005bfb      0x5c8 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_abbrev   0x0000000000000000     0x1938
- .debug_abbrev  0x0000000000000000      0x481 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_abbrev  0x0000000000000481      0x243 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_abbrev  0x00000000000006c4      0x16c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_abbrev  0x0000000000000830      0x34b /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_abbrev  0x0000000000000b7b      0x15d /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_abbrev  0x0000000000000cd8      0x13c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_abbrev  0x0000000000000e14      0x151 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .debug_abbrev  0x0000000000000f65      0x2e1 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_abbrev  0x0000000000001246      0x3e0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_abbrev  0x0000000000001626      0x153 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_abbrev  0x0000000000001779       0x60 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_abbrev  0x00000000000017d9      0x15f /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_abbrev   0x0000000000000000     0x1581
+ .debug_abbrev  0x0000000000000000      0x460 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_abbrev  0x0000000000000460      0x243 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_abbrev  0x00000000000006a3      0x16c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_abbrev  0x000000000000080f      0x191 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_abbrev  0x00000000000009a0      0x13c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_abbrev  0x0000000000000adc      0x151 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .debug_abbrev  0x0000000000000c2d      0x2e1 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_abbrev  0x0000000000000f0e      0x3c1 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_abbrev  0x00000000000012cf      0x153 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_abbrev  0x0000000000001422      0x15f /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_loc      0x0000000000000000     0x3713
- .debug_loc     0x0000000000000000      0x987 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_loc     0x0000000000000987      0x4d4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_loc     0x0000000000000e5b      0x11c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_loc     0x0000000000000f77      0x8ca /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_loc     0x0000000000001841      0x20e /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_loc     0x0000000000001a4f       0x91 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_loc     0x0000000000001ae0      0x152 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .debug_loc     0x0000000000001c32      0x785 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_loc     0x00000000000023b7      0x6ed /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_loc     0x0000000000002aa4      0x266 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_loc     0x0000000000002d0a       0x21 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_loc     0x0000000000002d2b      0x9e8 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_loc      0x0000000000000000     0x3164
+ .debug_loc     0x0000000000000000      0xb69 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_loc     0x0000000000000b69      0x4d4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_loc     0x000000000000103d      0x11c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_loc     0x0000000000001159      0x39c /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_loc     0x00000000000014f5       0x91 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_loc     0x0000000000001586      0x152 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .debug_loc     0x00000000000016d8      0x785 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_loc     0x0000000000001e5d      0x6b9 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_loc     0x0000000000002516      0x266 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_loc     0x000000000000277c      0x9e8 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_aranges  0x0000000000000000      0x350
+.debug_aranges  0x0000000000000000      0x300
  .debug_aranges
                 0x0000000000000000       0x48 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  .debug_aranges
@@ -2593,73 +2528,62 @@ OUTPUT(/home/physiii/circuits/liger/code/build/bootloader/bootloader.elf elf32-x
  .debug_aranges
                 0x00000000000000a8       0x30 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .debug_aranges
-                0x00000000000000d8       0x30 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x00000000000000d8       0x30 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .debug_aranges
-                0x0000000000000108       0x30 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000000000108       0x30 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
  .debug_aranges
-                0x0000000000000138       0x30 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000138       0x98 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .debug_aranges
-                0x0000000000000168       0x98 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000000000001d0       0xc8 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .debug_aranges
-                0x0000000000000200       0xc8 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000000000298       0x48 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
  .debug_aranges
-                0x00000000000002c8       0x48 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_aranges
-                0x0000000000000310       0x20 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_aranges
-                0x0000000000000330       0x20 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+                0x00000000000002e0       0x20 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_ranges   0x0000000000000000      0x7f8
- .debug_ranges  0x0000000000000000      0x228 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_ranges  0x0000000000000228       0x68 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_ranges  0x0000000000000290       0x30 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_ranges  0x00000000000002c0      0x148 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_ranges  0x0000000000000408       0x20 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_ranges  0x0000000000000428       0x80 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_ranges  0x00000000000004a8       0x50 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .debug_ranges  0x00000000000004f8       0xd8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_ranges  0x00000000000005d0      0x190 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_ranges  0x0000000000000760       0x38 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_ranges  0x0000000000000798       0x60 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_ranges   0x0000000000000000      0x6a8
+ .debug_ranges  0x0000000000000000      0x1d8 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_ranges  0x00000000000001d8       0x68 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_ranges  0x0000000000000240       0x30 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_ranges  0x0000000000000270       0x80 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_ranges  0x00000000000002f0       0x80 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_ranges  0x0000000000000370       0x50 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .debug_ranges  0x00000000000003c0       0xd8 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_ranges  0x0000000000000498      0x178 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_ranges  0x0000000000000610       0x38 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_ranges  0x0000000000000648       0x60 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_line     0x0000000000000000     0x3d45
- .debug_line    0x0000000000000000      0xabb /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_line    0x0000000000000abb      0x4b8 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_line    0x0000000000000f73      0x2be /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_line    0x0000000000001231      0x7fc /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_line    0x0000000000001a2d      0x3bb /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_line    0x0000000000001de8      0x3f2 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_line    0x00000000000021da      0x294 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
- .debug_line    0x000000000000246e      0xa20 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_line    0x0000000000002e8e      0x93f /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_line    0x00000000000037cd      0x35f /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_line    0x0000000000003b2c       0x8a /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_line    0x0000000000003bb6      0x18f /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_line     0x0000000000000000     0x35e2
+ .debug_line    0x0000000000000000      0xaa3 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_line    0x0000000000000aa3      0x4ad /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_line    0x0000000000000f50      0x2b6 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_line    0x0000000000001206      0x54d /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_line    0x0000000000001753      0x3e6 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_line    0x0000000000001b39      0x28c /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .debug_line    0x0000000000001dc5      0xa18 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_line    0x00000000000027dd      0x91f /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_line    0x00000000000030fc      0x357 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_line    0x0000000000003453      0x18f /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_str      0x0000000000000000     0x226b
- .debug_str     0x0000000000000000      0xef4 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
-                                        0xfa8 (size before relaxing)
- .debug_str     0x0000000000000ef4      0x1c9 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+.debug_str      0x0000000000000000     0x1f00
+ .debug_str     0x0000000000000000      0xe8d /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
+                                        0xf5d (size before relaxing)
+ .debug_str     0x0000000000000e8d      0x1e4 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                         0x59d (size before relaxing)
- .debug_str     0x00000000000010bd       0x64 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_str     0x0000000000001071       0x69 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
                                         0x39e (size before relaxing)
- .debug_str     0x0000000000001121      0x314 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0xa0f (size before relaxing)
- .debug_str     0x0000000000001435       0xf6 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                        0x2ce (size before relaxing)
- .debug_str     0x000000000000152b       0x71 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_str     0x00000000000010da      0x132 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x5a9 (size before relaxing)
+ .debug_str     0x000000000000120c       0x88 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
                                         0x240 (size before relaxing)
- .debug_str     0x000000000000159c       0xe7 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
+ .debug_str     0x0000000000001294       0xe7 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
                                         0x296 (size before relaxing)
- .debug_str     0x0000000000001683      0x4a2 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_str     0x000000000000137b      0x4ad /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                         0x765 (size before relaxing)
- .debug_str     0x0000000000001b25      0x407 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                                        0x7dd (size before relaxing)
- .debug_str     0x0000000000001f2c      0x129 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_str     0x0000000000001828      0x407 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                                        0x7bd (size before relaxing)
+ .debug_str     0x0000000000001c2f      0x129 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
                                         0x364 (size before relaxing)
- .debug_str     0x0000000000002055      0x13a /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
-                                        0x1e0 (size before relaxing)
- .debug_str     0x000000000000218f       0xdc /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_str     0x0000000000001d58      0x1a8 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
                                         0x25a (size before relaxing)
 
 .comment        0x0000000000000000       0x3a
@@ -2668,25 +2592,21 @@ OUTPUT(/home/physiii/circuits/liger/code/build/bootloader/bootloader.elf elf32-x
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .comment       0x000000000000003a       0x3b /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .comment       0x000000000000003a       0x3b /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .comment       0x000000000000003a       0x3b /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .comment       0x000000000000003a       0x3b /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
 .xtensa.info    0x0000000000000000       0x38
  .xtensa.info   0x0000000000000000       0x38 /home/physiii/circuits/liger/code/build/bootloader/main/libmain.a(bootloader_start.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/log/liblog.a(log.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .xtensa.info   0x0000000000000038        0x0 /home/physiii/circuits/liger/code/build/bootloader/soc/libsoc.a(rtc_time.o)
- .xtensa.info   0x0000000000000038        0x0 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .xtensa.info   0x0000000000000038        0x0 /home/physiii/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .xtensa.info   0x0000000000000038        0x0 /home/physiii/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)

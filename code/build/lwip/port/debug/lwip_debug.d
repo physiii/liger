@@ -37,10 +37,6 @@ port/debug/lwip_debug.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/newlib/include/errno.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
@@ -57,6 +53,7 @@ port/debug/lwip_debug.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -74,6 +71,8 @@ port/debug/lwip_debug.o: \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netbuf.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/pbuf.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/err.h \
@@ -172,14 +171,6 @@ port/debug/lwip_debug.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
-
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
@@ -211,6 +202,8 @@ port/debug/lwip_debug.o: \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
@@ -245,6 +238,10 @@ port/debug/lwip_debug.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdio.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netbuf.h:
 
@@ -291,4 +288,3 @@ port/debug/lwip_debug.o: \
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/priv/tcp_priv.h:
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
-/home/physiii/esp/esp-idf/components/lwip/port/debug/lwip_debug.c:

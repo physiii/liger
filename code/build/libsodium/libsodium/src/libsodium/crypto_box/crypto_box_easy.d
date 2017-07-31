@@ -84,4 +84,3 @@ libsodium/src/libsodium/crypto_box/crypto_box_easy.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_box/crypto_box_easy.c:

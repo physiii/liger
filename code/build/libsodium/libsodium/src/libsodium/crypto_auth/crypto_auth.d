@@ -78,4 +78,3 @@ libsodium/src/libsodium/crypto_auth/crypto_auth.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_auth/crypto_auth.c:

@@ -17,8 +17,6 @@ vfs.o: /home/physiii/esp/esp-idf/components/vfs/./vfs.c \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h \
  /home/physiii/esp/esp-idf/components/vfs/include/esp_vfs.h \
@@ -35,6 +33,7 @@ vfs.o: /home/physiii/esp/esp-idf/components/vfs/./vfs.c \
  /home/physiii/esp/esp-idf/components/newlib/include/dirent.h \
  /home/physiii/esp/esp-idf/components/vfs/include/sys/dirent.h \
  /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h
@@ -75,10 +74,6 @@ vfs.o: /home/physiii/esp/esp-idf/components/vfs/./vfs.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h:
@@ -111,9 +106,10 @@ vfs.o: /home/physiii/esp/esp-idf/components/vfs/./vfs.c \
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
 
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
-/home/physiii/esp/esp-idf/components/vfs/./vfs.c:

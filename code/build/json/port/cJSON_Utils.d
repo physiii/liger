@@ -75,4 +75,3 @@ port/cJSON_Utils.o: \
 /home/physiii/esp/esp-idf/components/json/port/include/cJSON_Utils.h:
 
 /home/physiii/esp/esp-idf/components/json/include/cJSON.h:
-/home/physiii/esp/esp-idf/components/json/port/cJSON_Utils.c:

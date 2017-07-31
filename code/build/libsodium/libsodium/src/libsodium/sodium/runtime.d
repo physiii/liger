@@ -69,4 +69,3 @@ libsodium/src/libsodium/sodium/runtime.o: \
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/runtime.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/export.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/sodium/runtime.c:

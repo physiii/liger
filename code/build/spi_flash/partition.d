@@ -15,8 +15,6 @@ partition.o: /home/physiii/esp/esp-idf/components/spi_flash/./partition.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
@@ -30,6 +28,7 @@ partition.o: /home/physiii/esp/esp-idf/components/spi_flash/./partition.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_partition.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/bootloader_support/include/esp_flash_encrypt.h \
@@ -73,10 +72,6 @@ partition.o: /home/physiii/esp/esp-idf/components/spi_flash/./partition.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
@@ -103,6 +98,8 @@ partition.o: /home/physiii/esp/esp-idf/components/spi_flash/./partition.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h:
 
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/spi_flash/include/esp_partition.h:
 
 /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
@@ -122,4 +119,3 @@ partition.o: /home/physiii/esp/esp-idf/components/spi_flash/./partition.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/queue.h:
-/home/physiii/esp/esp-idf/components/spi_flash/./partition.c:

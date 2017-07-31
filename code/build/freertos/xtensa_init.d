@@ -35,7 +35,6 @@ xtensa_init.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_timer.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_rtos.h
@@ -110,11 +109,8 @@ xtensa_init.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_timer.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_rtos.h:
-/home/physiii/esp/esp-idf/components/freertos/./xtensa_init.c:

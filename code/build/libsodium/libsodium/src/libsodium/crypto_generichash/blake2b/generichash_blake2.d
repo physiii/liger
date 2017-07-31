@@ -69,4 +69,3 @@ libsodium/src/libsodium/crypto_generichash/blake2b/generichash_blake2.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_generichash/blake2b/generichash_blake2.c:

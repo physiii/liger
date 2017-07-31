@@ -61,8 +61,6 @@ port/net.o: /home/physiii/esp/esp-idf/components/mbedtls/port/net.c \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
  /home/physiii/esp/esp-idf/components/newlib/include/errno.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
@@ -79,6 +77,7 @@ port/net.o: /home/physiii/esp/esp-idf/components/mbedtls/port/net.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -230,10 +229,6 @@ port/net.o: /home/physiii/esp/esp-idf/components/mbedtls/port/net.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
-
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
@@ -265,6 +260,8 @@ port/net.o: /home/physiii/esp/esp-idf/components/mbedtls/port/net.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
@@ -317,4 +314,3 @@ port/net.o: /home/physiii/esp/esp-idf/components/mbedtls/port/net.c \
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h:
-/home/physiii/esp/esp-idf/components/mbedtls/port/net.c:

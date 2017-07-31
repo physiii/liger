@@ -167,7 +167,7 @@ F 3 "" H 5050 3700 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 8400 3550 2    60   Input ~ 0
-IO19
+IO34
 Text Label 4050 2900 0    60   ~ 0
 Mic_pre-amp
 Text GLabel 7850 3150 1    60   Input ~ 0

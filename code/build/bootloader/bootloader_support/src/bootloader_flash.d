@@ -57,4 +57,3 @@ src/bootloader_flash.o: \
 /home/physiii/esp/esp-idf/components/esp32/include/rom/cache.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h:
-/home/physiii/esp/esp-idf/components/bootloader_support/src/bootloader_flash.c:

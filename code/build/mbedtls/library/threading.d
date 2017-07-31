@@ -15,4 +15,3 @@ library/threading.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/threading.c:

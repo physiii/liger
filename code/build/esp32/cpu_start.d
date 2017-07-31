@@ -22,11 +22,6 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -58,6 +53,7 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -67,6 +63,9 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/system.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -110,8 +109,7 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip4_addr.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip6_addr.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h \
- /home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h \
- /home/physiii/esp/esp-idf/components/heap/include/multi_heap.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_heap_alloc_caps.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_system.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/touch_pad.h \
@@ -120,7 +118,6 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs_flash.h \
- /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_event.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_wifi_types.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_ipc.h \
@@ -130,7 +127,7 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
  /home/physiii/esp/esp-idf/components/newlib/include/dirent.h \
  /home/physiii/esp/esp-idf/components/vfs/include/sys/dirent.h \
  /home/physiii/esp/esp-idf/components/newlib/platform_include/esp_newlib.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_brownout.h \
+ /home/physiii/esp/esp-idf/components/soc/esp32/include/esp_brownout.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_int_wdt.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_task_wdt.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_phy_init.h \
@@ -138,7 +135,7 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_coexist.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_panic.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_core_dump.h \
- /home/physiii/esp/esp-idf/components/app_trace/include/esp_app_trace.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_app_trace.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_clk.h \
  /home/physiii/esp/esp-idf/components/xtensa-debug-module/include/trax.h \
  /home/physiii/esp/esp-idf/components/xtensa-debug-module/include/eri.h \
@@ -189,16 +186,6 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
@@ -262,6 +249,8 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/hal.h:
@@ -279,6 +268,12 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
@@ -366,9 +361,7 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h:
 
-/home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h:
-
-/home/physiii/esp/esp-idf/components/heap/include/multi_heap.h:
+/home/physiii/esp/esp-idf/components/esp32/include/esp_heap_alloc_caps.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_system.h:
 
@@ -385,8 +378,6 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
 /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs_flash.h:
-
-/home/physiii/esp/esp-idf/components/nvs_flash/include/nvs.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_event.h:
 
@@ -406,7 +397,7 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 
 /home/physiii/esp/esp-idf/components/newlib/platform_include/esp_newlib.h:
 
-/home/physiii/esp/esp-idf/components/esp32/include/esp_brownout.h:
+/home/physiii/esp/esp-idf/components/soc/esp32/include/esp_brownout.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_int_wdt.h:
 
@@ -422,7 +413,7 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_core_dump.h:
 
-/home/physiii/esp/esp-idf/components/app_trace/include/esp_app_trace.h:
+/home/physiii/esp/esp-idf/components/esp32/include/esp_app_trace.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_clk.h:
 
@@ -431,4 +422,3 @@ cpu_start.o: /home/physiii/esp/esp-idf/components/esp32/./cpu_start.c \
 /home/physiii/esp/esp-idf/components/xtensa-debug-module/include/eri.h:
 
 /home/physiii/esp/esp-idf/components/xtensa-debug-module/include/xtensa-debug-module.h:
-/home/physiii/esp/esp-idf/components/esp32/./cpu_start.c:

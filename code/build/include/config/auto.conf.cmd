@@ -1,5 +1,4 @@
 deps_config := \
-	/home/physiii/esp/esp-idf/components/app_trace/Kconfig \
 	/home/physiii/esp/esp-idf/components/aws_iot/Kconfig \
 	/home/physiii/esp/esp-idf/components/bt/Kconfig \
 	/home/physiii/esp/esp-idf/components/esp32/Kconfig \

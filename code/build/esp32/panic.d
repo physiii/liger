@@ -26,8 +26,6 @@ panic.o: /home/physiii/esp/esp-idf/components/esp32/./panic.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/uart.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
@@ -36,6 +34,7 @@ panic.o: /home/physiii/esp/esp-idf/components/esp32/./panic.c \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/physiii/esp/esp-idf/components/esp32/include/xtensa/config/system.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
@@ -76,20 +75,7 @@ panic.o: /home/physiii/esp/esp-idf/components/esp32/./panic.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_core_dump.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_cache_err_int.h \
- /home/physiii/esp/esp-idf/components/app_trace/include/esp_app_trace.h \
- /home/physiii/esp/esp-idf/components/freertos/include/freertos/portmacro.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_system.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h \
- /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h \
- /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
- /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_struct.h \
- /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_io_reg.h \
- /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h \
- /home/physiii/esp/esp-idf/components/esp32/include/rom/gpio.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
- /home/physiii/esp/esp-idf/components/driver/include/driver/touch_pad.h \
- /home/physiii/esp/esp-idf/components/esp32/include/esp_intr.h \
- /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_app_trace.h
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
 
@@ -145,10 +131,6 @@ panic.o: /home/physiii/esp/esp-idf/components/esp32/./panic.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/uart.h:
@@ -164,6 +146,8 @@ panic.o: /home/physiii/esp/esp-idf/components/esp32/./panic.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -245,31 +229,4 @@ panic.o: /home/physiii/esp/esp-idf/components/esp32/./panic.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_cache_err_int.h:
 
-/home/physiii/esp/esp-idf/components/app_trace/include/esp_app_trace.h:
-
-/home/physiii/esp/esp-idf/components/freertos/include/freertos/portmacro.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_system.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h:
-
-/home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h:
-
-/home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h:
-
-/home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_struct.h:
-
-/home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_io_reg.h:
-
-/home/physiii/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/rom/gpio.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
-
-/home/physiii/esp/esp-idf/components/driver/include/driver/touch_pad.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/esp_intr.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
-/home/physiii/esp/esp-idf/components/esp32/./panic.c:
+/home/physiii/esp/esp-idf/components/esp32/include/esp_app_trace.h:

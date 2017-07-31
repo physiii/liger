@@ -20,11 +20,6 @@ restore.o: /home/physiii/esp/esp-idf/components/esp32/./restore.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h \
@@ -56,7 +51,11 @@ restore.o: /home/physiii/esp/esp-idf/components/esp32/./restore.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_wifi.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
@@ -145,16 +144,6 @@ restore.o: /home/physiii/esp/esp-idf/components/esp32/./restore.c \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h:
@@ -217,7 +206,15 @@ restore.o: /home/physiii/esp/esp-idf/components/esp32/./restore.c \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -308,4 +305,3 @@ restore.o: /home/physiii/esp/esp-idf/components/esp32/./restore.c \
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/ip6_addr.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h:
-/home/physiii/esp/esp-idf/components/esp32/./restore.c:

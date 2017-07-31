@@ -22,15 +22,14 @@ port/esp_bignum.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/malloc.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/malloc.h \
  /home/physiii/esp/esp-idf/components/newlib/include/limits.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
- /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/bignum.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/bignum.h \
  /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/check_config.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdint.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
@@ -133,9 +132,7 @@ port/esp_bignum.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
 
@@ -143,13 +140,13 @@ port/esp_bignum.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
-
 /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/bignum.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/bignum.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/mbedtls/include/mbedtls/check_config.h:
 
@@ -264,4 +261,3 @@ port/esp_bignum.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
-/home/physiii/esp/esp-idf/components/mbedtls/port/esp_bignum.c:

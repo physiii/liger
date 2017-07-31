@@ -22,11 +22,6 @@ system_api.o: /home/physiii/esp/esp-idf/components/esp32/./system_api.c \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_deep_sleep.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/gpio.h \
@@ -58,7 +53,11 @@ system_api.o: /home/physiii/esp/esp-idf/components/esp32/./system_api.c \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_wifi.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
@@ -120,9 +119,7 @@ system_api.o: /home/physiii/esp/esp-idf/components/esp32/./system_api.c \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/timer_group_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/timer_group_struct.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/cpu.h \
- /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc.h \
- /home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h \
- /home/physiii/esp/esp-idf/components/heap/include/multi_heap.h
+ /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc.h
 
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
@@ -169,16 +166,6 @@ system_api.o: /home/physiii/esp/esp-idf/components/esp32/./system_api.c \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
@@ -242,7 +229,15 @@ system_api.o: /home/physiii/esp/esp-idf/components/esp32/./system_api.c \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -367,8 +362,3 @@ system_api.o: /home/physiii/esp/esp-idf/components/esp32/./system_api.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/cpu.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc.h:
-
-/home/physiii/esp/esp-idf/components/heap/include/esp_heap_caps.h:
-
-/home/physiii/esp/esp-idf/components/heap/include/multi_heap.h:
-/home/physiii/esp/esp-idf/components/esp32/./system_api.c:

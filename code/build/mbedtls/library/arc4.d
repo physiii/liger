@@ -90,4 +90,3 @@ library/arc4.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/arc4.c:

@@ -35,8 +35,6 @@ nghttp2/lib/nghttp2_frame.o: \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_int.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_mem.h \
  /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/errno.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/errno.h \
@@ -115,10 +113,6 @@ nghttp2/lib/nghttp2_frame.o: \
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/errno.h:
@@ -132,4 +126,3 @@ nghttp2/lib/nghttp2_frame.o: \
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_priority_spec.h:
 
 /home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_debug.h:
-/home/physiii/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_frame.c:

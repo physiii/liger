@@ -15,4 +15,3 @@ library/debug.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/limits.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/newlib.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/debug.c:

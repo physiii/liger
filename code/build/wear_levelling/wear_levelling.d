@@ -24,7 +24,6 @@ wear_levelling.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/spi_flash/include/esp_partition.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
@@ -89,8 +88,6 @@ wear_levelling.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/spi_flash/include/esp_partition.h:
@@ -120,4 +117,3 @@ wear_levelling.o: \
 /home/physiii/esp/esp-idf/components/wear_levelling/private_include/SPI_Flash.h:
 
 /home/physiii/esp/esp-idf/components/wear_levelling/private_include/Partition.h:
-/home/physiii/esp/esp-idf/components/wear_levelling/./wear_levelling.cpp:

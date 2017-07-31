@@ -11,6 +11,11 @@ library/ctr_drbg.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/features.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
+ /home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h \
  /home/physiii/esp/esp-idf/components/newlib/include/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/config.h \
@@ -21,7 +26,6 @@ library/ctr_drbg.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
@@ -56,6 +60,16 @@ library/ctr_drbg.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
+/home/physiii/esp/esp-idf/components/mbedtls/port/include/aes_alt.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/hwcrypto/aes.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/esp_types.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
+/home/physiii/esp/esp-idf/components/esp32/include/rom/aes.h:
+
 /home/physiii/esp/esp-idf/components/newlib/include/string.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
@@ -75,8 +89,6 @@ library/ctr_drbg.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/_types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
@@ -99,4 +111,3 @@ library/ctr_drbg.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/time.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/machine/time.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/ctr_drbg.c:

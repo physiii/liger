@@ -31,8 +31,6 @@ src/crypto/ms_funcs.o: \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/mem.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
@@ -44,6 +42,7 @@ src/crypto/ms_funcs.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stat.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_task.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
@@ -151,10 +150,6 @@ src/crypto/ms_funcs.o: \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/mem.h:
@@ -176,6 +171,8 @@ src/crypto/ms_funcs.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stat.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_task.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h:
 
@@ -264,4 +261,3 @@ src/crypto/ms_funcs.o: \
 /home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/ms_funcs.h:
 
 /home/physiii/esp/esp-idf/components/wpa_supplicant/include/crypto/crypto.h:
-/home/physiii/esp/esp-idf/components/wpa_supplicant/src/crypto/ms_funcs.c:

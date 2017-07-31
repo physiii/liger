@@ -99,4 +99,3 @@ libsodium/src/libsodium/crypto_aead/chacha20poly1305/sodium/aead_chacha20poly130
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/private/common.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_aead/chacha20poly1305/sodium/aead_chacha20poly1305.c:

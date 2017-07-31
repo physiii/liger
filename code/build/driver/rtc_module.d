@@ -22,10 +22,9 @@ rtc_module.o: /home/physiii/esp/esp-idf/components/driver/./rtc_module.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_io_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h \
@@ -74,9 +73,7 @@ rtc_module.o: /home/physiii/esp/esp-idf/components/driver/./rtc_module.c \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portbenchmark.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/mpu_wrappers.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h \
- /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h \
- /home/physiii/esp/esp-idf/components/driver/include/driver/rtc_cntl.h \
- /home/physiii/esp/esp-idf/components/esp32/include/rom/queue.h
+ /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h:
 
@@ -124,13 +121,11 @@ rtc_module.o: /home/physiii/esp/esp-idf/components/driver/./rtc_module.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
+
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_io_reg.h:
 
@@ -229,8 +224,3 @@ rtc_module.o: /home/physiii/esp/esp-idf/components/driver/./rtc_module.c \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/queue.h:
-
-/home/physiii/esp/esp-idf/components/driver/include/driver/rtc_cntl.h:
-
-/home/physiii/esp/esp-idf/components/esp32/include/rom/queue.h:
-/home/physiii/esp/esp-idf/components/driver/./rtc_module.c:

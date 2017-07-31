@@ -25,8 +25,6 @@ freertos_hooks.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h
 
 /home/physiii/esp/esp-idf/components/newlib/include/stdint.h:
@@ -79,9 +77,4 @@ freertos_hooks.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
-/home/physiii/esp/esp-idf/components/esp32/./freertos_hooks.c:

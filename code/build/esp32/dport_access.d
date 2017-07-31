@@ -17,17 +17,12 @@ dport_access.o: \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/lock.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h \
- /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h \
  /home/physiii/esp/esp-idf/components/newlib/include/stdio.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_intr.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
@@ -56,7 +51,11 @@ dport_access.o: \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
+ /home/physiii/circuits/liger/code/build/include/sdkconfig.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/physiii/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -111,8 +110,6 @@ dport_access.o: \
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
 
-/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
-
 /home/physiii/esp/esp-idf/components/esp32/include/esp_attr.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_err.h:
@@ -124,14 +121,6 @@ dport_access.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/stdio.h:
-
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
@@ -189,7 +178,15 @@ dport_access.o: \
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
+/home/physiii/circuits/liger/code/build/include/sdkconfig.h:
+
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
@@ -228,4 +225,3 @@ dport_access.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/portmacro.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/xtensa/core-macros.h:
-/home/physiii/esp/esp-idf/components/esp32/./dport_access.c:

@@ -72,4 +72,3 @@ port/expat_element.o: \
 /home/physiii/esp/esp-idf/components/expat/include/expat/expat.h:
 
 /home/physiii/esp/esp-idf/components/expat/include/expat/expat_external.h:
-/home/physiii/esp/esp-idf/components/expat/port/expat_element.c:

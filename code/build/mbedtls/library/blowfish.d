@@ -66,4 +66,3 @@ library/blowfish.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/sys/string.h:
-/home/physiii/esp/esp-idf/components/mbedtls/library/blowfish.c:

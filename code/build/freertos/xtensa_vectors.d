@@ -72,4 +72,3 @@ xtensa_vectors.o: \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
-/home/physiii/esp/esp-idf/components/freertos/./xtensa_vectors.S:

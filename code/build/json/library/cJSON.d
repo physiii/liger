@@ -78,4 +78,3 @@ library/cJSON.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/ctype.h:
 
 /home/physiii/esp/esp-idf/components/json/include/cJSON.h:
-/home/physiii/esp/esp-idf/components/json/library/cJSON.c:

@@ -45,4 +45,3 @@ esp32/rtc_sleep.o: \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/fe_reg.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
-/home/physiii/esp/esp-idf/components/soc/esp32/rtc_sleep.c:

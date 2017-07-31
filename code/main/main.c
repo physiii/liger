@@ -34,9 +34,10 @@
  */
 
 #include "plugins/protocol_token.c"
-#include "plugins/protocol_microphone.c"
+//#include "plugins/protocol_microphone.c"
 #include "plugins/protocol_buttons.c"
-#include "plugins/protocol_motion.c"
+#include "plugins/protocol_speaker.c"
+//#include "plugins/protocol_motion.c"
 //#include "plugins/protocol_ota.c"
 #include "plugins/protocol_update.c"
 #include "plugins/protocol_esp32_lws_ota.c"
@@ -49,10 +50,11 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	LWS_PLUGIN_PROTOCOL_MICROPHONE,
+	//LWS_PLUGIN_PROTOCOL_MICROPHONE,
 	LWS_PLUGIN_PROTOCOL_TOKEN,
 	LWS_PLUGIN_PROTOCOL_BUTTONS,
-	LWS_PLUGIN_PROTOCOL_MOTION,
+	LWS_PLUGIN_PROTOCOL_SPEAKER,
+	//LWS_PLUGIN_PROTOCOL_MOTION,
 	//LWS_PLUGIN_PROTOCOL_OTA,
 	LWS_PLUGIN_PROTOCOL_ESPLWS_SCAN,
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
@@ -166,7 +168,7 @@ void app_main(void)
 	context = lws_esp32_init(&info);
 
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.15";
+	i.address = "192.168.0.10";
         i.port = 4000;
 	i.ssl_connection = 0;
 	i.host = i.address;

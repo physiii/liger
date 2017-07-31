@@ -278,68 +278,8 @@ Wire Wire Line
 Wire Wire Line
 	2750 4200 2750 4250
 Connection ~ 2850 4250
-Text GLabel 8100 3400 0    60   Input ~ 0
-IO32
-Text GLabel 8100 3900 0    60   Input ~ 0
-IO33
-Text GLabel 8100 4400 0    60   Input ~ 0
-IO27
-Text GLabel 8100 4900 0    60   Input ~ 0
-IO14
-Wire Wire Line
-	8100 3900 8200 3900
-Wire Wire Line
-	8200 4400 8100 4400
-Wire Wire Line
-	8100 4900 8200 4900
 Text GLabel 2750 4200 1    60   Input ~ 0
 IO21
-Wire Wire Line
-	8100 3400 8200 3400
-$Comp
-L touchpad U7
-U 1 1 590F873E
-P 8600 3400
-F 0 "U7" H 8750 3200 60  0000 C CNN
-F 1 "touchpad" H 8600 3600 60  0000 C CNN
-F 2 "footprints:touch-pad" H 8600 3400 60  0001 C CNN
-F 3 "" H 8600 3400 60  0001 C CNN
-	1    8600 3400
-	1    0    0    -1  
-$EndComp
-$Comp
-L touchpad U8
-U 1 1 590F8CCA
-P 8600 3900
-F 0 "U8" H 8750 3700 60  0000 C CNN
-F 1 "touchpad" H 8600 4100 60  0000 C CNN
-F 2 "footprints:touch-pad" H 8600 3900 60  0001 C CNN
-F 3 "" H 8600 3900 60  0001 C CNN
-	1    8600 3900
-	1    0    0    -1  
-$EndComp
-$Comp
-L touchpad U9
-U 1 1 590F8D35
-P 8600 4400
-F 0 "U9" H 8750 4200 60  0000 C CNN
-F 1 "touchpad" H 8600 4600 60  0000 C CNN
-F 2 "footprints:touch-pad" H 8600 4400 60  0001 C CNN
-F 3 "" H 8600 4400 60  0001 C CNN
-	1    8600 4400
-	1    0    0    -1  
-$EndComp
-$Comp
-L touchpad U10
-U 1 1 590F8D3B
-P 8600 4900
-F 0 "U10" H 8750 4700 60  0000 C CNN
-F 1 "touchpad" H 8600 5100 60  0000 C CNN
-F 2 "footprints:touch-pad" H 8600 4900 60  0001 C CNN
-F 3 "" H 8600 4900 60  0001 C CNN
-	1    8600 4900
-	1    0    0    -1  
-$EndComp
 Text GLabel 6200 2900 1    60   Input ~ 0
 5V
 Text GLabel 3900 3650 1    60   Input ~ 0
@@ -350,7 +290,7 @@ U 1 1 597D230D
 P 9200 1900
 F 0 "U12" H 9550 2150 60  0000 C CNN
 F 1 "soft-button-4x" H 9650 1450 60  0000 C CNN
-F 2 "" H 9200 1900 60  0001 C CNN
+F 2 "footprints:soft-button-4" H 9200 1900 60  0001 C CNN
 F 3 "" H 9200 1900 60  0001 C CNN
 	1    9200 1900
 	1    0    0    -1  
@@ -362,7 +302,7 @@ IO33
 Text GLabel 9300 1450 1    60   Input ~ 0
 IO27
 Text GLabel 9300 2550 3    60   Input ~ 0
-IO14
+IO0
 Wire Wire Line
 	9300 1450 9300 1500
 Wire Wire Line

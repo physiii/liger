@@ -24,4 +24,3 @@ esp32/cpu_util.o: \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
 /home/physiii/circuits/liger/code/build/bootloader/../include/sdkconfig.h:
-/home/physiii/esp/esp-idf/components/soc/esp32/cpu_util.c:

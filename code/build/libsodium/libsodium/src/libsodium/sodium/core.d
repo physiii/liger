@@ -126,4 +126,3 @@ libsodium/src/libsodium/sodium/core.o: \
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/private/mutex.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/sodium/core.c:

@@ -51,4 +51,3 @@ xtensa_intr_asm.o: \
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
 /home/physiii/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h:
-/home/physiii/esp/esp-idf/components/freertos/./xtensa_intr_asm.S:

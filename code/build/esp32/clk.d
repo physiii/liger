@@ -21,13 +21,8 @@ clk.o: /home/physiii/esp/esp-idf/components/esp32/./clk.c \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h \
- /home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/physiii/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
- /home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h \
- /home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/physiii/esp/esp-idf/components/newlib/include/alloca.h \
  /home/physiii/esp/esp-idf/components/newlib/include/assert.h \
+ /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_clk.h \
  /home/physiii/esp/esp-idf/components/esp32/include/rom/uart.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_types.h \
@@ -82,19 +77,9 @@ clk.o: /home/physiii/esp/esp-idf/components/esp32/./clk.c \
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/home/physiii/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/stdlib.h:
+/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/newlib/include/_ansi.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/sys/reent.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/alloca.h:
-
-/home/physiii/esp/esp-idf/components/newlib/include/assert.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_clk.h:
 
@@ -113,4 +98,3 @@ clk.o: /home/physiii/esp/esp-idf/components/esp32/./clk.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
-/home/physiii/esp/esp-idf/components/esp32/./clk.c:

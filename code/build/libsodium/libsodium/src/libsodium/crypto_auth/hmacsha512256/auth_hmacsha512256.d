@@ -93,4 +93,3 @@ libsodium/src/libsodium/crypto_auth/hmacsha512256/auth_hmacsha512256.o: \
 /home/physiii/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/utils.h:
-/home/physiii/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_auth/hmacsha512256/auth_hmacsha512256.c:
