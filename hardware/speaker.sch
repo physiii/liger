@@ -44,204 +44,145 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L C C7
-U 1 1 590C9F1F
-P 5000 3100
-F 0 "C7" V 4950 3150 50  0000 L CNN
-F 1 "100nF" V 5150 3000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5115 3055 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690" H 5115 2964 50  0001 L CNN
-F 4 "GRM188R71C104KA01D" H 5000 3100 60  0001 C CNN "Part Number"
-	1    5000 3100
-	0    1    1    0   
-$EndComp
-Text GLabel 4700 3100 0    60   Input ~ 0
+Text GLabel 6700 4300 3    60   Input ~ 0
 IO25
-Text Label 4400 2750 0    60   ~ 0
+Text Label 4050 2200 0    60   ~ 0
 speaker_driver
-$Comp
-L R R23
-U 1 1 590C74FA
-P 5800 3900
-F 0 "R23" V 5880 3900 50  0000 C CNN
-F 1 "100K" V 5800 3900 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 5730 3900 50  0001 C CNN
-F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5800 3900 50  0001 C CNN
-F 4 "RC0603JR-07100KL" V 5800 3900 60  0001 C CNN "Part Number"
-	1    5800 3900
-	0    -1   -1   0   
-$EndComp
-$Comp
-L GND #PWR26
-U 1 1 590CB30F
-P 6600 3350
-F 0 "#PWR26" H 6600 3100 50  0001 C CNN
-F 1 "GND" H 6600 3200 50  0000 C CNN
-F 2 "" H 6600 3350 50  0000 C CNN
-F 3 "" H 6600 3350 50  0000 C CNN
-	1    6600 3350
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C8
-U 1 1 590CBCB3
-P 6400 3200
-F 0 "C8" V 6350 3250 50  0000 L CNN
-F 1 "100nF" V 6550 3100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6515 3155 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690" H 6515 3064 50  0001 L CNN
-F 4 "GRM188R71C104KA01D" H 6400 3200 60  0001 C CNN "Part Number"
-	1    6400 3200
-	0    1    1    0   
-$EndComp
-$Comp
-L R R21
-U 1 1 590CC974
-P 5250 3900
-F 0 "R21" V 5330 3900 50  0000 C CNN
-F 1 "100K" V 5250 3900 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 5180 3900 50  0001 C CNN
-F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5250 3900 50  0001 C CNN
-F 4 "RC0603JR-07100KL" V 5250 3900 60  0001 C CNN "Part Number"
-	1    5250 3900
-	0    1    1    0   
-$EndComp
-$Comp
-L R R22
-U 1 1 590D0A06
-P 5450 2850
-F 0 "R22" V 5530 2850 50  0000 C CNN
-F 1 "100K" V 5450 2850 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 5380 2850 50  0001 C CNN
-F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5450 2850 50  0001 C CNN
-F 4 "RC0603JR-07100KL" V 5450 2850 60  0001 C CNN "Part Number"
-	1    5450 2850
-	0    -1   -1   0   
-$EndComp
-$Comp
-L R R20
-U 1 1 590D0B81
-P 5250 3350
-F 0 "R20" V 5330 3350 50  0000 C CNN
-F 1 "100K" V 5250 3350 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 5180 3350 50  0001 C CNN
-F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 5250 3350 50  0001 C CNN
-F 4 "RC0603JR-07100KL" V 5250 3350 60  0001 C CNN "Part Number"
-	1    5250 3350
-	-1   0    0    1   
-$EndComp
-$Comp
-L GND #PWR24
-U 1 1 590D0C30
-P 5250 3550
-F 0 "#PWR24" H 5250 3300 50  0001 C CNN
-F 1 "GND" H 5250 3400 50  0000 C CNN
-F 2 "" H 5250 3550 50  0000 C CNN
-F 3 "" H 5250 3550 50  0000 C CNN
-	1    5250 3550
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C6
-U 1 1 590D0C50
-P 4800 3900
-F 0 "C6" V 4750 3950 50  0000 L CNN
-F 1 "100nF" V 4950 3800 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4915 3855 50  0001 L CNN
-F 3 "http://www.digikey.com/product-detail/en/tdk-corporation/C1608X7R1C224K080AC/445-1318-1-ND/567690" H 4915 3764 50  0001 L CNN
-F 4 "GRM188R71C104KA01D" H 4800 3900 60  0001 C CNN "Part Number"
-	1    4800 3900
-	0    1    1    0   
-$EndComp
-$Comp
-L GND #PWR25
-U 1 1 590D1231
-P 5700 3550
-F 0 "#PWR25" H 5700 3300 50  0001 C CNN
-F 1 "GND" H 5700 3400 50  0000 C CNN
-F 2 "" H 5700 3550 50  0000 C CNN
-F 3 "" H 5700 3550 50  0000 C CNN
-	1    5700 3550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5700 2800 5700 2900
-Wire Wire Line
-	5500 3300 5500 3900
-Wire Wire Line
-	5400 3900 5650 3900
-Wire Wire Line
-	6100 3200 6250 3200
-Wire Wire Line
-	5950 3900 6200 3900
-Wire Wire Line
-	6200 3900 6200 3200
-Connection ~ 6200 3200
-Connection ~ 5500 3900
-Wire Wire Line
-	5600 2850 5700 2850
-Connection ~ 5700 2850
-Wire Wire Line
-	5150 3100 5500 3100
-Wire Wire Line
-	5300 2850 5250 2850
-Wire Wire Line
-	5250 2850 5250 3200
-Connection ~ 5250 3100
-Wire Wire Line
-	5250 3500 5250 3550
-Wire Wire Line
-	4950 3900 5100 3900
-Wire Wire Line
-	4700 3100 4850 3100
-Wire Wire Line
-	4500 3900 4650 3900
-Wire Wire Line
-	6650 3200 6550 3200
-Wire Wire Line
-	5700 3500 5700 3550
 $Comp
 L Speaker LS1
 U 1 1 590F705D
-P 6850 3200
-F 0 "LS1" H 6900 3425 50  0000 R CNN
-F 1 "Speaker" H 6900 3350 50  0000 R CNN
-F 2 "footprints:speaker-1508" H 6850 3000 50  0001 C CNN
-F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 6840 3150 50  0001 C CNN
-F 4 "CVS-1508" H 6850 3200 60  0001 C CNN "Part Number"
-	1    6850 3200
+P 6850 3150
+F 0 "LS1" H 6900 3375 50  0000 R CNN
+F 1 "Speaker" H 6900 3300 50  0000 R CNN
+F 2 "footprints:speaker-1508" H 6850 2950 50  0001 C CNN
+F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 6840 3100 50  0001 C CNN
+F 4 "CVS-1508" H 6850 3150 60  0001 C CNN "Part Number"
+	1    6850 3150
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6650 3300 6600 3300
-Wire Wire Line
-	6600 3300 6600 3350
 $Comp
-L GND #PWR23
+L GND #PWR022
 U 1 1 590F73ED
-P 4500 3900
-F 0 "#PWR23" H 4500 3650 50  0001 C CNN
-F 1 "GND" H 4500 3750 50  0000 C CNN
-F 2 "" H 4500 3900 50  0000 C CNN
-F 3 "" H 4500 3900 50  0000 C CNN
-	1    4500 3900
-	0    1    1    0   
-$EndComp
-$Comp
-L OPA344 U11
-U 1 1 59108FEA
-P 5800 3200
-AR Path="/590C715D/59108FEA" Ref="U11"  Part="1" 
-AR Path="/59092AD4/59108FEA" Ref="U11"  Part="1" 
-F 0 "U11" H 5800 3350 50  0000 L CNN
-F 1 "OPA344" H 5800 3050 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 5700 3250 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/opa344.pdf" H 5800 3350 50  0001 C CNN
-F 4 "296-41475-1-ND" H 5800 3200 60  0001 C CNN "Part Number"
-	1    5800 3200
+P 5400 3400
+F 0 "#PWR022" H 5400 3150 50  0001 C CNN
+F 1 "GND" H 5400 3250 50  0000 C CNN
+F 2 "" H 5400 3400 50  0000 C CNN
+F 3 "" H 5400 3400 50  0000 C CNN
+	1    5400 3400
 	1    0    0    -1  
 $EndComp
-Text GLabel 5700 2800 1    60   Input ~ 0
+Text GLabel 5350 3250 0    60   Input ~ 0
 5V
+$Comp
+L Amplifier-D-TS4962IQT U8
+U 1 1 59812510
+P 5900 3250
+F 0 "U8" H 6150 2950 60  0000 C CNN
+F 1 "Amplifier-D-TS4962IQT" H 5900 3500 60  0000 C CNN
+F 2 "Housings_DFN_QFN:DFN-8-1EP_3x3mm_Pitch0.65mm" H 5600 2800 60  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/stmicroelectronics/TS4962IQT/497-5993-1-ND/1578476" H 5600 2800 60  0001 C CNN
+F 4 "TS4962IQT" H 5900 3250 60  0001 C CNN "Part Number"
+	1    5900 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R21
+U 1 1 5981296E
+P 6700 3650
+F 0 "R21" H 6600 3600 50  0000 C CNN
+F 1 "100K" V 6700 3650 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6630 3650 50  0001 C CNN
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 6700 3650 50  0001 C CNN
+F 4 "RC0603JR-07150KL" V 6700 3650 60  0001 C CNN "Part Number"
+	1    6700 3650
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C6
+U 1 1 59812A7F
+P 6500 4050
+F 0 "C6" H 6500 4150 50  0000 L CNN
+F 1 "4.7uF" H 6550 3950 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6615 4005 50  0001 L CNN
+F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173" H 6615 3914 50  0001 L CNN
+F 4 "CL10B475KQ8NQNC" H 6500 4050 60  0001 C CNN "Part Number"
+	1    6500 4050
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C7
+U 1 1 59812D76
+P 6700 4050
+F 0 "C7" H 6600 4150 50  0000 L CNN
+F 1 "4.7uF" H 6500 3950 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6815 4005 50  0001 L CNN
+F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173" H 6815 3914 50  0001 L CNN
+F 4 "CL10B475KQ8NQNC" H 6700 4050 60  0001 C CNN "Part Number"
+	1    6700 4050
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR023
+U 1 1 59812E44
+P 6500 4300
+F 0 "#PWR023" H 6500 4050 50  0001 C CNN
+F 1 "GND" H 6500 4150 50  0000 C CNN
+F 2 "" H 6500 4300 50  0000 C CNN
+F 3 "" H 6500 4300 50  0000 C CNN
+	1    6500 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R20
+U 1 1 598139C0
+P 6500 3650
+F 0 "R20" H 6600 3600 50  0000 C CNN
+F 1 "100K" V 6500 3650 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6430 3650 50  0001 C CNN
+F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 6500 3650 50  0001 C CNN
+F 4 "RC0603JR-07150KL" V 6500 3650 60  0001 C CNN "Part Number"
+	1    6500 3650
+	-1   0    0    1   
+$EndComp
+Text GLabel 6450 2650 1    60   Input ~ 0
+SPEAKER-
+Text GLabel 6600 2650 1    60   Input ~ 0
+SPEAKER+
+Wire Wire Line
+	5450 3350 5400 3350
+Wire Wire Line
+	5400 3350 5400 3400
+Wire Wire Line
+	5350 3250 5450 3250
+Wire Wire Line
+	5450 3150 5400 3150
+Wire Wire Line
+	5400 3150 5400 3250
+Connection ~ 5400 3250
+Wire Wire Line
+	6400 3150 6650 3150
+Wire Wire Line
+	6400 3250 6650 3250
+Wire Wire Line
+	6400 3450 6500 3450
+Wire Wire Line
+	6400 3350 6700 3350
+Wire Wire Line
+	6700 3800 6700 3900
+Wire Wire Line
+	6500 3800 6500 3900
+Wire Wire Line
+	6700 4200 6700 4300
+Wire Wire Line
+	6500 4200 6500 4300
+Wire Wire Line
+	6500 3450 6500 3500
+Wire Wire Line
+	6700 3350 6700 3500
+Wire Wire Line
+	6450 2650 6450 3150
+Connection ~ 6450 3150
+Wire Wire Line
+	6600 2650 6600 3250
+Connection ~ 6600 3250
 $EndSCHEMATC
