@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 9
+Sheet 3 8
 Title ""
 Date ""
 Rev ""
@@ -152,7 +152,7 @@ AR Path="/590982C4/59098B14" Ref="P3"  Part="1"
 AR Path="/59096487/59098B14" Ref="P3"  Part="1" 
 F 0 "P3" H 4350 5200 50  0000 L CNN
 F 1 "CONN_01X03" H 4350 4800 50  0001 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 4477 4904 50  0001 L CNN
+F 2 "open-automation:PIR" H 4477 4904 50  0001 L CNN
 F 3 "http://sullinscorp.com/catalogs/101_PAGE114-115_.100_FEMALE_HDR.pdf" H 4400 5000 50  0001 C CNN
 	1    4400 5000
 	1    0    0    -1  
