@@ -28,13 +28,12 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:open-automation
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 9
+Sheet 1 8
 Title ""
 Date ""
 Rev ""
@@ -67,12 +66,6 @@ S 8850 1200 1950 1350
 U 5909D8E3
 F0 "Power" 60
 F1 "power.sch" 60
-$EndSheet
-$Sheet
-S 1750 1150 1950 1350
-U 590925AC
-F0 "ultrasonic" 60
-F1 "ultrasonic.sch" 60
 $EndSheet
 $Sheet
 S 4800 3200 1950 1350

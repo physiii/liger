@@ -28,9 +28,8 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:open-automation
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -104,22 +103,6 @@ F 3 "" H 2200 4000 50  0000 C CNN
 $EndComp
 Text GLabel 6300 4400 3    60   Input ~ 0
 IO15
-Text GLabel 2450 4000 3    60   Input ~ 0
-IO2
-$Comp
-L R R2
-U 1 1 590979AE
-P 2450 3750
-F 0 "R2" V 2530 3750 50  0000 C CNN
-F 1 "10K" V 2450 3750 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 2380 3750 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2450 3750 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 2450 3750 60  0001 C CNN "Part Number"
-	1    2450 3750
-	1    0    0    -1  
-$EndComp
-Text GLabel 2450 3400 1    60   Input ~ 0
-3v3
 $Comp
 L ESP-WROOM-32 U1
 U 1 1 590979AF
@@ -295,10 +278,6 @@ Wire Wire Line
 	2200 3450 2200 3600
 Wire Wire Line
 	2200 3900 2200 4000
-Wire Wire Line
-	2450 4000 2450 3900
-Wire Wire Line
-	2450 3400 2450 3600
 Wire Wire Line
 	5050 2400 5050 2450
 Wire Wire Line
