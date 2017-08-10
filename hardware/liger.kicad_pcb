@@ -274,7 +274,7 @@
   )
 
   (module Capacitors_SMD:C_0603_HandSoldering (layer F.Cu) (tedit 58AA848B) (tstamp 59825132)
-    (at 140.8 56.6 270)
+    (at 140.825 56.45 270)
     (descr "Capacitor SMD 0603, hand soldering")
     (tags "capacitor 0603")
     (path /5909A781/59091963)
@@ -346,7 +346,7 @@
   )
 
   (module Capacitors_SMD:C_0603_HandSoldering (layer F.Cu) (tedit 58AA848B) (tstamp 59825154)
-    (at 133.444852 124.800468 180)
+    (at 133.475 123.675 180)
     (descr "Capacitor SMD 0603, hand soldering")
     (tags "capacitor 0603")
     (path /5909D8E3/5909DD64)
@@ -382,7 +382,7 @@
   )
 
   (module Capacitors_SMD:C_0603_HandSoldering (layer F.Cu) (tedit 58AA848B) (tstamp 59825165)
-    (at 133.394852 122.500468 180)
+    (at 133.375 121.5 180)
     (descr "Capacitor SMD 0603, hand soldering")
     (tags "capacitor 0603")
     (path /5909D8E3/5909DD72)
@@ -1173,7 +1173,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 5982535C)
-    (at 159.75 64.15 90)
+    (at 159.9 64.975 90)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /590982C4/59098AF5)
@@ -1209,7 +1209,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 5982536D)
-    (at 138.8 62.5 270)
+    (at 138.8 62.925 270)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /5909A781/597B61A4)
@@ -1245,7 +1245,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 5982537E)
-    (at 138.7 56.85 270)
+    (at 138.725 56.275 270)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /5909A781/597B62BE)
@@ -1281,7 +1281,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 5982538F)
-    (at 154 96.75 270)
+    (at 155.525 96.675 270)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /59092AD4/5980F245)
@@ -1317,7 +1317,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 598253A0)
-    (at 134.65 56.9 90)
+    (at 134.3 56.45 90)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /5909A781/59091962)
@@ -1353,7 +1353,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 598253B1)
-    (at 132.1 61.15 270)
+    (at 131.75 61.2 270)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /5909A781/59091965)
@@ -1389,7 +1389,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 598253C2)
-    (at 135.694852 126.600468)
+    (at 136.8 126.45)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /5909D8E3/5909DD71)
@@ -1425,7 +1425,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 598253D3)
-    (at 152.45 96.75 270)
+    (at 153.45 96.725 270)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /59092AD4/5980F487)
@@ -1461,7 +1461,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 598253E4)
-    (at 150.9 96.75 270)
+    (at 151.25 96.675 270)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /59092AD4/5980F4D4)
@@ -1605,7 +1605,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 59825428)
-    (at 155.75 51.825 180)
+    (at 155.675 51.85 180)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /590982C4/590B8957)
@@ -1641,7 +1641,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 59825439)
-    (at 159.670631 49.951839 180)
+    (at 160.7 50.275 180)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /590982C4/590B8E6E)
@@ -1677,7 +1677,7 @@
   )
 
   (module Resistors_SMD:R_0603_HandSoldering (layer F.Cu) (tedit 58E0A804) (tstamp 5982544A)
-    (at 159.745631 55.476839)
+    (at 160.625 55.875)
     (descr "Resistor SMD 0603, hand soldering")
     (tags "resistor 0603")
     (path /590982C4/590B885D)
@@ -1970,7 +1970,7 @@
   )
 
   (module TO_SOT_Packages_SMD:SOT-23-5 (layer F.Cu) (tedit 58CE4E7E) (tstamp 598254E1)
-    (at 135.7 61.05 180)
+    (at 135.425 61.425 180)
     (descr "5-pin SOT23 package")
     (tags SOT-23-5)
     (path /5909A781/59091960)
@@ -2013,7 +2013,7 @@
   )
 
   (module TO_SOT_Packages_SMD:SOT-23-5 (layer F.Cu) (tedit 58CE4E7E) (tstamp 598254F6)
-    (at 137.869852 123.525468 90)
+    (at 138.825 122.7 90)
     (descr "5-pin SOT23 package")
     (tags SOT-23-5)
     (path /5909D8E3/5909DD63)
@@ -2056,7 +2056,7 @@
   )
 
   (module TO_SOT_Packages_SMD:SOT-23-5 (layer F.Cu) (tedit 58CE4E7E) (tstamp 5982550B)
-    (at 159.745631 52.801839 180)
+    (at 160.625 53.05 180)
     (descr "5-pin SOT23 package")
     (tags SOT-23-5)
     (path /590982C4/590B832C)
