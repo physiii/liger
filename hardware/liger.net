@@ -1,8 +1,8 @@
 (export (version D)
   (design
-    (source /home/chris/circuits/0809/liger/hardware/liger.sch)
-    (date "Wed 09 Aug 2017 06:29:12 PM CDT")
-    (tool "Eeschema no-vcs-found-7394~56~ubuntu15.10.1")
+    (source /home/physiii/circuits/liger/hardware/liger.sch)
+    (date "Thu 10 Aug 2017 05:58:16 PM CDT")
+    (tool "Eeschema no-vcs-found-9485a4d~59~ubuntu17.04.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title)
@@ -105,7 +105,7 @@
       (value ESP-WROOM-32)
       (footprint footprints:ESP-WROOM-32)
       (datasheet https://www.espressif.com/sites/default/files/documentation/esp_wroom_32_datasheet_en.pdf)
-      (libsource (lib liger-cache) (part ESP-WROOM-32))
+      (libsource (lib open-automation) (part ESP-WROOM-32))
       (sheetpath (names /Microcontroller/) (tstamps /59096487/))
       (tstamp 590979AF))
     (comp (ref P1)
@@ -126,7 +126,7 @@
       (datasheet http://www.everlight.com/file/ProductFile/PT5529B-L2-H2-F.pdf)
       (fields
         (field (name "Part Number") 1080-1161-ND))
-      (libsource (lib liger-cache) (part PT5529B/L2/H2-F))
+      (libsource (lib open-automation) (part PT5529B/L2/H2-F))
       (sheetpath (names /InfraRed/) (tstamps /590982C4/))
       (tstamp 59098AF0))
     (comp (ref R3)
@@ -187,7 +187,7 @@
       (datasheet http://www.digikey.com/product-detail/en/texas-instruments/OPA344NA-3K/296-41475-1-ND/5222851)
       (fields
         (field (name "Part Number") 296-41475-1-ND))
-      (libsource (lib liger-cache) (part OPA344))
+      (libsource (lib open-automation) (part OPA344))
       (sheetpath (names /InfraRed/) (tstamps /590982C4/))
       (tstamp 590B832C))
     (comp (ref D3)
@@ -232,7 +232,7 @@
       (datasheet http://www.digikey.com/product-detail/en/texas-instruments/OPA344NA-3K/296-41475-1-ND/5222851)
       (fields
         (field (name "Part Number") 296-41475-1-ND))
-      (libsource (lib liger-cache) (part OPA344))
+      (libsource (lib open-automation) (part OPA344))
       (sheetpath (names /Microphone/) (tstamps /5909A781/))
       (tstamp 59091960))
     (comp (ref R9)
@@ -268,7 +268,7 @@
       (datasheet https://www.digikey.com/product-detail/en/knowles/SPM0408LE5H-TB-6/423-1129-6-ND/2242368)
       (fields
         (field (name "Part Number") SPM0408LE5H-TB-6))
-      (libsource (lib liger-cache) (part MEMS-SPM0408LE5H))
+      (libsource (lib open-automation) (part MEMS-SPM0408LE5H))
       (sheetpath (names /Microphone/) (tstamps /5909A781/))
       (tstamp 5909196C))
     (comp (ref R6)
@@ -304,7 +304,7 @@
       (datasheet https://www.exar.com/content/document.ashx?id=22106)
       (fields
         (field (name "Part Number") 1016-1873-1-ND))
-      (libsource (lib liger-cache) (part SPX3819))
+      (libsource (lib open-automation) (part SPX3819))
       (sheetpath (names /Power/) (tstamps /5909D8E3/))
       (tstamp 5909DD63))
     (comp (ref C3)
@@ -349,7 +349,7 @@
       (datasheet http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf)
       (fields
         (field (name "Part Number") "KMR211NG LFS"))
-      (libsource (lib liger-cache) (part SW_PUSH))
+      (libsource (lib open-automation) (part SW_PUSH))
       (sheetpath (names /Switches/) (tstamps /59092AD4/))
       (tstamp 59092D1B))
     (comp (ref Q3)
@@ -427,7 +427,7 @@
       (datasheet https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/LTRBGFSF-ABCB-QKYO-Z/475-2899-6-ND/2415092)
       (fields
         (field (name "Part Number") LTRBGFSF-ABCB-QKYO-Z))
-      (libsource (lib liger-cache) (part RGB-LED))
+      (libsource (lib open-automation) (part RGB-LED))
       (sheetpath (names /Switches/) (tstamps /59092AD4/))
       (tstamp 5980E7D1))
     (comp (ref R8)
@@ -472,7 +472,7 @@
       (datasheet https://www.digikey.com/product-detail/en/stmicroelectronics/TS4962IQT/497-5993-1-ND/1578476)
       (fields
         (field (name "Part Number") TS4962IQT))
-      (libsource (lib liger-cache) (part Amplifier-D-TS4962IQT))
+      (libsource (lib open-automation) (part Amplifier-D-TS4962IQT))
       (sheetpath (names /Speaker/) (tstamps /590C715D/))
       (tstamp 59812510))
     (comp (ref R21)
@@ -527,7 +527,7 @@
       (sheetpath (names /climate/) (tstamps /590D271B/))
       (tstamp 597D312E)))
   (libparts
-    (libpart (lib liger-cache) (part Amplifier-D-TS4962IQT)
+    (libpart (lib open-automation) (part Amplifier-D-TS4962IQT)
       (fields
         (field (name Reference) U)
         (field (name Value) Amplifier-D-TS4962IQT))
@@ -542,11 +542,7 @@
     (libpart (lib device) (part C)
       (description "Unpolarized capacitor")
       (footprints
-        (fp C?)
-        (fp C_????_*)
-        (fp C_????)
-        (fp SMD*_c)
-        (fp Capacitor*))
+        (fp C_*))
       (fields
         (field (name Reference) C)
         (field (name Value) C))
@@ -554,28 +550,28 @@
         (pin (num 1) (name ~) (type passive))
         (pin (num 2) (name ~) (type passive))))
     (libpart (lib conn) (part CONN_01X03)
-      (description "Connector, single row, 01x03")
+      (description "Connector, single row, 01x03, pin header")
       (footprints
-        (fp Pin_Header_Straight_1X03)
-        (fp Pin_Header_Angled_1X03)
-        (fp Socket_Strip_Straight_1X03)
-        (fp Socket_Strip_Angled_1X03))
+        (fp Pin_Header_Straight_1X*)
+        (fp Pin_Header_Angled_1X*)
+        (fp Socket_Strip_Straight_1X*)
+        (fp Socket_Strip_Angled_1X*))
       (fields
-        (field (name Reference) P)
+        (field (name Reference) J)
         (field (name Value) CONN_01X03))
       (pins
         (pin (num 1) (name P1) (type passive))
         (pin (num 2) (name P2) (type passive))
         (pin (num 3) (name P3) (type passive))))
     (libpart (lib conn) (part CONN_01X04)
-      (description "Connector, single row, 01x04")
+      (description "Connector, single row, 01x04, pin header")
       (footprints
-        (fp Pin_Header_Straight_1X04)
-        (fp Pin_Header_Angled_1X04)
-        (fp Socket_Strip_Straight_1X04)
-        (fp Socket_Strip_Angled_1X04))
+        (fp Pin_Header_Straight_1X*)
+        (fp Pin_Header_Angled_1X*)
+        (fp Socket_Strip_Straight_1X*)
+        (fp Socket_Strip_Angled_1X*))
       (fields
-        (field (name Reference) P)
+        (field (name Reference) J)
         (field (name Value) CONN_01X04))
       (pins
         (pin (num 1) (name P1) (type passive))
@@ -583,14 +579,14 @@
         (pin (num 3) (name P3) (type passive))
         (pin (num 4) (name P4) (type passive))))
     (libpart (lib conn) (part CONN_01X20)
-      (description "Connector, single row, 01x20")
+      (description "Connector, single row, 01x20, pin header")
       (footprints
-        (fp Pin_Header_Straight_1X20)
-        (fp Pin_Header_Angled_1X20)
-        (fp Socket_Strip_Straight_1X20)
-        (fp Socket_Strip_Angled_1X20))
+        (fp Pin_Header_Straight_1X*)
+        (fp Pin_Header_Angled_1X*)
+        (fp Socket_Strip_Straight_1X*)
+        (fp Socket_Strip_Angled_1X*))
       (fields
-        (field (name Reference) P)
+        (field (name Reference) J)
         (field (name Value) CONN_01X20))
       (pins
         (pin (num 1) (name P1) (type passive))
@@ -613,7 +609,7 @@
         (pin (num 18) (name P18) (type passive))
         (pin (num 19) (name P19) (type passive))
         (pin (num 20) (name P20) (type passive))))
-    (libpart (lib liger-cache) (part ESP-WROOM-32)
+    (libpart (lib open-automation) (part ESP-WROOM-32)
       (fields
         (field (name Reference) U)
         (field (name Value) ESP-WROOM-32))
@@ -663,7 +659,7 @@
       (pins
         (pin (num 1) (name K) (type passive))
         (pin (num 2) (name A) (type passive))))
-    (libpart (lib liger-cache) (part MEMS-SPM0408LE5H)
+    (libpart (lib open-automation) (part MEMS-SPM0408LE5H)
       (fields
         (field (name Reference) U)
         (field (name Value) MEMS-SPM0408LE5H))
@@ -672,9 +668,7 @@
         (pin (num 2) (name GAIN) (type input))
         (pin (num 3) (name GND) (type input))
         (pin (num 6) (name VDD) (type input))))
-    (libpart (lib liger-cache) (part OPA344)
-      (description "Dual Op amp (low power)")
-      (docs analog-dev/op275.pdf)
+    (libpart (lib open-automation) (part OPA344)
       (footprints
         (fp DIP*)
         (fp SOIC*)
@@ -691,7 +685,7 @@
         (pin (num 5) (name V+) (type power_in))
         (pin (num 6) (name -) (type input))
         (pin (num 7) (name ~) (type output))))
-    (libpart (lib liger-cache) (part PT5529B/L2/H2-F)
+    (libpart (lib open-automation) (part PT5529B/L2/H2-F)
       (fields
         (field (name Reference) U)
         (field (name Value) PT5529B/L2/H2-F))
@@ -730,14 +724,14 @@
       (description Resistor)
       (footprints
         (fp R_*)
-        (fp Resistor_*))
+        (fp R_*))
       (fields
         (field (name Reference) R)
         (field (name Value) R))
       (pins
         (pin (num 1) (name ~) (type passive))
         (pin (num 2) (name ~) (type passive))))
-    (libpart (lib liger-cache) (part RGB-LED)
+    (libpart (lib open-automation) (part RGB-LED)
       (fields
         (field (name Reference) U)
         (field (name Value) RGB-LED))
@@ -748,7 +742,7 @@
         (pin (num 4) (name G_a) (type input))
         (pin (num 5) (name R_a) (type input))
         (pin (num 6) (name B_a) (type input))))
-    (libpart (lib liger-cache) (part SPX3819)
+    (libpart (lib open-automation) (part SPX3819)
       (footprints
         (fp SOT-23*)
         (fp SOT-23*))
@@ -761,7 +755,7 @@
         (pin (num 3) (name EN) (type power_in))
         (pin (num 4) (name P4) (type input))
         (pin (num 5) (name OUT) (type power_in))))
-    (libpart (lib liger-cache) (part SW_PUSH)
+    (libpart (lib open-automation) (part SW_PUSH)
       (fields
         (field (name Reference) SW)
         (field (name Value) SW_PUSH))
@@ -769,7 +763,7 @@
         (pin (num 1) (name 1) (type passive))
         (pin (num 2) (name 2) (type passive))))
     (libpart (lib device) (part Speaker)
-      (description "speaker ")
+      (description speaker)
       (fields
         (field (name Reference) LS)
         (field (name Value) Speaker))
@@ -786,12 +780,14 @@
         (pin (num 3) (name UP) (type input))
         (pin (num 4) (name DOWN) (type input)))))
   (libraries
-    (library (logical liger-cache)
-      (uri /home/chris/circuits/0809/liger/hardware/liger-cache.lib))
     (library (logical device)
       (uri /usr/share/kicad/library/device.lib))
     (library (logical conn)
-      (uri /usr/share/kicad/library/conn.lib)))
+      (uri /usr/share/kicad/library/conn.lib))
+    (library (logical open-automation)
+      (uri /home/physiii/circuits/kicad-parts/libraries/open-automation.lib))
+    (library (logical liger-cache)
+      (uri /home/physiii/circuits/liger/hardware/liger-cache.lib)))
   (nets
     (net (code 1) (name IO33)
       (node (ref U12) (pin 2))

@@ -28,6 +28,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:open-automation
 LIBS:liger-cache
 EELAYER 26 0
 EELAYER END
