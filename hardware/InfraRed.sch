@@ -160,13 +160,13 @@ $EndComp
 $Comp
 L GND #PWR07
 U 1 1 59098B15
-P 4150 5150
-F 0 "#PWR07" H 4150 4900 50  0001 C CNN
-F 1 "GND" H 4150 5000 50  0000 C CNN
-F 2 "" H 4150 5150 50  0000 C CNN
-F 3 "" H 4150 5150 50  0000 C CNN
-	1    4150 5150
-	1    0    0    -1  
+P 4150 4850
+F 0 "#PWR07" H 4150 4600 50  0001 C CNN
+F 1 "GND" H 4150 4700 50  0000 C CNN
+F 2 "" H 4150 4850 50  0000 C CNN
+F 3 "" H 4150 4850 50  0000 C CNN
+	1    4150 4850
+	-1   0    0    1   
 $EndComp
 Text GLabel 4100 5000 0    60   Input ~ 0
 IO16
@@ -337,6 +337,6 @@ Text GLabel 7600 2900 1    60   Input ~ 0
 5V
 Text GLabel 4450 2100 1    60   Input ~ 0
 5V
-Text GLabel 4150 4850 1    60   Input ~ 0
+Text GLabel 4150 5150 3    60   Input ~ 0
 5V
 $EndSCHEMATC
