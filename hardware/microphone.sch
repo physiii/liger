@@ -30,7 +30,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:open-automation
 LIBS:liger-cache
-EELAYER 26 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -105,8 +105,8 @@ P 7900 4300
 F 0 "R10" V 7980 4300 50  0000 C CNN
 F 1 "2.2K" V 7900 4300 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 7830 4300 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 7900 4300 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 7900 4300 60  0001 C CNN "Part Number"
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-072K2L/311-2.2KGRCT-ND/729676" H 7900 4300 50  0001 C CNN
+F 4 "RC0603JR-072K2L" V 7900 4300 60  0001 C CNN "Part Number"
 	1    7900 4300
 	0    -1   -1   0   
 $EndComp

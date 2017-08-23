@@ -44,6 +44,12 @@
 #define SAMPLE_SIZE (128)
 #define SAMPLE_RATE (44100)
 
+int value[SAMPLE_SIZE];
+int button_value;
+char temp_str[50];
+int sum = 0;
+char mic_value_str[256];
+
 struct per_vhost_data__microphone {
 	uv_timer_t timeout_watcher;
 
@@ -102,10 +108,6 @@ static void adc_timer_cb(TimerHandle_t t)
 		gpio_output_set(1 << GPIO_ID, 0, 1 << GPIO_ID, 0);*/
 }
 
-int value[SAMPLE_SIZE];
-int button_value;
-char temp_str[50];
-int sum = 0;
 void microphone_task(struct per_vhost_data__microphone *vhd)
 {
 	char TAG[50] = "[microphone-protocol]";
@@ -133,14 +135,8 @@ static int
 callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
-
-	uint8_t mac[6];
-	char mac_str[20];
 	char TAG[50] = "[microphone-protocol]";
-        esp_wifi_get_mac(WIFI_IF_STA,mac);
-	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
-           mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
-           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
+
 	struct per_session_data__microphone *pss =
 			(struct per_session_data__microphone *)user;
 	struct per_vhost_data__microphone *vhd =
@@ -194,17 +190,23 @@ callback_microphone(struct lws *wsi, enum lws_callback_reasons reason,
 		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] sum: %d\n",sum);
 		if (sum < 10000) break;
 		snprintf(temp_str, 10, "%d",sum);
-                strcpy(button_value_str, "{\"front_button\":");
-		strcat(button_value_str,temp_str);
-                strcat(button_value_str, ",\"mac\":\"");
-		strcat(button_value_str,mac_str);
-		strcat(button_value_str,"\"}");
-		n = lws_snprintf((char *)p, sizeof(button_value_str) - LWS_PRE, "%s", button_value_str);
+
+                strcpy(mic_value_str, "{\"mac\":\"");
+		strcat(mic_value_str,mac_str);
+                strcat(mic_value_str, "\",\"value\":");
+                strcat(mic_value_str, temp_str);
+                strcat(mic_value_str, ",\"device_type\":[\"room_sensor\"]");
+                strcat(mic_value_str, ",\"token\":\"");
+                strcat(mic_value_str, token);
+                strcat(mic_value_str, "\"");
+		strcat(mic_value_str,"}");
+
+		n = lws_snprintf((char *)p, sizeof(mic_value_str) - LWS_PRE, "%s", mic_value_str);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) 
 			lwsl_err("ERROR %d writing to di socket\n", n);
 		else
-			printf("%s %s\n",TAG,button_value_str);
+			printf("%s %s\n",TAG,mic_value_str);
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:

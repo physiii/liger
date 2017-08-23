@@ -131,12 +131,17 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_token.c \
  /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c \
- /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_speaker.c \
- /home/physiii/esp/esp-idf/components/driver/include/driver/dac.h \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_update.c \
+ /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c \
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_ota.c \
+ /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h \
+ /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h \
+ /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/err.h \
+ /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h \
+ /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h \
+ /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h \
  /home/physiii/esp/esp-idf/components/app_update/include/esp_ota_ops.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_ota.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_reboot_to_factory.c
@@ -405,17 +410,27 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c:
 
-/home/physiii/esp/esp-idf/components/log/include/esp_log.h:
-
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h:
 
-/home/physiii/circuits/liger/code/main/./plugins/protocol_speaker.c:
+/home/physiii/esp/esp-idf/components/log/include/esp_log.h:
 
-/home/physiii/esp/esp-idf/components/driver/include/driver/dac.h:
+/home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c:
 
-/home/physiii/circuits/liger/code/main/./plugins/protocol_update.c:
+/home/physiii/circuits/liger/code/main/./plugins/protocol_ota.c:
+
+/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h:
+
+/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h:
+
+/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/err.h:
+
+/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h:
+
+/home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h:
+
+/home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h:
 
 /home/physiii/esp/esp-idf/components/app_update/include/esp_ota_ops.h:
 

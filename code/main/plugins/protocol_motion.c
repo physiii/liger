@@ -39,14 +39,17 @@
 #define DUMB_PERIOD 50
 #endif
 
-#define PIR (27)
+#define PIR    16
 
 uint8_t mac[6];
 char mac_str[20];
+int PIR_SAMPLE_SIZE = 100;
 int value[SAMPLE_SIZE];
 int pir_value;
 char temp_str[50];
 int pir_sum = 0;
+char motion_command[100];
+bool motion_linked = false;
 
 struct per_vhost_data__motion {
 	uv_timer_t timeout_watcher;
@@ -91,17 +94,14 @@ uv_timeout_cb_motion(uv_timer_t *w
 
 void pir_task(struct per_vhost_data__motion *vhd)
 {
-	/*adc_timer = xTimerCreate("x", pdMS_TO_TICKS(1 / SAMPLE_RATE), 1, NULL,
-		(TimerCallbackFunction_t)adc_timer_cb);
-	xTimerStart(adc_timer, 0);*/
 	while(1){
-		//pir_sum = adc1_get_voltage(PIR);
 		pir_sum = 0;
 		for (int i = 0; i < SAMPLE_SIZE; i++) {
 			value[i] = gpio_get_level(PIR);
-			pir_sum+=value[i];	
+			pir_sum+=value[i];
+   			vTaskDelay(10/portTICK_PERIOD_MS);
 		}
-		vTaskDelay(100/portTICK_PERIOD_MS);
+		//vTaskDelay(100/portTICK_PERIOD_MS);
 		//printf("pir_sum: %d\n",pir_sum);
 	}
 }
@@ -110,11 +110,11 @@ static int
 callback_motion(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
-	char TAG[50] = "[motion-protocol]";
-        esp_wifi_get_mac(WIFI_IF_STA,mac);
+	char tag[50] = "[motion-protocol]";
+        /*esp_wifi_get_mac(WIFI_IF_STA,mac);
 	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
            mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
-           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
+           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);*/
 	struct per_session_data__motion *pss =
 			(struct per_session_data__motion *)user;
 	struct per_vhost_data__motion *vhd =
@@ -132,7 +132,7 @@ callback_motion(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
-		printf("%s initialize\n",TAG);
+		printf("%s initialize\n",tag);
 		xTaskCreate(pir_task, "pir_task", 1024*3, &vhd, 10, NULL);
 		// initialize ADC
 		adc1_config_width(ADC_WIDTH_12Bit);
@@ -166,40 +166,69 @@ callback_motion(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] pir_sum: %d\n",pir_sum);
-		if (pir_sum < 10000) break;
+		if (!token_received) break;
+		if (!motion_linked) {
+        	        strcpy(pir_value_str, "{\"mac\":\"");
+			strcat(pir_value_str,mac_str);
+        	        strcat(pir_value_str, "\",\"device_type\":[\"room_sensor\"]");
+        	        strcat(pir_value_str, ",\"cmd\":\"link\"");
+        	        strcat(pir_value_str, ",\"token\":\"");
+        	        strcat(pir_value_str, token);
+        	        strcat(pir_value_str, "\"");
+			strcat(pir_value_str,"}");
+			n = lws_snprintf((char *)p, sizeof(pir_value_str) - LWS_PRE, "%s", pir_value_str);
+			m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
+			if (m < n) 
+				lwsl_err("ERROR %d writing to di socket\n", n);
+			else  {
+				printf("%s %s\n",tag,pir_value_str);
+			}
+			break;
+		}
+
+		if (pir_sum < 100) break;
+
 		snprintf(temp_str, 10, "%d",pir_sum);
-                strcpy(pir_value_str, "{\"front_button\":");
-		strcat(pir_value_str,temp_str);
-                strcat(pir_value_str, ",\"mac\":\"");
+                strcpy(pir_value_str, "{\"mac\":\"");
 		strcat(pir_value_str,mac_str);
-                strcat(pir_value_str, "\",\"token\":\"");
-		strcat(pir_value_str,token);
-		strcat(pir_value_str,"\"}");
+                strcat(pir_value_str, "\",\"value\":");
+                strcat(pir_value_str, temp_str);
+                strcat(pir_value_str, ",\"device_type\":[\"room_sensor\"]");
+                strcat(pir_value_str, ",\"cmd\":\"motion\"");
+                strcat(pir_value_str, ",\"token\":\"");
+                strcat(pir_value_str, token);
+                strcat(pir_value_str, "\"");
+		strcat(pir_value_str,"}");
+
 		n = lws_snprintf((char *)p, sizeof(pir_value_str) - LWS_PRE, "%s", pir_value_str);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) {
 			lwsl_err("ERROR %d writing to di socket\n", n);
-			printf("%s %s\n",TAG,pir_value_str);
+			printf("%s %s\n",tag,pir_value_str);
 		} else
-			printf("%s %s\n",TAG,pir_value_str);
+			printf("%s %s\n",tag,pir_value_str);
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		if (len < 6)
+		if (len < 2)
 			break;
-		printf("%s %s\n",TAG,(const char *)in);
-		if (strcmp((const char *)in, "reset\n") == 0)
-			pss->number = 0;
-		if (strcmp((const char *)in, "closeme\n") == 0) {
-			lwsl_notice("dumb_inc: closing as requested\n");
-			lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-					 (unsigned char *)"seeya", 5);
-			return -1;
+
+		sprintf(motion_command,"%s",(const char *)in);
+		printf("%s %s\n", tag, motion_command);
+		if (strcmp(motion_command,"link")) {
+			printf("%s linked!\n", tag);
+			motion_linked = true;
+		}
+
+		if (!strcmp(motion_command,"threshold")) {
+			printf("%s adjusting threshold!\n", tag);
+			light1_value = 100;
+			light_on(LIGHT1,light1_value);
 		}
 		break;
 
 	default:
-	   	printf("callback_motion: %d\n",reason);
+	   	printf("%s callback_motion: %d\n",tag,reason);
 		break;
 	}
 

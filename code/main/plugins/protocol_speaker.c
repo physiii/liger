@@ -88,7 +88,7 @@ void speaker_task(struct per_vhost_data__motion *vhd)
 			push_out = true;
 		}
 		vTaskDelay(10/portTICK_PERIOD_MS);
-		printf("%s speaker active\n",TAG);
+		//printf("%s speaker active\n",TAG);
 	}
 }
 

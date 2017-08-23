@@ -32,6 +32,10 @@
 #include "freertos/queue.h"
 #include "driver/gpio.h"
 #include "driver/adc.h"
+#include "esp_system.h"
+#include "esp_partition.h"
+#include "nvs_flash.h"
+#include "nvs.h"
 
 #if defined(LWS_WITH_ESP8266)
 #define DUMB_PERIOD 50
@@ -44,9 +48,11 @@
 #define SAMPLE_RATE (44100)
 char temp_str[50];
 bool token_received = false;
+bool request_sent = false;
 uint8_t mac[6];
 char mac_str[20];
-char token[256];
+char token[512];
+char previous_token[256];
 
 struct per_vhost_data__token {
 	uv_timer_t timeout_watcher;
@@ -88,8 +94,6 @@ uv_timeout_cb_token(uv_timer_t *w
 }
 
 
-
-
 void nvs_test()
 {
     char tag[50] = "[token-protocol]";
@@ -106,39 +110,20 @@ void nvs_test()
     }
     ESP_ERROR_CHECK( err );
 
-    // Open
-    //printf("\n");
-    //printf("Opening Non-Volatile Storage (NVS) handle... ");
     nvs_handle my_handle;
     err = nvs_open("storage", NVS_READWRITE, &my_handle);
     if (err != ESP_OK) {
         printf("Error (%d) opening NVS handle!\n", err);
     } else {
-        //printf(tag,"Done\n");
-	printf("%s %s\n",tag,token);
 
-        // Write
-        //printf("Updating token... ");
-        err = nvs_set_str(my_handle, "token", token);
-        //printf((err != ESP_OK) ? "Failed!\n" : "Done\n");
+        int32_t restart_counter = 0; // value will default to 0, if not set yet in NVS
 
-        // Commit written value.
-        // After setting any values, nvs_commit() must be called to ensure changes are written
-        // to flash storage. Implementations may write to storage at other times,
-        // but this is not guaranteed.
-        //printf("Committing updates in NVS ... ");
-        err = nvs_commit(my_handle);
-        //printf((err != ESP_OK) ? "Failed!\n" : "Done\n");
-
-        // Read
-        //printf("Reading restart counter from NVS ... ");
-        //int32_t restart_counter = 0; // value will default to 0, if not set yet in NVS
 	size_t size;
-        err = nvs_get_str(my_handle, "token", token, &size);
+        err = nvs_get_str(my_handle, "token", previous_token, &size);
         switch (err) {
             case ESP_OK:
                 //printf(tag,"Done\n");
-                printf("token = %s\n", token);
+                printf("%s found token: %s\n", tag, previous_token);
                 break;
             case ESP_ERR_NVS_NOT_FOUND:
                 printf("The value is not initialized yet!\n");
@@ -147,19 +132,26 @@ void nvs_test()
                 printf("Error (%d) reading!\n", err);
         }
 
+        err = nvs_set_str(my_handle, "token", token);
+
+        if (err == ESP_OK) {
+	  //printf("token: %s\n",token);
+	}
+	else {
+	  printf("Failed!\n");
+	}
+
+        err = nvs_commit(my_handle);
+        if (err == ESP_OK) {
+	  printf("%s stored token: %s\n",tag,token);
+	}
+	else {
+	  printf("Failed!\n");
+	}
+
         // Close
         nvs_close(my_handle);
     }
-    printf("\n");
-
-    // Restart module
-    /*for (int i = 10; i >= 0; i--) {
-        printf("Restarting in %d seconds...\n", i);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-    printf("Restarting now.\n");
-    fflush(stdout);*/
-    //esp_restart();
 }
 
 
@@ -218,25 +210,28 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] sum: %d\n",sum);
-		if (token_received)
-			break;
+		if (token_received) break;
+		if (request_sent) break;
+
                 strcpy(token_req_str, "{\"mac\":\"");
 		strcat(token_req_str,mac_str);
                 strcat(token_req_str, "\",\"cmd\":\"token_request\"");
-                strcat(token_req_str, ",\"device_type\":\"room_sensor\"");
+                strcat(token_req_str, ",\"device_type\":[\"room_sensor\"]");
 		strcat(token_req_str,"}");
 		n = lws_snprintf((char *)p, sizeof(token_req_str) - LWS_PRE, "%s", token_req_str);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 		if (m < n) 
 			lwsl_err("ERROR %d writing to di socket\n", n);
 		else  {
-			//printf("%s %s\n",tag,token_req_str);
+			request_sent = true;
+			printf("%s %s\n",tag,token_req_str);
 		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 6)
 			break;
+		printf("%s %s",tag,(const char *)in);
 		sprintf(token,"%s",(const char *)in);
 		nvs_test();
 		token_received = true;

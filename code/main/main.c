@@ -36,10 +36,10 @@
 #include "plugins/protocol_token.c"
 //#include "plugins/protocol_microphone.c"
 #include "plugins/protocol_buttons.c"
-#include "plugins/protocol_speaker.c"
-//#include "plugins/protocol_motion.c"
-//#include "plugins/protocol_ota.c"
-#include "plugins/protocol_update.c"
+//#include "plugins/protocol_speaker.c"
+#include "plugins/protocol_motion.c"
+#include "plugins/protocol_ota.c"
+//#include "plugins/protocol_update.c"
 #include "plugins/protocol_esp32_lws_ota.c"
 #include "plugins/protocol_esp32_lws_reboot_to_factory.c"
 
@@ -53,10 +53,10 @@ static const struct lws_protocols protocols_station[] = {
 	//LWS_PLUGIN_PROTOCOL_MICROPHONE,
 	LWS_PLUGIN_PROTOCOL_TOKEN,
 	LWS_PLUGIN_PROTOCOL_BUTTONS,
-	LWS_PLUGIN_PROTOCOL_SPEAKER,
-	//LWS_PLUGIN_PROTOCOL_MOTION,
-	//LWS_PLUGIN_PROTOCOL_OTA,
-	LWS_PLUGIN_PROTOCOL_ESPLWS_SCAN,
+	//LWS_PLUGIN_PROTOCOL_SPEAKER,
+	LWS_PLUGIN_PROTOCOL_MOTION,
+	LWS_PLUGIN_PROTOCOL_OTA,
+	//LWS_PLUGIN_PROTOCOL_ESPLWS_SCAN,
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
 };
@@ -158,6 +158,7 @@ void app_main(void)
 	static struct lws_client_connect_info j;
 	struct lws_context *context;
         struct lws *wsi;
+        struct lws *wsi2;
 
 	memset(&info, 0, sizeof(info));
 	info.port = CONTEXT_PORT_NO_LISTEN;
@@ -174,7 +175,6 @@ void app_main(void)
 	i.host = i.address;
 	i.origin = i.host;
         i.ietf_version_or_minus_one = -1;
-	i.path = "/";
 	i.pwsi = &wsi;
 	i.context = context;
 
@@ -182,6 +182,7 @@ void app_main(void)
 	// initiate protocols //
 	// ------------------ //
 	i.protocol = "token-protocol";
+	i.path = "/tokens";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);
@@ -189,15 +190,9 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
-	i.protocol = "ota-protocol";
-        wsi = lws_client_connect_via_info(&i);
-        while (!wsi) {
-	        wsi = lws_client_connect_via_info(&i);
-		taskYIELD();
-		vTaskDelay(1000/portTICK_PERIOD_MS);
-        }
 
 	i.protocol = "buttons-protocol";
+	i.path = "/buttons";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);
@@ -205,7 +200,18 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
-	i.protocol = "esplws-scan";
+	i.protocol = "motion-protocol";
+	i.path = "/motion";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+
+
+	i.protocol = "ota-protocol";
+	i.path = "/update";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);
@@ -214,6 +220,15 @@ void app_main(void)
         }
 
 	/*i.protocol = "microphone-protocol";
+	i.path = "/microphone";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+
+	i.protocol = "esplws-scan";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);

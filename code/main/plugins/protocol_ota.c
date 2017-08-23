@@ -62,8 +62,10 @@
 
 char temp_str[50];
 bool ota_received = false;
+bool update_linked = false;
 char ota[256];
-static const char *tag = "[ota-protocol]";
+char update_value_str[256];
+char update_command[100];
 
 struct per_session_data__ota {
 	int number;
@@ -88,18 +90,6 @@ struct per_session_data__ota {
 
 struct per_vhost_data__ota {
 	uv_timer_t timeout_watcher;
-
-	/*TimerHandle_t timer, reboot_timer;
-	struct per_session_data__esplws_scan *live_pss_list;
-	struct lws_context *context;
-	struct lws_vhost *vhost;
-	const struct lws_protocols *protocol;
-
-	struct lws *cwsi;
-	char json[1024];
-	int json_len;
-	bool is_connecting;
-	int value[1024];*/
 	wifi_ap_record_t ap_records[10];
 	TimerHandle_t timer, reboot_timer;
 	struct per_session_data__esplws_scan *live_pss_list;
@@ -150,10 +140,7 @@ callback_ota(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
 	char tag[50] = "[ota-protocol]";
-        esp_wifi_get_mac(WIFI_IF_STA,mac);
-	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
-           mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
-           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
+
 	struct per_session_data__ota *pss =
 			(struct per_session_data__ota *)user;
 	struct per_vhost_data__ota *vhd =
@@ -199,28 +186,62 @@ callback_ota(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
-		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] sum: %d\n",sum);
-		if (ota_received)
+		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] pir_sum: %d\n",pir_sum);
+		if (!token_received) break;
+
+		if (!update_linked) {
+        	        strcpy(update_value_str, "{\"mac\":\"");
+			strcat(update_value_str,mac_str);
+        	        strcat(update_value_str, "\",\"device_type\":[\"room_sensor\"]");
+        	        strcat(update_value_str, ",\"cmd\":\"link\"");
+        	        strcat(update_value_str, ",\"token\":\"");
+        	        strcat(update_value_str, token);
+        	        strcat(update_value_str, "\"");
+			strcat(update_value_str,"}");
+			n = lws_snprintf((char *)p, sizeof(update_value_str) - LWS_PRE, "%s", update_value_str);
+			m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
+			if (m < n) 
+				lwsl_err("ERROR %d writing to di socket\n", n);
+			else  {
+				printf("%s %s\n",tag,update_value_str);
+			}
 			break;
-                strcpy(ota_req_str, "{\"mac\":\"");
-		strcat(ota_req_str,mac_str);
-                strcat(ota_req_str, "\",\"cmd\":\"init_ota\"");
-                strcat(ota_req_str, ",\"device_type\":\"room_sensor\"");
-		strcat(ota_req_str,"}");
-		n = lws_snprintf((char *)p, sizeof(ota_req_str) - LWS_PRE, "%s", ota_req_str);
+		}
+
+		/*if (pir_sum < 100) break;
+
+		snprintf(temp_str, 10, "%d",pir_sum);
+                strcpy(update_value_str, "{\"mac\":\"");
+		strcat(update_value_str,mac_str);
+                strcat(update_value_str, "\",\"value\":");
+                strcat(update_value_str, temp_str);
+                strcat(update_value_str, ",\"device_type\":[\"room_sensor\"]");
+                strcat(update_value_str, ",\"cmd\":\"update\"");
+                strcat(update_value_str, ",\"token\":\"");
+                strcat(update_value_str, token);
+                strcat(update_value_str, "\"");
+		strcat(update_value_str,"}");
+
+		n = lws_snprintf((char *)p, sizeof(update_value_str) - LWS_PRE, "%s", update_value_str);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
-		if (m < n) 
+		if (m < n) {
 			lwsl_err("ERROR %d writing to di socket\n", n);
-		else
-			printf("%s %s\n",tag,ota_req_str);
+			printf("%s %s\n",tag,update_value_str);
+		} else
+			printf("%s %s\n",tag,update_value_str);*/
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-	   	printf("%s [LWS_CALLBACK_CLIENT_RECEIVE] %s\n",tag,(const char *)in);
-		if (len < 6)
+		if (len < 2)
 			break;
-		sprintf(ota,"%s",(const char *)in);
-		ota_received = true;
+
+		sprintf(update_command,"%s",(const char *)in);
+		printf("%s %s\n", tag, update_command);
+		if (strcmp(update_command,"link")) {
+			printf("%s linked!\n", tag);
+			update_linked = true;
+		}
+
 		//init_ota();
 		break;
 
