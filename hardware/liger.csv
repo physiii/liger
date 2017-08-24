@@ -5,15 +5,16 @@ D1 D3,2,LED,LEDs:LED_D3.0mm,http://www.mouser.com/ds/2/149/QED123-890063.pdf,QED
 D2,1,LED,LEDs:LED_0603,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,475-2512-2-ND
 LS1,1,Speaker,footprints:speaker-1508,http://www.cui.com/product/resource/cvs-1508.pdf,CVS-1508
 P1 P2,2,CONN_01X20,Pin_Headers:Pin_Header_Straight_1x20_Pitch2.54mm,
-P3,1,CONN_01X03,open-automation:PIR,http://sullinscorp.com/catalogs/101_PAGE114-115_.100_FEMALE_HDR.pdf
-P4,1,CONN_01X03,Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm,http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735,A04KR04DA28W51B
+P3,1,CONN_01X03,Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm,http://sullinscorp.com/catalogs/101_PAGE114-115_.100_FEMALE_HDR.pdf
+P4,1,CONN_01X03,footprints:connector_3pos_KR,http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735,A04KR04DA28W51B
+P5,1,CONN_01X04,Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm,http://sullinscorp.com/catalogs/101_PAGE114-115_.100_FEMALE_HDR.pdf,PPTC041LGBN-RC
 P6,1,CONN_01X04,Pin_Headers:Pin_Header_Angled_1x04_Pitch2.54mm,
 PROG1,1,SW_PUSH,Buttons_Switches_SMD:SW_SPST_KMR2,http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf,KMR211NG LFS
 Q1,1,Q_NPN_BEC,TO_SOT_Packages_SMD:SOT-23,http://www.onsemi.com/pub/Collateral/MMBT3904LT1-D.PDF,MMBT3904LT1GOSCT-ND
 Q2,1,Q_NMOS_GSD,TO_SOT_Packages_SMD:SOT-23,http://www.mouser.com/ds/2/308/2N7002L-D-105484.pdf,2N7002L
 Q3,1,Q_PMOS_GSD,TO_SOT_Packages_SMD:SOT-23,https://www.fairchildsemi.com/datasheets/BS/BSS84.pdf,BSS84
-R1 R11 R25,3,10K,Resistors_SMD:R_0603_HandSoldering,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
-R10,1,2.2K,Resistors_SMD:R_0603_HandSoldering,https://www.digikey.com/product-detail/en/yageo/RC0603JR-072K2L/311-2.2KGRCT-ND/729676,RC0603JR-072K2L
+R1 R2 R11 R25,4,10K,Resistors_SMD:R_0603_HandSoldering,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
+R10,1,2.2K,Resistors_SMD:R_0603_HandSoldering,http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet,RC0603JR-0710KL
 R17,1,22K,Resistors_SMD:R_0603_HandSoldering,http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf,RC0603JR-0722KL
 R18,1,1M,Resistors_SMD:R_0603_HandSoldering,http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf,RC0603FR-071ML
 R19,1,180K,Resistors_SMD:R_0603_HandSoldering,http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf,RC0603JR-07180KL

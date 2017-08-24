@@ -30,7 +30,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:open-automation
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -78,7 +78,7 @@ IO0
 Text GLabel 6400 4400 3    60   Input ~ 0
 IO2
 Text GLabel 5000 2550 0    60   Input ~ 0
-3v3
+3V3
 $Comp
 L R R1
 U 1 1 590979AC
@@ -210,7 +210,7 @@ SD3
 Text GLabel 3650 4200 0    60   Input ~ 0
 SPEAKER+
 Text GLabel 3650 2600 0    60   Input ~ 0
-3v3
+3V3
 Text GLabel 8300 3450 2    60   Input ~ 0
 IO5
 Text GLabel 8300 3750 2    60   Input ~ 0
