@@ -38,7 +38,8 @@
 
 
 #define LIGHT1    15
-#define LIGHT2    19
+#define LIGHT2    20
+
 #define GPIO_OUTPUT_PIN_SEL  ((1<<LIGHT1) | (1<<LIGHT2))
 #define GPIO_INPUT_IO_0     4
 #define GPIO_INPUT_IO_1     5
@@ -49,6 +50,8 @@ int light1_value = 0;
 int light2_value = 0;
 int light3_value = 0;
 int light4_value = 0;
+
+
 
 char temp_str[50];
 bool buttons_received = false;
@@ -119,25 +122,20 @@ static void light_on(int channel, int value) {
         gpio_set_level(LIGHT1, value);
 }
 
-static void light_task(void* arg)
-{
-    /*int cnt = 0;
-    while(1) {
-        printf("cnt: %d\n", cnt++);
-        vTaskDelay(1000 / portTICK_RATE_MS);
-        gpio_set_level(LIGHT1, 100);
-    }*/
+static void light_task(void* arg) {
     char tag[50] = "[buttons-protocol]";
     while(1) {
 
         for (int i=0; i<TOUCH_PAD_MAX; i++) {
             if (s_pad_activated_light[i] == true) {
+		if (i == 1) continue;
 		s_pad_activated_light[i] = false;
         	//printf("%s light hold: %d \n", tag, light1_hold);
 		if (!light1_hold) {
 			if (light1_value > 50) {light1_value = 0;}
 			else {light1_value = 100;}
 			light_on(LIGHT1, light1_value);
+			//LED_loop();
 		        //gpio_set_level(LIGHT1, light1_value);
 			light1_hold = true;
 	        	vTaskDelay(1000 / portTICK_PERIOD_MS);
@@ -169,7 +167,7 @@ static void tp_example_set_thresholds(void)
     for (int i=0; i<TOUCH_PAD_MAX; i++) {
         ESP_ERROR_CHECK(touch_pad_read(i, &touch_value));
         printf("T%d intial value: %d\n", i, touch_value);
-        ESP_ERROR_CHECK(touch_pad_config(i, touch_value/4));
+        ESP_ERROR_CHECK(touch_pad_config(i, touch_value/2));
     }
 }
 
