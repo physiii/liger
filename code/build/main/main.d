@@ -130,16 +130,16 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/esp/esp-idf/components/nvs_flash/include/nvs_flash.h \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_token.c \
  /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c \
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_LED.c \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h \
  /home/physiii/esp/esp-idf/components/log/include/esp_log.h \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_LED.c \
  /home/physiii/esp/esp-idf/components/driver/include/driver/ledc.h \
  /home/physiii/esp/esp-idf/components/driver/include/driver/periph_ctrl.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
  /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h \
  /home/physiii/esp/esp-idf/components/esp32/include/esp_dport_access.h \
+ /home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_ota.c \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h \
@@ -414,15 +414,13 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/adc.h:
 
-/home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c:
+/home/physiii/circuits/liger/code/main/./plugins/protocol_LED.c:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
 
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h:
 
 /home/physiii/esp/esp-idf/components/log/include/esp_log.h:
-
-/home/physiii/circuits/liger/code/main/./plugins/protocol_LED.c:
 
 /home/physiii/esp/esp-idf/components/driver/include/driver/ledc.h:
 
@@ -433,6 +431,8 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 /home/physiii/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h:
 
 /home/physiii/esp/esp-idf/components/esp32/include/esp_dport_access.h:
+
+/home/physiii/circuits/liger/code/main/./plugins/protocol_buttons.c:
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_motion.c:
 

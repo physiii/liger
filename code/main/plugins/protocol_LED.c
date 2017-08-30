@@ -21,7 +21,6 @@
 #include "nvs_flash.h"
 #include "nvs.h"
 
-#include "driver/touch_pad.h"
 #include "soc/rtc_cntl_reg.h"
 #include "soc/sens_reg.h"
 #include "esp_log.h"
@@ -58,7 +57,7 @@ char LED[256];
 char previous_LED[256];
 char LED_rx_data[256];
 char LED_command[100];
-char front_LED_str[100];
+char front_LED_str[100] = "init";
 char i_str[10];
 bool LED_linked = false;
 bool LED_req_sent = false;
@@ -154,33 +153,31 @@ static void LED_task(void* arg) {
     //initialize fade service.
     ledc_fade_func_install(0);
     while (1) {
-        printf("LEDC fade up\n");
-        for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
-            ledc_set_fade_with_time(ledc_ch[ch].mode, ledc_ch[ch].channel, 4000, 2000);
-            ledc_fade_start(ledc_ch[ch].mode, ledc_ch[ch].channel, LEDC_FADE_NO_WAIT);
-        }
-        vTaskDelay(3000 / portTICK_PERIOD_MS);
+        //printf("green to %d\n",LED_G_value);
+        //for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
+        //}
 
-        printf("LEDC fade down\n");
+        ledc_set_duty(LEDC_HS_MODE, LEDC_HS_CH0_CHANNEL, LED_R_value);
+        ledc_update_duty(LEDC_HS_MODE, LEDC_HS_CH0_CHANNEL);
+        ledc_set_duty(LEDC_HS_MODE, LEDC_HS_CH1_CHANNEL, LED_G_value);
+        ledc_update_duty(LEDC_HS_MODE, LEDC_HS_CH1_CHANNEL);
+        ledc_set_duty(LEDC_HS_MODE, LEDC_LS_CH2_CHANNEL, LED_B_value);
+        ledc_update_duty(LEDC_HS_MODE, LEDC_LS_CH2_CHANNEL);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+
+        /*printf("fade up\n");
         for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
             ledc_set_fade_with_time(ledc_ch[ch].mode, ledc_ch[ch].channel, 0, 2000);
             ledc_fade_start(ledc_ch[ch].mode, ledc_ch[ch].channel, LEDC_FADE_NO_WAIT);
         }
-        vTaskDelay(3000 / portTICK_PERIOD_MS);
-
-        printf("LEDC set duty without fade\n");
-        for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
-            ledc_set_duty(ledc_ch[ch].mode, ledc_ch[ch].channel, 2000);
-            ledc_update_duty(ledc_ch[ch].mode, ledc_ch[ch].channel);
-        }
         vTaskDelay(1000 / portTICK_PERIOD_MS);
 
-        printf("LEDC set duty without fade\n");
+        printf("set duty without fade\n");
         for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
-            ledc_set_duty(ledc_ch[ch].mode, ledc_ch[ch].channel, 0);
+            ledc_set_duty(ledc_ch[ch].mode, ledc_ch[ch].channel, 8000);
             ledc_update_duty(ledc_ch[ch].mode, ledc_ch[ch].channel);
         }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);*/
     }
 }
 
@@ -240,9 +237,9 @@ callback_LED(struct lws *wsi, enum lws_callback_reasons reason,
 	char tag[50] = "[LED-protocol]";
 
 	struct per_session_data__LED *pss =
-			(struct per_session_data__LED *)user;
+			(struct per_session_data_LED *)user;
 	struct per_vhost_data__LED *vhd =
-			(struct per_vhost_data__LED *)
+			(struct per_vhost_data_LED *)
 			lws_protocol_vh_priv_get(lws_get_vhost(wsi),
 					lws_get_protocol(wsi));
 
@@ -260,7 +257,7 @@ callback_LED(struct lws *wsi, enum lws_callback_reasons reason,
 		// LED_ init //
 		// -----------//
 		xTaskCreate(LED_task, "LED_task", 2048, NULL, 10, NULL);
-
+		//LED_task();
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
 				sizeof(struct per_vhost_data__LED));
@@ -310,27 +307,13 @@ callback_LED(struct lws *wsi, enum lws_callback_reasons reason,
 			}
 			break;
 		}
-		touch_activated = false;
-		strcpy(front_LED_str,"[");
-	        for (int i=0; i<TOUCH_PAD_MAX; i++) {
-	            if (s_pad_activated_notify[i] == true) {
-	                printf("Notify T%d!\n", i);
-			sprintf(i_str,"%d",i);
-			strcat(front_LED_str,i_str);
-   			strcat(front_LED_str,",");
-	                s_pad_activated_notify[i] = false;
-			touch_activated = true;
-	            }
-	        }
-		front_LED_str[strlen(front_LED_str)-1]=0;
-		strcat(front_LED_str,"]");
-		if (!touch_activated) break;
 
+		break;
                 strcpy(LED_req_str, "{\"mac\":\"");
 		strcat(LED_req_str,mac_str);
-                strcat(LED_req_str, "\",\"value\":");
+                strcat(LED_req_str, "\",\"value\":\"");
                 strcat(LED_req_str, front_LED_str);
-                strcat(LED_req_str, ",\"device_type\":[\"room_sensor\"]");
+                strcat(LED_req_str, "\",\"device_type\":[\"room_sensor\"]");
                 strcat(LED_req_str, ",\"cmd\":\"LED\"");
                 strcat(LED_req_str, ",\"token\":\"");
                 strcat(LED_req_str, token);
@@ -358,15 +341,17 @@ callback_LED(struct lws *wsi, enum lws_callback_reasons reason,
 			LED_linked = true;
 		}
 
-		if (!strcmp(LED_command,"LED__on")) {
-			printf("%s turining LED_ on!\n", tag);
-			LED_R_value = 100;
+		if (!strcmp(LED_command,"LED_on")) {
+			printf("%s turning LED on!\n", tag);
+			LED_G_value = 100;
+		        //ledc_set_duty(ledc_ch[ch].mode, ledc_ch[ch].channel, 0);
 			//LED_set(LED_R,LED_R_value);
 		}
 
-		if (!strcmp(LED_command,"LED__off")) {
-			printf("%s turining LED_ off!\n", tag);
-			LED_R_value = 0;
+		if (!strcmp(LED_command,"LED_off")) {
+			printf("%s turning LED off!\n", tag);
+			LED_G_value = 0;
+		        //ledc_set_duty(ledc_ch[ch].mode, ledc_ch[ch].channel, 8000);
 			//LED_set(LED_R,LED_R_value);
 		}
 		//LED_req_sent = false;

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP OPA344
+D Dual Op amp (low power)
+K ampliop
+F analog-dev/op275.pdf
+$ENDCMP
+#
+#End Doc Library

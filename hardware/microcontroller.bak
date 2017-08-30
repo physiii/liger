@@ -30,7 +30,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:open-automation
 LIBS:liger-cache
-EELAYER 26 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -78,7 +78,7 @@ IO0
 Text GLabel 6400 4400 3    60   Input ~ 0
 IO2
 Text GLabel 5000 2550 0    60   Input ~ 0
-3v3
+3V3
 $Comp
 L R R1
 U 1 1 590979AC
@@ -111,7 +111,7 @@ P 6000 3100
 F 0 "U1" H 6550 2000 60  0000 C CNN
 F 1 "ESP-WROOM-32" H 6000 3900 60  0000 C CNN
 F 2 "footprints:ESP-WROOM-32" H 5650 3700 60  0001 C CNN
-F 3 "https://www.espressif.com/sites/default/files/documentation/esp_wroom_32_datasheet_en.pdf" H 5650 3700 60  0001 C CNN
+F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5650 3700 60  0001 C CNN
 	1    6000 3100
 	1    0    0    -1  
 $EndComp
@@ -200,7 +200,7 @@ U 1 1 590979B1
 P 3950 3350
 F 0 "P1" H 3950 4400 50  0000 C CNN
 F 1 "CONN_01X20" V 4050 3350 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x20_Pitch2.54mm" H 3950 3350 50  0001 C CNN
+F 2 "open-automation:Pin_Header_Straight_1x20_Pitch2.54mm_CORRECTED" H 3950 3350 50  0001 C CNN
 F 3 "" H 3950 3350 50  0000 C CNN
 	1    3950 3350
 	1    0    0    -1  
@@ -208,9 +208,7 @@ $EndComp
 Text GLabel 3650 4100 0    60   Input ~ 0
 SD3
 Text GLabel 3650 4200 0    60   Input ~ 0
-SPEAKER+
-Text GLabel 3650 2600 0    60   Input ~ 0
-3v3
+3V3
 Text GLabel 8300 3450 2    60   Input ~ 0
 IO5
 Text GLabel 8300 3750 2    60   Input ~ 0
@@ -260,7 +258,7 @@ U 1 1 590979B3
 P 8000 3300
 F 0 "P2" H 8000 4350 50  0000 C CNN
 F 1 "CONN_01X20" V 8100 3300 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x20_Pitch2.54mm" H 8000 3300 50  0001 C CNN
+F 2 "open-automation:Pin_Header_Straight_1x20_Pitch2.54mm_CORRECTED" H 8000 3300 50  0001 C CNN
 F 3 "" H 8000 3300 50  0000 C CNN
 	1    8000 3300
 	-1   0    0    1   
@@ -375,8 +373,6 @@ Wire Wire Line
 Wire Wire Line
 	3650 2900 3750 2900
 Wire Wire Line
-	3650 2600 3750 2600
-Wire Wire Line
 	3650 3800 3750 3800
 Wire Wire Line
 	3750 3900 3650 3900
@@ -385,14 +381,7 @@ Wire Wire Line
 Wire Wire Line
 	3750 4000 3650 4000
 Wire Wire Line
-	3750 2700 3700 2700
-Wire Wire Line
-	3700 2700 3700 2600
-Connection ~ 3700 2600
-Wire Wire Line
 	3650 4200 3750 4200
-Wire Wire Line
-	3750 4300 3650 4300
 Wire Wire Line
 	8200 3850 8300 3850
 Wire Wire Line
@@ -439,6 +428,17 @@ Wire Wire Line
 	8250 2650 8250 2550
 Wire Wire Line
 	8200 2550 8300 2550
-Text GLabel 3650 4300 0    60   Input ~ 0
+Text GLabel 3650 2700 0    60   Input ~ 0
+SPEAKER+
+Text GLabel 3650 2600 0    60   Input ~ 0
 SPEAKER-
+Wire Wire Line
+	3750 4300 3700 4300
+Wire Wire Line
+	3700 4300 3700 4200
+Connection ~ 3700 4200
+Wire Wire Line
+	3650 2600 3750 2600
+Wire Wire Line
+	3750 2700 3650 2700
 $EndSCHEMATC

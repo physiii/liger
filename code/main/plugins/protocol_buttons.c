@@ -135,6 +135,7 @@ static void light_task(void* arg) {
 			if (light1_value > 50) {light1_value = 0;}
 			else {light1_value = 100;}
 			light_on(LIGHT1, light1_value);
+			LED_G_value = light1_value * 80;
 			//LED_loop();
 		        //gpio_set_level(LIGHT1, light1_value);
 			light1_hold = true;

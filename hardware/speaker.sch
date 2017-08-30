@@ -30,7 +30,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:open-automation
 LIBS:liger-cache
-EELAYER 26 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -79,7 +79,7 @@ U 1 1 59812510
 P 5900 3250
 F 0 "U8" H 6150 2950 60  0000 C CNN
 F 1 "Amplifier-D-TS4962IQT" H 5900 3500 60  0000 C CNN
-F 2 "Housings_DFN_QFN:DFN-8-1EP_3x3mm_Pitch0.65mm" H 5600 2800 60  0001 C CNN
+F 2 "open-automation:Amplifier-D-TS4962IQT" H 5600 2800 60  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/stmicroelectronics/TS4962IQT/497-5993-1-ND/1578476" H 5600 2800 60  0001 C CNN
 F 4 "TS4962IQT" H 5900 3250 60  0001 C CNN "Part Number"
 	1    5900 3250

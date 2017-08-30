@@ -30,11 +30,11 @@ LIBS:contrib
 LIBS:valves
 LIBS:open-automation
 LIBS:liger-cache
-EELAYER 26 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 9 8
+Sheet 8 8
 Title ""
 Date ""
 Rev ""
@@ -45,7 +45,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Text GLabel 5400 2800 0    60   Input ~ 0
-IO17
+IO21
 $Comp
 L GND #PWR023
 U 1 1 5962DDD8
@@ -93,7 +93,7 @@ U 1 1 597D312E
 P 6150 2850
 F 0 "P6" H 6150 3100 50  0000 C CNN
 F 1 "CONN_01X04" V 6250 2850 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Angled_1x04_Pitch2.54mm" H 6150 2850 50  0001 C CNN
+F 2 "open-automation:Pin_Header_Angled_1x04_Pitch2.54mm_CORRECTED" H 6150 2850 50  0001 C CNN
 F 3 "" H 6150 2850 50  0000 C CNN
 	1    6150 2850
 	1    0    0    -1  

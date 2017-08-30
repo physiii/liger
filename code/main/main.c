@@ -35,8 +35,8 @@
 
 #include "plugins/protocol_token.c"
 //#include "plugins/protocol_microphone.c"
-#include "plugins/protocol_buttons.c"
 #include "plugins/protocol_LED.c"
+#include "plugins/protocol_buttons.c"
 //#include "plugins/protocol_speaker.c"
 #include "plugins/protocol_motion.c"
 #include "plugins/protocol_ota.c"
