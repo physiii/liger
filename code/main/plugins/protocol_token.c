@@ -181,7 +181,7 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
-
+		printf("%s initialize\n",tag);
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
 				sizeof(struct per_vhost_data__token));

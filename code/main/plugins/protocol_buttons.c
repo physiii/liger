@@ -252,7 +252,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
-		printf("%s initialized",tag);
+		printf("%s initialized\n",tag);
 
 		// -----------//
 		// touch init //

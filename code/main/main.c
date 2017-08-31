@@ -40,6 +40,7 @@
 //#include "plugins/protocol_speaker.c"
 #include "plugins/protocol_motion.c"
 #include "plugins/protocol_ota.c"
+#include "plugins/protocol_climate.c"
 //#include "plugins/protocol_update.c"
 #include "plugins/protocol_esp32_lws_ota.c"
 #include "plugins/protocol_esp32_lws_reboot_to_factory.c"
@@ -55,6 +56,7 @@ static const struct lws_protocols protocols_station[] = {
 	LWS_PLUGIN_PROTOCOL_TOKEN,
 	LWS_PLUGIN_PROTOCOL_BUTTONS,
 	LWS_PLUGIN_PROTOCOL_LED,
+	LWS_PLUGIN_PROTOCOL_CLIMATE,
 	//LWS_PLUGIN_PROTOCOL_SPEAKER,
 	LWS_PLUGIN_PROTOCOL_MOTION,
 	LWS_PLUGIN_PROTOCOL_OTA,
@@ -219,6 +221,15 @@ void app_main(void)
 		taskYIELD();
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }*/
+
+	i.protocol = "climate-protocol";
+	i.path = "/climate";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
 
 
 	i.protocol = "ota-protocol";
