@@ -39,7 +39,7 @@
 #define DUMB_PERIOD 50
 #endif
 
-#define CLIMATE    16
+#define DHT_PIN    21
 
 char climate_command[100];
 int climate_sum = 0;
@@ -90,7 +90,7 @@ void climate_task(struct per_vhost_data__climate *vhd)
 	while(1){
 		climate_sum = 0;
 		for (int i = 0; i < SAMPLE_SIZE; i++) {
-			value[i] = gpio_get_level(PIR);
+			value[i] = gpio_get_level(DHT_PIN);
 			climate_sum+=value[i];
    			vTaskDelay(10/portTICK_PERIOD_MS);
 		}
@@ -104,10 +104,7 @@ callback_climate(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
 	char tag[50] = "[climate-protocol]";
-        /*esp_wifi_get_mac(WIFI_IF_STA,mac);
-	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
-           mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
-           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);*/
+
 	struct per_session_data__climate *pss =
 			(struct per_session_data__climate *)user;
 	struct per_vhost_data__climate *vhd =
@@ -129,7 +126,7 @@ callback_climate(struct lws *wsi, enum lws_callback_reasons reason,
 		xTaskCreate(climate_task, "climate_task", 1024*3, &vhd, 10, NULL);
 		// initialize ADC
 		adc1_config_width(ADC_WIDTH_12Bit);
-		adc1_config_channel_atten(PIR,ADC_ATTEN_11db);
+		adc1_config_channel_atten(DHT_PIN,ADC_ATTEN_11db);
 
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
