@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 8
+Sheet 1 10
 Title ""
 Date ""
 Rev ""
@@ -45,7 +45,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 1700 3200 2850 2200
+S 3350 3200 2850 2200
 U 59096487
 F0 "Microcontroller" 60
 F1 "microcontroller.sch" 60
@@ -69,13 +69,13 @@ F0 "Power" 60
 F1 "power.sch" 60
 $EndSheet
 $Sheet
-S 4800 3200 1950 1350
+S 1450 1400 1950 1350
 U 59092AD4
 F0 "Switches" 60
 F1 "switches.sch" 60
 $EndSheet
 $Sheet
-S 6950 3200 2000 1350
+S 6650 3100 2000 1350
 U 590C715D
 F0 "Speaker" 60
 F1 "speaker.sch" 60
@@ -83,7 +83,19 @@ $EndSheet
 $Sheet
 S 9100 3200 1450 1350
 U 590D271B
-F0 "climate" 60
-F1 "climate.sch" 60
+F0 "Enviroment" 60
+F1 "enviroment.sch" 60
+$EndSheet
+$Sheet
+S 1450 3500 1100 800 
+U 59B5D50C
+F0 "Relay" 60
+F1 "relay.sch" 60
+$EndSheet
+$Sheet
+S 7300 5100 1000 850 
+U 59B5F4CB
+F0 "PIR" 60
+F1 "PIR.sch" 60
 $EndSheet
 $EndSCHEMATC
