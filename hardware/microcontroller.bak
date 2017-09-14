@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 8
+Sheet 2 10
 Title ""
 Date ""
 Rev ""
@@ -45,400 +45,236 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L GND #PWR01
+L GND #PWR1
 U 1 1 59097974
-P 5050 2400
-F 0 "#PWR01" H 5050 2150 50  0001 C CNN
-F 1 "GND" H 5050 2250 50  0000 C CNN
-F 2 "" H 5050 2400 50  0000 C CNN
-F 3 "" H 5050 2400 50  0000 C CNN
-	1    5050 2400
+P 4500 1950
+F 0 "#PWR1" H 4500 1700 50  0001 C CNN
+F 1 "GND" H 4500 1800 50  0000 C CNN
+F 2 "" H 4500 1950 50  0000 C CNN
+F 3 "" H 4500 1950 50  0000 C CNN
+	1    4500 1950
 	-1   0    0    1   
 $EndComp
-Text GLabel 2200 3450 1    60   Input ~ 0
-IO15
-Text GLabel 5600 4400 3    60   Input ~ 0
+Text GLabel 5050 3950 3    60   Input ~ 0
 IO13
-Text GLabel 5000 3850 0    60   Input ~ 0
+Text GLabel 4450 3400 0    60   Input ~ 0
 IO12
-Text GLabel 5000 3750 0    60   Input ~ 0
-IO14
-Text GLabel 6950 2700 2    60   Input ~ 0
+Text GLabel 4450 3300 0    60   Input ~ 0
+T_DOWN
+Text GLabel 6400 2250 2    60   Input ~ 0
 RXD
-Text GLabel 6950 3350 2    60   Input ~ 0
-IO5
-Text GLabel 6950 3650 2    60   Input ~ 0
-IO4
-Text GLabel 6950 2600 2    60   Input ~ 0
+Text GLabel 6400 2900 2    60   Input ~ 0
+LED_G
+Text GLabel 6400 3200 2    60   Input ~ 0
+IR_RX
+Text GLabel 6400 2150 2    60   Input ~ 0
 TXD
-Text GLabel 6950 3550 2    60   Input ~ 0
-IO16
-Text GLabel 6950 3750 2    60   Input ~ 0
+Text GLabel 6400 3100 2    60   Input ~ 0
+IR_TX
+Text GLabel 6400 3300 2    60   Input ~ 0
 IO0
-Text GLabel 6400 4400 3    60   Input ~ 0
+Text GLabel 5850 3950 3    60   Input ~ 0
 IO2
-Text GLabel 5000 2550 0    60   Input ~ 0
+Text GLabel 4450 2100 0    60   Input ~ 0
 3V3
-$Comp
-L R R1
-U 1 1 590979AC
-P 2200 3750
-F 0 "R1" V 2280 3750 50  0000 C CNN
-F 1 "10K" V 2200 3750 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 2130 3750 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 2200 3750 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 2200 3750 60  0001 C CNN "Part Number"
-	1    2200 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR02
-U 1 1 590979AD
-P 2200 4000
-F 0 "#PWR02" H 2200 3750 50  0001 C CNN
-F 1 "GND" H 2200 3850 50  0000 C CNN
-F 2 "" H 2200 4000 50  0000 C CNN
-F 3 "" H 2200 4000 50  0000 C CNN
-	1    2200 4000
-	1    0    0    -1  
-$EndComp
-Text GLabel 6300 4400 3    60   Input ~ 0
-IO15
+Text GLabel 5750 3950 3    60   Input ~ 0
+RELAY
 $Comp
 L ESP-WROOM-32 U1
 U 1 1 590979AF
-P 6000 3100
-F 0 "U1" H 6550 2000 60  0000 C CNN
-F 1 "ESP-WROOM-32" H 6000 3900 60  0000 C CNN
-F 2 "footprints:ESP-WROOM-32" H 5650 3700 60  0001 C CNN
-F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5650 3700 60  0001 C CNN
-	1    6000 3100
+P 5450 2650
+F 0 "U1" H 6000 1550 60  0000 C CNN
+F 1 "ESP-WROOM-32" H 5450 3450 60  0000 C CNN
+F 2 "footprints:ESP-WROOM-32" H 5100 3250 60  0001 C CNN
+F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5100 3250 60  0001 C CNN
+	1    5450 2650
 	1    0    0    -1  
 $EndComp
-Text GLabel 5000 3650 0    60   Input ~ 0
-IO27
-Text GLabel 5000 3550 0    60   Input ~ 0
-IO26
-Text GLabel 5000 3450 0    60   Input ~ 0
-IO25
-Text GLabel 5000 3350 0    60   Input ~ 0
-IO33
-Text GLabel 5000 3250 0    60   Input ~ 0
-IO32
-Text GLabel 5000 3150 0    60   Input ~ 0
-IO35
-Text GLabel 5000 2900 0    60   Input ~ 0
+Text GLabel 4450 3200 0    60   Input ~ 0
+T_UP
+Text GLabel 3750 3100 0    60   Input ~ 0
+I2S_BCLK
+Text GLabel 7050 2400 2    60   Input ~ 0
+I2S_WS
+Text GLabel 4450 2900 0    60   Input ~ 0
+T_RIGHT
+Text GLabel 4450 2800 0    60   Input ~ 0
+T_LEFT
+Text GLabel 4450 2700 0    60   Input ~ 0
+PIR2_ADC
+Text GLabel 4450 2450 0    60   Input ~ 0
 SENSOR_VN
-Text GLabel 5000 2800 0    60   Input ~ 0
+Text GLabel 4450 2350 0    60   Input ~ 0
 SENSOR_VP
-Text GLabel 5000 3050 0    60   Input ~ 0
-IO34
-Text GLabel 5700 4400 3    60   Input ~ 0
+Text GLabel 4450 2600 0    60   Input ~ 0
+PIR1_ADC
+Text GLabel 5150 3950 3    60   Input ~ 0
 SD2
-Text GLabel 5800 4400 3    60   Input ~ 0
+Text GLabel 5250 3950 3    60   Input ~ 0
 SD3
-Text GLabel 5900 4400 3    60   Input ~ 0
+Text GLabel 5350 3950 3    60   Input ~ 0
 CMD
-Text GLabel 6000 4400 3    60   Input ~ 0
+Text GLabel 5450 3950 3    60   Input ~ 0
 CLK
-Text GLabel 6100 4400 3    60   Input ~ 0
-SD0
-Text GLabel 6200 4400 3    60   Input ~ 0
-SD1
-Text GLabel 6950 3150 2    60   Input ~ 0
-IO19
-Text GLabel 6950 3250 2    60   Input ~ 0
-IO18
-Text GLabel 6950 2950 2    60   Input ~ 0
-IO22
-Text GLabel 6950 2850 2    60   Input ~ 0
-IO23
-Text GLabel 6950 3050 2    60   Input ~ 0
-IO21
-Text GLabel 6950 3450 2    60   Input ~ 0
-IO17
-$Comp
-L GND #PWR03
-U 1 1 590979B0
-P 3650 2350
-F 0 "#PWR03" H 3650 2100 50  0001 C CNN
-F 1 "GND" H 3650 2200 50  0000 C CNN
-F 2 "" H 3650 2350 50  0000 C CNN
-F 3 "" H 3650 2350 50  0000 C CNN
-	1    3650 2350
-	-1   0    0    1   
-$EndComp
-Text GLabel 3650 2900 0    60   Input ~ 0
-SENSOR_VN
-Text GLabel 3650 2800 0    60   Input ~ 0
-SENSOR_VP
-Text GLabel 3650 3800 0    60   Input ~ 0
-IO12
-Text GLabel 3650 3700 0    60   Input ~ 0
-IO14
-Text GLabel 3650 3600 0    60   Input ~ 0
-IO27
-Text GLabel 3650 3500 0    60   Input ~ 0
-IO26
-Text GLabel 3650 3400 0    60   Input ~ 0
-IO25
-Text GLabel 3650 3300 0    60   Input ~ 0
-IO33
-Text GLabel 3650 3200 0    60   Input ~ 0
-IO32
-Text GLabel 3650 3100 0    60   Input ~ 0
-IO35
-Text GLabel 3650 3000 0    60   Input ~ 0
-IO34
-Text GLabel 3650 3900 0    60   Input ~ 0
-IO13
-Text GLabel 3650 4000 0    60   Input ~ 0
-SD2
-$Comp
-L CONN_01X20 P1
-U 1 1 590979B1
-P 3950 3350
-F 0 "P1" H 3950 4400 50  0000 C CNN
-F 1 "CONN_01X20" V 4050 3350 50  0000 C CNN
-F 2 "open-automation:Pin_Header_Straight_1x20_Pitch2.54mm_CORRECTED" H 3950 3350 50  0001 C CNN
-F 3 "" H 3950 3350 50  0000 C CNN
-	1    3950 3350
-	1    0    0    -1  
-$EndComp
-Text GLabel 3650 4100 0    60   Input ~ 0
-SD3
-Text GLabel 3650 4200 0    60   Input ~ 0
-3V3
-Text GLabel 8300 3450 2    60   Input ~ 0
-IO5
-Text GLabel 8300 3750 2    60   Input ~ 0
-IO4
-Text GLabel 8300 3650 2    60   Input ~ 0
-IO16
-Text GLabel 8300 3850 2    60   Input ~ 0
-IO0
-Text GLabel 8300 3250 2    60   Input ~ 0
-IO19
-Text GLabel 8300 3350 2    60   Input ~ 0
-IO18
-Text GLabel 8300 3050 2    60   Input ~ 0
-IO22
-Text GLabel 8300 2950 2    60   Input ~ 0
-IO23
-Text GLabel 8300 3150 2    60   Input ~ 0
-IO21
-Text GLabel 8300 3550 2    60   Input ~ 0
-IO17
-$Comp
-L GND #PWR04
-U 1 1 590979B2
-P 8250 2300
-F 0 "#PWR04" H 8250 2050 50  0001 C CNN
-F 1 "GND" H 8250 2150 50  0000 C CNN
-F 2 "" H 8250 2300 50  0000 C CNN
-F 3 "" H 8250 2300 50  0000 C CNN
-	1    8250 2300
-	-1   0    0    1   
-$EndComp
-Text GLabel 8300 2850 2    60   Input ~ 0
-RXD
-Text GLabel 8300 2750 2    60   Input ~ 0
-TXD
-Text GLabel 8300 3950 2    60   Input ~ 0
-IO2
-Text GLabel 8300 4050 2    60   Input ~ 0
-IO15
-Text GLabel 8300 4250 2    60   Input ~ 0
-SD0
-Text GLabel 8300 4150 2    60   Input ~ 0
-SD1
-$Comp
-L CONN_01X20 P2
-U 1 1 590979B3
-P 8000 3300
-F 0 "P2" H 8000 4350 50  0000 C CNN
-F 1 "CONN_01X20" V 8100 3300 50  0000 C CNN
-F 2 "open-automation:Pin_Header_Straight_1x20_Pitch2.54mm_CORRECTED" H 8000 3300 50  0001 C CNN
-F 3 "" H 8000 3300 50  0000 C CNN
-	1    8000 3300
-	-1   0    0    1   
-$EndComp
-Text GLabel 8300 2550 2    60   Input ~ 0
-5V
-Text Label 1800 2350 0    60   ~ 0
+Text GLabel 5550 3950 3    60   Input ~ 0
+SDA
+Text GLabel 5650 3950 3    60   Input ~ 0
+SCL
+Text GLabel 6400 2700 2    60   Input ~ 0
+PIR_LO
+Text GLabel 6400 2800 2    60   Input ~ 0
+LED_R
+Text GLabel 6400 2500 2    60   Input ~ 0
+I2S_DATA
+Text GLabel 6400 2600 2    60   Input ~ 0
+PIR_HI
+Text GLabel 6400 3000 2    60   Input ~ 0
+LED_B
+Text Label 5600 700  0    60   ~ 0
 Microcontroller
-Text GLabel 5000 2650 0    60   Input ~ 0
+Text GLabel 4450 2200 0    60   Input ~ 0
 EN
 Wire Wire Line
-	5000 3750 5100 3750
+	4450 3300 4550 3300
 Wire Wire Line
-	5000 3850 5100 3850
+	4450 3400 4550 3400
 Wire Wire Line
-	2200 3450 2200 3600
+	4500 1950 4500 2000
 Wire Wire Line
-	2200 3900 2200 4000
+	4500 2000 4550 2000
 Wire Wire Line
-	5050 2400 5050 2450
+	4550 2100 4450 2100
 Wire Wire Line
-	5050 2450 5100 2450
+	4450 2200 4550 2200
 Wire Wire Line
-	5100 2550 5000 2550
+	5050 3950 5050 3850
 Wire Wire Line
-	5000 2650 5100 2650
+	5850 3850 5850 3950
 Wire Wire Line
-	5600 4400 5600 4300
+	6300 3300 6400 3300
 Wire Wire Line
-	6400 4300 6400 4400
+	6300 2150 6400 2150
 Wire Wire Line
-	6850 3750 6950 3750
+	6400 2250 6300 2250
 Wire Wire Line
-	6850 2600 6950 2600
+	6400 2900 6300 2900
 Wire Wire Line
-	6950 2700 6850 2700
+	6300 3100 6400 3100
 Wire Wire Line
-	6950 3350 6850 3350
+	6400 3200 6300 3200
 Wire Wire Line
-	6850 3550 6950 3550
+	4450 3200 4550 3200
 Wire Wire Line
-	6950 3650 6850 3650
+	4450 2900 4550 2900
 Wire Wire Line
-	5000 3550 5100 3550
+	4450 3000 4550 3000
 Wire Wire Line
-	5000 3650 5100 3650
+	4450 2700 4550 2700
 Wire Wire Line
-	5000 3350 5100 3350
+	4450 2800 4550 2800
 Wire Wire Line
-	5000 3450 5100 3450
+	4450 2350 4550 2350
 Wire Wire Line
-	5000 3150 5100 3150
+	4450 2450 4550 2450
 Wire Wire Line
-	5000 3250 5100 3250
+	4450 2600 4550 2600
 Wire Wire Line
-	5000 2800 5100 2800
+	5150 3950 5150 3850
 Wire Wire Line
-	5000 2900 5100 2900
+	5750 3850 5750 3950
 Wire Wire Line
-	5000 3050 5100 3050
+	5250 3950 5250 3850
 Wire Wire Line
-	5700 4400 5700 4300
+	5350 3950 5350 3850
 Wire Wire Line
-	6300 4300 6300 4400
+	5550 3950 5550 3850
 Wire Wire Line
-	5800 4400 5800 4300
+	5650 3950 5650 3850
 Wire Wire Line
-	5900 4400 5900 4300
+	5450 3850 5450 3950
 Wire Wire Line
-	6100 4400 6100 4300
+	6300 2800 6400 2800
 Wire Wire Line
-	6200 4400 6200 4300
+	6300 2600 6400 2600
 Wire Wire Line
-	6000 4300 6000 4400
+	6400 2700 6300 2700
 Wire Wire Line
-	6850 3250 6950 3250
+	6400 2500 6300 2500
 Wire Wire Line
-	6850 3050 6950 3050
+	6300 3000 6400 3000
+Text GLabel 4450 3000 0    60   Input ~ 0
+SPEAKER_IN
+$Comp
+L R_10k R6
+U 1 1 59B92EE3
+P 8550 3150
+F 0 "R6" V 8550 3150 50  0000 C CNN
+F 1 "R_10k" V 8475 3150 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 8480 3150 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 8630 3150 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 8730 3250 60  0001 C CNN "Part Number"
+	1    8550 3150
+	0    1    1    0   
+$EndComp
+$Comp
+L R_10k R7
+U 1 1 59B92EEA
+P 8550 3400
+F 0 "R7" V 8550 3400 50  0000 C CNN
+F 1 "R_10k" V 8475 3400 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 8480 3400 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 8630 3400 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 8730 3500 60  0001 C CNN "Part Number"
+	1    8550 3400
+	0    1    1    0   
+$EndComp
+Text GLabel 8250 3000 1    60   Input ~ 0
+3V3
+Text GLabel 8850 3150 2    60   Input ~ 0
+SDA
 Wire Wire Line
-	6950 3150 6850 3150
+	8700 3150 8850 3150
 Wire Wire Line
-	6850 2850 6950 2850
-Wire Wire Line
-	6950 2950 6850 2950
-Wire Wire Line
-	6850 3450 6950 3450
-Wire Wire Line
-	3650 2350 3650 2500
-Wire Wire Line
-	3650 2400 3750 2400
-Wire Wire Line
-	3650 2500 3750 2500
-Connection ~ 3650 2400
-Wire Wire Line
-	3750 2800 3650 2800
-Wire Wire Line
-	3650 3600 3750 3600
-Wire Wire Line
-	3650 3700 3750 3700
-Wire Wire Line
-	3650 3400 3750 3400
-Wire Wire Line
-	3650 3500 3750 3500
-Wire Wire Line
-	3650 3200 3750 3200
-Wire Wire Line
-	3650 3300 3750 3300
-Wire Wire Line
-	3650 3000 3750 3000
-Wire Wire Line
-	3650 3100 3750 3100
-Wire Wire Line
-	3650 2900 3750 2900
-Wire Wire Line
-	3650 3800 3750 3800
-Wire Wire Line
-	3750 3900 3650 3900
-Wire Wire Line
-	3650 4100 3750 4100
-Wire Wire Line
-	3750 4000 3650 4000
-Wire Wire Line
-	3650 4200 3750 4200
-Wire Wire Line
-	8200 3850 8300 3850
-Wire Wire Line
-	8300 3450 8200 3450
-Wire Wire Line
-	8200 3650 8300 3650
-Wire Wire Line
-	8300 3750 8200 3750
-Wire Wire Line
-	8200 3350 8300 3350
-Wire Wire Line
-	8200 3150 8300 3150
-Wire Wire Line
-	8300 3250 8200 3250
-Wire Wire Line
-	8200 2950 8300 2950
-Wire Wire Line
-	8300 3050 8200 3050
-Wire Wire Line
-	8200 3550 8300 3550
-Wire Wire Line
-	8200 2750 8300 2750
-Wire Wire Line
-	8300 2850 8200 2850
-Wire Wire Line
-	8200 3950 8300 3950
-Wire Wire Line
-	8300 4050 8200 4050
-Wire Wire Line
-	8200 4150 8300 4150
-Wire Wire Line
-	8300 4250 8200 4250
-Connection ~ 8250 2350
-Wire Wire Line
-	8250 2350 8200 2350
-Wire Wire Line
-	8250 2450 8200 2450
-Wire Wire Line
-	8250 2300 8250 2450
-Wire Wire Line
-	8200 2650 8250 2650
-Connection ~ 8250 2550
-Wire Wire Line
-	8250 2650 8250 2550
-Wire Wire Line
-	8200 2550 8300 2550
-Text GLabel 3650 2700 0    60   Input ~ 0
-SPEAKER+
-Text GLabel 3650 2600 0    60   Input ~ 0
-SPEAKER-
-Wire Wire Line
-	3750 4300 3700 4300
-Wire Wire Line
-	3700 4300 3700 4200
-Connection ~ 3700 4200
-Wire Wire Line
-	3650 2600 3750 2600
-Wire Wire Line
-	3750 2700 3650 2700
+	8700 3400 8850 3400
+Text GLabel 8850 3400 2    60   Input ~ 0
+SCL
+Wire Wire Line
+	8250 3400 8400 3400
+Wire Wire Line
+	8400 3150 8250 3150
+Connection ~ 8250 3150
+Wire Wire Line
+	6650 2400 6300 2400
+Wire Wire Line
+	7050 2400 6950 2400
+Wire Wire Line
+	4150 3100 4550 3100
+Wire Wire Line
+	3750 3100 3850 3100
+Wire Wire Line
+	8250 3000 8250 3400
+$Comp
+L R_47.5 R?
+U 1 1 59B81C1C
+P 6800 2400
+F 0 "R?" V 6800 2400 50  0000 C CNN
+F 1 "R_47.5" V 6725 2400 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6730 2400 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 6880 2400 50  0001 C CNN
+F 4 "RC0603FR-0747R5L" V 6980 2500 60  0001 C CNN "Part Number"
+	1    6800 2400
+	0    1    1    0   
+$EndComp
+$Comp
+L R_47.5 R?
+U 1 1 59B81C70
+P 4000 3100
+F 0 "R?" V 4000 3100 50  0000 C CNN
+F 1 "R_47.5" V 4100 3100 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 3930 3100 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 4080 3100 50  0001 C CNN
+F 4 "RC0603FR-0747R5L" V 4180 3200 60  0001 C CNN "Part Number"
+	1    4000 3100
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC

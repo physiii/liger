@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 6 8
+Sheet 6 10
 Title ""
 Date ""
 Rev ""
@@ -45,7 +45,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Text GLabel 6550 4700 0    60   Input ~ 0
-IO18
+LED_R
 $Comp
 L SW_PUSH PROG1
 U 1 1 59092D1B
@@ -63,10 +63,10 @@ IO0
 Text GLabel 4150 3800 2    60   Input ~ 0
 EN
 $Comp
-L GND #PWR019
+L GND #PWR14
 U 1 1 59092D1C
 P 3900 5000
-F 0 "#PWR019" H 3900 4750 50  0001 C CNN
+F 0 "#PWR14" H 3900 4750 50  0001 C CNN
 F 1 "GND" H 3900 4850 50  0000 C CNN
 F 2 "" H 3900 5000 50  0000 C CNN
 F 3 "" H 3900 5000 50  0000 C CNN
@@ -74,10 +74,10 @@ F 3 "" H 3900 5000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR020
+L GND #PWR13
 U 1 1 59092D1D
 P 3200 5000
-F 0 "#PWR020" H 3200 4750 50  0001 C CNN
+F 0 "#PWR13" H 3200 4750 50  0001 C CNN
 F 1 "GND" H 3200 4850 50  0000 C CNN
 F 2 "" H 3200 5000 50  0000 C CNN
 F 3 "" H 3200 5000 50  0000 C CNN
@@ -109,42 +109,6 @@ F 4 "2N7002L" V 3450 4750 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L R R14
-U 1 1 59092D20
-P 3450 4300
-F 0 "R14" V 3530 4300 50  0000 C CNN
-F 1 "1K" V 3450 4300 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 3380 4300 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 3450 4300 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 3450 4300 60  0001 C CNN "Part Number"
-	1    3450 4300
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R15
-U 1 1 59092D21
-P 3900 3550
-F 0 "R15" V 3980 3550 50  0000 C CNN
-F 1 "1K" V 3900 3550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 3830 3550 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 3900 3550 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 3900 3550 60  0001 C CNN "Part Number"
-	1    3900 3550
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R16
-U 1 1 59092D22
-P 4200 4850
-F 0 "R16" V 4280 4850 50  0000 C CNN
-F 1 "1K" V 4200 4850 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4130 4850 50  0001 C CNN
-F 3 "http://www.digikey.com/en/resources/datasheets/yageo/rc-series-l-suffix-datasheet" H 4200 4850 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 4200 4850 60  0001 C CNN "Part Number"
-	1    4200 4850
-	0    1    1    0   
-$EndComp
-$Comp
 L C C5
 U 1 1 59092D23
 P 3200 4650
@@ -171,7 +135,7 @@ $EndComp
 Text Label 800  850  0    60   ~ 0
 Switches_N_Stuff
 Text GLabel 3900 2800 1    60   Input ~ 0
-5V
+V_USB
 $Comp
 L soft-button-4x U12
 U 1 1 597D230D
@@ -184,13 +148,13 @@ F 3 "" H 7100 3100 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 6650 3200 0    60   Input ~ 0
-IO32
+T_LEFT
 Text GLabel 7750 3200 2    60   Input ~ 0
-IO33
+T_RIGHT
 Text GLabel 7200 2650 1    60   Input ~ 0
-IO27
+T_UP
 Text GLabel 7200 3750 3    60   Input ~ 0
-IO14
+T_DOWN
 $Comp
 L RGB-LED U7
 U 1 1 5980E7D1
@@ -244,9 +208,9 @@ Wire Wire Line
 Wire Wire Line
 	7750 3200 7700 3200
 Text GLabel 6550 4850 0    60   Input ~ 0
-IO19
+LED_G
 Text GLabel 6550 4550 0    60   Input ~ 0
-IO5
+LED_B
 Wire Wire Line
 	6550 4550 6650 4550
 Wire Wire Line
@@ -307,4 +271,40 @@ Connection ~ 8150 4550
 Wire Wire Line
 	8150 4850 8050 4850
 Connection ~ 8150 4700
+$Comp
+L R_1k R14
+U 1 1 59BA2D07
+P 3450 4300
+F 0 "R14" V 3450 4300 50  0000 C CNN
+F 1 "R_1k" V 3375 4300 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 3380 4300 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" V 3530 4300 50  0001 C CNN
+F 4 "RC0603JR-071KL" V 3630 4400 60  0001 C CNN "Part Number"
+	1    3450 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_1k R16
+U 1 1 59BA2D49
+P 4200 4850
+F 0 "R16" V 4200 4850 50  0000 C CNN
+F 1 "R_1k" V 4125 4850 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 4130 4850 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" V 4280 4850 50  0001 C CNN
+F 4 "RC0603JR-071KL" V 4380 4950 60  0001 C CNN "Part Number"
+	1    4200 4850
+	0    1    1    0   
+$EndComp
+$Comp
+L R_1k R15
+U 1 1 59BA2DC7
+P 3900 3550
+F 0 "R15" V 3900 3550 50  0000 C CNN
+F 1 "R_1k" V 3825 3550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 3830 3550 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" V 3980 3550 50  0001 C CNN
+F 4 "RC0603JR-071KL" V 4080 3650 60  0001 C CNN "Part Number"
+	1    3900 3550
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

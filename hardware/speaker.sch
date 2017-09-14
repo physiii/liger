@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 8 8
+Sheet 7 10
 Title ""
 Date ""
 Rev ""
@@ -45,7 +45,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Text GLabel 6700 4300 3    60   Input ~ 0
-IO25
+SPEAKER_IN
 Text Label 4050 2200 0    60   ~ 0
 speaker_driver
 $Comp
@@ -61,10 +61,10 @@ F 4 "CVS-1508" H 6850 3150 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR021
+L GND #PWR016
 U 1 1 590F73ED
 P 5400 3400
-F 0 "#PWR021" H 5400 3150 50  0001 C CNN
+F 0 "#PWR016" H 5400 3150 50  0001 C CNN
 F 1 "GND" H 5400 3250 50  0000 C CNN
 F 2 "" H 5400 3400 50  0000 C CNN
 F 3 "" H 5400 3400 50  0000 C CNN
@@ -72,7 +72,7 @@ F 3 "" H 5400 3400 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 5350 3250 0    60   Input ~ 0
-5V
+V_USB
 $Comp
 L Amplifier-D-TS4962IQT U8
 U 1 1 59812510
@@ -84,18 +84,6 @@ F 3 "https://www.digikey.com/product-detail/en/stmicroelectronics/TS4962IQT/497-
 F 4 "TS4962IQT" H 5900 3250 60  0001 C CNN "Part Number"
 	1    5900 3250
 	1    0    0    -1  
-$EndComp
-$Comp
-L R R21
-U 1 1 5981296E
-P 6700 3650
-F 0 "R21" H 6600 3600 50  0000 C CNN
-F 1 "100K" V 6700 3650 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 6630 3650 50  0001 C CNN
-F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 6700 3650 50  0001 C CNN
-F 4 "RC0603JR-07150KL" V 6700 3650 60  0001 C CNN "Part Number"
-	1    6700 3650
-	-1   0    0    1   
 $EndComp
 $Comp
 L C C6
@@ -122,27 +110,15 @@ F 4 "CL10B475KQ8NQNC" H 6700 4050 60  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR022
+L GND #PWR017
 U 1 1 59812E44
 P 6500 4300
-F 0 "#PWR022" H 6500 4050 50  0001 C CNN
+F 0 "#PWR017" H 6500 4050 50  0001 C CNN
 F 1 "GND" H 6500 4150 50  0000 C CNN
 F 2 "" H 6500 4300 50  0000 C CNN
 F 3 "" H 6500 4300 50  0000 C CNN
 	1    6500 4300
 	1    0    0    -1  
-$EndComp
-$Comp
-L R R20
-U 1 1 598139C0
-P 6500 3650
-F 0 "R20" H 6600 3600 50  0000 C CNN
-F 1 "100K" V 6500 3650 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 6430 3650 50  0001 C CNN
-F 3 "http://www.yageo.com/documents/recent/PYu-RC_Group_51_RoHS_L_7.pdf" H 6500 3650 50  0001 C CNN
-F 4 "RC0603JR-07150KL" V 6500 3650 60  0001 C CNN "Part Number"
-	1    6500 3650
-	-1   0    0    1   
 $EndComp
 Text GLabel 6450 2650 1    60   Input ~ 0
 SPEAKER-
@@ -185,4 +161,28 @@ Connection ~ 6450 3150
 Wire Wire Line
 	6600 2650 6600 3250
 Connection ~ 6600 3250
+$Comp
+L R_100k R21
+U 1 1 59BA2110
+P 6700 3650
+F 0 "R21" V 6700 3650 50  0000 C CNN
+F 1 "R_100k" V 6625 3650 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6630 3650 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645" V 6780 3650 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 6880 3750 60  0001 C CNN "Part Number"
+	1    6700 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R_100k R20
+U 1 1 59BA214E
+P 6500 3650
+F 0 "R20" V 6500 3650 50  0000 C CNN
+F 1 "R_100k" V 6425 3650 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6430 3650 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645" V 6580 3650 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 6680 3750 60  0001 C CNN "Part Number"
+	1    6500 3650
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
