@@ -1,7 +1,5 @@
 /*
- * Example ESP32 app code using Libwebsockets
- *
- * Copyright (C) 2017 Andy Green <andy@warmcat.com>
+ * Copyright (C) 2017 Andy Payne <physiphile@gmail.com>
  *
  * This file is made available under the Creative Commons CC0 1.0
  * Universal Public Domain Dedication.
@@ -21,26 +19,14 @@
 #include <libwebsockets.h>
 #include <nvs_flash.h>
 
-/*
- * Configuration for normal station website
- *
- * We implement the generic lws test server features using
- * generic plugin code from lws.  Normally these plugins
- * are dynamically loaded at runtime, but we use them by
- * statically including them.
- *
- * To customize for your own device, you would remove these
- * and put your own plugin include here
- */
-
 #include "plugins/protocol_token.c"
-//#include "plugins/protocol_microphone.c"
 #include "plugins/protocol_LED.c"
 #include "plugins/protocol_buttons.c"
 //#include "plugins/protocol_speaker.c"
 #include "plugins/protocol_motion.c"
+//#include "plugins/protocol_audio.c"
 #include "plugins/protocol_ota.c"
-#include "plugins/protocol_climate.c"
+//#include "plugins/protocol_climate.c"
 //#include "plugins/protocol_update.c"
 #include "plugins/protocol_esp32_lws_ota.c"
 #include "plugins/protocol_esp32_lws_reboot_to_factory.c"
@@ -52,13 +38,13 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	//LWS_PLUGIN_PROTOCOL_MICROPHONE,
 	LWS_PLUGIN_PROTOCOL_TOKEN,
 	LWS_PLUGIN_PROTOCOL_BUTTONS,
 	LWS_PLUGIN_PROTOCOL_LED,
-	LWS_PLUGIN_PROTOCOL_CLIMATE,
+	//LWS_PLUGIN_PROTOCOL_CLIMATE,
 	//LWS_PLUGIN_PROTOCOL_SPEAKER,
 	LWS_PLUGIN_PROTOCOL_MOTION,
+	//LWS_PLUGIN_PROTOCOL_AUDIO,
 	LWS_PLUGIN_PROTOCOL_OTA,
 	//LWS_PLUGIN_PROTOCOL_ESPLWS_SCAN,
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
@@ -194,7 +180,6 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
-
 	i.protocol = "buttons-protocol";
 	i.path = "/buttons";
         wsi = lws_client_connect_via_info(&i);
@@ -213,17 +198,8 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
-	/*i.protocol = "motion-protocol";
+	i.protocol = "motion-protocol";
 	i.path = "/motion";
-        wsi = lws_client_connect_via_info(&i);
-        while (!wsi) {
-	        wsi = lws_client_connect_via_info(&i);
-		taskYIELD();
-		vTaskDelay(1000/portTICK_PERIOD_MS);
-        }*/
-
-	i.protocol = "climate-protocol";
-	i.path = "/climate";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);
@@ -231,6 +207,23 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
+	i.protocol = "audio-protocol";
+	i.path = "/audio";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+
+	/*i.protocol = "climate-protocol";
+	i.path = "/climate";
+        wsi = lws_client_connect_via_info(&i);
+        while (!wsi) {
+	        wsi = lws_client_connect_via_info(&i);
+		taskYIELD();
+		vTaskDelay(1000/portTICK_PERIOD_MS);
+        }*/
 
 	i.protocol = "ota-protocol";
 	i.path = "/update";
@@ -241,16 +234,7 @@ void app_main(void)
 		vTaskDelay(1000/portTICK_PERIOD_MS);
         }
 
-	/*i.protocol = "microphone-protocol";
-	i.path = "/microphone";
-        wsi = lws_client_connect_via_info(&i);
-        while (!wsi) {
-	        wsi = lws_client_connect_via_info(&i);
-		taskYIELD();
-		vTaskDelay(1000/portTICK_PERIOD_MS);
-        }
-
-	i.protocol = "esplws-scan";
+	/*i.protocol = "esplws-scan";
         wsi = lws_client_connect_via_info(&i);
         while (!wsi) {
 	        wsi = lws_client_connect_via_info(&i);

@@ -149,7 +149,6 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h \
  /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h \
  /home/physiii/esp/esp-idf/components/app_update/include/esp_ota_ops.h \
- /home/physiii/circuits/liger/code/main/./plugins/protocol_climate.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_ota.c \
  /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_reboot_to_factory.c
 
@@ -452,8 +451,6 @@ main.o: /home/physiii/circuits/liger/code/main/./main.c \
 /home/physiii/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h:
 
 /home/physiii/esp/esp-idf/components/app_update/include/esp_ota_ops.h:
-
-/home/physiii/circuits/liger/code/main/./plugins/protocol_climate.c:
 
 /home/physiii/circuits/liger/code/main/./plugins/protocol_esp32_lws_ota.c:
 
