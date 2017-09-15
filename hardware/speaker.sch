@@ -54,7 +54,7 @@ U 1 1 590F705D
 P 6850 3150
 F 0 "LS1" H 6900 3375 50  0000 R CNN
 F 1 "Speaker" H 6900 3300 50  0000 R CNN
-F 2 "footprints:speaker-1508" H 6850 2950 50  0001 C CNN
+F 2 "open-automation:speaker-1508" H 6850 2950 50  0001 C CNN
 F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 6840 3100 50  0001 C CNN
 F 4 "CVS-1508" H 6850 3150 60  0001 C CNN "Part Number"
 	1    6850 3150
@@ -91,7 +91,7 @@ U 1 1 59812A7F
 P 6500 4050
 F 0 "C6" H 6500 4150 50  0000 L CNN
 F 1 "4.7uF" H 6550 3950 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6615 4005 50  0001 L CNN
+F 2 "Capacitors_SMD:C_0603" H 6615 4005 50  0001 L CNN
 F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173" H 6615 3914 50  0001 L CNN
 F 4 "CL10B475KQ8NQNC" H 6500 4050 60  0001 C CNN "Part Number"
 	1    6500 4050
@@ -103,7 +103,7 @@ U 1 1 59812D76
 P 6700 4050
 F 0 "C7" H 6600 4150 50  0000 L CNN
 F 1 "4.7uF" H 6500 3950 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6815 4005 50  0001 L CNN
+F 2 "Capacitors_SMD:C_0603" H 6815 4005 50  0001 L CNN
 F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173" H 6815 3914 50  0001 L CNN
 F 4 "CL10B475KQ8NQNC" H 6700 4050 60  0001 C CNN "Part Number"
 	1    6700 4050

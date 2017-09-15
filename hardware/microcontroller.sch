@@ -85,7 +85,7 @@ U 1 1 590979AF
 P 5450 2650
 F 0 "U1" H 6000 1550 60  0000 C CNN
 F 1 "ESP-WROOM-32" H 5450 3450 60  0000 C CNN
-F 2 "footprints:ESP-WROOM-32" H 5100 3250 60  0001 C CNN
+F 2 "open-automation:ESP-WROOM-32" H 5100 3250 60  0001 C CNN
 F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5100 3250 60  0001 C CNN
 	1    5450 2650
 	1    0    0    -1  

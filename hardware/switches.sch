@@ -114,7 +114,7 @@ U 1 1 59092D23
 P 3200 4650
 F 0 "C5" H 3225 4750 50  0000 L CNN
 F 1 "4.7uF" H 3200 4550 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 3238 4500 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0603" H 3238 4500 50  0001 C CNN
 F 3 "http://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL_Series_MLCC_ds.pdf" H 3200 4650 50  0001 C CNN
 F 4 "CL10B475KQ8NQNC" H 3200 4650 60  0001 C CNN "Part Number"
 	1    3200 4650
@@ -223,7 +223,7 @@ U 1 1 5980F245
 P 7900 4550
 F 0 "R8" V 7980 4550 50  0000 C CNN
 F 1 "36" V 7900 4550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7830 4550 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603" V 7830 4550 50  0001 C CNN
 F 3 "http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf" H 7900 4550 50  0001 C CNN
 F 4 "RC0603JR-0736RL" V 7900 4550 60  0001 C CNN "Part Number"
 	1    7900 4550
@@ -237,7 +237,7 @@ U 1 1 5980F487
 P 7900 4700
 F 0 "R12" V 7980 4700 50  0000 C CNN
 F 1 "36" V 7900 4700 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7830 4700 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603" V 7830 4700 50  0001 C CNN
 F 3 "http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf" H 7900 4700 50  0001 C CNN
 F 4 "RC0603JR-0736RL" V 7900 4700 60  0001 C CNN "Part Number"
 	1    7900 4700
@@ -249,7 +249,7 @@ U 1 1 5980F4D4
 P 7900 4850
 F 0 "R13" V 7980 4850 50  0000 C CNN
 F 1 "36" V 7900 4850 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7830 4850 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603" V 7830 4850 50  0001 C CNN
 F 3 "http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf" H 7900 4850 50  0001 C CNN
 F 4 "RC0603JR-0736RL" V 7900 4850 60  0001 C CNN "Part Number"
 	1    7900 4850

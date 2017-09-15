@@ -50,7 +50,7 @@ U 1 1 59098AF0
 P 4900 3000
 F 0 "U2" H 4600 2900 60  0000 C CNN
 F 1 "PT5529B/L2/H2-F" H 4950 3200 60  0000 C CNN
-F 2 "footprints:PT5529" H 4900 3000 60  0001 C CNN
+F 2 "open-automation:PT5529" H 4900 3000 60  0001 C CNN
 F 3 "http://www.everlight.com/file/ProductFile/PT5529B-L2-H2-F.pdf" H 4900 3000 60  0001 C CNN
 F 4 "1080-1161-ND" H 4900 3000 60  0001 C CNN "Part Number"
 	1    4900 3000
@@ -89,7 +89,7 @@ U 1 1 59098AF5
 P 7500 2600
 F 0 "R5" V 7580 2600 50  0000 C CNN
 F 1 "36" V 7500 2600 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7430 2600 50  0001 C CNN
+F 2 "Resistors_SMD:R_0603" V 7430 2600 50  0001 C CNN
 F 3 "http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf" H 7500 2600 50  0001 C CNN
 F 4 "RC0603JR-0736RL" V 7500 2600 60  0001 C CNN "Part Number"
 	1    7500 2600
