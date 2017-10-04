@@ -47,234 +47,384 @@ $EndDescr
 $Comp
 L GND #PWR01
 U 1 1 59097974
-P 4500 1950
-F 0 "#PWR01" H 4500 1700 50  0001 C CNN
-F 1 "GND" H 4500 1800 50  0000 C CNN
-F 2 "" H 4500 1950 50  0000 C CNN
-F 3 "" H 4500 1950 50  0000 C CNN
-	1    4500 1950
+P 4875 2850
+F 0 "#PWR01" H 4875 2600 50  0001 C CNN
+F 1 "GND" H 4875 2700 50  0000 C CNN
+F 2 "" H 4875 2850 50  0000 C CNN
+F 3 "" H 4875 2850 50  0000 C CNN
+	1    4875 2850
 	-1   0    0    1   
 $EndComp
-Text GLabel 5050 3950 3    60   Input ~ 0
-IO13
-Text GLabel 4450 3400 0    60   Input ~ 0
-IO12
-Text GLabel 4450 3300 0    60   Input ~ 0
+Text GLabel 4825 4300 0    60   Input ~ 0
 T_DOWN
-Text GLabel 6400 2250 2    60   Input ~ 0
+Text GLabel 6775 3150 2    60   Input ~ 0
 RXD
-Text GLabel 6400 2900 2    60   Input ~ 0
+Text GLabel 6775 3800 2    60   Input ~ 0
 LED_G
-Text GLabel 6400 3200 2    60   Input ~ 0
+Text GLabel 6775 4100 2    60   Input ~ 0
 IR_RX
-Text GLabel 6400 2150 2    60   Input ~ 0
+Text GLabel 6775 3050 2    60   Input ~ 0
 TXD
-Text GLabel 6400 3100 2    60   Input ~ 0
+Text GLabel 6775 4000 2    60   Input ~ 0
 IR_TX
-Text GLabel 6400 3300 2    60   Input ~ 0
-IO0
-Text GLabel 5850 3950 3    60   Input ~ 0
-IO2
-Text GLabel 4450 2100 0    60   Input ~ 0
+Text GLabel 4825 3000 0    60   Input ~ 0
 3V3
-Text GLabel 5750 3950 3    60   Input ~ 0
+Text GLabel 6125 4850 3    60   Input ~ 0
 RELAY
 $Comp
 L ESP-WROOM-32 U1
 U 1 1 590979AF
-P 5450 2650
-F 0 "U1" H 6000 1550 60  0000 C CNN
-F 1 "ESP-WROOM-32" H 5450 3450 60  0000 C CNN
-F 2 "open-automation:ESP-WROOM-32" H 5100 3250 60  0001 C CNN
-F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5100 3250 60  0001 C CNN
-	1    5450 2650
+P 5825 3550
+F 0 "U1" H 6375 2450 60  0000 C CNN
+F 1 "ESP-WROOM-32" H 5825 4350 60  0000 C CNN
+F 2 "open-automation:ESP-WROOM-32" H 5475 4150 60  0001 C CNN
+F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5475 4150 60  0001 C CNN
+	1    5825 3550
 	1    0    0    -1  
 $EndComp
-Text GLabel 4450 3200 0    60   Input ~ 0
+Text GLabel 4825 4100 0    60   Input ~ 0
 T_UP
-Text GLabel 3750 3100 0    60   Input ~ 0
+Text GLabel 4125 4000 0    60   Input ~ 0
 I2S_BCLK
-Text GLabel 7050 2400 2    60   Input ~ 0
+Text GLabel 7425 3300 2    60   Input ~ 0
 I2S_WS
-Text GLabel 4450 2900 0    60   Input ~ 0
+Text GLabel 4825 3800 0    60   Input ~ 0
 T_RIGHT
-Text GLabel 4450 2800 0    60   Input ~ 0
+Text GLabel 4825 3700 0    60   Input ~ 0
 T_LEFT
-Text GLabel 4450 2700 0    60   Input ~ 0
+Text GLabel 4825 3600 0    60   Input ~ 0
 PIR2_ADC
-Text GLabel 4450 2450 0    60   Input ~ 0
-SENSOR_VN
-Text GLabel 4450 2350 0    60   Input ~ 0
-SENSOR_VP
-Text GLabel 4450 2600 0    60   Input ~ 0
+Text GLabel 4825 3500 0    60   Input ~ 0
 PIR1_ADC
-Text GLabel 5150 3950 3    60   Input ~ 0
-SD2
-Text GLabel 5250 3950 3    60   Input ~ 0
-SD3
-Text GLabel 5350 3950 3    60   Input ~ 0
-CMD
-Text GLabel 5450 3950 3    60   Input ~ 0
-CLK
-Text GLabel 5550 3950 3    60   Input ~ 0
+Text GLabel 5925 4850 3    60   Input ~ 0
 SDA
-Text GLabel 5650 3950 3    60   Input ~ 0
+Text GLabel 6025 4850 3    60   Input ~ 0
 SCL
-Text GLabel 6400 2700 2    60   Input ~ 0
+Text GLabel 6775 3600 2    60   Input ~ 0
 PIR_LO
-Text GLabel 6400 2800 2    60   Input ~ 0
+Text GLabel 6775 3700 2    60   Input ~ 0
 LED_R
-Text GLabel 6400 2500 2    60   Input ~ 0
+Text GLabel 6775 3400 2    60   Input ~ 0
 I2S_DATA
-Text GLabel 6400 2600 2    60   Input ~ 0
+Text GLabel 6775 3500 2    60   Input ~ 0
 PIR_HI
-Text GLabel 6400 3000 2    60   Input ~ 0
+Text GLabel 6775 3900 2    60   Input ~ 0
 LED_B
-Text Label 5600 700  0    60   ~ 0
-Microcontroller
-Text GLabel 4450 2200 0    60   Input ~ 0
+Text GLabel 4825 3100 0    60   Input ~ 0
 EN
-Wire Wire Line
-	4450 3300 4550 3300
-Wire Wire Line
-	4450 3400 4550 3400
-Wire Wire Line
-	4500 1950 4500 2000
-Wire Wire Line
-	4500 2000 4550 2000
-Wire Wire Line
-	4550 2100 4450 2100
-Wire Wire Line
-	4450 2200 4550 2200
-Wire Wire Line
-	5050 3950 5050 3850
-Wire Wire Line
-	5850 3850 5850 3950
-Wire Wire Line
-	6300 3300 6400 3300
-Wire Wire Line
-	6300 2150 6400 2150
-Wire Wire Line
-	6400 2250 6300 2250
-Wire Wire Line
-	6400 2900 6300 2900
-Wire Wire Line
-	6300 3100 6400 3100
-Wire Wire Line
-	6400 3200 6300 3200
-Wire Wire Line
-	4450 3200 4550 3200
-Wire Wire Line
-	4450 2900 4550 2900
-Wire Wire Line
-	4450 3000 4550 3000
-Wire Wire Line
-	4450 2700 4550 2700
-Wire Wire Line
-	4450 2800 4550 2800
-Wire Wire Line
-	4450 2350 4550 2350
-Wire Wire Line
-	4450 2450 4550 2450
-Wire Wire Line
-	4450 2600 4550 2600
-Wire Wire Line
-	5150 3950 5150 3850
-Wire Wire Line
-	5750 3850 5750 3950
-Wire Wire Line
-	5250 3950 5250 3850
-Wire Wire Line
-	5350 3950 5350 3850
-Wire Wire Line
-	5550 3950 5550 3850
-Wire Wire Line
-	5650 3950 5650 3850
-Wire Wire Line
-	5450 3850 5450 3950
-Wire Wire Line
-	6300 2800 6400 2800
-Wire Wire Line
-	6300 2600 6400 2600
-Wire Wire Line
-	6400 2700 6300 2700
-Wire Wire Line
-	6400 2500 6300 2500
-Wire Wire Line
-	6300 3000 6400 3000
-Text GLabel 4450 3000 0    60   Input ~ 0
+Text GLabel 4825 3900 0    60   Input ~ 0
 SPEAKER_IN
 $Comp
 L R_10k R6
 U 1 1 59B92EE3
-P 8550 3150
-F 0 "R6" V 8550 3150 50  0000 C CNN
-F 1 "R_10k" V 8475 3150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 8480 3150 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 8630 3150 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 8730 3250 60  0001 C CNN "Part Number"
-	1    8550 3150
+P 2750 5025
+F 0 "R6" V 2750 5025 50  0000 C CNN
+F 1 "R_10k" V 2675 5025 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2680 5025 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 2830 5025 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 2930 5125 60  0001 C CNN "Part Number"
+	1    2750 5025
 	0    1    1    0   
 $EndComp
 $Comp
 L R_10k R7
 U 1 1 59B92EEA
-P 8550 3400
-F 0 "R7" V 8550 3400 50  0000 C CNN
-F 1 "R_10k" V 8475 3400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 8480 3400 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 8630 3400 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 8730 3500 60  0001 C CNN "Part Number"
-	1    8550 3400
+P 2750 5275
+F 0 "R7" V 2750 5275 50  0000 C CNN
+F 1 "R_10k" V 2675 5275 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2680 5275 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 2830 5275 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 2930 5375 60  0001 C CNN "Part Number"
+	1    2750 5275
 	0    1    1    0   
 $EndComp
-Text GLabel 8250 3000 1    60   Input ~ 0
+Text GLabel 2450 4875 1    60   Input ~ 0
 3V3
-Text GLabel 8850 3150 2    60   Input ~ 0
+Text GLabel 3050 5025 2    60   Input ~ 0
 SDA
-Wire Wire Line
-	8700 3150 8850 3150
-Wire Wire Line
-	8700 3400 8850 3400
-Text GLabel 8850 3400 2    60   Input ~ 0
+Text GLabel 3050 5275 2    60   Input ~ 0
 SCL
-Wire Wire Line
-	8250 3400 8400 3400
-Wire Wire Line
-	8400 3150 8250 3150
-Connection ~ 8250 3150
-Wire Wire Line
-	6650 2400 6300 2400
-Wire Wire Line
-	7050 2400 6950 2400
-Wire Wire Line
-	4150 3100 4550 3100
-Wire Wire Line
-	3750 3100 3850 3100
-Wire Wire Line
-	8250 3000 8250 3400
 $Comp
 L R_47.5 R2
 U 1 1 59B81C1C
-P 6800 2400
-F 0 "R2" V 6800 2400 50  0000 C CNN
-F 1 "R_47.5" V 6725 2400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 6730 2400 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 6880 2400 50  0001 C CNN
-F 4 "RC0603FR-0747R5L" V 6980 2500 60  0001 C CNN "Part Number"
-	1    6800 2400
+P 7175 3300
+F 0 "R2" V 7175 3300 50  0000 C CNN
+F 1 "R_47.5" V 7100 3300 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 7105 3300 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 7255 3300 50  0001 C CNN
+F 4 "RC0603FR-0747R5L" V 7355 3400 60  0001 C CNN "Part Number"
+	1    7175 3300
 	0    1    1    0   
 $EndComp
 $Comp
 L R_47.5 R1
 U 1 1 59B81C70
-P 4000 3100
-F 0 "R1" V 4000 3100 50  0000 C CNN
-F 1 "R_47.5" V 4100 3100 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 3930 3100 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 4080 3100 50  0001 C CNN
-F 4 "RC0603FR-0747R5L" V 4180 3200 60  0001 C CNN "Part Number"
-	1    4000 3100
+P 4375 4000
+F 0 "R1" V 4375 4000 50  0000 C CNN
+F 1 "R_47.5" V 4475 4000 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 4305 4000 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 4455 4000 50  0001 C CNN
+F 4 "RC0603FR-0747R5L" V 4555 4100 60  0001 C CNN "Part Number"
+	1    4375 4000
 	0    1    1    0   
 $EndComp
+Text GLabel 4825 4200 0    60   Input ~ 0
+FACTORY
+Text GLabel 6775 4200 2    60   Input ~ 0
+PROG
+$Comp
+L GND #PWR02
+U 1 1 59C84AF6
+P 8700 3625
+F 0 "#PWR02" H 8700 3375 50  0001 C CNN
+F 1 "GND" H 8700 3475 50  0000 C CNN
+F 2 "" H 8700 3625 50  0000 C CNN
+F 3 "" H 8700 3625 50  0000 C CNN
+	1    8700 3625
+	-1   0    0    1   
+$EndComp
+Text GLabel 8650 3775 0    60   Input ~ 0
+3V3
+Text GLabel 9350 3975 2    60   Input ~ 0
+RXD
+Text GLabel 9350 3875 2    60   Input ~ 0
+TXD
+Text GLabel 9350 3775 2    60   Input ~ 0
+V_USB
+$Comp
+L GND #PWR03
+U 1 1 59C84AF7
+P 9300 3625
+F 0 "#PWR03" H 9300 3375 50  0001 C CNN
+F 1 "GND" H 9300 3475 50  0000 C CNN
+F 2 "" H 9300 3625 50  0000 C CNN
+F 3 "" H 9300 3625 50  0000 C CNN
+	1    9300 3625
+	-1   0    0    1   
+$EndComp
+Text Label 4200 1025 0    197  ~ 0
+Microcontroller
+$Comp
+L R_10 R48
+U 1 1 59C84AF8
+P 2125 3575
+F 0 "R48" V 2205 3575 50  0000 C CNN
+F 1 "R_10" V 2125 3575 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2055 3575 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CPF0603B10RE/A119908CT-ND/4966506" V 2205 3575 50  0001 C CNN
+F 4 "CPF0603B10RE" V 2305 3675 60  0001 C CNN "Part Number"
+	1    2125 3575
+	0    1    1    0   
+$EndComp
+$Comp
+L C_1uF C42
+U 1 1 59C84AF9
+P 2825 3775
+F 0 "C42" H 2825 3875 50  0000 L CNN
+F 1 "C_1uF" H 2575 3675 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 2925 4075 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" H 2825 3525 50  0001 C CNN
+F 4 "CC0603ZRY5V7BB105" H 2950 3975 60  0001 C CNN "Part Number"
+	1    2825 3775
+	1    0    0    -1  
+$EndComp
+$Comp
+L C_100uF C41
+U 1 1 59C84AFA
+P 2425 3775
+F 0 "C41" H 2450 3875 50  0000 L CNN
+F 1 "C_100uF" H 2075 3675 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206" H 2525 4075 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C3216X5R1A107M160AC/445-6007-1-ND/2444048" H 2425 3525 50  0001 C CNN
+F 4 "C3216X5R1A107M160AC" H 2550 3975 60  0001 C CNN "Part Number"
+	1    2425 3775
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 59C84AFB
+P 2625 4025
+F 0 "#PWR04" H 2625 3775 50  0001 C CNN
+F 1 "GND" H 2625 3875 50  0000 C CNN
+F 2 "" H 2625 4025 50  0000 C CNN
+F 3 "" H 2625 4025 50  0000 C CNN
+	1    2625 4025
+	1    0    0    -1  
+$EndComp
+Text GLabel 1875 3575 0    60   Input ~ 0
+3V3
+Text GLabel 2975 3575 2    60   Input ~ 0
+VCC_I2C
+Text Notes 2175 4425 0    60   ~ 0
+I2C ByPass CAPs
+Text GLabel 8650 3975 0    60   Input ~ 0
+PROG
+Text GLabel 8650 3875 0    60   Input ~ 0
+FACTORY
+$Comp
+L R_10k R49
+U 1 1 59C84AFC
+P 6425 4800
+F 0 "R49" V 6425 4800 50  0000 C CNN
+F 1 "R_10k" V 6500 4800 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6355 4800 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 6505 4800 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 6605 4900 60  0001 C CNN "Part Number"
+	1    6425 4800
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR05
+U 1 1 59C84AFD
+P 6625 4800
+F 0 "#PWR05" H 6625 4550 50  0001 C CNN
+F 1 "GND" H 6625 4650 50  0000 C CNN
+F 2 "" H 6625 4800 50  0000 C CNN
+F 3 "" H 6625 4800 50  0000 C CNN
+	1    6625 4800
+	0    -1   -1   0   
+$EndComp
+Text GLabel 8650 4075 0    60   Input ~ 0
+GND
+Text GLabel 9350 4075 2    60   Input ~ 0
+V_BAT
+$Comp
+L Conn_02x05_Odd_Even J1
+U 1 1 59C84AFE
+P 8950 3875
+F 0 "J1" H 9000 4175 50  0000 C CNN
+F 1 "Conn_02x05_Odd_Even" H 9000 3575 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x05_Pitch2.54mm" H 8950 3875 50  0001 C CNN
+F 3 "" H 8950 3875 50  0001 C CNN
+	1    8950 3875
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4875 2850 4875 2900
+Wire Wire Line
+	4875 2900 4925 2900
+Wire Wire Line
+	4925 3000 4825 3000
+Wire Wire Line
+	4825 3100 4925 3100
+Wire Wire Line
+	6675 4200 6775 4200
+Wire Wire Line
+	6675 3050 6775 3050
+Wire Wire Line
+	6775 3150 6675 3150
+Wire Wire Line
+	6775 3800 6675 3800
+Wire Wire Line
+	6675 4000 6775 4000
+Wire Wire Line
+	6775 4100 6675 4100
+Wire Wire Line
+	4825 4100 4925 4100
+Wire Wire Line
+	4825 3800 4925 3800
+Wire Wire Line
+	4825 3900 4925 3900
+Wire Wire Line
+	4825 3600 4925 3600
+Wire Wire Line
+	4825 3700 4925 3700
+Wire Wire Line
+	4825 3500 4925 3500
+Wire Wire Line
+	6125 4750 6125 4850
+Wire Wire Line
+	5925 4850 5925 4750
+Wire Wire Line
+	6025 4850 6025 4750
+Wire Wire Line
+	6675 3700 6775 3700
+Wire Wire Line
+	6675 3500 6775 3500
+Wire Wire Line
+	6775 3600 6675 3600
+Wire Wire Line
+	6775 3400 6675 3400
+Wire Wire Line
+	6675 3900 6775 3900
+Wire Wire Line
+	2900 5025 3050 5025
+Wire Wire Line
+	2900 5275 3050 5275
+Wire Wire Line
+	2450 5275 2600 5275
+Wire Wire Line
+	2600 5025 2450 5025
+Connection ~ 2450 5025
+Wire Wire Line
+	7025 3300 6675 3300
+Wire Wire Line
+	7425 3300 7325 3300
+Wire Wire Line
+	4525 4000 4925 4000
+Wire Wire Line
+	4125 4000 4225 4000
+Wire Wire Line
+	2450 4875 2450 5275
+Wire Wire Line
+	9300 3675 9300 3625
+Wire Wire Line
+	9250 3675 9300 3675
+Wire Wire Line
+	8700 3675 8750 3675
+Wire Wire Line
+	8700 3625 8700 3675
+Wire Wire Line
+	9250 3775 9350 3775
+Wire Wire Line
+	9350 3975 9250 3975
+Wire Wire Line
+	9250 3875 9350 3875
+Wire Wire Line
+	8650 3775 8750 3775
+Wire Wire Line
+	1875 3575 1975 3575
+Wire Wire Line
+	2275 3575 2975 3575
+Wire Wire Line
+	2425 3575 2425 3625
+Wire Wire Line
+	2825 3575 2825 3625
+Connection ~ 2425 3575
+Connection ~ 2825 3575
+Wire Wire Line
+	2425 3925 2425 3975
+Wire Wire Line
+	2425 3975 2825 3975
+Wire Wire Line
+	2825 3975 2825 3925
+Wire Wire Line
+	2625 4025 2625 3975
+Connection ~ 2625 3975
+Wire Notes Line
+	3425 3475 3425 4325
+Wire Notes Line
+	3425 4325 1575 4325
+Wire Notes Line
+	1575 4325 1575 3475
+Wire Notes Line
+	1575 3475 3425 3475
+Wire Wire Line
+	8650 3975 8750 3975
+Wire Wire Line
+	8650 3875 8750 3875
+Wire Wire Line
+	6625 4800 6575 4800
+Wire Wire Line
+	8650 4075 8750 4075
+Wire Wire Line
+	9250 4075 9350 4075
+Wire Wire Line
+	6275 4800 6225 4800
+Wire Wire Line
+	6225 4800 6225 4750
+Wire Wire Line
+	4825 4300 4925 4300
+Wire Wire Line
+	4825 4200 4925 4200
 $EndSCHEMATC
