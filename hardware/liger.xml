@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/physiii/circuits/liger/hardware/liger.sch</source>
-    <date>Thu 28 Sep 2017 08:38:40 AM CDT</date>
+    <date>Sat 21 Oct 2017 02:22:41 PM CDT</date>
     <tool>Eeschema 4.0.7-e2-6376~58~ubuntu17.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -146,7 +146,7 @@
     </comp>
     <comp ref="R6">
       <value>R_10k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0710KL</field>
@@ -157,7 +157,7 @@
     </comp>
     <comp ref="R7">
       <value>R_10k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0710KL</field>
@@ -168,7 +168,7 @@
     </comp>
     <comp ref="R2">
       <value>R_47.5</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</datasheet>
       <fields>
         <field name="Part Number">RC0603FR-0747R5L</field>
@@ -179,7 +179,7 @@
     </comp>
     <comp ref="R1">
       <value>R_47.5</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</datasheet>
       <fields>
         <field name="Part Number">RC0603FR-0747R5L</field>
@@ -188,20 +188,9 @@
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>59B81C70</tstamp>
     </comp>
-    <comp ref="R48">
-      <value>R_10</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CPF0603B10RE/A119908CT-ND/4966506</datasheet>
-      <fields>
-        <field name="Part Number">CPF0603B10RE</field>
-      </fields>
-      <libsource lib="open-automation" part="R_10"/>
-      <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
-      <tstamp>59C84AF8</tstamp>
-    </comp>
     <comp ref="C42">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -212,7 +201,7 @@
     </comp>
     <comp ref="C41">
       <value>C_100uF</value>
-      <footprint>Capacitors_SMD:C_1206</footprint>
+      <footprint>Capacitors_SMD:C_1206_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/C3216X5R1A107M160AC/445-6007-1-ND/2444048</datasheet>
       <fields>
         <field name="Part Number">C3216X5R1A107M160AC</field>
@@ -223,7 +212,7 @@
     </comp>
     <comp ref="R49">
       <value>R_10k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0710KL</field>
@@ -233,11 +222,10 @@
       <tstamp>59C84AFC</tstamp>
     </comp>
     <comp ref="J1">
-      <value>Conn_02x05_Odd_Even</value>
-      <footprint>Pin_Headers:Pin_Header_Straight_2x05_Pitch2.54mm</footprint>
-      <libsource lib="conn" part="Conn_02x05_Odd_Even"/>
+      <value>Conn_02x08_Odd_Even</value>
+      <libsource lib="conn" part="Conn_02x08_Odd_Even"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
-      <tstamp>59C84AFE</tstamp>
+      <tstamp>59EC181B</tstamp>
     </comp>
     <comp ref="U2">
       <value>TSOP32538</value>
@@ -263,7 +251,7 @@
     </comp>
     <comp ref="R5">
       <value>36</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0736RL</field>
@@ -285,7 +273,7 @@
     </comp>
     <comp ref="R3">
       <value>R_1k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071KL</field>
@@ -296,7 +284,7 @@
     </comp>
     <comp ref="R4">
       <value>R_1k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071KL</field>
@@ -318,7 +306,7 @@
     </comp>
     <comp ref="C1">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -327,20 +315,9 @@
       <sheetpath names="/Microphone/" tstamps="/5909A781/"/>
       <tstamp>59B9ACE4</tstamp>
     </comp>
-    <comp ref="R11">
-      <value>R_10</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CPF0603B10RE/A119908CT-ND/4966506</datasheet>
-      <fields>
-        <field name="Part Number">CPF0603B10RE</field>
-      </fields>
-      <libsource lib="open-automation" part="R_10"/>
-      <sheetpath names="/Microphone/" tstamps="/5909A781/"/>
-      <tstamp>59B80153</tstamp>
-    </comp>
     <comp ref="C8">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -351,7 +328,7 @@
     </comp>
     <comp ref="C2">
       <value>C_100uF</value>
-      <footprint>Capacitors_SMD:C_1206</footprint>
+      <footprint>Capacitors_SMD:C_1206_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C3216X5R1A107M160AC</field>
@@ -362,7 +339,7 @@
     </comp>
     <comp ref="R47">
       <value>R_47.5</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</datasheet>
       <fields>
         <field name="Part Number">RC0603FR-0747R5L</field>
@@ -373,7 +350,7 @@
     </comp>
     <comp ref="R9">
       <value>R_100k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-07100KL</field>
@@ -382,9 +359,20 @@
       <sheetpath names="/Microphone/" tstamps="/5909A781/"/>
       <tstamp>59B82082</tstamp>
     </comp>
+    <comp ref="R11">
+      <value>R_10</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <datasheet>https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-P06J100V/P10ADCT-ND/525435</datasheet>
+      <fields>
+        <field name="Part Number">ERJ-P06J100V</field>
+      </fields>
+      <libsource lib="open-automation" part="R_10"/>
+      <sheetpath names="/Microphone/" tstamps="/5909A781/"/>
+      <tstamp>59EBEDAE</tstamp>
+    </comp>
     <comp ref="R10">
       <value>R_1k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071KL</field>
@@ -417,7 +405,7 @@
     </comp>
     <comp ref="D3">
       <value>LED-GREEN-LTST-C191GKT</value>
-      <footprint>LEDs:LED_0603</footprint>
+      <footprint>LEDs:LED_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191GKT/160-1443-1-ND/386828</datasheet>
       <fields>
         <field name="Part Number">LTST-C191GKT</field>
@@ -428,7 +416,7 @@
     </comp>
     <comp ref="R22">
       <value>R_10k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0710KL</field>
@@ -439,7 +427,7 @@
     </comp>
     <comp ref="R19">
       <value>R_2k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-072KL/311-2.0KGRCT-ND/729673</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-072KL</field>
@@ -450,7 +438,7 @@
     </comp>
     <comp ref="C3">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -461,7 +449,7 @@
     </comp>
     <comp ref="C4">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -491,6 +479,28 @@
       <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
       <tstamp>59C9F39B</tstamp>
     </comp>
+    <comp ref="D6">
+      <value>D_Schottky-BAT20JFILM</value>
+      <footprint>Diodes_SMD:D_SOD-323_HandSoldering</footprint>
+      <datasheet>https://www.digikey.com/product-detail/en/stmicroelectronics/BAT20JFILM/497-3381-1-ND/669138</datasheet>
+      <fields>
+        <field name="Part Number">BAT20JFILM</field>
+      </fields>
+      <libsource lib="open-automation" part="D_Schottky-BAT20JFILM"/>
+      <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
+      <tstamp>59EBB5BE</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>C_1uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
+      <fields>
+        <field name="Part Number">CC0603ZRY5V7BB105</field>
+      </fields>
+      <libsource lib="open-automation" part="C_1uF"/>
+      <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
+      <tstamp>59EBD4F3</tstamp>
+    </comp>
     <comp ref="REBOOT1">
       <value>SW_PUSH</value>
       <footprint>Buttons_Switches_SMD:SW_SPST_KMR2</footprint>
@@ -504,7 +514,7 @@
     </comp>
     <comp ref="D2">
       <value>LED</value>
-      <footprint>LEDs:LED_0603</footprint>
+      <footprint>LEDs:LED_0603_HandSoldering</footprint>
       <datasheet>http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf</datasheet>
       <fields>
         <field name="Part Number">475-2512-2-ND</field>
@@ -533,7 +543,7 @@
     </comp>
     <comp ref="R8">
       <value>36</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0736RL</field>
@@ -544,7 +554,7 @@
     </comp>
     <comp ref="R12">
       <value>36</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0736RL</field>
@@ -555,7 +565,7 @@
     </comp>
     <comp ref="R13">
       <value>36</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0736RL</field>
@@ -566,7 +576,7 @@
     </comp>
     <comp ref="R15">
       <value>R_1k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071KL</field>
@@ -588,7 +598,7 @@
     </comp>
     <comp ref="D5">
       <value>LED</value>
-      <footprint>LEDs:LED_0603</footprint>
+      <footprint>LEDs:LED_0603_HandSoldering</footprint>
       <datasheet>http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf</datasheet>
       <fields>
         <field name="Part Number">475-2512-2-ND</field>
@@ -599,7 +609,7 @@
     </comp>
     <comp ref="R16">
       <value>R_1k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071KL</field>
@@ -621,7 +631,7 @@
     </comp>
     <comp ref="D4">
       <value>LED</value>
-      <footprint>LEDs:LED_0603</footprint>
+      <footprint>LEDs:LED_0603_HandSoldering</footprint>
       <datasheet>http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf</datasheet>
       <fields>
         <field name="Part Number">475-2512-2-ND</field>
@@ -632,7 +642,7 @@
     </comp>
     <comp ref="R14">
       <value>R_1k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071KL</field>
@@ -641,64 +651,9 @@
       <sheetpath names="/Switches/" tstamps="/59092AD4/"/>
       <tstamp>59CA616C</tstamp>
     </comp>
-    <comp ref="LS1">
-      <value>Speaker</value>
-      <footprint>open-automation:speaker-1508</footprint>
-      <datasheet>http://www.cui.com/product/resource/cvs-1508.pdf</datasheet>
-      <fields>
-        <field name="Part Number">CVS-1508</field>
-      </fields>
-      <libsource lib="device" part="Speaker"/>
-      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
-      <tstamp>590F705D</tstamp>
-    </comp>
-    <comp ref="U8">
-      <value>Amplifier-D-TS4962IQT</value>
-      <footprint>open-automation:Amplifier-D-TS4962IQT</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/stmicroelectronics/TS4962IQT/497-5993-1-ND/1578476</datasheet>
-      <fields>
-        <field name="Part Number">TS4962IQT</field>
-      </fields>
-      <libsource lib="open-automation" part="Amplifier-D-TS4962IQT"/>
-      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
-      <tstamp>59812510</tstamp>
-    </comp>
-    <comp ref="C6">
-      <value>4.7uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173</datasheet>
-      <fields>
-        <field name="Part Number">CL10B475KQ8NQNC</field>
-      </fields>
-      <libsource lib="device" part="C"/>
-      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
-      <tstamp>59812A7F</tstamp>
-    </comp>
-    <comp ref="C7">
-      <value>4.7uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/samsung-electro-mechanics-america-inc/CL10B475KQ8NQNC/1276-2087-1-ND/3890173</datasheet>
-      <fields>
-        <field name="Part Number">CL10B475KQ8NQNC</field>
-      </fields>
-      <libsource lib="device" part="C"/>
-      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
-      <tstamp>59812D76</tstamp>
-    </comp>
-    <comp ref="R21">
-      <value>R_100k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
-      <fields>
-        <field name="Part Number">RC0603JR-07100KL</field>
-      </fields>
-      <libsource lib="open-automation" part="R_100k"/>
-      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
-      <tstamp>59BA2110</tstamp>
-    </comp>
     <comp ref="R20">
       <value>R_100k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-07100KL</field>
@@ -706,6 +661,39 @@
       <libsource lib="open-automation" part="R_100k"/>
       <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
       <tstamp>59BA214E</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>MAX98357AETE+T</value>
+      <footprint>open-automation:MAX98357A</footprint>
+      <datasheet>https://www.digikey.com/product-detail/en/maxim-integrated/MAX98357AETE-T/MAX98357AETE-TCT-ND/7603777</datasheet>
+      <fields>
+        <field name="Part Number">MAX98357AETE+T</field>
+      </fields>
+      <libsource lib="open-automation" part="MAX98357AETE+T"/>
+      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
+      <tstamp>59EB8FEC</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>C_1uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
+      <fields>
+        <field name="Part Number">CC0603ZRY5V7BB105</field>
+      </fields>
+      <libsource lib="open-automation" part="C_1uF"/>
+      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
+      <tstamp>59EB9DF5</tstamp>
+    </comp>
+    <comp ref="LS1">
+      <value>speaker-CVS-1508</value>
+      <footprint>open-automation:speaker-1508</footprint>
+      <datasheet>http://www.cui.com/product/resource/cvs-1508.pdf</datasheet>
+      <fields>
+        <field name="Part Number">CVS-1508</field>
+      </fields>
+      <libsource lib="open-automation" part="speaker-CVS-1508"/>
+      <sheetpath names="/Speaker/" tstamps="/590C715D/"/>
+      <tstamp>59EB9CC6</tstamp>
     </comp>
     <comp ref="U6">
       <value>SI7020-A20</value>
@@ -716,51 +704,40 @@
       </fields>
       <libsource lib="open-automation" part="SI7020-A20"/>
       <sheetpath names="/Enviroment/" tstamps="/590D271B/"/>
-      <tstamp>59AB3352</tstamp>
+      <tstamp>59EBC48E</tstamp>
     </comp>
-    <comp ref="C23">
+    <comp ref="C7">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
       </fields>
       <libsource lib="open-automation" part="C_0.1uF"/>
       <sheetpath names="/Enviroment/" tstamps="/590D271B/"/>
-      <tstamp>59B8F8FE</tstamp>
+      <tstamp>59EBC48F</tstamp>
     </comp>
-    <comp ref="R25">
-      <value>R_10k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
-      <fields>
-        <field name="Part Number">RC0603JR-0710KL</field>
-      </fields>
-      <libsource lib="open-automation" part="R_10k"/>
-      <sheetpath names="/Enviroment/" tstamps="/590D271B/"/>
-      <tstamp>59B90C15</tstamp>
-    </comp>
-    <comp ref="C24">
+    <comp ref="C9">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
       </fields>
       <libsource lib="open-automation" part="C_0.1uF"/>
       <sheetpath names="/Enviroment/" tstamps="/590D271B/"/>
-      <tstamp>59B90DE4</tstamp>
+      <tstamp>59EBC492</tstamp>
     </comp>
-    <comp ref="U5">
-      <value>OPT3001</value>
-      <footprint>Housings_DFN_QFN:DFN-6-1EP_2x2mm_Pitch0.65mm</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/texas-instruments/OPT3001DNPR/296-40474-1-ND/5178351</datasheet>
+    <comp ref="U8">
+      <value>TSL45315CL</value>
+      <footprint>open-automation:LIGHT-SENSOR-TSL45315CL</footprint>
+      <datasheet>https://www.digikey.com/product-detail/en/ams/TSL45315CL/TSL45315-CLCT-ND/3095326</datasheet>
       <fields>
-        <field name="Part Number">OPT3001DNPR</field>
+        <field name="Part Number">TSL45315CL</field>
       </fields>
-      <libsource lib="open-automation" part="OPT3001"/>
+      <libsource lib="open-automation" part="TSL45315CL"/>
       <sheetpath names="/Enviroment/" tstamps="/590D271B/"/>
-      <tstamp>59CC26B6</tstamp>
+      <tstamp>59EBC494</tstamp>
     </comp>
     <comp ref="P1">
       <value>CONN_01X03</value>
@@ -775,7 +752,7 @@
     </comp>
     <comp ref="R26">
       <value>R_10k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-0710KL</field>
@@ -797,7 +774,7 @@
     </comp>
     <comp ref="C28">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -808,7 +785,7 @@
     </comp>
     <comp ref="C30">
       <value>C_100pF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/avx-corporation/06035A101FAT2A/478-6202-1-ND/2391401</datasheet>
       <fields>
         <field name="Part Number">06035A101FAT2A</field>
@@ -819,7 +796,7 @@
     </comp>
     <comp ref="U13">
       <value>OPA349SA/3K</value>
-      <footprint>TO_SOT_Packages_SMD:SOT-23-5</footprint>
+      <footprint>TO_SOT_Packages_SMD:SOT-23-5_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/texas-instruments/OPA349NA-3K/296-39127-1-ND/5143141</datasheet>
       <fields>
         <field name="Part Number">OPA349NA/3K</field>
@@ -830,7 +807,7 @@
     </comp>
     <comp ref="R30">
       <value>R_40k2</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0740K2L/311-40.2KHRCT-ND/730168</datasheet>
       <fields>
         <field name="Part Number">RC0603FR-0740K2L</field>
@@ -841,7 +818,7 @@
     </comp>
     <comp ref="C26">
       <value>C_33uF</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">C2012X5R1A336M125AC</field>
@@ -852,7 +829,7 @@
     </comp>
     <comp ref="R28">
       <value>R_1M3</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071M3L/311-1.3MGRCT-ND/729634</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071M3L</field>
@@ -863,7 +840,7 @@
     </comp>
     <comp ref="C32">
       <value>C_10uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM188R61A106ME69D/490-10475-1-ND/5026393</datasheet>
       <fields>
         <field name="Part Number">GRM188R61A106ME69D</field>
@@ -874,7 +851,7 @@
     </comp>
     <comp ref="R40">
       <value>R_150k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-07150KL/311-150KHRCT-ND/729906</datasheet>
       <fields>
         <field name="Part Number">RC0603FR-07150KL</field>
@@ -896,7 +873,7 @@
     </comp>
     <comp ref="C27">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -907,7 +884,7 @@
     </comp>
     <comp ref="C29">
       <value>C_100pF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/avx-corporation/06035A101FAT2A/478-6202-1-ND/2391401</datasheet>
       <fields>
         <field name="Part Number">06035A101FAT2A</field>
@@ -929,7 +906,7 @@
     </comp>
     <comp ref="R29">
       <value>R_40k2</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0740K2L/311-40.2KHRCT-ND/730168</datasheet>
       <fields>
         <field name="Part Number">RC0603FR-0740K2L</field>
@@ -940,7 +917,7 @@
     </comp>
     <comp ref="C25">
       <value>C_33uF</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">C2012X5R1A336M125AC</field>
@@ -951,7 +928,7 @@
     </comp>
     <comp ref="R27">
       <value>R_1M3</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071M3L/311-1.3MGRCT-ND/729634</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-071M3L</field>
@@ -962,7 +939,7 @@
     </comp>
     <comp ref="C31">
       <value>C_10uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM188R61A106ME69D/490-10475-1-ND/5026393</datasheet>
       <fields>
         <field name="Part Number">GRM188R61A106ME69D</field>
@@ -973,7 +950,7 @@
     </comp>
     <comp ref="R39">
       <value>R_150k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-07150KL/311-150KHRCT-ND/729906</datasheet>
       <fields>
         <field name="Part Number">RC0603FR-07150KL</field>
@@ -982,20 +959,9 @@
       <sheetpath names="/PIR/" tstamps="/59B5F4CB/"/>
       <tstamp>59B7239F</tstamp>
     </comp>
-    <comp ref="R41">
-      <value>R_10M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
-      <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710ML/311-10MGRCT-ND/729648</datasheet>
-      <fields>
-        <field name="Part Number">RC0603JR-0710ML</field>
-      </fields>
-      <libsource lib="open-automation" part="R_10M"/>
-      <sheetpath names="/PIR/" tstamps="/59B5F4CB/"/>
-      <tstamp>59B73339</tstamp>
-    </comp>
     <comp ref="C35">
       <value>C_150pF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM1885C1H151JA01D/490-1431-1-ND/587669</datasheet>
       <fields>
         <field name="Part Number">GRM1885C1H151JA01D</field>
@@ -1006,7 +972,7 @@
     </comp>
     <comp ref="R42">
       <value>R_100k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-07100KL</field>
@@ -1017,7 +983,7 @@
     </comp>
     <comp ref="C36">
       <value>C_330pF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C331F5GACTU/399-7898-1-ND/3471621</datasheet>
       <fields>
         <field name="Part Number">C0603C331F5GACTU</field>
@@ -1028,7 +994,7 @@
     </comp>
     <comp ref="U14">
       <value>TLV369IDCKT</value>
-      <footprint>TO_SOT_Packages_SMD:SOT-23-5</footprint>
+      <footprint>TO_SOT_Packages_SMD:SOT-23-5_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/texas-instruments/TLV369IDCKT/296-44550-1-ND/6128458</datasheet>
       <fields>
         <field name="Part Number">TLV369IDCKT</field>
@@ -1039,7 +1005,7 @@
     </comp>
     <comp ref="U15">
       <value>TLV369IDCKT</value>
-      <footprint>TO_SOT_Packages_SMD:SOT-23-5</footprint>
+      <footprint>TO_SOT_Packages_SMD:SOT-23-5_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/texas-instruments/TLV369IDCKT/296-44550-1-ND/6128458</datasheet>
       <fields>
         <field name="Part Number">TLV369IDCKT</field>
@@ -1061,7 +1027,7 @@
     </comp>
     <comp ref="C38">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1083,7 +1049,7 @@
     </comp>
     <comp ref="C37">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1094,7 +1060,7 @@
     </comp>
     <comp ref="R38">
       <value>R_100k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-07100KL</field>
@@ -1105,7 +1071,7 @@
     </comp>
     <comp ref="C34">
       <value>C_330pF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C331F5GACTU/399-7898-1-ND/3471621</datasheet>
       <fields>
         <field name="Part Number">C0603C331F5GACTU</field>
@@ -1116,7 +1082,7 @@
     </comp>
     <comp ref="R37">
       <value>R_100k</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
         <field name="Part Number">RC0603JR-07100KL</field>
@@ -1127,7 +1093,7 @@
     </comp>
     <comp ref="C33">
       <value>C_330pF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C331F5GACTU/399-7898-1-ND/3471621</datasheet>
       <fields>
         <field name="Part Number">C0603C331F5GACTU</field>
@@ -1138,7 +1104,7 @@
     </comp>
     <comp ref="R23">
       <value>R_10</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CPF0603B10RE/A119908CT-ND/4966506</datasheet>
       <fields>
         <field name="Part Number">CPF0603B10RE</field>
@@ -1149,7 +1115,7 @@
     </comp>
     <comp ref="C18">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -1160,7 +1126,7 @@
     </comp>
     <comp ref="C19">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1171,7 +1137,7 @@
     </comp>
     <comp ref="C17">
       <value>C_100uF</value>
-      <footprint>Capacitors_SMD:C_1206</footprint>
+      <footprint>Capacitors_SMD:C_1206_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C3216X5R1A107M160AC</field>
@@ -1182,7 +1148,7 @@
     </comp>
     <comp ref="C20">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1193,7 +1159,7 @@
     </comp>
     <comp ref="R18">
       <value>R_10</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CPF0603B10RE/A119908CT-ND/4966506</datasheet>
       <fields>
         <field name="Part Number">CPF0603B10RE</field>
@@ -1204,7 +1170,7 @@
     </comp>
     <comp ref="C14">
       <value>C_1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156</datasheet>
       <fields>
         <field name="Part Number">CC0603ZRY5V7BB105</field>
@@ -1215,7 +1181,7 @@
     </comp>
     <comp ref="C15">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1226,7 +1192,7 @@
     </comp>
     <comp ref="C13">
       <value>C_100uF</value>
-      <footprint>Capacitors_SMD:C_1206</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C3216X5R1A107M160AC</field>
@@ -1237,7 +1203,7 @@
     </comp>
     <comp ref="C16">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1248,7 +1214,7 @@
     </comp>
     <comp ref="C21">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1259,7 +1225,7 @@
     </comp>
     <comp ref="C22">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1270,7 +1236,7 @@
     </comp>
     <comp ref="C39">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1281,7 +1247,7 @@
     </comp>
     <comp ref="C40">
       <value>C_0.1uF</value>
-      <footprint>Capacitors_SMD:C_0603</footprint>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623</datasheet>
       <fields>
         <field name="Part Number">C0603C104K5RACTU</field>
@@ -1292,7 +1258,7 @@
     </comp>
     <comp ref="R24">
       <value>R_10</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CPF0603B10RE/A119908CT-ND/4966506</datasheet>
       <fields>
         <field name="Part Number">CPF0603B10RE</field>
@@ -1303,7 +1269,7 @@
     </comp>
     <comp ref="R32">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1314,7 +1280,7 @@
     </comp>
     <comp ref="R33">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1325,7 +1291,7 @@
     </comp>
     <comp ref="R35">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1336,7 +1302,7 @@
     </comp>
     <comp ref="R31">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1347,7 +1313,7 @@
     </comp>
     <comp ref="R17">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1358,7 +1324,7 @@
     </comp>
     <comp ref="R34">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1369,7 +1335,7 @@
     </comp>
     <comp ref="R45">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1380,7 +1346,7 @@
     </comp>
     <comp ref="R44">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1391,7 +1357,7 @@
     </comp>
     <comp ref="R43">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1402,7 +1368,7 @@
     </comp>
     <comp ref="R36">
       <value>R_15M</value>
-      <footprint>Resistors_SMD:R_0603</footprint>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182</datasheet>
       <fields>
         <field name="Part Number">RMCF0603JT15M0</field>
@@ -1410,6 +1376,17 @@
       <libsource lib="open-automation" part="R_15M"/>
       <sheetpath names="/PIR/" tstamps="/59B5F4CB/"/>
       <tstamp>59CD1D9E</tstamp>
+    </comp>
+    <comp ref="R21">
+      <value>R_10M</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <datasheet>https://www.digikey.com/product-detail/en/vishay-dale/CRCW080510M0FKEA/541-10.0MCCT-ND/1181241</datasheet>
+      <fields>
+        <field name="Part Number">CRCW080510M0FKEA</field>
+      </fields>
+      <libsource lib="open-automation" part="R_10M"/>
+      <sheetpath names="/PIR/" tstamps="/59B5F4CB/"/>
+      <tstamp>59EC05E3</tstamp>
     </comp>
   </components>
   <libparts>
@@ -1442,35 +1419,6 @@
         <pin num="1" name="GND" type="openCol"/>
         <pin num="2" name="Vout" type="input"/>
         <pin num="3" name="Vin" type="power_in"/>
-      </pins>
-    </libpart>
-    <libpart lib="open-automation" part="Amplifier-D-TS4962IQT">
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">Amplifier-D-TS4962IQT</field>
-      </fields>
-      <pins>
-        <pin num="1" name="STBY" type="input"/>
-        <pin num="3" name="IN+" type="input"/>
-        <pin num="4" name="IN-" type="input"/>
-        <pin num="5" name="OUT+" type="input"/>
-        <pin num="6" name="VCC" type="input"/>
-        <pin num="7" name="GND" type="input"/>
-        <pin num="8" name="OUT-" type="input"/>
-      </pins>
-    </libpart>
-    <libpart lib="device" part="C">
-      <description>Unpolarized capacitor</description>
-      <footprints>
-        <fp>C_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">C</field>
-        <field name="Value">C</field>
-      </fields>
-      <pins>
-        <pin num="1" name="~" type="passive"/>
-        <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="open-automation" part="CONN_01X03">
@@ -1659,8 +1607,8 @@
         <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="conn" part="Conn_02x05_Odd_Even">
-      <description>Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers)</description>
+    <libpart lib="conn" part="Conn_02x08_Odd_Even">
+      <description>Generic connector, double row, 02x08, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers)</description>
       <docs>~</docs>
       <footprints>
         <fp>Connector*:*2x??x*mm*</fp>
@@ -1672,7 +1620,7 @@
       </footprints>
       <fields>
         <field name="Reference">J</field>
-        <field name="Value">Conn_02x05_Odd_Even</field>
+        <field name="Value">Conn_02x08_Odd_Even</field>
       </fields>
       <pins>
         <pin num="1" name="Pin_1" type="passive"/>
@@ -1685,6 +1633,33 @@
         <pin num="8" name="Pin_8" type="passive"/>
         <pin num="9" name="Pin_9" type="passive"/>
         <pin num="10" name="Pin_10" type="passive"/>
+        <pin num="11" name="Pin_11" type="passive"/>
+        <pin num="12" name="Pin_12" type="passive"/>
+        <pin num="13" name="Pin_13" type="passive"/>
+        <pin num="14" name="Pin_14" type="passive"/>
+        <pin num="15" name="Pin_15" type="passive"/>
+        <pin num="16" name="Pin_16" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="open-automation" part="D_Schottky-BAT20JFILM">
+      <description>Schottky diode</description>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*SingleDiode</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Schottky-BAT20JFILM</field>
+        <field name="Footprint">Diodes_SMD:D_SOD-323</field>
+        <field name="Datasheet">https://www.digikey.com/product-detail/en/stmicroelectronics/BAT20JFILM/497-3381-1-ND/669138</field>
+        <field name="Part Number">BAT20JFILM</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="open-automation" part="ESP-WROOM-32">
@@ -1776,6 +1751,28 @@
         <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="open-automation" part="MAX98357AETE+T">
+      <description>IC AUDIO AMP CLASS D 16-TQFN</description>
+      <docs>https://www.digikey.com/product-detail/en/maxim-integrated/MAX98357AETE-T/MAX98357AETE-TCT-ND/7603777</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MAX98357AETE+T</field>
+        <field name="Footprint">open-automation:MAX98357A</field>
+        <field name="Datasheet">https://www.digikey.com/product-detail/en/maxim-integrated/MAX98357AETE-T/MAX98357AETE-TCT-ND/7603777</field>
+        <field name="Part Number">MAX98357AETE+T</field>
+      </fields>
+      <pins>
+        <pin num="1" name="DIN" type="input"/>
+        <pin num="2" name="GAIN_SLOT" type="input"/>
+        <pin num="3" name="GND" type="input"/>
+        <pin num="4" name="~SD_MODE" type="input"/>
+        <pin num="7" name="VDD" type="input"/>
+        <pin num="9" name="OUTP" type="input"/>
+        <pin num="10" name="OUTN" type="input"/>
+        <pin num="14" name="LRCLK" type="input"/>
+        <pin num="16" name="BCLK" type="input"/>
+      </pins>
+    </libpart>
     <libpart lib="open-automation" part="MCP73831T">
       <fields>
         <field name="Reference">U</field>
@@ -1811,24 +1808,6 @@
         <pin num="3" name="-" type="input"/>
         <pin num="4" name="~" type="output"/>
         <pin num="5" name="V+" type="power_in"/>
-      </pins>
-    </libpart>
-    <libpart lib="open-automation" part="OPT3001">
-      <description>Ambient Light Sensor</description>
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">OPT3001</field>
-        <field name="Footprint">Housings_DFN_QFN:DFN-6-1EP_2x2mm_Pitch0.65mm</field>
-        <field name="Datasheet">https://www.digikey.com/product-detail/en/texas-instruments/OPT3001DNPR/296-40474-1-ND/5178351</field>
-        <field name="Part Number">OPT3001DNPR</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Vin" type="input"/>
-        <pin num="2" name="ADDR" type="input"/>
-        <pin num="3" name="GND" type="input"/>
-        <pin num="4" name="SCL" type="input"/>
-        <pin num="5" name="INT" type="input"/>
-        <pin num="6" name="SDA" type="input"/>
       </pins>
     </libpart>
     <libpart lib="open-automation" part="PMOS-DMG3413L">
@@ -1903,7 +1882,8 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="R_10">
-      <description>RES SMD 10 OHM 0.1% 1/16W 0603</description>
+      <description>RES SMD 10 OHM 5% 1/2W 0805</description>
+      <docs>https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-P06J100V/P10ADCT-ND/525435</docs>
       <footprints>
         <fp>R_*</fp>
         <fp>R_*</fp>
@@ -1911,9 +1891,9 @@
       <fields>
         <field name="Reference">R</field>
         <field name="Value">R_10</field>
-        <field name="Footprint">Resistors_SMD:R_0603</field>
-        <field name="Datasheet">https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CPF0603B10RE/A119908CT-ND/4966506</field>
-        <field name="Part Number">CPF0603B10RE</field>
+        <field name="Footprint">Resistors_SMD:R_0805_HandSoldering</field>
+        <field name="Datasheet">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-P06J100V/P10ADCT-ND/525435</field>
+        <field name="Part Number">ERJ-P06J100V</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -1939,7 +1919,8 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="R_10M">
-      <description>10M 0603 Resistor</description>
+      <description>RES SMD 10M OHM 1% 1/8W 0805</description>
+      <docs>https://www.digikey.com/product-detail/en/vishay-dale/CRCW080510M0FKEA/541-10.0MCCT-ND/1181241</docs>
       <footprints>
         <fp>R_*</fp>
         <fp>R_*</fp>
@@ -1947,9 +1928,9 @@
       <fields>
         <field name="Reference">R</field>
         <field name="Value">R_10M</field>
-        <field name="Footprint">Resistors_SMD:R_0603</field>
-        <field name="Datasheet">https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710ML/311-10MGRCT-ND/729648</field>
-        <field name="Part Number">RC0603JR-0710ML</field>
+        <field name="Footprint">Resistors_SMD:R_0805_HandSoldering</field>
+        <field name="Datasheet">https://www.digikey.com/product-detail/en/vishay-dale/CRCW080510M0FKEA/541-10.0MCCT-ND/1181241</field>
+        <field name="Part Number">CRCW080510M0FKEA</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -2146,17 +2127,6 @@
         <pin num="2" name="2" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="device" part="Speaker">
-      <description>speaker </description>
-      <fields>
-        <field name="Reference">LS</field>
-        <field name="Value">Speaker</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="input"/>
-        <pin num="2" name="2" type="input"/>
-      </pins>
-    </libpart>
     <libpart lib="open-automation" part="TLV3691IDCKR">
       <description>IC COMPARATOR NANO-POWER SC70-5</description>
       <docs>https://www.digikey.com/product-detail/en/texas-instruments/TLV3691IDCKR/296-37910-1-ND/4900957</docs>
@@ -2199,6 +2169,23 @@
         <pin num="5" name="V+" type="power_in"/>
       </pins>
     </libpart>
+    <libpart lib="open-automation" part="TSL45315CL">
+      <description>IC AMBIENT LIGHT SENSOR 4CHIPLED (0x29)</description>
+      <docs>https://www.digikey.com/product-detail/en/ams/TSL45315CL/TSL45315-CLCT-ND/3095326</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TSL45315CL</field>
+        <field name="Footprint">open-automation:LIGHT-SENSOR-TSL45315CL</field>
+        <field name="Datasheet">https://www.digikey.com/product-detail/en/ams/TSL45315CL/TSL45315-CLCT-ND/3095326</field>
+        <field name="Part Number">TSL45315CL</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Vin" type="input"/>
+        <pin num="2" name="GND" type="input"/>
+        <pin num="3" name="SDA" type="input"/>
+        <pin num="4" name="SCL" type="input"/>
+      </pins>
+    </libpart>
     <libpart lib="liger-cache" part="soft-button-4x">
       <fields>
         <field name="Reference">U</field>
@@ -2209,6 +2196,21 @@
         <pin num="2" name="RIGHT" type="input"/>
         <pin num="3" name="UP" type="input"/>
         <pin num="4" name="DOWN" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="open-automation" part="speaker-CVS-1508">
+      <description>SPEAKER 8OHM 300MW TOP PORT 87DB</description>
+      <docs>https://www.digikey.com/products/en?keywords=cvs-1508</docs>
+      <fields>
+        <field name="Reference">LS</field>
+        <field name="Value">speaker-CVS-1508</field>
+        <field name="Footprint">open-automation:speaker-1508</field>
+        <field name="Datasheet">http://www.cui.com/product/resource/cvs-1508.pdf</field>
+        <field name="Part Number">CVS-1508</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="input"/>
+        <pin num="2" name="2" type="input"/>
       </pins>
     </libpart>
   </libparts>
@@ -2228,128 +2230,133 @@
   </libraries>
   <nets>
     <net code="1" name="PROG">
-      <node ref="J1" pin="7"/>
       <node ref="R16" pin="1"/>
       <node ref="U1" pin="25"/>
+      <node ref="J1" pin="7"/>
       <node ref="PROG1" pin="1"/>
     </net>
     <net code="2" name="3V3">
-      <node ref="R48" pin="2"/>
-      <node ref="R11" pin="2"/>
-      <node ref="U18" pin="2"/>
-      <node ref="R8" pin="1"/>
-      <node ref="R12" pin="1"/>
-      <node ref="R5" pin="1"/>
-      <node ref="D2" pin="2"/>
-      <node ref="R13" pin="1"/>
-      <node ref="R24" pin="2"/>
-      <node ref="R6" pin="2"/>
-      <node ref="R23" pin="2"/>
       <node ref="U1" pin="2"/>
+      <node ref="R6" pin="2"/>
+      <node ref="C41" pin="1"/>
+      <node ref="C42" pin="1"/>
       <node ref="R18" pin="2"/>
-      <node ref="C4" pin="1"/>
+      <node ref="R23" pin="2"/>
+      <node ref="C9" pin="1"/>
+      <node ref="C7" pin="1"/>
+      <node ref="U6" pin="5"/>
       <node ref="R7" pin="2"/>
-      <node ref="U8" pin="1"/>
-      <node ref="U8" pin="6"/>
-      <node ref="D4" pin="2"/>
+      <node ref="R24" pin="2"/>
       <node ref="J1" pin="3"/>
-      <node ref="R25" pin="2"/>
+      <node ref="C6" pin="1"/>
+      <node ref="U18" pin="2"/>
+      <node ref="C4" pin="1"/>
+      <node ref="R5" pin="1"/>
+      <node ref="R11" pin="1"/>
+      <node ref="U5" pin="4"/>
+      <node ref="U8" pin="1"/>
+      <node ref="U5" pin="7"/>
+      <node ref="D4" pin="2"/>
+      <node ref="R8" pin="1"/>
+      <node ref="D2" pin="2"/>
+      <node ref="R12" pin="1"/>
       <node ref="D5" pin="2"/>
+      <node ref="R13" pin="1"/>
     </net>
     <net code="3" name="Net-(D5-Pad1)">
       <node ref="R16" pin="2"/>
       <node ref="D5" pin="1"/>
     </net>
     <net code="4" name="GND">
-      <node ref="C1" pin="2"/>
-      <node ref="R33" pin="2"/>
-      <node ref="R45" pin="2"/>
-      <node ref="R31" pin="2"/>
-      <node ref="C25" pin="2"/>
-      <node ref="U3" pin="2"/>
-      <node ref="U3" pin="3"/>
-      <node ref="C14" pin="2"/>
-      <node ref="C13" pin="2"/>
-      <node ref="Q1" pin="2"/>
-      <node ref="U2" pin="2"/>
-      <node ref="C15" pin="2"/>
-      <node ref="C40" pin="2"/>
-      <node ref="C39" pin="2"/>
-      <node ref="C41" pin="2"/>
-      <node ref="R27" pin="2"/>
-      <node ref="C22" pin="2"/>
-      <node ref="C21" pin="2"/>
-      <node ref="C2" pin="2"/>
-      <node ref="C16" pin="2"/>
-      <node ref="C24" pin="2"/>
-      <node ref="R26" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="U8" pin="2"/>
+      <node ref="C37" pin="2"/>
+      <node ref="U16" pin="2"/>
+      <node ref="U5" pin="3"/>
+      <node ref="C38" pin="2"/>
       <node ref="BT1" pin="2"/>
-      <node ref="U18" pin="1"/>
-      <node ref="P1" pin="1"/>
+      <node ref="R20" pin="2"/>
+      <node ref="U4" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="R9" pin="1"/>
+      <node ref="C1" pin="2"/>
+      <node ref="U3" pin="3"/>
+      <node ref="U3" pin="2"/>
+      <node ref="C33" pin="2"/>
+      <node ref="U6" pin="2"/>
       <node ref="C4" pin="2"/>
       <node ref="C3" pin="2"/>
-      <node ref="U8" pin="7"/>
-      <node ref="C6" pin="1"/>
-      <node ref="U5" pin="2"/>
-      <node ref="U5" pin="3"/>
-      <node ref="U6" pin="2"/>
-      <node ref="C23" pin="2"/>
-      <node ref="C8" pin="2"/>
-      <node ref="R9" pin="1"/>
-      <node ref="U4" pin="2"/>
-      <node ref="C20" pin="2"/>
-      <node ref="C17" pin="2"/>
-      <node ref="C19" pin="2"/>
-      <node ref="C18" pin="2"/>
-      <node ref="R19" pin="1"/>
       <node ref="R22" pin="2"/>
-      <node ref="C33" pin="2"/>
-      <node ref="U1" pin="1"/>
-      <node ref="C26" pin="2"/>
-      <node ref="R28" pin="2"/>
-      <node ref="C38" pin="2"/>
-      <node ref="U11" pin="2"/>
-      <node ref="U16" pin="2"/>
+      <node ref="U18" pin="1"/>
+      <node ref="R19" pin="1"/>
       <node ref="C34" pin="2"/>
-      <node ref="REBOOT1" pin="2"/>
-      <node ref="C37" pin="2"/>
-      <node ref="FACTORY1" pin="2"/>
-      <node ref="J1" pin="9"/>
+      <node ref="C13" pin="2"/>
+      <node ref="C16" pin="2"/>
+      <node ref="C21" pin="2"/>
+      <node ref="C22" pin="2"/>
+      <node ref="C39" pin="2"/>
+      <node ref="C40" pin="2"/>
+      <node ref="R33" pin="2"/>
+      <node ref="R31" pin="2"/>
+      <node ref="R45" pin="2"/>
+      <node ref="R27" pin="2"/>
       <node ref="U13" pin="2"/>
-      <node ref="J1" pin="2"/>
-      <node ref="J1" pin="1"/>
       <node ref="C36" pin="2"/>
-      <node ref="R49" pin="1"/>
-      <node ref="PROG1" pin="2"/>
       <node ref="U14" pin="2"/>
       <node ref="U15" pin="2"/>
       <node ref="U17" pin="2"/>
-      <node ref="C42" pin="2"/>
-      <node ref="U9" pin="1"/>
+      <node ref="U11" pin="2"/>
+      <node ref="C25" pin="2"/>
+      <node ref="C15" pin="2"/>
       <node ref="U10" pin="1"/>
+      <node ref="U9" pin="1"/>
+      <node ref="P1" pin="1"/>
+      <node ref="R26" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="R28" pin="2"/>
+      <node ref="C18" pin="2"/>
+      <node ref="C19" pin="2"/>
+      <node ref="C17" pin="2"/>
+      <node ref="C20" pin="2"/>
+      <node ref="C26" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="R49" pin="1"/>
+      <node ref="REBOOT1" pin="2"/>
+      <node ref="U2" pin="2"/>
+      <node ref="J1" pin="1"/>
+      <node ref="J1" pin="2"/>
+      <node ref="U1" pin="1"/>
+      <node ref="C42" pin="2"/>
+      <node ref="C41" pin="2"/>
+      <node ref="FACTORY1" pin="2"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="PROG1" pin="2"/>
     </net>
     <net code="5" name="EN">
-      <node ref="REBOOT1" pin="1"/>
-      <node ref="U1" pin="3"/>
       <node ref="R15" pin="1"/>
+      <node ref="U1" pin="3"/>
+      <node ref="REBOOT1" pin="1"/>
     </net>
     <net code="6" name="Net-(R13-Pad2)">
-      <node ref="R13" pin="2"/>
       <node ref="U7" pin="4"/>
+      <node ref="R13" pin="2"/>
     </net>
     <net code="7" name="Net-(R12-Pad2)">
       <node ref="R12" pin="2"/>
       <node ref="U7" pin="5"/>
     </net>
     <net code="8" name="Net-(R8-Pad2)">
-      <node ref="R8" pin="2"/>
       <node ref="U7" pin="6"/>
+      <node ref="R8" pin="2"/>
     </net>
     <net code="9" name="FACTORY">
-      <node ref="FACTORY1" pin="1"/>
-      <node ref="U1" pin="13"/>
       <node ref="R14" pin="1"/>
+      <node ref="FACTORY1" pin="1"/>
       <node ref="J1" pin="5"/>
+      <node ref="U1" pin="13"/>
     </net>
     <net code="10" name="Net-(D4-Pad1)">
       <node ref="D4" pin="1"/>
@@ -2360,115 +2367,117 @@
       <node ref="U7" pin="3"/>
     </net>
     <net code="12" name="LED_R">
-      <node ref="U1" pin="30"/>
       <node ref="U7" pin="2"/>
+      <node ref="U1" pin="30"/>
     </net>
     <net code="13" name="LED_B">
       <node ref="U7" pin="1"/>
       <node ref="U1" pin="28"/>
     </net>
-    <net code="14" name="T_LEFT">
-      <node ref="U1" pin="8"/>
-      <node ref="U12" pin="1"/>
-    </net>
-    <net code="15" name="T_DOWN">
+    <net code="14" name="T_DOWN">
       <node ref="U1" pin="14"/>
       <node ref="U12" pin="4"/>
     </net>
-    <net code="16" name="T_UP">
+    <net code="15" name="T_UP">
       <node ref="U12" pin="3"/>
       <node ref="U1" pin="12"/>
     </net>
-    <net code="17" name="T_RIGHT">
+    <net code="16" name="T_RIGHT">
       <node ref="U12" pin="2"/>
       <node ref="U1" pin="9"/>
     </net>
+    <net code="17" name="T_LEFT">
+      <node ref="U1" pin="8"/>
+      <node ref="U12" pin="1"/>
+    </net>
     <net code="19" name="Net-(D2-Pad1)">
-      <node ref="R15" pin="2"/>
       <node ref="D2" pin="1"/>
+      <node ref="R15" pin="2"/>
     </net>
-    <net code="20" name="TXD">
-      <node ref="U1" pin="35"/>
-      <node ref="J1" pin="6"/>
-    </net>
-    <net code="21" name="V_USB">
-      <node ref="P1" pin="3"/>
-      <node ref="R10" pin="1"/>
-      <node ref="R22" pin="1"/>
-      <node ref="C3" pin="1"/>
-      <node ref="U2" pin="3"/>
-      <node ref="J1" pin="4"/>
-      <node ref="Q4" pin="1"/>
-      <node ref="U18" pin="3"/>
-      <node ref="U4" pin="4"/>
-      <node ref="Q4" pin="3"/>
-    </net>
-    <net code="22" name="I2S_BCLK">
+    <net code="20" name="I2S_BCLK">
       <node ref="U3" pin="4"/>
+      <node ref="U5" pin="16"/>
+      <node ref="J1" pin="13"/>
       <node ref="R1" pin="2"/>
     </net>
-    <net code="23" name="Net-(R1-Pad1)">
-      <node ref="R1" pin="1"/>
-      <node ref="U1" pin="11"/>
-    </net>
-    <net code="24" name="I2S_WS">
+    <net code="21" name="I2S_WS">
       <node ref="U3" pin="1"/>
       <node ref="R2" pin="1"/>
+      <node ref="J1" pin="11"/>
+      <node ref="U5" pin="14"/>
     </net>
-    <net code="25" name="Net-(R2-Pad2)">
-      <node ref="R2" pin="2"/>
+    <net code="22" name="Net-(R2-Pad2)">
       <node ref="U1" pin="37"/>
+      <node ref="R2" pin="2"/>
     </net>
-    <net code="26" name="I2S_DATA">
-      <node ref="U1" pin="36"/>
-      <node ref="R47" pin="1"/>
+    <net code="23" name="V_USB">
+      <node ref="R22" pin="1"/>
+      <node ref="J1" pin="4"/>
+      <node ref="U2" pin="3"/>
+      <node ref="Q4" pin="1"/>
+      <node ref="U4" pin="4"/>
+      <node ref="R10" pin="1"/>
+      <node ref="D6" pin="2"/>
     </net>
-    <net code="27" name="PIR_LO">
-      <node ref="U16" pin="4"/>
-      <node ref="U1" pin="31"/>
-    </net>
-    <net code="28" name="RXD">
+    <net code="24" name="RXD">
       <node ref="U1" pin="34"/>
       <node ref="J1" pin="8"/>
     </net>
-    <net code="29" name="Net-(R49-Pad2)">
-      <node ref="U1" pin="24"/>
-      <node ref="R49" pin="2"/>
+    <net code="25" name="TXD">
+      <node ref="U1" pin="35"/>
+      <node ref="J1" pin="6"/>
     </net>
-    <net code="30" name="V_BAT">
-      <node ref="U4" pin="3"/>
+    <net code="26" name="Net-(R1-Pad1)">
+      <node ref="U1" pin="11"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="27" name="IR_TX">
+      <node ref="R4" pin="2"/>
+      <node ref="U1" pin="27"/>
+    </net>
+    <net code="28" name="IR_RX">
+      <node ref="R3" pin="2"/>
+      <node ref="U1" pin="26"/>
+    </net>
+    <net code="29" name="SDA">
+      <node ref="U6" pin="1"/>
+      <node ref="U8" pin="3"/>
       <node ref="J1" pin="10"/>
-      <node ref="Q4" pin="2"/>
-      <node ref="BT1" pin="1"/>
+      <node ref="U1" pin="31"/>
+      <node ref="R6" pin="1"/>
     </net>
-    <net code="31" name="VCC_I2C">
-      <node ref="C42" pin="1"/>
-      <node ref="C23" pin="1"/>
-      <node ref="R48" pin="1"/>
-      <node ref="U6" pin="5"/>
-      <node ref="C24" pin="1"/>
-      <node ref="C41" pin="1"/>
+    <net code="30" name="I2S_DATA_OUT">
+      <node ref="J1" pin="14"/>
       <node ref="U5" pin="1"/>
-    </net>
-    <net code="32" name="Net-(U1-Pad19)">
-      <node ref="U1" pin="19"/>
-    </net>
-    <net code="34" name="Net-(U1-Pad20)">
-      <node ref="U1" pin="20"/>
-    </net>
-    <net code="35" name="SPEAKER_IN">
       <node ref="U1" pin="10"/>
-      <node ref="C7" pin="1"/>
     </net>
-    <net code="36" name="PIR2_ADC">
+    <net code="31" name="PIR2_ADC">
       <node ref="R38" pin="1"/>
-      <node ref="C34" pin="1"/>
       <node ref="U1" pin="7"/>
+      <node ref="C34" pin="1"/>
     </net>
-    <net code="37" name="PIR1_ADC">
-      <node ref="U1" pin="6"/>
+    <net code="32" name="PIR1_ADC">
       <node ref="C33" pin="1"/>
       <node ref="R37" pin="1"/>
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="33" name="PIR_HI">
+      <node ref="U1" pin="23"/>
+      <node ref="U17" pin="4"/>
+    </net>
+    <net code="34" name="SCL">
+      <node ref="U8" pin="4"/>
+      <node ref="J1" pin="9"/>
+      <node ref="U1" pin="33"/>
+      <node ref="R7" pin="1"/>
+      <node ref="U6" pin="6"/>
+    </net>
+    <net code="35" name="I2S_DATA_IN">
+      <node ref="J1" pin="12"/>
+      <node ref="U1" pin="36"/>
+    </net>
+    <net code="37" name="Net-(U1-Pad20)">
+      <node ref="U1" pin="20"/>
     </net>
     <net code="38" name="Net-(U1-Pad5)">
       <node ref="U1" pin="5"/>
@@ -2476,248 +2485,237 @@
     <net code="39" name="Net-(U1-Pad4)">
       <node ref="U1" pin="4"/>
     </net>
-    <net code="40" name="Net-(U1-Pad18)">
-      <node ref="U1" pin="18"/>
+    <net code="40" name="Net-(U1-Pad19)">
+      <node ref="U1" pin="19"/>
     </net>
-    <net code="41" name="IR_TX">
-      <node ref="U1" pin="27"/>
-      <node ref="R4" pin="2"/>
+    <net code="41" name="Net-(U1-Pad18)">
+      <node ref="U1" pin="18"/>
     </net>
     <net code="42" name="Net-(U1-Pad17)">
       <node ref="U1" pin="17"/>
     </net>
-    <net code="43" name="IR_RX">
-      <node ref="R3" pin="2"/>
-      <node ref="U1" pin="26"/>
-    </net>
-    <net code="44" name="Net-(U1-Pad16)">
+    <net code="43" name="PIR_LO">
+      <node ref="U16" pin="4"/>
       <node ref="U1" pin="16"/>
     </net>
-    <net code="45" name="PIR_HI">
-      <node ref="U1" pin="33"/>
-      <node ref="U17" pin="4"/>
-    </net>
-    <net code="46" name="SCL">
-      <node ref="U5" pin="4"/>
-      <node ref="U6" pin="6"/>
-      <node ref="R7" pin="1"/>
+    <net code="44" name="Net-(U1-Pad22)">
       <node ref="U1" pin="22"/>
     </net>
-    <net code="47" name="SDA">
+    <net code="45" name="Net-(U1-Pad21)">
       <node ref="U1" pin="21"/>
-      <node ref="R6" pin="1"/>
-      <node ref="U6" pin="1"/>
-      <node ref="U5" pin="6"/>
     </net>
-    <net code="48" name="Net-(R3-Pad1)">
+    <net code="46" name="V_BAT">
+      <node ref="J1" pin="16"/>
+      <node ref="Q4" pin="3"/>
+      <node ref="C5" pin="1"/>
+      <node ref="BT1" pin="1"/>
+      <node ref="U4" pin="3"/>
+    </net>
+    <net code="47" name="Net-(R3-Pad1)">
       <node ref="U2" pin="1"/>
       <node ref="R3" pin="1"/>
     </net>
+    <net code="48" name="Net-(Q1-Pad1)">
+      <node ref="R4" pin="1"/>
+      <node ref="Q1" pin="1"/>
+    </net>
     <net code="49" name="Net-(D1-Pad2)">
-      <node ref="R5" pin="2"/>
       <node ref="D1" pin="2"/>
+      <node ref="R5" pin="2"/>
     </net>
     <net code="50" name="Net-(D1-Pad1)">
-      <node ref="D1" pin="1"/>
       <node ref="Q1" pin="3"/>
+      <node ref="D1" pin="1"/>
     </net>
-    <net code="51" name="Net-(Q1-Pad1)">
-      <node ref="Q1" pin="1"/>
-      <node ref="R4" pin="1"/>
-    </net>
-    <net code="54" name="Net-(R47-Pad2)">
-      <node ref="U3" pin="6"/>
-      <node ref="R47" pin="2"/>
+    <net code="53" name="Net-(R47-Pad2)">
       <node ref="R9" pin="2"/>
+      <node ref="R47" pin="2"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="55" name="I2S_DATA">
+      <node ref="R47" pin="1"/>
     </net>
     <net code="56" name="VCC_I2S">
-      <node ref="C8" pin="1"/>
       <node ref="C2" pin="1"/>
+      <node ref="R11" pin="2"/>
+      <node ref="C8" pin="1"/>
       <node ref="U3" pin="5"/>
       <node ref="C1" pin="1"/>
-      <node ref="R11" pin="1"/>
     </net>
-    <net code="58" name="Net-(D3-Pad2)">
-      <node ref="D3" pin="2"/>
-      <node ref="R10" pin="2"/>
-    </net>
-    <net code="59" name="Net-(R19-Pad2)">
-      <node ref="R19" pin="2"/>
+    <net code="57" name="Net-(R19-Pad2)">
       <node ref="U4" pin="5"/>
+      <node ref="R19" pin="2"/>
     </net>
-    <net code="60" name="Net-(D3-Pad1)">
-      <node ref="D3" pin="1"/>
+    <net code="59" name="Net-(D3-Pad1)">
       <node ref="U4" pin="1"/>
+      <node ref="D3" pin="1"/>
     </net>
-    <net code="61" name="Net-(R20-Pad1)">
-      <node ref="U8" pin="4"/>
+    <net code="60" name="Net-(D3-Pad2)">
+      <node ref="R10" pin="2"/>
+      <node ref="D3" pin="2"/>
+    </net>
+    <net code="61" name="V_IN">
+      <node ref="Q4" pin="2"/>
+      <node ref="C3" pin="1"/>
+      <node ref="U18" pin="3"/>
+      <node ref="D6" pin="1"/>
+      <node ref="P1" pin="3"/>
+    </net>
+    <net code="62" name="Net-(R20-Pad1)">
+      <node ref="U5" pin="2"/>
       <node ref="R20" pin="1"/>
     </net>
-    <net code="62" name="Net-(R21-Pad1)">
-      <node ref="U8" pin="3"/>
-      <node ref="R21" pin="1"/>
-    </net>
-    <net code="63" name="Net-(C7-Pad2)">
-      <node ref="C7" pin="2"/>
-      <node ref="R21" pin="2"/>
-    </net>
-    <net code="64" name="Net-(C6-Pad2)">
-      <node ref="C6" pin="2"/>
-      <node ref="R20" pin="2"/>
-    </net>
-    <net code="65" name="SPEAKER-">
+    <net code="63" name="Net-(LS1-Pad1)">
+      <node ref="U5" pin="9"/>
       <node ref="LS1" pin="1"/>
-      <node ref="U8" pin="8"/>
     </net>
-    <net code="66" name="SPEAKER+">
+    <net code="64" name="Net-(LS1-Pad2)">
       <node ref="LS1" pin="2"/>
-      <node ref="U8" pin="5"/>
+      <node ref="U5" pin="10"/>
     </net>
-    <net code="68" name="LIGHT_INT">
-      <node ref="R25" pin="1"/>
-      <node ref="U5" pin="5"/>
-    </net>
-    <net code="72" name="RELAY">
-      <node ref="U1" pin="23"/>
+    <net code="69" name="RELAY">
       <node ref="R26" pin="1"/>
+      <node ref="R49" pin="2"/>
       <node ref="P1" pin="2"/>
+      <node ref="U1" pin="24"/>
+      <node ref="J1" pin="15"/>
     </net>
-    <net code="73" name="VCC_PIR1">
-      <node ref="U9" pin="2"/>
-      <node ref="C13" pin="1"/>
-      <node ref="C15" pin="1"/>
-      <node ref="C14" pin="1"/>
-      <node ref="R18" pin="1"/>
+    <net code="70" name="VCC_PIR1">
       <node ref="U11" pin="5"/>
+      <node ref="C13" pin="1"/>
+      <node ref="R18" pin="1"/>
+      <node ref="U9" pin="2"/>
       <node ref="C16" pin="1"/>
+      <node ref="C14" pin="1"/>
+      <node ref="C15" pin="1"/>
       <node ref="R17" pin="1"/>
     </net>
-    <net code="74" name="Net-(C35-Pad2)">
-      <node ref="R41" pin="1"/>
-      <node ref="R42" pin="2"/>
-      <node ref="C35" pin="2"/>
+    <net code="71" name="Net-(C35-Pad2)">
       <node ref="U14" pin="4"/>
+      <node ref="C35" pin="2"/>
+      <node ref="R42" pin="2"/>
+      <node ref="R21" pin="1"/>
     </net>
-    <net code="75" name="Net-(C38-Pad1)">
-      <node ref="R36" pin="2"/>
+    <net code="72" name="Net-(C38-Pad1)">
       <node ref="C38" pin="1"/>
       <node ref="U17" pin="1"/>
       <node ref="R43" pin="1"/>
+      <node ref="R36" pin="2"/>
     </net>
-    <net code="76" name="Net-(C37-Pad1)">
-      <node ref="R44" pin="2"/>
-      <node ref="R45" pin="1"/>
-      <node ref="C37" pin="1"/>
-      <node ref="U16" pin="3"/>
-    </net>
-    <net code="77" name="Net-(C36-Pad1)">
-      <node ref="U16" pin="1"/>
-      <node ref="C36" pin="1"/>
-      <node ref="R42" pin="1"/>
-      <node ref="U17" pin="3"/>
-    </net>
-    <net code="78" name="Net-(C35-Pad1)">
-      <node ref="U14" pin="3"/>
-      <node ref="R40" pin="1"/>
-      <node ref="R41" pin="2"/>
-      <node ref="R39" pin="1"/>
-      <node ref="C35" pin="1"/>
-    </net>
-    <net code="79" name="VREF">
-      <node ref="U15" pin="4"/>
-      <node ref="U15" pin="3"/>
-      <node ref="U14" pin="1"/>
-    </net>
-    <net code="80" name="Net-(C31-Pad2)">
-      <node ref="C31" pin="2"/>
+    <net code="73" name="Net-(C31-Pad2)">
       <node ref="R39" pin="2"/>
+      <node ref="C31" pin="2"/>
     </net>
-    <net code="81" name="Net-(R43-Pad2)">
-      <node ref="U15" pin="1"/>
+    <net code="74" name="Net-(R43-Pad2)">
       <node ref="R44" pin="1"/>
+      <node ref="U15" pin="1"/>
       <node ref="R43" pin="2"/>
     </net>
-    <net code="82" name="VCC_COMP">
-      <node ref="R24" pin="1"/>
+    <net code="75" name="Net-(C36-Pad1)">
+      <node ref="U16" pin="1"/>
+      <node ref="U17" pin="3"/>
+      <node ref="C36" pin="1"/>
+      <node ref="R42" pin="1"/>
+    </net>
+    <net code="76" name="Net-(C35-Pad1)">
+      <node ref="U14" pin="3"/>
+      <node ref="R21" pin="2"/>
+      <node ref="R39" pin="1"/>
+      <node ref="C35" pin="1"/>
+      <node ref="R40" pin="1"/>
+    </net>
+    <net code="77" name="VREF">
+      <node ref="U14" pin="1"/>
+      <node ref="U15" pin="3"/>
+      <node ref="U15" pin="4"/>
+    </net>
+    <net code="78" name="Net-(C37-Pad1)">
+      <node ref="R44" pin="2"/>
+      <node ref="C37" pin="1"/>
+      <node ref="U16" pin="3"/>
+      <node ref="R45" pin="1"/>
+    </net>
+    <net code="79" name="VCC_COMP">
       <node ref="U16" pin="5"/>
-      <node ref="R36" pin="1"/>
-      <node ref="C21" pin="1"/>
-      <node ref="U17" pin="5"/>
-      <node ref="U14" pin="5"/>
       <node ref="C39" pin="1"/>
+      <node ref="U14" pin="5"/>
+      <node ref="R24" pin="1"/>
       <node ref="C40" pin="1"/>
-      <node ref="U15" pin="5"/>
       <node ref="C22" pin="1"/>
+      <node ref="C21" pin="1"/>
+      <node ref="U15" pin="5"/>
+      <node ref="U17" pin="5"/>
+      <node ref="R36" pin="1"/>
     </net>
-    <net code="83" name="VCC_PIR2">
-      <node ref="C18" pin="1"/>
-      <node ref="R23" pin="1"/>
-      <node ref="C17" pin="1"/>
+    <net code="80" name="VCC_PIR2">
       <node ref="R32" pin="1"/>
-      <node ref="C19" pin="1"/>
-      <node ref="U13" pin="5"/>
       <node ref="C20" pin="1"/>
+      <node ref="C17" pin="1"/>
+      <node ref="R23" pin="1"/>
       <node ref="U10" pin="2"/>
+      <node ref="U13" pin="5"/>
+      <node ref="C18" pin="1"/>
+      <node ref="C19" pin="1"/>
     </net>
-    <net code="84" name="Net-(C25-Pad1)">
-      <node ref="R29" pin="2"/>
+    <net code="81" name="Net-(C25-Pad1)">
       <node ref="C25" pin="1"/>
+      <node ref="R29" pin="2"/>
     </net>
-    <net code="85" name="Net-(C30-Pad1)">
-      <node ref="C30" pin="1"/>
+    <net code="82" name="Net-(C29-Pad1)">
+      <node ref="R29" pin="1"/>
+      <node ref="C29" pin="1"/>
+      <node ref="R34" pin="2"/>
+      <node ref="U11" pin="3"/>
+    </net>
+    <net code="83" name="Net-(C30-Pad1)">
       <node ref="U13" pin="3"/>
       <node ref="R35" pin="2"/>
       <node ref="R30" pin="1"/>
+      <node ref="C30" pin="1"/>
     </net>
-    <net code="86" name="Net-(C26-Pad1)">
-      <node ref="R30" pin="2"/>
+    <net code="84" name="Net-(C26-Pad1)">
       <node ref="C26" pin="1"/>
+      <node ref="R30" pin="2"/>
     </net>
-    <net code="88" name="Net-(C32-Pad2)">
-      <node ref="C32" pin="2"/>
+    <net code="86" name="Net-(C32-Pad2)">
       <node ref="R40" pin="2"/>
+      <node ref="C32" pin="2"/>
     </net>
-    <net code="89" name="Net-(C30-Pad2)">
+    <net code="87" name="Net-(C30-Pad2)">
       <node ref="C30" pin="2"/>
-      <node ref="U13" pin="4"/>
-      <node ref="R38" pin="2"/>
       <node ref="R35" pin="1"/>
       <node ref="C32" pin="1"/>
+      <node ref="R38" pin="2"/>
+      <node ref="U13" pin="4"/>
     </net>
-    <net code="90" name="Net-(C28-Pad2)">
-      <node ref="U13" pin="1"/>
+    <net code="88" name="Net-(C28-Pad2)">
       <node ref="C28" pin="2"/>
       <node ref="R32" pin="2"/>
       <node ref="R33" pin="1"/>
+      <node ref="U13" pin="1"/>
     </net>
-    <net code="91" name="Net-(C28-Pad1)">
+    <net code="89" name="Net-(C28-Pad1)">
       <node ref="R28" pin="1"/>
       <node ref="U10" pin="3"/>
       <node ref="C28" pin="1"/>
     </net>
-    <net code="92" name="Net-(C29-Pad2)">
-      <node ref="R34" pin="1"/>
-      <node ref="C31" pin="1"/>
-      <node ref="R37" pin="2"/>
-      <node ref="U11" pin="4"/>
+    <net code="90" name="Net-(C29-Pad2)">
       <node ref="C29" pin="2"/>
+      <node ref="R37" pin="2"/>
+      <node ref="C31" pin="1"/>
+      <node ref="U11" pin="4"/>
+      <node ref="R34" pin="1"/>
     </net>
-    <net code="93" name="Net-(C29-Pad1)">
-      <node ref="R29" pin="1"/>
-      <node ref="U11" pin="3"/>
-      <node ref="R34" pin="2"/>
-      <node ref="C29" pin="1"/>
-    </net>
-    <net code="94" name="Net-(C27-Pad2)">
+    <net code="91" name="Net-(C27-Pad2)">
       <node ref="C27" pin="2"/>
+      <node ref="R31" pin="1"/>
       <node ref="U11" pin="1"/>
       <node ref="R17" pin="2"/>
-      <node ref="R31" pin="1"/>
     </net>
-    <net code="95" name="Net-(C27-Pad1)">
-      <node ref="C27" pin="1"/>
+    <net code="92" name="Net-(C27-Pad1)">
       <node ref="U9" pin="3"/>
       <node ref="R27" pin="1"/>
+      <node ref="C27" pin="1"/>
     </net>
   </nets>
 </export>
