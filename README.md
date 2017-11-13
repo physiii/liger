@@ -1,5 +1,25 @@
 # ESP32 Room Sensor
 
+
+
+
+
+
+## Front
+![Alt text](https://github.com/physiii/liger/blob/master/images/front_3d.png?raw=true "front")
+
+
+## Back
+![Alt text](https://github.com/physiii/liger/blob/master/images/back_3d.png?raw=true "back")
+
+
+## Schematic Overview
+![Alt text](https://github.com/physiii/liger/blob/master/images/schematic_overview.png?raw=true "schematic overview")
+
+## Motion (PIR) Component
+![Alt text](https://github.com/physiii/liger/blob/master/images/schematic_pir.png?raw=true "motion")
+
+
 ## Features
 Motion detection<br>
 Audio detection<br>
@@ -8,13 +28,13 @@ Security mode<br>
 Light level<br>
 
 ## Sensor components
-MEMS Microphone<br>
+I2S Microphone<br>
 Speaker<br>
 IR Transmitter<br>
 IR Receiver<br>
-directional button<br>
-photodiode<br>
-PIR<br>
+directional soft button<br>
+I2C luminosity<br>
+Dual PIR for animal vs human distrinction<br>
 Ultrasonic (optional)<br>
 Temperature/Humidity<br>
 
