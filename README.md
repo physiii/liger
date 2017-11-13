@@ -1,17 +1,9 @@
 # ESP32 Room Sensor
 
 
-
-
-
-
-## Front
 ![Alt text](https://github.com/physiii/liger/blob/master/images/front_3d.png?raw=true "front")
 
-
-## Back
 ![Alt text](https://github.com/physiii/liger/blob/master/images/back_3d.png?raw=true "back")
-
 
 ## Schematic Overview
 ![Alt text](https://github.com/physiii/liger/blob/master/images/schematic_overview.png?raw=true "schematic overview")
