@@ -5,6 +5,11 @@
 
 ![Alt text](https://github.com/physiii/liger/blob/master/images/back_3d.png?raw=true "back")
 
+![Alt text](https://github.com/physiii/liger/blob/master/images/back_3d.png?raw=true "back")
+
+![Alt text](https://github.com/physiii/liger/blob/master/images/front_picture.jpg?raw=true "picture")
+
+
 ## Schematic Overview
 ![Alt text](https://github.com/physiii/liger/blob/master/images/schematic_overview.png?raw=true "schematic overview")
 
