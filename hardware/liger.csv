@@ -13,9 +13,8 @@ D1,1,LED,LEDs:LED_D3.0mm,http://www.mouser.com/ds/2/149/QED123-890063.pdf,QED123
 D2 D4 D5,3,LED,LEDs:LED_0603_HandSoldering,http://www.osram-os.com/Graphics/XPic9/00128792_0.pdf,475-2512-2-ND
 D3,1,LED-GREEN-LTST-C191GKT,LEDs:LED_0603_HandSoldering,https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191GKT/160-1443-1-ND/386828,LTST-C191GKT
 D6,1,D_Schottky-BAT20JFILM,Diodes_SMD:D_SOD-323_HandSoldering,https://www.digikey.com/product-detail/en/stmicroelectronics/BAT20JFILM/497-3381-1-ND/669138,BAT20JFILM
-J1,1,Conn_02x08_Odd_Even,,
+J1,1,Conn_02x08_Odd_Even,Pin_Headers:Pin_Header_Straight_2x08_Pitch2.54mm,
 LS1,1,speaker-CVS-1508,open-automation:speaker-1508,http://www.cui.com/product/resource/cvs-1508.pdf,CVS-1508
-P1,1,CONN_01X03,open-automation:Pin_Header_Straight_1x03_Pitch2.54mm_CORRECTED,http://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF13C-3P-1.25V(21)/H121960CT-ND/3907735,A04KR04DA28W51B
 Q1,1,Q_NPN_BEC,TO_SOT_Packages_SMD:SOT-23,http://www.onsemi.com/pub/Collateral/MMBT3904LT1-D.PDF,MMBT3904LT1GOSCT-ND
 Q4,1,PMOS-DMG3413L,TO_SOT_Packages_SMD:SOT-23,https://www.digikey.com/product-detail/en/diodes-incorporated/DMG3413L-7/DMG3413L-7DICT-ND/5218387,DMG3413L-7
 R11,1,R_10,Resistors_SMD:R_0805_HandSoldering,https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-P06J100V/P10ADCT-ND/525435,ERJ-P06J100V
@@ -29,7 +28,7 @@ R29 R30,2,R_40k2,Resistors_SMD:R_0603_HandSoldering,https://www.digikey.com/prod
 R17 R31 R32 R33 R34 R35 R36 R43 R44 R45,10,R_15M,Resistors_SMD:R_0603_HandSoldering,https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RMCF0603JT15M0/RMCF0603JT15M0CT-ND/6053182,RMCF0603JT15M0
 R39 R40,2,R_150k,Resistors_SMD:R_0603_HandSoldering,https://www.digikey.com/product-detail/en/yageo/RC0603FR-07150KL/311-150KHRCT-ND/729906,RC0603FR-07150KL
 R5 R8 R12 R13,4,36,Resistors_SMD:R_0603_HandSoldering,http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf,RC0603JR-0736RL
-R6 R7 R22 R26 R49,5,R_10k,Resistors_SMD:R_0603_HandSoldering,https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647,RC0603JR-0710KL
+R6 R7 R22 R26,4,R_10k,Resistors_SMD:R_0603_HandSoldering,https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647,RC0603JR-0710KL
 R9 R20 R37 R38 R42,5,R_100k,Resistors_SMD:R_0603_HandSoldering,https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645,RC0603JR-07100KL
 REBOOT1 PROG1 FACTORY1,3,SW_PUSH,Buttons_Switches_SMD:SW_SPST_KMR2,http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf,KMR211NG LFS
 U1,1,ESP-WROOM-32,open-automation:ESP-WROOM-32,http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf
