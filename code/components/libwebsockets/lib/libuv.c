@@ -167,7 +167,7 @@ lws_uv_initvhost(struct lws_vhost* vh, struct lws* wsi)
 				&wsi->w_read.uv_watcher, wsi->desc.sockfd);
 	if (n) {
 		lwsl_err("uv_poll_init failed %d, sockfd=%p\n",
-				 n, (void *)(long)wsi->desc.sockfd);
+				 n, (void *)(lws_intptr_t)wsi->desc.sockfd);
 
 		return -1;
 	}
@@ -258,7 +258,14 @@ static void lws_uv_close_cb(uv_handle_t *handle)
 
 static void lws_uv_walk_cb(uv_handle_t *handle, void *arg)
 {
-	uv_close(handle, lws_uv_close_cb);
+	if (!uv_is_closing(handle))
+		uv_close(handle, lws_uv_close_cb);
+}
+
+LWS_VISIBLE void
+lws_close_all_handles_in_loop(uv_loop_t *loop)
+{
+	uv_walk(loop, lws_uv_walk_cb, NULL);
 }
 
 void
@@ -519,12 +526,38 @@ lws_libuv_closehandle(struct lws *wsi)
 	struct lws_context *context = lws_get_context(wsi);
 
 	/* required to defer actual deletion until libuv has processed it */
-
 	uv_close((uv_handle_t*)&wsi->w_read.uv_watcher, lws_libuv_closewsi);
 
 	if (context->requested_kill && context->count_wsi_allocated == 0)
 		lws_libuv_kill(context);
 }
+
+static void
+lws_libuv_closewsi_m(uv_handle_t* handle)
+{
+	lws_sockfd_type sockfd = (lws_sockfd_type)(lws_intptr_t)handle->data;
+
+	compatible_close(sockfd);
+}
+
+void
+lws_libuv_closehandle_manually(struct lws *wsi)
+{
+	uv_handle_t *h = (void *)&wsi->w_read.uv_watcher;
+
+	h->data = (void *)(lws_intptr_t)wsi->desc.sockfd;
+	/* required to defer actual deletion until libuv has processed it */
+	uv_close((uv_handle_t*)&wsi->w_read.uv_watcher, lws_libuv_closewsi_m);
+}
+
+int
+lws_libuv_check_watcher_active(struct lws *wsi)
+{
+	uv_handle_t *h = (void *)&wsi->w_read.uv_watcher;
+
+	return uv_is_active(h);
+}
+
 
 #if defined(LWS_WITH_PLUGINS) && (UV_VERSION_MAJOR > 0)
 
@@ -539,7 +572,6 @@ lws_plat_plugins_init(struct lws_context *context, const char * const *d)
 	uv_dirent_t dent;
 	uv_fs_t req;
 	char path[256];
-	uv_loop_t loop;
 	uv_lib_t lib;
 	int pofs = 0;
 
@@ -550,14 +582,14 @@ lws_plat_plugins_init(struct lws_context *context, const char * const *d)
 	lib.errmsg = NULL;
 	lib.handle = NULL;
 
-	uv_loop_init(&loop);
+	uv_loop_init(&context->pu_loop);
 
 	lwsl_notice("  Plugins:\n");
 
 	while (d && *d) {
 
 		lwsl_notice("  Scanning %s\n", *d);
-		m =uv_fs_scandir(&loop, &req, *d, 0, NULL);
+		m =uv_fs_scandir(&context->pu_loop, &req, *d, 0, NULL);
 		if (m < 1) {
 			lwsl_err("Scandir on %s failed\n", *d);
 			return 1;
@@ -573,6 +605,7 @@ lws_plat_plugins_init(struct lws_context *context, const char * const *d)
 			if (uv_dlopen(path, &lib)) {
 				uv_dlerror(&lib);
 				lwsl_err("Error loading DSO: %s\n", lib.errmsg);
+				uv_dlclose(&lib);
 				goto bail;
 			}
 
@@ -591,6 +624,7 @@ lws_plat_plugins_init(struct lws_context *context, const char * const *d)
 				uv_dlerror(&lib);
 				lwsl_err("Failed to get %s on %s: %s", path,
 						dent.name, lib.errmsg);
+				uv_dlclose(&lib);
 				goto bail;
 			}
 			initfunc = (lws_plugin_init_func)v;
@@ -603,6 +637,7 @@ lws_plat_plugins_init(struct lws_context *context, const char * const *d)
 
 			plugin = lws_malloc(sizeof(*plugin));
 			if (!plugin) {
+				uv_dlclose(&lib);
 				lwsl_err("OOM\n");
 				goto bail;
 			}
@@ -625,11 +660,7 @@ bail:
 		d++;
 	}
 
-	uv_run(&loop, UV_RUN_NOWAIT);
-	uv_loop_close(&loop);
-
 	return ret;
-
 }
 
 LWS_VISIBLE int
@@ -681,6 +712,9 @@ lws_plat_plugins_destroy(struct lws_context *context)
 	}
 
 	context->plugin_list = NULL;
+
+	while (uv_loop_close(&context->pu_loop))
+		;
 
 	return 0;
 }

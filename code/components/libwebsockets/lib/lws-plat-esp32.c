@@ -117,6 +117,22 @@ _lws_plat_service_tsi(struct lws_context *context, int timeout_ms, int tsi)
 	pt = &context->pt[tsi];
 	lws_stats_atomic_bump(context, pt, LWSSTATS_C_SERVICE_ENTRY, 1);
 
+	{
+		unsigned long m = lws_now_secs();
+
+		if (m > context->time_last_state_dump) {
+			context->time_last_state_dump = m;
+			n = esp_get_free_heap_size();
+			if (n != context->last_free_heap) {
+				if (n > context->last_free_heap)
+					lwsl_notice(" heap :%d (+%d)\n", n, n - context->last_free_heap);
+				else
+					lwsl_notice(" heap :%d (-%d)\n", n, context->last_free_heap - n);
+				context->last_free_heap = n;
+			}
+		}
+	}
+
 	if (timeout_ms < 0)
 		goto faked_service;
 
@@ -433,6 +449,12 @@ lws_plat_inet_ntop(int af, const void *src, char *dst, int cnt)
 	return inet_ntop(af, src, dst, cnt);
 }
 
+LWS_VISIBLE int
+lws_plat_inet_pton(int af, const char *src, void *dst)
+{
+	return 1; //  inet_pton(af, src, dst);
+}
+
 LWS_VISIBLE lws_fop_fd_t IRAM_ATTR
 _lws_plat_file_open(const struct lws_plat_file_ops *fops, const char *filename,
 		    const char *vpath, lws_fop_flags_t *flags)
@@ -640,12 +662,15 @@ static const char *gapss_str[] = {
 };
 
 static romfs_t lws_esp32_romfs;
-static TimerHandle_t leds_timer, scan_timer
+static TimerHandle_t leds_timer, scan_timer, debounce_timer
 #if !defined(CONFIG_LWS_IS_FACTORY_APPLICATION)
 , mdns_timer
 #endif
 ;
 static enum lws_gapss gapss = LWS_GAPSS_INITIAL;
+static char bdown;
+
+#define GPIO_SW 14
 
 struct esp32_file {
 	const struct inode *i;
@@ -882,6 +907,30 @@ next:
 }
 #endif
 
+void __attribute__(( weak ))
+lws_esp32_button(int down)
+{
+}
+
+void IRAM_ATTR
+gpio_irq(void *arg)
+{
+	bdown ^= 1;
+	gpio_set_intr_type(GPIO_SW, GPIO_INTR_DISABLE);
+	xTimerStart(debounce_timer, 0);
+
+	lws_esp32_button(bdown);
+}
+
+static void lws_esp32_debounce_timer_cb(TimerHandle_t th)
+{
+	if (bdown)
+		gpio_set_intr_type(GPIO_SW, GPIO_INTR_POSEDGE);
+	else
+		gpio_set_intr_type(GPIO_SW, GPIO_INTR_NEGEDGE);
+}
+
+
 static int
 start_scan()
 {
@@ -981,6 +1030,61 @@ passthru:
 
 }
 
+static void
+lws_set_genled(int n)
+{
+	lws_esp32.genled_t = time_in_microseconds();
+	lws_esp32.genled = n;
+}
+
+int
+lws_esp32_leds_network_indication(void)
+{
+	uint64_t us, r;
+	int n, fadein = 100, speed = 1199, div = 1, base = 0;
+
+	r = time_in_microseconds();
+	us = r - lws_esp32.genled_t;
+
+	switch (lws_esp32.genled) {
+	case LWSESP32_GENLED__INIT:
+		lws_esp32.genled = LWSESP32_GENLED__LOST_NETWORK;
+		/* fallthru */
+	case LWSESP32_GENLED__LOST_NETWORK:
+		fadein = us / 10000; /* 100 steps in 1s */
+		if (fadein > 100) {
+			fadein = 100;
+			lws_esp32.genled = LWSESP32_GENLED__NO_NETWORK;
+		}
+		/* fallthru */
+	case LWSESP32_GENLED__NO_NETWORK:
+		break;
+	case LWSESP32_GENLED__CONN_AP:
+		base = 4096;
+		speed = 933;
+		div = 2;
+		break;
+	case LWSESP32_GENLED__GOT_IP:
+		fadein = us / 10000; /* 100 steps in 1s */
+		if (fadein > 100) {
+			fadein = 100;
+			lws_esp32.genled = LWSESP32_GENLED__OK;
+		}
+		fadein = 100 - fadein; /* we are fading out */
+		/* fallthru */
+	case LWSESP32_GENLED__OK:
+		if (lws_esp32.genled == LWSESP32_GENLED__OK)
+			return 0;
+
+		base = 4096;
+		speed = 766;
+		div = 3;
+		break;
+	}
+
+	n = base + (lws_esp32_sine_interp(r / speed) / div);
+	return (n * fadein) / 100;
+}
 
 esp_err_t lws_esp32_event_passthru(void *ctx, system_event_t *event)
 {
@@ -999,6 +1103,7 @@ esp_err_t lws_esp32_event_passthru(void *ctx, system_event_t *event)
 		/* fallthru */
 	case SYSTEM_EVENT_STA_DISCONNECTED:
 		lwsl_notice("SYSTEM_EVENT_STA_DISCONNECTED\n");
+		lws_esp32.conn_ap = 0;
 		lws_esp32.inet = 0;
 		lws_esp32.sta_ip[0] = '\0';
 		lws_esp32.sta_mask[0] = '\0';
@@ -1008,13 +1113,22 @@ esp_err_t lws_esp32_event_passthru(void *ctx, system_event_t *event)
 			mdns_service_remove_all(lws_esp32.mdns);
 		mdns_free(lws_esp32.mdns);
 		lws_esp32.mdns = NULL;
+		lws_set_genled(LWSESP32_GENLED__LOST_NETWORK);
 		start_scan();
 		esp_wifi_connect();
 		break;
+
+	case SYSTEM_EVENT_STA_CONNECTED:
+		lws_esp32.conn_ap = 1;
+		lws_set_genled(LWSESP32_GENLED__CONN_AP);
+		break;
+
 	case SYSTEM_EVENT_STA_GOT_IP:
 		lwsl_notice("SYSTEM_EVENT_STA_GOT_IP\n");
 
 		lws_esp32.inet = 1;
+		lws_set_genled(LWSESP32_GENLED__GOT_IP);
+
 		render_ip(lws_esp32.sta_ip, sizeof(lws_esp32.sta_ip) - 1,
 				(uint8_t *)&event->event_info.got_ip.ip_info.ip);
 		render_ip(lws_esp32.sta_mask, sizeof(lws_esp32.sta_mask) - 1,
@@ -1275,10 +1389,13 @@ lws_esp32_wlan_nvs_get(int retry)
 	s = sizeof(lws_esp32.role);
 	nvs_get_str(nvh, "role", lws_esp32.role, &s);
 
-	lws_snprintf(lws_esp32.hostname, sizeof(lws_esp32.hostname) - 1,
-			"%s-%s-%s", lws_esp32.model,
-			lws_esp32.group,
-			lws_esp32.serial);
+	/* if group and role defined: group-role */
+	if (lws_esp32.group[0] && lws_esp32.role[0])
+		lws_snprintf(lws_esp32.hostname, sizeof(lws_esp32.hostname) - 1,
+				"%s-%s", lws_esp32.group, lws_esp32.role);
+	else /* otherwise model-serial */
+		lws_snprintf(lws_esp32.hostname, sizeof(lws_esp32.hostname) - 1,
+				"%s-%s", lws_esp32.model, lws_esp32.serial);
 
 	nvs_close(nvh);
 
@@ -1287,6 +1404,7 @@ lws_esp32_wlan_nvs_get(int retry)
 
 	return lws_esp32_force_ap;
 }
+
 
 void
 lws_esp32_wlan_config(void)
@@ -1297,8 +1415,11 @@ lws_esp32_wlan_config(void)
 	        .speed_mode = LEDC_HIGH_SPEED_MODE,
 	        .timer_num = LEDC_TIMER_0
 	};
+	int n;
 
 	ledc_timer_config(&ledc_timer);
+
+	lws_set_genled(LWSESP32_GENLED__INIT);
 
 	/* user code needs to provide lws_esp32_leds_timer_cb */
 
@@ -1306,6 +1427,9 @@ lws_esp32_wlan_config(void)
                           (TimerCallbackFunction_t)lws_esp32_leds_timer_cb);
         scan_timer = xTimerCreate("lws_scan", pdMS_TO_TICKS(10000), 0, NULL,
                           (TimerCallbackFunction_t)lws_esp32_scan_timer_cb);
+        debounce_timer = xTimerCreate("lws_db", pdMS_TO_TICKS(100), 0, NULL,
+                          (TimerCallbackFunction_t)lws_esp32_debounce_timer_cb);
+
 #if !defined(CONFIG_LWS_IS_FACTORY_APPLICATION)
         mdns_timer = xTimerCreate("lws_mdns", pdMS_TO_TICKS(5000), 0, NULL,
                           (TimerCallbackFunction_t)lws_esp32_mdns_timer_cb);
@@ -1313,6 +1437,25 @@ lws_esp32_wlan_config(void)
 	scan_timer_exists = 1;
         xTimerStart(leds_timer, 0);
 
+	*(volatile uint32_t *)PERIPHS_IO_MUX_MTMS_U = FUNC_MTMS_GPIO14;
+
+	gpio_output_set(0, 0, 0, (1 << GPIO_SW));
+
+	n = gpio_install_isr_service(0);
+	if (!n) {
+		gpio_config_t c;
+
+		c.intr_type = GPIO_INTR_NEGEDGE;
+		c.mode = GPIO_MODE_INPUT;
+		c.pin_bit_mask = 1 << GPIO_SW;
+		c.pull_down_en = 0;
+		c.pull_up_en = 0;
+		gpio_config(&c);
+
+		if (gpio_isr_handler_add(GPIO_SW, gpio_irq, NULL))
+			lwsl_notice("isr handler add for 14 failed\n");
+	} else
+		lwsl_notice("failed to install gpio isr service: %d\n", n);
 
 	lws_esp32_wlan_nvs_get(0);
 	tcpip_adapter_init();
@@ -1486,7 +1629,12 @@ lws_esp32_get_image_info(const esp_partition_t *part, struct lws_esp32_image *i,
 	}
 	hdr += (~hdr & 15) + 1;
 
-	i->romfs = hdr + 4;
+	if (eih.hash_appended)
+		hdr += 0x20;
+
+//	lwsl_notice("romfs estimated at 0x%x\n", hdr);
+
+	i->romfs = hdr + 0x4;
 	spi_flash_read(hdr, &i->romfs_len, sizeof(i->romfs_len));
 	i->json = i->romfs + i->romfs_len + 4;
 	spi_flash_read(i->json - 4, &i->json_len, sizeof(i->json_len));
@@ -1500,7 +1648,7 @@ lws_esp32_get_image_info(const esp_partition_t *part, struct lws_esp32_image *i,
 }
 
 struct lws_context *
-lws_esp32_init(struct lws_context_creation_info *info)
+lws_esp32_init(struct lws_context_creation_info *info, struct lws_vhost **pvh)
 {
 	const esp_partition_t *part = lws_esp_ota_get_boot_partition();
 	struct lws_context *context;
@@ -1556,6 +1704,9 @@ lws_esp32_init(struct lws_context_creation_info *info)
 	else
 		lws_init_vhost_client_ssl(info, vhost); 
 
+	if (pvh)
+		*pvh = vhost;
+
 	lws_protocol_init(context);
 
 	return context;
@@ -1569,11 +1720,11 @@ static const uint16_t sineq16[] = {
 static uint16_t sine_lu(int n)
 {
         switch ((n >> 4) & 3) {
-        case 0:
-                return 4096 + sineq16[n & 15];
         case 1:
-                return 4096 + sineq16[15 - (n & 15)];
+                return 4096 + sineq16[n & 15];
         case 2:
+                return 4096 + sineq16[15 - (n & 15)];
+        case 3:
                 return 4096 - sineq16[n & 15];
         default:
                 return  4096 - sineq16[15 - (n & 15)];
@@ -1590,6 +1741,12 @@ uint16_t lws_esp32_sine_interp(int n)
          * 4: interp (LSB)
          *
          * total 10 bits / 1024 steps per cycle
+	 *
+	 * +   0: 0
+	 * + 256: 4096
+	 * + 512: 8192
+	 * + 768: 4096
+	 * +1023: 0
          */
 
         return (sine_lu(n >> 4) * (15 - (n & 15)) +

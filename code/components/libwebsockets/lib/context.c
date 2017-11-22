@@ -112,6 +112,9 @@ lws_vhost_protocol_options(struct lws_vhost *vh, const char *name)
 {
 	const struct lws_protocol_vhost_options *pvo = vh->pvo;
 
+	if (!name)
+		return NULL;
+
 	while (pvo) {
 		// lwsl_notice("%s: '%s' '%s'\n", __func__, pvo->name, name);
 		if (!strcmp(pvo->name, name))
@@ -220,9 +223,12 @@ lws_callback_http_dummy(struct lws *wsi, enum lws_callback_reasons reason,
 {
 #ifdef LWS_WITH_CGI
 	struct lws_cgi_args *args;
-	char buf[128];
+#endif
+#if defined(LWS_WITH_CGI) || defined(LWS_WITH_HTTP_PROXY)
+	char buf[512];
 	int n;
 #endif
+
 
 	switch (reason) {
 	case LWS_CALLBACK_HTTP:
@@ -234,19 +240,123 @@ lws_callback_http_dummy(struct lws *wsi, enum lws_callback_reasons reason,
 #endif
 			return -1;
 		break;
+#if !defined(LWS_NO_SERVER)
+	case LWS_CALLBACK_HTTP_FILE_COMPLETION:
+		if (lws_http_transaction_completed(wsi))
+			return -1;
+		break;
+#endif
 
 	case LWS_CALLBACK_HTTP_WRITEABLE:
 #ifdef LWS_WITH_CGI
-		if (wsi->reason_bf & 1) {
-			if (lws_cgi_write_split_stdout_headers(wsi) < 0)
+		if (wsi->reason_bf & (LWS_CB_REASON_AUX_BF__CGI_HEADERS | LWS_CB_REASON_AUX_BF__CGI)) {
+			n = lws_cgi_write_split_stdout_headers(wsi);
+			if (n < 0) {
+				lwsl_debug("LWS_CB_REASON_AUX_BF__CGI forcing close\n");
 				return -1;
+			}
+			if (!n)
+				lws_rx_flow_control(wsi->cgi->stdwsi[LWS_STDOUT], 1);
 
-			wsi->reason_bf &= ~1;
+			if (wsi->reason_bf & LWS_CB_REASON_AUX_BF__CGI_HEADERS)
+				wsi->reason_bf &= ~LWS_CB_REASON_AUX_BF__CGI_HEADERS;
+			else
+				wsi->reason_bf &= ~LWS_CB_REASON_AUX_BF__CGI;
+			break;
+		}
+
+		if (wsi->reason_bf & LWS_CB_REASON_AUX_BF__CGI_CHUNK_END) {
+			lwsl_debug("writing chunk terminator and exiting\n");
+			n = lws_write(wsi, (unsigned char *)"0\x0d\x0a\x0d\x0a",
+				      5, LWS_WRITE_HTTP);
+			/* always close after sending it */
+			return -1;
+		}
+#endif
+#if defined(LWS_WITH_HTTP_PROXY)
+		if (wsi->reason_bf & LWS_CB_REASON_AUX_BF__PROXY) {
+			char *px = buf + LWS_PRE;
+			int lenx = sizeof(buf) - LWS_PRE;
+			/*
+			 * our sink is writeable and our source has something
+			 * to read.  So read a lump of source material of
+			 * suitable size to send or what's available, whichever
+			 * is the smaller.
+			 */
+
+			wsi->reason_bf &= ~LWS_CB_REASON_AUX_BF__PROXY;
+			if (!lws_get_child(wsi))
+				break;
+			if (lws_http_client_read(lws_get_child(wsi), &px, &lenx) < 0)
+				return -1;
 			break;
 		}
 #endif
-
 		break;
+
+#if defined(LWS_WITH_HTTP_PROXY)
+	case LWS_CALLBACK_RECEIVE_CLIENT_HTTP:
+		//lwsl_err("LWS_CALLBACK_RECEIVE_CLIENT_HTTP: wsi %p\n", wsi);
+		assert(lws_get_parent(wsi));
+		if (!lws_get_parent(wsi))
+			break;
+		lws_get_parent(wsi)->reason_bf |= LWS_CB_REASON_AUX_BF__PROXY;
+		lws_callback_on_writable(lws_get_parent(wsi));
+		break;
+
+	case LWS_CALLBACK_RECEIVE_CLIENT_HTTP_READ:
+		//lwsl_err("LWS_CALLBACK_RECEIVE_CLIENT_HTTP_READ len %d\n", (int)len);
+		assert(lws_get_parent(wsi));
+		n = lws_write(lws_get_parent(wsi), (unsigned char *)in,
+				len, LWS_WRITE_HTTP);
+		if (n < 0)
+			return -1;
+		break;
+
+	case LWS_CALLBACK_ESTABLISHED_CLIENT_HTTP: {
+		unsigned char *p, *end;
+		char ctype[64], ctlen = 0;
+
+		//lwsl_err("LWS_CALLBACK_ESTABLISHED_CLIENT_HTTP\n");
+	
+		p = (unsigned char *)buf + LWS_PRE;
+		end = p + sizeof(buf) - LWS_PRE;
+
+		if (lws_add_http_header_status(lws_get_parent(wsi), HTTP_STATUS_OK, &p, end))
+			return 1;
+		if (lws_add_http_header_by_token(lws_get_parent(wsi),
+				WSI_TOKEN_HTTP_SERVER,
+			    	(unsigned char *)"libwebsockets",
+				13, &p, end))
+			return 1;
+
+		ctlen = lws_hdr_copy(wsi, ctype, sizeof(ctype), WSI_TOKEN_HTTP_CONTENT_TYPE);
+		if (ctlen > 0) {
+			if (lws_add_http_header_by_token(lws_get_parent(wsi),
+				WSI_TOKEN_HTTP_CONTENT_TYPE,
+				(unsigned char *)ctype, ctlen, &p, end))
+				return 1;
+		}
+#if 0
+		if (lws_add_http_header_content_length(lws_get_parent(wsi),
+						       file_len, &p, end))
+			return 1;
+#endif
+		if (lws_finalize_http_header(lws_get_parent(wsi), &p, end))
+			return 1;
+
+		*p = '\0';
+//		lwsl_info("%s\n", buf + LWS_PRE);
+
+		n = lws_write(lws_get_parent(wsi), (unsigned char *)buf + LWS_PRE,
+			      p - ((unsigned char *)buf + LWS_PRE),
+			      LWS_WRITE_HTTP_HEADERS);
+		if (n < 0)
+			return -1;
+
+		break; }
+
+#endif
 
 #ifdef LWS_WITH_CGI
 	/* CGI IO events (POLLIN/OUT) appear here, our default policy is:
@@ -262,7 +372,9 @@ lws_callback_http_dummy(struct lws *wsi, enum lws_callback_reasons reason,
 			/* TBD stdin rx flow control */
 			break;
 		case LWS_STDOUT:
-			wsi->reason_bf |= 1;
+			/* quench POLLIN on STDOUT until MASTER got writeable */
+			lws_rx_flow_control(args->stdwsi[LWS_STDOUT], 0);
+			wsi->reason_bf |= LWS_CB_REASON_AUX_BF__CGI;
 			/* when writing to MASTER would not block */
 			lws_callback_on_writable(wsi);
 			break;
@@ -280,6 +392,16 @@ lws_callback_http_dummy(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CGI_TERMINATED:
+		lwsl_debug("LWS_CALLBACK_CGI_TERMINATED: %d %" PRIu64 "\n",
+				wsi->cgi->explicitly_chunked, (uint64_t)wsi->cgi->content_length);
+		if (!wsi->cgi->explicitly_chunked && !wsi->cgi->content_length) {
+			/* send terminating chunk */
+			lwsl_debug("LWS_CALLBACK_CGI_TERMINATED: looking to send terminating chunk\n");
+			wsi->reason_bf |= LWS_CB_REASON_AUX_BF__CGI_CHUNK_END;
+			lws_callback_on_writable(wsi);
+			lws_set_timeout(wsi, PENDING_TIMEOUT_CGI, 3);
+			break;
+		}
 		return -1;
 
 	case LWS_CALLBACK_CGI_STDIN_DATA:  /* POST body for stdin */
@@ -292,6 +414,17 @@ lws_callback_http_dummy(struct lws *wsi, enum lws_callback_reasons reason,
 				    "sent %d only %d went", n, args->len);
 		return n;
 #endif
+
+	case LWS_CALLBACK_SSL_INFO:
+		{
+			struct lws_ssl_info *si = in;
+
+			(void)si;
+			lwsl_notice("LWS_CALLBACK_SSL_INFO: where: 0x%x, ret: 0x%x\n",
+					si->where, si->ret);
+		}
+		break;
+
 	default:
 		break;
 	}
@@ -352,6 +485,10 @@ lws_create_vhost(struct lws_context *context,
 		vh->name = info->vhost_name;
 
 	vh->iface = info->iface;
+#if !defined(LWS_WITH_ESP8266) && !defined(LWS_WITH_ESP32) && !defined(OPTEE_TA) && !defined(WIN32)
+	vh->bind_iface = info->bind_iface;
+#endif
+
 	for (vh->count_protocols = 0;
 	     info->protocols[vh->count_protocols].callback;
 	     vh->count_protocols++)
@@ -360,10 +497,17 @@ lws_create_vhost(struct lws_context *context,
 	vh->options = info->options;
 	vh->pvo = info->pvo;
 	vh->headers = info->headers;
+	vh->user = info->user;
+	vh->ssl_info_event_mask = info->ssl_info_event_mask;
 	if (info->keepalive_timeout)
 		vh->keepalive_timeout = info->keepalive_timeout;
 	else
 		vh->keepalive_timeout = 5;
+
+	if (info->timeout_secs_ah_idle)
+		vh->timeout_secs_ah_idle = info->timeout_secs_ah_idle;
+	else
+		vh->timeout_secs_ah_idle = 10;
 
 	/*
 	 * give the vhost a unified list of protocols including the
@@ -385,7 +529,7 @@ lws_create_vhost(struct lws_context *context,
 	 * for a protocol get it enabled.
 	 */
 
-	if (info->options & LWS_SERVER_OPTION_EXPLICIT_VHOSTS)
+	if (context->options & LWS_SERVER_OPTION_EXPLICIT_VHOSTS)
 		f = 0;
 	(void)f;
 #ifdef LWS_WITH_PLUGINS
@@ -415,11 +559,11 @@ lws_create_vhost(struct lws_context *context,
 #ifdef LWS_WITH_PLUGINS
 	    (context->plugin_list) ||
 #endif
-	    info->options & LWS_SERVER_OPTION_EXPLICIT_VHOSTS)
+	    context->options & LWS_SERVER_OPTION_EXPLICIT_VHOSTS)
 		vh->protocols = lwsp;
 	else {
 		vh->protocols = info->protocols;
-		free(lwsp);
+		lws_free(lwsp);
 	}
 
 	vh->same_vh_protocol_list = (struct lws **)
@@ -438,6 +582,7 @@ lws_create_vhost(struct lws_context *context,
 
 	mounts = info->mounts;
 	while (mounts) {
+		(void)mount_protocols[0];
 		lwsl_notice("   mounting %s%s to %s\n",
 				mount_protocols[mounts->origin_protocol],
 				mounts->origin, mounts->mountpoint);
@@ -448,7 +593,7 @@ lws_create_vhost(struct lws_context *context,
 			for (n = 0; n < vh->count_protocols; n++)
 				if (!strcmp(pvo->value, vh->protocols[n].name)) {
 					((struct lws_protocol_vhost_options *)pvo)->value =
-							(const char *)(long)n;
+							(const char *)(lws_intptr_t)n;
 					break;
 				}
 			if (n == vh->count_protocols)
@@ -497,9 +642,14 @@ lws_create_vhost(struct lws_context *context,
 #if !defined(LWS_WITH_ESP8266)
 	vh->http_proxy_port = 0;
 	vh->http_proxy_address[0] = '\0';
+#if defined(LWS_WITH_SOCKS5)
+	vh->socks_proxy_port = 0;
+	vh->socks_proxy_address[0] = '\0';
+#endif
 
 	/* either use proxy from info, or try get it from env var */
 
+	/* http proxy */
 	if (info->http_proxy_address) {
 		/* override for backwards compatibility */
 		if (info->http_proxy_port)
@@ -512,7 +662,23 @@ lws_create_vhost(struct lws_context *context,
 			lws_set_proxy(vh, p);
 #endif
 	}
+#if defined(LWS_WITH_SOCKS5)
+	/* socks proxy */
+	if (info->socks_proxy_address) {
+		/* override for backwards compatibility */
+		if (info->socks_proxy_port)
+			vh->socks_proxy_port = info->socks_proxy_port;
+		lws_set_socks(vh, info->socks_proxy_address);
+	} else {
+#ifdef LWS_HAVE_GETENV
+		p = getenv("socks_proxy");
+		if (p)
+			lws_set_socks(vh, p);
 #endif
+	}
+#endif
+#endif
+
 	vh->ka_time = info->ka_time;
 	vh->ka_interval = info->ka_interval;
 	vh->ka_probes = info->ka_probes;
@@ -634,6 +800,10 @@ lws_create_context(struct lws_context_creation_info *info)
 		context->pt_serv_buf_size = info->pt_serv_buf_size;
 	else
 		context->pt_serv_buf_size = 4096;
+
+#if defined(LWS_WITH_ESP32)
+	context->last_free_heap = esp_get_free_heap_size();
+#endif
 
 	/* default to just the platform fops implementation */
 
@@ -868,6 +1038,11 @@ lws_create_context(struct lws_context_creation_info *info)
 	context->uid = info->uid;
 	context->gid = info->gid;
 
+#if defined(LWS_HAVE_SYS_CAPABILITY_H) && defined(LWS_HAVE_LIBCAP)
+	memcpy(context->caps, info->caps, sizeof(context->caps));
+	context->count_caps = info->count_caps;
+#endif
+
 	/*
 	 * drop any root privs for this process
 	 * to listen on port < 1023 we would have needed root, but now we are
@@ -946,10 +1121,242 @@ lws_context_is_deprecated(struct lws_context *context)
 LWS_VISIBLE void
 lws_context_destroy2(struct lws_context *context);
 
+
+static void
+lws_vhost_destroy1(struct lws_vhost *vh)
+{
+	const struct lws_protocols *protocol = NULL;
+	struct lws_context_per_thread *pt;
+	int n, m = vh->context->count_threads;
+	struct lws_context *context = vh->context;
+	struct lws wsi;
+
+	lwsl_notice("%s\n", __func__);
+
+	if (vh->being_destroyed)
+		return;
+
+	vh->being_destroyed = 1;
+
+	/*
+	 * Are there other vhosts that are piggybacking on our listen socket?
+	 * If so we need to hand the listen socket off to one of the others
+	 * so it will remain open.  If not, leave it attached to the closing
+	 * vhost and it will get closed.
+	 */
+
+	if (vh->lserv_wsi)
+		lws_start_foreach_ll(struct lws_vhost *, v, context->vhost_list) {
+			if (v != vh &&
+			    !v->being_destroyed &&
+			    v->listen_port == vh->listen_port &&
+			    ((!v->iface && !vh->iface) ||
+			    (v->iface && vh->iface &&
+			    !strcmp(v->iface, vh->iface)))) {
+				/*
+				 * this can only be a listen wsi, which is
+				 * restricted... it has no protocol or other
+				 * bindings or states.  So we can simply
+				 * swap it to a vhost that has the same
+				 * iface + port, but is not closing.
+				 */
+				assert(v->lserv_wsi == NULL);
+				v->lserv_wsi = vh->lserv_wsi;
+				vh->lserv_wsi = NULL;
+				v->lserv_wsi->vhost = v;
+
+				lwsl_notice("%s: listen skt from %s to %s\n",
+					    __func__, vh->name, v->name);
+				break;
+			}
+		} lws_end_foreach_ll(v, vhost_next);
+
+	/*
+	 * Forcibly close every wsi assoicated with this vhost.  That will
+	 * include the listen socket if it is still associated with the closing
+	 * vhost.
+	 */
+
+	while (m--) {
+		pt = &context->pt[m];
+
+		for (n = 0; (unsigned int)n < context->pt[m].fds_count; n++) {
+			struct lws *wsi = wsi_from_fd(context, pt->fds[n].fd);
+			if (!wsi)
+				continue;
+			if (wsi->vhost != vh)
+				continue;
+
+			lws_close_free_wsi(wsi,
+				LWS_CLOSE_STATUS_NOSTATUS_CONTEXT_DESTROY
+				/* no protocol close */);
+			n--;
+		}
+	}
+
+	/*
+	 * let the protocols destroy the per-vhost protocol objects
+	 */
+
+	memset(&wsi, 0, sizeof(wsi));
+	wsi.context = vh->context;
+	wsi.vhost = vh;
+	protocol = vh->protocols;
+	if (protocol) {
+		n = 0;
+		while (n < vh->count_protocols) {
+			wsi.protocol = protocol;
+			protocol->callback(&wsi, LWS_CALLBACK_PROTOCOL_DESTROY,
+					   NULL, NULL, 0);
+			protocol++;
+			n++;
+		}
+	}
+
+	/*
+	 * remove vhost from context list of vhosts
+	 */
+
+	lws_start_foreach_llp(struct lws_vhost **, pv, context->vhost_list) {
+		if (*pv == vh) {
+			*pv = vh->vhost_next;
+			break;
+		}
+	} lws_end_foreach_llp(pv, vhost_next);
+
+	/* add ourselves to the pending destruction list */
+
+	vh->vhost_next = vh->context->vhost_pending_destruction_list;
+	vh->context->vhost_pending_destruction_list = vh;
+}
+
+static void
+lws_vhost_destroy2(struct lws_vhost *vh)
+{
+	const struct lws_protocols *protocol = NULL;
+	struct lws_context *context = vh->context;
+	struct lws_deferred_free *df;
+	int n;
+
+	lwsl_notice("%s: %p\n", __func__, vh);
+
+	/* if we are still on deferred free list, remove ourselves */
+
+	lws_start_foreach_llp(struct lws_deferred_free **, pdf, context->deferred_free_list) {
+		if ((*pdf)->payload == vh) {
+			df = *pdf;
+			*pdf = df->next;
+			lws_free(df);
+			break;
+		}
+	} lws_end_foreach_llp(pdf, next);
+
+	/* remove ourselves from the pending destruction list */
+
+	lws_start_foreach_llp(struct lws_vhost **, pv, context->vhost_pending_destruction_list) {
+		if ((*pv) == vh) {
+			*pv = (*pv)->vhost_next;
+			break;
+		}
+	} lws_end_foreach_llp(pv, vhost_next);
+
+	/*
+	 * Free all the allocations associated with the vhost
+	 */
+
+	protocol = vh->protocols;
+	if (protocol) {
+		n = 0;
+		while (n < vh->count_protocols) {
+			if (vh->protocol_vh_privs &&
+			    vh->protocol_vh_privs[n]) {
+				lws_free(vh->protocol_vh_privs[n]);
+				vh->protocol_vh_privs[n] = NULL;
+			}
+			protocol++;
+			n++;
+		}
+	}
+	if (vh->protocol_vh_privs)
+		lws_free(vh->protocol_vh_privs);
+	lws_ssl_SSL_CTX_destroy(vh);
+	lws_free(vh->same_vh_protocol_list);
+#ifdef LWS_WITH_PLUGINS
+	if (LWS_LIBUV_ENABLED(context)) {
+		if (context->plugin_list)
+			lws_free((void *)vh->protocols);
+	} else
+#endif
+	{
+		if (context->options & LWS_SERVER_OPTION_EXPLICIT_VHOSTS)
+			lws_free((void *)vh->protocols);
+	}
+
+#ifdef LWS_WITH_PLUGINS
+#ifndef LWS_NO_EXTENSIONS
+	if (context->plugin_extension_count)
+		lws_free((void *)vh->extensions);
+#endif
+#endif
+#ifdef LWS_WITH_ACCESS_LOG
+	if (vh->log_fd != (int)LWS_INVALID_FILE)
+		close(vh->log_fd);
+#endif
+
+	/*
+	 * although async event callbacks may still come for wsi handles with
+	 * pending close in the case of asycn event library like libuv,
+	 * they do not refer to the vhost.  So it's safe to free.
+	 */
+
+	lwsl_notice("  %s: Freeing vhost %p\n", __func__, vh);
+
+	memset(vh, 0, sizeof(*vh));
+	lws_free(vh);
+}
+
+int
+lws_check_deferred_free(struct lws_context *context, int force)
+{
+	struct lws_deferred_free *df;
+	time_t now = lws_now_secs();
+
+	lws_start_foreach_llp(struct lws_deferred_free **, pdf, context->deferred_free_list) {
+		if (now > (*pdf)->deadline || force) {
+			df = *pdf;
+			*pdf = df->next;
+			/* finalize vh destruction */
+			lwsl_notice("doing deferred vh %p destroy\n", df->payload);
+			lws_vhost_destroy2(df->payload);
+			lws_free(df);
+			continue; /* after deletion we already point to next */
+		}
+	} lws_end_foreach_llp(pdf, next);
+
+	return 0;
+}
+
+LWS_VISIBLE void
+lws_vhost_destroy(struct lws_vhost *vh)
+{
+	struct lws_deferred_free *df = malloc(sizeof(*df));
+
+	if (!df)
+		return;
+
+	lws_vhost_destroy1(vh);
+
+	/* part 2 is deferred to allow all the handle closes to complete */
+
+	df->next = vh->context->deferred_free_list;
+	df->deadline = lws_now_secs() + 5;
+	df->payload = vh;
+	vh->context->deferred_free_list = df;
+}
+
 LWS_VISIBLE void
 lws_context_destroy(struct lws_context *context)
 {
-	const struct lws_protocols *protocol = NULL;
 	struct lws_context_per_thread *pt;
 	struct lws_vhost *vh = NULL;
 	struct lws wsi;
@@ -1014,19 +1421,7 @@ lws_context_destroy(struct lws_context *context)
 	if (context->protocol_init_done)
 		vh = context->vhost_list;
 	while (vh) {
-		wsi.vhost = vh;
-		protocol = vh->protocols;
-		if (protocol) {
-			n = 0;
-			while (n < vh->count_protocols) {
-				wsi.protocol = protocol;
-				protocol->callback(&wsi, LWS_CALLBACK_PROTOCOL_DESTROY,
-						   NULL, NULL, 0);
-				protocol++;
-				n++;
-			}
-		}
-
+		lws_vhost_destroy1(vh);
 		vh = vh->vhost_next;
 	}
 
@@ -1059,9 +1454,7 @@ lws_context_destroy(struct lws_context *context)
 LWS_VISIBLE void
 lws_context_destroy2(struct lws_context *context)
 {
-	const struct lws_protocols *protocol = NULL;
 	struct lws_vhost *vh = NULL, *vh1;
-	int n;
 
 	lwsl_notice("%s: ctx %p\n", __func__, context);
 
@@ -1071,46 +1464,17 @@ lws_context_destroy2(struct lws_context *context)
 
 	vh = context->vhost_list;
 	while (vh) {
-		protocol = vh->protocols;
-		if (protocol) {
-			n = 0;
-			while (n < vh->count_protocols) {
-				if (vh->protocol_vh_privs &&
-				    vh->protocol_vh_privs[n]) {
-					// lwsl_notice("   %s: freeing per-vhost protocol data %p\n", __func__, vh->protocol_vh_privs[n]);
-					lws_free(vh->protocol_vh_privs[n]);
-					vh->protocol_vh_privs[n] = NULL;
-				}
-				protocol++;
-				n++;
-			}
-		}
-		if (vh->protocol_vh_privs)
-			lws_free(vh->protocol_vh_privs);
-		lws_ssl_SSL_CTX_destroy(vh);
-		lws_free(vh->same_vh_protocol_list);
-#ifdef LWS_WITH_PLUGINS
-		if (context->plugin_list)
-			lws_free((void *)vh->protocols);
-#else
-		if (vh->options & LWS_SERVER_OPTION_EXPLICIT_VHOSTS)
-			lws_free((void *)vh->protocols);
-#endif
-#ifdef LWS_WITH_PLUGINS
-#ifndef LWS_NO_EXTENSIONS
-		if (context->plugin_extension_count)
-			lws_free((void *)vh->extensions);
-#endif
-#endif
-#ifdef LWS_WITH_ACCESS_LOG
-		if (vh->log_fd != (int)LWS_INVALID_FILE)
-			close(vh->log_fd);
-#endif
-
 		vh1 = vh->vhost_next;
-		lws_free(vh);
+		lws_vhost_destroy2(vh);
 		vh = vh1;
 	}
+
+	/* remove ourselves from the pending destruction list */
+
+	while (context->vhost_pending_destruction_list)
+		/* removes itself from list */
+		lws_vhost_destroy2(context->vhost_pending_destruction_list);
+
 
 	lws_stats_log_dump(context);
 
@@ -1119,6 +1483,8 @@ lws_context_destroy2(struct lws_context *context)
 
 	if (context->external_baggage_free_on_destroy)
 		free(context->external_baggage_free_on_destroy);
+
+	lws_check_deferred_free(context, 1);
 
 	lws_free(context);
 }

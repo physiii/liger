@@ -250,6 +250,23 @@ LWS_VISIBLE int lws_write(struct lws *wsi, unsigned char *buf, size_t len,
 	int pre = 0, n;
 	size_t orig_len = len;
 
+	if (wsi->parent_carries_io) {
+		struct lws_write_passthru pas;
+
+		pas.buf = buf;
+		pas.len = len;
+		pas.wp = wp;
+		pas.wsi = wsi;
+
+		if (wsi->parent->protocol->callback(wsi->parent,
+				LWS_CALLBACK_CHILD_WRITE_VIA_PARENT,
+				wsi->parent->user_space,
+				(void *)&pas, 0))
+			return 1;
+
+		return len;
+	}
+
 	lws_stats_atomic_bump(wsi->context, pt, LWSSTATS_C_API_LWS_WRITE, 1);
 
 	if ((int)len < 0) {
@@ -269,7 +286,8 @@ LWS_VISIBLE int lws_write(struct lws *wsi, unsigned char *buf, size_t len,
 	if (wsi->state == LWSS_ESTABLISHED && wsi->u.ws.tx_draining_ext) {
 		/* remove us from the list */
 		struct lws **w = &pt->tx_draining_ext_list;
-		lwsl_debug("%s: TX EXT DRAINING: Remove from list\n", __func__);
+
+	//	lwsl_notice("%s: TX EXT DRAINING: Remove from list\n", __func__);
 		wsi->u.ws.tx_draining_ext = 0;
 		/* remove us from context draining ext list */
 		while (*w) {
@@ -332,11 +350,13 @@ LWS_VISIBLE int lws_write(struct lws *wsi, unsigned char *buf, size_t len,
 	case LWS_WRITE_CLOSE:
 		break;
 	default:
+		lwsl_debug("LWS_EXT_CB_PAYLOAD_TX\n");
 		n = lws_ext_cb_active(wsi, LWS_EXT_CB_PAYLOAD_TX, &eff_buf, wp);
 		if (n < 0)
 			return -1;
 
 		if (n && eff_buf.token_len) {
+			lwsl_debug("drain len %d\n", (int)eff_buf.token_len);
 			/* extension requires further draining */
 			wsi->u.ws.tx_draining_ext = 1;
 			wsi->u.ws.tx_draining_ext_list = pt->tx_draining_ext_list;
@@ -370,8 +390,8 @@ LWS_VISIBLE int lws_write(struct lws *wsi, unsigned char *buf, size_t len,
 	 */
 	if ((char *)buf != eff_buf.token) {
 		/*
-		 * ext might eat it, but no have anything to issue yet
-		 * in that case we have to follow his lead, but stash and
+		 * ext might eat it, but not have anything to issue yet.
+		 * In that case we have to follow his lead, but stash and
 		 * replace the write type that was lost here the first time.
 		 */
 		if (len && !eff_buf.token_len) {
@@ -389,6 +409,13 @@ LWS_VISIBLE int lws_write(struct lws *wsi, unsigned char *buf, size_t len,
 
 	buf = (unsigned char *)eff_buf.token;
 	len = eff_buf.token_len;
+
+	lwsl_debug("%p / %d\n", buf, (int)len);
+
+	if (!buf) {
+		lwsl_err("null buf (%d)\n", (int)len);
+		return -1;
+	}
 
 	switch (wsi->ietf_spec_revision) {
 	case 13:
@@ -513,8 +540,8 @@ send_raw:
 			     wp == LWS_WRITE_HTTP_FINAL) &&
 			    wsi->u.http.content_length) {
 				wsi->u.http.content_remain -= len;
-				lwsl_info("%s: content_remain = %lu\n", __func__,
-					  (unsigned long)wsi->u.http.content_remain);
+				lwsl_info("%s: content_remain = %llu\n", __func__,
+					  (unsigned long long)wsi->u.http.content_remain);
 				if (!wsi->u.http.content_remain) {
 					lwsl_info("%s: selecting final write mode\n", __func__);
 					wp = LWS_WRITE_HTTP_FINAL;
@@ -613,7 +640,7 @@ LWS_VISIBLE int lws_serve_http_file_fragment(struct lws *wsi)
 
 			lwsl_notice("%s: doing range start %llu\n", __func__, wsi->u.http.range.start);
 
-			if ((long)lws_vfs_file_seek_cur(wsi->u.http.fop_fd,
+			if ((long long)lws_vfs_file_seek_cur(wsi->u.http.fop_fd,
 						   wsi->u.http.range.start -
 						   wsi->u.http.filepos) < 0)
 				goto file_had_it;
@@ -679,7 +706,7 @@ LWS_VISIBLE int lws_serve_http_file_fragment(struct lws *wsi)
 			if (wsi->sending_chunked) {
 				args.p = (char *)p;
 				args.len = n;
-				args.max_len = poss + 128;
+				args.max_len = (unsigned int)poss + 128;
 				args.final = wsi->u.http.filepos + n ==
 					     wsi->u.http.filelen;
 				if (user_callback_handle_rxflow(

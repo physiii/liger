@@ -218,6 +218,9 @@ _lws_plat_service_tsi(struct lws_context *context, int timeout_ms, int tsi)
 		/* if something closed, retry this slot */
 		if (n)
 			i--;
+
+		if (wsi->trunc_len)
+			WSASetEvent(pt->events[0]);
 	}
 
 	/*
@@ -398,6 +401,16 @@ LWS_VISIBLE LWS_EXTERN int
 lws_interface_to_sa(int ipv6,
 		const char *ifname, struct sockaddr_in *addr, size_t addrlen)
 {
+#ifdef LWS_USE_IPV6
+	struct sockaddr_in6 *addr6 = (struct sockaddr_in6 *)addr;
+
+	if (ipv6) {
+		if (lws_plat_inet_pton(AF_INET6, ifname, &addr6->sin6_addr) == 1) {
+			return 0;
+		}
+	}
+#endif
+
 	long long address = inet_addr(ifname);
 
 	if (address == INADDR_NONE) {
@@ -409,7 +422,7 @@ lws_interface_to_sa(int ipv6,
 	if (address == INADDR_NONE)
 		return -1;
 
-	addr->sin_addr.s_addr = (unsigned long)address;
+	addr->sin_addr.s_addr = (lws_intptr_t)address;
 
 	return 0;
 }
@@ -525,6 +538,59 @@ lws_plat_inet_ntop(int af, const void *src, char *dst, int cnt)
 	return ok ? dst : NULL;
 }
 
+LWS_VISIBLE int
+lws_plat_inet_pton(int af, const char *src, void *dst)
+{
+	WCHAR *buffer;
+	DWORD bufferlen = strlen(src) + 1;
+	BOOL ok = FALSE;
+
+	buffer = lws_malloc(bufferlen * 2);
+	if (!buffer) {
+		lwsl_err("Out of memory\n");
+		return -1;
+	}
+
+	if (MultiByteToWideChar(CP_ACP, 0, src, bufferlen, buffer, bufferlen) <= 0) {
+		lwsl_err("Failed to convert multi byte to wide char\n");
+		lws_free(buffer);
+		return -1;
+	}
+
+	if (af == AF_INET) {
+		struct sockaddr_in dstaddr;
+		int dstaddrlen = sizeof(dstaddr);
+		bzero(&dstaddr, sizeof(dstaddr));
+		dstaddr.sin_family = AF_INET;
+
+		if (!WSAStringToAddressW(buffer, af, 0, (struct sockaddr *) &dstaddr, &dstaddrlen)) {
+			ok = TRUE;
+			memcpy(dst, &dstaddr.sin_addr, sizeof(dstaddr.sin_addr));
+		}
+#ifdef LWS_USE_IPV6
+	} else if (af == AF_INET6) {
+		struct sockaddr_in6 dstaddr;
+		int dstaddrlen = sizeof(dstaddr);
+		bzero(&dstaddr, sizeof(dstaddr));
+		dstaddr.sin6_family = AF_INET6;
+
+		if (!WSAStringToAddressW(buffer, af, 0, (struct sockaddr *) &dstaddr, &dstaddrlen)) {
+			ok = TRUE;
+			memcpy(dst, &dstaddr.sin6_addr, sizeof(dstaddr.sin6_addr));
+		}
+#endif
+	} else
+		lwsl_err("Unsupported type\n");
+
+	if (!ok) {
+		int rv = WSAGetLastError();
+		lwsl_err("WSAAddressToString() : %d\n", rv);
+	}
+
+	lws_free(buffer);
+	return ok ? 1 : -1;
+}
+
 LWS_VISIBLE lws_fop_fd_t
 _lws_plat_file_open(const struct lws_plat_file_ops *fops, const char *filename,
 		    const char *vpath, lws_fop_flags_t *flags)
@@ -532,6 +598,7 @@ _lws_plat_file_open(const struct lws_plat_file_ops *fops, const char *filename,
 	HANDLE ret;
 	WCHAR buf[MAX_PATH];
 	lws_fop_fd_t fop_fd;
+	LARGE_INTEGER llFileSize = {0};
 
 	MultiByteToWideChar(CP_UTF8, 0, filename, -1, buf, ARRAY_SIZE(buf));
 	if (((*flags) & 7) == _O_RDONLY) {
@@ -554,6 +621,9 @@ _lws_plat_file_open(const struct lws_plat_file_ops *fops, const char *filename,
 	fop_fd->filesystem_priv = NULL; /* we don't use it */
 	fop_fd->flags = *flags;
 	fop_fd->len = GetFileSize(ret, NULL);
+	if(GetFileSizeEx(ret, &llFileSize))
+		fop_fd->len = llFileSize.QuadPart;
+
 	fop_fd->pos = 0;
 
 	return fop_fd;
@@ -578,7 +648,10 @@ _lws_plat_file_close(lws_fop_fd_t *fop_fd)
 LWS_VISIBLE lws_fileofs_t
 _lws_plat_file_seek_cur(lws_fop_fd_t fop_fd, lws_fileofs_t offset)
 {
-	return SetFilePointer((HANDLE)fop_fd->fd, offset, NULL, FILE_CURRENT);
+	LARGE_INTEGER l;
+
+	l.QuadPart = offset;
+	return SetFilePointerEx((HANDLE)fop_fd->fd, l, NULL, FILE_CURRENT);
 }
 
 LWS_VISIBLE int

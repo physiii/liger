@@ -86,8 +86,15 @@ lws_header_table_reset(struct lws *wsi, int autoservice)
 
 	_lws_header_table_reset(ah);
 
+        wsi->u.hdr.parser_state = WSI_TOKEN_NAME_PART;
+        wsi->u.hdr.lextable_pos = 0;
+
 	/* since we will restart the ah, our new headers are not completed */
-	// wsi->hdr_parsing_completed = 0;
+	wsi->hdr_parsing_completed = 0;
+
+	/* while we hold the ah, keep a timeout on the wsi */
+	lws_set_timeout(wsi, PENDING_TIMEOUT_HOLDING_AH,
+			wsi->vhost->timeout_secs_ah_idle);
 
 	/*
 	 * if we inherited pending rx (from socket adoption deferred
@@ -212,6 +219,47 @@ bail:
 	return 1;
 }
 
+void
+lws_header_table_force_to_detachable_state(struct lws *wsi)
+{
+	if (wsi->u.hdr.ah) {
+		wsi->u.hdr.ah->rxpos = -1;
+		wsi->u.hdr.ah->rxlen = -1;
+		wsi->hdr_parsing_completed = 1;
+	}
+}
+
+int
+lws_header_table_is_in_detachable_state(struct lws *wsi)
+{
+	struct allocated_headers *ah = wsi->u.hdr.ah;
+
+	return ah && ah->rxpos == ah->rxlen && wsi->hdr_parsing_completed;
+}
+
+void
+__lws_remove_from_ah_waiting_list(struct lws *wsi)
+{
+        struct lws_context_per_thread *pt = &wsi->context->pt[(int)wsi->tsi];
+	struct lws **pwsi =&pt->ah_wait_list;
+
+	if (wsi->u.hdr.ah)
+		return;
+
+	while (*pwsi) {
+		if (*pwsi == wsi) {
+			lwsl_info("%s: wsi %p, remv wait\n",
+				  __func__, wsi);
+			*pwsi = wsi->u.hdr.ah_wait_list;
+			wsi->u.hdr.ah_wait_list = NULL;
+			pt->ah_wait_list_length--;
+			return;
+		}
+		pwsi = &(*pwsi)->u.hdr.ah_wait_list;
+	}
+}
+
+
 int lws_header_table_detach(struct lws *wsi, int autoservice)
 {
 	struct lws_context *context = wsi->context;
@@ -221,6 +269,13 @@ int lws_header_table_detach(struct lws *wsi, int autoservice)
 	struct lws **pwsi;
 	time_t now;
 
+	lws_pt_lock(pt);
+	__lws_remove_from_ah_waiting_list(wsi);
+	lws_pt_unlock(pt);
+
+	if (!ah)
+		return 0;
+
 	lwsl_info("%s: wsi %p: ah %p (tsi=%d, count = %d)\n", __func__,
 		  (void *)wsi, (void *)ah, wsi->tsi,
 		  pt->ah_count_in_use);
@@ -229,32 +284,14 @@ int lws_header_table_detach(struct lws *wsi, int autoservice)
 		lws_free_set_NULL(wsi->u.hdr.preamble_rx);
 
 	/* may not be detached while he still has unprocessed rx */
-	if (ah && ah->rxpos != ah->rxlen) {
-		lwsl_err("%s: %p: CANNOT DETACH rxpos:%d, rxlen:%d\n", __func__, wsi,
-				ah->rxpos, ah->rxlen);
-		assert(ah->rxpos == ah->rxlen);
-
+	if (!lws_header_table_is_in_detachable_state(wsi)) {
+		lwsl_err("%s: %p: CANNOT DETACH rxpos:%d, rxlen:%d, wsi->hdr_parsing_completed = %d\n", __func__, wsi,
+				ah->rxpos, ah->rxlen, wsi->hdr_parsing_completed);
 		return 0;
 	}
 
 	lws_pt_lock(pt);
 
-	pwsi = &pt->ah_wait_list;
-	if (!ah) { /* remove from wait list if none attached */
-		while (*pwsi) {
-			if (*pwsi == wsi) {
-				lwsl_info("%s: wsi %p, remv wait\n",
-					  __func__, wsi);
-				*pwsi = wsi->u.hdr.ah_wait_list;
-				wsi->u.hdr.ah_wait_list = NULL;
-				pt->ah_wait_list_length--;
-				goto bail;
-			}
-			pwsi = &(*pwsi)->u.hdr.ah_wait_list;
-		}
-		/* no ah, not on list... no more business here */
-		goto bail;
-	}
 	/* we did have an ah attached */
 	time(&now);
 	if (ah->assigned && now - ah->assigned > 3) {
@@ -262,7 +299,7 @@ int lws_header_table_detach(struct lws *wsi, int autoservice)
 		 * we're detaching the ah, but it was held an
 		 * unreasonably long time
 		 */
-		lwsl_notice("%s: wsi %p: ah held %ds, "
+		lwsl_info("%s: wsi %p: ah held %ds, "
 			    "ah.rxpos %d, ah.rxlen %d, mode/state %d %d,"
 			    "wsi->more_rx_waiting %d\n", __func__, wsi,
 			    (int)(now - ah->assigned),
@@ -278,6 +315,8 @@ int lws_header_table_detach(struct lws *wsi, int autoservice)
 	assert(ah->in_use);
 	wsi->u.hdr.ah = NULL;
 	ah->wsi = NULL; /* no owner */
+
+	pwsi = &pt->ah_wait_list;
 
 	/* oh there is nobody on the waiting list... leave it at that then */
 	if (!*pwsi) {
@@ -321,18 +360,21 @@ int lws_header_table_detach(struct lws *wsi, int autoservice)
 	pt->ah_wait_list_length--;
 
 #ifndef LWS_NO_CLIENT
-	if (wsi->state == LWSS_CLIENT_UNCONNECTED)
+	if (wsi->state == LWSS_CLIENT_UNCONNECTED) {
+		lws_pt_unlock(pt);
+
 		if (!lws_client_connect_via_info2(wsi)) {
 			/* our client connect has failed, the wsi
 			 * has been closed
 			 */
-			lws_pt_unlock(pt);
 
 			return -1;
 		}
+		return 0;
+	}
 #endif
 
-	assert(!!pt->ah_wait_list_length == !!(int)(long)pt->ah_wait_list);
+	assert(!!pt->ah_wait_list_length == !!(lws_intptr_t)pt->ah_wait_list);
 bail:
 	lwsl_info("%s: wsi %p: ah %p (tsi=%d, count = %d)\n", __func__,
 	  (void *)wsi, (void *)ah, wsi->tsi,
@@ -346,6 +388,9 @@ LWS_VISIBLE int
 lws_hdr_fragment_length(struct lws *wsi, enum lws_token_indexes h, int frag_idx)
 {
 	int n;
+
+	if (!wsi->u.hdr.ah)
+		return 0;
 
 	n = wsi->u.hdr.ah->frag_index[h];
 	if (!n)
@@ -364,6 +409,9 @@ LWS_VISIBLE int lws_hdr_total_length(struct lws *wsi, enum lws_token_indexes h)
 	int n;
 	int len = 0;
 
+	if (!wsi->u.hdr.ah)
+		return 0;
+
 	n = wsi->u.hdr.ah->frag_index[h];
 	if (!n)
 		return 0;
@@ -379,7 +427,12 @@ LWS_VISIBLE int lws_hdr_copy_fragment(struct lws *wsi, char *dst, int len,
 				      enum lws_token_indexes h, int frag_idx)
 {
 	int n = 0;
-	int f = wsi->u.hdr.ah->frag_index[h];
+	int f;
+
+	if (!wsi->u.hdr.ah)
+		return -1;
+
+	f = wsi->u.hdr.ah->frag_index[h];
 
 	if (!f)
 		return -1;
@@ -408,6 +461,9 @@ LWS_VISIBLE int lws_hdr_copy(struct lws *wsi, char *dst, int len,
 	int n;
 
 	if (toklen >= len)
+		return -1;
+
+	if (!wsi->u.hdr.ah)
 		return -1;
 
 	n = wsi->u.hdr.ah->frag_index[h];
@@ -1107,6 +1163,7 @@ handle_first:
 			wsi->u.ws.rsv_first_msg = (c & 0x70);
 			wsi->u.ws.frame_is_binary =
 			     wsi->u.ws.opcode == LWSWSOPC_BINARY_FRAME;
+			wsi->u.ws.first_fragment = 1;
 			break;
 		case 3:
 		case 4:
@@ -1454,6 +1511,7 @@ drain_extension:
 		/* eff_buf may be pointing somewhere completely different now,
 		 * it's the output
 		 */
+		wsi->u.ws.first_fragment = 0;
 		if (n < 0) {
 			/*
 			 * we may rely on this to get RX, just drop connection

@@ -292,6 +292,20 @@ Mount protocols are used to control what kind of translation happens
 ```
  would cause the url /git/myrepo to pass "myrepo" to the cgi /var/www/cgi-bin/cgit and send the results to the client.
 
+ - http:// or https://  these perform reverse proxying, serving the remote origin content from the mountpoint.  Eg
+
+```
+		{
+		 "mountpoint": "/proxytest",
+		 "origin": "https://libwebsockets.org"
+		}
+```
+
+This will cause your local url `/proxytest` to serve content fetched from libwebsockets.org over ssl; whether it's served from your server using ssl is unrelated and depends how you configured your local server.  Notice if you will use the proxying feature, `LWS_WITH_HTTP_PROXY` is required to be enabled at cmake, and for `https` proxy origins, your lwsws configuration must include `"init-ssl": "1"` and the vhost with the proxy mount must have `"enable-client-ssl": "1"`, even if you are not using ssl to serve.
+
+`/proxytest/abc`, or `/proxytest/abc?def=ghi` etc map to the origin + the part past `/proxytest`, so links and img src urls etc work as do all urls under the origin path.
+
+In addition link and src urls in the document are rewritten so / or the origin url part are rewritten to the mountpoint part.
 
 
 @section lwswsomo Lwsws Other mount options
@@ -562,3 +576,26 @@ Prepare the log directory like this
 	sudo mkdir /var/log/lwsws
 	sudo chmod 700 /var/log/lwsws
 ```
+
+@section lwswsgdb Debugging lwsws with gdb
+
+Hopefully you won't need to debug lwsws itself, but you may want to debug your plugins.  start lwsws like this to have everything running under gdb
+
+```
+sudo gdb -ex "set follow-fork-mode child" -ex "run" --args /usr/local/bin/lwsws
+
+```
+
+this will give nice backtraces in lwsws itself and in plugins, if they were built with symbols.
+
+@section lwswsvgd Running lwsws under valgrind
+
+You can just run lwsws under galgrind as usual and get valid results.  However the results / analysis part of valgrind runs
+after the plugins have removed themselves, this means valgrind backtraces into plugin code is opaque, without
+source-level info because the dynamic library is gone.
+
+There's a simple workaround, use LD_PRELOAD=<plugin.so> before running lwsws, this has the loader bring the plugin
+in before executing lwsws as if it was a direct dependency.  That means it's still mapped until the whole process
+exits after valgtind has done its thing.
+
+

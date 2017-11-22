@@ -58,11 +58,13 @@ static int pids[32];
 #define LWSWS_CONFIG_STRING_SIZE (32 * 1024)
 
 static const struct lws_extension exts[] = {
+#if !defined(LWS_NO_EXTENSIONS)
 	{
 		"permessage-deflate",
 		lws_extension_callback_pm_deflate,
 		"permessage-deflate"
 	},
+#endif
 	{ NULL, NULL, NULL /* terminator */ }
 };
 
@@ -199,8 +201,9 @@ reload_handler(int signum)
 
 int main(int argc, char **argv)
 {
-	int n = 0, m, debug_level = 7;
+	int n = 0, debug_level = 7;
 #ifndef _WIN32
+	int m;
 	int status, syslog_options = LOG_PID | LOG_PERROR;
 #endif
 
@@ -219,7 +222,7 @@ int main(int argc, char **argv)
 			break;
 		case 'h':
 			fprintf(stderr, "Usage: lwsws [-c <config dir>] "
-					"[-d <log bitfield>] [-D] [--help]\n");
+					"[-d <log bitfield>] [--help]\n");
 			exit(1);
 		}
 	}
@@ -302,8 +305,9 @@ int main(int argc, char **argv)
 	lws_context_destroy(context);
 
 #if (UV_VERSION_MAJOR > 0) // Travis...
+	lws_close_all_handles_in_loop(&loop);
 	n = 0;
-	while (n++ < 1024 && uv_loop_close(&loop))
+	while (n++ < 4096 && uv_loop_close(&loop))
 		uv_run(&loop, UV_RUN_NOWAIT);
 #endif
 
@@ -314,6 +318,8 @@ int main(int argc, char **argv)
 #ifndef _WIN32
 	closelog();
 #endif
+
+	context = NULL;
 
 	return 0;
 }

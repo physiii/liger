@@ -222,8 +222,8 @@ callback_motion(struct lws *wsi, enum lws_callback_reasons reason,
 
 		if (!strcmp(motion_command,"threshold")) {
 			printf("%s adjusting threshold!\n", tag);
-			light1_value = 100;
-			light_on(LIGHT1,light1_value);
+			//light1_value = 100;
+			//light_on(LIGHT1,light1_value);
 		}
 		break;
 

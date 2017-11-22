@@ -42,7 +42,12 @@ lws_handshake_client(struct lws *wsi, unsigned char **buf, size_t len)
 				return 0;
 			}
 			if (wsi->u.ws.rx_draining_ext) {
-				m = lws_rx_sm(wsi, 0);
+#if !defined(LWS_NO_CLIENT)
+				if (wsi->mode == LWSCM_WS_CLIENT)
+					m = lws_client_rx_sm(wsi, 0);
+				else
+#endif
+					m = lws_rx_sm(wsi, 0);
 				if (m < 0)
 					return -1;
 				continue;
@@ -81,7 +86,11 @@ lws_client_socket_service(struct lws_context *context, struct lws *wsi,
 	const char *cce = NULL;
 	unsigned char c;
 	char *sb = p;
-	int n, len;
+	int n = 0;
+	ssize_t len = 0;
+#if defined(LWS_WITH_SOCKS5)
+	char conn_mode = 0, pending_timeout = 0;
+#endif
 
 	switch (wsi->mode) {
 
@@ -101,6 +110,101 @@ lws_client_socket_service(struct lws_context *context, struct lws *wsi,
 		/* either still pending connection, or changed mode */
 		return 0;
 
+#if defined(LWS_WITH_SOCKS5)
+	/* SOCKS Greeting Reply */
+	case LWSCM_WSCL_WAITING_SOCKS_GREETING_REPLY:
+	case LWSCM_WSCL_WAITING_SOCKS_AUTH_REPLY:
+	case LWSCM_WSCL_WAITING_SOCKS_CONNECT_REPLY:
+
+		/* handle proxy hung up on us */
+
+		if (pollfd->revents & LWS_POLLHUP) {
+			lwsl_warn("SOCKS connection %p (fd=%d) dead\n",
+				  (void *)wsi, pollfd->fd);
+			goto bail3;
+		}
+
+		n = recv(wsi->desc.sockfd, sb, context->pt_serv_buf_size, 0);
+		if (n < 0) {
+			if (LWS_ERRNO == LWS_EAGAIN) {
+				lwsl_debug("SOCKS read EAGAIN, retrying\n");
+				return 0;
+			}
+			lwsl_err("ERROR reading from SOCKS socket\n");
+			goto bail3;
+		}
+
+		switch (wsi->mode) {
+
+		case LWSCM_WSCL_WAITING_SOCKS_GREETING_REPLY:
+			if (pt->serv_buf[0] != SOCKS_VERSION_5)
+				goto socks_reply_fail;
+
+			if (pt->serv_buf[1] == SOCKS_AUTH_NO_AUTH) {
+				lwsl_client("SOCKS greeting reply: No Auth Method\n");
+				socks_generate_msg(wsi, SOCKS_MSG_CONNECT, &len);
+				conn_mode = LWSCM_WSCL_WAITING_SOCKS_CONNECT_REPLY;
+				pending_timeout = PENDING_TIMEOUT_AWAITING_SOCKS_CONNECT_REPLY;
+				goto socks_send;
+			}
+
+			if (pt->serv_buf[1] == SOCKS_AUTH_USERNAME_PASSWORD) {
+				lwsl_client("SOCKS greeting reply: User/Pw Method\n");
+				socks_generate_msg(wsi, SOCKS_MSG_USERNAME_PASSWORD, &len);
+				conn_mode = LWSCM_WSCL_WAITING_SOCKS_AUTH_REPLY;
+				pending_timeout = PENDING_TIMEOUT_AWAITING_SOCKS_AUTH_REPLY;
+				goto socks_send;
+			}
+			goto socks_reply_fail;
+
+		case LWSCM_WSCL_WAITING_SOCKS_AUTH_REPLY:
+			if (pt->serv_buf[0] != SOCKS_SUBNEGOTIATION_VERSION_1 ||
+			    pt->serv_buf[1] != SOCKS_SUBNEGOTIATION_STATUS_SUCCESS)
+				goto socks_reply_fail;
+
+			lwsl_client("SOCKS password OK, sending connect\n");
+			socks_generate_msg(wsi, SOCKS_MSG_CONNECT, &len);
+			conn_mode = LWSCM_WSCL_WAITING_SOCKS_CONNECT_REPLY;
+			pending_timeout = PENDING_TIMEOUT_AWAITING_SOCKS_CONNECT_REPLY;
+socks_send:
+			n = send(wsi->desc.sockfd, (char *)pt->serv_buf, len,
+				 MSG_NOSIGNAL);
+			if (n < 0) {
+				lwsl_debug("ERROR writing to socks proxy\n");
+				goto bail3;
+			}
+
+			lws_set_timeout(wsi, pending_timeout, AWAITING_TIMEOUT);
+			wsi->mode = conn_mode;
+			break;
+
+socks_reply_fail:
+			lwsl_notice("socks reply: v%d, err %d\n",
+				    pt->serv_buf[0], pt->serv_buf[1]);
+			goto bail3;
+
+		case LWSCM_WSCL_WAITING_SOCKS_CONNECT_REPLY:
+			if (pt->serv_buf[0] != SOCKS_VERSION_5 ||
+			    pt->serv_buf[1] != SOCKS_REQUEST_REPLY_SUCCESS)
+				goto socks_reply_fail;
+
+			lwsl_client("socks connect OK\n");
+
+			/* free stash since we are done with it */
+			lws_free_set_NULL(wsi->u.hdr.stash);
+			if (lws_hdr_simple_create(wsi, _WSI_TOKEN_CLIENT_PEER_ADDRESS,
+						  wsi->vhost->socks_proxy_address))
+				goto bail3;
+
+			wsi->c_port = wsi->vhost->socks_proxy_port;
+
+			/* clear his proxy connection timeout */
+			lws_set_timeout(wsi, NO_PENDING_TIMEOUT, 0);
+			goto start_ws_handshake;
+		}
+		break;
+#endif
+
 	case LWSCM_WSCL_WAITING_PROXY_REPLY:
 
 		/* handle proxy hung up on us */
@@ -110,8 +214,7 @@ lws_client_socket_service(struct lws_context *context, struct lws *wsi,
 			lwsl_warn("Proxy connection %p (fd=%d) dead\n",
 				  (void *)wsi, pollfd->fd);
 
-			lws_close_free_wsi(wsi, LWS_CLOSE_STATUS_NOSTATUS);
-			return 0;
+			goto bail3;
 		}
 
 		n = recv(wsi->desc.sockfd, sb, context->pt_serv_buf_size, 0);
@@ -120,18 +223,15 @@ lws_client_socket_service(struct lws_context *context, struct lws *wsi,
 				lwsl_debug("Proxy read returned EAGAIN... retrying\n");
 				return 0;
 			}
-
-			lws_close_free_wsi(wsi, LWS_CLOSE_STATUS_NOSTATUS);
 			lwsl_err("ERROR reading from proxy socket\n");
-			return 0;
+			goto bail3;
 		}
 
 		pt->serv_buf[13] = '\0';
 		if (strcmp(sb, "HTTP/1.0 200 ") &&
 		    strcmp(sb, "HTTP/1.1 200 ")) {
-			lws_close_free_wsi(wsi, LWS_CLOSE_STATUS_NOSTATUS);
 			lwsl_err("ERROR proxy: %s\n", sb);
-			return 0;
+			goto bail3;
 		}
 
 		/* clear his proxy connection timeout */
@@ -149,6 +249,9 @@ lws_client_socket_service(struct lws_context *context, struct lws *wsi,
 		 * take care of our lws_callback_on_writable
 		 * happening at a time when there's no real connection yet
 		 */
+#if defined(LWS_WITH_SOCKS5)
+start_ws_handshake:
+#endif
 		if (lws_change_pollfd(wsi, LWS_POLLOUT, 0))
 			return -1;
 
@@ -373,7 +476,7 @@ lws_http_transaction_completed_client(struct lws *wsi)
 
 	/* we don't support chained client connections yet */
 	return 1;
-
+#if 0
 	/* otherwise set ourselves up ready to go again */
 	wsi->state = LWSS_CLIENT_HTTP_ESTABLISHED;
 	wsi->mode = LWSCM_HTTP_CLIENT_ACCEPTED;
@@ -388,7 +491,7 @@ lws_http_transaction_completed_client(struct lws *wsi)
 	 * we can drop the ah, if any
 	 */
 	if (wsi->u.hdr.ah) {
-		wsi->u.hdr.ah->rxpos = wsi->u.hdr.ah->rxlen;
+		lws_header_table_force_to_detachable_state(wsi);
 		lws_header_table_detach(wsi, 0);
 	}
 
@@ -398,6 +501,7 @@ lws_http_transaction_completed_client(struct lws *wsi)
 	lwsl_info("%s: %p: keep-alive await new transaction\n", __func__, wsi);
 
 	return 0;
+#endif
 }
 
 LWS_VISIBLE LWS_EXTERN unsigned int
@@ -430,6 +534,8 @@ lws_client_interpret_server_handshake(struct lws *wsi)
 	int more = 1;
 	void *v;
 #endif
+	if (wsi->u.hdr.stash)
+		lws_free_set_NULL(wsi->u.hdr.stash);
 
 	ah = wsi->u.hdr.ah;
 	if (!wsi->do_ws) {
@@ -589,10 +695,10 @@ lws_client_interpret_server_handshake(struct lws *wsi)
 
 		if (lws_hdr_total_length(wsi, WSI_TOKEN_HTTP_CONTENT_LENGTH)) {
 			wsi->u.http.content_length =
-					atoi(lws_hdr_simple_ptr(wsi,
+					atoll(lws_hdr_simple_ptr(wsi,
 						WSI_TOKEN_HTTP_CONTENT_LENGTH));
-			lwsl_notice("%s: incoming content length %d\n", __func__,
-					wsi->u.http.content_length);
+			lwsl_notice("%s: incoming content length %llu\n", __func__,
+					(unsigned long long)wsi->u.http.content_length);
 			wsi->u.http.content_remain = wsi->u.http.content_length;
 		} else /* can't do 1.1 without a content length or chunked */
 			if (!wsi->chunked)
@@ -1063,7 +1169,7 @@ lws_generate_client_handshake(struct lws *wsi, char *pkt)
 				wsi->user_space, NULL, 0))
 			return NULL;
 
-		wsi->u.hdr.ah->rxpos = wsi->u.hdr.ah->rxlen;
+		lws_header_table_force_to_detachable_state(wsi);
 		lws_union_transition(wsi, LWSCM_RAW);
 		lws_header_table_detach(wsi, 1);
 

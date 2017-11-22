@@ -27,7 +27,7 @@ extern int openssl_websocket_private_data_index,
 extern void
 lws_ssl_bind_passphrase(SSL_CTX *ssl_ctx, struct lws_context_creation_info *info);
 
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 static int
 OpenSSL_verify_callback(int preverify_ok, X509_STORE_CTX *x509_ctx)
 {
@@ -104,7 +104,7 @@ static int
 lws_context_ssl_init_ecdh_curve(struct lws_context_creation_info *info,
 				struct lws_vhost *vhost)
 {
-#ifdef LWS_HAVE_OPENSSL_ECDH_H
+#if defined(LWS_HAVE_OPENSSL_ECDH_H) && !defined(LWS_USE_MBEDTLS)
 	EC_KEY *ecdh;
 	int ecdh_nid;
 	const char *ecdh_curve = "prime256v1";
@@ -130,14 +130,14 @@ lws_context_ssl_init_ecdh_curve(struct lws_context_creation_info *info,
 
 	lwsl_notice(" SSL ECDH curve '%s'\n", ecdh_curve);
 #else
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 	lwsl_notice(" OpenSSL doesn't support ECDH\n");
 #endif
 #endif
 	return 0;
 }
 
-#ifndef OPENSSL_NO_TLSEXT
+#if defined(SSL_TLSEXT_ERR_NOACK) && !defined(OPENSSL_NO_TLSEXT)
 static int
 lws_ssl_server_name_cb(SSL *ssl, int *ad, void *arg)
 {
@@ -160,7 +160,7 @@ lws_ssl_server_name_cb(SSL *ssl, int *ad, void *arg)
 	 */
 	vh = context->vhost_list;
 	while (vh) {
-		if (vh->ssl_ctx == SSL_get_SSL_CTX(ssl))
+		if (!vh->being_destroyed && vh->ssl_ctx == SSL_get_SSL_CTX(ssl))
 			break;
 		vh = vh->vhost_next;
 	}
@@ -198,9 +198,22 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 		vhost->use_ssl = 0;
 		return 0;
 	}
+
+	/*
+	 * If he is giving a cert filepath, take it as a sign he wants to use
+	 * it on this vhost.  User code can leave the cert filepath NULL and
+	 * set the LWS_SERVER_OPTION_CREATE_VHOST_SSL_CTX option itself, in
+	 * which case he's expected to set up the cert himself at
+	 * LWS_CALLBACK_OPENSSL_LOAD_EXTRA_SERVER_VERIFY_CERTS, which
+	 * provides the vhost SSL_CTX * in the user parameter.
+	 */
+	if (info->ssl_cert_filepath)
+		info->options |= LWS_SERVER_OPTION_CREATE_VHOST_SSL_CTX;
+
 	if (info->port != CONTEXT_PORT_NO_LISTEN) {
 
-		vhost->use_ssl = info->ssl_cert_filepath != NULL;
+		vhost->use_ssl = lws_check_opt(info->options,
+					LWS_SERVER_OPTION_CREATE_VHOST_SSL_CTX);
 
 		if (vhost->use_ssl && info->ssl_cipher_list)
 			lwsl_notice(" SSL ciphers: '%s'\n", info->ssl_cipher_list);
@@ -230,7 +243,7 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 	 * versions", compared to e.g. TLSv1_2_server_method() which only allows
 	 * tlsv1.2. Unwanted versions must be disabled using SSL_CTX_set_options()
 	 */
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 	{
 		SSL_METHOD *method;
 
@@ -263,7 +276,7 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 
 	}
 #endif
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 
 	/* associate the lws context with the SSL_CTX */
 
@@ -292,7 +305,7 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 				   LWS_SERVER_OPTION_PEER_CERT_NOT_REQUIRED))
 			verify_options |= SSL_VERIFY_FAIL_IF_NO_PEER_CERT;
 
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 		SSL_CTX_set_session_id_context(vhost->ssl_ctx,
 				(unsigned char *)context, sizeof(void *));
 
@@ -303,7 +316,7 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 #endif
 	}
 
-#ifndef OPENSSL_NO_TLSEXT
+#if !defined(LWS_USE_MBEDTLS) && !defined(OPENSSL_NO_TLSEXT)
 	SSL_CTX_set_tlsext_servername_callback(vhost->ssl_ctx,
 					       lws_ssl_server_name_cb);
 #endif
@@ -312,7 +325,7 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 	 * give user code a chance to load certs into the server
 	 * allowing it to verify incoming client certs
 	 */
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 	if (info->ssl_ca_filepath &&
 	    !SSL_CTX_load_verify_locations(vhost->ssl_ctx,
 					   info->ssl_ca_filepath, NULL)) {
@@ -336,17 +349,27 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 		SSL_CTX_set_options(vhost->ssl_ctx, info->ssl_options_set);
 
 /* SSL_clear_options introduced in 0.9.8m */
+#if !defined(LWS_USE_MBEDTLS)
 #if (OPENSSL_VERSION_NUMBER >= 0x009080df) && !defined(USE_WOLFSSL)
 	if (info->ssl_options_clear)
 		SSL_CTX_clear_options(vhost->ssl_ctx, info->ssl_options_clear);
 #endif
+#endif
 
-	lwsl_info(" SSL options 0x%lX\n",
-		    SSL_CTX_get_options(vhost->ssl_ctx));
+	lwsl_info(" SSL options 0x%lX\n", SSL_CTX_get_options(vhost->ssl_ctx));
 
-	if (vhost->use_ssl) {
-		/* openssl init for server sockets */
-#if !defined(LWS_WITH_ESP32)
+	if (vhost->use_ssl && info->ssl_cert_filepath) {
+		/*
+		 * The user code can choose to either pass the cert and
+		 * key filepaths using the info members like this, or it can
+		 * leave them NULL; force the vhost SSL_CTX init using the info
+		 * options flag LWS_SERVER_OPTION_CREATE_VHOST_SSL_CTX; and
+		 * set up the cert himself using the user callback
+		 * LWS_CALLBACK_OPENSSL_LOAD_EXTRA_SERVER_VERIFY_CERTS, which
+		 * happened just above and has the vhost SSL_CTX * in the user
+		 * parameter.
+		 */
+#if !defined(LWS_USE_MBEDTLS)
 		/* set the local certificate from CertFile */
 		n = SSL_CTX_use_certificate_chain_file(vhost->ssl_ctx,
 					info->ssl_cert_filepath);
@@ -377,6 +400,10 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 			lwsl_err("Problem loading cert\n");
 			return 1;
 		}
+#if !defined(LWS_WITH_ESP32)
+		free(p);
+		p = NULL;
+#endif
 
 		if (alloc_pem_to_der_file(vhost->context,
 			       info->ssl_private_key_filepath, &p, &flen)) {
@@ -392,10 +419,13 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 			return 1;
 		}
 
-//		free(p);
+#if !defined(LWS_WITH_ESP32)
+		free(p);
+		p = NULL;
+#endif
 #endif
 		if (info->ssl_private_key_filepath != NULL) {
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 			/* set the private key from KeyFile */
 			if (SSL_CTX_use_PrivateKey_file(vhost->ssl_ctx,
 				     info->ssl_private_key_filepath,
@@ -416,13 +446,15 @@ lws_context_init_server_ssl(struct lws_context_creation_info *info,
 
 				return 1;
 			}
-#if !defined(LWS_WITH_ESP32)
+#if !defined(LWS_USE_MBEDTLS)
 		/* verify private key */
 		if (!SSL_CTX_check_private_key(vhost->ssl_ctx)) {
 			lwsl_err("Private SSL key doesn't match cert\n");
 			return 1;
 		}
 #endif
+	}
+	if (vhost->use_ssl) {
 		if (lws_context_ssl_init_ecdh(vhost))
 			return 1;
 

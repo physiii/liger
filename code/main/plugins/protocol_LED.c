@@ -42,8 +42,8 @@
 
 
 #define LED_R     18
-#define LED_G     19
-#define LED_B     5
+#define LED_G     5
+#define LED_B     17
 
 int LED_R_value = 0;
 int LED_G_value = 0;

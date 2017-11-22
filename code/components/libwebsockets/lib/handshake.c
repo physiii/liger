@@ -60,10 +60,10 @@
  */
 
 LWS_VISIBLE int
-lws_read(struct lws *wsi, unsigned char *buf, size_t len)
+lws_read(struct lws *wsi, unsigned char *buf, lws_filepos_t len)
 {
 	unsigned char *last_char, *oldbuf = buf;
-	int body_chunk_len;
+	lws_filepos_t body_chunk_len;
 	size_t n;
 
 	lwsl_debug("%s: incoming len %d  state %d\n", __func__, (int)len, wsi->state);
@@ -95,17 +95,16 @@ lws_read(struct lws *wsi, unsigned char *buf, size_t len)
 		break;
 #endif
 
+	case LWSS_HTTP_ISSUING_FILE:
+		return 0;
+
 	case LWSS_CLIENT_HTTP_ESTABLISHED:
 		break;
 
 	case LWSS_HTTP:
 		wsi->hdr_parsing_completed = 0;
 		/* fallthru */
-	case LWSS_HTTP_ISSUING_FILE:
-		wsi->state = LWSS_HTTP_HEADERS;
-		wsi->u.hdr.parser_state = WSI_TOKEN_NAME_PART;
-		wsi->u.hdr.lextable_pos = 0;
-		/* fallthru */
+
 	case LWSS_HTTP_HEADERS:
 		if (!wsi->u.hdr.ah) {
 			lwsl_err("%s: LWSS_HTTP_HEADERS: NULL ah\n", __func__);
@@ -113,11 +112,11 @@ lws_read(struct lws *wsi, unsigned char *buf, size_t len)
 		}
 		lwsl_parser("issuing %d bytes to parser\n", (int)len);
 
-		if (lws_handshake_client(wsi, &buf, len))
+		if (lws_handshake_client(wsi, &buf, (size_t)len))
 			goto bail;
 
 		last_char = buf;
-		if (lws_handshake_server(wsi, &buf, len))
+		if (lws_handshake_server(wsi, &buf, (size_t)len))
 			/* Handshake indicates this session is done. */
 			goto bail;
 
@@ -190,10 +189,10 @@ http_postbody:
 #endif
 				n = wsi->protocol->callback(wsi,
 					LWS_CALLBACK_HTTP_BODY, wsi->user_space,
-					buf, body_chunk_len);
+					buf, (size_t)body_chunk_len);
 				if (n)
 					goto bail;
-				n = body_chunk_len;
+				n = (size_t)body_chunk_len;
 #ifdef LWS_WITH_CGI
 			}
 #endif
@@ -230,13 +229,14 @@ postbody_completion:
 
 	case LWSS_ESTABLISHED:
 	case LWSS_AWAITING_CLOSE_ACK:
+	case LWSS_WAITING_TO_SEND_CLOSE_NOTIFICATION:
 	case LWSS_SHUTDOWN:
-		if (lws_handshake_client(wsi, &buf, len))
+		if (lws_handshake_client(wsi, &buf, (size_t)len))
 			goto bail;
 		switch (wsi->mode) {
 		case LWSCM_WS_SERVING:
 
-			if (lws_interpret_incoming_packet(wsi, &buf, len) < 0) {
+			if (lws_interpret_incoming_packet(wsi, &buf, (size_t)len) < 0) {
 				lwsl_info("interpret_incoming_packet has bailed\n");
 				goto bail;
 			}

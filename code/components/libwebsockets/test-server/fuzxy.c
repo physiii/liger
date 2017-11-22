@@ -263,19 +263,19 @@ static const struct test tests[] = {
 	  }, { 0, 4 }, 1 },
 };
 
-static const int ring_size(struct ring *r)
+static int ring_size(struct ring *r)
 {
 	return sizeof(r->buf);
 }
-static const int ring_used(struct ring *r)
+static int ring_used(struct ring *r)
 {
 	return (r->head - r->tail) & (ring_size(r) - 1);
 }
-static const int ring_free(struct ring *r)
+static int ring_free(struct ring *r)
 {
 	return (ring_size(r) - 1) - ring_used(r);
 }
-static const int ring_get_one(struct ring *r)
+static int ring_get_one(struct ring *r)
 {
 	int n = r->buf[r->tail] & 255;
 
@@ -842,6 +842,7 @@ main(int argc, char **argv)
 	construct_state(pfds, FZY_S_LISTENING, POLLIN | POLLERR);
 	pfds++;
 
+	(void)interface_name_local;
 	lwsl_notice("Local side listening on %s:%u\n",
 		    interface_name_local, port_local);
 

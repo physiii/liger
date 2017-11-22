@@ -12,6 +12,8 @@ designed to run from the 2.9MB OTA partition.
 
 ## Build
 
+This was built and tested againt esp-idf "v3", at 050ae50e83df4944478e9d15866a3870ac39336b.
+
 Clone and bring in the lws submodule (it's unpatched lws master)
 
 ```

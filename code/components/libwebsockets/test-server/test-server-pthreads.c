@@ -37,6 +37,10 @@ struct lws_context *context;
 char crl_path[1024] = "";
 #endif
 
+#define LWS_PLUGIN_STATIC
+#include "../plugins/protocol_lws_mirror.c"
+#include "../plugins/protocol_lws_status.c"
+
 /*
  * This mutex lock protects code that changes or relies on wsi list outside of
  * the service thread.	The service thread will acquire it when changing the
@@ -87,6 +91,7 @@ enum demo_protocols {
 
 	PROTOCOL_DUMB_INCREMENT,
 	PROTOCOL_LWS_MIRROR,
+	PROTOCOL_LWS_STATUS,
 
 	/* always last */
 	DEMO_PROTOCOL_COUNT
@@ -107,14 +112,13 @@ static struct lws_protocols protocols[] = {
 		"dumb-increment-protocol",
 		callback_dumb_increment,
 		sizeof(struct per_session_data__dumb_increment),
-		10,
+		10, /* rx buf size must be >= permessage-deflate rx size
+		     * dumb-increment only sends very small packets, so we set
+		     * this accordingly.  If your protocol will send bigger
+		     * things, adjust this to match */
 	},
-	{
-		"lws-mirror-protocol",
-		callback_lws_mirror,
-		sizeof(struct per_session_data__lws_mirror),
-		128,
-	},
+	LWS_PLUGIN_PROTOCOL_MIRROR,
+	LWS_PLUGIN_PROTOCOL_LWS_STATUS,
 	{ NULL, NULL, 0, 0 } /* terminator */
 };
 
@@ -138,7 +142,7 @@ void *thread_dumb_increment(void *threadid)
 
 void *thread_service(void *threadid)
 {
-	while (lws_service_tsi(context, 50, (int)(long)threadid) >= 0 && !force_exit)
+	while (lws_service_tsi(context, 50, (int)(lws_intptr_t)threadid) >= 0 && !force_exit)
 		;
 
 	pthread_exit(NULL);
@@ -364,7 +368,7 @@ int main(int argc, char **argv)
 
 	for (n = 0; n < lws_get_count_threads(context); n++)
 		if (pthread_create(&pthread_service[n], NULL, thread_service,
-				   (void *)(long)n))
+				   (void *)(lws_intptr_t)n))
 			lwsl_err("Failed to start service thread\n");
 
 	/* wait for all the service threads to exit */

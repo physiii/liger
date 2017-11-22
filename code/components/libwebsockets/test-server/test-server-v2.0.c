@@ -25,8 +25,20 @@
 #include <syslog.h>
 #endif
 
+/* windows has no SIGUSR1 */
+#if !defined(WIN32) && !defined(_WIN32)
+#define TEST_DYNAMIC_VHOST
+#endif
+
+struct lws_context_creation_info info;
 int debug_level = 7;
 struct lws_context *context;
+
+#if defined(TEST_DYNAMIC_VHOST)
+volatile int dynamic_vhost_enable = 0;
+struct lws_vhost *dynamic_vhost;
+uv_timer_t timeout_watcher;
+#endif
 
 /* http server gets files from this path */
 #define LOCAL_RESOURCE_PATH INSTALL_DATADIR"/libwebsockets-test-server"
@@ -47,6 +59,44 @@ char crl_path[1024] = "";
  *
  * You can find the individual protocol plugin sources in ../plugins
  */
+
+#if defined(TEST_DYNAMIC_VHOST)
+
+/*
+ *  to test dynamic vhost creation, fire a SIGUSR1 at the test server.
+ * It will toggle the existence of a second identical vhost at port + 1
+ *
+ * To synchronize with the event loop, it uses a libuv timer with 0 delay
+ * to get the business end called as the next event.
+ */
+
+static void
+uv_timeout_dynamic_vhost_toggle(uv_timer_t *w
+#if UV_VERSION_MAJOR == 0
+		, int status
+#endif
+)
+{
+	if (dynamic_vhost_enable && !dynamic_vhost) {
+		lwsl_notice("creating dynamic vhost...\n");
+		dynamic_vhost = lws_create_vhost(context, &info);
+	} else
+		if (!dynamic_vhost_enable && dynamic_vhost) {
+			lwsl_notice("destroying dynamic vhost...\n");
+			lws_vhost_destroy(dynamic_vhost);
+			dynamic_vhost = NULL;
+		}
+}
+
+void sighandler_USR1(int sig)
+{
+	dynamic_vhost_enable ^= 1;
+	lwsl_notice("SIGUSR1: dynamic_vhost_enable: %d\n",
+			dynamic_vhost_enable);
+	uv_timer_start(&timeout_watcher,
+		       uv_timeout_dynamic_vhost_toggle, 0, 0);
+}
+#endif
 
 void sighandler(int sig)
 {
@@ -176,8 +226,15 @@ static const struct lws_protocol_vhost_options pvo_opt4 = {
  * linked-list.  We can also give the plugin per-vhost options here.
  */
 
-static const struct lws_protocol_vhost_options pvo_4 = {
+static const struct lws_protocol_vhost_options pvo_5 = {
 	NULL,
+	NULL,
+	"lws-meta",
+	"" /* ignored, just matches the protocol name above */
+};
+
+static const struct lws_protocol_vhost_options pvo_4 = {
+	&pvo_5,
 	&pvo_opt4, /* set us as the protocol who gets raw connections */
 	"protocol-lws-raw-test",
 	"" /* ignored, just matches the protocol name above */
@@ -231,6 +288,7 @@ static const struct option options[] = {
 	{ "debug",	required_argument,	NULL, 'd' },
 	{ "port",	required_argument,	NULL, 'p' },
 	{ "ssl",	no_argument,		NULL, 's' },
+	{ "ssl-alerts",	no_argument,		NULL, 'S' },
 	{ "allow-non-ssl",	no_argument,	NULL, 'a' },
 	{ "interface",  required_argument,	NULL, 'i' },
 	{ "ssl-cert",  required_argument,	NULL, 'C' },
@@ -256,7 +314,7 @@ static const char * const plugin_dirs[] = {
 
 int main(int argc, char **argv)
 {
-	struct lws_context_creation_info info;
+	struct lws_vhost *vhost;
 	char interface_name[128] = "";
 	const char *iface = NULL;
 	char cert_path[1024] = "";
@@ -281,7 +339,7 @@ int main(int argc, char **argv)
 	info.port = 7681;
 
 	while (n >= 0) {
-		n = getopt_long(argc, argv, "i:hsap:d:Dr:C:K:A:R:vu:g:",
+		n = getopt_long(argc, argv, "i:hsap:d:Dr:C:K:A:R:vu:g:S",
 				(struct option *)options, NULL);
 		if (n < 0)
 			continue;
@@ -305,6 +363,11 @@ int main(int argc, char **argv)
 			break;
 		case 's':
 			use_ssl = 1;
+			break;
+		case 'S':
+#if defined(LWS_OPENSSL_SUPPORT)
+			info.ssl_info_event_mask |= SSL_CB_ALERT;
+#endif
 			break;
 		case 'a':
 			opts |= LWS_SERVER_OPTION_ALLOW_NON_SSL_ON_SSL_PORT;
@@ -368,6 +431,9 @@ int main(int argc, char **argv)
 #endif
 
 	signal(SIGINT, sighandler);
+#if defined(TEST_DYNAMIC_VHOST)
+	signal(SIGUSR1, sighandler_USR1);
+#endif
 
 #ifndef _WIN32
 	/* we will only try to log things according to our debug_level */
@@ -379,7 +445,7 @@ int main(int argc, char **argv)
 	lws_set_log_level(debug_level, lwsl_emit_syslog);
 
 	lwsl_notice("libwebsockets test server - license LGPL2.1+SLE\n");
-	lwsl_notice("(C) Copyright 2010-2016 Andy Green <andy@warmcat.com>\n");
+	lwsl_notice("(C) Copyright 2010-2017 Andy Green <andy@warmcat.com>\n");
 
 	lwsl_notice(" Using resource path \"%s\"\n", resource_path);
 
@@ -390,7 +456,8 @@ int main(int argc, char **argv)
 	info.gid = gid;
 	info.uid = uid;
 	info.max_http_header_pool = 16;
-	info.options = opts | LWS_SERVER_OPTION_FALLBACK_TO_RAW |
+	info.options = opts | LWS_SERVER_OPTION_EXPLICIT_VHOSTS |
+			LWS_SERVER_OPTION_FALLBACK_TO_RAW |
 			LWS_SERVER_OPTION_VALIDATE_UTF8 |
 			LWS_SERVER_OPTION_LIBUV; /* plugins require this */
 
@@ -441,17 +508,16 @@ int main(int argc, char **argv)
 	/* tell lws about our mount we want */
 	info.mounts = &mount;
 	/*
-	 *  give it our linked-list of Per-Vhost Options, these control
+	 * give it our linked-list of Per-Vhost Options, these control
 	 * which protocols (from plugins) are allowed to be enabled on
 	 * our vhost
 	 */
 	info.pvo = &pvo;
 
 	/*
-	 * As it is, this creates the context and a single Vhost at the same
-	 * time.  You can use LWS_SERVER_OPTION_EXPLICIT_VHOSTS option above
-	 * to just create the context, and call lws_create_vhost() afterwards
-	 * multiple times with different info to get multiple listening vhosts.
+	 * Since we used LWS_SERVER_OPTION_EXPLICIT_VHOSTS, this only creates
+	 * the context.  We can modify info and create as many vhosts as we
+	 * like subsequently.
 	 */
 	context = lws_create_context(&info);
 	if (context == NULL) {
@@ -459,15 +525,42 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
+	/*
+	 *  normally we would adapt at least info.name to reflect the
+	 * external hostname for this server.
+	 */
+	vhost = lws_create_vhost(context, &info);
+	if (!vhost) {
+		lwsl_err("vhost creation failed\n");
+		return -1;
+	}
+
+#if defined(TEST_DYNAMIC_VHOST)
+	/* our dynamic vhost is on port + 1 */
+	info.port++;
+#endif
+
 	/* libuv event loop */
 	lws_uv_sigint_cfg(context, 1, signal_cb);
-	if (lws_uv_initloop(context, NULL, 0))
+	if (lws_uv_initloop(context, NULL, 0)) {
 		lwsl_err("lws_uv_initloop failed\n");
-	else
-		lws_libuv_run(context, 0);
+		goto bail;
+	}
 
+#if defined(TEST_DYNAMIC_VHOST)
+	uv_timer_init(lws_uv_getloop(context, 0), &timeout_watcher);
+#endif
+	lws_libuv_run(context, 0);
+
+#if defined(TEST_DYNAMIC_VHOST)
+	uv_timer_stop(&timeout_watcher);
+	uv_close((uv_handle_t *)&timeout_watcher, NULL);
+#endif
+
+bail:
 	/* when we decided to exit the event loop */
 	lws_context_destroy(context);
+	lws_context_destroy2(context);
 	lwsl_notice("libwebsockets-test-server exited cleanly\n");
 
 #ifndef _WIN32

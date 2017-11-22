@@ -47,7 +47,7 @@
 #define SAMPLE_SIZE (128)
 #define SAMPLE_RATE (44100)
 char temp_str[50];
-bool token_received = false;
+
 bool request_sent = false;
 uint8_t mac[6];
 char mac_str[20];
@@ -160,10 +160,6 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
 {
 	char tag[50] = "[token-protocol]";
-        esp_wifi_get_mac(WIFI_IF_STA,mac);
-	sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
-           mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
-           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
 	struct per_session_data__token *pss =
 			(struct per_session_data__token *)user;
 	struct per_vhost_data__token *vhd =
@@ -182,6 +178,11 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_PROTOCOL_INIT:
 		printf("%s initialize\n",tag);
+	        esp_wifi_get_mac(WIFI_IF_STA,mac);
+		sprintf(mac_str,"%02x:%02x:%02x:%02x:%02x:%02x",
+	           mac[0] & 0xff, mac[1] & 0xff, mac[2] & 0xff,
+	           mac[3] & 0xff, mac[4] & 0xff, mac[5] & 0xff);
+
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
 				sizeof(struct per_vhost_data__token));
@@ -208,15 +209,28 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		pss->number = 0;
 		break;
 
+	case LWS_CALLBACK_CLOSED:
+		is_connected = false;
+		token_received = false;
+		initiate_protocols = false;
+		request_sent = false;
+		break;
+
+	case LWS_CALLBACK_HTTP_DROP_PROTOCOL:
+		break;
+
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("[LWS_CALLBACK_CLIENT_WRITEABLE] sum: %d\n",sum);
+		if (!is_connected) initiate_protocols = true;
+		//else initiate_protocols = false;
+		is_connected = true;
 		if (token_received) break;
 		if (request_sent) break;
 
                 strcpy(token_req_str, "{\"mac\":\"");
 		strcat(token_req_str,mac_str);
                 strcat(token_req_str, "\",\"cmd\":\"token_request\"");
-                strcat(token_req_str, ",\"device_type\":[\"room_sensor\"]");
+                strcat(token_req_str, ",\"device_type\":[\"regulator\"]");
 		strcat(token_req_str,"}");
 		n = lws_snprintf((char *)p, sizeof(token_req_str) - LWS_PRE, "%s", token_req_str);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);

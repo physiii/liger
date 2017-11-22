@@ -26,32 +26,13 @@
 #include "soc/sens_reg.h"
 #include "esp_log.h"
 
-#if defined(LWS_WITH_ESP8266)
-#define DUMB_PERIOD 50
-#else
-#define DUMB_PERIOD 50
-#endif
-
 #define SAMPLE_SIZE (128)
 #define SAMPLE_RATE (44100)
 
-
-
-#define LIGHT1    15
-#define LIGHT2    20
-
-#define GPIO_OUTPUT_PIN_SEL  ((1<<LIGHT1) | (1<<LIGHT2))
-#define GPIO_INPUT_IO_0     4
-#define GPIO_INPUT_IO_1     5
-#define GPIO_INPUT_PIN_SEL  ((1<<GPIO_INPUT_IO_0) | (1<<GPIO_INPUT_IO_1))
+#define POWER_EN     17
+#define POWER_EN2    2
+#define GPIO_OUTPUT_PIN_SEL  ((1<<POWER_EN) | (1<<POWER_EN2))
 #define ESP_INTR_FLAG_DEFAULT 0
-
-int light1_value = 0;
-int light2_value = 0;
-int light3_value = 0;
-int light4_value = 0;
-
-
 
 char temp_str[50];
 bool buttons_received = false;
@@ -68,9 +49,10 @@ bool button_req_sent = false;
 char button_str[250] = "";
 static bool s_pad_activated[TOUCH_PAD_MAX];
 static bool s_pad_activated_notify[TOUCH_PAD_MAX];
-static bool s_pad_activated_light[TOUCH_PAD_MAX];
+static bool s_pad_activated_power_en[TOUCH_PAD_MAX];
 bool touch_activated = false;
 char buttons_req_str[1024];
+int power_en_value = 0;
 
 struct per_vhost_data__buttons {
 	uv_timer_t timeout_watcher;
@@ -112,46 +94,41 @@ uv_timeout_cb_buttons(uv_timer_t *w
 }
 
 // ------------- //
-// light actions //
+// power_en actions //
 // ------------- //
-bool light1_hold = false;
+bool power_en_hold = false;
 
-static void light_on(int channel, int value) {
+static void power_en(int channel, int value) {
 	char tag[50] = "[buttons-protocol]";
-        printf("%s setting channel: %d to %d\n", tag, channel, value);
-        gpio_set_level(LIGHT1, value);
+        printf("%s setting power_en pin to %d to %d\n", tag, channel, value);
+        gpio_set_level(POWER_EN, value);
 }
 
-static void light_task(void* arg) {
+static void power_en_task(void* arg) {
     char tag[50] = "[buttons-protocol]";
     while(1) {
 
         for (int i=0; i<TOUCH_PAD_MAX; i++) {
-            if (s_pad_activated_light[i] == true) {
-		if (i == 1) continue;
-		s_pad_activated_light[i] = false;
-        	//printf("%s light hold: %d \n", tag, light1_hold);
-		if (!light1_hold) {
-			if (light1_value > 50) {light1_value = 0;}
-			else {light1_value = 100;}
-			light_on(LIGHT1, light1_value);
-			LED_G_value = light1_value * 80;
+            if (s_pad_activated_power_en[i] == true) {
+		if (i != 6) continue;
+		if (!power_en_hold) {
+        	        printf("%s touch pressed %d\n", tag, i);
+			if (power_en_value > 50) {power_en_value = 0;}
+			else {power_en_value = 100;}
+			//power_en(POWER_EN, power_en_value);
+			//LED_G_value = power_en_value * 80;
 			//LED_loop();
-		        //gpio_set_level(LIGHT1, light1_value);
-			light1_hold = true;
+		        gpio_set_level(POWER_EN, power_en_value);
+			power_en_hold = true;
 	        	vTaskDelay(1000 / portTICK_PERIOD_MS);
-			light1_hold = false;
+			power_en_hold = false;
 		}
             }
+            s_pad_activated_power_en[i] = false;
         }
        	vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
-
-static void light_fade(int velocity, bool direction) {
-
-}
-
 
 /*
   Read values sensed at all available touch pads.
@@ -167,7 +144,7 @@ static void tp_example_set_thresholds(void)
     uint16_t touch_value;
     for (int i=0; i<TOUCH_PAD_MAX; i++) {
         ESP_ERROR_CHECK(touch_pad_read(i, &touch_value));
-        printf("T%d intial value: %d\n", i, touch_value);
+        //printf("T%d intial value: %d\n", i, touch_value);
         ESP_ERROR_CHECK(touch_pad_config(i, touch_value/2));
     }
 }
@@ -186,7 +163,7 @@ static void tp_example_read_task(void *pvParameter)
             if (s_pad_activated[i] == true) {
                 //printf("T%d activated!\n", i);
                 s_pad_activated_notify[i] = true;
-                s_pad_activated_light[i] = true;
+                s_pad_activated_power_en[i] = true;
                 s_pad_activated[i] = false;
                 vTaskDelay(200 / portTICK_PERIOD_MS);
             }
@@ -221,6 +198,16 @@ static void tp_example_rtc_intr(void * arg)
 // ---- //
 // gpio //
 // ---- //
+void gpio_init()
+{
+	gpio_config_t io_conf;
+	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+	io_conf.mode = GPIO_MODE_OUTPUT;
+	io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;
+	io_conf.pull_down_en = 0;
+	io_conf.pull_up_en = 0;
+	gpio_config(&io_conf);
+}
 
 static xQueueHandle gpio_evt_queue = NULL;
 
@@ -260,10 +247,10 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		touch_pad_init();
 		tp_example_set_thresholds();
 		touch_pad_isr_handler_register(tp_example_rtc_intr, NULL, 0, NULL);
-		xTaskCreate(&tp_example_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
+		//xTaskCreate(&tp_example_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
 	
 		// -----------//
-		// light init //
+		// power_en init //
 		// -----------//
 		gpio_config_t io_conf;
 		io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
@@ -272,7 +259,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		io_conf.pull_down_en = 0;
 		io_conf.pull_up_en = 0;
 		gpio_config(&io_conf);
-		xTaskCreate(light_task, "light_task", 2048, NULL, 10, NULL);
+		xTaskCreate(power_en_task, "power_en_task", 2048, NULL, 10, NULL);
 
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 				lws_get_protocol(wsi),
@@ -296,6 +283,11 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		uv_close((uv_handle_t *)&vhd->timeout_watcher, NULL);
 		break;
 
+	case LWS_CALLBACK_CLOSED:
+		buttons_linked = false;
+		break;
+
+
 	case LWS_CALLBACK_ESTABLISHED:
 		pss->number = 0;
 		break;
@@ -308,7 +300,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		if (!buttons_linked) {
         	        strcpy(buttons_req_str, "{\"mac\":\"");
 			strcat(buttons_req_str,mac_str);
-        	        strcat(buttons_req_str, "\",\"device_type\":[\"room_sensor\"]");
+        	        strcat(buttons_req_str, "\",\"device_type\":[\"room-sensor\"]");
         	        strcat(buttons_req_str, ",\"cmd\":\"link\"");
         	        strcat(buttons_req_str, ",\"token\":\"");
         	        strcat(buttons_req_str, token);
@@ -327,7 +319,7 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		strcpy(front_button_str,"[");
 	        for (int i=0; i<TOUCH_PAD_MAX; i++) {
 	            if (s_pad_activated_notify[i] == true) {
-	                printf("Notify T%d!\n", i);
+	                //printf("Notify T%d!\n", i);
 			sprintf(i_str,"%d",i);
 			strcat(front_button_str,i_str);
    			strcat(front_button_str,",");
@@ -338,12 +330,12 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		front_button_str[strlen(front_button_str)-1]=0;
 		strcat(front_button_str,"]");
 		if (!touch_activated) break;
-
+		break;
                 strcpy(buttons_req_str, "{\"mac\":\"");
 		strcat(buttons_req_str,mac_str);
                 strcat(buttons_req_str, "\",\"value\":");
                 strcat(buttons_req_str, front_button_str);
-                strcat(buttons_req_str, ",\"device_type\":[\"room_sensor\"]");
+                strcat(buttons_req_str, ",\"device_type\":[\"room-sensor\"]");
                 strcat(buttons_req_str, ",\"cmd\":\"buttons\"");
                 strcat(buttons_req_str, ",\"token\":\"");
                 strcat(buttons_req_str, token);
@@ -364,23 +356,28 @@ callback_buttons(struct lws *wsi, enum lws_callback_reasons reason,
 		if (len < 2)
 			break;
 		//strcpy(buttons_rx_data, (const char *)in);
+		initiate_protocols = false;
 		sprintf(button_command,"%s",(const char *)in);
-		printf("%s %s\n", tag, button_command);
+		//printf("%s %s\n", tag, button_command);
 		if (strcmp(button_command,"link")) {
-			printf("%s LINKED!!\n", tag);
+			//printf("%s LINKED!!\n", tag);
 			buttons_linked = true;
 		}
 
 		if (!strcmp(button_command,"light_on")) {
-			printf("%s turining light on!\n", tag);
-			light1_value = 100;
-			light_on(LIGHT1,light1_value);
+			printf("%s turining power_en on!\n", tag);
+                        //printf("%s setting power_en pin to %d to %d\n", tag, POWER_EN, power_en_value);
+			power_en_value = 100;
+                        gpio_set_level(POWER_EN, power_en_value);
+			//power_en(POWER_EN,power_en_value);
 		}
 
 		if (!strcmp(button_command,"light_off")) {
-			printf("%s turining light off!\n", tag);
-			light1_value = 0;
-			light_on(LIGHT1,light1_value);
+			printf("%s turining power_en off!\n", tag);
+			power_en_value = 0;
+                        //printf("%s setting power_en pin to %d to %d\n", tag, POWER_EN, power_en_value);
+                        gpio_set_level(POWER_EN, power_en_value);
+			//power_en(POWER_EN,power_en_value);
 		}
 		//button_req_sent = false;
 		break;

@@ -58,13 +58,13 @@ lws_calllback_as_writeable(struct lws *wsi)
 		n = LWS_CALLBACK_HTTP_WRITEABLE;
 		break;
 	}
-	lwsl_debug("%s: %p (user=%p)\n", __func__, wsi, wsi->user_space);
+
 	return user_callback_handle_rxflow(wsi->protocol->callback,
 					   wsi, (enum lws_callback_reasons) n,
 					   wsi->user_space, NULL, 0);
 }
 
-int
+LWS_VISIBLE int
 lws_handle_POLLOUT_event(struct lws *wsi, struct lws_pollfd *pollfd)
 {
 	int write_type = LWS_WRITE_PONG;
@@ -74,7 +74,7 @@ lws_handle_POLLOUT_event(struct lws *wsi, struct lws_pollfd *pollfd)
 #endif
 	int ret, m, n;
 
-	//lwsl_err("%s: %p\n", __func__, wsi);
+//	lwsl_err("%s: %p\n", __func__, wsi);
 
 	wsi->leave_pollout_active = 0;
 	wsi->handling_pollout = 1;
@@ -144,7 +144,29 @@ lws_handle_POLLOUT_event(struct lws *wsi, struct lws_pollfd *pollfd)
 #endif
 
 	/* Priority 3: pending control packets (pong or close)
+	 *
+	 * 3a: close notification packet requested from close api
 	 */
+
+	if (wsi->state == LWSS_WAITING_TO_SEND_CLOSE_NOTIFICATION) {
+		lwsl_debug("sending close packet\n");
+		wsi->waiting_to_send_close_frame = 0;
+		n = lws_write(wsi, &wsi->u.ws.ping_payload_buf[LWS_PRE],
+			      wsi->u.ws.close_in_ping_buffer_len,
+			      LWS_WRITE_CLOSE);
+		if (n >= 0) {
+			wsi->state = LWSS_AWAITING_CLOSE_ACK;
+			lws_set_timeout(wsi, PENDING_TIMEOUT_CLOSE_ACK, 1);
+			lwsl_debug("sent close indication, awaiting ack\n");
+
+			goto bail_ok;
+		}
+
+		goto bail_die;
+	}
+
+	/* else, the send failed and we should just hang up */
+
 	if ((wsi->state == LWSS_ESTABLISHED &&
 	     wsi->u.ws.ping_pending_flag) ||
 	    (wsi->state == LWSS_RETURNED_CLOSE_ALREADY &&
@@ -307,6 +329,13 @@ lws_handle_POLLOUT_event(struct lws *wsi, struct lws_pollfd *pollfd)
 user_service:
 	/* one shot */
 
+	if (wsi->parent_carries_io) {
+		wsi->handling_pollout = 0;
+		wsi->leave_pollout_active = 0;
+
+		return lws_calllback_as_writeable(wsi);
+	}
+
 	if (pollfd) {
 		int eff = wsi->leave_pollout_active;
 
@@ -319,7 +348,6 @@ user_service:
 		wsi->handling_pollout = 0;
 
 		/* cannot get leave_pollout_active set after the above */
-
 		if (!eff && wsi->leave_pollout_active)
 			/* got set inbetween sampling eff and clearing
 			 * handling_pollout, force POLLOUT on */
@@ -441,7 +469,7 @@ lws_service_timeout_check(struct lws *wsi, unsigned int sec)
 
 		/* no need to log normal idle keepalive timeout */
 		if (wsi->pending_timeout != PENDING_TIMEOUT_HTTP_KEEPALIVE_IDLE)
-			lwsl_notice("wsi %p: TIMEDOUT WAITING on %d (did hdr %d, ah %p, wl %d, pfd events %d) %llu vs %llu\n",
+			lwsl_info("wsi %p: TIMEDOUT WAITING on %d (did hdr %d, ah %p, wl %d, pfd events %d) %llu vs %llu\n",
 			    (void *)wsi, wsi->pending_timeout,
 			    wsi->hdr_parsing_completed, wsi->u.hdr.ah,
 			    pt->ah_wait_list_length, n, (unsigned long long)sec, (unsigned long long)wsi->pending_timeout_limit);
@@ -697,8 +725,8 @@ spin_chunks:
 		return 0;
 
 	if (wsi->u.http.content_remain &&
-	    (int)wsi->u.http.content_remain < *len)
-		n = wsi->u.http.content_remain;
+	    wsi->u.http.content_remain < *len)
+		n = (int)wsi->u.http.content_remain;
 	else
 		n = *len;
 
@@ -809,6 +837,8 @@ lws_service_fd_tsi(struct lws_context *context, struct lws_pollfd *pollfd, int t
 
 		lws_plat_service_periodic(context);
 
+		lws_check_deferred_free(context, 0);
+
 		/* retire unused deprecated context */
 #if !defined(LWS_PLAT_OPTEE) && !defined(LWS_WITH_ESP32)
 #if LWS_POSIX && !defined(_WIN32)
@@ -824,6 +854,10 @@ lws_service_fd_tsi(struct lws_context *context, struct lws_pollfd *pollfd, int t
 		if (pollfd)
 			our_fd = pollfd->fd;
 
+		/*
+		 * Phase 1: check every wsi on the timeout check list
+		 */
+
 		wsi = context->pt[tsi].timeout_list;
 		while (wsi) {
 			/* we have to take copies, because he may be deleted */
@@ -838,7 +872,71 @@ lws_service_fd_tsi(struct lws_context *context, struct lws_pollfd *pollfd, int t
 			}
 			wsi = wsi1;
 		}
+
+		/*
+		 * Phase 2: double-check active ah timeouts independent of wsi
+		 *	    timeout status
+		 */
+
+		for (n = 0; n < context->max_http_header_pool; n++)
+			if (pt->ah_pool[n].in_use && pt->ah_pool[n].wsi &&
+			    pt->ah_pool[n].assigned &&
+			    now - pt->ah_pool[n].assigned > 60) {
+				int len;
+				char buf[256];
+				const unsigned char *c;
+
+				/*
+				 * a single ah session somehow got held for
+				 * an unreasonable amount of time.
+				 *
+				 * Dump info on the connection...
+				 */
+
+				wsi = pt->ah_pool[n].wsi;
+				buf[0] = '\0';
+				lws_get_peer_simple(wsi, buf, sizeof(buf));
+				lwsl_notice("ah excessive hold: wsi %p\n"
+					    "  peer address: %s\n"
+					    "  ah rxpos %u, rxlen %u, pos %u\n",
+					    wsi, buf, pt->ah_pool[n].rxpos,
+					    pt->ah_pool[n].rxlen,
+					    pt->ah_pool[n].pos);
+				buf[0] = '\0';
+				m = 0;
+				do {
+					c = lws_token_to_string(m);
+					if (!c)
+						break;
+
+					len = lws_hdr_total_length(wsi, m);
+					if (!len || len > sizeof(buf) - 1) {
+						m++;
+						continue;
+					}
+
+					if (lws_hdr_copy(wsi, buf, sizeof buf, m) > 0) {
+						buf[sizeof(buf) - 1] = '\0';
+
+						lwsl_notice("   %s = %s\n",
+								(const char *)c, buf);
+					}
+					m++;
+				} while (1);
+
+				/* ... and then drop the connection */
+
+				if (wsi->desc.sockfd == our_fd)
+					/* it was the guy we came to service! */
+					timed_out = 1;
+
+				lws_close_free_wsi(wsi, LWS_CLOSE_STATUS_NOSTATUS);
+			}
+
 #ifdef LWS_WITH_CGI
+		/*
+		 * Phase 3: handle cgi timeouts
+		 */
 		lws_cgi_kill_terminated(pt);
 #endif
 #if 0
@@ -929,7 +1027,8 @@ lws_service_fd_tsi(struct lws_context *context, struct lws_pollfd *pollfd, int t
 #endif
 
 //       lwsl_debug("fd=%d, revents=%d, mode=%d, state=%d\n", pollfd->fd, pollfd->revents, (int)wsi->mode, (int)wsi->state);
-	if (pollfd->revents & LWS_POLLHUP) {
+	if ((!(pollfd->revents & pollfd->events & LWS_POLLIN)) &&
+			(pollfd->revents & LWS_POLLHUP)) {
 		lwsl_debug("pollhup\n");
 		wsi->socket_is_permanently_unusable = 1;
 		goto close_and_handled;
@@ -1042,6 +1141,7 @@ lws_service_fd_tsi(struct lws_context *context, struct lws_pollfd *pollfd, int t
 		     wsi->state == LWSS_HTTP2_ESTABLISHED ||
 		     wsi->state == LWSS_HTTP2_ESTABLISHED_PRE_SETTINGS ||
 		     wsi->state == LWSS_RETURNED_CLOSE_ALREADY ||
+		     wsi->state == LWSS_WAITING_TO_SEND_CLOSE_NOTIFICATION ||
 		     wsi->state == LWSS_FLUSHING_STORED_SEND_BEFORE_CLOSE)) &&
 		    lws_handle_POLLOUT_event(wsi, pollfd)) {
 			if (wsi->state == LWSS_RETURNED_CLOSE_ALREADY)
@@ -1051,6 +1151,7 @@ lws_service_fd_tsi(struct lws_context *context, struct lws_pollfd *pollfd, int t
 		}
 
 		if (wsi->state == LWSS_RETURNED_CLOSE_ALREADY ||
+		    wsi->state == LWSS_WAITING_TO_SEND_CLOSE_NOTIFICATION ||
 		    wsi->state == LWSS_AWAITING_CLOSE_ACK) {
 			/*
 			 * we stopped caring about anything except control
@@ -1152,7 +1253,7 @@ read:
 					eff_buf.token_len = context->pt_serv_buf_size;
 				}
 
-				if (eff_buf.token_len > context->pt_serv_buf_size)
+				if ((unsigned int)eff_buf.token_len > context->pt_serv_buf_size)
 					eff_buf.token_len = context->pt_serv_buf_size;
 
 				eff_buf.token_len = lws_ssl_capable_read(wsi,
@@ -1203,6 +1304,9 @@ drain:
 				lwsl_notice("LWS_CALLBACK_RECEIVE_CLIENT_HTTP closed it\n");
 				goto close_and_handled;
 			}
+
+			n = 0;
+			goto handled;
 		}
 #endif
 		/*
@@ -1254,8 +1358,7 @@ drain:
 		if (wsi->u.hdr.ah) {
 			lwsl_notice("%s: %p: detaching\n",
 				 __func__, wsi);
-			/* show we used all the pending rx up */
-			wsi->u.hdr.ah->rxpos = wsi->u.hdr.ah->rxlen;
+			lws_header_table_force_to_detachable_state(wsi);
 			/* we can run the normal ah detach flow despite
 			 * being in ws union mode, since all union members
 			 * start with hdr */

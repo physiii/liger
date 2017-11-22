@@ -62,7 +62,7 @@ lws_ext_parse_options(const struct lws_extension *ext, struct lws *wsi,
 							oa.option_index = n;
 							lwsl_ext("hit %d\n", oa.option_index);
 							leap = LEAPS_SEEK_VAL;
-							if (len ==1)
+							if (len == 1)
 								goto set_arg;
 							break;
 						}
@@ -195,7 +195,7 @@ int lws_ext_cb_all_exts(struct lws_context *context, struct lws *wsi,
 
 	while (ext && ext->callback && !handled) {
 		m = ext->callback(context, ext, wsi, reason,
-				  (void *)(long)n, arg, len);
+				  (void *)(lws_intptr_t)n, arg, len);
 		if (m < 0) {
 			lwsl_ext("Ext '%s' failed to handle callback %d!\n",
 				 wsi->active_extensions[n]->name, reason);

@@ -162,7 +162,7 @@ callback_lws_mirror(struct lws *wsi, enum lws_callback_reasons reason,
 		l = 0;
 
 		while (shift >= 0) {
-			l |= ((unsigned long long)*p++) << shift;
+			l |= ((lws_intptr_t)*p++) << shift;
 			shift -= 8;
 		}
 
@@ -536,7 +536,8 @@ int main(int argc, char **argv)
 
 	/* stats */
 
-	fprintf(stderr, "\n--- %s websocket ping statistics "
+	if (global_rx_count && global_tx_count)
+		fprintf(stderr, "\n--- %s websocket ping statistics "
 		"using %d connections ---\n"
 		"%lu packets transmitted, %lu received, "
 		"%lu%% packet loss, time %ldms\n"

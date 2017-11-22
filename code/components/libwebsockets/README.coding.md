@@ -1,6 +1,24 @@
 Notes about coding with lws
 ===========================
 
+@section era Old lws and lws v2.0
+
+Originally lws only supported the "manual" method of handling everything in the
+user callback found in test-server.c.
+
+Since v2.0, the need for most or all of this manual boilerplate has been eliminated:
+the protocols[0] http stuff is provided by a lib export `lws_callback_http_dummy()`.
+You can serve parts of your filesystem at part of the URL space using mounts.
+
+It's much preferred to use the "automated" v2.0 type scheme, because it's less
+code and it's easier to support.
+
+You can see an example of the new way in test-server-v2.0.c.
+
+If you just need generic serving capability, consider not writing any server code
+and instead use lwsws and writing your user code in a standalone plugin.  The
+server is configured for mounts etc using JSON, see README.lwsws.md.
+
 @section dae Daemonization
 
 There's a helper api `lws_daemonize` built by default that does everything you
@@ -321,6 +339,20 @@ if left `NULL`, then the "DEFAULT" set of ciphers are all possible to select.
 You can also set it to `"ALL"` to allow everything (including insecure ciphers).
 
 
+@section sslcerts Passing your own cert information direct to SSL_CTX
+
+For most users it's enough to pass the SSL certificate and key information by
+giving filepaths to the info.ssl_cert_filepath and info.ssl_private_key_filepath
+members when creating the vhost.
+
+If you want to control that from your own code instead, you can do so by leaving
+the related info members NULL, and setting the info.options flag
+LWS_SERVER_OPTION_CREATE_VHOST_SSL_CTX at vhost creation time.  That will create
+the vhost SSL_CTX without any certificate, and allow you to use the callback
+LWS_CALLBACK_OPENSSL_LOAD_EXTRA_SERVER_VERIFY_CERTS to add your certificate to
+the SSL_CTX directly.  The vhost SSL_CTX * is in the user parameter in that
+callback.
+
 @section clientasync Async nature of client connections
 
 When you call `lws_client_connect_info(..)` and get a `wsi` back, it does not
@@ -567,6 +599,32 @@ ECDH Certs are now supported.  Enable the CMake option
 	LWS_SERVER_OPTION_SSL_ECDH
 
 to build in support and select it at runtime.
+
+@section sslinfo SSL info callbacks
+
+OpenSSL allows you to receive callbacks for various events defined in a
+bitmask in openssl/ssl.h.  The events include stuff like TLS Alerts.
+
+By default, lws doesn't register for these callbacks.
+
+However if you set the info.ssl_info_event_mask to nonzero (ie, set some
+of the bits in it like `SSL_CB_ALERT` at vhost creation time, then
+connections to that vhost will call back using LWS_CALLBACK_SSL_INFO
+for the wsi, and the `in` parameter will be pointing to a struct of
+related args:
+
+```
+struct lws_ssl_info {
+	int where;
+	int ret;
+};
+```
+
+The default callback handler in lws has a handler for LWS_CALLBACK_SSL_INFO
+which prints the related information,  You can test it using the switch
+-S -s  on `libwebsockets-test-server-v2.0`.
+
+Returning nonzero from the callback will close the wsi.
 
 @section smp SMP / Multithreaded service
 
@@ -861,6 +919,49 @@ the protocol struct.
 This allocation is only deleted / replaced when the connection accesses a
 URL region with a different protocol (or the default protocols[0] if no
 CALLBACK area matches it).
+
+This "binding connection to a protocol" lifecycle in managed by
+`LWS_CALLBACK_HTTP_BIND_PROTOCOL` and `LWS_CALLBACK_HTTP_DROP_PROTOCOL`.
+Because of HTTP/1.1 connection pipelining, one connection may perform
+many transactions, each of which may map to different URLs and need
+binding to different protocols.  So these messages are used to
+create the binding of the wsi to your protocol including any
+allocations, and to destroy the binding, at which point you should
+destroy any related allocations.
+
+@section BINDTODEV SO_BIND_TO_DEVICE
+
+The .bind_iface flag in the context / vhost creation struct lets you
+declare that you want all traffic for listen and transport on that
+vhost to be strictly bound to the network interface named in .iface.
+
+This Linux-only feature requires SO_BIND_TO_DEVICE, which in turn
+requires CAP_NET_RAW capability... root has this capability.
+
+However this feature needs to apply the binding also to accepted
+sockets during normal operation, which implies the server must run
+the whole time as root.
+
+You can avoid this by using the Linux capabilities feature to have
+the unprivileged user inherit just the CAP_NET_RAW capability.
+
+You can confirm this with the test server
+
+
+```
+ $ sudo /usr/local/bin/libwebsockets-test-server -u agreen -i eno1 -k
+```
+
+The part that ensures the capability is inherited by the unprivileged
+user is
+
+```
+#if defined(LWS_HAVE_SYS_CAPABILITY_H) && defined(LWS_HAVE_LIBCAP)
+                        info.caps[0] = CAP_NET_RAW;
+                        info.count_caps = 1;
+#endif
+```
+
 
 @section dim Dimming webpage when connection lost
 
