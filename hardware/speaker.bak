@@ -72,7 +72,7 @@ $EndComp
 Text GLabel 5700 2925 0    60   Input ~ 0
 I2S_DATA_OUT
 Text GLabel 5425 3225 0    60   Input ~ 0
-3V3
+V_IN
 Wire Wire Line
 	5750 3325 5750 3300
 Wire Wire Line
