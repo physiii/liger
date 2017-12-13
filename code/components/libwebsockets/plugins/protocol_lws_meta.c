@@ -112,7 +112,7 @@ lws_get_channel_wsi(struct per_session_data__lws_meta *pss, int ch)
 static int
 lws_get_channel_id(struct lws *wsi)
 {
-	return (lws_intptr_t)lws_get_opaque_parent_data(wsi);
+	return (int)(lws_intptr_t)lws_get_opaque_parent_data(wsi);
 }
 
 static void
@@ -501,7 +501,7 @@ callback_lws_meta(struct lws *wsi, enum lws_callback_reasons reason,
 			return -1;
 		}
 
-		lwsl_debug("%s: RX len %d\n", __func__, (int)len);
+		// lwsl_debug("%s: RX len %d\n", __func__, (int)len);
 
 		if (lws_get_protocol(cwsi)->callback(cwsi,
 					LWS_CALLBACK_RECEIVE,

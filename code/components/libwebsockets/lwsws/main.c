@@ -1,7 +1,7 @@
 /*
  * libwebsockets web server application
  *
- * Copyright (C) 2010-2016 Andy Green <andy@warmcat.com>
+ * Copyright (C) 2010-2017 Andy Green <andy@warmcat.com>
  *
  * This file is made available under the Creative Commons CC0 1.0
  * Universal Public Domain Dedication.
@@ -54,6 +54,7 @@ static int opts = 0, do_reload = 1;
 static uv_loop_t loop;
 static uv_signal_t signal_outer;
 static int pids[32];
+void lwsl_emit_stderr(int level, const char *line);
 
 #define LWSWS_CONFIG_STRING_SIZE (32 * 1024)
 
@@ -119,7 +120,7 @@ context_creation(void)
 	memset(&info, 0, sizeof(info));
 
 	info.external_baggage_free_on_destroy = config_strings;
-	info.max_http_header_pool = 16;
+	info.max_http_header_pool = 1024;
 	info.options = opts | LWS_SERVER_OPTION_VALIDATE_UTF8 |
 			      LWS_SERVER_OPTION_EXPLICIT_VHOSTS |
 			      LWS_SERVER_OPTION_LIBUV;
@@ -178,7 +179,7 @@ reload_handler(int signum)
 		fprintf(stderr, "root process receives reload\n");
 		if (!do_reload) {
 			fprintf(stderr, "passing HUP to child processes\n");
-			for (m = 0; m < ARRAY_SIZE(pids); m++)
+			for (m = 0; m < (int)ARRAY_SIZE(pids); m++)
 				if (pids[m])
 					kill(pids[m], SIGHUP);
 			sleep(1);
@@ -189,7 +190,7 @@ reload_handler(int signum)
 	case SIGTERM:
 	case SIGKILL:
 		fprintf(stderr, "killing service processes\n");
-		for (m = 0; m < ARRAY_SIZE(pids); m++)
+		for (m = 0; m < (int)ARRAY_SIZE(pids); m++)
 			if (pids[m])
 				kill(pids[m], SIGTERM);
 		exit(0);
@@ -248,7 +249,7 @@ int main(int argc, char **argv)
 				break;
 			/* old */
 			if (n > 0)
-				for (m = 0; m < ARRAY_SIZE(pids); m++)
+				for (m = 0; m < (int)ARRAY_SIZE(pids); m++)
 					if (!pids[m]) {
 						// fprintf(stderr, "added child pid %d\n", n);
 						pids[m] = n;
@@ -260,7 +261,7 @@ int main(int argc, char **argv)
 
 		n = waitpid(-1, &status, WNOHANG);
 		if (n > 0)
-			for (m = 0; m < ARRAY_SIZE(pids); m++)
+			for (m = 0; m < (int)ARRAY_SIZE(pids); m++)
 				if (pids[m] == n) {
 					// fprintf(stderr, "reaped child pid %d\n", pids[m]);
 					pids[m] = 0;

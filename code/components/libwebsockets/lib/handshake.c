@@ -1,7 +1,7 @@
 /*
  * libwebsockets - small server side websockets and web server implementation
  *
- * Copyright (C) 2010-2015 Andy Green <andy@warmcat.com>
+ * Copyright (C) 2010-2017 Andy Green <andy@warmcat.com>
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -66,32 +66,46 @@ lws_read(struct lws *wsi, unsigned char *buf, lws_filepos_t len)
 	lws_filepos_t body_chunk_len;
 	size_t n;
 
-	lwsl_debug("%s: incoming len %d  state %d\n", __func__, (int)len, wsi->state);
-
 	switch (wsi->state) {
-#ifdef LWS_USE_HTTP2
+#ifdef LWS_WITH_HTTP2
 	case LWSS_HTTP2_AWAIT_CLIENT_PREFACE:
 	case LWSS_HTTP2_ESTABLISHED_PRE_SETTINGS:
 	case LWSS_HTTP2_ESTABLISHED:
-		n = 0;
-		while (n < len) {
+		/*
+		 * wsi here is always the network connection wsi, not a stream
+		 * wsi.  Once we unpicked the framing we will find the right
+		 * swsi and make it the target of the frame.
+		 *
+		 * If it's ws over h2, the nwsi will get us here to do the h2
+		 * processing, and that will call us back with the swsi +
+		 * ESTABLISHED state for the inner payload, handled in a later
+		 * case.
+		 */
+		while (len) {
 			/*
 			 * we were accepting input but now we stopped doing so
 			 */
-			if (!(wsi->rxflow_change_to & LWS_RXFLOW_ALLOW)) {
-				lws_rxflow_cache(wsi, buf, n, len);
+			if (lws_is_flowcontrolled(wsi)) {
+				lws_rxflow_cache(wsi, buf, 0, (int)len);
 
 				return 1;
 			}
 
-			/* account for what we're using in rxflow buffer */
-			if (wsi->rxflow_buffer)
-				wsi->rxflow_pos++;
-			if (lws_http2_parser(wsi, buf[n++])) {
+			if (lws_h2_parser(wsi, buf, len, &body_chunk_len)) {
 				lwsl_debug("%s: http2_parser bailed\n", __func__);
 				goto bail;
 			}
+
+			/* account for what we're using in rxflow buffer */
+			if (wsi->rxflow_buffer) {
+				wsi->rxflow_pos += body_chunk_len;
+				assert(wsi->rxflow_pos <= wsi->rxflow_len);
+			}
+
+			buf += body_chunk_len;
+			len -= body_chunk_len;
 		}
+		lwsl_debug("%s: used up block\n", __func__);
 		break;
 #endif
 
@@ -103,10 +117,11 @@ lws_read(struct lws *wsi, unsigned char *buf, lws_filepos_t len)
 
 	case LWSS_HTTP:
 		wsi->hdr_parsing_completed = 0;
+
 		/* fallthru */
 
 	case LWSS_HTTP_HEADERS:
-		if (!wsi->u.hdr.ah) {
+		if (!wsi->ah) {
 			lwsl_err("%s: LWSS_HTTP_HEADERS: NULL ah\n", __func__);
 			assert(0);
 		}
@@ -146,9 +161,9 @@ lws_read(struct lws *wsi, unsigned char *buf, lws_filepos_t len)
 			case LWSS_HTTP_ISSUING_FILE:
 				goto read_ok;
 			case LWSS_HTTP_BODY:
-				wsi->u.http.content_remain =
-						wsi->u.http.content_length;
-				if (wsi->u.http.content_remain)
+				wsi->http.rx_content_remain =
+						wsi->http.rx_content_length;
+				if (wsi->http.rx_content_remain)
 					goto http_postbody;
 
 				/* there is no POST content */
@@ -160,13 +175,14 @@ lws_read(struct lws *wsi, unsigned char *buf, lws_filepos_t len)
 
 	case LWSS_HTTP_BODY:
 http_postbody:
-		while (len && wsi->u.http.content_remain) {
+		//lwsl_notice("http post body\n");
+		while (len && wsi->http.rx_content_remain) {
 			/* Copy as much as possible, up to the limit of:
 			 * what we have in the read buffer (len)
 			 * remaining portion of the POST body (content_remain)
 			 */
-			body_chunk_len = min(wsi->u.http.content_remain,len);
-			wsi->u.http.content_remain -= body_chunk_len;
+			body_chunk_len = min(wsi->http.rx_content_remain, len);
+			wsi->http.rx_content_remain -= body_chunk_len;
 			len -= body_chunk_len;
 #ifdef LWS_WITH_CGI
 			if (wsi->cgi) {
@@ -198,7 +214,7 @@ http_postbody:
 #endif
 			buf += n;
 
-			if (wsi->u.http.content_remain)  {
+			if (wsi->http.rx_content_remain)  {
 				lws_set_timeout(wsi, PENDING_TIMEOUT_HTTP_CONTENT,
 						wsi->context->timeout_secs);
 				break;
@@ -206,9 +222,13 @@ http_postbody:
 			/* he sent all the content in time */
 postbody_completion:
 #ifdef LWS_WITH_CGI
-			/* if we're running a cgi, we can't let him off the hook just because he sent his POST data */
+			/*
+			 * If we're running a cgi, we can't let him off the
+			 * hook just because he sent his POST data
+			 */
 			if (wsi->cgi)
-				lws_set_timeout(wsi, PENDING_TIMEOUT_CGI, wsi->context->timeout_secs);
+				lws_set_timeout(wsi, PENDING_TIMEOUT_CGI,
+						wsi->context->timeout_secs);
 			else
 #endif
 			lws_set_timeout(wsi, NO_PENDING_TIMEOUT, 0);
@@ -216,11 +236,15 @@ postbody_completion:
 			if (!wsi->cgi)
 #endif
 			{
+				lwsl_notice("HTTP_BODY_COMPLETION\n");
 				n = wsi->protocol->callback(wsi,
 					LWS_CALLBACK_HTTP_BODY_COMPLETION,
 					wsi->user_space, NULL, 0);
 				if (n)
 					goto bail;
+
+				if (wsi->http2_substream)
+					wsi->state = LWSS_HTTP2_ESTABLISHED;
 			}
 
 			break;
@@ -235,9 +259,11 @@ postbody_completion:
 			goto bail;
 		switch (wsi->mode) {
 		case LWSCM_WS_SERVING:
+		case LWSCM_HTTP2_WS_SERVING:
 
-			if (lws_interpret_incoming_packet(wsi, &buf, (size_t)len) < 0) {
-				lwsl_info("interpret_incoming_packet has bailed\n");
+			if (lws_interpret_incoming_packet(wsi, &buf,
+							  (size_t)len) < 0) {
+				lwsl_info("interpret_incoming_packet bailed\n");
 				goto bail;
 			}
 			break;
@@ -250,12 +276,11 @@ postbody_completion:
 
 read_ok:
 	/* Nothing more to do for now */
-	lwsl_info("%s: read_ok, used %ld\n", __func__, (long)(buf - oldbuf));
+	lwsl_info("%s: %p: read_ok, used %ld (len %d, state %d)\n", __func__, wsi, (long)(buf - oldbuf), (int)len, wsi->state);
 
-	return buf - oldbuf;
+	return lws_ptr_diff(buf, oldbuf);
 
 bail:
-	//lwsl_notice("closing connection at lws_read bail:\n");
 	lws_close_free_wsi(wsi, LWS_CLOSE_STATUS_NOSTATUS);
 
 	return -1;

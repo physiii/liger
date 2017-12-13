@@ -8,7 +8,16 @@ libwebsockets
 News
 ----
 
-v2.3 is out... see the changelog https://github.com/warmcat/libwebsockets/blob/v2.3-stable/changelog
+32- and 64-bit Windows binary builds are available via Appveyor.  Visit [lws on Appveyor](https://ci.appveyor.com/project/lws-team/libwebsockets),
+click on a build, the ARTIFACTS, and unzip the zip file at `C:\Program Files (x86)/libwebsockets`.
+
+ - v2.4 is out... HTTP/2 server support and mbedTLS as a TLS backend.
+
+see the changelog https://github.com/warmcat/libwebsockets/blob/v2.4-stable/changelog
+
+Please note the additional READMEs have moved to ./READMEs/
+
+ - v2.3 is out... see the changelog https://github.com/warmcat/libwebsockets/blob/v2.3-stable/changelog
 
 ESP32 is now supported in lws!  Download the
 

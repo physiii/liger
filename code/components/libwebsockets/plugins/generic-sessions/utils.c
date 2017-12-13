@@ -20,6 +20,7 @@
  */
 
 #include "private-lwsgs.h"
+#include <stdlib.h>
 
 void
 sha1_to_lwsgw_hash(unsigned char *hash, lwsgw_hash *shash)
@@ -145,7 +146,7 @@ lwsgw_session_from_cookie(const char *cookie, lwsgw_hash *sid)
 		return 1;
 	}
 
-	for (n = 0; n < sizeof(sid->id) - 1 && *p; n++) {
+	for (n = 0; n < (int)sizeof(sid->id) - 1 && *p; n++) {
 		/* our SID we issue only has these chars */
 		if ((*p >= '0' && *p <= '9') ||
 		    (*p >= 'a' && *p <= 'f'))
@@ -156,7 +157,7 @@ lwsgw_session_from_cookie(const char *cookie, lwsgw_hash *sid)
 		}
 	}
 
-	if (n < sizeof(sid->id) - 1) {
+	if (n < (int)sizeof(sid->id) - 1) {
 		lwsl_info("cookie id too short\n");
 		return 1;
 	}
@@ -375,7 +376,7 @@ lwsgs_get_auth_level(struct per_vhost_data__gs *vhd,
 		if ((u.verified & 0xff) == LWSGS_VERIFIED_ACCEPTED)
 			n |= LWSGS_AUTH_VERIFIED;
 
-		if (u.last_forgot_validated > lws_now_secs() - 300)
+		if (u.last_forgot_validated > (time_t)lws_now_secs() - 300)
 			n |= LWSGS_AUTH_FORGOT_FLOW;
 	}
 

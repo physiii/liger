@@ -24,6 +24,7 @@
 #include "../lib/libwebsockets.h"
 
 #include <string.h>
+#include <stdlib.h>
 #include <uv.h>
 
 struct fobj {
@@ -261,8 +262,8 @@ callback_lws_table_dirlisting(struct lws *wsi, enum lws_callback_reasons reason,
 				s1[0] = '\0';
 				q += strlen(q);
 			} else {
-				n = q1 - q;
-				if (n > sizeof(s) - 1)
+				n = lws_ptr_diff(q1, q);
+				if (n > (int)sizeof(s) - 1)
 					n = sizeof(s) - 1;
 				if (first) {
 					strcpy(s1, "/");
@@ -271,8 +272,8 @@ callback_lws_table_dirlisting(struct lws *wsi, enum lws_callback_reasons reason,
 					strncpy(s, q, n);
 					s[n] = '\0';
 
-					n = q1 - pss->reldir;
-					if (n > sizeof(s1) - 1)
+					n = lws_ptr_diff(q1, pss->reldir);
+					if (n > (int)sizeof(s1) - 1)
 						n = sizeof(s1) - 1;
 					strncpy(s1, pss->reldir, n);
 					s1[n] = '\0';
