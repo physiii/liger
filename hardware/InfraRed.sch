@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -47,7 +17,7 @@ $EndDescr
 Text Label 3725 4300 0    60   ~ 0
 IR-Receive
 $Comp
-L GND #PWR04
+L power:GND #PWR04
 U 1 1 59098AF2
 P 3525 3650
 F 0 "#PWR04" H 3525 3400 50  0001 C CNN
@@ -60,7 +30,7 @@ $EndComp
 Text GLabel 4875 3550 2    60   Input ~ 0
 IR_RX
 $Comp
-L LED D1
+L liger-rescue:LED D1
 U 1 1 59098AF4
 P 7625 3100
 F 0 "D1" H 7625 3200 50  0000 C CNN
@@ -72,7 +42,7 @@ F 4 "QED123" H 7625 3100 60  0001 C CNN "Part Number"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L R R5
+L liger-rescue:R R5
 U 1 1 59098AF5
 P 7625 2650
 F 0 "R5" V 7705 2650 50  0000 C CNN
@@ -84,7 +54,7 @@ F 4 "RC0603JR-0736RL" V 7625 2650 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q_NPN_BEC Q1
+L liger-rescue:Q_NPN_BEC Q1
 U 1 1 59098AF8
 P 7525 3600
 F 0 "Q1" H 7825 3650 50  0000 R CNN
@@ -96,7 +66,7 @@ F 4 "MMBT3904LT1GOSCT-ND" H 7525 3600 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR05
+L power:GND #PWR05
 U 1 1 59098AF9
 P 7625 4000
 F 0 "#PWR05" H 7625 3750 50  0001 C CNN
@@ -127,7 +97,7 @@ Text GLabel 7625 2350 1    60   Input ~ 0
 Text GLabel 3525 3475 0    60   Input ~ 0
 3V3
 $Comp
-L R_1k R3
+L liger-rescue:R_1k R3
 U 1 1 59BA28B3
 P 4625 3550
 F 0 "R3" V 4625 3550 50  0000 C CNN
@@ -139,7 +109,7 @@ F 4 "RC0603JR-071KL" V 4805 3650 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L R_1k R4
+L liger-rescue:R_1k R4
 U 1 1 59BA28E7
 P 6925 3600
 F 0 "R4" V 6925 3600 50  0000 C CNN
@@ -161,7 +131,7 @@ Wire Wire Line
 Wire Wire Line
 	3525 3475 3575 3475
 $Comp
-L IR-RX-TSOP34438 U2
+L liger-rescue:IR-RX-TSOP34438 U2
 U 1 1 5A1853BB
 P 3925 3150
 F 0 "U2" H 4125 2575 60  0000 C CNN

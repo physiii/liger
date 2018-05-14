@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -45,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L GND #PWR01
+L power:GND #PWR01
 U 1 1 59097974
 P 5000 1800
 F 0 "#PWR01" H 5000 1550 50  0001 C CNN
@@ -55,24 +25,8 @@ F 3 "" H 5000 1800 50  0000 C CNN
 	1    5000 1800
 	-1   0    0    1   
 $EndComp
-Text GLabel 4950 3250 0    60   Input ~ 0
-T_DOWN
-Text GLabel 6900 2100 2    60   Input ~ 0
-RXD
-Text GLabel 6900 2750 2    60   Input ~ 0
-LED_G
-Text GLabel 6900 3050 2    60   Input ~ 0
-IR_RX
-Text GLabel 6900 2000 2    60   Input ~ 0
-TXD
-Text GLabel 6900 2950 2    60   Input ~ 0
-IR_TX
-Text GLabel 4950 1950 0    60   Input ~ 0
-3V3
-Text GLabel 6350 3800 3    60   Input ~ 0
-RELAY
 $Comp
-L ESP-WROOM-32 U1
+L liger-rescue:ESP-WROOM-32 U1
 U 1 1 590979AF
 P 5950 2500
 F 0 "U1" H 6500 1400 60  0000 C CNN
@@ -82,36 +36,8 @@ F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datashe
 	1    5950 2500
 	1    0    0    -1  
 $EndComp
-Text GLabel 4950 3050 0    60   Input ~ 0
-T_UP
-Text GLabel 4250 2950 0    60   Input ~ 0
-I2S_BCLK
-Text GLabel 7550 2250 2    60   Input ~ 0
-I2S_WS
-Text GLabel 4950 2750 0    60   Input ~ 0
-T_RIGHT
-Text GLabel 4950 2650 0    60   Input ~ 0
-T_LEFT
-Text GLabel 4950 2450 0    60   Input ~ 0
-V_IN
-Text GLabel 6900 2550 2    60   Input ~ 0
-SDA
-Text GLabel 6900 2450 2    60   Input ~ 0
-SCL
-Text GLabel 6900 2650 2    60   Input ~ 0
-LED_R
-Text GLabel 6900 2350 2    60   Input ~ 0
-I2S_DATA_IN
-Text GLabel 6250 3800 3    60   Input ~ 0
-PIR
-Text GLabel 6900 2850 2    60   Input ~ 0
-LED_B
-Text GLabel 4950 2050 0    60   Input ~ 0
-EN
-Text GLabel 4950 2850 0    60   Input ~ 0
-I2S_DATA_OUT
 $Comp
-L R_10k R6
+L liger-rescue:R_10k R6
 U 1 1 59B92EE3
 P 7050 5175
 F 0 "R6" V 7050 5175 50  0000 C CNN
@@ -123,7 +49,7 @@ F 4 "RC0603JR-0710KL" V 7230 5275 60  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L R_10k R7
+L liger-rescue:R_10k R7
 U 1 1 59B92EEA
 P 6800 5175
 F 0 "R7" V 6800 5175 50  0000 C CNN
@@ -134,14 +60,8 @@ F 4 "RC0603JR-0710KL" V 6980 5275 60  0001 C CNN "Part Number"
 	1    6800 5175
 	-1   0    0    1   
 $EndComp
-Text GLabel 7050 4875 1    60   Input ~ 0
-3V3
-Text GLabel 7050 5475 3    60   Input ~ 0
-SDA
-Text GLabel 6800 5475 3    60   Input ~ 0
-SCL
 $Comp
-L R_47.5 R2
+L liger-rescue:R_47.5 R2
 U 1 1 59B81C1C
 P 7300 2250
 F 0 "R2" V 7300 2250 50  0000 C CNN
@@ -153,25 +73,21 @@ F 4 "RC0603FR-0747R5L" V 7480 2350 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L R_47.5 R1
+L liger-rescue:R_47.5 R1
 U 1 1 59B81C70
 P 4500 2950
 F 0 "R1" V 4500 2950 50  0000 C CNN
-F 1 "R_47.5" V 4600 2950 50  0000 C CNN
+F 1 "R_47.5" V 4600 2850 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 4430 2950 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 4580 2950 50  0001 C CNN
 F 4 "RC0603FR-0747R5L" V 4680 3050 60  0001 C CNN "Part Number"
 	1    4500 2950
 	0    1    1    0   
 $EndComp
-Text GLabel 4950 3150 0    60   Input ~ 0
-FACTORY
-Text GLabel 6900 3150 2    60   Input ~ 0
-PROG
 Text Label 4800 1075 0    197  ~ 0
 Microcontroller
 $Comp
-L C_1uF C42
+L liger-rescue:C_1uF C42
 U 1 1 59C84AF9
 P 6150 5175
 F 0 "C42" H 6150 5275 50  0000 L CNN
@@ -183,7 +99,7 @@ F 4 "CC0603ZRY5V7BB105" H 6275 5375 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR02
+L power:GND #PWR02
 U 1 1 59C84AFB
 P 5950 5425
 F 0 "#PWR02" H 5950 5175 50  0001 C CNN
@@ -193,8 +109,6 @@ F 3 "" H 5950 5425 50  0000 C CNN
 	1    5950 5425
 	1    0    0    -1  
 $EndComp
-Text GLabel 5975 4875 1    60   Input ~ 0
-3V3
 Text Notes 5575 5725 0    60   ~ 0
 I2C ByPass CAPs
 Wire Wire Line
@@ -209,7 +123,7 @@ Wire Wire Line
 Wire Wire Line
 	6150 5375 6150 5325
 Wire Wire Line
-	5750 5375 6150 5375
+	5750 5375 5950 5375
 Wire Wire Line
 	5750 5325 5750 5375
 Wire Wire Line
@@ -241,8 +155,6 @@ Wire Wire Line
 Wire Wire Line
 	6250 3700 6250 3800
 Wire Wire Line
-	4950 2450 5050 2450
-Wire Wire Line
 	4950 2650 5050 2650
 Wire Wire Line
 	4950 2850 5050 2850
@@ -263,15 +175,13 @@ Wire Wire Line
 Wire Wire Line
 	6800 3150 6900 3150
 Wire Wire Line
-	4950 2050 5050 2050
-Wire Wire Line
-	5050 1950 4950 1950
+	5050 1950 5025 1950
 Wire Wire Line
 	5000 1850 5050 1850
 Wire Wire Line
 	5000 1800 5000 1850
 $Comp
-L C_1uF C2
+L liger-rescue:C_1uF C2
 U 1 1 5A1695ED
 P 5075 5175
 F 0 "C2" H 5075 5275 50  0000 L CNN
@@ -283,7 +193,7 @@ F 4 "CC0603ZRY5V7BB105" H 5200 5375 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR03
+L power:GND #PWR03
 U 1 1 5A1695EE
 P 4850 5425
 F 0 "#PWR03" H 4850 5175 50  0001 C CNN
@@ -293,21 +203,19 @@ F 3 "" H 4850 5425 50  0000 C CNN
 	1    4850 5425
 	1    0    0    -1  
 $EndComp
-Text GLabel 4875 4875 1    60   Input ~ 0
-3V3
 Text Notes 4475 5775 0    60   ~ 0
 I2S ByPass CAPs
 Connection ~ 4850 5400
 Wire Wire Line
 	4850 5425 4850 5400
 Wire Wire Line
-	5075 5400 4675 5400
+	5075 5400 4850 5400
 Wire Wire Line
 	5075 5325 5075 5400
 Wire Wire Line
 	4675 5400 4675 5325
 $Comp
-L C_10uF C1
+L liger-rescue:C_10uF C1
 U 1 1 5A1695F2
 P 4675 5175
 F 0 "C1" H 4575 5275 50  0000 L CNN
@@ -321,7 +229,7 @@ $EndComp
 Wire Wire Line
 	5075 5025 5075 4950
 Wire Wire Line
-	5075 4950 4675 4950
+	5075 4950 4875 4950
 Wire Wire Line
 	4675 4950 4675 5025
 Wire Wire Line
@@ -338,14 +246,14 @@ Wire Notes Line
 Wire Wire Line
 	5750 5025 5750 4950
 Wire Wire Line
-	5750 4950 6150 4950
+	5750 4950 5975 4950
 Wire Wire Line
 	6150 4950 6150 5025
 Wire Wire Line
 	5975 4875 5975 4950
 Connection ~ 5975 4950
 $Comp
-L C_10uF C6
+L liger-rescue:C_10uF C6
 U 1 1 5A169F88
 P 5750 5175
 F 0 "C6" H 5650 5275 50  0000 L CNN
@@ -364,8 +272,6 @@ Wire Notes Line
 	5450 4625 6400 4625
 Wire Notes Line
 	6400 4625 6400 5750
-Text GLabel 6800 4875 1    60   Input ~ 0
-3V3
 Text Notes 6600 5825 0    60   ~ 0
 I2C PULL-UP
 Wire Notes Line
@@ -376,4 +282,75 @@ Wire Notes Line
 	6525 4625 7300 4625
 Wire Notes Line
 	7300 4625 7300 5850
+Wire Wire Line
+	5950 5375 6150 5375
+Wire Wire Line
+	4850 5400 4675 5400
+Wire Wire Line
+	4875 4950 4675 4950
+Wire Wire Line
+	5975 4950 6150 4950
+Text HLabel 4950 1950 0    60   Input ~ 0
+3V3
+Wire Wire Line
+	5050 2050 5025 2050
+Wire Wire Line
+	5025 2050 5025 1950
+Connection ~ 5025 1950
+Wire Wire Line
+	5025 1950 4950 1950
+Text HLabel 4950 2650 0    60   Input ~ 0
+T_LEFT
+Text HLabel 4950 2750 0    60   Input ~ 0
+T_RIGHT
+Text HLabel 4950 2850 0    60   Input ~ 0
+I2S_DATA_OUT
+Text HLabel 4250 2950 0    60   Input ~ 0
+I2S_BCLK
+Text HLabel 4950 3050 0    60   Input ~ 0
+T_UP
+Text HLabel 4950 3150 0    60   Input ~ 0
+FACTORY_RST
+Text HLabel 4950 3250 0    60   Input ~ 0
+T_DOWN
+Text HLabel 6250 3800 3    60   Input ~ 0
+PIR
+Text HLabel 6350 3800 3    60   Input ~ 0
+RELAY
+Text HLabel 6900 3150 2    60   Input ~ 0
+PROG
+Text HLabel 6900 3050 2    60   Output ~ 0
+IR_TX
+Text HLabel 6900 2950 2    60   Input ~ 0
+IR_RX
+Text HLabel 6900 2850 2    60   Output ~ 0
+LED_B
+Text HLabel 6900 2750 2    60   Output ~ 0
+LED_G
+Text HLabel 6900 2650 2    60   Output ~ 0
+LED_R
+Text HLabel 6900 2550 2    60   BiDi ~ 0
+SDA
+Text HLabel 6900 2450 2    60   Output ~ 0
+SCL
+Text HLabel 6900 2350 2    60   Input ~ 0
+I2S_DATA_IN
+Text HLabel 7550 2250 2    60   Input ~ 0
+I2S_WS
+Text HLabel 6900 2100 2    60   Input ~ 0
+RXD
+Text HLabel 6900 2000 2    60   Input ~ 0
+TXD
+Text HLabel 4875 4875 1    60   Input ~ 0
+3V3
+Text HLabel 5975 4875 1    60   Input ~ 0
+3V3
+Text HLabel 6800 4875 1    60   Input ~ 0
+3V3
+Text HLabel 7050 4875 1    60   Input ~ 0
+3V3
+Text HLabel 6800 5475 3    60   Output ~ 0
+SCL
+Text HLabel 7050 5475 3    60   BiDi ~ 0
+SDA
 $EndSCHEMATC

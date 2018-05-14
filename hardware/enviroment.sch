@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -49,7 +19,7 @@ Environment
 Text GLabel 3400 3425 0    60   Input ~ 0
 3V3
 $Comp
-L GND #PWR024
+L power:GND #PWR024
 U 1 1 59EBC48D
 P 3850 3575
 F 0 "#PWR024" H 3850 3325 50  0001 C CNN
@@ -64,7 +34,7 @@ SCL
 Text GLabel 4850 3525 2    60   Input ~ 0
 SDA
 $Comp
-L SI7020-A20 U6
+L liger-rescue:SI7020-A20 U6
 U 1 1 59EBC48E
 P 4350 3525
 F 0 "U6" H 4550 3425 60  0000 C CNN
@@ -76,7 +46,7 @@ F 4 "SI7020-A20-GM1R" H 4450 3325 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C_0.1uF C7
+L liger-rescue:C_0.1uF C7
 U 1 1 59EBC48F
 P 3550 3625
 F 0 "C7" H 3575 3725 50  0000 L CNN
@@ -88,7 +58,7 @@ F 4 "C0603C104K5RACTU" H 3675 3825 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR025
+L power:GND #PWR025
 U 1 1 59EBC490
 P 3550 3825
 F 0 "#PWR025" H 3550 3575 50  0001 C CNN
@@ -105,7 +75,7 @@ SDA
 Text GLabel 8425 3500 2    60   Input ~ 0
 SCL
 $Comp
-L GND #PWR026
+L power:GND #PWR026
 U 1 1 59EBC491
 P 7425 3675
 F 0 "#PWR026" H 7425 3425 50  0001 C CNN
@@ -118,7 +88,7 @@ $EndComp
 Text GLabel 7100 3525 0    60   Input ~ 0
 3V3
 $Comp
-L C_0.1uF C9
+L liger-rescue:C_0.1uF C9
 U 1 1 59EBC492
 P 7200 3700
 F 0 "C9" H 7225 3800 50  0000 L CNN
@@ -155,7 +125,7 @@ Wire Wire Line
 Wire Wire Line
 	7200 3525 7200 3550
 $Comp
-L GND #PWR027
+L power:GND #PWR027
 U 1 1 59EBC493
 P 7200 3900
 F 0 "#PWR027" H 7200 3650 50  0001 C CNN
@@ -177,7 +147,7 @@ Wire Wire Line
 Wire Wire Line
 	8375 3500 8425 3500
 $Comp
-L TSL45315CL U8
+L liger-rescue:TSL45315CL U8
 U 1 1 59EBC494
 P 7925 3625
 F 0 "U8" H 8125 3525 60  0000 C CNN

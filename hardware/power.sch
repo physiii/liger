@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -45,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L GND #PWR012
+L power:GND #PWR012
 U 1 1 5909DD67
 P 5125 3875
 F 0 "#PWR012" H 5125 3625 50  0001 C CNN
@@ -56,7 +26,7 @@ F 3 "" H 5125 3875 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR013
+L power:GND #PWR013
 U 1 1 59A4BAA9
 P 3500 3850
 F 0 "#PWR013" H 3500 3600 50  0001 C CNN
@@ -69,7 +39,7 @@ $EndComp
 Text Label 4750 1400 0    394  ~ 0
 Power
 $Comp
-L R_1k R10
+L liger-rescue:R_1k R10
 U 1 1 59B41A3B
 P 6575 3450
 F 0 "R10" V 6655 3450 50  0000 C CNN
@@ -81,7 +51,7 @@ F 4 "RC0603JR-071KL" V 6755 3550 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L MCP73831T U4
+L liger-rescue:MCP73831T U4
 U 1 1 59B41D1D
 P 7325 3550
 F 0 "U4" H 7325 3350 60  0000 C CNN
@@ -93,7 +63,7 @@ F 4 "MCP73831T-2ACI/OT" H 7275 3850 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR014
+L power:GND #PWR014
 U 1 1 59B41D6D
 P 7975 3950
 F 0 "#PWR014" H 7975 3700 50  0001 C CNN
@@ -103,10 +73,8 @@ F 3 "" H 7975 3950 50  0000 C CNN
 	1    7975 3950
 	1    0    0    -1  
 $EndComp
-Text GLabel 8125 3250 1    60   Input ~ 0
-V_BAT
 $Comp
-L PMOS-DMG3413L Q4
+L liger-rescue:PMOS-DMG3413L Q4
 U 1 1 59B57188
 P 3400 3125
 F 0 "Q4" H 3550 3275 50  0000 L CNN
@@ -118,7 +86,7 @@ F 4 "DMG3413L-7" H 3700 3300 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR015
+L power:GND #PWR015
 U 1 1 59B57C4B
 P 8275 3950
 F 0 "#PWR015" H 8275 3700 50  0001 C CNN
@@ -129,7 +97,7 @@ F 3 "" H 8275 3950 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L LED-GREEN-LTST-C191GKT D3
+L liger-rescue:LED-GREEN-LTST-C191GKT D3
 U 1 1 59B58167
 P 6375 3650
 F 0 "D3" H 6375 3750 50  0000 C CNN
@@ -140,10 +108,8 @@ F 4 "LTST-C191GKT" H 6475 3850 60  0001 C CNN "Part Number"
 	1    6375 3650
 	0    -1   -1   0   
 $EndComp
-Text GLabel 6775 3150 1    60   Input ~ 0
-V_USB
 $Comp
-L GND #PWR016
+L power:GND #PWR016
 U 1 1 59B58DE3
 P 2975 3925
 F 0 "#PWR016" H 2975 3675 50  0001 C CNN
@@ -154,7 +120,7 @@ F 3 "" H 2975 3925 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R_10k R22
+L liger-rescue:R_10k R22
 U 1 1 59B5A0F4
 P 2975 3700
 F 0 "R22" V 2975 3700 50  0000 C CNN
@@ -166,7 +132,7 @@ F 4 "RC0603JR-0710KL" V 3155 3800 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R_2k R19
+L liger-rescue:R_2k R19
 U 1 1 59B5A181
 P 7975 3700
 F 0 "R19" V 7975 3700 50  0000 C CNN
@@ -177,10 +143,8 @@ F 4 "RC0603JR-072KL" V 8155 3800 60  0001 C CNN "Part Number"
 	1    7975 3700
 	-1   0    0    1   
 $EndComp
-Text GLabel 2775 3450 0    60   Input ~ 0
-V_USB
 $Comp
-L C_1uF C3
+L liger-rescue:C_1uF C3
 U 1 1 59BA119E
 P 3500 3650
 F 0 "C3" H 3525 3750 50  0000 L CNN
@@ -192,7 +156,7 @@ F 4 "CC0603ZRY5V7BB105" H 3625 3850 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C_1uF C4
+L liger-rescue:C_1uF C4
 U 1 1 59BA1591
 P 5125 3675
 F 0 "C4" H 5150 3775 50  0000 L CNN
@@ -204,9 +168,11 @@ F 4 "CC0603ZRY5V7BB105" H 5250 3875 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L 18650_Battery_Cell_1043 BT1
+L liger-rescue:18650_Battery_Cell_1043 BT1
 U 1 1 59BA3E14
 P 8275 3750
+AR Path="/59BA3E14" Ref="BT1"  Part="1" 
+AR Path="/5909D8E3/59BA3E14" Ref="BT1"  Part="1" 
 F 0 "BT1" H 8375 3850 50  0000 L CNN
 F 1 "18650_Battery_Cell_1043" H 8375 3750 50  0001 L CNN
 F 2 "" V 8275 3810 50  0001 C CNN
@@ -216,7 +182,7 @@ F 4 "36-1043-ND" H 8475 3950 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L D_Schottky-BAT20JFILM D6
+L liger-rescue:D_Schottky-BAT20JFILM D6
 U 1 1 59EBB5BE
 P 3200 3450
 F 0 "D6" H 3200 3550 50  0000 C CNN
@@ -227,13 +193,11 @@ F 4 "BAT20JFILM" H 3250 3625 60  0001 C CNN "Part Number"
 	1    3200 3450
 	-1   0    0    1   
 $EndComp
-Text GLabel 3500 2800 1    60   Input ~ 0
-V_BAT
 Wire Wire Line
 	3500 2800 3500 2925
 Connection ~ 2975 3450
 Wire Wire Line
-	2775 3450 3050 3450
+	2775 3450 2975 3450
 Wire Wire Line
 	2975 3925 2975 3850
 Wire Wire Line
@@ -246,7 +210,7 @@ Connection ~ 7975 3900
 Wire Wire Line
 	7825 3900 7975 3900
 Wire Wire Line
-	7975 3850 7975 3950
+	7975 3850 7975 3900
 Connection ~ 8125 3450
 Connection ~ 6775 3450
 Wire Wire Line
@@ -260,11 +224,11 @@ Wire Wire Line
 Wire Wire Line
 	6425 3450 6375 3450
 Wire Wire Line
-	6825 3450 6725 3450
+	6825 3450 6775 3450
 Wire Wire Line
 	8125 3250 8125 3450
 Wire Wire Line
-	7775 3450 8700 3450
+	7775 3450 8125 3450
 Wire Wire Line
 	6725 3650 6825 3650
 Wire Wire Line
@@ -275,13 +239,13 @@ Connection ~ 3500 3450
 Wire Wire Line
 	3500 3850 3500 3800
 Wire Wire Line
-	3350 3450 3900 3450
+	3350 3450 3500 3450
 Wire Wire Line
-	3500 3325 3500 3500
+	3500 3325 3500 3450
 Wire Wire Line
 	5125 3875 5125 3825
 $Comp
-L C_1uF C5
+L liger-rescue:C_1uF C5
 U 1 1 59EBD4F3
 P 8700 3700
 F 0 "C5" H 8725 3800 50  0000 L CNN
@@ -296,7 +260,7 @@ Wire Wire Line
 	8700 3450 8700 3550
 Connection ~ 8275 3450
 $Comp
-L GND #PWR017
+L power:GND #PWR017
 U 1 1 59EBD5C7
 P 8700 3950
 F 0 "#PWR017" H 8700 3700 50  0001 C CNN
@@ -308,14 +272,12 @@ F 3 "" H 8700 3950 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	8700 3950 8700 3850
-Text GLabel 3075 3125 0    60   Input ~ 0
-V_USB
 Wire Wire Line
 	3075 3125 3200 3125
 Wire Wire Line
 	2975 3550 2975 3450
 $Comp
-L AP2112 U9
+L liger-rescue:AP2112 U9
 U 1 1 5A164E45
 P 4350 3525
 F 0 "U9" H 4525 3350 60  0000 C CNN
@@ -327,7 +289,7 @@ F 4 "AP2112K-3.3TRG1" H 4350 3825 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR018
+L power:GND #PWR018
 U 1 1 5A1650D9
 P 4850 3650
 F 0 "#PWR018" H 4850 3400 50  0001 C CNN
@@ -344,15 +306,45 @@ Wire Wire Line
 Wire Wire Line
 	5125 3450 5125 3525
 Wire Wire Line
-	4800 3450 5250 3450
+	4800 3450 5125 3450
 Wire Wire Line
 	3850 3600 3900 3600
 Wire Wire Line
-	3850 3300 3850 3600
+	3850 3300 3850 3450
 Connection ~ 3850 3450
-Text GLabel 5250 3450 2    60   Input ~ 0
-3V3
 Connection ~ 5125 3450
-Text GLabel 3850 3300 1    60   Input ~ 0
+Wire Wire Line
+	2975 3450 3050 3450
+Wire Wire Line
+	7975 3900 7975 3950
+Wire Wire Line
+	8125 3450 8275 3450
+Wire Wire Line
+	6775 3450 6725 3450
+Wire Wire Line
+	3500 3450 3850 3450
+Wire Wire Line
+	3500 3450 3500 3500
+Wire Wire Line
+	8275 3450 8700 3450
+Wire Wire Line
+	3850 3450 3850 3600
+Wire Wire Line
+	3850 3450 3900 3450
+Wire Wire Line
+	5125 3450 5250 3450
+Text HLabel 3500 2800 1    60   Input ~ 0
+V_BAT
+Text HLabel 3075 3125 0    60   Input ~ 0
+V_USB
+Text HLabel 2775 3450 0    60   Input ~ 0
+V_USB
+Text HLabel 3850 3300 1    60   Input ~ 0
 V_IN
+Text HLabel 5250 3450 2    60   Output ~ 0
+3V3
+Text HLabel 6775 3150 1    60   Input ~ 0
+V_USB
+Text HLabel 8125 3250 1    60   Input ~ 0
+V_BAT
 $EndSCHEMATC

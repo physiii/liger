@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -47,7 +17,7 @@ $EndDescr
 Text GLabel 7275 4925 0    60   Input ~ 0
 LED_R
 $Comp
-L SW_PUSH REBOOT1
+L liger-rescue:SW_PUSH REBOOT1
 U 1 1 59092D1B
 P 5350 3900
 F 0 "REBOOT1" V 5575 4075 50  0000 C CNN
@@ -63,7 +33,7 @@ PROG
 Text GLabel 5600 3500 2    60   Input ~ 0
 EN
 $Comp
-L GND #PWR019
+L power:GND #PWR019
 U 1 1 59092D1C
 P 5350 4275
 F 0 "#PWR019" H 5350 4025 50  0001 C CNN
@@ -74,7 +44,7 @@ F 3 "" H 5350 4275 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L LED D2
+L liger-rescue:LED D2
 U 1 1 59092D24
 P 5350 2800
 F 0 "D2" H 5350 2900 50  0000 C CNN
@@ -88,7 +58,7 @@ $EndComp
 Text GLabel 5350 2500 1    60   Input ~ 0
 3V3
 $Comp
-L soft-button-4x U12
+L liger-rescue:soft-button-4x U12
 U 1 1 597D230D
 P 7825 3325
 F 0 "U12" H 8175 3575 60  0000 C CNN
@@ -107,7 +77,7 @@ T_UP
 Text GLabel 7925 3975 3    60   Input ~ 0
 T_DOWN
 $Comp
-L RGB-LED U7
+L liger-rescue:RGB-LED U7
 U 1 1 5980E7D1
 P 7875 4925
 F 0 "U7" H 8125 4625 60  0000 C CNN
@@ -144,7 +114,7 @@ Wire Wire Line
 Wire Wire Line
 	7275 5075 7375 5075
 $Comp
-L R R8
+L liger-rescue:R R8
 U 1 1 5980F245
 P 8625 4775
 F 0 "R8" V 8705 4775 50  0000 C CNN
@@ -158,7 +128,7 @@ $EndComp
 Text GLabel 8875 4675 1    60   Input ~ 0
 3V3
 $Comp
-L R R12
+L liger-rescue:R R12
 U 1 1 5980F487
 P 8625 4925
 F 0 "R12" V 8705 4925 50  0000 C CNN
@@ -170,7 +140,7 @@ F 4 "RC0603JR-0736RL" V 8625 4925 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L R R13
+L liger-rescue:R R13
 U 1 1 5980F4D4
 P 8625 5075
 F 0 "R13" V 8705 5075 50  0000 C CNN
@@ -198,7 +168,7 @@ Wire Wire Line
 	8875 5075 8775 5075
 Connection ~ 8875 4925
 $Comp
-L R_1k R15
+L liger-rescue:R_1k R15
 U 1 1 59BA2DC7
 P 5350 3250
 F 0 "R15" V 5350 3250 50  0000 C CNN
@@ -212,7 +182,7 @@ $EndComp
 Wire Wire Line
 	5600 3500 5350 3500
 $Comp
-L SW_PUSH PROG1
+L liger-rescue:SW_PUSH PROG1
 U 1 1 59CA58CF
 P 4450 3900
 F 0 "PROG1" V 4675 4100 50  0000 C CNN
@@ -224,7 +194,7 @@ F 4 "KMR211NG LFS" H 4450 3900 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR020
+L power:GND #PWR020
 U 1 1 59CA58D6
 P 4450 4275
 F 0 "#PWR020" H 4450 4025 50  0001 C CNN
@@ -235,7 +205,7 @@ F 3 "" H 4450 4275 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L LED D5
+L liger-rescue:LED D5
 U 1 1 59CA58DD
 P 4450 2800
 F 0 "D5" H 4450 2900 50  0000 C CNN
@@ -256,7 +226,7 @@ Wire Wire Line
 Wire Wire Line
 	4450 2950 4450 3100
 $Comp
-L R_1k R16
+L liger-rescue:R_1k R16
 U 1 1 59CA58E9
 P 4450 3250
 F 0 "R16" V 4450 3250 50  0000 C CNN
@@ -276,7 +246,7 @@ Wire Wire Line
 Text GLabel 3825 3500 2    60   Input ~ 0
 FACTORY
 $Comp
-L SW_PUSH FACTORY1
+L liger-rescue:SW_PUSH FACTORY1
 U 1 1 59CA6153
 P 3575 3900
 F 0 "FACTORY1" V 3800 4100 50  0000 C CNN
@@ -288,7 +258,7 @@ F 4 "KMR211NG LFS" H 3575 3900 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR021
+L power:GND #PWR021
 U 1 1 59CA6159
 P 3575 4275
 F 0 "#PWR021" H 3575 4025 50  0001 C CNN
@@ -299,7 +269,7 @@ F 3 "" H 3575 4275 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L LED D4
+L liger-rescue:LED D4
 U 1 1 59CA6160
 P 3575 2800
 F 0 "D4" H 3575 2900 50  0000 C CNN
@@ -320,7 +290,7 @@ Wire Wire Line
 Wire Wire Line
 	3575 2950 3575 3100
 $Comp
-L R_1k R14
+L liger-rescue:R_1k R14
 U 1 1 59CA616C
 P 3575 3250
 F 0 "R14" V 3575 3250 50  0000 C CNN
@@ -336,7 +306,7 @@ Wire Wire Line
 Wire Wire Line
 	3575 4200 3575 4275
 $Comp
-L GND #PWR022
+L power:GND #PWR022
 U 1 1 5A16D01B
 P 4050 5200
 F 0 "#PWR022" H 4050 4950 50  0001 C CNN
@@ -355,7 +325,7 @@ TXD
 Text GLabel 4700 5350 2    60   Input ~ 0
 V_USB
 $Comp
-L GND #PWR023
+L power:GND #PWR023
 U 1 1 5A16D01C
 P 4650 5200
 F 0 "#PWR023" H 4650 4950 50  0001 C CNN
@@ -384,7 +354,7 @@ I2S_WS
 Text GLabel 4700 5850 2    60   Input ~ 0
 I2S_DATA_OUT
 $Comp
-L Conn_02x08_Odd_Even J1
+L liger-rescue:Conn_02x08_Odd_Even J1
 U 1 1 5A16D01F
 P 4300 5550
 F 0 "J1" H 4350 5950 50  0000 C CNN

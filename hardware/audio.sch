@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -47,7 +17,7 @@ $EndDescr
 Text Label 5425 1950 0    197  ~ 0
 AUDIO
 $Comp
-L SPH0645LM4H-B U3
+L liger-rescue:SPH0645LM4H-B U3
 U 1 1 5A1620A8
 P 4100 4300
 F 0 "U3" H 4300 4000 60  0000 C CNN
@@ -59,7 +29,7 @@ F 4 "SPH0645LM4H-B" H 4100 4600 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR06
+L power:GND #PWR06
 U 1 1 5A1620A9
 P 3650 4550
 F 0 "#PWR06" H 3650 4300 50  0001 C CNN
@@ -76,7 +46,7 @@ I2S_DATA_IN
 Text GLabel 4600 4350 2    60   Input ~ 0
 I2S_WS
 $Comp
-L C_0.1uF C8
+L liger-rescue:C_0.1uF C8
 U 1 1 5A1620AA
 P 3400 4550
 F 0 "C8" H 3425 4650 50  0000 L CNN
@@ -88,7 +58,7 @@ F 4 "C0603C104K5RACTU" H 3525 4750 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR07
+L power:GND #PWR07
 U 1 1 5A1620AB
 P 3400 4750
 F 0 "#PWR07" H 3400 4500 50  0001 C CNN
@@ -99,7 +69,7 @@ F 3 "" H 3400 4750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R_47.5 R11
+L liger-rescue:R_47.5 R11
 U 1 1 5A1620AC
 P 4750 4150
 F 0 "R11" V 4750 4150 50  0000 C CNN
@@ -111,7 +81,7 @@ F 4 "RC0603FR-0747R5L" V 4930 4250 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L R_100k R9
+L liger-rescue:R_100k R9
 U 1 1 5A1620AD
 P 4750 3950
 F 0 "R9" V 4750 3950 50  0000 C CNN
@@ -123,7 +93,7 @@ F 4 "RC0603JR-07100KL" V 4930 4050 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR08
+L power:GND #PWR08
 U 1 1 5A1620AE
 P 4950 3950
 F 0 "#PWR08" H 4950 3700 50  0001 C CNN
@@ -169,7 +139,7 @@ Wire Wire Line
 Text Label 3200 3550 0    197  ~ 0
 Microphone
 $Comp
-L R_100k R17
+L liger-rescue:R_100k R17
 U 1 1 5A1620AF
 P 7000 4325
 F 0 "R17" V 7000 4325 50  0000 C CNN
@@ -181,7 +151,7 @@ F 4 "RC0603JR-07100KL" V 7180 4425 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR09
+L power:GND #PWR09
 U 1 1 5A1620B0
 P 7225 4550
 F 0 "#PWR09" H 7225 4300 50  0001 C CNN
@@ -216,7 +186,7 @@ Wire Wire Line
 Wire Wire Line
 	8450 4350 8350 4350
 $Comp
-L MAX98357AETE+T U5
+L liger-rescue:MAX98357AETE+T U5
 U 1 1 5A1620B1
 P 7600 4275
 F 0 "U5" H 8050 3925 60  0000 C CNN
@@ -233,7 +203,7 @@ Wire Wire Line
 	7200 4350 7200 4450
 Connection ~ 7200 4450
 $Comp
-L GND #PWR010
+L power:GND #PWR010
 U 1 1 5A1620B2
 P 6750 4325
 F 0 "#PWR010" H 6750 4075 50  0001 C CNN
@@ -252,7 +222,7 @@ Wire Wire Line
 Wire Wire Line
 	7175 4250 7250 4250
 $Comp
-L C_1uF C10
+L liger-rescue:C_1uF C10
 U 1 1 5A1620B3
 P 7000 4625
 F 0 "C10" H 7025 4725 50  0000 L CNN
@@ -267,7 +237,7 @@ Wire Wire Line
 	7000 4475 7000 4450
 Connection ~ 7000 4450
 $Comp
-L GND #PWR011
+L power:GND #PWR011
 U 1 1 5A1620B4
 P 7000 4825
 F 0 "#PWR011" H 7000 4575 50  0001 C CNN
@@ -280,7 +250,7 @@ $EndComp
 Wire Wire Line
 	7000 4825 7000 4775
 $Comp
-L speaker-CVS-1508 LS1
+L liger-rescue:speaker-CVS-1508 LS1
 U 1 1 5A1620B5
 P 8825 3950
 F 0 "LS1" H 8825 4075 50  0000 R CNN

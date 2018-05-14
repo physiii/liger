@@ -1,38 +1,8 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
-$Descr A4 11693 8268
+$Descr USLedger 17000 11000
 encoding utf-8
 Sheet 1 9
 Title ""
@@ -45,51 +15,109 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 2375 3000 2850 2200
+S 1350 5550 2850 2200
 U 59096487
 F0 "Microcontroller" 60
 F1 "microcontroller.sch" 60
+F2 "3V3" I R 4200 5700 60 
+F3 "T_LEFT" I R 4200 5800 60 
+F4 "T_RIGHT" I R 4200 5900 60 
+F5 "I2S_DATA_OUT" I R 4200 6000 60 
+F6 "I2S_BCLK" I R 4200 6125 60 
+F7 "T_UP" I R 4200 6225 60 
+F8 "FACTORY_RST" I R 4200 6350 60 
+F9 "T_DOWN" I R 4200 6475 60 
+F10 "PIR" I R 4200 6575 60 
+F11 "RELAY" I R 4200 6675 60 
+F12 "PROG" I R 4200 6775 60 
+F13 "IR_TX" O R 4200 6875 60 
+F14 "IR_RX" I R 4200 6975 60 
+F15 "LED_B" O R 4200 7100 60 
+F16 "LED_G" O R 4200 7200 60 
+F17 "LED_R" O R 4200 7300 60 
+F18 "SDA" B R 4200 7450 60 
+F19 "SCL" O R 4200 7525 60 
+F20 "I2S_DATA_IN" I L 1350 5700 60 
+F21 "I2S_WS" I L 1350 5825 60 
+F22 "RXD" I L 1350 5975 60 
+F23 "TXD" I L 1350 6100 60 
 $EndSheet
 $Sheet
-S 4775 1075 1950 1350
+S 6100 6950 1950 1350
 U 590982C4
 F0 "InfraRed" 60
 F1 "InfraRed.sch" 60
 $EndSheet
 $Sheet
-S 7275 1075 1950 1350
+S 6050 3300 1950 1350
 U 5909A781
 F0 "Audio" 60
 F1 "audio.sch" 60
 $EndSheet
 $Sheet
-S 7300 3000 1950 1350
+S 1750 3250 1950 1350
 U 5909D8E3
 F0 "Power" 60
 F1 "power.sch" 60
+F2 "V_BAT" I R 3700 3775 60 
+F3 "V_USB" I R 3700 3925 60 
+F4 "V_IN" I R 3700 3625 60 
+F5 "3V3" O R 3700 4075 60 
 $EndSheet
 $Sheet
-S 2450 1150 1950 1350
+S 6050 5150 1950 1350
 U 59092AD4
 F0 "Switches" 60
 F1 "switches.sch" 60
 $EndSheet
 $Sheet
-S 7300 4775 1450 1350
+S 10050 6150 1450 1350
 U 590D271B
 F0 "Enviroment" 60
 F1 "enviroment.sch" 60
 $EndSheet
 $Sheet
-S 5850 4275 1100 800 
+S 10250 4800 1100 800 
 U 59B5D50C
 F0 "Relay" 60
 F1 "relay.sch" 60
 $EndSheet
 $Sheet
-S 5850 2975 1000 850 
+S 10300 3450 1000 850 
 U 59B5F4CB
 F0 "PIR" 60
 F1 "PIR.sch" 60
 $EndSheet
+Entry Bus Bus
+	4650 2550 4750 2650
+Entry Bus Bus
+	8975 2550 9075 2650
+Wire Bus Line
+	9075 2650 9075 8700
+Entry Bus Bus
+	11975 2550 12075 2650
+Wire Bus Line
+	12075 2650 12075 8625
+Wire Bus Line
+	12075 8625 12050 8625
+Entry Wire Line
+	4650 3625 4750 3725
+Entry Wire Line
+	4650 3775 4750 3875
+Entry Wire Line
+	4650 3925 4750 4025
+Entry Wire Line
+	4650 4075 4750 4175
+Wire Wire Line
+	3700 3625 4650 3625
+Wire Wire Line
+	3700 3775 4650 3775
+Wire Wire Line
+	3700 3925 4650 3925
+Wire Wire Line
+	3700 4075 4650 4075
+Wire Bus Line
+	4750 2650 4750 8775
+Wire Bus Line
+	4000 2550 12175 2550
 $EndSCHEMATC

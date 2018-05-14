@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:open-automation
+EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -49,7 +19,7 @@ PIR_MOTION_SENSOR
 Text GLabel 6425 2275 2    60   Input ~ 0
 PIR
 $Comp
-L GND #PWR029
+L power:GND #PWR029
 U 1 1 59B7E3DB
 P 5125 2375
 F 0 "#PWR029" H 5125 2125 50  0001 C CNN
@@ -62,7 +32,7 @@ $EndComp
 Text GLabel 5050 2200 0    60   Input ~ 0
 3V3
 $Comp
-L R_100k R18
+L liger-rescue:R_100k R18
 U 1 1 5A160B80
 P 6050 2275
 F 0 "R18" V 6050 2275 50  0000 C CNN
@@ -74,7 +44,7 @@ F 4 "RC0603JR-07100KL" V 6230 2375 60  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L R_100k R20
+L liger-rescue:R_100k R20
 U 1 1 5A1610DC
 P 6275 2475
 F 0 "R20" V 6275 2475 50  0000 C CNN
@@ -98,7 +68,7 @@ Wire Wire Line
 Wire Wire Line
 	6275 2275 6275 2325
 $Comp
-L GND #PWR030
+L power:GND #PWR030
 U 1 1 5A1624EE
 P 6275 2675
 F 0 "#PWR030" H 6275 2425 50  0001 C CNN
@@ -112,7 +82,7 @@ Wire Wire Line
 	6275 2675 6275 2625
 Connection ~ 6275 2275
 $Comp
-L EKMC1601112 U10
+L liger-rescue:EKMC1601112 U10
 U 1 1 5A1702E3
 P 5425 2275
 F 0 "U10" H 5625 2100 60  0000 C CNN
