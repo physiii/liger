@@ -1,0 +1,585 @@
+EESchema Schematic File Version 4
+LIBS:liger-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 9 9
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L liger-rescue:SW_PUSH REBOOT1
+U 1 1 59092D1B
+P 5350 3900
+F 0 "REBOOT1" V 5575 4075 50  0000 C CNN
+F 1 "SW_PUSH" H 5350 3820 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_KMR2" H 5350 3900 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf" H 5350 3900 50  0001 C CNN
+F 4 "KMR211NG LFS" H 5350 3900 60  0001 C CNN "Part Number"
+	1    5350 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR019
+U 1 1 59092D1C
+P 5350 4275
+F 0 "#PWR019" H 5350 4025 50  0001 C CNN
+F 1 "GND" H 5350 4125 50  0000 C CNN
+F 2 "" H 5350 4275 50  0000 C CNN
+F 3 "" H 5350 4275 50  0000 C CNN
+	1    5350 4275
+	1    0    0    -1  
+$EndComp
+$Comp
+L liger-rescue:soft-button-4x U12
+U 1 1 597D230D
+P 7825 3325
+F 0 "U12" H 8175 3575 60  0000 C CNN
+F 1 "soft-button-4x" H 8275 2875 60  0000 C CNN
+F 2 "open-automation:soft-button-4" H 7825 3325 60  0001 C CNN
+F 3 "" H 7825 3325 60  0001 C CNN
+	1    7825 3325
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 2500 5350 2650
+Connection ~ 5350 3500
+Wire Wire Line
+	5350 3400 5350 3500
+Wire Wire Line
+	5350 2950 5350 3100
+Wire Wire Line
+	7925 2875 7925 2925
+Wire Wire Line
+	7375 3425 7425 3425
+Wire Wire Line
+	7925 3925 7925 3975
+Wire Wire Line
+	8475 3425 8425 3425
+Wire Wire Line
+	5600 3500 5350 3500
+$Comp
+L liger-rescue:SW_PUSH PROG1
+U 1 1 59CA58CF
+P 4450 3900
+F 0 "PROG1" V 4675 4100 50  0000 C CNN
+F 1 "SW_PUSH" H 4450 3820 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_KMR2" H 4450 3900 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf" H 4450 3900 50  0001 C CNN
+F 4 "KMR211NG LFS" H 4450 3900 60  0001 C CNN "Part Number"
+	1    4450 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR020
+U 1 1 59CA58D6
+P 4450 4275
+F 0 "#PWR020" H 4450 4025 50  0001 C CNN
+F 1 "GND" H 4450 4125 50  0000 C CNN
+F 2 "" H 4450 4275 50  0000 C CNN
+F 3 "" H 4450 4275 50  0000 C CNN
+	1    4450 4275
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 2500 4450 2650
+Connection ~ 4450 3500
+Wire Wire Line
+	4450 3400 4450 3500
+Wire Wire Line
+	4450 2950 4450 3100
+Wire Wire Line
+	4700 3500 4450 3500
+Wire Wire Line
+	4450 4200 4450 4275
+Wire Wire Line
+	5350 4200 5350 4275
+$Comp
+L liger-rescue:SW_PUSH FACTORY1
+U 1 1 59CA6153
+P 3575 3900
+F 0 "FACTORY1" V 3800 4100 50  0000 C CNN
+F 1 "SW_PUSH" H 3575 3820 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_KMR2" H 3575 3900 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/60/KMR2_9aug12-25127.pdf" H 3575 3900 50  0001 C CNN
+F 4 "KMR211NG LFS" H 3575 3900 60  0001 C CNN "Part Number"
+	1    3575 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR021
+U 1 1 59CA6159
+P 3575 4275
+F 0 "#PWR021" H 3575 4025 50  0001 C CNN
+F 1 "GND" H 3575 4125 50  0000 C CNN
+F 2 "" H 3575 4275 50  0000 C CNN
+F 3 "" H 3575 4275 50  0000 C CNN
+	1    3575 4275
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3575 2500 3575 2650
+Connection ~ 3575 3500
+Wire Wire Line
+	3575 3400 3575 3500
+Wire Wire Line
+	3575 2950 3575 3100
+Wire Wire Line
+	3825 3500 3575 3500
+Wire Wire Line
+	3575 4200 3575 4275
+$Comp
+L power:GND #PWR022
+U 1 1 5A16D01B
+P 4050 5200
+F 0 "#PWR022" H 4050 4950 50  0001 C CNN
+F 1 "GND" H 4050 5050 50  0000 C CNN
+F 2 "" H 4050 5200 50  0000 C CNN
+F 3 "" H 4050 5200 50  0000 C CNN
+	1    4050 5200
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR023
+U 1 1 5A16D01C
+P 4650 5200
+F 0 "#PWR023" H 4650 4950 50  0001 C CNN
+F 1 "GND" H 4650 5050 50  0000 C CNN
+F 2 "" H 4650 5200 50  0000 C CNN
+F 3 "" H 4650 5200 50  0000 C CNN
+	1    4650 5200
+	-1   0    0    1   
+$EndComp
+Text Label 4800 1075 0    197  ~ 0
+INTERFACE
+$Comp
+L liger-rescue:Conn_02x08_Odd_Even J1
+U 1 1 5A16D01F
+P 4300 5550
+F 0 "J1" H 4350 5950 50  0000 C CNN
+F 1 "Conn_02x08_Odd_Even" H 4350 5050 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x08_Pitch2.54mm" H 4300 5550 50  0001 C CNN
+F 3 "" H 4300 5550 50  0001 C CNN
+	1    4300 5550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 5950 4700 5950
+Wire Wire Line
+	4000 5950 4100 5950
+Wire Wire Line
+	4600 5850 4700 5850
+Wire Wire Line
+	4000 5750 4100 5750
+Wire Wire Line
+	4600 5750 4700 5750
+Wire Wire Line
+	4000 5850 4100 5850
+Wire Wire Line
+	4600 5650 4700 5650
+Wire Wire Line
+	4000 5650 4100 5650
+Wire Wire Line
+	4000 5450 4100 5450
+Wire Wire Line
+	4000 5550 4100 5550
+Wire Wire Line
+	4000 5350 4100 5350
+Wire Wire Line
+	4600 5450 4700 5450
+Wire Wire Line
+	4700 5550 4600 5550
+Wire Wire Line
+	4600 5350 4700 5350
+Wire Wire Line
+	4050 5200 4050 5250
+Wire Wire Line
+	4050 5250 4100 5250
+Wire Wire Line
+	4600 5250 4650 5250
+Wire Wire Line
+	4650 5250 4650 5200
+Wire Wire Line
+	5350 3500 5350 3600
+Wire Wire Line
+	4450 3500 4450 3600
+Wire Wire Line
+	3575 3500 3575 3600
+Text HLabel 4025 5350 0    60   Input ~ 0
+V_BAT
+Text HLabel 4000 5450 0    60   Input ~ 0
+3V3
+Text HLabel 4000 5550 0    60   Input ~ 0
+FACTORY_RST
+Text HLabel 4000 5650 0    60   Input ~ 0
+SCL
+Text HLabel 4000 5750 0    60   Input ~ 0
+I2S_WS
+Text HLabel 4000 5850 0    60   Input ~ 0
+I2S_BCLK
+Text HLabel 4000 5950 0    60   Input ~ 0
+PROG
+Text HLabel 4700 5350 2    60   Input ~ 0
+V_USB
+Text HLabel 4700 5450 2    60   Input ~ 0
+TXD
+Text HLabel 4700 5550 2    60   Input ~ 0
+RXD
+Text HLabel 4700 5650 2    60   Input ~ 0
+SDA
+Text HLabel 4700 5750 2    60   Input ~ 0
+I2S_DATA_IN
+Text HLabel 4700 5850 2    60   Input ~ 0
+I2S_DATA_OUT
+Text HLabel 4700 5950 2    60   Input ~ 0
+RELAY
+Text HLabel 6775 5475 0    60   Input ~ 0
+BUTTON_LED
+Text HLabel 3575 2500 1    60   Input ~ 0
+3V3
+Text HLabel 4450 2500 1    60   Input ~ 0
+3V3
+Text HLabel 5350 2500 1    60   Input ~ 0
+3V3
+Text HLabel 7375 3425 0    60   Input ~ 0
+T_LEFT
+Text HLabel 7925 2875 1    60   Input ~ 0
+T_UP
+Text HLabel 8475 3425 2    60   Input ~ 0
+T_RIGHT
+Text HLabel 7925 3975 3    60   Input ~ 0
+T_DOWN
+Text HLabel 4700 3500 2    60   Input ~ 0
+PROG
+Text HLabel 3825 3500 2    60   Input ~ 0
+FACTORY_RST
+Text HLabel 5600 3500 2    60   Input ~ 0
+EN
+$Comp
+L LED:WS2812 D7
+U 1 1 5B2B9FC9
+P 7275 5475
+F 0 "D7" H 7616 5521 50  0000 L CNN
+F 1 "WS2812" H 7616 5430 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm" H 7325 5175 50  0001 L TNN
+F 3 "https://www.digikey.com/product-detail/en/sparkfun-electronics/COM-11821/1568-1800-ND/6163706" H 7375 5100 50  0001 L TNN
+F 4 "COM-11821" H 7275 5475 50  0001 C CNN "Part Number"
+	1    7275 5475
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6775 5475 6975 5475
+Wire Wire Line
+	7275 5775 7275 5875
+$Comp
+L open-automation:GND #PWR0101
+U 1 1 5B2D0F5E
+P 7275 5875
+F 0 "#PWR0101" H 7275 5625 50  0001 C CNN
+F 1 "GND" H 7280 5702 50  0000 C CNN
+F 2 "" H 7275 5875 50  0000 C CNN
+F 3 "" H 7275 5875 50  0000 C CNN
+	1    7275 5875
+	1    0    0    -1  
+$EndComp
+Text HLabel 7275 4675 1    60   Input ~ 0
+V_USB
+Wire Wire Line
+	7675 5100 7675 5225
+Wire Wire Line
+	7275 4675 7275 4725
+Wire Wire Line
+	7600 5100 7675 5100
+Wire Wire Line
+	7275 5050 7275 5100
+Wire Wire Line
+	7300 5100 7275 5100
+Connection ~ 7275 5100
+Wire Wire Line
+	7275 5100 7275 5175
+Wire Wire Line
+	7275 4725 7175 4725
+Wire Wire Line
+	7175 4725 7175 5175
+Connection ~ 7275 4725
+Wire Wire Line
+	7275 4725 7275 4750
+$Comp
+L open-automation:GND #PWR0102
+U 1 1 5B2DB9CA
+P 7675 5225
+F 0 "#PWR0102" H 7675 4975 50  0001 C CNN
+F 1 "GND" H 7680 5052 50  0000 C CNN
+F 2 "" H 7675 5225 50  0000 C CNN
+F 3 "" H 7675 5225 50  0000 C CNN
+	1    7675 5225
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_1uF C12
+U 1 1 5B2DBE58
+P 7450 5100
+F 0 "C12" V 7500 5200 50  0000 C CNN
+F 1 "C_1uF" V 7375 5275 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 7550 5400 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 7450 4850 50  0001 C CNN
+F 4 "CGA3E1X7R1C105M080AC" H 7575 5300 60  0001 C CNN "Part Number"
+	1    7450 5100
+	0    1    1    0   
+$EndComp
+$Comp
+L open-automation:R_150 R23
+U 1 1 5B2DE82B
+P 7275 4900
+F 0 "R23" H 7350 4875 50  0000 L CNN
+F 1 "R_150" H 7350 4975 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 7205 4900 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RNCP0603FTD150R/RNCP0603FTD150RCT-ND/2240427" V 7355 4900 50  0001 C CNN
+F 4 "RNCP0603FTD150R" V 7455 5000 60  0001 C CNN "Part Number"
+	1    7275 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0103
+U 1 1 5B2E47C2
+P 2675 4125
+F 0 "#PWR0103" H 2675 3875 50  0001 C CNN
+F 1 "GND" H 2675 3975 50  0000 C CNN
+F 2 "" H 2675 4125 50  0000 C CNN
+F 3 "" H 2675 4125 50  0000 C CNN
+	1    2675 4125
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2675 4125 2675 4075
+Text HLabel 2625 3675 0    60   Input ~ 0
+RELAY_4
+Wire Wire Line
+	2675 3775 2675 3675
+Wire Wire Line
+	2675 3675 2800 3675
+$Comp
+L Connector_Generic:Conn_01x06 J4
+U 1 1 5B2F38D8
+P 3000 3375
+F 0 "J4" H 3080 3367 50  0000 L CNN
+F 1 "Conn_01x06" H 3080 3276 50  0000 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x06_P1.00mm_Vertical" H 3000 3375 50  0001 C CNN
+F 3 "" H 3000 3375 50  0001 C CNN
+	1    3000 3375
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 5B2F3A18
+P 2175 4025
+F 0 "#PWR0104" H 2175 3775 50  0001 C CNN
+F 1 "GND" H 2175 3875 50  0000 C CNN
+F 2 "" H 2175 4025 50  0000 C CNN
+F 3 "" H 2175 4025 50  0000 C CNN
+	1    2175 4025
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2175 4025 2175 3975
+Wire Wire Line
+	2175 3675 2175 3575
+Wire Wire Line
+	2175 3575 2800 3575
+Text HLabel 2150 3575 0    60   Input ~ 0
+RELAY_3
+$Comp
+L power:GND #PWR0105
+U 1 1 5B2F5B1F
+P 1700 3925
+F 0 "#PWR0105" H 1700 3675 50  0001 C CNN
+F 1 "GND" H 1700 3775 50  0000 C CNN
+F 2 "" H 1700 3925 50  0000 C CNN
+F 3 "" H 1700 3925 50  0000 C CNN
+	1    1700 3925
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 3925 1700 3875
+Wire Wire Line
+	1700 3575 1700 3475
+Wire Wire Line
+	1700 3475 2800 3475
+Text HLabel 1650 3475 0    60   Input ~ 0
+RELAY_2
+$Comp
+L power:GND #PWR0106
+U 1 1 5B2F85A2
+P 1200 3825
+F 0 "#PWR0106" H 1200 3575 50  0001 C CNN
+F 1 "GND" H 1200 3675 50  0000 C CNN
+F 2 "" H 1200 3825 50  0000 C CNN
+F 3 "" H 1200 3825 50  0000 C CNN
+	1    1200 3825
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1200 3825 1200 3775
+Wire Wire Line
+	1075 3375 1200 3375
+Text HLabel 1075 3375 0    60   Input ~ 0
+RELAY_1
+Wire Wire Line
+	1200 3475 1200 3375
+Connection ~ 1200 3375
+Wire Wire Line
+	1200 3375 2800 3375
+Wire Wire Line
+	2800 3175 2700 3175
+Text HLabel 2700 3175 0    60   Input ~ 0
+V_USB
+$Comp
+L open-automation:GND #PWR0107
+U 1 1 5B300639
+P 2700 3275
+F 0 "#PWR0107" H 2700 3025 50  0001 C CNN
+F 1 "GND" H 2705 3102 50  0000 C CNN
+F 2 "" H 2700 3275 50  0000 C CNN
+F 3 "" H 2700 3275 50  0000 C CNN
+	1    2700 3275
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 3275 2800 3275
+Wire Wire Line
+	2625 3675 2675 3675
+Connection ~ 2675 3675
+Wire Wire Line
+	2150 3575 2175 3575
+Connection ~ 2175 3575
+Wire Wire Line
+	1650 3475 1700 3475
+Connection ~ 1700 3475
+$Comp
+L open-automation:R_10k R8
+U 1 1 5B3102FB
+P 1200 3625
+F 0 "R8" H 1270 3671 50  0000 L CNN
+F 1 "R_10k" H 1270 3580 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 1130 3625 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 1280 3625 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 1380 3725 60  0001 C CNN "Part Number"
+	1    1200 3625
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10k R12
+U 1 1 5B3103F5
+P 1700 3725
+F 0 "R12" H 1770 3771 50  0000 L CNN
+F 1 "R_10k" H 1770 3680 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 1630 3725 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 1780 3725 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 1880 3825 60  0001 C CNN "Part Number"
+	1    1700 3725
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10k R13
+U 1 1 5B311B06
+P 2175 3825
+F 0 "R13" H 2245 3871 50  0000 L CNN
+F 1 "R_10k" H 2245 3780 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 2105 3825 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 2255 3825 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 2355 3925 60  0001 C CNN "Part Number"
+	1    2175 3825
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10k R21
+U 1 1 5B313219
+P 2675 3925
+F 0 "R21" H 2745 3971 50  0000 L CNN
+F 1 "R_10k" H 2745 3880 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 2605 3925 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 2755 3925 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 2855 4025 60  0001 C CNN "Part Number"
+	1    2675 3925
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_1k R15
+U 1 1 5B317B7D
+P 4450 3250
+F 0 "R15" H 4520 3296 50  0000 L CNN
+F 1 "R_1k" H 4520 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 4380 3250 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 4530 3250 50  0001 C CNN
+F 4 "ERJ-3GEYJ102V" V 4630 3350 60  0001 C CNN "Part Number"
+	1    4450 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_1k R16
+U 1 1 5B317C71
+P 5350 3250
+F 0 "R16" H 5420 3296 50  0000 L CNN
+F 1 "R_1k" H 5420 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 5280 3250 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 5430 3250 50  0001 C CNN
+F 4 "ERJ-3GEYJ102V" V 5530 3350 60  0001 C CNN "Part Number"
+	1    5350 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_1k R14
+U 1 1 5B317D10
+P 3575 3250
+F 0 "R14" H 3645 3296 50  0000 L CNN
+F 1 "R_1k" H 3645 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 3505 3250 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 3655 3250 50  0001 C CNN
+F 4 "ERJ-3GEYJ102V" V 3755 3350 60  0001 C CNN "Part Number"
+	1    3575 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:LED-0603-G D2
+U 1 1 5B31D656
+P 3575 2800
+F 0 "D2" V 3613 2683 50  0000 R CNN
+F 1 "LED-0603-G" V 3522 2683 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad0.82x1.00mm_HandSolder" H 3475 2800 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/rohm-semiconductor/SML-D12M8WT86/511-1578-1-ND/1641810" H 3575 2900 50  0001 C CNN
+F 4 "SML-D12M8WT86" H 3675 3000 50  0001 C CNN "Part Number"
+	1    3575 2800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L open-automation:LED-0603-G D4
+U 1 1 5B31D7FF
+P 4450 2800
+F 0 "D4" V 4488 2683 50  0000 R CNN
+F 1 "LED-0603-G" V 4397 2683 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad0.82x1.00mm_HandSolder" H 4350 2800 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/rohm-semiconductor/SML-D12M8WT86/511-1578-1-ND/1641810" H 4450 2900 50  0001 C CNN
+F 4 "SML-D12M8WT86" H 4550 3000 50  0001 C CNN "Part Number"
+	1    4450 2800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L open-automation:LED-0603-G D5
+U 1 1 5B31D8E3
+P 5350 2800
+F 0 "D5" V 5388 2683 50  0000 R CNN
+F 1 "LED-0603-G" V 5297 2683 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad0.82x1.00mm_HandSolder" H 5250 2800 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/rohm-semiconductor/SML-D12M8WT86/511-1578-1-ND/1641810" H 5350 2900 50  0001 C CNN
+F 4 "SML-D12M8WT86" H 5450 3000 50  0001 C CNN "Part Number"
+	1    5350 2800
+	0    -1   -1   0   
+$EndComp
+$EndSCHEMATC
