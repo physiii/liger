@@ -27,8 +27,6 @@ F 3 "" H 3525 3650 50  0000 C CNN
 	1    3525 3650
 	1    0    0    -1  
 $EndComp
-Text GLabel 4875 3550 2    60   Input ~ 0
-IR_RX
 $Comp
 L liger-rescue:LED D1
 U 1 1 59098AF4
@@ -76,8 +74,6 @@ F 3 "" H 7625 4000 50  0000 C CNN
 	1    7625 4000
 	1    0    0    -1  
 $EndComp
-Text GLabel 6475 3600 0    60   Input ~ 0
-IR_TX
 Text Label 6925 4400 0    60   ~ 0
 IR-Transmit
 Wire Wire Line
@@ -92,10 +88,6 @@ Wire Wire Line
 	7625 2800 7625 2950
 Wire Wire Line
 	7625 3250 7625 3400
-Text GLabel 7625 2350 1    60   Input ~ 0
-3V3
-Text GLabel 3525 3475 0    60   Input ~ 0
-3V3
 $Comp
 L liger-rescue:R_1k R3
 U 1 1 59BA28B3
@@ -142,4 +134,12 @@ F 4 "TSOP75338TR" H 3950 3100 60  0001 C CNN "Part Number"
 	1    3925 3150
 	1    0    0    -1  
 $EndComp
+Text HLabel 3525 3475 0    60   Input ~ 0
+3V3
+Text HLabel 4875 3550 2    60   Input ~ 0
+IR_RX
+Text HLabel 6475 3600 0    60   Input ~ 0
+IR_TX
+Text HLabel 7625 2350 1    60   Input ~ 0
+3V3
 $EndSCHEMATC

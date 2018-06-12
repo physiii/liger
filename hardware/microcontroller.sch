@@ -36,68 +36,8 @@ F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datashe
 	1    5950 2500
 	1    0    0    -1  
 $EndComp
-$Comp
-L liger-rescue:R_10k R6
-U 1 1 59B92EE3
-P 7050 5175
-F 0 "R6" V 7050 5175 50  0000 C CNN
-F 1 "R_10k" H 6925 5325 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 6980 5175 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 7130 5175 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 7230 5275 60  0001 C CNN "Part Number"
-	1    7050 5175
-	-1   0    0    1   
-$EndComp
-$Comp
-L liger-rescue:R_10k R7
-U 1 1 59B92EEA
-P 6800 5175
-F 0 "R7" V 6800 5175 50  0000 C CNN
-F 1 "R_10k" H 6925 5325 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 6730 5175 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 6880 5175 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 6980 5275 60  0001 C CNN "Part Number"
-	1    6800 5175
-	-1   0    0    1   
-$EndComp
-$Comp
-L liger-rescue:R_47.5 R2
-U 1 1 59B81C1C
-P 7300 2250
-F 0 "R2" V 7300 2250 50  0000 C CNN
-F 1 "R_47.5" V 7225 2250 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7230 2250 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 7380 2250 50  0001 C CNN
-F 4 "RC0603FR-0747R5L" V 7480 2350 60  0001 C CNN "Part Number"
-	1    7300 2250
-	0    1    1    0   
-$EndComp
-$Comp
-L liger-rescue:R_47.5 R1
-U 1 1 59B81C70
-P 4500 2950
-F 0 "R1" V 4500 2950 50  0000 C CNN
-F 1 "R_47.5" V 4600 2850 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4430 2950 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 4580 2950 50  0001 C CNN
-F 4 "RC0603FR-0747R5L" V 4680 3050 60  0001 C CNN "Part Number"
-	1    4500 2950
-	0    1    1    0   
-$EndComp
 Text Label 4800 1075 0    197  ~ 0
 Microcontroller
-$Comp
-L liger-rescue:C_1uF C42
-U 1 1 59C84AF9
-P 6150 5175
-F 0 "C42" H 6150 5275 50  0000 L CNN
-F 1 "C_1uF" H 6150 5100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6250 5475 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" H 6150 4925 50  0001 C CNN
-F 4 "CC0603ZRY5V7BB105" H 6275 5375 60  0001 C CNN "Part Number"
-	1    6150 5175
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR02
 U 1 1 59C84AFB
@@ -143,8 +83,6 @@ Wire Wire Line
 Wire Wire Line
 	7050 5325 7050 5475
 Wire Wire Line
-	6800 2850 6900 2850
-Wire Wire Line
 	6900 2350 6800 2350
 Wire Wire Line
 	6900 2550 6800 2550
@@ -167,8 +105,6 @@ Wire Wire Line
 Wire Wire Line
 	6800 2950 6900 2950
 Wire Wire Line
-	6900 2750 6800 2750
-Wire Wire Line
 	6900 2100 6800 2100
 Wire Wire Line
 	6800 2000 6900 2000
@@ -180,18 +116,6 @@ Wire Wire Line
 	5000 1850 5050 1850
 Wire Wire Line
 	5000 1800 5000 1850
-$Comp
-L liger-rescue:C_1uF C2
-U 1 1 5A1695ED
-P 5075 5175
-F 0 "C2" H 5075 5275 50  0000 L CNN
-F 1 "C_1uF" H 5075 5100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5175 5475 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" H 5075 4925 50  0001 C CNN
-F 4 "CC0603ZRY5V7BB105" H 5200 5375 60  0001 C CNN "Part Number"
-	1    5075 5175
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR03
 U 1 1 5A1695EE
@@ -214,18 +138,6 @@ Wire Wire Line
 	5075 5325 5075 5400
 Wire Wire Line
 	4675 5400 4675 5325
-$Comp
-L liger-rescue:C_10uF C1
-U 1 1 5A1695F2
-P 4675 5175
-F 0 "C1" H 4575 5275 50  0000 L CNN
-F 1 "C_10uF" H 4400 5100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4775 5475 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM188R61A106ME69D/490-10475-1-ND/5026393" H 4675 4925 50  0001 C CNN
-F 4 "GRM188R61A106ME69D" H 4800 5375 60  0001 C CNN "Part Number"
-	1    4675 5175
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5075 5025 5075 4950
 Wire Wire Line
@@ -252,18 +164,6 @@ Wire Wire Line
 Wire Wire Line
 	5975 4875 5975 4950
 Connection ~ 5975 4950
-$Comp
-L liger-rescue:C_10uF C6
-U 1 1 5A169F88
-P 5750 5175
-F 0 "C6" H 5650 5275 50  0000 L CNN
-F 1 "C_10uF" H 5475 5100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5850 5475 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM188R61A106ME69D/490-10475-1-ND/5026393" H 5750 4925 50  0001 C CNN
-F 4 "GRM188R61A106ME69D" H 5875 5375 60  0001 C CNN "Part Number"
-	1    5750 5175
-	1    0    0    -1  
-$EndComp
 Wire Notes Line
 	5450 5750 6400 5750
 Wire Notes Line
@@ -323,12 +223,8 @@ Text HLabel 6900 3050 2    60   Output ~ 0
 IR_TX
 Text HLabel 6900 2950 2    60   Input ~ 0
 IR_RX
-Text HLabel 6900 2850 2    60   Output ~ 0
-LED_B
-Text HLabel 6900 2750 2    60   Output ~ 0
-LED_G
 Text HLabel 6900 2650 2    60   Output ~ 0
-LED_R
+BUTTON_LED
 Text HLabel 6900 2550 2    60   BiDi ~ 0
 SDA
 Text HLabel 6900 2450 2    60   Output ~ 0
@@ -353,4 +249,100 @@ Text HLabel 6800 5475 3    60   Output ~ 0
 SCL
 Text HLabel 7050 5475 3    60   BiDi ~ 0
 SDA
+$Comp
+L open-automation:C_1uF C4
+U 1 1 5B1F1AAD
+P 6150 5175
+F 0 "C4" H 6265 5221 50  0000 L CNN
+F 1 "C_1uF" H 6265 5130 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 6250 5475 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 6150 4925 50  0001 C CNN
+F 4 "CGA3E1X7R1C105M080AC" H 6275 5375 60  0001 C CNN "Part Number"
+	1    6150 5175
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_1uF C2
+U 1 1 5B1F1B60
+P 5075 5175
+F 0 "C2" H 5125 5275 50  0000 L CNN
+F 1 "C_1uF" H 5190 5130 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 5175 5475 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 5075 4925 50  0001 C CNN
+F 4 "CGA3E1X7R1C105M080AC" H 5200 5375 60  0001 C CNN "Part Number"
+	1    5075 5175
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_10uF C3
+U 1 1 5B1F217F
+P 5750 5175
+F 0 "C3" H 5625 5275 50  0000 L CNN
+F 1 "C_10uF" H 5475 5100 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 5850 5475 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A106MP8NNNC/1276-1871-1-ND/3889957" H 5750 4925 50  0001 C CNN
+F 4 "CL10A106MP8NNNC" H 5875 5375 60  0001 C CNN "Part Number"
+	1    5750 5175
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_10uF C1
+U 1 1 5B1F22B0
+P 4675 5175
+F 0 "C1" H 4550 5250 50  0000 L CNN
+F 1 "C_10uF" H 4400 5075 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 4775 5475 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A106MP8NNNC/1276-1871-1-ND/3889957" H 4675 4925 50  0001 C CNN
+F 4 "CL10A106MP8NNNC" H 4800 5375 60  0001 C CNN "Part Number"
+	1    4675 5175
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10k R6
+U 1 1 5B31EE0D
+P 7050 5175
+F 0 "R6" H 7120 5221 50  0000 L CNN
+F 1 "R_10k" H 7120 5130 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 6980 5175 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 7130 5175 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 7230 5275 60  0001 C CNN "Part Number"
+	1    7050 5175
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10k R2
+U 1 1 5B31EE98
+P 6800 5175
+F 0 "R2" H 6870 5221 50  0000 L CNN
+F 1 "R_10k" H 6870 5130 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 6730 5175 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 6880 5175 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 6980 5275 60  0001 C CNN "Part Number"
+	1    6800 5175
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_47.5 R7
+U 1 1 5B321D4E
+P 7300 2250
+F 0 "R7" V 7093 2250 50  0000 C CNN
+F 1 "R_47.5" V 7184 2250 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 7230 2250 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 7380 2250 50  0001 C CNN
+F 4 "RC0603FR-0747R5L" V 7480 2350 60  0001 C CNN "Part Number"
+	1    7300 2250
+	0    1    1    0   
+$EndComp
+$Comp
+L open-automation:R_47.5 R1
+U 1 1 5B322166
+P 4500 2950
+F 0 "R1" V 4293 2950 50  0000 C CNN
+F 1 "R_47.5" V 4600 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" V 4430 2950 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 4580 2950 50  0001 C CNN
+F 4 "RC0603FR-0747R5L" V 4680 3050 60  0001 C CNN "Part Number"
+	1    4500 2950
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC

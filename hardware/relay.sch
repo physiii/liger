@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 8 9
+Sheet 7 9
 Title ""
 Date ""
 Rev ""
@@ -14,8 +14,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text GLabel 5000 2275 0    60   Input ~ 0
-RELAY
 Text Label 4525 1325 0    394  ~ 0
 Relay
 $Comp
@@ -45,4 +43,6 @@ Wire Wire Line
 	5475 2275 5425 2275
 Wire Wire Line
 	5000 2275 5125 2275
+Text HLabel 5000 2275 0    60   Input ~ 0
+RELAY
 $EndSCHEMATC

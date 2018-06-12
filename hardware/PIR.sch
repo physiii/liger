@@ -16,8 +16,6 @@ Comment4 ""
 $EndDescr
 Text Label 2750 1225 0    394  ~ 0
 PIR_MOTION_SENSOR
-Text GLabel 6425 2275 2    60   Input ~ 0
-PIR
 $Comp
 L power:GND #PWR029
 U 1 1 59B7E3DB
@@ -29,8 +27,6 @@ F 3 "" H 5125 2375 50  0000 C CNN
 	1    5125 2375
 	1    0    0    -1  
 $EndComp
-Text GLabel 5050 2200 0    60   Input ~ 0
-3V3
 $Comp
 L liger-rescue:R_100k R18
 U 1 1 5A160B80
@@ -64,7 +60,7 @@ Wire Wire Line
 Wire Wire Line
 	5900 2275 5775 2275
 Wire Wire Line
-	6200 2275 6425 2275
+	6200 2275 6275 2275
 Wire Wire Line
 	6275 2275 6275 2325
 $Comp
@@ -93,4 +89,10 @@ F 4 "EKMC1601112" H 5425 2575 60  0001 C CNN "Part Number"
 	1    5425 2275
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	6275 2275 6425 2275
+Text HLabel 5050 2200 0    60   Input ~ 0
+3V3
+Text HLabel 6425 2275 2    60   Input ~ 0
+PIR
 $EndSCHEMATC

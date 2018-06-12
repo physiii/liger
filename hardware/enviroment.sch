@@ -16,8 +16,6 @@ Comment4 ""
 $EndDescr
 Text Label 5125 1950 0    197  ~ 0
 Environment
-Text GLabel 3400 3425 0    60   Input ~ 0
-3V3
 $Comp
 L power:GND #PWR024
 U 1 1 59EBC48D
@@ -29,10 +27,6 @@ F 3 "" H 3850 3575 50  0000 C CNN
 	1    3850 3575
 	1    0    0    -1  
 $EndComp
-Text GLabel 4850 3425 2    60   Input ~ 0
-SCL
-Text GLabel 4850 3525 2    60   Input ~ 0
-SDA
 $Comp
 L liger-rescue:SI7020-A20 U6
 U 1 1 59EBC48E
@@ -43,18 +37,6 @@ F 2 "open-automation:SI7020-A20" H 4350 3225 60  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/silicon-labs/SI7020-A20-GM1R/336-3596-1-ND/5823452" H 4350 3325 60  0001 C CNN
 F 4 "SI7020-A20-GM1R" H 4450 3325 60  0001 C CNN "Part Number"
 	1    4350 3525
-	1    0    0    -1  
-$EndComp
-$Comp
-L liger-rescue:C_0.1uF C7
-U 1 1 59EBC48F
-P 3550 3625
-F 0 "C7" H 3575 3725 50  0000 L CNN
-F 1 "C_0.1uF" H 3250 3525 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 3650 3925 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623" H 3550 3375 50  0001 C CNN
-F 4 "C0603C104K5RACTU" H 3675 3825 60  0001 C CNN "Part Number"
-	1    3550 3625
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -70,10 +52,6 @@ F 3 "" H 3550 3825 50  0000 C CNN
 $EndComp
 Text Label 7675 3250 0    60   ~ 0
 Light-Level
-Text GLabel 8425 3625 2    60   Input ~ 0
-SDA
-Text GLabel 8425 3500 2    60   Input ~ 0
-SCL
 $Comp
 L power:GND #PWR026
 U 1 1 59EBC491
@@ -85,24 +63,10 @@ F 3 "" H 7425 3675 50  0000 C CNN
 	1    7425 3675
 	1    0    0    -1  
 $EndComp
-Text GLabel 7100 3525 0    60   Input ~ 0
-3V3
-$Comp
-L liger-rescue:C_0.1uF C9
-U 1 1 59EBC492
-P 7200 3700
-F 0 "C9" H 7225 3800 50  0000 L CNN
-F 1 "C_0.1uF" H 6900 3600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 7300 4000 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623" H 7200 3450 50  0001 C CNN
-F 4 "C0603C104K5RACTU" H 7325 3900 60  0001 C CNN "Part Number"
-	1    7200 3700
-	1    0    0    -1  
-$EndComp
 Text Label 4050 3200 0    60   ~ 0
 Temp-Humidty
 Wire Wire Line
-	3400 3425 3900 3425
+	3400 3425 3550 3425
 Wire Wire Line
 	3900 3525 3850 3525
 Wire Wire Line
@@ -121,7 +85,7 @@ Wire Wire Line
 Wire Wire Line
 	7425 3625 7475 3625
 Wire Wire Line
-	7100 3525 7475 3525
+	7100 3525 7200 3525
 Wire Wire Line
 	7200 3525 7200 3550
 $Comp
@@ -158,4 +122,44 @@ F 4 "TSL45315CL" H 7925 3225 60  0001 C CNN "Part Number"
 	1    7925 3625
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	3550 3425 3900 3425
+Wire Wire Line
+	7200 3525 7475 3525
+$Comp
+L open-automation:C_0.1uF C11
+U 1 1 5B1F3B9C
+P 7200 3700
+F 0 "C11" H 7315 3746 50  0000 L CNN
+F 1 "C_0.1uF" H 6800 3650 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 7300 4000 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 7200 3450 50  0001 C CNN
+F 4 "C1608X8R1H104K080AB" H 7325 3900 60  0001 C CNN "Part Number"
+	1    7200 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_0.1uF C10
+U 1 1 5B1F3C43
+P 3550 3625
+F 0 "C10" H 3665 3671 50  0000 L CNN
+F 1 "C_0.1uF" H 3125 3600 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 3650 3925 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 3550 3375 50  0001 C CNN
+F 4 "C1608X8R1H104K080AB" H 3675 3825 60  0001 C CNN "Part Number"
+	1    3550 3625
+	1    0    0    -1  
+$EndComp
+Text HLabel 4850 3425 2    60   Input ~ 0
+SCL
+Text HLabel 4850 3525 2    60   Input ~ 0
+SDA
+Text HLabel 3400 3425 0    60   Input ~ 0
+3V3
+Text HLabel 7100 3525 0    60   Input ~ 0
+3V3
+Text HLabel 8425 3500 2    60   Input ~ 0
+SCL
+Text HLabel 8425 3625 2    60   Input ~ 0
+SDA
 $EndSCHEMATC

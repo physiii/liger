@@ -14,8 +14,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text GLabel 7275 4925 0    60   Input ~ 0
-LED_R
 $Comp
 L liger-rescue:SW_PUSH REBOOT1
 U 1 1 59092D1B
@@ -28,10 +26,6 @@ F 4 "KMR211NG LFS" H 5350 3900 60  0001 C CNN "Part Number"
 	1    5350 3900
 	0    1    1    0   
 $EndComp
-Text GLabel 4700 3500 2    60   Input ~ 0
-PROG
-Text GLabel 5600 3500 2    60   Input ~ 0
-EN
 $Comp
 L power:GND #PWR019
 U 1 1 59092D1C
@@ -55,8 +49,6 @@ F 4 "475-2512-2-ND" H 5350 2800 60  0001 C CNN "Part Number"
 	1    5350 2800
 	0    -1   -1   0   
 $EndComp
-Text GLabel 5350 2500 1    60   Input ~ 0
-3V3
 $Comp
 L liger-rescue:soft-button-4x U12
 U 1 1 597D230D
@@ -68,31 +60,23 @@ F 3 "" H 7825 3325 60  0001 C CNN
 	1    7825 3325
 	1    0    0    -1  
 $EndComp
-Text GLabel 7375 3425 0    60   Input ~ 0
-T_LEFT
-Text GLabel 8475 3425 2    60   Input ~ 0
-T_RIGHT
-Text GLabel 7925 2875 1    60   Input ~ 0
-T_UP
-Text GLabel 7925 3975 3    60   Input ~ 0
-T_DOWN
 $Comp
 L liger-rescue:RGB-LED U7
 U 1 1 5980E7D1
-P 7875 4925
-F 0 "U7" H 8125 4625 60  0000 C CNN
-F 1 "RGB-LED" H 7875 5225 60  0000 C CNN
-F 2 "open-automation:RGB-LED-J-Lead-SMD-6" H 8025 4925 60  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/LTRBGFSF-ABCB-QKYO-Z/475-2899-6-ND/2415092" H 8025 4925 60  0001 C CNN
-F 4 "LTRBGFSF-ABCB-QKYO-Z" H 7875 4925 60  0001 C CNN "Part Number"
-	1    7875 4925
+P 9750 5200
+F 0 "U7" H 10000 4900 60  0000 C CNN
+F 1 "RGB-LED" H 9750 5500 60  0000 C CNN
+F 2 "open-automation:RGB-LED-J-Lead-SMD-6" H 9900 5200 60  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/LTRBGFSF-ABCB-QKYO-Z/475-2899-6-ND/2415092" H 9900 5200 60  0001 C CNN
+F 4 "LTRBGFSF-ABCB-QKYO-Z" H 9750 5200 60  0001 C CNN "Part Number"
+	1    9750 5200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	5350 2500 5350 2650
 Connection ~ 5350 3500
 Wire Wire Line
-	5350 3400 5350 3600
+	5350 3400 5350 3500
 Wire Wire Line
 	5350 2950 5350 3100
 Wire Wire Line
@@ -103,10 +87,6 @@ Wire Wire Line
 	7925 3925 7925 3975
 Wire Wire Line
 	8475 3425 8425 3425
-Text GLabel 7275 5075 0    60   Input ~ 0
-LED_G
-Text GLabel 7275 4775 0    60   Input ~ 0
-LED_B
 Wire Wire Line
 	7275 4775 7375 4775
 Wire Wire Line
@@ -125,8 +105,6 @@ F 4 "RC0603JR-0736RL" V 8625 4775 60  0001 C CNN "Part Number"
 	1    8625 4775
 	0    1    1    0   
 $EndComp
-Text GLabel 8875 4675 1    60   Input ~ 0
-3V3
 $Comp
 L liger-rescue:R R12
 U 1 1 5980F487
@@ -158,7 +136,7 @@ Wire Wire Line
 Wire Wire Line
 	8375 5075 8475 5075
 Wire Wire Line
-	8875 4675 8875 5075
+	8875 4675 8875 4775
 Wire Wire Line
 	8875 4775 8775 4775
 Wire Wire Line
@@ -216,13 +194,11 @@ F 4 "475-2512-2-ND" H 4450 2800 60  0001 C CNN "Part Number"
 	1    4450 2800
 	0    -1   -1   0   
 $EndComp
-Text GLabel 4450 2500 1    60   Input ~ 0
-3V3
 Wire Wire Line
 	4450 2500 4450 2650
 Connection ~ 4450 3500
 Wire Wire Line
-	4450 3400 4450 3600
+	4450 3400 4450 3500
 Wire Wire Line
 	4450 2950 4450 3100
 $Comp
@@ -243,8 +219,6 @@ Wire Wire Line
 	4450 4200 4450 4275
 Wire Wire Line
 	5350 4200 5350 4275
-Text GLabel 3825 3500 2    60   Input ~ 0
-FACTORY
 $Comp
 L liger-rescue:SW_PUSH FACTORY1
 U 1 1 59CA6153
@@ -280,13 +254,11 @@ F 4 "475-2512-2-ND" H 3575 2800 60  0001 C CNN "Part Number"
 	1    3575 2800
 	0    -1   -1   0   
 $EndComp
-Text GLabel 3575 2500 1    60   Input ~ 0
-3V3
 Wire Wire Line
 	3575 2500 3575 2650
 Connection ~ 3575 3500
 Wire Wire Line
-	3575 3400 3575 3600
+	3575 3400 3575 3500
 Wire Wire Line
 	3575 2950 3575 3100
 $Comp
@@ -316,14 +288,6 @@ F 3 "" H 4050 5200 50  0000 C CNN
 	1    4050 5200
 	-1   0    0    1   
 $EndComp
-Text GLabel 4000 5450 0    60   Input ~ 0
-3V3
-Text GLabel 4700 5550 2    60   Input ~ 0
-RXD
-Text GLabel 4700 5450 2    60   Input ~ 0
-TXD
-Text GLabel 4700 5350 2    60   Input ~ 0
-V_USB
 $Comp
 L power:GND #PWR023
 U 1 1 5A16D01C
@@ -337,22 +301,6 @@ F 3 "" H 4650 5200 50  0000 C CNN
 $EndComp
 Text Label 4800 1075 0    197  ~ 0
 INTERFACE
-Text GLabel 4000 5950 0    60   Input ~ 0
-PROG
-Text GLabel 4000 5550 0    60   Input ~ 0
-FACTORY
-Text GLabel 4000 5650 0    60   Input ~ 0
-SCL
-Text GLabel 4700 5650 2    60   Input ~ 0
-SDA
-Text GLabel 4000 5850 0    60   Input ~ 0
-I2S_BCLK
-Text GLabel 4700 5750 2    60   Input ~ 0
-I2S_DATA_IN
-Text GLabel 4000 5750 0    60   Input ~ 0
-I2S_WS
-Text GLabel 4700 5850 2    60   Input ~ 0
-I2S_DATA_OUT
 $Comp
 L liger-rescue:Conn_02x08_Odd_Even J1
 U 1 1 5A16D01F
@@ -364,10 +312,6 @@ F 3 "" H 4300 5550 50  0001 C CNN
 	1    4300 5550
 	1    0    0    -1  
 $EndComp
-Text GLabel 4700 5950 2    60   Input ~ 0
-RELAY
-Text GLabel 4000 5350 0    60   Input ~ 0
-V_BAT
 Wire Wire Line
 	4600 5950 4700 5950
 Wire Wire Line
@@ -404,4 +348,82 @@ Wire Wire Line
 	4600 5250 4650 5250
 Wire Wire Line
 	4650 5250 4650 5200
+Wire Wire Line
+	5350 3500 5350 3600
+Wire Wire Line
+	8875 4775 8875 4925
+Wire Wire Line
+	8875 4925 8875 5075
+Wire Wire Line
+	4450 3500 4450 3600
+Wire Wire Line
+	3575 3500 3575 3600
+Text HLabel 4025 5350 0    60   Input ~ 0
+V_BAT
+Text HLabel 4000 5450 0    60   Input ~ 0
+3V3
+Text HLabel 4000 5550 0    60   Input ~ 0
+FACTORY_RST
+Text HLabel 4000 5650 0    60   Input ~ 0
+SCL
+Text HLabel 4000 5750 0    60   Input ~ 0
+I2S_WS
+Text HLabel 4000 5850 0    60   Input ~ 0
+I2S_BCLK
+Text HLabel 4000 5950 0    60   Input ~ 0
+PROG
+Text HLabel 4700 5350 2    60   Input ~ 0
+V_USB
+Text HLabel 4700 5450 2    60   Input ~ 0
+TXD
+Text HLabel 4700 5550 2    60   Input ~ 0
+RXD
+Text HLabel 4700 5650 2    60   Input ~ 0
+SDA
+Text HLabel 4700 5750 2    60   Input ~ 0
+I2S_DATA_IN
+Text HLabel 4700 5850 2    60   Input ~ 0
+I2S_DATA_OUT
+Text HLabel 4700 5950 2    60   Input ~ 0
+RELAY
+Text HLabel 7275 4775 0    60   Input ~ 0
+LED_B
+Text HLabel 7275 4925 0    60   Input ~ 0
+LED_R
+Text HLabel 7275 5075 0    60   Input ~ 0
+LED_G
+Text HLabel 3575 2500 1    60   Input ~ 0
+3V3
+Text HLabel 4450 2500 1    60   Input ~ 0
+3V3
+Text HLabel 5350 2500 1    60   Input ~ 0
+3V3
+Text HLabel 8875 4675 1    60   Input ~ 0
+3V3
+Text HLabel 7375 3425 0    60   Input ~ 0
+T_LEFT
+Text HLabel 7925 2875 1    60   Input ~ 0
+T_UP
+Text HLabel 8475 3425 2    60   Input ~ 0
+T_RIGHT
+Text HLabel 7925 3975 3    60   Input ~ 0
+T_DOWN
+Text HLabel 4700 3500 2    60   Input ~ 0
+PROG
+Text HLabel 3825 3500 2    60   Input ~ 0
+FACTORY_RST
+Text HLabel 5600 3500 2    60   Input ~ 0
+EN
+$Comp
+L LED:WS2812 D?
+U 1 1 5B2B9FC9
+P 7875 4900
+F 0 "D?" H 8216 4946 50  0000 L CNN
+F 1 "WS2812" H 8216 4855 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm" H 7925 4600 50  0001 L TNN
+F 3 "https://www.digikey.com/product-detail/en/sparkfun-electronics/COM-11821/1568-1800-ND/6163706" H 7975 4525 50  0001 L TNN
+F 4 "COM-11821" H 7875 4900 50  0001 C CNN "Part Number"
+	1    7875 4900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

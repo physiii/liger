@@ -144,30 +144,6 @@ F 4 "RC0603JR-072KL" V 8155 3800 60  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L liger-rescue:C_1uF C3
-U 1 1 59BA119E
-P 3500 3650
-F 0 "C3" H 3525 3750 50  0000 L CNN
-F 1 "C_1uF" H 3250 3550 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 3600 3950 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" H 3500 3400 50  0001 C CNN
-F 4 "CC0603ZRY5V7BB105" H 3625 3850 60  0001 C CNN "Part Number"
-	1    3500 3650
-	1    0    0    -1  
-$EndComp
-$Comp
-L liger-rescue:C_1uF C4
-U 1 1 59BA1591
-P 5125 3675
-F 0 "C4" H 5150 3775 50  0000 L CNN
-F 1 "C_1uF" H 5150 3600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5225 3975 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" H 5125 3425 50  0001 C CNN
-F 4 "CC0603ZRY5V7BB105" H 5250 3875 60  0001 C CNN "Part Number"
-	1    5125 3675
-	1    0    0    -1  
-$EndComp
-$Comp
 L liger-rescue:18650_Battery_Cell_1043 BT1
 U 1 1 59BA3E14
 P 8275 3750
@@ -175,7 +151,7 @@ AR Path="/59BA3E14" Ref="BT1"  Part="1"
 AR Path="/5909D8E3/59BA3E14" Ref="BT1"  Part="1" 
 F 0 "BT1" H 8375 3850 50  0000 L CNN
 F 1 "18650_Battery_Cell_1043" H 8375 3750 50  0001 L CNN
-F 2 "" V 8275 3810 50  0001 C CNN
+F 2 "Battery:BatteryHolder_Keystone_1042_1x18650" V 8275 3810 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/keystone-electronics/1043/36-1043-ND/2745669" V 8275 3810 50  0001 C CNN
 F 4 "36-1043-ND" H 8475 3950 60  0001 C CNN "Part Number"
 	1    8275 3750
@@ -244,18 +220,6 @@ Wire Wire Line
 	3500 3325 3500 3450
 Wire Wire Line
 	5125 3875 5125 3825
-$Comp
-L liger-rescue:C_1uF C5
-U 1 1 59EBD4F3
-P 8700 3700
-F 0 "C5" H 8725 3800 50  0000 L CNN
-F 1 "C_1uF" H 8475 3600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 8800 4000 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" H 8700 3450 50  0001 C CNN
-F 4 "CC0603ZRY5V7BB105" H 8825 3900 60  0001 C CNN "Part Number"
-	1    8700 3700
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	8700 3450 8700 3550
 Connection ~ 8275 3450
@@ -347,4 +311,40 @@ Text HLabel 6775 3150 1    60   Input ~ 0
 V_USB
 Text HLabel 8125 3250 1    60   Input ~ 0
 V_BAT
+$Comp
+L open-automation:C_1uF C8
+U 1 1 5B1EEF77
+P 5125 3675
+F 0 "C8" H 5240 3721 50  0000 L CNN
+F 1 "C_1uF" H 5240 3630 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 5225 3975 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 5125 3425 50  0001 C CNN
+F 4 "CGA3E1X7R1C105M080AC" H 5250 3875 60  0001 C CNN "Part Number"
+	1    5125 3675
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_1uF C7
+U 1 1 5B1EF368
+P 3500 3650
+F 0 "C7" H 3615 3696 50  0000 L CNN
+F 1 "C_1uF" H 3615 3605 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 3600 3950 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 3500 3400 50  0001 C CNN
+F 4 "CGA3E1X7R1C105M080AC" H 3625 3850 60  0001 C CNN "Part Number"
+	1    3500 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_1uF C9
+U 1 1 5B1EF9E4
+P 8700 3700
+F 0 "C9" H 8815 3746 50  0000 L CNN
+F 1 "C_1uF" H 8815 3655 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 8800 4000 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 8700 3450 50  0001 C CNN
+F 4 "CGA3E1X7R1C105M080AC" H 8825 3900 60  0001 C CNN "Part Number"
+	1    8700 3700
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

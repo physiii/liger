@@ -39,24 +39,6 @@ F 3 "" H 3650 4550 50  0000 C CNN
 	1    3650 4550
 	1    0    0    -1  
 $EndComp
-Text GLabel 4600 4450 2    60   Input ~ 0
-I2S_BCLK
-Text GLabel 5050 4150 2    60   Input ~ 0
-I2S_DATA_IN
-Text GLabel 4600 4350 2    60   Input ~ 0
-I2S_WS
-$Comp
-L liger-rescue:C_0.1uF C8
-U 1 1 5A1620AA
-P 3400 4550
-F 0 "C8" H 3425 4650 50  0000 L CNN
-F 1 "C_0.1uF" H 3075 4450 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 3500 4850 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/kemet/C0603C104K5RACTU/399-5089-1-ND/1465623" H 3400 4300 50  0001 C CNN
-F 4 "C0603C104K5RACTU" H 3525 4750 60  0001 C CNN "Part Number"
-	1    3400 4550
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR07
 U 1 1 5A1620AB
@@ -103,15 +85,13 @@ F 3 "" H 4950 3950 50  0000 C CNN
 	1    4950 3950
 	0    -1   -1   0   
 $EndComp
-Text GLabel 3250 4250 0    60   Input ~ 0
-3V3
 Connection ~ 4550 4150
 Wire Wire Line
 	4600 3950 4550 3950
 Wire Wire Line
 	4550 4150 4600 4150
 Wire Wire Line
-	4550 3950 4550 4250
+	4550 3950 4550 4150
 Wire Wire Line
 	4550 4250 4500 4250
 Wire Wire Line
@@ -124,12 +104,12 @@ Connection ~ 3400 4250
 Wire Wire Line
 	3400 4400 3400 4250
 Wire Wire Line
-	3250 4250 3700 4250
+	3250 4250 3400 4250
 Connection ~ 3650 4500
 Wire Wire Line
 	3700 4350 3650 4350
 Wire Wire Line
-	3650 4350 3650 4550
+	3650 4350 3650 4500
 Wire Wire Line
 	3700 4500 3650 4500
 Wire Wire Line
@@ -161,26 +141,18 @@ F 3 "" H 7225 4550 50  0000 C CNN
 	1    7225 4550
 	1    0    0    -1  
 $EndComp
-Text GLabel 7175 4150 0    60   Input ~ 0
-I2S_DATA_OUT
-Text GLabel 6900 4450 0    60   Input ~ 0
-V_IN
 Wire Wire Line
 	7225 4550 7225 4525
 Wire Wire Line
 	7225 4525 7250 4525
 Wire Wire Line
-	6900 4450 7250 4450
+	6900 4450 7000 4450
 Wire Wire Line
 	7175 4150 7250 4150
 Wire Wire Line
 	8350 4150 8500 4150
 Wire Wire Line
 	8350 4250 8575 4250
-Text GLabel 8450 4350 2    60   Input ~ 0
-I2S_WS
-Text GLabel 8450 4450 2    60   Input ~ 0
-I2S_BCLK
 Wire Wire Line
 	8450 4450 8350 4450
 Wire Wire Line
@@ -221,18 +193,6 @@ Wire Wire Line
 	7175 4325 7175 4250
 Wire Wire Line
 	7175 4250 7250 4250
-$Comp
-L liger-rescue:C_1uF C10
-U 1 1 5A1620B3
-P 7000 4625
-F 0 "C10" H 7025 4725 50  0000 L CNN
-F 1 "C_1uF" H 6775 4525 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 7100 4925 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" H 7000 4375 50  0001 C CNN
-F 4 "CC0603ZRY5V7BB105" H 7125 4825 60  0001 C CNN "Part Number"
-	1    7000 4625
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7000 4475 7000 4450
 Connection ~ 7000 4450
@@ -252,13 +212,13 @@ Wire Wire Line
 $Comp
 L liger-rescue:speaker-CVS-1508 LS1
 U 1 1 5A1620B5
-P 8825 3950
-F 0 "LS1" H 8825 4075 50  0000 R CNN
-F 1 "speaker-CVS-1508" H 8875 4100 50  0001 R CNN
-F 2 "open-automation:speaker-1508" H 8825 3750 50  0001 C CNN
-F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 8815 3900 50  0001 C CNN
-F 4 "CVS-1508" H 8975 4275 60  0001 C CNN "Part Number"
-	1    8825 3950
+P 9525 3950
+F 0 "LS1" H 9525 4075 50  0000 R CNN
+F 1 "speaker-CVS-1508" H 9575 4100 50  0001 R CNN
+F 2 "open-automation:speaker-1508" H 9525 3750 50  0001 C CNN
+F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 9515 3900 50  0001 C CNN
+F 4 "CVS-1508" H 9675 4275 60  0001 C CNN "Part Number"
+	1    9525 3950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -271,4 +231,80 @@ Wire Wire Line
 	8575 4050 8625 4050
 Text Label 7225 3525 0    197  ~ 0
 Speaker
+Wire Wire Line
+	4550 4150 4550 4250
+Wire Wire Line
+	3400 4250 3700 4250
+Wire Wire Line
+	3650 4500 3650 4550
+Wire Wire Line
+	7200 4450 7250 4450
+Wire Wire Line
+	7000 4450 7200 4450
+$Comp
+L open-automation:C_0.1uF C5
+U 1 1 5B1F056C
+P 3400 4550
+F 0 "C5" H 3515 4596 50  0000 L CNN
+F 1 "C_0.1uF" H 3515 4505 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 3500 4850 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 3400 4300 50  0001 C CNN
+F 4 "C1608X8R1H104K080AB" H 3525 4750 60  0001 C CNN "Part Number"
+	1    3400 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:C_0.1uF C6
+U 1 1 5B1F08F4
+P 7000 4625
+F 0 "C6" H 7115 4671 50  0000 L CNN
+F 1 "C_0.1uF" H 7115 4580 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 7100 4925 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 7000 4375 50  0001 C CNN
+F 4 "C1608X8R1H104K080AB" H 7125 4825 60  0001 C CNN "Part Number"
+	1    7000 4625
+	1    0    0    -1  
+$EndComp
+Text HLabel 5050 4150 2    60   Input ~ 0
+I2S_DATA_IN
+Text HLabel 6900 4450 0    60   Input ~ 0
+V_IN
+Text HLabel 4600 4350 2    60   Input ~ 0
+I2S_WS
+Text HLabel 4600 4450 2    60   Input ~ 0
+I2S_BCLK
+Text HLabel 7175 4150 0    60   Input ~ 0
+I2S_DATA_OUT
+Text HLabel 8450 4350 2    60   Input ~ 0
+I2S_WS
+Text HLabel 8450 4450 2    60   Input ~ 0
+I2S_BCLK
+Text HLabel 3250 4250 0    60   Input ~ 0
+3V3
+Wire Wire Line
+	9325 3950 9250 3950
+$Comp
+L Connector_Generic:Conn_01x02 J2
+U 1 1 5B2BE39C
+P 8825 3950
+F 0 "J2" H 8775 4050 50  0000 L CNN
+F 1 "Conn_01x02" H 8700 3725 50  0000 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" H 8825 3950 50  0001 C CNN
+F 3 "~" H 8825 3950 50  0001 C CNN
+	1    8825 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J3
+U 1 1 5B2BE409
+P 9050 4050
+F 0 "J3" H 8970 3725 50  0000 C CNN
+F 1 "Conn_01x02" H 8970 3816 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" H 9050 4050 50  0001 C CNN
+F 3 "~" H 9050 4050 50  0001 C CNN
+	1    9050 4050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9250 4050 9325 4050
 $EndSCHEMATC
