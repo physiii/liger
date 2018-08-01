@@ -1,0 +1,10 @@
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/install/strip.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/install/local.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/install.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/list_install_components.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/dist.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/edit_cache.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/websockets.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/package.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/package_source.dir
+/home/andy/circuits/lws-esp32-test-server-demos/build/libwebsockets/CMakeFiles/rebuild_cache.dir
