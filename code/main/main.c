@@ -173,6 +173,18 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 	return lws_esp32_event_passthru(ctx, event);
 }
 
+static int
+connect_client(struct lws_client_connect_info i)
+{
+
+
+	i.protocol = "token-protocol";
+	i.pwsi = &wsi_token;
+	i.path = "/token";
+
+	return lws_client_connect_via_info(&i);
+}
+
 void app_main(void)
 {
 	static struct lws_context_creation_info info;
@@ -220,28 +232,28 @@ void app_main(void)
 	lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info, &vh);
 
-
-	static struct lws_client_connect_info i;
-	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.11";
-	i.port = 4000;
-	i.ssl_connection = 0;
-	i.host = i.address;
-	i.origin = i.host;
-	i.ietf_version_or_minus_one = -1;
-	i.context = context;
-
-	i.protocol = "token-protocol";
-	i.pwsi = &wsi_token;
-	i.path = "/token";
-
 	while (1) {
 		vTaskDelay(1000 / portTICK_RATE_MS);
 		if (got_ip) break;
 		//lws_service(context, 1000);
 		//taskYIELD();
 	}
-	wsi_token = lws_client_connect_via_info(&i);
+	
+	static struct lws_client_connect_info i;
+	memset(&i, 0, sizeof i);
+	i.address = "10.10.10.124";
+	i.port = 4000;
+	i.ssl_connection = 0;
+	i.host = i.address;
+	i.origin = i.host;
+	i.ietf_version_or_minus_one = -1;
+	i.context = context;
+	
+	connect_client(i);
+
+
+
+	
 	while (!lws_service(context, 500)) {
 
 			taskYIELD();

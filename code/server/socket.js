@@ -35,34 +35,6 @@ server.on('upgrade', (request, socket, head) => {
     wssButtons.handleUpgrade(request, socket, head, (ws) => {
       wssButtons.emit('connection', ws);
     });
-  } else if (pathname === '/power') {
-    wssPower.handleUpgrade(request, socket, head, (ws) => {
-      wssPower.emit('connection', ws);
-    });
-  } else if (pathname === '/LED') {
-    wssLED.handleUpgrade(request, socket, head, (ws) => {
-      wssLED.emit('connection', ws);
-    });
-  } else if (pathname === '/microphone') {
-    wssMicrophone.handleUpgrade(request, socket, head, (ws) => {
-      wssMicrophone.emit('connection', ws);
-    });
-  } else if (pathname === '/motion') {
-    wssMotion.handleUpgrade(request, socket, head, (ws) => {
-      wssMotion.emit('connection', ws);
-    });
-  } else if (pathname === '/climate') {
-    wssClimate.handleUpgrade(request, socket, head, (ws) => {
-      wssClimate.emit('connection', ws);
-    });
-  } else if (pathname === '/test') {
-    wssTest.handleUpgrade(request, socket, head, (ws) => {
-      wssTest.emit('connection', ws);
-    });
-  } else if (pathname === '/update') {
-    wssUpdate.handleUpgrade(request, socket, head, (ws) => {
-      wssUpdate.emit('connection', ws);
-    });
   } else {
     socket.destroy();
   }
@@ -79,7 +51,24 @@ wssToken.on('connection', function connection(ws) {
   console.log("<< ---- incoming token connection ---- >>");
   ws.on('message', function incoming(message) {
     console.log("<< ---- incoming token message ---- >>\n", message);
-    ws.emit("uuid", "test uuid");
+    var msg = ""
+    try { msg = JSON.parse(message) }
+    catch (e) { console.log("invalid json", message) };
+    if (!msg.event_type) return;
+    let event_type = msg.event_type;
+    
+    switch (event_type) {
+      case "getUUID":
+        console.log("sending UUID...");
+        ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
+        break;
+      case "getToken":
+        
+        ws.send("TEST-TOKEN");
+        break;
+      default:
+        console.log("unknown event type: ",event_type);
+    }
     /*var msg = {};
     try { msg = JSON.parse(message) }
     catch (e) { console.log("invalid json", message) };

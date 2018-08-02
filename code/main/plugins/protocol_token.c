@@ -76,35 +76,22 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 		case LWS_CALLBACK_CLIENT_WRITEABLE:
-			printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
-
-			if (dumb_count < 99) dumb_count++;
-			else dumb_count = 0;
-
-			sprintf(dumb_count_str,"%d",dumb_count);
-			strcpy(token_req_str, "TEST!");
-			strcat(token_req_str, dumb_count_str);
+			//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
+		
+			strcpy(token_req_str, "{\"event_type\":\"getUUID\"}");
+			//strcat(token_req_str, dumb_count_str);
 
 			n = lws_snprintf((char *)p, sizeof(token_req_str) - LWS_PRE, "%s", token_req_str);
 			m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
 			if (m < n)
 				lwsl_err("ERROR %d writing to token socket\n", n);
 			else  {
-				printf("%s\n",token_req_str);
+				//printf("%s\n",token_req_str);
 			}
 			break;
 
-	case LWS_CALLBACK_RECEIVE:
-		if (len < 6)
-			break;
-		if (strncmp((const char *)in, "reset\n", 6) == 0)
-			pss->number = 0;
-		if (strncmp((const char *)in, "closeme\n", 8) == 0) {
-			lwsl_notice("dumb_inc: closing as requested\n");
-			lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-					 (unsigned char *)"seeya", 5);
-			return -1;
-		}
+	case LWS_CALLBACK_CLIENT_RECEIVE:
+	  printf("%s\n",(const char *)in);
 		break;
 
 	case LWS_CALLBACK_TIMER:
