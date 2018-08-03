@@ -26,7 +26,8 @@ const server = http.createServer().listen(4000);
 
 server.on('upgrade', (request, socket, head) => {
   const pathname = url.parse(request.url).pathname;
-
+  console.log("http upgrade request: ", request.headers);
+  //console.log("http upgrade head: ", head);
   if (pathname === '/token') {
     wssToken.handleUpgrade(request, socket, head, (ws) => {
       wssToken.emit('connection', ws);
@@ -47,7 +48,7 @@ wssTest.on('connection', function connection(ws) {
   });
 });
 
-wssToken.on('connection', function connection(ws) {
+wssToken.on('connection', function connection(ws, req) {
   console.log("<< ---- incoming token connection ---- >>");
   ws.on('message', function incoming(message) {
     console.log("<< ---- incoming token message ---- >>\n", message);

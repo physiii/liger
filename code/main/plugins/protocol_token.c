@@ -30,6 +30,8 @@
 char token_req_str[512];
 int dumb_count = 0;
 char dumb_count_str[10];
+bool token_received = false;
+const char device_id[100];
 
 struct pss__token {
 	int number;
@@ -38,6 +40,20 @@ struct pss__token {
 struct vhd__token {
 	const unsigned int *options;
 };
+
+static int
+add_headers(void *in, size_t len) {
+	char **p = (char **)in;
+	
+	if (len < 100)
+		return 1;
+	
+	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
+	*p += sprintf(*p, "x-device-id: %s\x0d\x0a",device_id);
+	*p += sprintf(*p, "x-device-token: %s\x0d\x0a",device_id);
+
+	return 0;
+}
 
 static int
 callback_token(struct lws *wsi, enum lws_callback_reasons reason,
@@ -66,6 +82,12 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 			vhd->options = (unsigned int *)opt->value;
 		break;
 
+	case	LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
+		printf("!! --- LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER --- !!\n");
+		int res = add_headers(in,len);
+		printf("!! --- LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER RESULT %d --- !!\n",res);
+		break;
+	
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
 		lws_callback_on_writable(wsi);
 		//lws_callback_on_writable_all_protocol_vhost(
@@ -77,7 +99,7 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 
 		case LWS_CALLBACK_CLIENT_WRITEABLE:
 			//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
-		
+			if (token_received) break;
 			strcpy(token_req_str, "{\"event_type\":\"getUUID\"}");
 			//strcat(token_req_str, dumb_count_str);
 
@@ -91,6 +113,7 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 			break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
+		token_received = true;
 	  printf("%s\n",(const char *)in);
 		break;
 

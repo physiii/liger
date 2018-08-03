@@ -176,8 +176,6 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 static int
 connect_client(struct lws_client_connect_info i)
 {
-
-
 	i.protocol = "token-protocol";
 	i.pwsi = &wsi_token;
 	i.path = "/token";
