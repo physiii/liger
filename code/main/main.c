@@ -35,7 +35,12 @@
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
+struct lws *wsi_token;
+bool wsi_connect = true;
+unsigned int rl_token = 0;
+
 #include "plugins/protocol_token.c"
+//#include "drivers/buttons.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -130,7 +135,6 @@ void lws_esp32_leds_timer_cb(TimerHandle_t th)
 {
 }
 
-struct lws *wsi_token;
 
 bool got_ip = false;
 esp_err_t event_handler(void *ctx, system_event_t *event)
@@ -154,13 +158,13 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 
         case SYSTEM_EVENT_STA_DISCONNECTED:
             printf("SYSTEM_EVENT_STA_DISCONNECTED\n");
-	    got_ip = false;
+	    			got_ip = false;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
 
         case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
             printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
-	    			wsi_token = NULL;
+	    			wsi_connect = true;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
 
@@ -173,13 +177,27 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 	return lws_esp32_event_passthru(ctx, event);
 }
 
+static int ratelimit_connects(unsigned int *last, unsigned int secs)
+{
+	struct timeval tv;
+
+	gettimeofday(&tv, NULL);
+
+	if (tv.tv_sec - (*last) < secs)
+		return 0;
+
+	*last = tv.tv_sec;
+
+	return 1;
+}
+
 static int
 connect_client(struct lws_client_connect_info i)
 {
-	i.protocol = "token-protocol";
-	i.pwsi = &wsi_token;
-	i.path = "/token";
-
+	if (!wsi_connect || !ratelimit_connects(&rl_token, 4u)) 
+		return 1;
+	wsi_connect = false;
+	printf("connecting to client...\n");
 	return lws_client_connect_via_info(&i);
 }
 
@@ -209,7 +227,7 @@ void app_main(void)
 	info.protocols = protocols_station;
 	info.mounts = &mount_station_needs_auth;
 	info.headers = &pvo_headers;
-
+	
 	nvs_flash_init();
 	lws_esp32_wlan_config();
 
@@ -240,19 +258,19 @@ void app_main(void)
 	static struct lws_client_connect_info i;
 	memset(&i, 0, sizeof i);
 	i.address = "10.10.10.124";
-	i.port = 4000;
+	i.port = 5050;
 	i.ssl_connection = 0;
 	i.host = i.address;
 	i.origin = i.host;
 	i.ietf_version_or_minus_one = -1;
 	i.context = context;
+	i.protocol = "token-protocol";
+	i.pwsi = &wsi_token;
+	i.path = "/token";
 	
-	connect_client(i);
-
-
-
-	
+	//connect_client(i);
 	while (!lws_service(context, 500)) {
+			int res = connect_client(i);
 
 			taskYIELD();
 		}

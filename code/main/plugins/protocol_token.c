@@ -55,6 +55,7 @@ add_headers(void *in, size_t len) {
 	return 0;
 }
 
+
 static int
 callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
@@ -83,15 +84,15 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case	LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
-		printf("!! --- LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER --- !!\n");
+		printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
 		int res = add_headers(in,len);
-		printf("!! --- LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER RESULT %d --- !!\n",res);
 		break;
 	
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
 		lws_callback_on_writable(wsi);
 		//lws_callback_on_writable_all_protocol_vhost(
 		//	lws_get_vhost(wsi), lws_get_protocol(wsi));
+		wsi_connect = false;
 		pss->number = 0;
 		if (!vhd->options || !((*vhd->options) & 1))
 			lws_set_timer_usecs(wsi, DUMB_PERIOD_US);
@@ -113,10 +114,20 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 			break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		token_received = true;
+		//token_received = true;
 	  printf("%s\n",(const char *)in);
 		break;
 
+	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
+		wsi_connect = true;
+		printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR wsi_connect=true \n");
+		break;
+		
+	case LWS_CALLBACK_CLIENT_CLOSED:
+		wsi_connect = true;
+		printf("LWS_CALLBACK_CLIENT_CLOSED wsi_connect=true \n");
+		break;
+		
 	case LWS_CALLBACK_TIMER:
 		if (!vhd->options || !((*vhd->options) & 1)) {
 			lws_callback_on_writable_all_protocol_vhost(
