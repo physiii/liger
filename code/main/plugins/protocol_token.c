@@ -24,14 +24,14 @@
 #include "../lib/libwebsockets.h"
 #endif
 
-#include <string.h>
 
 #define DUMB_PERIOD_US 500 * 1000
 char token_req_str[512];
+char token_message[512];
+
 int dumb_count = 0;
 char dumb_count_str[10];
 bool token_received = false;
-const char device_id[100];
 
 struct pss__token {
 	int number;
@@ -41,16 +41,176 @@ struct vhd__token {
 	const unsigned int *options;
 };
 
-static int
+
+int char_count(char ch, char* str) {
+	int count = 0;
+	/*char *ret;
+
+	ret = strchr(str, ch);
+	while (true) {
+		if (!ret) break;
+		count++;
+		ret = strchr(&ret, ch);
+		printf("char_count %d in %s\n",count, ret);
+	}*/
+	for (count=0; str[count]; str[count]==ch ? count++ : *str++);
+	//printf("char_count %d in %s\n",count, str);
+	return count;
+}
+
+void store_char(char * key, char * value)
+{
+    char tag[50] = "[store_char]";
+    // Initialize NVS
+    esp_err_t err = nvs_flash_init();
+    if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
+        // NVS partition was truncated and needs to be erased
+        const esp_partition_t* nvs_partition = esp_partition_find_first(
+                ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_NVS, NULL);
+        assert(nvs_partition && "partition table must have an NVS partition");
+        ESP_ERROR_CHECK( esp_partition_erase_range(nvs_partition, 0, nvs_partition->size) );
+        // Retry nvs_flash_init
+        err = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK( err );
+
+    nvs_handle my_handle;
+    err = nvs_open("storage", NVS_READWRITE, &my_handle);
+    if (err != ESP_OK) {
+        printf("Error (%d) opening NVS handle\n", err);
+    } else {
+
+	size_t size;
+        err = nvs_get_str(my_handle, key, NULL, &size);
+	char* previous_value = malloc(size);
+	nvs_get_str(my_handle, key, previous_value, &size);
+        switch (err) {
+            case ESP_OK:
+                //printf(tag,"Done\n");
+                //printf("%s current value: %s\n", tag, previous_value);
+                break;
+            case ESP_ERR_NVS_NOT_FOUND:
+                printf("%s value not initialized %s\n",tag, key);
+                break;
+            default :
+                printf("%s Error (%d) reading %s\n", tag, err, key);
+        }
+
+        err = nvs_set_str(my_handle, key, value);
+
+        if (err == ESP_OK) {
+	  //printf("%s:%s\n",key,value);
+	}
+	else {
+	  printf("%s write to flash failed\n",tag);
+	}
+
+        err = nvs_commit(my_handle);
+        if (err == ESP_OK) {
+	  printf("%s %s:%s\n",tag,key,value);
+	}
+	else {
+	  printf("%s commiting to flash failed!\n", tag);
+	}
+
+        // Close
+        nvs_close(my_handle);
+    }
+}
+
+void store_u32(char * key, uint32_t value)
+{
+    char tag[50] = "[store_u32]";
+    // Initialize NVS
+    esp_err_t err = nvs_flash_init();
+    if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
+        // NVS partition was truncated and needs to be erased
+        const esp_partition_t* nvs_partition = esp_partition_find_first(
+                ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_NVS, NULL);
+        assert(nvs_partition && "partition table must have an NVS partition");
+        ESP_ERROR_CHECK( esp_partition_erase_range(nvs_partition, 0, nvs_partition->size) );
+        // Retry nvs_flash_init
+        err = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK( err );
+
+    nvs_handle my_handle;
+    err = nvs_open("storage", NVS_READWRITE, &my_handle);
+    if (err != ESP_OK) {
+        printf("Error (%d) opening NVS handle\n", err);
+    } else {
+
+        err = nvs_set_u32(my_handle, key, value);
+
+        if (err == ESP_OK) {
+	  printf("%s %s:%u\n", tag, key, value);
+	}
+	else {
+	  printf("%s write failed %u\n", tag, value);
+	  //printf("%s write to flash failed\n",tag);
+	}
+
+        err = nvs_commit(my_handle);
+        if (err == ESP_OK) {
+	  //printf("%s committed %s:%u\n", tag, key, value);
+	  //printf("%s stored %s:%d\n",tag,key,*value);
+	}
+	else {
+	  printf("%s commiting to flash failed!\n", tag);
+	}
+
+        // Close
+        nvs_close(my_handle);
+    }
+}
+
+uint32_t get_u32(char * key, uint32_t value)
+{
+    char tag[50] = "[get_u32]";
+    // Initialize NVS
+    esp_err_t err = nvs_flash_init();
+    if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
+        // NVS partition was truncated and needs to be erased
+        const esp_partition_t* nvs_partition = esp_partition_find_first(
+                ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_NVS, NULL);
+        assert(nvs_partition && "partition table must have an NVS partition");
+        ESP_ERROR_CHECK( esp_partition_erase_range(nvs_partition, 0, nvs_partition->size) );
+        // Retry nvs_flash_init
+        err = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK( err );
+
+    nvs_handle my_handle;
+    err = nvs_open("storage", NVS_READWRITE, &my_handle);
+    if (err != ESP_OK) {
+        printf("Error (%d) opening NVS handle\n", err);
+    } else {
+	err = nvs_get_u32(my_handle, key, &value);
+        switch (err) {
+            case ESP_OK:
+                printf("%s %s:%u\n", tag, key, value);
+                break;
+            case ESP_ERR_NVS_NOT_FOUND:
+                printf("%s %s not initialized\n",tag, key);
+                break;
+            default :
+                printf("%s Error (%d) reading %s\n", tag, err, key);
+        }
+        nvs_close(my_handle);
+    }
+    return value;
+}
+
+
+int
 add_headers(void *in, size_t len) {
 	char **p = (char **)in;
-	
+
 	if (len < 100)
 		return 1;
-	
-	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
+
 	*p += sprintf(*p, "x-device-id: %s\x0d\x0a",device_id);
-	*p += sprintf(*p, "x-device-token: %s\x0d\x0a",device_id);
+	*p += sprintf(*p, "x-device-token: %s\x0d\x0a",token);
 
 	return 0;
 }
@@ -85,9 +245,13 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case	LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
 		printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
-		int res = add_headers(in,len);
+		//add_headers(in,len);
+		printf("\ndevice_id: %s\ntoken: %s\n\n",device_id,token);
+		char **p = (char **)in;
+		*p += sprintf(*p, "x-device-id: %s\x0d\x0a",device_id);
+		*p += sprintf(*p, "x-device-token: %s\x0d\x0a",token);
 		break;
-	
+
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
 		lws_callback_on_writable(wsi);
 		//lws_callback_on_writable_all_protocol_vhost(
@@ -100,9 +264,9 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 
 		case LWS_CALLBACK_CLIENT_WRITEABLE:
 			//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
+			break;
 			if (token_received) break;
 			strcpy(token_req_str, "{\"event_type\":\"getUUID\"}");
-			//strcat(token_req_str, dumb_count_str);
 
 			n = lws_snprintf((char *)p, sizeof(token_req_str) - LWS_PRE, "%s", token_req_str);
 			m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
@@ -114,20 +278,34 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 			break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		//token_received = true;
-	  printf("%s\n",(const char *)in);
+	  //printf("%s\n",(const char *)in);
+		strcat(token_message,(const char *)in);
+		if (token_received) break;
+		if (strchr(token_message, '}')) {
+			//printf("token_message: %s\n",token_message);
+			cJSON *root = cJSON_Parse(token_message);
+			if (cJSON_GetObjectItem(root,"token")) {
+				sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
+				printf("received token: %s\n", token);
+				token_received = true;
+				wsi_connect = true;
+				wsi_token = NULL;
+				store_char("token",token);
+			}
+			strcpy(token_message,"");
+		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
 		wsi_connect = true;
 		printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR wsi_connect=true \n");
 		break;
-		
+
 	case LWS_CALLBACK_CLIENT_CLOSED:
 		wsi_connect = true;
 		printf("LWS_CALLBACK_CLIENT_CLOSED wsi_connect=true \n");
 		break;
-		
+
 	case LWS_CALLBACK_TIMER:
 		if (!vhd->options || !((*vhd->options) & 1)) {
 			lws_callback_on_writable_all_protocol_vhost(

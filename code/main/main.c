@@ -20,6 +20,10 @@
  */
 #include <libwebsockets.h>
 #include <nvs_flash.h>
+#include <string.h>
+#include "nvs_flash.h"
+#include "nvs.h"
+#include "cJSON.h"
 
 /*
  * Configuration for normal station website
@@ -38,6 +42,8 @@
 struct lws *wsi_token;
 bool wsi_connect = true;
 unsigned int rl_token = 0;
+char token[512];
+char device_id[100];
 
 #include "plugins/protocol_token.c"
 //#include "drivers/buttons.c"
@@ -194,7 +200,7 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs)
 static int
 connect_client(struct lws_client_connect_info i)
 {
-	if (!wsi_connect || !ratelimit_connects(&rl_token, 4u)) 
+	if (!wsi_connect || !ratelimit_connects(&rl_token, 4u))
 		return 1;
 	wsi_connect = false;
 	printf("connecting to client...\n");
@@ -203,6 +209,8 @@ connect_client(struct lws_client_connect_info i)
 
 void app_main(void)
 {
+	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
+	strcpy(token,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
 	static struct lws_context_creation_info info;
 	struct lws_context *context;
 	struct lws_vhost *vh;
@@ -227,7 +235,7 @@ void app_main(void)
 	info.protocols = protocols_station;
 	info.mounts = &mount_station_needs_auth;
 	info.headers = &pvo_headers;
-	
+
 	nvs_flash_init();
 	lws_esp32_wlan_config();
 
@@ -254,11 +262,11 @@ void app_main(void)
 		//lws_service(context, 1000);
 		//taskYIELD();
 	}
-	
+
 	static struct lws_client_connect_info i;
 	memset(&i, 0, sizeof i);
-	i.address = "10.10.10.124";
-	i.port = 5050;
+	i.address = "192.168.0.6";
+	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
 	i.origin = i.host;
@@ -266,8 +274,8 @@ void app_main(void)
 	i.context = context;
 	i.protocol = "token-protocol";
 	i.pwsi = &wsi_token;
-	i.path = "/token";
-	
+	i.path = "/";
+
 	//connect_client(i);
 	while (!lws_service(context, 500)) {
 			int res = connect_client(i);
