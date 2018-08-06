@@ -46,8 +46,8 @@ char * get_char(char * key)
                 //printf("%s current value: %s\n", tag, previous_value);
                 break;
             case ESP_ERR_NVS_NOT_FOUND:
-                printf("%s value not initialized %s\n",tag, key);
-                break;
+                printf("%s value not initialized, key: %s\n",tag, key);
+                return device_id; 
             default :
                 printf("%s Error (%d) reading %s\n", tag, err, key);
         }

@@ -157,8 +157,8 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 				lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 					(unsigned char *)"reconnecting with new token in headers", 5);
 				wsi_connect = 1;
-				return -1;
 				store_char("token",token);
+				return -1;
 			}
 		}
 		break;
