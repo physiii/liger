@@ -53,6 +53,7 @@ static struct lws_client_connect_info i;
 #include "services/storage.c"
 #include "plugins/protocol_wss.c"
 #include "services/buttons.c"
+#include "services/motion.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -214,7 +215,7 @@ connect_client(struct lws_client_connect_info i)
 
 void app_main(void)
 {
-	buttons_main();
+
 	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
 	static struct lws_context_creation_info info;
 	struct lws_context *context;
@@ -267,7 +268,7 @@ void app_main(void)
 	}
 
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.9";
+	i.address = "10.10.10.124";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
@@ -281,6 +282,9 @@ void app_main(void)
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);
 
+	buttons_main();
+	motion_main();
+	
 	while (1) {
 		//printf("\nwsi_connect %d\ntoken_received %d\n\n",wsi_connect,token_received);
 		if (buttons_service_message_ready) {
