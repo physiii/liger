@@ -38,7 +38,7 @@ wssMain.on('connection', function connection(ws, req) {
   ws.send("{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c999\"}");
 
   ws.on('message', function incoming(message) {
-    console.log("<< ---- incoming message ---- >>\n", message);
+    //console.log("<< ---- incoming message ---- >>\n", message);
     var msg = ""
     try { msg = JSON.parse(message) }
     catch (e) { console.log("invalid json", message) };
@@ -49,30 +49,25 @@ wssMain.on('connection', function connection(ws, req) {
         console.log("sending UUID...");
         ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
         break;
+
+      case "buttons":
+        console.log("buttons ["
+          +msg.payload[0].value+" "
+          +msg.payload[1].value+" "
+          +msg.payload[2].value+" "
+          +msg.payload[3].value+"]");
+        //ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
+        break;
+
       default:
         console.log("unknown event type: ",event_type);
     }
   });
 
   ws.on('close', function close() {
-    for (var i = 0; i < device_objects.length; i++) {
-      _socket = device_objects[i].socket;
-      _mac = device_objects[i].mac;
-      if (_socket === ws) {
-        device_objects.slice(i); //slice or splice??
-        console.log(_mac + " | disconnected");
-      }
-    }
   });
 
   ws.on('error', function () {
     console.log('device websocket error catch!');
   });
 });
-
-function message_device(token, msg) {
-  var device_index = find_index(device_objects, 'token', token)
-  if (device_index > -1)
-    if (device_objects[device_index].socket)
-      device_objects[device_index].socket.emit(msg.type, msg);
-}

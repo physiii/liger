@@ -40,13 +40,19 @@
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
 struct lws *wsi_token;
-bool wsi_connect = true;
+int wsi_connect = 1;
 unsigned int rl_token = 0;
 char token[512];
 char device_id[100];
+bool token_received = false;
+bool reconnect_with_token = false;
+static struct lws_client_connect_info i;
 
-#include "plugins/protocol_token.c"
-//#include "drivers/buttons.c"
+//#include "plugins/protocol_token.c"
+//#include "plugins/protocol_test_client.c"
+#include "services/storage.c"
+#include "plugins/protocol_wss.c"
+#include "services/buttons.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -55,7 +61,9 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
+	//LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
+	//LWS_PLUGIN_PROTOCOL_TEST_CLIENT, /* demo... */
+	LWS_PLUGIN_PROTOCOL_WSS, /* demo... */
 	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
@@ -159,7 +167,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
         case SYSTEM_EVENT_STA_GOT_IP:
             printf("got ip: %s\n",
             ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
-	    got_ip = true;
+	    			got_ip = true;
             break;
 
         case SYSTEM_EVENT_STA_DISCONNECTED:
@@ -170,7 +178,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 
         case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
             printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
-	    			wsi_connect = true;
+	    			wsi_connect = 1;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
 
@@ -197,20 +205,17 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs)
 	return 1;
 }
 
-static int
+int
 connect_client(struct lws_client_connect_info i)
 {
-	if (!wsi_connect || !ratelimit_connects(&rl_token, 4u))
-		return 1;
-	wsi_connect = false;
 	printf("connecting to client...\n");
 	return lws_client_connect_via_info(&i);
 }
 
 void app_main(void)
 {
+	buttons_main();
 	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
-	strcpy(token,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
 	static struct lws_context_creation_info info;
 	struct lws_context *context;
 	struct lws_vhost *vh;
@@ -259,27 +264,36 @@ void app_main(void)
 	while (1) {
 		vTaskDelay(1000 / portTICK_RATE_MS);
 		if (got_ip) break;
-		//lws_service(context, 1000);
-		//taskYIELD();
 	}
 
-	static struct lws_client_connect_info i;
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.6";
+	i.address = "192.168.0.9";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
 	i.origin = i.host;
 	i.ietf_version_or_minus_one = -1;
 	i.context = context;
-	i.protocol = "token-protocol";
+	i.protocol = "wss-protocol";
 	i.pwsi = &wsi_token;
 	i.path = "/";
 
-	//connect_client(i);
-	while (!lws_service(context, 500)) {
-			int res = connect_client(i);
+	strcpy(token,get_char("token"));
+	printf("pulled token from storage: %s\n", token);
 
-			taskYIELD();
+	while (1) {
+		//printf("\nwsi_connect %d\ntoken_received %d\n\n",wsi_connect,token_received);
+		if (buttons_service_message_ready) {
+			strcpy(wss_data_out,buttons_service_message);
+			buttons_service_message_ready = false;
+			wss_data_out_ready = true;
 		}
+
+		if (wsi_connect && ratelimit_connects(&rl_token, 4u)) {
+			wsi_connect = 0;
+			connect_client(i);
+		}
+		lws_service(context, 500);
+		taskYIELD();
+	}
 }

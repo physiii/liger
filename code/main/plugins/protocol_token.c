@@ -24,23 +24,21 @@
 #include "../lib/libwebsockets.h"
 #endif
 
-
 #define DUMB_PERIOD_US 500 * 1000
 char token_req_str[512];
-char token_message[512];
-
-int dumb_count = 0;
+int token_count = 0;
 char dumb_count_str[10];
-bool token_received = false;
+
 
 struct pss__token {
 	int number;
+	bool token_received;
+	char token_message[512];
 };
 
 struct vhd__token {
 	const unsigned int *options;
 };
-
 
 int char_count(char ch, char* str) {
 	int count = 0;
@@ -204,16 +202,17 @@ uint32_t get_u32(char * key, uint32_t value)
 
 int
 add_headers(void *in, size_t len) {
-	char **p = (char **)in;
+	char **h = (char **)in;
 
 	if (len < 100)
 		return 1;
 
-	*p += sprintf(*p, "x-device-id: %s\x0d\x0a",device_id);
-	*p += sprintf(*p, "x-device-token: %s\x0d\x0a",token);
+	*h += sprintf(*h, "x-device-id: %s\x0d\x0a",device_id);
+	*h += sprintf(*h, "x-device-token: %s\x0d\x0a",token);
 
 	return 0;
 }
+
 
 
 static int
@@ -228,10 +227,10 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 	uint8_t buf[LWS_PRE + 20], *p = &buf[LWS_PRE];
 	const struct lws_protocol_vhost_options *opt;
 	int n, m;
-
 	switch (reason) {
 	case LWS_CALLBACK_PROTOCOL_INIT:
 		//lwsl_notice("token LWS_CALLBACK_PROTOCOL_INIT\n");
+		wsi_connect = false;
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
 			lws_get_protocol(wsi),
 			sizeof(struct vhd__token));
@@ -245,11 +244,11 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case	LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
 		printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
-		//add_headers(in,len);
-		printf("\ndevice_id: %s\ntoken: %s\n\n",device_id,token);
-		char **p = (char **)in;
-		*p += sprintf(*p, "x-device-id: %s\x0d\x0a",device_id);
-		*p += sprintf(*p, "x-device-token: %s\x0d\x0a",token);
+		add_headers(in,len);
+		/*printf("\ndevice_id: %s\ntoken: %s\n\n",device_id,token);
+		char **h = (char **)in;
+		*h += sprintf(*h, "x-device-id: %s\x0d\x0a",device_id);
+		*h += sprintf(*h, "x-device-token: %s\x0d\x0a",token);*/
 		break;
 
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
@@ -258,14 +257,15 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 		//	lws_get_vhost(wsi), lws_get_protocol(wsi));
 		wsi_connect = false;
 		pss->number = 0;
+		pss->token_received = 0;
 		if (!vhd->options || !((*vhd->options) & 1))
 			lws_set_timer_usecs(wsi, DUMB_PERIOD_US);
 		break;
 
 		case LWS_CALLBACK_CLIENT_WRITEABLE:
 			//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
-			break;
-			if (token_received) break;
+			//break;
+			//if (token_received) break;
 			strcpy(token_req_str, "{\"event_type\":\"getUUID\"}");
 
 			n = lws_snprintf((char *)p, sizeof(token_req_str) - LWS_PRE, "%s", token_req_str);
@@ -279,25 +279,31 @@ callback_token(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 	  //printf("%s\n",(const char *)in);
-		strcat(token_message,(const char *)in);
-		if (token_received) break;
-		if (strchr(token_message, '}')) {
-			//printf("token_message: %s\n",token_message);
-			cJSON *root = cJSON_Parse(token_message);
+		if (pss->token_received) break;
+		if (token_count > 4) {
+			strcpy(pss->token_message,"");
+			token_count = 0;
+		} else token_count++;
+
+		strcat(pss->token_message,(const char *)in);
+		if (strchr(pss->token_message, '}')) {
+			printf("token_message: %s\n",pss->token_message);
+			cJSON *root = cJSON_Parse(pss->token_message);
 			if (cJSON_GetObjectItem(root,"token")) {
 				sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
 				printf("received token: %s\n", token);
-				token_received = true;
-				wsi_connect = true;
+				pss->token_received = true;
 				wsi_token = NULL;
-				store_char("token",token);
+				//wsi_connect = true;
+				//store_char("token",token);
 			}
-			strcpy(token_message,"");
+			strcpy(pss->token_message,"");
+			token_count = 0;
 		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-		wsi_connect = true;
+		//wsi_connect = true;
 		printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR wsi_connect=true \n");
 		break;
 
