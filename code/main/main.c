@@ -268,7 +268,7 @@ void app_main(void)
 	}
 
 	memset(&i, 0, sizeof i);
-	i.address = "10.10.10.124";
+	i.address = "192.168.0.9";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
@@ -283,8 +283,8 @@ void app_main(void)
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
-	motion_main();
-	
+	//motion_main();
+
 	while (1) {
 		//printf("\nwsi_connect %d\ntoken_received %d\n\n",wsi_connect,token_received);
 		if (buttons_service_message_ready) {

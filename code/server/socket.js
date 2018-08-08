@@ -50,14 +50,11 @@ wssMain.on('connection', function connection(ws, req) {
         ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
         break;
 
-      case "buttons":
-        console.log("buttons ["
-          +msg.payload[0].value+" "
-          +msg.payload[1].value+" "
-          +msg.payload[2].value+" "
-          +msg.payload[3].value+"]");
+      case "button/25dc4876-d1e2-4d6e-ba4f-fba81992c888/pressed":
+        console.log("pressed:",msg.payload);
         //ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
         break;
+        
 
       default:
         console.log("unknown event type: ",event_type);
