@@ -60,6 +60,24 @@ add_headers(void *in, size_t len) {
 	return 0;
 }
 
+int
+wss_event_handler(cJSON * root) {
+	if (cJSON_GetObjectItem(root,"token")) {
+		if (token_received) return 0;
+		sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
+		printf("token received: %s\n", token);
+		token_received = true;
+		strcpy(wss_data_in,"");
+		data_part_count = 0;
+		lwsl_notice("protocol_wss: closing as requested\n");
+		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
+			(unsigned char *)"reconnecting with new token in headers", 5);
+		wsi_connect = 1;
+		store_char("token",token);
+		return -1;
+	}
+}
+
 static int
 callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
@@ -131,7 +149,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		//printf("!! LWS_CALLBACK_RECEIVE %d !!",token_received);
+		//printf("!! LWS_CALLBACK_RECEIVE %d",wss_data_in);
 		if (len < 6)
 			break;
 
@@ -141,33 +159,21 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		} else data_part_count++;
 
 		strcat(wss_data_in,(const char *)in);
-		//printf("server: %s\n",wss_data_in);
-
+	
     const char *parse_end = NULL;
 		bool valid_json = false;
-    cJSON *item = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
+    cJSON *root = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
 
-		if (!strcmp(parse_end,"") && data_part_count > 1)
-			valid_json = true;
-
-		if (valid_json) {
-			//printf("wss_data_in: %s\n",wss_data_in);
-			cJSON *root = cJSON_Parse(wss_data_in);
-			if (cJSON_GetObjectItem(root,"token")) {
-				if (token_received) break;
-				sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
-				printf("token received: %s\n", token);
-				token_received = true;
-				strcpy(wss_data_in,"");
-				data_part_count = 0;
-				lwsl_notice("protocol_wss: closing as requested\n");
-				lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-					(unsigned char *)"reconnecting with new token in headers", 5);
-				wsi_connect = 1;
-				store_char("token",token);
-				return -1;
-			}
-		}
+		//break if json is not valid, part count because 
+		//first part of message is wrongly being seen as valid json
+		if (strcmp(parse_end,"") && data_part_count < 2) break;
+		
+		//printf("wss_data_in: %s\n",wss_data_in);
+		//cJSON *root = cJSON_Parse(wss_data_in);
+		
+		int res = wss_event_handler(root);
+		if (res == -1) return -1;
+		
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:

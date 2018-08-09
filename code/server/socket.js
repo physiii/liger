@@ -38,7 +38,7 @@ wssMain.on('connection', function connection(ws, req) {
   ws.send("{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c999\",\"key1\":\"25dc48723f\",\"key1\":\"25dc48723f\"}");
 
   ws.on('message', function incoming(message) {
-    //console.log("<< ---- incoming message ---- >>\n", message);
+    console.log("<< ---- incoming message ---- >>\n", message);
     var msg = ""
     try { msg = JSON.parse(message) }
     catch (e) { console.log("invalid json", message) };
