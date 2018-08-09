@@ -11,6 +11,7 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "driver/gpio.h"
+#include "driver/rmt.h"
 
 /**
  * Brief:
@@ -75,7 +76,7 @@ void pir_main()
     io_conf.intr_type = GPIO_PIN_INTR_POSEDGE;
     //bit mask of the pins, use GPIO4/5 here
     io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
-    //set as input mode    
+    //set as input mode
     io_conf.mode = GPIO_MODE_INPUT;
     //enable pull-up mode
     io_conf.pull_up_en = 1;

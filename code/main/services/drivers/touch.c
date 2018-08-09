@@ -40,7 +40,7 @@ int get_pad_state(int pad) {
 }
 
 int get_dpad_state() {
-  //strcpy(buttons_service_message,"{\"event_type\":\"buttons\",\"payload\":[");
+
   if (get_pad_state(UP_PAD)
     && get_pad_state(DOWN_PAD)
     && get_pad_state(LEFT_PAD)
@@ -65,28 +65,7 @@ int get_dpad_state() {
   if (get_pad_state(LEFT_PAD)) return 9;
 
   char buff[512];
-  /*for (int i = 0; i < TOUCH_PAD_MAX; i++) {
-      if (i <= 4) continue;
-      if (i == 6) continue;
-      strcpy(buff,"");
-#if TOUCH_FILTER_MODE_EN
-      // If open the filter mode, please use this API to get the touch pad count.
-      touch_pad_read_raw_data(i, &touch_value);
-      touch_pad_read_filtered(i, &touch_filter_value);
-      //if (touch_value > 1100) {
-      //  touch_val = 0;
-      //} else touch_val = 1;
-      //sprintf(buff,"{\"id\":%d, \"value\":%d, \"filter_value\":%d},", i, touch_val, touch_filter_value);
-#else
-      touch_pad_read(i, &touch_value);
-      //sprintf(buff,"{\"id\":%d, \"value\":%d},", i, touch_val);
-#endif
-      //strcat(buttons_service_message,buff);
-  }*/
   return 0;
-  //printf("\n");
-  //buttons_service_message[strlen(buttons_service_message)-1] = 0; //remove trailing comma
-  //strcat(buttons_service_message,"]}");
 }
 
 void touch_main()

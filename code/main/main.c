@@ -48,12 +48,12 @@ bool token_received = false;
 bool reconnect_with_token = false;
 static struct lws_client_connect_info i;
 
-//#include "plugins/protocol_token.c"
-//#include "plugins/protocol_test_client.c"
 #include "services/storage.c"
 #include "plugins/protocol_wss.c"
 #include "services/buttons.c"
 #include "services/motion.c"
+#include "services/audio.c"
+#include "services/switch.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -283,7 +283,9 @@ void app_main(void)
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
-	//motion_main();
+	switch_main();
+	motion_main();
+	audio_main();
 
 	while (1) {
 		//printf("\nwsi_connect %d\ntoken_received %d\n\n",wsi_connect,token_received);

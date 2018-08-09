@@ -14,8 +14,7 @@ static void buttons_service(void *pvParameter)
       " \"payload\":{\"type\":\"dpad\",\"value\":%d}}"
       , device_id, get_dpad_state());
 
-      printf("%s\n", buttons_service_message);
-      //strcat(buttons_service_message,"]}")
+      //printf("%s\n", buttons_service_message);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       if (state != previous_state){
         previous_state = state;

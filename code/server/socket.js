@@ -35,7 +35,7 @@ server.on('upgrade', (request, socket, head) => {
 wssMain.on('connection', function connection(ws, req) {
 
   console.log("<< ---- incoming connection, sending token ---- >>");
-  ws.send("{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c999\"}");
+  ws.send("{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c999\",\"key1\":\"25dc48723f\",\"key1\":\"25dc48723f\"}");
 
   ws.on('message', function incoming(message) {
     //console.log("<< ---- incoming message ---- >>\n", message);
@@ -51,10 +51,11 @@ wssMain.on('connection', function connection(ws, req) {
         break;
 
       case "button/25dc4876-d1e2-4d6e-ba4f-fba81992c888/pressed":
-        console.log("pressed:",msg.payload);
+        //console.log("pressed:",msg.payload);
+        console.log(msg.payload);
         //ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
         break;
-        
+
 
       default:
         console.log("unknown event type: ",event_type);

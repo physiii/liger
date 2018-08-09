@@ -29,7 +29,7 @@
 #define DUMB_PERIOD_US 5000
 
 int dumb_count = 0;
-int token_count = 0;
+int data_part_count = 0;
 char dumb_count_str[10];
 char wss_data_in[2000];
 char wss_data_out[2000];
@@ -135,24 +135,31 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		if (len < 6)
 			break;
 
-		if (token_received) break;
-		if (token_count > 5) {
+		if (data_part_count > 100) {
 			strcpy(wss_data_in,"");
-			token_count = 0;
-		} else token_count++;
+			data_part_count = 0;
+		} else data_part_count++;
 
 		strcat(wss_data_in,(const char *)in);
 		//printf("server: %s\n",wss_data_in);
 
-		if (strchr(wss_data_in, '}')) {
+    const char *parse_end = NULL;
+		bool valid_json = false;
+    cJSON *item = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
+
+		if (!strcmp(parse_end,"") && data_part_count > 1)
+			valid_json = true;
+
+		if (valid_json) {
 			//printf("wss_data_in: %s\n",wss_data_in);
 			cJSON *root = cJSON_Parse(wss_data_in);
 			if (cJSON_GetObjectItem(root,"token")) {
+				if (token_received) break;
 				sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
 				printf("token received: %s\n", token);
 				token_received = true;
 				strcpy(wss_data_in,"");
-				token_count = 0;
+				data_part_count = 0;
 				lwsl_notice("protocol_wss: closing as requested\n");
 				lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 					(unsigned char *)"reconnecting with new token in headers", 5);
