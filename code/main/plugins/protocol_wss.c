@@ -62,7 +62,10 @@ add_headers(void *in, size_t len) {
 
 int
 wss_event_handler(cJSON * root) {
-	if (cJSON_GetObjectItem(root,"token")) {
+	
+	// {event_type:"switch", payload:{type:"dpad", level:"100"}}
+	
+	/*if (cJSON_GetObjectItem(root,"token")) {
 		if (token_received) return 0;
 		sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
 		printf("token received: %s\n", token);
@@ -75,7 +78,8 @@ wss_event_handler(cJSON * root) {
 		wsi_connect = 1;
 		store_char("token",token);
 		return -1;
-	}
+	}*/
+	return 0;
 }
 
 static int
@@ -171,8 +175,22 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		//printf("wss_data_in: %s\n",wss_data_in);
 		//cJSON *root = cJSON_Parse(wss_data_in);
 		
-		int res = wss_event_handler(root);
-		if (res == -1) return -1;
+		//int res = wss_event_handler(root);
+		//if (res == -1) return -1;
+		if (cJSON_GetObjectItem(root,"token")) {
+			if (token_received) return 0;
+			sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
+			printf("token received: %s\n", token);
+			token_received = true;
+			strcpy(wss_data_in,"");
+			data_part_count = 0;
+			lwsl_notice("protocol_wss: closing as requested\n");
+			lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
+				(unsigned char *)"reconnecting with new token in headers", 5);
+			wsi_connect = 1;
+			store_char("token",token);
+			return -1;
+		}
 		
 		break;
 

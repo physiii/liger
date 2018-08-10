@@ -50,7 +50,7 @@ wssMain.on('connection', function connection(ws, req) {
         ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
         break;
 
-      case "button/25dc4876-d1e2-4d6e-ba4f-fba81992c888/pressed":
+      case "button/pressed":
         //console.log("pressed:",msg.payload);
         console.log(msg.payload);
         //ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
