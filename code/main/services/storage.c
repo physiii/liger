@@ -1,18 +1,3 @@
-int char_count(char ch, char* str) {
-	int count = 0;
-	/*char *ret;
-
-	ret = strchr(str, ch);
-	while (true) {
-		if (!ret) break;
-		count++;
-		ret = strchr(&ret, ch);
-		printf("char_count %d in %s\n",count, ret);
-	}*/
-	for (count=0; str[count]; str[count]==ch ? count++ : *str++);
-	//printf("char_count %d in %s\n",count, str);
-	return count;
-}
 
 char * get_char(char * key)
 {

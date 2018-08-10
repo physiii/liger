@@ -28,16 +28,10 @@
 
 #define DUMB_PERIOD_US 5000
 
-int dumb_count = 0;
 int data_part_count = 0;
-char dumb_count_str[10];
 char wss_data_in[2000];
 char wss_data_out[2000];
 bool wss_data_out_ready = false;
-
-//test code
-
-//end of test code
 
 struct pss__wss {
 	int number;
@@ -46,6 +40,33 @@ struct pss__wss {
 struct vhd__wss {
 	const unsigned int *options;
 };
+
+int
+char_count(char * ch, char* str) {
+	int m;
+	int charcount = 0;
+
+	charcount = 0;
+	for(m=0; str[m]; m++) {
+	    if(str[m] == '{') {
+	        charcount ++;
+	    }
+			if(str[m] == '}') {
+					charcount --;
+			}
+	}
+	return charcount;
+}
+
+int
+check_json(char * str) {
+	int open_bra_cnt = char_count("{",str);
+	int closed_bra_cnt = char_count("}",str);
+	printf("\n\nchar_count: %d %d\n\n",open_bra_cnt,closed_bra_cnt);
+	if (closed_bra_cnt==0 || open_bra_cnt==0) return 0;
+	if (closed_bra_cnt!=open_bra_cnt) return 0;
+	return 1;
+}
 
 int
 add_headers(void *in, size_t len) {
@@ -60,15 +81,33 @@ add_headers(void *in, size_t len) {
 	return 0;
 }
 
+void handle_event(char * event_type, cJSON * payload) {
+	printf("event: %s\n",event_type);
+	if (strcmp(event_type,"switch")) {
+		int level = 0;
+		sprintf(level,"%d",cJSON_GetObjectItem(payload,"level")->valueint);
+		printf("ACTIVATE SWITCH! %d\n", level);
+	}
+}
+
 int
 wss_event_handler(struct lws *wsi, cJSON * root) {
 	
-	// {event_type:"switch", payload:{type:"dpad", level:"100"}}
+	// {event_type:"switch", payload:{level:"100"}}
+	lwsl_notice("!! --- incoming --- !!\n");
+	char event_type[500];
+	if (cJSON_GetObjectItem(root,"event_type")) {
+		lwsl_notice("!! --- incoming event_type --- !!\n");
+		sprintf(event_type,"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
+		cJSON *payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
+		handle_event(event_type, payload);
+		return 0;
+	}
 	
 	if (cJSON_GetObjectItem(root,"token")) {
+		lwsl_notice("token received: %s\n", token);
 		if (token_received) return 0;
 		sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
-		printf("token received: %s\n", token);
 		token_received = true;
 		strcpy(wss_data_in,"");
 		data_part_count = 0;
@@ -79,8 +118,11 @@ wss_event_handler(struct lws *wsi, cJSON * root) {
 		store_char("token",token);
 		return 1;
 	}
-	return 0;
+	
+	return 2;
 }
+
+
 
 static int
 callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
@@ -116,10 +158,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
 		lws_callback_on_writable(wsi);
-		//lws_callback_on_writable_all_protocol_vhost(
-		//	lws_get_vhost(wsi), lws_get_protocol(wsi));
 		pss->number = 0;
-		//token_received = false;
 		strcpy(wss_data_in,"");
 		if (!vhd->options || !((*vhd->options) & 1))
 			lws_set_timer_usecs(wsi, DUMB_PERIOD_US);
@@ -140,27 +179,43 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		//printf("!! LWS_CALLBACK_RECEIVE %d",wss_data_in);
+		
 		if (len < 6)
 			break;
-
-		if (data_part_count > 100) {
-			strcpy(wss_data_in,"");
-			data_part_count = 0;
-		} else data_part_count++;
-
+			
 		strcat(wss_data_in,(const char *)in);
-	
-    const char *parse_end = NULL;
-		bool valid_json = false;
-    cJSON *root = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
+		
+		int valid_json = check_json(wss_data_in);
+		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",valid_json,wss_data_in);
+		if (!valid_json) break;
+		
+		cJSON *root = cJSON_Parse(wss_data_in);
+    if (root == NULL)
+    {
+        const char *error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL)
+        {
+            fprintf(stderr, "Error before: %s\n", error_ptr);
+        }
+        break;
+    }
+			
+    //const char *parse_end = NULL;
+    //cJSON *root = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
 
 		//break if json is not valid, part count because 
 		//first part of message is wrongly being seen as valid json
-		if (strcmp(parse_end,"") && data_part_count < 2) break;
+		//if (data_part_count < 2) break;
+		//if (strcmp(parse_end,"")!=0) break;
 		
+		lwsl_notice("\n\nvalid json: %s\n\n",wss_data_in);
+		//lwsl_notice("\n\nparse_end: %s\n\n",parse_end);
+		//lwsl_notice("\n\ndata_part_count: %d\n\n",data_part_count);
+		strcpy(wss_data_in,"");
+		data_part_count = 0;
 		int res = wss_event_handler(wsi,root);
-		if (res) return -1;
+		if (res == 1) return -1;
+		if (res == 2) lwsl_err("event_type not found\n");
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:

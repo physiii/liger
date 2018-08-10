@@ -53,7 +53,7 @@ wssMain.on('connection', function connection(ws, req) {
       case "button/pressed":
         //console.log("pressed:",msg.payload);
         console.log(msg.payload);
-        //ws.send("{uuid:\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}");
+        ws.send("{\"event_type\":\"switch\", \"payload\":{\"level\":100}}");
         break;
 
 
