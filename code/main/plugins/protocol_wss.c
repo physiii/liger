@@ -61,11 +61,11 @@ add_headers(void *in, size_t len) {
 }
 
 int
-wss_event_handler(cJSON * root) {
+wss_event_handler(struct lws *wsi, cJSON * root) {
 	
 	// {event_type:"switch", payload:{type:"dpad", level:"100"}}
 	
-	/*if (cJSON_GetObjectItem(root,"token")) {
+	if (cJSON_GetObjectItem(root,"token")) {
 		if (token_received) return 0;
 		sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
 		printf("token received: %s\n", token);
@@ -77,8 +77,8 @@ wss_event_handler(cJSON * root) {
 			(unsigned char *)"reconnecting with new token in headers", 5);
 		wsi_connect = 1;
 		store_char("token",token);
-		return -1;
-	}*/
+		return 1;
+	}
 	return 0;
 }
 
@@ -128,19 +128,6 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
 
-		/*if (dumb_count < 99) dumb_count++;
-		else dumb_count = 0;
-		char event_type[128] = "buttons";*/
-
-		//sprintf(wss_data_out,"{\"event_type\":\"buttons\", \"payload\":{\"value\":%d}}",dumb_count);
-		//sprintf(wss_data_out,"{\"event_type\":\"buttons\"}");
-
-		//strcpy(wss_data_out, );
-		//strcat(wss_data_out, dumb_count_str);
-		/*strcpy(wss_data_out, "{\"event_type\":\"");
-		strcat(wss_data_out,event_type);
-		strcat(wss_data_out, "\",\"payload\":{}}\"");
-		strcat(wss_data_out,"}");*/
 		if (!wss_data_out_ready) break;
 		n = lws_snprintf((char *)p, sizeof(wss_data_out) - LWS_PRE, "%s", wss_data_out);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
@@ -172,26 +159,8 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		//first part of message is wrongly being seen as valid json
 		if (strcmp(parse_end,"") && data_part_count < 2) break;
 		
-		//printf("wss_data_in: %s\n",wss_data_in);
-		//cJSON *root = cJSON_Parse(wss_data_in);
-		
-		//int res = wss_event_handler(root);
-		//if (res == -1) return -1;
-		if (cJSON_GetObjectItem(root,"token")) {
-			if (token_received) return 0;
-			sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
-			printf("token received: %s\n", token);
-			token_received = true;
-			strcpy(wss_data_in,"");
-			data_part_count = 0;
-			lwsl_notice("protocol_wss: closing as requested\n");
-			lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-				(unsigned char *)"reconnecting with new token in headers", 5);
-			wsi_connect = 1;
-			store_char("token",token);
-			return -1;
-		}
-		
+		int res = wss_event_handler(wsi,root);
+		if (res) return -1;
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:

@@ -10,9 +10,9 @@ static void buttons_service(void *pvParameter)
   while (1) {
       int state = get_dpad_state();
       sprintf(buttons_service_message,""
-      "{\"event_type\":\"button/\%s/\pressed\","
+      "{\"event_type\":\"button/\pressed\","
       " \"payload\":{\"type\":\"dpad\",\"value\":%d}}"
-      , device_id, get_dpad_state());
+      , get_dpad_state());
 
       //printf("%s\n", buttons_service_message);
       vTaskDelay(200 / portTICK_PERIOD_MS);
