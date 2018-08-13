@@ -42,16 +42,16 @@ struct vhd__wss {
 };
 
 int
-char_count(char * ch, char* str) {
+char_count(char * ch1, char * ch2, char* str) {
 	int m;
 	int charcount = 0;
 
 	charcount = 0;
 	for(m=0; str[m]; m++) {
-	    if(str[m] == '{') {
+	    if(str[m] == ch1) {
 	        charcount ++;
 	    }
-			if(str[m] == '}') {
+			if(str[m] == ch2) {
 					charcount --;
 			}
 	}
@@ -59,17 +59,16 @@ char_count(char * ch, char* str) {
 }
 
 int
-check_json(char * str) {
-	int open_bra_cnt = char_count("{",str);
-	int closed_bra_cnt = char_count("}",str);
-	printf("\n\nchar_count: %d %d\n\n",open_bra_cnt,closed_bra_cnt);
-	if (closed_bra_cnt==0 || open_bra_cnt==0) return 0;
-	if (closed_bra_cnt!=open_bra_cnt) return 0;
+check_json(char * str)
+{
+	int bra_cnt = char_count("{","}",str);
+	if (bra_cnt!=0) return 0;
 	return 1;
 }
 
 int
-add_headers(void *in, size_t len) {
+add_headers(void *in, size_t len)
+{
 	char **h = (char **)in;
 
 	if (len < 100)
@@ -81,29 +80,29 @@ add_headers(void *in, size_t len) {
 	return 0;
 }
 
-void handle_event(char * event_type, cJSON * payload) {
-	printf("event: %s\n",event_type);
-	if (strcmp(event_type,"switch")) {
-		int level = 0;
-		sprintf(level,"%d",cJSON_GetObjectItem(payload,"level")->valueint);
-		printf("ACTIVATE SWITCH! %d\n", level);
+void
+handle_event(char * event_type, cJSON * payload)
+{
+	if (strcmp(event_type,"switch")==0) {
+		int level = cJSON_GetObjectItem(payload,"level")->valueint;
+		char level_str[10];
+		sprintf(level_str,"%d",level);
+		lwsl_notice("switch %d\n", level);
 	}
 }
 
 int
-wss_event_handler(struct lws *wsi, cJSON * root) {
-	
-	// {event_type:"switch", payload:{level:"100"}}
-	lwsl_notice("!! --- incoming --- !!\n");
+wss_event_handler(struct lws *wsi, cJSON * root)
+{
+
 	char event_type[500];
 	if (cJSON_GetObjectItem(root,"event_type")) {
-		lwsl_notice("!! --- incoming event_type --- !!\n");
 		sprintf(event_type,"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
 		cJSON *payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
 		handle_event(event_type, payload);
 		return 0;
 	}
-	
+
 	if (cJSON_GetObjectItem(root,"token")) {
 		lwsl_notice("token received: %s\n", token);
 		if (token_received) return 0;
@@ -118,11 +117,9 @@ wss_event_handler(struct lws *wsi, cJSON * root) {
 		store_char("token",token);
 		return 1;
 	}
-	
+
 	return 2;
 }
-
-
 
 static int
 callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
@@ -179,16 +176,10 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		
-		if (len < 6)
-			break;
-			
-		strcat(wss_data_in,(const char *)in);
-		
+		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
+		strcpy(wss_data_in,(const char *)in);
 		int valid_json = check_json(wss_data_in);
-		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",valid_json,wss_data_in);
-		if (!valid_json) break;
-		
+
 		cJSON *root = cJSON_Parse(wss_data_in);
     if (root == NULL)
     {
@@ -197,20 +188,14 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
         {
             fprintf(stderr, "Error before: %s\n", error_ptr);
         }
-        break;
+        valid_json = 0;
     }
-			
+
     //const char *parse_end = NULL;
     //cJSON *root = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
-
-		//break if json is not valid, part count because 
-		//first part of message is wrongly being seen as valid json
-		//if (data_part_count < 2) break;
 		//if (strcmp(parse_end,"")!=0) break;
-		
-		lwsl_notice("\n\nvalid json: %s\n\n",wss_data_in);
-		//lwsl_notice("\n\nparse_end: %s\n\n",parse_end);
-		//lwsl_notice("\n\ndata_part_count: %d\n\n",data_part_count);
+
+		if (!valid_json) break;
 		strcpy(wss_data_in,"");
 		data_part_count = 0;
 		int res = wss_event_handler(wsi,root);
@@ -255,7 +240,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		"wss-protocol", \
 		callback_wss, \
 		sizeof(struct pss__wss), \
-		10, /* rx buf size must be >= permessage-deflate rx size */ \
+		1000, /* rx buf size must be >= permessage-deflate rx size */ \
 		0, NULL, 0 \
 	}
 

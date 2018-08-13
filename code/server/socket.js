@@ -35,8 +35,7 @@ server.on('upgrade', (request, socket, head) => {
 wssMain.on('connection', function connection(ws, req) {
 
   console.log("<< ---- incoming connection, sending token ---- >>");
-  ws.send("{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c999\",\"key1\":\"25dc48723f\",\"key1\":\"25dc48723f\"}");
-
+  ws.send("{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c999\"}");
   ws.on('message', function incoming(message) {
     console.log("<< ---- incoming message ---- >>\n", message);
     var msg = ""
