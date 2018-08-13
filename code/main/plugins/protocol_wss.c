@@ -33,6 +33,9 @@ char wss_data_in[2000];
 char wss_data_out[2000];
 bool wss_data_out_ready = false;
 
+bool switch_payload_ready = false;
+cJSON * switch_payload;
+
 struct pss__wss {
 	int number;
 };
@@ -87,6 +90,8 @@ handle_event(char * event_type, cJSON * payload)
 		int level = cJSON_GetObjectItem(payload,"level")->valueint;
 		char level_str[10];
 		sprintf(level_str,"%d",level);
+		switch_payload_ready = true;
+		switch_payload = payload;
 		lwsl_notice("switch %d\n", level);
 	}
 }

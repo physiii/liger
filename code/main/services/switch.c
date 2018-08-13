@@ -8,10 +8,14 @@ static void switch_service(void *pvParameter)
   //ssr_main();
   //printf("switch service loop0\n");
   while (1) {
-    if (strcmp(switch_service_message_in,"")) {
-          printf("new switch service message\n",switch_service_message_in);
-          strcpy(switch_service_message_in,"");
+
+    if (switch_payload_ready) {
+      printf("incoming payload for switch service\n");
+      
+      cJSON * switch_payload;
+      switch_payload_ready = false;
     }
+
     vTaskDelay(200 / portTICK_PERIOD_MS);
   }
 }
