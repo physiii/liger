@@ -61,13 +61,14 @@ void mcpwm_example_servo_control(void *arg)
     pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
     mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);    //Configure PWM0A & PWM0B with above settings
     while (1) {
-        for (count = 0; count < SERVO_MAX_DEGREE; count++) {
-            printf("Angle of rotation: %d\n", count);
+
+        /*for (count = 0; count < SERVO_MAX_DEGREE; count++) {
             angle = servo_per_degree_init(count);
-            printf("pulse width: %dus\n", angle);
+            printf("Angle: %d | pulse width: %dus\n", count, angle);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);
             vTaskDelay(10);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
-        }
+        }*/
+        vTaskDelay(10);
     }
 }
 

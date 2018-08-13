@@ -48,6 +48,12 @@ bool token_received = false;
 bool reconnect_with_token = false;
 static struct lws_client_connect_info i;
 
+//needs to go in headers
+
+int set_switch(int);
+
+/////////////////
+
 #include "services/storage.c"
 #include "plugins/protocol_wss.c"
 #include "services/buttons.c"

@@ -32,9 +32,8 @@ int data_part_count = 0;
 char wss_data_in[2000];
 char wss_data_out[2000];
 bool wss_data_out_ready = false;
-
-bool switch_payload_ready = false;
-cJSON * switch_payload;
+cJSON *payload = NULL;
+cJSON *switch_payload = NULL;
 
 struct pss__wss {
 	int number;
@@ -84,15 +83,13 @@ add_headers(void *in, size_t len)
 }
 
 void
-handle_event(char * event_type, cJSON * payload)
+handle_event(char * event_type)
 {
 	if (strcmp(event_type,"switch")==0) {
 		int level = cJSON_GetObjectItem(payload,"level")->valueint;
-		char level_str[10];
-		sprintf(level_str,"%d",level);
-		switch_payload_ready = true;
+		printf("handle_event level: %d\n",level);
 		switch_payload = payload;
-		lwsl_notice("switch %d\n", level);
+		payload = NULL;
 	}
 }
 
@@ -103,8 +100,8 @@ wss_event_handler(struct lws *wsi, cJSON * root)
 	char event_type[500];
 	if (cJSON_GetObjectItem(root,"event_type")) {
 		sprintf(event_type,"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
-		cJSON *payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
-		handle_event(event_type, payload);
+		payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
+		handle_event(event_type);
 		return 0;
 	}
 

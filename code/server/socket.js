@@ -52,7 +52,7 @@ wssMain.on('connection', function connection(ws, req) {
       case "button/pressed":
         //console.log("pressed:",msg.payload);
         console.log(msg.payload);
-        ws.send("{\"event_type\":\"switch\", \"payload\":{\"level\":100}}");
+        //ws.send("{\"event_type\":\"switch\", \"payload\":{\"level\":100}}");
         break;
 
 
