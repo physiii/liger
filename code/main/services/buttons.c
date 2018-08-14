@@ -91,9 +91,9 @@ button_service(void *pvParameter)
         previous_state = state;
         buttons_service_message_ready = true;
       }
-
+      vTaskDelay(200 / portTICK_PERIOD_MS);
   }
-  vTaskDelay(200 / portTICK_PERIOD_MS);
+
 }
 
 int

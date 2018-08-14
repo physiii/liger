@@ -268,13 +268,13 @@ void app_main(void)
 	lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info, &vh);
 
-	while (1) {
+	/*while (1) {
 		vTaskDelay(1000 / portTICK_RATE_MS);
 		if (got_ip) break;
-	}
+	}*/
 
 	memset(&i, 0, sizeof i);
-	i.address = "10.10.10.124";
+	i.address = "10.10.10.142";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
@@ -290,23 +290,23 @@ void app_main(void)
 
 	buttons_main();
 	switch_main();
-	motion_main();
-	audio_main();
+	//motion_main();
+	//audio_main();
 
 	while (1) {
-		//printf("\nwsi_connect %d\ntoken_received %d\n\n",wsi_connect,token_received);
 		if (buttons_service_message_ready) {
 			strcpy(wss_data_out,buttons_service_message);
 			buttons_service_message_ready = false;
 			wss_data_out_ready = true;
 		}
 
-		if (wsi_connect && ratelimit_connects(&rl_token, 4u)) {
+		if (wsi_connect && got_ip && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;
 			lws_client_connect_via_info(&i);
 			//connect_client(i);
 		}
 		lws_service(context, 500);
 		taskYIELD();
+		vTaskDelay(100 / portTICK_RATE_MS);
 	}
 }
