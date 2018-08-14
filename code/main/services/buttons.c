@@ -16,41 +16,37 @@ bool buttons_service_message_ready = false;
 
 void button_event_handler(int state) {
   cJSON *level_json = NULL;
+  int level;
+
   switch(state) {
     case BUTTON_CENTER:
       switch_payload = cJSON_CreateObject();
       level_json = cJSON_CreateNumber(20);
       cJSON_AddItemToObject(switch_payload, "level", level_json);
-      int levelc = cJSON_GetObjectItem(switch_payload,"level")->valueint;
-      printf("levelc: %d\n",levelc);
+      printf("BUTTON_CENTER\n");
       break;
 
     case BUTTON_UP:
+      switch_payload = cJSON_CreateObject();
+      level_json = cJSON_CreateNumber(10);
+      printf("BUTTON_UP\n");
+      cJSON_AddItemToObject(switch_payload, "increment", level_json);
       break;
 
     case BUTTON_RIGHT:
       break;
 
     case BUTTON_DOWN:
+      printf("BUTTON_DOWN\n");
       break;
 
     case BUTTON_LEFT:
       break;
 
     case BUTTON_UP_RIGHT:
-      switch_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(50);
-      cJSON_AddItemToObject(switch_payload, "level", level_json);
-      int levelr = cJSON_GetObjectItem(switch_payload,"level")->valueint;
-      printf("levelr: %d\n",levelr);
       break;
 
     case BUTTON_RIGHT_DOWN:
-      switch_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(90);
-      cJSON_AddItemToObject(switch_payload, "level", level_json);
-      int leveld = cJSON_GetObjectItem(switch_payload,"level")->valueint;
-      printf("leveld: %d\n",leveld);
       break;
 
     case BUTTON_DOWN_LEFT:
@@ -64,7 +60,7 @@ void button_event_handler(int state) {
 
     default:
       //switch_payload = NULL;
-      lwsl_err("bad dpad state");
+      //lwsl_err("bad dpad state");
       break;
   }
 }

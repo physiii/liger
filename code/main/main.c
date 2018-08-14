@@ -274,7 +274,7 @@ void app_main(void)
 	}
 
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.11";
+	i.address = "192.168.0.9";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
@@ -303,7 +303,8 @@ void app_main(void)
 
 		if (wsi_connect && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;
-			connect_client(i);
+			lws_client_connect_via_info(&i);
+			//connect_client(i);
 		}
 		lws_service(context, 500);
 		taskYIELD();
