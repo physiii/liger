@@ -21,8 +21,8 @@ void button_event_handler(int state) {
   switch(state) {
     case BUTTON_CENTER:
       switch_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(20);
-      cJSON_AddItemToObject(switch_payload, "level", level_json);
+      cJSON *toggle = cJSON_CreateBool(true);
+      cJSON_AddItemToObject(switch_payload, "toggle", toggle);
       printf("BUTTON_CENTER\n");
       break;
 
@@ -37,7 +37,10 @@ void button_event_handler(int state) {
       break;
 
     case BUTTON_DOWN:
+      switch_payload = cJSON_CreateObject();
+      level_json = cJSON_CreateNumber(10);
       printf("BUTTON_DOWN\n");
+      cJSON_AddItemToObject(switch_payload, "decrement", level_json);
       break;
 
     case BUTTON_LEFT:

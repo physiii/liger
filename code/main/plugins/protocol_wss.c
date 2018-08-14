@@ -77,6 +77,7 @@ add_headers(void *in, size_t len)
 		return 1;
 
 	*h += sprintf(*h, "x-device-id: %s\x0d\x0a",device_id);
+	*h += sprintf(*h, "x-device-type: %s\x0d\x0a","liger");
 	*h += sprintf(*h, "x-device-token: %s\x0d\x0a",token);
 
 	return 0;
