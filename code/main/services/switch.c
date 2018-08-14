@@ -16,14 +16,14 @@ int
 toggleSwitch()
 {
   int new_switch_level;
-  if (current_switch_level > 50) {
+  if (current_switch_level > 10) {
     new_switch_level = 0;
   } else {
     new_switch_level = 100;
   }
-  
   lwsl_notice("toggle switch from %d to %d\n",current_switch_level,new_switch_level);
   mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, new_switch_level);
+  current_switch_level = new_switch_level;
   return current_switch_level;
 }
 
@@ -34,6 +34,7 @@ incSwitch(int amount)
   if (new_switch_level >= 100) new_switch_level=100;
   mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, current_switch_level);
   lwsl_notice("increment %d by %d\n",current_switch_level,amount);
+  current_switch_level = new_switch_level;
   return current_switch_level;
 }
 
@@ -41,9 +42,10 @@ int
 decSwitch(int amount)
 {
   int new_switch_level = current_switch_level - amount;
-  if (new_switch_level <= 0) current_switch_level=0;
+  if (new_switch_level <= 0) new_switch_level=0;
   mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, current_switch_level);
   lwsl_notice("decrement %d by %d\n",current_switch_level,amount);
+  current_switch_level = new_switch_level;
   return current_switch_level;
 }
 
@@ -88,7 +90,7 @@ switch_service(void *pvParameter)
 
       if (cJSON_GetObjectItem(switch_payload,"decrement")) {
         int decrement = cJSON_GetObjectItem(switch_payload,"decrement")->valueint;
-        incSwitch(decrement);
+        decSwitch(decrement);
         lwsl_notice("[switch_service] decrement %d\n",decrement);
       }
 
