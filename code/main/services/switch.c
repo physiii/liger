@@ -78,8 +78,7 @@ switch_service(void *pvParameter)
   while (1) {
 
     if (switch_payload) {
-      //int level = cJSON_GetObjectItem(switch_payload,"level")->valueint;
-
+      
       if (cJSON_GetObjectItem(switch_payload,"level")) {
         int level = cJSON_GetObjectItem(switch_payload,"level")->valueint;
         setSwitch(level);
@@ -105,11 +104,16 @@ switch_service(void *pvParameter)
 
       if (cJSON_GetObjectItem(switch_payload,"fade")) {
         int fade = cJSON_GetObjectItem(switch_payload,"fade")->valueint;
-        //incSwitch(decrement);
+        fadeSwitch(0,fade,0);
+        lwsl_notice("[switch_service] level %d\n",fade);
+      }
+      
+      /*if (cJSON_GetObjectItem(switch_payload,"fade")) {
+        int fade = cJSON_GetObjectItem(switch_payload,"fade")->valueint;
         fadeSwitch(0,fade,0);
         lwsl_notice("[switch_service] fade %d\n",fade);
-      }
-
+      }*/
+      
       switch_payload = NULL;
     }
 
