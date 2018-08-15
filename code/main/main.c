@@ -274,7 +274,7 @@ void app_main(void)
 	}*/
 
 	memset(&i, 0, sizeof i);
-	i.address = "10.10.10.142";
+	i.address = "192.168.0.9";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
@@ -283,7 +283,7 @@ void app_main(void)
 	i.context = context;
 	i.protocol = "wss-protocol";
 	i.pwsi = &wsi_token;
-	i.path = "/";
+	i.path = "/device-relay";
 
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);

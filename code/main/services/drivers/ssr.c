@@ -54,7 +54,7 @@ void mcpwm_example_servo_control(void *arg)
     //2. initial mcpwm configuration
     printf("Configuring Initial Parameters of mcpwm......\n");
     mcpwm_config_t pwm_config;
-    pwm_config.frequency = 50;    //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
+    pwm_config.frequency = 5000;    //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
     pwm_config.cmpr_a = 0;    //duty cycle of PWMxA = 0
     pwm_config.cmpr_b = 0;    //duty cycle of PWMxb = 0
     pwm_config.counter_mode = MCPWM_UP_COUNTER;

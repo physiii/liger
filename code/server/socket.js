@@ -19,7 +19,7 @@ const server = http.createServer().listen(5000);
 server.on('upgrade', (request, socket, head) => {
   const pathname = url.parse(request.url).pathname;
   console.log("http upgrade request: ", request.headers);
-  if (pathname === '/') {
+  if (pathname === '/device-relay') {
     wssMain.handleUpgrade(request, socket, head, (ws) => {
       wssMain.emit('connection', ws);
     });
