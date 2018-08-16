@@ -29,8 +29,8 @@
 #define DUMB_PERIOD_US 5000
 
 int data_part_count = 0;
-char wss_data_in[2000];
-char wss_data_out[2000];
+char wss_data_in[5000];
+char wss_data_out[5000];
 bool wss_data_out_ready = false;
 cJSON *payload = NULL;
 cJSON *switch_payload = NULL;
@@ -83,7 +83,7 @@ add_headers(void *in, size_t len)
 	return 0;
 }
 
-void
+int
 handle_event(char * event_type)
 {
 	if (strcmp(event_type,"switch")==0) {
@@ -91,37 +91,31 @@ handle_event(char * event_type)
 		printf("handle_event level: %d\n",level);
 		switch_payload = payload;
 		payload = NULL;
+		return 0;
 	}
+
+	if (strcmp(event_type,"token")==0) {
+		sprintf(token,"%s",cJSON_GetObjectItem(payload,"token")->valuestring);
+		lwsl_notice("token received: %s\n", token);
+		store_char("token",token);
+		return 1;
+	}
+
+	return 0;
 }
 
 int
 wss_event_handler(struct lws *wsi, cJSON * root)
 {
 
-	char event_type[500];
 	if (cJSON_GetObjectItem(root,"event_type")) {
+		char event_type[500];
 		sprintf(event_type,"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
 		payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
-		handle_event(event_type);
-		return 0;
+		return handle_event(event_type);
 	}
 
-	if (cJSON_GetObjectItem(root,"token")) {
-		lwsl_notice("token received: %s\n", token);
-		if (token_received) return 0;
-		sprintf(token,"%s",cJSON_GetObjectItem(root,"token")->valuestring);
-		token_received = true;
-		strcpy(wss_data_in,"");
-		data_part_count = 0;
-		lwsl_notice("protocol_wss: closing as requested\n");
-		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-			(unsigned char *)"reconnecting with new token in headers", 5);
-		wsi_connect = 1;
-		store_char("token",token);
-		return 1;
-	}
-
-	return 2;
+	return 0;
 }
 
 static int
@@ -179,10 +173,10 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
+		//lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
+		strcpy(wss_data_in,"");
 		strcpy(wss_data_in,(const char *)in);
 		int valid_json = check_json(wss_data_in);
-
 		cJSON *root = cJSON_Parse(wss_data_in);
     if (root == NULL)
     {
@@ -198,12 +192,13 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
     //cJSON *root = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
 		//if (strcmp(parse_end,"")!=0) break;
 
-		if (!valid_json) break;
-		strcpy(wss_data_in,"");
-		data_part_count = 0;
+		if (!valid_json) {
+			lwsl_err("invalid incoming json\n");
+			break;
+		}
 		int res = wss_event_handler(wsi,root);
+		if (res == 0) lwsl_err("event_type not found\n");
 		if (res == 1) return -1;
-		if (res == 2) lwsl_err("event_type not found\n");
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
@@ -243,7 +238,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		"wss-protocol", \
 		callback_wss, \
 		sizeof(struct pss__wss), \
-		1000, /* rx buf size must be >= permessage-deflate rx size */ \
+		5000, /* rx buf size must be >= permessage-deflate rx size */ \
 		0, NULL, 0 \
 	}
 
