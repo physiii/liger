@@ -56,7 +56,7 @@ U 1 1 5A1620AC
 P 4750 4150
 F 0 "R11" V 4750 4150 50  0000 C CNN
 F 1 "R_47.5" V 4675 4150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4680 4150 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4680 4150 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" V 4830 4150 50  0001 C CNN
 F 4 "RC0603FR-0747R5L" V 4930 4250 60  0001 C CNN "Part Number"
 	1    4750 4150
@@ -68,7 +68,7 @@ U 1 1 5A1620AD
 P 4750 3950
 F 0 "R9" V 4750 3950 50  0000 C CNN
 F 1 "R_100k" V 4650 3950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4680 3950 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4680 3950 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645" V 4830 3950 50  0001 C CNN
 F 4 "RC0603JR-07100KL" V 4930 4050 60  0001 C CNN "Part Number"
 	1    4750 3950
@@ -124,7 +124,7 @@ U 1 1 5A1620AF
 P 7000 4325
 F 0 "R17" V 7000 4325 50  0000 C CNN
 F 1 "R_100k" V 6925 4325 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 6930 4325 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6930 4325 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645" V 7080 4325 50  0001 C CNN
 F 4 "RC0603JR-07100KL" V 7180 4425 60  0001 C CNN "Part Number"
 	1    7000 4325
@@ -212,23 +212,19 @@ Wire Wire Line
 $Comp
 L liger-rescue:speaker-CVS-1508 LS1
 U 1 1 5A1620B5
-P 9525 3950
-F 0 "LS1" H 9525 4075 50  0000 R CNN
-F 1 "speaker-CVS-1508" H 9575 4100 50  0001 R CNN
-F 2 "open-automation:speaker-1508" H 9525 3750 50  0001 C CNN
-F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 9515 3900 50  0001 C CNN
-F 4 "CVS-1508" H 9675 4275 60  0001 C CNN "Part Number"
-	1    9525 3950
+P 8900 3950
+F 0 "LS1" H 8900 4075 50  0000 R CNN
+F 1 "speaker-CVS-1508" H 8950 4100 50  0001 R CNN
+F 2 "open-automation:speaker-1508" H 8900 3750 50  0001 C CNN
+F 3 "http://www.cui.com/product/resource/cvs-1508.pdf" H 8890 3900 50  0001 C CNN
+F 4 "CVS-1508" H 9050 4275 60  0001 C CNN "Part Number"
+	1    8900 3950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	8500 4150 8500 3950
 Wire Wire Line
-	8500 3950 8625 3950
-Wire Wire Line
 	8575 4250 8575 4050
-Wire Wire Line
-	8575 4050 8625 4050
 Text Label 7225 3525 0    197  ~ 0
 Speaker
 Wire Wire Line
@@ -247,7 +243,7 @@ U 1 1 5B1F056C
 P 3400 4550
 F 0 "C5" H 3515 4596 50  0000 L CNN
 F 1 "C_0.1uF" H 3515 4505 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 3500 4850 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3500 4850 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 3400 4300 50  0001 C CNN
 F 4 "C1608X8R1H104K080AB" H 3525 4750 60  0001 C CNN "Part Number"
 	1    3400 4550
@@ -259,7 +255,7 @@ U 1 1 5B1F08F4
 P 7000 4625
 F 0 "C6" H 7115 4671 50  0000 L CNN
 F 1 "C_0.1uF" H 7115 4580 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 7100 4925 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7100 4925 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 7000 4375 50  0001 C CNN
 F 4 "C1608X8R1H104K080AB" H 7125 4825 60  0001 C CNN "Part Number"
 	1    7000 4625
@@ -282,29 +278,7 @@ I2S_BCLK
 Text HLabel 3250 4250 0    60   Input ~ 0
 3V3
 Wire Wire Line
-	9325 3950 9250 3950
-$Comp
-L Connector_Generic:Conn_01x02 J2
-U 1 1 5B2BE39C
-P 8825 3950
-F 0 "J2" H 8775 4050 50  0000 L CNN
-F 1 "Conn_01x02" H 8700 3725 50  0000 L CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" H 8825 3950 50  0001 C CNN
-F 3 "~" H 8825 3950 50  0001 C CNN
-	1    8825 3950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_01x02 J3
-U 1 1 5B2BE409
-P 9050 4050
-F 0 "J3" H 8970 3725 50  0000 C CNN
-F 1 "Conn_01x02" H 8970 3816 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" H 9050 4050 50  0001 C CNN
-F 3 "~" H 9050 4050 50  0001 C CNN
-	1    9050 4050
-	-1   0    0    1   
-$EndComp
+	8500 3950 8700 3950
 Wire Wire Line
-	9250 4050 9325 4050
+	8575 4050 8700 4050
 $EndSCHEMATC

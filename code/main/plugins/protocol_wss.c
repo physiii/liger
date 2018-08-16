@@ -100,6 +100,13 @@ handle_event(char * event_type)
 		store_char("token",token);
 		return 1;
 	}
+	
+	if (strcmp(event_type,"authentication")==0) {
+		char error[500];
+		sprintf(error,"%s",cJSON_GetObjectItem(payload,"error")->valuestring);
+		lwsl_err("websocket: %s\n", error);
+		return 1;
+	}
 
 	return 0;
 }
@@ -173,7 +180,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		//lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
+		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
 		strcpy(wss_data_in,"");
 		strcpy(wss_data_in,(const char *)in);
 		int valid_json = check_json(wss_data_in);

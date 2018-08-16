@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 7 9
+Sheet 6 9
 Title ""
 Date ""
 Rev ""
@@ -132,7 +132,7 @@ U 1 1 5B1F3B9C
 P 7200 3700
 F 0 "C11" H 7315 3746 50  0000 L CNN
 F 1 "C_0.1uF" H 6800 3650 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 7300 4000 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7300 4000 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 7200 3450 50  0001 C CNN
 F 4 "C1608X8R1H104K080AB" H 7325 3900 60  0001 C CNN "Part Number"
 	1    7200 3700
@@ -144,7 +144,7 @@ U 1 1 5B1F3C43
 P 3550 3625
 F 0 "C10" H 3665 3671 50  0000 L CNN
 F 1 "C_0.1uF" H 3125 3600 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" H 3650 3925 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3650 3925 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" H 3550 3375 50  0001 C CNN
 F 4 "C1608X8R1H104K080AB" H 3675 3825 60  0001 C CNN "Part Number"
 	1    3550 3625
