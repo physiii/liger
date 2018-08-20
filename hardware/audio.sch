@@ -221,10 +221,6 @@ F 4 "CVS-1508" H 9050 4275 60  0001 C CNN "Part Number"
 	1    8900 3950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8500 4150 8500 3950
-Wire Wire Line
-	8575 4250 8575 4050
 Text Label 7225 3525 0    197  ~ 0
 Speaker
 Wire Wire Line
@@ -278,7 +274,11 @@ I2S_BCLK
 Text HLabel 3250 4250 0    60   Input ~ 0
 3V3
 Wire Wire Line
-	8500 3950 8700 3950
+	8700 4050 8500 4050
 Wire Wire Line
-	8575 4050 8700 4050
+	8500 4050 8500 4150
+Wire Wire Line
+	8700 3950 8575 3950
+Wire Wire Line
+	8575 3950 8575 4250
 $EndSCHEMATC
