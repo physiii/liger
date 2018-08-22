@@ -202,7 +202,7 @@ Text Label 10025 4675 0    60   ~ 0
 PROG
 Text Label 10025 4775 0    60   ~ 0
 EN
-Text Label 10025 4900 0    60   ~ 0
+Text Label 10025 5025 0    60   ~ 0
 ZERO_DETECT
 Text Label 10025 5150 0    60   ~ 0
 BUTTON_LED
@@ -365,7 +365,7 @@ Text Label 3250 5500 2    60   ~ 0
 ZERO_DETECT
 Wire Wire Line
 	3250 5500 3300 5500
-Text Label 10025 5025 0    60   ~ 0
+Text Label 10025 4900 0    60   ~ 0
 RELAY
 Wire Wire Line
 	10025 5025 9950 5025
