@@ -1,8 +1,8 @@
 (export (version D)
   (design
-    (source /home/andy/circuits/liger/hardware/liger.sch)
-    (date "Mon 20 Aug 2018 11:19:54 AM CDT")
-    (tool "Eeschema 6.0.0-rc1-unknown-3eb3db0~66~ubuntu18.04.1")
+    (source /home/chris/circuits/liger/hardware/liger.sch)
+    (date "Wed 22 Aug 2018 11:26:17 AM CDT")
+    (tool "Eeschema 5.0.0-rc3-unknown-3df2743~65~ubuntu17.10.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title)
@@ -619,7 +619,9 @@
       (fields
         (field (name Reference) D)
         (field (name Value) WS2812S)
-        (field (name Footprint) LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm))
+        (field (name Footprint) LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm)
+        (field (name Datasheet) https://www.digikey.com/product-detail/en/sparkfun-electronics/COM-11821/1568-1800-ND/6163706)
+        (field (name "Part Number") COM-11821))
       (pins
         (pin (num 1) (name DOUT) (type output))
         (pin (num 2) (name DIN) (type input))
@@ -1090,11 +1092,11 @@
         (pin (num 2) (name ~) (type passive)))))
   (libraries
     (library (logical LED)
-      (uri /usr/share/kicad/library/LED.lib))
+      (uri /usr/share/kicad/library/kicad-symbols/LED.lib))
     (library (logical liger-rescue)
-      (uri /home/andy/circuits/liger/hardware/liger-rescue.lib))
+      (uri /home/chris/circuits/liger/hardware/liger-rescue.lib))
     (library (logical open-automation)
-      (uri /home/andy/circuits/liger/hardware/../../kicad-parts/libraries/open-automation.lib)))
+      (uri /home/chris/circuits/kicad-parts/libraries/open-automation.lib)))
   (nets
     (net (code 1) (name /I2S_DATA_IN)
       (node (ref R11) (pin 1))
