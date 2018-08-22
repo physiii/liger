@@ -262,18 +262,6 @@ Text HLabel 3825 3500 2    60   Input ~ 0
 FACTORY_RST
 Text HLabel 5775 3500 2    60   Input ~ 0
 EN
-$Comp
-L LED:WS2812 D7
-U 1 1 5B2B9FC9
-P 7275 5475
-F 0 "D7" H 7300 5150 50  0000 L CNN
-F 1 "WS2812" H 7300 5225 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm" H 7325 5175 50  0001 L TNN
-F 3 "https://www.digikey.com/product-detail/en/sparkfun-electronics/COM-11821/1568-1800-ND/6163706" H 7375 5100 50  0001 L TNN
-F 4 "COM-11821" H 7275 5475 50  0001 C CNN "Part Number"
-	1    7275 5475
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6775 5475 6975 5475
 Wire Wire Line
@@ -289,7 +277,7 @@ F 3 "" H 7275 5875 50  0000 C CNN
 	1    7275 5875
 	1    0    0    -1  
 $EndComp
-Text HLabel 7275 4675 1    60   Input ~ 0
+Text HLabel 7275 4975 1    60   Input ~ 0
 V_USB
 $Comp
 L open-automation:GND #PWR0102
@@ -313,18 +301,6 @@ F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M08
 F 4 "CGA3E1X7R1C105M080AC" H 7575 5300 60  0001 C CNN "Part Number"
 	1    7450 5100
 	0    1    1    0   
-$EndComp
-$Comp
-L open-automation:R_150 R23
-U 1 1 5B2DE82B
-P 7275 4900
-F 0 "R23" V 7275 4825 50  0000 L CNN
-F 1 "R_150" V 7375 4800 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7205 4900 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RNCP0603FTD150R/RNCP0603FTD150RCT-ND/2240427" V 7355 4900 50  0001 C CNN
-F 4 "RNCP0603FTD150R" V 7455 5000 60  0001 C CNN "Part Number"
-	1    7275 4900
-	1    0    0    -1  
 $EndComp
 $Comp
 L open-automation:R_1k R15
@@ -399,21 +375,23 @@ F 4 "SML-D12M8WT86" H 5625 3000 50  0001 C CNN "Part Number"
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	7275 4725 7275 4750
-Wire Wire Line
-	7275 4675 7275 4725
-Connection ~ 7275 4725
-Wire Wire Line
-	7275 4725 7175 4725
-Wire Wire Line
-	7175 4725 7175 5175
-Wire Wire Line
 	7275 5100 7275 5175
-Wire Wire Line
-	7275 5050 7275 5100
 Connection ~ 7275 5100
 Wire Wire Line
 	7300 5100 7275 5100
 Wire Wire Line
 	7600 5100 7700 5100
+$Comp
+L LED:WS2812B D7
+U 1 1 5B7E61EB
+P 7275 5475
+F 0 "D7" H 7616 5521 50  0000 L CNN
+F 1 "WS2812B" H 7616 5430 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7325 5175 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7375 5100 50  0001 L TNN
+	1    7275 5475
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7275 4975 7275 5100
 $EndSCHEMATC
