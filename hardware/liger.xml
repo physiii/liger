@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/home/andy/circuits/liger/hardware/liger.sch</source>
-    <date>Wed 22 Aug 2018 06:20:58 PM CDT</date>
-    <tool>Eeschema 6.0.0-rc1-unknown-6db71cd~84~ubuntu18.04.1</tool>
+    <source>/home/chris/circuits/liger/hardware/liger.sch</source>
+    <date>Thu 23 Aug 2018 11:41:47 AM CDT</date>
+    <tool>Eeschema 5.0.0-rc3-unknown-3df2743~65~ubuntu17.10.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -136,9 +136,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206</datasheet>
       <fields>
-        <field name="Part Number">CGA3E1X7R1C105M080AC</field>
+        <field name="Part Number">CL10B105KP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_1uF" description=""/>
+      <libsource lib="open-automation" part="C_1uF" description="1uF 0603 Capacitor"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B1F1AAD</tstamp>
     </comp>
@@ -147,9 +147,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206</datasheet>
       <fields>
-        <field name="Part Number">CGA3E1X7R1C105M080AC</field>
+        <field name="Part Number">CL10B105KP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_1uF" description=""/>
+      <libsource lib="open-automation" part="C_1uF" description="1uF 0603 Capacitor"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B1F1B60</tstamp>
     </comp>
@@ -160,7 +160,7 @@
       <fields>
         <field name="Part Number">CL10A106MP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_10uF" description=""/>
+      <libsource lib="open-automation" part="C_10uF" description="10uF 10V 0603 Capacitor"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B1F217F</tstamp>
     </comp>
@@ -171,7 +171,7 @@
       <fields>
         <field name="Part Number">CL10A106MP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_10uF" description=""/>
+      <libsource lib="open-automation" part="C_10uF" description="10uF 10V 0603 Capacitor"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B1F22B0</tstamp>
     </comp>
@@ -180,9 +180,9 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-0710KL</field>
+        <field name="Part Number">MCT06030C1002FP500</field>
       </fields>
-      <libsource lib="open-automation" part="R_10k" description=""/>
+      <libsource lib="open-automation" part="R_10k" description="Resistor"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B31EE0D</tstamp>
     </comp>
@@ -191,9 +191,9 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-0710KL</field>
+        <field name="Part Number">MCT06030C1002FP500</field>
       </fields>
-      <libsource lib="open-automation" part="R_10k" description=""/>
+      <libsource lib="open-automation" part="R_10k" description="Resistor"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B31EE98</tstamp>
     </comp>
@@ -202,9 +202,9 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</datasheet>
       <fields>
-        <field name="Part Number">RC0603FR-0747R5L</field>
+        <field name="Part Number">ERJ-3EKF47R5V</field>
       </fields>
-      <libsource lib="open-automation" part="R_47.5" description=""/>
+      <libsource lib="open-automation" part="R_47.5" description="RES SMD 47.5 OHM 1% 1/10W 0603"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B321D4E</tstamp>
     </comp>
@@ -213,9 +213,9 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</datasheet>
       <fields>
-        <field name="Part Number">RC0603FR-0747R5L</field>
+        <field name="Part Number">ERJ-3EKF47R5V</field>
       </fields>
-      <libsource lib="open-automation" part="R_47.5" description=""/>
+      <libsource lib="open-automation" part="R_47.5" description="RES SMD 47.5 OHM 1% 1/10W 0603"/>
       <sheetpath names="/Microcontroller/" tstamps="/59096487/"/>
       <tstamp>5B322166</tstamp>
     </comp>
@@ -246,7 +246,7 @@
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
       <datasheet>http://www.onsemi.com/pub/Collateral/MMBT3904LT1-D.PDF</datasheet>
       <fields>
-        <field name="Part Number">MMBT3904LT1GOSCT-ND</field>
+        <field name="Part Number">MMBT3904-TP</field>
       </fields>
       <libsource lib="liger-rescue" part="Q_NPN_BEC" description=""/>
       <sheetpath names="/InfraRed/" tstamps="/590982C4/"/>
@@ -257,7 +257,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-071KL</field>
+        <field name="Part Number">ESR03EZPJ102</field>
       </fields>
       <libsource lib="liger-rescue" part="R_1k" description=""/>
       <sheetpath names="/InfraRed/" tstamps="/590982C4/"/>
@@ -268,7 +268,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-071KL</field>
+        <field name="Part Number">ESR03EZPJ102</field>
       </fields>
       <libsource lib="liger-rescue" part="R_1k" description=""/>
       <sheetpath names="/InfraRed/" tstamps="/590982C4/"/>
@@ -301,7 +301,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</datasheet>
       <fields>
-        <field name="Part Number">RC0603FR-0747R5L</field>
+        <field name="Part Number">ERJ-3EKF47R5V</field>
       </fields>
       <libsource lib="liger-rescue" part="R_47.5" description=""/>
       <sheetpath names="/Audio/" tstamps="/5909A781/"/>
@@ -312,7 +312,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-07100KL</field>
+        <field name="Part Number">ERA-3AEB104V</field>
       </fields>
       <libsource lib="liger-rescue" part="R_100k" description=""/>
       <sheetpath names="/Audio/" tstamps="/5909A781/"/>
@@ -323,7 +323,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-07100KL</field>
+        <field name="Part Number">ERA-3AEB104V</field>
       </fields>
       <libsource lib="liger-rescue" part="R_100k" description=""/>
       <sheetpath names="/Audio/" tstamps="/5909A781/"/>
@@ -356,9 +356,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223</datasheet>
       <fields>
-        <field name="Part Number">C1608X8R1H104K080AB</field>
+        <field name="Part Number">CL10F104ZO8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_0.1uF" description=""/>
+      <libsource lib="open-automation" part="C_0.1uF" description="0.1uF 50V 0603 Capacitor"/>
       <sheetpath names="/Audio/" tstamps="/5909A781/"/>
       <tstamp>5B1F056C</tstamp>
     </comp>
@@ -367,9 +367,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223</datasheet>
       <fields>
-        <field name="Part Number">C1608X8R1H104K080AB</field>
+        <field name="Part Number">CL10F104ZO8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_0.1uF" description=""/>
+      <libsource lib="open-automation" part="C_0.1uF" description="0.1uF 50V 0603 Capacitor"/>
       <sheetpath names="/Audio/" tstamps="/5909A781/"/>
       <tstamp>5B1F08F4</tstamp>
     </comp>
@@ -378,7 +378,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-071KL</field>
+        <field name="Part Number">ESR03EZPJ102</field>
       </fields>
       <libsource lib="liger-rescue" part="R_1k" description=""/>
       <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
@@ -422,7 +422,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-0710KL</field>
+        <field name="Part Number">MCT06030C1002FP500</field>
       </fields>
       <libsource lib="liger-rescue" part="R_10k" description=""/>
       <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
@@ -433,7 +433,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-072KL/311-2.0KGRCT-ND/729673</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-072KL</field>
+        <field name="Part Number">ERA-3AEB202V</field>
       </fields>
       <libsource lib="liger-rescue" part="R_2k" description=""/>
       <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
@@ -477,9 +477,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206</datasheet>
       <fields>
-        <field name="Part Number">CGA3E1X7R1C105M080AC</field>
+        <field name="Part Number">CL10B105KP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_1uF" description=""/>
+      <libsource lib="open-automation" part="C_1uF" description="1uF 0603 Capacitor"/>
       <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
       <tstamp>5B1EEF77</tstamp>
     </comp>
@@ -488,9 +488,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206</datasheet>
       <fields>
-        <field name="Part Number">CGA3E1X7R1C105M080AC</field>
+        <field name="Part Number">CL10B105KP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_1uF" description=""/>
+      <libsource lib="open-automation" part="C_1uF" description="1uF 0603 Capacitor"/>
       <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
       <tstamp>5B1EF368</tstamp>
     </comp>
@@ -499,9 +499,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206</datasheet>
       <fields>
-        <field name="Part Number">CGA3E1X7R1C105M080AC</field>
+        <field name="Part Number">CL10B105KP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_1uF" description=""/>
+      <libsource lib="open-automation" part="C_1uF" description="1uF 0603 Capacitor"/>
       <sheetpath names="/Power/" tstamps="/5909D8E3/"/>
       <tstamp>5B1EF9E4</tstamp>
     </comp>
@@ -532,9 +532,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223</datasheet>
       <fields>
-        <field name="Part Number">C1608X8R1H104K080AB</field>
+        <field name="Part Number">CL10F104ZO8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_0.1uF" description=""/>
+      <libsource lib="open-automation" part="C_0.1uF" description="0.1uF 50V 0603 Capacitor"/>
       <sheetpath names="/Enviroment/" tstamps="/590D271B/"/>
       <tstamp>5B1F3B9C</tstamp>
     </comp>
@@ -543,9 +543,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223</datasheet>
       <fields>
-        <field name="Part Number">C1608X8R1H104K080AB</field>
+        <field name="Part Number">CL10F104ZO8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_0.1uF" description=""/>
+      <libsource lib="open-automation" part="C_0.1uF" description="0.1uF 50V 0603 Capacitor"/>
       <sheetpath names="/Enviroment/" tstamps="/590D271B/"/>
       <tstamp>5B1F3C43</tstamp>
     </comp>
@@ -554,7 +554,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-0710KL</field>
+        <field name="Part Number">MCT06030C1002FP500</field>
       </fields>
       <libsource lib="liger-rescue" part="R_10k" description=""/>
       <sheetpath names="/Relay/" tstamps="/59B5D50C/"/>
@@ -565,7 +565,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-07100KL</field>
+        <field name="Part Number">ERA-3AEB104V</field>
       </fields>
       <libsource lib="liger-rescue" part="R_100k" description=""/>
       <sheetpath names="/PIR/" tstamps="/59B5F4CB/"/>
@@ -576,7 +576,7 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645</datasheet>
       <fields>
-        <field name="Part Number">RC0603JR-07100KL</field>
+        <field name="Part Number">ERA-3AEB104V</field>
       </fields>
       <libsource lib="liger-rescue" part="R_100k" description=""/>
       <sheetpath names="/PIR/" tstamps="/59B5F4CB/"/>
@@ -645,9 +645,9 @@
       <footprint>Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206</datasheet>
       <fields>
-        <field name="Part Number">CGA3E1X7R1C105M080AC</field>
+        <field name="Part Number">CL10B105KP8NNNC</field>
       </fields>
-      <libsource lib="open-automation" part="C_1uF" description=""/>
+      <libsource lib="open-automation" part="C_1uF" description="1uF 0603 Capacitor"/>
       <sheetpath names="/Interface/" tstamps="/59092AD4/"/>
       <tstamp>5B2DBE58</tstamp>
     </comp>
@@ -656,9 +656,9 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615</datasheet>
       <fields>
-        <field name="Part Number">ERJ-3GEYJ102V</field>
+        <field name="Part Number">ESR03EZPJ102</field>
       </fields>
-      <libsource lib="open-automation" part="R_1k" description=""/>
+      <libsource lib="open-automation" part="R_1k" description="Resistor"/>
       <sheetpath names="/Interface/" tstamps="/59092AD4/"/>
       <tstamp>5B317B7D</tstamp>
     </comp>
@@ -667,9 +667,9 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615</datasheet>
       <fields>
-        <field name="Part Number">ERJ-3GEYJ102V</field>
+        <field name="Part Number">ESR03EZPJ102</field>
       </fields>
-      <libsource lib="open-automation" part="R_1k" description=""/>
+      <libsource lib="open-automation" part="R_1k" description="Resistor"/>
       <sheetpath names="/Interface/" tstamps="/59092AD4/"/>
       <tstamp>5B317C71</tstamp>
     </comp>
@@ -678,9 +678,9 @@
       <footprint>Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615</datasheet>
       <fields>
-        <field name="Part Number">ERJ-3GEYJ102V</field>
+        <field name="Part Number">ESR03EZPJ102</field>
       </fields>
-      <libsource lib="open-automation" part="R_1k" description=""/>
+      <libsource lib="open-automation" part="R_1k" description="Resistor"/>
       <sheetpath names="/Interface/" tstamps="/59092AD4/"/>
       <tstamp>5B317D10</tstamp>
     </comp>
@@ -1173,6 +1173,7 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="C_0.1uF">
+      <description>0.1uF 50V 0603 Capacitor</description>
       <footprints>
         <fp>C?</fp>
         <fp>C_????_*</fp>
@@ -1185,7 +1186,7 @@
         <field name="Value">C_0.1uF</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder</field>
         <field name="Datasheet">https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223</field>
-        <field name="Part Number">C1608X8R1H104K080AB</field>
+        <field name="Part Number">CL10F104ZO8NNNC</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -1193,6 +1194,7 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="C_10uF">
+      <description>10uF 10V 0603 Capacitor</description>
       <footprints>
         <fp>C?</fp>
         <fp>C_????_*</fp>
@@ -1213,6 +1215,7 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="C_1uF">
+      <description>1uF 0603 Capacitor</description>
       <footprints>
         <fp>C?</fp>
         <fp>C_????_*</fp>
@@ -1225,7 +1228,7 @@
         <field name="Value">C_1uF</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder</field>
         <field name="Datasheet">https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206</field>
-        <field name="Part Number">CGA3E1X7R1C105M080AC</field>
+        <field name="Part Number">CL10B105KP8NNNC</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -1249,6 +1252,7 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="R_10k">
+      <description>Resistor</description>
       <footprints>
         <fp>R_*</fp>
         <fp>R_*</fp>
@@ -1258,7 +1262,7 @@
         <field name="Value">R_10k</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder</field>
         <field name="Datasheet">https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647</field>
-        <field name="Part Number">RC0603JR-0710KL</field>
+        <field name="Part Number">MCT06030C1002FP500</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -1266,6 +1270,7 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="R_1k">
+      <description>Resistor</description>
       <footprints>
         <fp>R_*</fp>
         <fp>R_*</fp>
@@ -1275,7 +1280,7 @@
         <field name="Value">R_1k</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder</field>
         <field name="Datasheet">https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615</field>
-        <field name="Part Number">ERJ-3GEYJ102V</field>
+        <field name="Part Number">ESR03EZPJ102</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -1283,6 +1288,8 @@
       </pins>
     </libpart>
     <libpart lib="open-automation" part="R_47.5">
+      <description>RES SMD 47.5 OHM 1% 1/10W 0603</description>
+      <docs>https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</docs>
       <footprints>
         <fp>R_*</fp>
         <fp>R_*</fp>
@@ -1292,7 +1299,7 @@
         <field name="Value">R_47.5</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder</field>
         <field name="Datasheet">https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201</field>
-        <field name="Part Number">RC0603FR-0747R5L</field>
+        <field name="Part Number">ERJ-3EKF47R5V</field>
       </fields>
       <pins>
         <pin num="1" name="~" type="passive"/>
@@ -1302,13 +1309,13 @@
   </libparts>
   <libraries>
     <library logical="LED">
-      <uri>/usr/lib/kicad-nightly/share/kicad/library/LED.lib</uri>
+      <uri>/usr/share/kicad/library/kicad-symbols/LED.lib</uri>
     </library>
     <library logical="liger-rescue">
-      <uri>/home/andy/circuits/liger/hardware/liger-rescue.lib</uri>
+      <uri>/home/chris/circuits/liger/hardware/liger-rescue.lib</uri>
     </library>
     <library logical="open-automation">
-      <uri>/home/andy/circuits/liger/hardware/../../kicad-parts/open-automation.lib</uri>
+      <uri>/home/chris/circuits/kicad-parts/libraries/open-automation.lib</uri>
     </library>
   </libraries>
   <nets>

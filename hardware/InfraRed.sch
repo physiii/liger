@@ -59,7 +59,7 @@ F 0 "Q1" H 7825 3650 50  0000 R CNN
 F 1 "Q_NPN_BEC" H 8125 3550 50  0000 R CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 7725 3700 50  0001 C CNN
 F 3 "http://www.onsemi.com/pub/Collateral/MMBT3904LT1-D.PDF" H 7525 3600 50  0001 C CNN
-F 4 "MMBT3904LT1GOSCT-ND" H 7525 3600 60  0001 C CNN "Part Number"
+F 4 "MMBT3904-TP" H 7525 3600 60  0001 C CNN "Part Number"
 	1    7525 3600
 	1    0    0    -1  
 $EndComp
@@ -96,7 +96,7 @@ F 0 "R3" V 4625 3550 50  0000 C CNN
 F 1 "R_1k" V 4550 3550 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4555 3550 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" V 4705 3550 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 4805 3650 60  0001 C CNN "Part Number"
+F 4 "ESR03EZPJ102" V 4805 3650 60  0001 C CNN "Part Number"
 	1    4625 3550
 	0    1    1    0   
 $EndComp
@@ -108,7 +108,7 @@ F 0 "R4" V 6925 3600 50  0000 C CNN
 F 1 "R_1k" V 6850 3600 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6855 3600 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" V 7005 3600 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 7105 3700 60  0001 C CNN "Part Number"
+F 4 "ESR03EZPJ102" V 7105 3700 60  0001 C CNN "Part Number"
 	1    6925 3600
 	0    1    1    0   
 $EndComp

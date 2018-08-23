@@ -298,7 +298,7 @@ F 0 "C12" V 7500 5225 50  0000 C CNN
 F 1 "C_1uF" V 7400 5250 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7550 5400 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 7450 4850 50  0001 C CNN
-F 4 "CGA3E1X7R1C105M080AC" H 7575 5300 60  0001 C CNN "Part Number"
+F 4 "CL10B105KP8NNNC" H 7575 5300 60  0001 C CNN "Part Number"
 	1    7450 5100
 	0    1    1    0   
 $EndComp
@@ -310,7 +310,7 @@ F 0 "R15" H 4695 3296 50  0000 L CNN
 F 1 "R_1k" H 4695 3205 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4555 3250 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 4705 3250 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 4805 3350 60  0001 C CNN "Part Number"
+F 4 "ESR03EZPJ102" V 4805 3350 60  0001 C CNN "Part Number"
 	1    4625 3250
 	1    0    0    -1  
 $EndComp
@@ -322,7 +322,7 @@ F 0 "R16" H 5595 3296 50  0000 L CNN
 F 1 "R_1k" H 5595 3205 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 5455 3250 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 5605 3250 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 5705 3350 60  0001 C CNN "Part Number"
+F 4 "ESR03EZPJ102" V 5705 3350 60  0001 C CNN "Part Number"
 	1    5525 3250
 	1    0    0    -1  
 $EndComp
@@ -334,7 +334,7 @@ F 0 "R14" H 3645 3296 50  0000 L CNN
 F 1 "R_1k" H 3645 3205 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 3505 3250 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 3655 3250 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 3755 3350 60  0001 C CNN "Part Number"
+F 4 "ESR03EZPJ102" V 3755 3350 60  0001 C CNN "Part Number"
 	1    3575 3250
 	1    0    0    -1  
 $EndComp

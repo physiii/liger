@@ -46,7 +46,7 @@ F 0 "R10" V 6655 3450 50  0000 C CNN
 F 1 "R_1k" V 6575 3450 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6505 3450 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624" V 6655 3450 50  0001 C CNN
-F 4 "RC0603JR-071KL" V 6755 3550 60  0001 C CNN "Part Number"
+F 4 "ESR03EZPJ102" V 6755 3550 60  0001 C CNN "Part Number"
 	1    6575 3450
 	0    1    1    0   
 $EndComp
@@ -127,7 +127,7 @@ F 0 "R22" V 2975 3700 50  0000 C CNN
 F 1 "R_10k" V 2875 3700 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 2905 3700 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 3055 3700 50  0001 C CNN
-F 4 "RC0603JR-0710KL" V 3155 3800 60  0001 C CNN "Part Number"
+F 4 "MCT06030C1002FP500" V 3155 3800 60  0001 C CNN "Part Number"
 	1    2975 3700
 	1    0    0    -1  
 $EndComp
@@ -139,7 +139,7 @@ F 0 "R19" V 7975 3700 50  0000 C CNN
 F 1 "R_2k" V 7875 3700 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7905 3700 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-072KL/311-2.0KGRCT-ND/729673" V 8055 3700 50  0001 C CNN
-F 4 "RC0603JR-072KL" V 8155 3800 60  0001 C CNN "Part Number"
+F 4 "ERA-3AEB202V" V 8155 3800 60  0001 C CNN "Part Number"
 	1    7975 3700
 	-1   0    0    1   
 $EndComp
@@ -319,7 +319,7 @@ F 0 "C8" H 5240 3721 50  0000 L CNN
 F 1 "C_1uF" H 5240 3630 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5225 3975 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 5125 3425 50  0001 C CNN
-F 4 "CGA3E1X7R1C105M080AC" H 5250 3875 60  0001 C CNN "Part Number"
+F 4 "CL10B105KP8NNNC" H 5250 3875 60  0001 C CNN "Part Number"
 	1    5125 3675
 	1    0    0    -1  
 $EndComp
@@ -331,7 +331,7 @@ F 0 "C7" H 3615 3696 50  0000 L CNN
 F 1 "C_1uF" H 3615 3605 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3600 3950 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 3500 3400 50  0001 C CNN
-F 4 "CGA3E1X7R1C105M080AC" H 3625 3850 60  0001 C CNN "Part Number"
+F 4 "CL10B105KP8NNNC" H 3625 3850 60  0001 C CNN "Part Number"
 	1    3500 3650
 	1    0    0    -1  
 $EndComp
@@ -343,7 +343,7 @@ F 0 "C9" H 8815 3746 50  0000 L CNN
 F 1 "C_1uF" H 8815 3655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8800 4000 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 8700 3450 50  0001 C CNN
-F 4 "CGA3E1X7R1C105M080AC" H 8825 3900 60  0001 C CNN "Part Number"
+F 4 "CL10B105KP8NNNC" H 8825 3900 60  0001 C CNN "Part Number"
 	1    8700 3700
 	1    0    0    -1  
 $EndComp

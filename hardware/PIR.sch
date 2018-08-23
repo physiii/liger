@@ -35,7 +35,7 @@ F 0 "R18" V 6050 2275 50  0000 C CNN
 F 1 "R_100k" V 5950 2275 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 5980 2275 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645" V 6130 2275 50  0001 C CNN
-F 4 "RC0603JR-07100KL" V 6230 2375 60  0001 C CNN "Part Number"
+F 4 "ERA-3AEB104V" V 6230 2375 60  0001 C CNN "Part Number"
 	1    6050 2275
 	0    1    1    0   
 $EndComp
@@ -47,7 +47,7 @@ F 0 "R20" V 6275 2475 50  0000 C CNN
 F 1 "R_100k" V 6175 2475 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6205 2475 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-07100KL/311-100KGRCT-ND/729645" V 6355 2475 50  0001 C CNN
-F 4 "RC0603JR-07100KL" V 6455 2575 60  0001 C CNN "Part Number"
+F 4 "ERA-3AEB104V" V 6455 2575 60  0001 C CNN "Part Number"
 	1    6275 2475
 	-1   0    0    1   
 $EndComp
