@@ -39,6 +39,7 @@ nghttp2/lib/nghttp2_frame.o: \
  /usr/local/src/esp/esp-idf/components/newlib/platform_include/assert.h \
  /home/andy/circuits/liger/code/switch/build/include/sdkconfig.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/assert.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h \
@@ -123,6 +124,8 @@ nghttp2/lib/nghttp2_frame.o: \
 /home/andy/circuits/liger/code/switch/build/include/sdkconfig.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/assert.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 

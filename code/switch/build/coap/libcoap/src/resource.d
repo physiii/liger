@@ -80,6 +80,7 @@ libcoap/src/resource.o: \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
@@ -315,6 +316,8 @@ libcoap/src/resource.o: \
 /usr/local/src/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h:
 
 /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 

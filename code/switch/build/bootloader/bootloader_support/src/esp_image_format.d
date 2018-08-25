@@ -18,9 +18,9 @@ src/esp_image_format.o: \
  /usr/local/src/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /usr/local/src/esp/esp-idf/components/log/include/esp_log_internal.h \
  /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_sha.h
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h
 
 /usr/local/src/esp/esp-idf/components/esp32/include/rom/rtc.h:
 
@@ -58,9 +58,9 @@ src/esp_image_format.o: \
 
 /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_sha.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h:
 /usr/local/src/esp/esp-idf/components/bootloader_support/src/esp_image_format.c:

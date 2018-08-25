@@ -10,6 +10,7 @@ deps_config := \
 	/usr/local/src/esp/esp-idf/components/fatfs/Kconfig \
 	/usr/local/src/esp/esp-idf/components/freertos/Kconfig \
 	/usr/local/src/esp/esp-idf/components/heap/Kconfig \
+	/usr/local/src/esp/esp-idf/components/http_server/Kconfig \
 	/usr/local/src/esp/esp-idf/components/libsodium/Kconfig \
 	/usr/local/src/esp/esp-idf/components/log/Kconfig \
 	/usr/local/src/esp/esp-idf/components/lwip/Kconfig \

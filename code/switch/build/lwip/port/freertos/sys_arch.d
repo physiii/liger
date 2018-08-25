@@ -1,23 +1,25 @@
 port/freertos/sys_arch.o: \
  /usr/local/src/esp/esp-idf/components/lwip/port/freertos/sys_arch.c \
- /usr/local/src/esp/esp-idf/components/newlib/include/pthread.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/unistd.h \
- /usr/local/src/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/pthread.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/_ansi.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/newlib.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/config.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/features.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/machine/_default_types.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/_types.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/_types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/lock.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/pthread.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/unistd.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /usr/local/src/esp/esp-idf/components/newlib/platform_include/time.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/time.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/_ansi.h \
@@ -28,6 +30,7 @@ port/freertos/sys_arch.o: \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/stdint.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/_intsup.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/platform_include/assert.h \
@@ -98,7 +101,6 @@ port/freertos/sys_arch.o: \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/vfs_lwip.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/fcntl.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/stat.h \
@@ -116,13 +118,9 @@ port/freertos/sys_arch.o: \
  /usr/local/src/esp/esp-idf/components/log/include/esp_log.h \
  /usr/local/src/esp/esp-idf/components/log/include/esp_log_internal.h
 
-/usr/local/src/esp/esp-idf/components/newlib/include/pthread.h:
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/pthread.h:
 
-/usr/local/src/esp/esp-idf/components/newlib/include/unistd.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/platform_include/sys/unistd.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h:
+/usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/_ansi.h:
 
@@ -136,13 +134,9 @@ port/freertos/sys_arch.o: \
 
 /usr/local/src/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h:
 
-/usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+/usr/local/src/esp/esp-idf/components/newlib/include/machine/_types.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/machine/_default_types.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/machine/_types.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/_types.h:
 
@@ -151,6 +145,18 @@ port/freertos/sys_arch.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/pthread.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/unistd.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/sys/unistd.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/platform_include/time.h:
 
@@ -171,6 +177,8 @@ port/freertos/sys_arch.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/stdint.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/_intsup.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 
@@ -311,8 +319,6 @@ port/freertos/sys_arch.o: \
 /usr/local/src/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h:
 
 /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/fcntl.h:
 

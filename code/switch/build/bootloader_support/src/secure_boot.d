@@ -51,7 +51,7 @@ src/secure_boot.o: \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/io_mux_reg.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/efuse_reg.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_err.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/stdio.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h \
@@ -59,7 +59,7 @@ src/secure_boot.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_image_format.h \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_flash_data_types.h \
@@ -169,7 +169,7 @@ src/secure_boot.o: \
 
 /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/include/esp_err.h:
 
@@ -185,7 +185,7 @@ src/secure_boot.o: \
 
 /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
 
 /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_image_format.h:
 

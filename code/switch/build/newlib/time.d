@@ -1,4 +1,5 @@
 time.o: /usr/local/src/esp/esp-idf/components/newlib/time.c \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/reent.h \
@@ -95,6 +96,8 @@ time.o: /usr/local/src/esp/esp-idf/components/newlib/time.c \
  /usr/local/src/esp/esp-idf/components/freertos/include/freertos/task.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/limits.h \
  /usr/local/src/esp/esp-idf/components/freertos/include/freertos/list.h
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 

@@ -1,6 +1,6 @@
 src/bootloader_random.o: \
  /usr/local/src/esp/esp-idf/components/bootloader_support/src/bootloader_random.c \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/cpu.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/stdint.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/_default_types.h \
@@ -76,7 +76,7 @@ src/bootloader_random.o: \
  /usr/local/src/esp/esp-idf/components/esp32/include/xtensa/config/system.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/touch_channel.h
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
 
 /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/cpu.h:
 

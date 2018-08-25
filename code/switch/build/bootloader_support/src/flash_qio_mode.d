@@ -4,7 +4,7 @@ src/flash_qio_mode.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/features.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/_intsup.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/flash_qio_mode.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/flash_qio_mode.h \
  /usr/local/src/esp/esp-idf/components/log/include/esp_log.h \
  /home/andy/circuits/liger/code/switch/build/include/sdkconfig.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
@@ -49,7 +49,7 @@ src/flash_qio_mode.o: \
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/_intsup.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/flash_qio_mode.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/flash_qio_mode.h:
 
 /usr/local/src/esp/esp-idf/components/log/include/esp_log.h:
 

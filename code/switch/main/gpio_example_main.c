@@ -23,6 +23,7 @@ int triac_off_time = 1;
 int zero_cross_count = 0;
 int cnt = 0;
 int level = 0;
+bool zero_cross = false;
 
 #define CPU_FREQ_MHZ (240)
 #define CPU_TICK_US (1000000.0 / (CPU_FREQ_MHZ * 1000000))
@@ -40,24 +41,18 @@ inline void busy_delay_us(float us) {
   }
 }
 
-void delay_triac_us(int us) {
-  uint32_t t0_ccount, t1_ccount;
-  t0_ccount = CCOUNT;
-  gpio_set_level(TRIAC_IO, TRIAC_OFF);
-  while (true) {
-    RSR(CCOUNT, t1_ccount);
-    if (t1_ccount - t0_ccount > ((uint32_t)(us / CPU_TICK_US))) {
-      break;
-    }
-  }
-  gpio_set_level(TRIAC_IO, TRIAC_ON);
-}
-
 static void IRAM_ATTR gpio_isr_handler(void* arg)
 {
     zero_cross_count++;
-    //level = gpio_get_level(gpio_num);
-    delay_triac_us(5 * 1000);
+    zero_cross = true;
+    /*gpio_set_level(TRIAC_IO, TRIAC_OFF);
+    busy_delay_us(100000);
+    gpio_set_level(TRIAC_IO, TRIAC_ON);*/
+
+    /*gpio_set_level(TRIAC_IO, TRIAC_ON);
+    vTaskDelay(10 / portTICK_RATE_MS);
+    gpio_set_level(TRIAC_IO, TRIAC_OFF);
+    vTaskDelay(10 / portTICK_RATE_MS);*/
 }
 
 static void gpio_task_example(void* arg)
@@ -66,9 +61,13 @@ static void gpio_task_example(void* arg)
     gpio_set_level(TRIAC_IO, TRIAC_OFF);
 
     for(;;) {
-        printf("%d delay %d zeros: %d\n", cnt++,triac_off_time, zero_cross_count);
-        zero_cross_count = 0;
-        vTaskDelay(1000 / portTICK_RATE_MS);
+      if (zero_cross) {
+          zero_cross = false;
+          gpio_set_level(TRIAC_IO, TRIAC_OFF);
+          busy_delay_us(100000);
+          gpio_set_level(TRIAC_IO, TRIAC_ON);
+      }
+      vTaskDelay(10 / portTICK_RATE_MS);
     }
 }
 
@@ -96,11 +95,10 @@ void app_main()
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
     gpio_isr_handler_add(ZERO_DETECT_IO, gpio_isr_handler, (void*) ZERO_DETECT_IO);
 
-    //is this needed?
-    //gpio_isr_handler_remove(ZERO_DETECT_IO);
-    //gpio_isr_handler_add(ZERO_DETECT_IO, gpio_isr_handler, (void*) ZERO_DETECT_IO);
-
     while(1) {
-      vTaskDelay(10000 / portTICK_RATE_MS);
+      printf("%d delay %d zeros: %d\n", cnt++,triac_off_time, zero_cross_count);
+      zero_cross_count = 0;
+
+      vTaskDelay(1000 / portTICK_RATE_MS);
     }
 }

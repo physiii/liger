@@ -17,11 +17,11 @@ Archive member included to satisfy reference by file (symbol)
 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
                               /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o) (bootloader_common_ota_select_valid)
 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
-                              /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o) (esp_partition_table_basic_verify)
+                              /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o) (esp_partition_table_verify)
 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                              /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o) (esp_image_load)
+                              /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o) (bootloader_load_image)
 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                              /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o) (bootloader_sha256_start)
+                              /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o) (bootloader_sha256_start)
 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
                               /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o) (esp_log_early_timestamp)
 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
@@ -66,8 +66,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .data          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .bss           0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .xt.lit        0x0000000000000000       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .xt.prop       0x0000000000000000      0x54c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .xt.lit        0x0000000000000000       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .xt.prop       0x0000000000000000      0x57c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .literal.bootloader_flash_write
                 0x0000000000000000       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_erase_sector
@@ -93,6 +93,10 @@ Discarded input sections
                 0x0000000000000000        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.read_status_8b_rdsr
                 0x0000000000000000        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .literal.write_status_8b_xmc25qu64a
+                0x0000000000000000       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .literal.read_status_8b_xmc25qu64a
+                0x0000000000000000       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.enable_qio_mode
                 0x0000000000000000       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.bootloader_enable_qio_mode
@@ -112,22 +116,28 @@ Discarded input sections
                 0x0000000000000000       0x13 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .text.read_status_8b_rdsr
                 0x0000000000000000       0x15 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .text.write_status_8b_xmc25qu64a
+                0x0000000000000000       0x42 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .text.read_status_8b_xmc25qu64a
+                0x0000000000000000       0x3a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .rodata.str1.4
-                0x0000000000000000       0xdb /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000000000000       0xe6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .text.enable_qio_mode
                 0x0000000000000000       0x84 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .text.bootloader_enable_qio_mode
                 0x0000000000000000       0xf4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .rodata.chip_data
-                0x0000000000000000       0x5a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .xt.lit        0x0000000000000000       0x50 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .xt.prop       0x0000000000000000      0x2a0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000000000000       0x6c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .xt.lit        0x0000000000000000       0x60 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .xt.prop       0x0000000000000000      0x300 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .literal.bootloader_common_check_long_hold_gpio
                 0x0000000000000000       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .literal.bootloader_common_label_search
                 0x0000000000000000       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .literal.bootloader_common_erase_part_type_data
                 0x0000000000000000       0x60 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .literal.bootloader_common_get_sha256_of_partition
+                0x0000000000000000       0x34 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .data          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .bss           0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
@@ -139,28 +149,34 @@ Discarded input sections
                 0x0000000000000000       0xac /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text.bootloader_common_erase_part_type_data
                 0x0000000000000000      0x126 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .xt.lit        0x0000000000000000       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .xt.prop       0x0000000000000000      0x2ac /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .text.bootloader_common_get_sha256_of_partition
+                0x0000000000000000       0xc7 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .xt.lit        0x0000000000000000       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .xt.prop       0x0000000000000000      0x36c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .text          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .data          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .bss           0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .xt.lit        0x0000000000000000        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .xt.prop       0x0000000000000000      0x144 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .literal.esp_image_verify
+                0x0000000000000000        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .literal.esp_image_verify_bootloader
                 0x0000000000000000        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .data          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .bss           0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .text.esp_image_verify
+                0x0000000000000000       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .rodata        0x0000000000000000        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text.esp_image_verify_bootloader
-                0x0000000000000000       0x32 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .xt.lit        0x0000000000000000       0x50 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .xt.prop       0x0000000000000000      0x6a8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000000000000       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .xt.lit        0x0000000000000000       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .xt.prop       0x0000000000000000      0x750 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .data          0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .bss           0x0000000000000000        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .xt.lit        0x0000000000000000       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .xt.prop       0x0000000000000000      0x198 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .xt.prop       0x0000000000000000      0x24c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .literal.esp_log_buffer_hex_internal
                 0x0000000000000000       0x50 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
  .literal.esp_log_buffer_char_internal
@@ -352,7 +368,7 @@ LOAD /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/l
 END GROUP
 
 .iram_loader.text
-                0x0000000040078000     0x1e04
+                0x0000000040078000     0x245c
                 0x0000000040078000                . = ALIGN (0x10)
                 0x0000000040078000                _stext = .
                 0x0000000040078000                _text_start = ABSOLUTE (.)
@@ -367,268 +383,354 @@ END GROUP
  .literal.esp_log_early_timestamp
                 0x000000004007805c        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
  .literal       0x0000000040078064        0x8 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .literal.log_invalid_app_partition
-                0x000000004007806c       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x2c (size before relaxing)
- .literal.try_load_partition
-                0x0000000040078084        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x14 (size before relaxing)
- .literal.set_cache_and_start_app
-                0x0000000040078088       0x24 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x30 (size before relaxing)
- .literal.unpack_load_app
-                0x00000000400780ac       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x34 (size before relaxing)
- .literal.load_image
-                0x00000000400780c8        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x18 (size before relaxing)
- .literal.bootloader_utility_load_partition_table
-                0x00000000400780cc       0x44 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x84 (size before relaxing)
- .literal.bootloader_utility_get_selected_boot_partition
-                0x0000000040078110       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x70 (size before relaxing)
- .literal.bootloader_utility_load_boot_image
-                0x000000004007812c       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x5c (size before relaxing)
- .literal.should_map
-                0x000000004007813c        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x10 (size before relaxing)
- .literal.verify_image_header
-                0x000000004007813c       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x2c (size before relaxing)
- .literal.verify_segment_header
-                0x0000000040078150        0xc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x28 (size before relaxing)
- .literal.verify_checksum
-                0x000000004007815c        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x1c (size before relaxing)
- .literal.process_segment_data
-                0x0000000040078160        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x24 (size before relaxing)
- .literal.verify_simple_hash
-                0x0000000040078168        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x2c (size before relaxing)
- .literal.should_load
-                0x0000000040078170       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x18 (size before relaxing)
- .literal.process_segment
-                0x0000000040078180       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x60 (size before relaxing)
- .literal.esp_image_load
-                0x00000000400781a0       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x7c (size before relaxing)
- .literal.bootloader_fill_random
-                0x00000000400781b4        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .literal.bootloader_random_enable
-                0x00000000400781bc       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                                         0x78 (size before relaxing)
- .literal.bootloader_random_disable
-                0x000000004007822c       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                                         0x4c (size before relaxing)
  .literal.spi_to_esp_err
-                0x0000000040078248        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000004007806c        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_read_allow_decrypt
-                0x0000000040078250       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078074       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x30 (size before relaxing)
  .literal.bootloader_flash_read_no_decrypt
-                0x0000000040078260        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000004007809c        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x14 (size before relaxing)
  .literal.bootloader_mmap
-                0x0000000040078260       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000004007809c       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x50 (size before relaxing)
  .literal.bootloader_munmap
-                0x0000000040078274        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x00000000400780b4        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x14 (size before relaxing)
  .literal.bootloader_flash_read
-                0x0000000040078278        0xc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x00000000400780b8        0xc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x30 (size before relaxing)
- .literal.esp_partition_table_basic_verify
-                0x0000000040078284       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
-                                         0x5c (size before relaxing)
+ .literal.bootloader_fill_random
+                0x00000000400780c4        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .literal.bootloader_random_enable
+                0x00000000400780cc       0x78 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .literal.bootloader_random_disable
+                0x0000000040078144       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                                         0x4c (size before relaxing)
+ .literal.log_invalid_app_partition
+                0x0000000040078160       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x2c (size before relaxing)
+ .literal.try_load_partition
+                0x0000000040078174        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x14 (size before relaxing)
+ .literal.set_cache_and_start_app
+                0x0000000040078178        0xc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x30 (size before relaxing)
+ .literal.unpack_load_app
+                0x0000000040078184       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x34 (size before relaxing)
+ .literal.load_image
+                0x00000000400781a0        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x18 (size before relaxing)
+ .literal.bootloader_utility_load_partition_table
+                0x00000000400781a4       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x84 (size before relaxing)
+ .literal.bootloader_utility_get_selected_boot_partition
+                0x00000000400781e4       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x70 (size before relaxing)
+ .literal.bootloader_reset
+                0x0000000040078200        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x14 (size before relaxing)
+ .literal.bootloader_utility_load_boot_image
+                0x0000000040078208       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x64 (size before relaxing)
  .literal.bootloader_sha256_start
-                0x00000000400782b4        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040078218        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .literal.bootloader_sha256_data
-                0x00000000400782bc       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040078220       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
                                          0x30 (size before relaxing)
  .literal.bootloader_sha256_finish
-                0x00000000400782dc       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040078240       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
                                          0x4c (size before relaxing)
- .iram1         0x00000000400782f4      0x22b /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x000000004007851f        0x1 
- .iram1         0x0000000040078520      0x11a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
-                0x0000000040078520                esp_cpu_stall
-                0x00000000400785b4                esp_cpu_unstall
-                0x0000000040078608                esp_cpu_reset
-                0x000000004007862c                esp_cpu_in_ocd_debug_mode
- *fill*         0x000000004007863a        0x0 
+ .literal.should_map
+                0x0000000040078258        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x10 (size before relaxing)
+ .literal.verify_image_header
+                0x0000000040078258       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x2c (size before relaxing)
+ .literal.verify_segment_header
+                0x000000004007826c        0xc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x28 (size before relaxing)
+ .literal.verify_checksum
+                0x0000000040078278        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x1c (size before relaxing)
+ .literal.process_segment_data
+                0x000000004007827c        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x24 (size before relaxing)
+ .literal.debug_log_hash
+                0x0000000040078284        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                          0x4 (size before relaxing)
+ .literal.verify_simple_hash
+                0x0000000040078284       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x3c (size before relaxing)
+ .literal.should_load
+                0x0000000040078294       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x18 (size before relaxing)
+ .literal.process_segment
+                0x00000000400782a4       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x60 (size before relaxing)
+ .literal.image_load
+                0x00000000400782c0       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x88 (size before relaxing)
+ .literal.bootloader_load_image
+                0x00000000400782d4        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                          0x4 (size before relaxing)
+ .literal.esp_partition_table_verify
+                0x00000000400782d4       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                                         0x5c (size before relaxing)
+ .literal.esp_rom_spiflash_read_status
+                0x0000000040078304        0xc /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x14 (size before relaxing)
+ .literal.esp_rom_spiflash_wait_idle
+                0x0000000040078310        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                          0xc (size before relaxing)
+ .literal.esp_rom_spiflash_read_data
+                0x0000000040078318       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x18 (size before relaxing)
+ .literal.esp_rom_spiflash_read_statushigh
+                0x0000000040078328        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                          0xc (size before relaxing)
+ .literal.esp_rom_spiflash_write_status
+                0x000000004007832c        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x14 (size before relaxing)
+ .literal.esp_rom_spiflash_unlock
+                0x000000004007832c        0xc /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x28 (size before relaxing)
+ .literal.esp_rom_spiflash_read
+                0x0000000040078338       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x5c (size before relaxing)
+ .iram1         0x0000000040078370      0x22b /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ *fill*         0x000000004007859b        0x1 
+ .iram1         0x000000004007859c      0x11a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+                0x000000004007859c                esp_cpu_stall
+                0x0000000040078630                esp_cpu_unstall
+                0x0000000040078684                esp_cpu_reset
+                0x00000000400786a8                esp_cpu_in_ocd_debug_mode
+ *fill*         0x00000000400786b6        0x0 
  *liblog.a:(.literal .text .literal.* .text.*)
- *fill*         0x000000004007863a        0x2 
+ *fill*         0x00000000400786b6        0x2 
  .text.esp_log_early_timestamp
-                0x000000004007863c       0x1f /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
-                0x000000004007863c                esp_log_timestamp
-                0x000000004007863c                esp_log_early_timestamp
- *fill*         0x000000004007865b        0x0 
+                0x00000000400786b8       0x1f /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+                0x00000000400786b8                esp_log_timestamp
+                0x00000000400786b8                esp_log_early_timestamp
+ *fill*         0x00000000400786d7        0x0 
  *libgcc.a:(.literal .text .literal.* .text.*)
- *fill*         0x000000004007865b        0x1 
- .text          0x000000004007865c       0x26 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
-                0x000000004007865c                __bswapsi2
- *fill*         0x0000000040078682        0x0 
- *fill*         0x0000000040078682        0x2 
- .text          0x0000000040078684      0x281 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
-                0x0000000040078684                __udivdi3
+ *fill*         0x00000000400786d7        0x1 
+ .text          0x00000000400786d8       0x26 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+                0x00000000400786d8                __bswapsi2
+ *fill*         0x00000000400786fe        0x0 
+ *fill*         0x00000000400786fe        0x2 
+ .text          0x0000000040078700      0x281 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+                0x0000000040078700                __udivdi3
+ *libbootloader_support.a:bootloader_flash.o(.literal .text .literal.* .text.*)
+ *fill*         0x0000000040078981        0x3 
+ .text.spi_to_esp_err
+                0x0000000040078984       0x22 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x00000000400789a6        0x2 
+ .text.bootloader_flash_read_allow_decrypt
+                0x00000000400789a8       0x97 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                                         0x9b (size before relaxing)
+ *fill*         0x0000000040078a3f        0x1 
+ .text.bootloader_flash_read_no_decrypt
+                0x0000000040078a40       0x32 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                                         0x36 (size before relaxing)
+ *fill*         0x0000000040078a72        0x2 
+ .text.bootloader_mmap
+                0x0000000040078a74       0xb1 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                                         0xb9 (size before relaxing)
+                0x0000000040078a74                bootloader_mmap
+ *fill*         0x0000000040078b25        0x3 
+ .text.bootloader_munmap
+                0x0000000040078b28       0x36 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078b28                bootloader_munmap
+ *fill*         0x0000000040078b5e        0x2 
+ .text.bootloader_flash_read
+                0x0000000040078b60       0x86 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040078b60                bootloader_flash_read
+ *fill*         0x0000000040078be6        0x0 
+ *fill*         0x0000000040078be6        0x0 
+ *fill*         0x0000000040078be6        0x0 
+ *fill*         0x0000000040078be6        0x0 
+ *fill*         0x0000000040078be6        0x0 
+ *fill*         0x0000000040078be6        0x0 
+ *libbootloader_support.a:bootloader_random.o(.literal .text .literal.* .text.*)
+ *fill*         0x0000000040078be6        0x2 
+ .text.bootloader_fill_random
+                0x0000000040078be8       0x59 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078be8                bootloader_fill_random
+ *fill*         0x0000000040078c41        0x3 
+ .text.bootloader_random_enable
+                0x0000000040078c44      0x1d5 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078c44                bootloader_random_enable
+ *fill*         0x0000000040078e19        0x3 
+ .text.bootloader_random_disable
+                0x0000000040078e1c      0x11c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040078e1c                bootloader_random_disable
+ *fill*         0x0000000040078f38        0x0 
+ *fill*         0x0000000040078f38        0x0 
+ *fill*         0x0000000040078f38        0x0 
  *libbootloader_support.a:bootloader_utility.o(.literal .text .literal.* .text.*)
- *fill*         0x0000000040078905        0x3 
  .text.log_invalid_app_partition
-                0x0000000040078908       0x57 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x0000000040078f38       0x57 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
                                          0x5b (size before relaxing)
- *fill*         0x000000004007895f        0x1 
+ *fill*         0x0000000040078f8f        0x1 
  .text.try_load_partition
-                0x0000000040078960       0x34 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0x38 (size before relaxing)
+                0x0000000040078f90       0x31 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0x35 (size before relaxing)
+ *fill*         0x0000000040078fc1        0x3 
  .text.set_cache_and_start_app
-                0x0000000040078994       0xce /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- *fill*         0x0000000040078a62        0x2 
+                0x0000000040078fc4       0xce /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ *fill*         0x0000000040079092        0x2 
  .text.unpack_load_app
-                0x0000000040078a64       0xb0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x0000000040079094       0xb0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
                                          0xb4 (size before relaxing)
  .text.load_image
-                0x0000000040078b14       0x1e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x0000000040079144       0x1e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
                                          0x26 (size before relaxing)
- *fill*         0x0000000040078b32        0x2 
+ *fill*         0x0000000040079162        0x2 
  .text.bootloader_utility_load_partition_table
-                0x0000000040078b34      0x160 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x0000000040079164      0x160 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
                                         0x17c (size before relaxing)
-                0x0000000040078b34                bootloader_utility_load_partition_table
+                0x0000000040079164                bootloader_utility_load_partition_table
  .text.bootloader_utility_get_selected_boot_partition
-                0x0000000040078c94      0x140 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                        0x14c (size before relaxing)
-                0x0000000040078c94                bootloader_utility_get_selected_boot_partition
+                0x00000000400792c4      0x148 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                        0x154 (size before relaxing)
+                0x00000000400792c4                bootloader_utility_get_selected_boot_partition
+ .text.bootloader_reset
+                0x000000004007940c       0x2b /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x000000004007940c                bootloader_reset
+ *fill*         0x0000000040079437        0x1 
  .text.bootloader_utility_load_boot_image
-                0x0000000040078dd4       0xd7 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                         0xf7 (size before relaxing)
-                0x0000000040078dd4                bootloader_utility_load_boot_image
- *fill*         0x0000000040078eab        0x1 
+                0x0000000040079438       0xdb /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                         0xff (size before relaxing)
+                0x0000000040079438                bootloader_utility_load_boot_image
+ *fill*         0x0000000040079513        0x1 
  .text.index_to_partition
-                0x0000000040078eac       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- *fill*         0x0000000040078ef4        0x0 
- *fill*         0x0000000040078ef4        0x0 
- *fill*         0x0000000040078ef4        0x0 
+                0x0000000040079514       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ *fill*         0x000000004007955c        0x0 
+ *fill*         0x000000004007955c        0x0 
+ *fill*         0x000000004007955c        0x0 
+ *fill*         0x000000004007955c        0x0 
+ *fill*         0x000000004007955c        0x0 
+ *libbootloader_support.a:bootloader_sha.o(.literal .text .literal.* .text.*)
+ .text.bootloader_sha256_start
+                0x000000004007955c       0x12 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000004007955c                bootloader_sha256_start
+ *fill*         0x000000004007956e        0x2 
+ .text.bootloader_sha256_data
+                0x0000000040079570       0xa1 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                                         0xa9 (size before relaxing)
+                0x0000000040079570                bootloader_sha256_data
+ *fill*         0x0000000040079611        0x3 
+ .text.bootloader_sha256_finish
+                0x0000000040079614       0xdc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                                         0xf0 (size before relaxing)
+                0x0000000040079614                bootloader_sha256_finish
+ *fill*         0x00000000400796f0        0x0 
+ *fill*         0x00000000400796f0        0x0 
+ *fill*         0x00000000400796f0        0x0 
+ .text.bootloader_sha256_hex_to_str
+                0x00000000400796f0       0x72 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x00000000400796f0                bootloader_sha256_hex_to_str
+ *libbootloader_support.a:efuse.o(.literal .text .literal.* .text.*)
  *libbootloader_support.a:esp_image_format.o(.literal .text .literal.* .text.*)
+ *fill*         0x0000000040079762        0x2 
  .text.should_map
-                0x0000000040078ef4       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079764       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text.verify_image_header
-                0x0000000040078f24       0x7e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- *fill*         0x0000000040078fa2        0x2 
+                0x0000000040079794       0x7e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ *fill*         0x0000000040079812        0x2 
  .text.verify_segment_header
-                0x0000000040078fa4       0x71 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079814       0x71 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x79 (size before relaxing)
- *fill*         0x0000000040079015        0x3 
+ *fill*         0x0000000040079885        0x3 
  .text.verify_checksum
-                0x0000000040079018       0x87 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079888       0x87 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x8f (size before relaxing)
- *fill*         0x000000004007909f        0x1 
+ *fill*         0x000000004007990f        0x1 
  .text.process_segment_data
-                0x00000000400790a0       0xa4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079910       0xa4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0xb0 (size before relaxing)
+ .text.debug_log_hash
+                0x00000000400799b4       0x16 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ *fill*         0x00000000400799ca        0x2 
  .text.verify_simple_hash
-                0x0000000040079144       0x5b /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                         0x6a (size before relaxing)
- *fill*         0x000000004007919f        0x1 
+                0x00000000400799cc       0x69 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x80 (size before relaxing)
+ *fill*         0x0000000040079a35        0x3 
  .text.should_load
-                0x00000000400791a0       0x44 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079a38       0x44 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x48 (size before relaxing)
  .text.process_segment
-                0x00000000400791e4      0x13a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079a7c      0x13a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                         0x146 (size before relaxing)
- *fill*         0x000000004007931e        0x2 
- .text.esp_image_load
-                0x0000000040079320      0x256 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x272 (size before relaxing)
-                0x0000000040079320                esp_image_load
- *fill*         0x0000000040079576        0x0 
- *fill*         0x0000000040079576        0x0 
- *fill*         0x0000000040079576        0x0 
- *fill*         0x0000000040079576        0x0 
- *fill*         0x0000000040079576        0x0 
- *fill*         0x0000000040079576        0x0 
- *libbootloader_support.a:bootloader_random.o(.literal .text .literal.* .text.*)
- *fill*         0x0000000040079576        0x2 
- .text.bootloader_fill_random
-                0x0000000040079578       0x59 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x0000000040079578                bootloader_fill_random
- *fill*         0x00000000400795d1        0x3 
- .text.bootloader_random_enable
-                0x00000000400795d4      0x1d5 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x00000000400795d4                bootloader_random_enable
- *fill*         0x00000000400797a9        0x3 
- .text.bootloader_random_disable
-                0x00000000400797ac      0x11c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x00000000400797ac                bootloader_random_disable
- *fill*         0x00000000400798c8        0x0 
- *fill*         0x00000000400798c8        0x0 
- *fill*         0x00000000400798c8        0x0 
- *libbootloader_support.a:bootloader_flash.o(.literal .text .literal.* .text.*)
- .text.spi_to_esp_err
-                0x00000000400798c8       0x22 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x00000000400798ea        0x2 
- .text.bootloader_flash_read_allow_decrypt
-                0x00000000400798ec       0x97 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0x9b (size before relaxing)
- *fill*         0x0000000040079983        0x1 
- .text.bootloader_flash_read_no_decrypt
-                0x0000000040079984       0x32 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0x36 (size before relaxing)
- *fill*         0x00000000400799b6        0x2 
- .text.bootloader_mmap
-                0x00000000400799b8       0xb1 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                                         0xb9 (size before relaxing)
-                0x00000000400799b8                bootloader_mmap
- *fill*         0x0000000040079a69        0x3 
- .text.bootloader_munmap
-                0x0000000040079a6c       0x36 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                0x0000000040079a6c                bootloader_munmap
- *fill*         0x0000000040079aa2        0x2 
- .text.bootloader_flash_read
-                0x0000000040079aa4       0x86 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                0x0000000040079aa4                bootloader_flash_read
- *fill*         0x0000000040079b2a        0x0 
- *fill*         0x0000000040079b2a        0x0 
- *fill*         0x0000000040079b2a        0x0 
- *fill*         0x0000000040079b2a        0x0 
- *fill*         0x0000000040079b2a        0x0 
+ *fill*         0x0000000040079bb6        0x2 
+ .text.image_load
+                0x0000000040079bb8      0x28a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x2aa (size before relaxing)
+ *fill*         0x0000000040079e42        0x2 
+ .text.bootloader_load_image
+                0x0000000040079e44       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                         0x14 (size before relaxing)
+                0x0000000040079e44                bootloader_load_image
+ *fill*         0x0000000040079e54        0x0 
+ *fill*         0x0000000040079e54        0x0 
+ *fill*         0x0000000040079e54        0x0 
+ *fill*         0x0000000040079e54        0x0 
+ *fill*         0x0000000040079e54        0x0 
+ *fill*         0x0000000040079e54        0x0 
+ *fill*         0x0000000040079e54        0x0 
+ *libbootloader_support.a:flash_encrypt.o(.literal .text .literal.* .text.*)
  *libbootloader_support.a:flash_partitions.o(.literal .text .literal.* .text.*)
- *fill*         0x0000000040079b2a        0x2 
- .text.esp_partition_table_basic_verify
-                0x0000000040079b2c      0x143 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .text.esp_partition_table_verify
+                0x0000000040079e54      0x143 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
                                         0x14f (size before relaxing)
-                0x0000000040079b2c                esp_partition_table_basic_verify
- *fill*         0x0000000040079c6f        0x0 
- *libbootloader_support.a:bootloader_sha.o(.literal .text .literal.* .text.*)
- *fill*         0x0000000040079c6f        0x1 
- .text.bootloader_sha256_start
-                0x0000000040079c70       0x12 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                0x0000000040079c70                bootloader_sha256_start
- *fill*         0x0000000040079c82        0x2 
- .text.bootloader_sha256_data
-                0x0000000040079c84       0xa1 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                         0xa9 (size before relaxing)
-                0x0000000040079c84                bootloader_sha256_data
- *fill*         0x0000000040079d25        0x3 
- .text.bootloader_sha256_finish
-                0x0000000040079d28       0xdc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                         0xf0 (size before relaxing)
-                0x0000000040079d28                bootloader_sha256_finish
- *fill*         0x0000000040079e04        0x0 
- *fill*         0x0000000040079e04        0x0 
- *fill*         0x0000000040079e04        0x0 
+                0x0000000040079e54                esp_partition_table_verify
+ *libbootloader_support.a:secure_boot.o(.literal .text .literal.* .text.*)
+ *libbootloader_support.a:secure_boot_signatures.o(.literal .text .literal.* .text.*)
+ *libmicro-ecc.a:*.o(.literal .text .literal.* .text.*)
+ *libspi_flash.a:*.o(.literal .text .literal.* .text.*)
+ *fill*         0x0000000040079f97        0x1 
+ .text.esp_rom_spiflash_read_status
+                0x0000000040079f98       0x61 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079f98                esp_rom_spiflash_read_status
+ *fill*         0x0000000040079ff9        0x3 
+ .text.esp_rom_spiflash_wait_idle
+                0x0000000040079ffc       0x32 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000040079ffc                esp_rom_spiflash_wait_idle
+ *fill*         0x000000004007a02e        0x2 
+ .text.esp_rom_spiflash_read_data
+                0x000000004007a030       0xe2 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ *fill*         0x000000004007a112        0x2 
+ .text.esp_rom_spiflash_read_statushigh
+                0x000000004007a114       0x21 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a114                esp_rom_spiflash_read_statushigh
+ *fill*         0x000000004007a135        0x3 
+ .text.esp_rom_spiflash_write_status
+                0x000000004007a138       0x34 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x38 (size before relaxing)
+                0x000000004007a138                esp_rom_spiflash_write_status
+ .text.esp_rom_spiflash_unlock
+                0x000000004007a16c       0x6a /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                                         0x7e (size before relaxing)
+                0x000000004007a16c                esp_rom_spiflash_unlock
+ *fill*         0x000000004007a1d6        0x2 
+ .text.esp_rom_spiflash_read
+                0x000000004007a1d8      0x284 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a1d8                esp_rom_spiflash_read
+ *fill*         0x000000004007a45c        0x0 
+ *fill*         0x000000004007a45c        0x0 
+ *fill*         0x000000004007a45c        0x0 
+ *fill*         0x000000004007a45c        0x0 
+ *fill*         0x000000004007a45c        0x0 
+ *fill*         0x000000004007a45c        0x0 
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x0000000040079e04                _text_end = ABSOLUTE (.)
-                0x0000000040079e04                _etext = .
+                0x000000004007a45c                _text_end = ABSOLUTE (.)
+                0x000000004007a45c                _etext = .
 
-.iram.text      0x0000000040080400     0x1cde
+.iram.text      0x0000000040080400     0x17ba
                 0x0000000040080400                . = ALIGN (0x10)
  *(.entry.text)
  *(.init.literal)
@@ -644,7 +746,7 @@ END GROUP
                                          0x18 (size before relaxing)
  .literal.call_start_cpu0
                 0x000000004008040c        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x10 (size before relaxing)
+                                         0x18 (size before relaxing)
  .literal.wdt_reset_cpu0_info_enable
                 0x0000000040080410        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .literal.wdt_reset_info_dump
@@ -687,324 +789,270 @@ END GROUP
  .literal.bootloader_common_ota_select_valid
                 0x00000000400805c0        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
                                           0x4 (size before relaxing)
- .literal.esp_rom_spiflash_read_status
-                0x00000000400805c0       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x14 (size before relaxing)
- .literal.esp_rom_spiflash_wait_idle
-                0x00000000400805d0        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                          0xc (size before relaxing)
- .literal.esp_rom_spiflash_read_data
-                0x00000000400805d8        0xc /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x18 (size before relaxing)
- .literal.esp_rom_spiflash_read_statushigh
-                0x00000000400805e4        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                          0xc (size before relaxing)
- .literal.esp_rom_spiflash_write_status
-                0x00000000400805e8        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x14 (size before relaxing)
- .literal.esp_rom_spiflash_unlock
-                0x00000000400805ec        0xc /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x28 (size before relaxing)
- .literal.esp_rom_spiflash_read
-                0x00000000400805f8       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x5c (size before relaxing)
  .literal.rtc_vddsdio_get_config
-                0x0000000040080630       0x2c /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x00000000400805c0       0x2c /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
                                          0x30 (size before relaxing)
  .literal.rtc_vddsdio_set_config
-                0x000000004008065c        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x00000000400805ec        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_32k_enable_internal
-                0x000000004008065c       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400805ec       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .literal.rtc_clk_32k_enable
-                0x0000000040080670        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080600        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_8m_enable
-                0x0000000040080674        0xc /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080604        0xc /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x10 (size before relaxing)
  .literal.rtc_clk_8m_enabled
-                0x0000000040080680        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080610        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_8md256_enabled
-                0x0000000040080680        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080610        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_xtal_freq_estimate
-                0x0000000040080680       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080610       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x4c (size before relaxing)
  .literal.rtc_clk_slow_freq_set
-                0x00000000400806a0        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080630        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_slow_freq_get
-                0x00000000400806a4        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080634        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_fast_freq_set
-                0x00000000400806a4        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080634        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0xc (size before relaxing)
  .literal.rtc_clk_fast_freq_get
-                0x00000000400806a4        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080634        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x4 (size before relaxing)
  .literal.rtc_clk_bbpll_set
-                0x00000000400806a4       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080634       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x38 (size before relaxing)
  .literal.rtc_clk_xtal_freq_get
-                0x00000000400806b4        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080644        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x1c (size before relaxing)
  .literal.rtc_clk_cpu_freq_get
-                0x00000000400806bc       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004008064c       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x28 (size before relaxing)
  .literal.rtc_clk_cpu_freq_value
-                0x00000000400806d0       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080660       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x2c (size before relaxing)
  .literal.rtc_clk_xtal_freq_update
-                0x00000000400806f0        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080680        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_apb_freq_update
-                0x00000000400806f0        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080680        0x4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_cpu_freq_set
-                0x00000000400806f4       0x1c /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040080684       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x78 (size before relaxing)
  .literal.rtc_clk_apb_freq_get
-                0x0000000040080710        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806a4        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x14 (size before relaxing)
  .literal.rtc_clk_init
-                0x0000000040080718       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400806ac       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x94 (size before relaxing)
  .literal.rtc_clk_cal_internal
-                0x0000000040080738       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x00000000400806cc       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x3c (size before relaxing)
  .literal.rtc_clk_cal_ratio
-                0x0000000040080758        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x00000000400806ec        0x0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
                                           0x8 (size before relaxing)
  .literal.rtc_clk_wait_for_slow_cycle
-                0x0000000040080758        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x00000000400806ec        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x20 (size before relaxing)
  .text.selected_boot_partition
-                0x0000000040080760        0xc /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x00000000400806f4        0xc /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
                                          0x10 (size before relaxing)
  .text.select_partition_number
-                0x000000004008076c       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x0000000040080700       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
                                          0x34 (size before relaxing)
  .text.call_start_cpu0
-                0x000000004008079c       0x2a /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
-                                         0x32 (size before relaxing)
-                0x000000004008079c                call_start_cpu0
- *fill*         0x00000000400807c6        0x2 
+                0x0000000040080730       0x35 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+                                         0x3c (size before relaxing)
+                0x0000000040080730                call_start_cpu0
+ *fill*         0x0000000040080765        0x3 
  .text.wdt_reset_cpu0_info_enable
-                0x00000000400807c8       0x27 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x00000000400807ef        0x1 
+                0x0000000040080768       0x27 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ *fill*         0x000000004008078f        0x1 
  .text.wdt_reset_info_dump
-                0x00000000400807f0       0xe6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x00000000400808d6        0x2 
+                0x0000000040080790       0xe6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ *fill*         0x0000000040080876        0x2 
  .text.print_flash_info
-                0x00000000400808d8       0xf6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- *fill*         0x00000000400809ce        0x2 
+                0x0000000040080878       0xf6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ *fill*         0x000000004008096e        0x2 
  .text.vddsdio_configure
-                0x00000000400809d0       0x33 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080970       0x33 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0x37 (size before relaxing)
- *fill*         0x0000000040080a03        0x1 
+ *fill*         0x00000000400809a3        0x1 
  .text.uart_console_configure
-                0x0000000040080a04       0x36 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x00000000400809a4       0x36 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0x3a (size before relaxing)
- *fill*         0x0000000040080a3a        0x2 
+ *fill*         0x00000000400809da        0x2 
  .text.wdt_reset_check
-                0x0000000040080a3c       0xa2 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x00000000400809dc       0xa2 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0xae (size before relaxing)
- *fill*         0x0000000040080ade        0x2 
+ *fill*         0x0000000040080a7e        0x2 
  .text.update_flash_config
-                0x0000000040080ae0       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080a80       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .text.bootloader_main
-                0x0000000040080b48       0xbc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080ae8       0xbc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0xe8 (size before relaxing)
  .text.__assert_func
-                0x0000000040080c04       0x1f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080ba4       0x1f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                          0x23 (size before relaxing)
-                0x0000000040080c04                __assert_func
- *fill*         0x0000000040080c23        0x1 
+                0x0000000040080ba4                __assert_func
+ *fill*         0x0000000040080bc3        0x1 
  .text.bootloader_init
-                0x0000000040080c24      0x12a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x0000000040080bc4      0x12a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                         0x136 (size before relaxing)
-                0x0000000040080c24                bootloader_init
- *fill*         0x0000000040080d4e        0x2 
+                0x0000000040080bc4                bootloader_init
+ *fill*         0x0000000040080cee        0x2 
  .text.bootloader_clock_configure
-                0x0000000040080d50       0x6e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+                0x0000000040080cf0       0x6e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
                                          0x76 (size before relaxing)
-                0x0000000040080d50                bootloader_clock_configure
- *fill*         0x0000000040080dbe        0x2 
+                0x0000000040080cf0                bootloader_clock_configure
+ *fill*         0x0000000040080d5e        0x2 
  .text.execute_flash_command
-                0x0000000040080dc0      0x190 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000040080d60      0x190 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .text.bootloader_read_flash_id
-                0x0000000040080f50       0x27 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x0000000040080ef0       0x27 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
                                          0x2b (size before relaxing)
-                0x0000000040080f50                bootloader_read_flash_id
- *fill*         0x0000000040080f77        0x1 
+                0x0000000040080ef0                bootloader_read_flash_id
+ *fill*         0x0000000040080f17        0x1 
  .text.bootloader_common_ota_select_crc
-                0x0000000040080f78       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
-                0x0000000040080f78                bootloader_common_ota_select_crc
+                0x0000000040080f18       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000040080f18                bootloader_common_ota_select_crc
  .text.bootloader_common_ota_select_valid
-                0x0000000040080f8c       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000040080f2c       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
                                          0x24 (size before relaxing)
-                0x0000000040080f8c                bootloader_common_ota_select_valid
- .text.esp_rom_spiflash_read_status
-                0x0000000040080fac       0x61 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x0000000040080fac                esp_rom_spiflash_read_status
- *fill*         0x000000004008100d        0x3 
- .text.esp_rom_spiflash_wait_idle
-                0x0000000040081010       0x32 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x0000000040081010                esp_rom_spiflash_wait_idle
- *fill*         0x0000000040081042        0x2 
- .text.esp_rom_spiflash_read_data
-                0x0000000040081044       0xe2 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- *fill*         0x0000000040081126        0x2 
- .text.esp_rom_spiflash_read_statushigh
-                0x0000000040081128       0x21 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x0000000040081128                esp_rom_spiflash_read_statushigh
- *fill*         0x0000000040081149        0x3 
- .text.esp_rom_spiflash_write_status
-                0x000000004008114c       0x34 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x38 (size before relaxing)
-                0x000000004008114c                esp_rom_spiflash_write_status
- .text.esp_rom_spiflash_unlock
-                0x0000000040081180       0x6a /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                                         0x7e (size before relaxing)
-                0x0000000040081180                esp_rom_spiflash_unlock
- *fill*         0x00000000400811ea        0x2 
- .text.esp_rom_spiflash_read
-                0x00000000400811ec      0x284 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x00000000400811ec                esp_rom_spiflash_read
+                0x0000000040080f2c                bootloader_common_ota_select_valid
  .text.rtc_vddsdio_get_config
-                0x0000000040081470      0x104 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
-                0x0000000040081470                rtc_vddsdio_get_config
+                0x0000000040080f4c      0x104 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x0000000040080f4c                rtc_vddsdio_get_config
  .text.rtc_vddsdio_set_config
-                0x0000000040081574       0x46 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
-                0x0000000040081574                rtc_vddsdio_set_config
- *fill*         0x00000000400815ba        0x2 
+                0x0000000040081050       0x46 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x0000000040081050                rtc_vddsdio_set_config
+ *fill*         0x0000000040081096        0x2 
  .text.rtc_clk_32k_enable_internal
-                0x00000000400815bc       0x81 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000004008163d        0x3 
+                0x0000000040081098       0x81 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x0000000040081119        0x3 
  .text.rtc_clk_32k_enable
-                0x0000000040081640       0x2d /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081640                rtc_clk_32k_enable
- *fill*         0x000000004008166d        0x3 
+                0x000000004008111c       0x2d /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004008111c                rtc_clk_32k_enable
+ *fill*         0x0000000040081149        0x3 
  .text.rtc_clk_8m_enable
-                0x0000000040081670       0x9d /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081670                rtc_clk_8m_enable
- *fill*         0x000000004008170d        0x3 
+                0x000000004008114c       0x9d /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004008114c                rtc_clk_8m_enable
+ *fill*         0x00000000400811e9        0x3 
  .text.rtc_clk_8m_enabled
-                0x0000000040081710       0x19 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081710                rtc_clk_8m_enabled
- *fill*         0x0000000040081729        0x3 
+                0x00000000400811ec       0x19 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400811ec                rtc_clk_8m_enabled
+ *fill*         0x0000000040081205        0x3 
  .text.rtc_clk_8md256_enabled
-                0x000000004008172c       0x1a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004008172c                rtc_clk_8md256_enabled
- *fill*         0x0000000040081746        0x2 
+                0x0000000040081208       0x1a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081208                rtc_clk_8md256_enabled
+ *fill*         0x0000000040081222        0x2 
  .text.rtc_clk_xtal_freq_estimate
-                0x0000000040081748       0xa6 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081224       0xa6 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0xb2 (size before relaxing)
- *fill*         0x00000000400817ee        0x2 
+ *fill*         0x00000000400812ca        0x2 
  .text.rtc_clk_slow_freq_set
-                0x00000000400817f0       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x00000000400817f0                rtc_clk_slow_freq_set
+                0x00000000400812cc       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400812cc                rtc_clk_slow_freq_set
  .text.rtc_clk_slow_freq_get
-                0x0000000040081838       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081838                rtc_clk_slow_freq_get
+                0x0000000040081314       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081314                rtc_clk_slow_freq_get
  .text.rtc_clk_fast_freq_set
-                0x0000000040081848       0x2a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081848                rtc_clk_fast_freq_set
- *fill*         0x0000000040081872        0x2 
+                0x0000000040081324       0x2a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081324                rtc_clk_fast_freq_set
+ *fill*         0x000000004008134e        0x2 
  .text.rtc_clk_fast_freq_get
-                0x0000000040081874       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081874                rtc_clk_fast_freq_get
+                0x0000000040081350       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081350                rtc_clk_fast_freq_get
  .text.rtc_clk_bbpll_set
-                0x0000000040081884      0x170 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081360      0x170 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x178 (size before relaxing)
-                0x0000000040081884                rtc_clk_bbpll_set
+                0x0000000040081360                rtc_clk_bbpll_set
  .text.rtc_clk_xtal_freq_get
-                0x00000000400819f4       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400814d0       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x3c (size before relaxing)
-                0x00000000400819f4                rtc_get_xtal
-                0x00000000400819f4                rtc_clk_xtal_freq_get
+                0x00000000400814d0                rtc_get_xtal
+                0x00000000400814d0                rtc_clk_xtal_freq_get
  .text.rtc_clk_cpu_freq_get
-                0x0000000040081a2c       0x88 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081508       0x88 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x94 (size before relaxing)
-                0x0000000040081a2c                rtc_clk_cpu_freq_get
+                0x0000000040081508                rtc_clk_cpu_freq_get
  .text.rtc_clk_cpu_freq_value
-                0x0000000040081ab4       0x44 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081590       0x44 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x48 (size before relaxing)
-                0x0000000040081ab4                rtc_clk_cpu_freq_value
+                0x0000000040081590                rtc_clk_cpu_freq_value
  .text.rtc_clk_xtal_freq_update
-                0x0000000040081af8       0x12 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400815d4       0x12 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x16 (size before relaxing)
-                0x0000000040081af8                rtc_clk_xtal_freq_update
- *fill*         0x0000000040081b0a        0x2 
+                0x00000000400815d4                rtc_clk_xtal_freq_update
+ *fill*         0x00000000400815e6        0x2 
  .text.rtc_clk_apb_freq_update
-                0x0000000040081b0c       0x13 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400815e8       0x13 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x16 (size before relaxing)
-                0x0000000040081b0c                rtc_clk_apb_freq_update
- *fill*         0x0000000040081b1f        0x1 
+                0x00000000400815e8                rtc_clk_apb_freq_update
+ *fill*         0x00000000400815fb        0x1 
  .text.rtc_clk_cpu_freq_set
-                0x0000000040081b20      0x1bc /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400815fc      0x1bc /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x1d0 (size before relaxing)
-                0x0000000040081b20                rtc_clk_cpu_freq_set
+                0x00000000400815fc                rtc_clk_cpu_freq_set
  .text.rtc_clk_apb_freq_get
-                0x0000000040081cdc       0x2a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x0000000040081cdc                rtc_clk_apb_freq_get
- *fill*         0x0000000040081d06        0x2 
+                0x00000000400817b8       0x2a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400817b8                rtc_clk_apb_freq_get
+ *fill*         0x00000000400817e2        0x2 
  .text.rtc_clk_init
-                0x0000000040081d08      0x182 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000400817e4      0x182 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x1ba (size before relaxing)
-                0x0000000040081d08                rtc_clk_init
- *fill*         0x0000000040081e8a        0x2 
+                0x00000000400817e4                rtc_clk_init
+ *fill*         0x0000000040081966        0x2 
  .text.rtc_clk_cal_internal
-                0x0000000040081e8c      0x180 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000040081968      0x180 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
  .text.rtc_clk_cal_ratio
-                0x000000004008200c       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000040081ae8       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x24 (size before relaxing)
-                0x000000004008200c                rtc_clk_cal_ratio
+                0x0000000040081ae8                rtc_clk_cal_ratio
  .text.rtc_clk_wait_for_slow_cycle
-                0x000000004008202c       0x79 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
-                0x000000004008202c                rtc_clk_wait_for_slow_cycle
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x0 
- *fill*         0x00000000400820a5        0x3 
+                0x0000000040081b08       0x79 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x0000000040081b08                rtc_clk_wait_for_slow_cycle
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x0 
+ *fill*         0x0000000040081b81        0x3 
  .text.clk_val_is_valid
-                0x00000000400820a8       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081b84       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.reg_val_to_clk_val
-                0x00000000400820c8        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x0000000040081ba4        0x8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.clk_val_to_reg_val
-                0x00000000400820d0        0xe /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
- *fill*         0x00000000400820de        0x0 
+                0x0000000040081bac        0xe /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
+ *fill*         0x0000000040081bba        0x0 
  *(.iram .iram.*)
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x00000000400820de                _text_end = ABSOLUTE (.)
-                0x00000000400820de                _etext = .
+                0x0000000040081bba                _text_end = ABSOLUTE (.)
+                0x0000000040081bba                _etext = .
 
 .dram0.bss      0x000000003fff0000       0x18
                 0x000000003fff0000                . = ALIGN (0x8)
@@ -1052,7 +1100,7 @@ END GROUP
  *(.jcr)
                 0x000000003fff001c                _data_end = ABSOLUTE (.)
 
-.dram0.rodata   0x000000003fff001c     0x1660
+.dram0.rodata   0x000000003fff001c     0x1680
                 0x000000003fff001c                _rodata_start = ABSOLUTE (.)
  *(.rodata)
  .rodata        0x000000003fff001c       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
@@ -1065,7 +1113,7 @@ END GROUP
                 0x000000003fff0074      0x3be /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                         0x3c6 (size before relaxing)
  *fill*         0x000000003fff0432        0x2 
- .rodata.__func__$4357
+ .rodata.__func__$4370
                 0x000000003fff0434       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .rodata.str1.4
                 0x000000003fff0444      0x5a5 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
@@ -1078,66 +1126,66 @@ END GROUP
                 0x000000003fff0c7c      0x163 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  *fill*         0x000000003fff0ddf        0x1 
  .rodata.str1.4
-                0x000000003fff0de0      0x45a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x49a (size before relaxing)
- *fill*         0x000000003fff123a        0x2 
+                0x000000003fff0de0      0x47a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x4ba (size before relaxing)
+ *fill*         0x000000003fff125a        0x2 
  .rodata.str1.4
-                0x000000003fff123c       0xcc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .rodata.padding$3047
-                0x000000003fff1308       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .rodata.__func__$3043
-                0x000000003fff1348       0x19 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff1361        0x3 
- .rodata.__func__$3023
-                0x000000003fff1364       0x17 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff137b        0x1 
+                0x000000003fff125c       0xcc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .rodata.padding$3883
+                0x000000003fff1328       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .rodata.__func__$3879
+                0x000000003fff1368       0x19 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff1381        0x3 
+ .rodata.__func__$3859
+                0x000000003fff1384       0x17 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff139b        0x1 
  .rodata.str1.4
-                0x000000003fff137c      0x258 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff139c      0x258 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x255 (size before relaxing)
  .rodata.rtc_clk_xtal_freq_estimate
-                0x000000003fff15d4       0x64 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff15f4       0x64 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.rtc_clk_cpu_freq_value
-                0x000000003fff1638       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff1658       0x14 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.__func__$2844
-                0x000000003fff164c       0x17 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000003fff1663        0x1 
+                0x000000003fff166c       0x17 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x000000003fff1683        0x1 
  .rodata.__func__$2829
-                0x000000003fff1664       0x15 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff1684       0x15 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x000000003fff1679                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
+                0x000000003fff1699                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x000000003fff167c                . = ((. + 0x3) & 0xfffffffffffffffc)
- *fill*         0x000000003fff1679        0x3 
-                0x000000003fff167c                __init_array_start = ABSOLUTE (.)
+                0x000000003fff169c                . = ((. + 0x3) & 0xfffffffffffffffc)
+ *fill*         0x000000003fff1699        0x3 
+                0x000000003fff169c                __init_array_start = ABSOLUTE (.)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x000000003fff167c                __init_array_end = ABSOLUTE (.)
+                0x000000003fff169c                __init_array_end = ABSOLUTE (.)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x000000003fff167c                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
+                0x000000003fff169c                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x000000003fff167c                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x000000003fff169c                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x000000003fff167c                _rodata_end = ABSOLUTE (.)
-                0x000000003fff167c                _lit4_start = ABSOLUTE (.)
+                0x000000003fff169c                _rodata_end = ABSOLUTE (.)
+                0x000000003fff169c                _lit4_start = ABSOLUTE (.)
  *(*.lit4)
  *(.lit4.*)
  *(.gnu.linkonce.lit4.*)
-                0x000000003fff167c                _lit4_end = ABSOLUTE (.)
-                0x000000003fff167c                . = ALIGN (0x4)
-                0x000000003fff167c                _heap_start = ABSOLUTE (.)
+                0x000000003fff169c                _lit4_end = ABSOLUTE (.)
+                0x000000003fff169c                . = ALIGN (0x4)
+                0x000000003fff169c                _heap_start = ABSOLUTE (.)
                 [!provide]                        PROVIDE (abort, 0x4000bba4)
                 [!provide]                        PROVIDE (Add2SelfBigHex256, 0x40015b7c)
                 [!provide]                        PROVIDE (AddBigHex256, 0x40015b28)
@@ -1819,7 +1867,14 @@ END GROUP
                 [!provide]                        PROVIDE (ld_acl_tx_packet_type_select, 0x4002fb40)
                 [!provide]                        PROVIDE (ld_acl_sched, 0x40033268)
                 [!provide]                        PROVIDE (ld_acl_sniff_sched, 0x4003340c)
+                [!provide]                        PROVIDE (ld_acl_rx, 0x4003274c)
+                [!provide]                        PROVIDE (ld_acl_tx, 0x4002ffdc)
+                [!provide]                        PROVIDE (ld_acl_rx_sync, 0x4002fbec)
+                [!provide]                        PROVIDE (ld_acl_rx_sync2, 0x4002fd8c)
+                [!provide]                        PROVIDE (ld_acl_rx_no_sync, 0x4002fe78)
+                [!provide]                        PROVIDE (ld_sco_modify, 0x40031778)
                 [!provide]                        PROVIDE (lm_cmd_cmp_send, 0x40051838)
+                [!provide]                        PROVIDE (ld_sco_frm_cbk, 0x400349dc)
                 [!provide]                        PROVIDE (r_ld_acl_active_hop_types_get, 0x40036e10)
                 [!provide]                        PROVIDE (r_ld_acl_afh_confirm, 0x40036d40)
                 [!provide]                        PROVIDE (r_ld_acl_afh_prepare, 0x40036c84)
@@ -2561,7 +2616,7 @@ END GROUP
                 [!provide]                        PROVIDE (uart_rx_one_char, 0x400092d0)
                 [!provide]                        PROVIDE (uart_rx_one_char_block, 0x400092a4)
                 [!provide]                        PROVIDE (uart_rx_readbuff, 0x40009394)
-                [!provide]                        PROVIDE (uart_tx_flush, 0x40009258)
+                0x0000000040009258                PROVIDE (uart_tx_flush, 0x40009258)
                 [!provide]                        PROVIDE (uart_tx_one_char, 0x40009200)
                 [!provide]                        PROVIDE (uart_tx_one_char2, 0x4000922c)
                 [!provide]                        PROVIDE (uart_tx_switch, 0x40009028)
@@ -2879,92 +2934,92 @@ END GROUP
                 0x0000000040008550                PROVIDE (ets_update_cpu_frequency, 0x40008550)
 OUTPUT(/home/andy/circuits/liger/code/switch/build/bootloader/bootloader.elf elf32-xtensa-le)
 
-.debug_frame    0x0000000000000000      0xdd8
+.debug_frame    0x0000000000000000      0xe98
  .debug_frame   0x0000000000000000       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
  .debug_frame   0x0000000000000058      0x118 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .debug_frame   0x0000000000000170       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .debug_frame   0x0000000000000198       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_frame   0x00000000000001f0       0xe8 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_frame   0x00000000000002d8       0xd0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_frame   0x00000000000003a8      0x100 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_frame   0x00000000000004a8       0x88 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_frame   0x0000000000000530       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_frame   0x0000000000000558      0x100 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_frame   0x0000000000000658       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_frame   0x00000000000006b0       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
- .debug_frame   0x0000000000000720      0x208 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_frame   0x0000000000000928       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_frame   0x0000000000000998       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_frame   0x00000000000009f0      0x2e0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_frame   0x0000000000000cd0       0xb8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_frame   0x0000000000000d88       0x28 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_frame   0x0000000000000db0       0x28 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_frame   0x00000000000001f0      0x100 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_frame   0x00000000000002f0       0xd0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_frame   0x00000000000003c0      0x130 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_frame   0x00000000000004f0       0xa0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_frame   0x0000000000000590       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_frame   0x00000000000005b8      0x148 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_frame   0x0000000000000700       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_frame   0x0000000000000770       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+ .debug_frame   0x00000000000007e0      0x208 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_frame   0x00000000000009e8       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_frame   0x0000000000000a58       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_frame   0x0000000000000ab0      0x2e0 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_frame   0x0000000000000d90       0xb8 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_frame   0x0000000000000e48       0x28 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_frame   0x0000000000000e70       0x28 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_info     0x0000000000000000     0xc014
- .debug_info    0x0000000000000000      0x31a /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_info    0x000000000000031a     0x14c0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_info    0x00000000000017da      0x279 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_info    0x0000000000001a53      0x1fe /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_info    0x0000000000001c51     0x1371 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_info    0x0000000000002fc2      0xbfa /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_info    0x0000000000003bbc     0x298f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_info    0x000000000000654b      0x789 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_info    0x0000000000006cd4      0x526 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_info    0x00000000000071fa     0x11f7 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_info    0x00000000000083f1      0x44d /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_info    0x000000000000883e      0x900 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
- .debug_info    0x000000000000913e      0xaf5 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_info    0x0000000000009c33      0x118 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_info    0x0000000000009d4b      0x339 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_info    0x000000000000a084       0x95 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
- .debug_info    0x000000000000a119     0x14bc /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_info    0x000000000000b5d5      0x3aa /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_info    0x000000000000b97f       0xcd /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_info    0x000000000000ba4c      0x5c8 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_info     0x0000000000000000     0xc805
+ .debug_info    0x0000000000000000      0x337 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_info    0x0000000000000337     0x14c0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_info    0x00000000000017f7      0x279 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_info    0x0000000000001a70      0x1fe /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_info    0x0000000000001c6e     0x13e7 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_info    0x0000000000003055      0xbfa /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_info    0x0000000000003c4f     0x2adb /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_info    0x000000000000672a      0xaf1 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_info    0x000000000000721b      0x526 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_info    0x0000000000007741     0x13e7 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_info    0x0000000000008b28      0x507 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_info    0x000000000000902f      0x900 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+ .debug_info    0x000000000000992f      0xaf5 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_info    0x000000000000a424      0x118 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_info    0x000000000000a53c      0x339 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_info    0x000000000000a875       0x95 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_info    0x000000000000a90a     0x14bc /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_info    0x000000000000bdc6      0x3aa /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_info    0x000000000000c170       0xcd /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_info    0x000000000000c23d      0x5c8 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_abbrev   0x0000000000000000     0x241b
- .debug_abbrev  0x0000000000000000      0x157 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_abbrev  0x0000000000000157      0x3fc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_abbrev  0x0000000000000553      0x108 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_abbrev  0x000000000000065b      0x107 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_abbrev  0x0000000000000762      0x361 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_abbrev  0x0000000000000ac3      0x22f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_abbrev  0x0000000000000cf2      0x331 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_abbrev  0x0000000000001023      0x19e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_abbrev  0x00000000000011c1      0x17b /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_abbrev  0x000000000000133c      0x28a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_abbrev  0x00000000000015c6      0x17d /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_abbrev  0x0000000000001743      0x1f3 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
- .debug_abbrev  0x0000000000001936      0x22e /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_abbrev  0x0000000000001b64       0x96 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_abbrev  0x0000000000001bfa      0x135 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_abbrev  0x0000000000001d2f       0x5b /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
- .debug_abbrev  0x0000000000001d8a      0x358 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_abbrev  0x00000000000020e2      0x17a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_abbrev  0x000000000000225c       0x60 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_abbrev  0x00000000000022bc      0x15f /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_abbrev   0x0000000000000000     0x253b
+ .debug_abbrev  0x0000000000000000      0x15a /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_abbrev  0x000000000000015a      0x3fc /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_abbrev  0x0000000000000556      0x108 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_abbrev  0x000000000000065e      0x107 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_abbrev  0x0000000000000765      0x382 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_abbrev  0x0000000000000ae7      0x22f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_abbrev  0x0000000000000d16      0x38e /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_abbrev  0x00000000000010a4      0x1e4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_abbrev  0x0000000000001288      0x17b /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_abbrev  0x0000000000001403      0x2af /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_abbrev  0x00000000000016b2      0x1b1 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_abbrev  0x0000000000001863      0x1f3 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+ .debug_abbrev  0x0000000000001a56      0x22e /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_abbrev  0x0000000000001c84       0x96 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_abbrev  0x0000000000001d1a      0x135 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_abbrev  0x0000000000001e4f       0x5b /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_abbrev  0x0000000000001eaa      0x358 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_abbrev  0x0000000000002202      0x17a /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_abbrev  0x000000000000237c       0x60 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_abbrev  0x00000000000023dc      0x15f /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_loc      0x0000000000000000     0x5091
- .debug_loc     0x0000000000000000       0x79 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_loc     0x0000000000000079      0x761 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_loc     0x00000000000007da       0x45 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_loc     0x000000000000081f      0x86c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_loc     0x000000000000108b      0x638 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_loc     0x00000000000016c3      0x232 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_loc     0x00000000000018f5      0x2cd /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_loc     0x0000000000001bc2      0x1b6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_loc     0x0000000000001d78      0xac1 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_loc     0x0000000000002839      0x135 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_loc     0x000000000000296e      0x4ad /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
- .debug_loc     0x0000000000002e1b      0xa20 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_loc     0x000000000000383b       0x13 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_loc     0x000000000000384e      0x245 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_loc     0x0000000000003a93      0xa18 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_loc     0x00000000000044ab      0x1dd /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_loc     0x0000000000004688       0x21 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_loc     0x00000000000046a9      0x9e8 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_loc      0x0000000000000000     0x52dc
+ .debug_loc     0x0000000000000000       0x84 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_loc     0x0000000000000084      0x761 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_loc     0x00000000000007e5       0x45 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_loc     0x000000000000082a      0x854 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_loc     0x000000000000107e      0x638 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_loc     0x00000000000016b6      0x232 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_loc     0x00000000000018e8      0x3e6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_loc     0x0000000000001cce      0x1b6 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_loc     0x0000000000001e84      0xb43 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_loc     0x00000000000029c7      0x1f2 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_loc     0x0000000000002bb9      0x4ad /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+ .debug_loc     0x0000000000003066      0xa20 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_loc     0x0000000000003a86       0x13 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_loc     0x0000000000003a99      0x245 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_loc     0x0000000000003cde      0xa18 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_loc     0x00000000000046f6      0x1dd /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_loc     0x00000000000048d3       0x21 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_loc     0x00000000000048f4      0x9e8 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_aranges  0x0000000000000000      0x618
+.debug_aranges  0x0000000000000000      0x658
  .debug_aranges
                 0x0000000000000000       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
  .debug_aranges
@@ -2974,120 +3029,120 @@ OUTPUT(/home/andy/circuits/liger/code/switch/build/bootloader/bootloader.elf elf
  .debug_aranges
                 0x00000000000000c0       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
  .debug_aranges
-                0x00000000000000f0       0x60 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x00000000000000f0       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
  .debug_aranges
-                0x0000000000000150       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000000000158       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .debug_aranges
-                0x00000000000001a8       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                0x00000000000001b0       0x78 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
  .debug_aranges
-                0x0000000000000210       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                0x0000000000000228       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
  .debug_aranges
-                0x0000000000000250       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                0x0000000000000270       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
  .debug_aranges
-                0x0000000000000270       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000000000290       0x80 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .debug_aranges
-                0x00000000000002d8       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000000000310       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .debug_aranges
-                0x0000000000000308       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+                0x0000000000000348       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
  .debug_aranges
-                0x0000000000000340       0xc0 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x0000000000000380       0xc0 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
  .debug_aranges
-                0x0000000000000400       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+                0x0000000000000440       0x38 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
  .debug_aranges
-                0x0000000000000438       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x0000000000000478       0x30 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
  .debug_aranges
-                0x0000000000000468       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
+                0x00000000000004a8       0x18 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
  .debug_aranges
-                0x0000000000000480      0x108 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x00000000000004c0      0x108 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .debug_aranges
-                0x0000000000000588       0x50 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x00000000000005c8       0x50 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
  .debug_aranges
-                0x00000000000005d8       0x20 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+                0x0000000000000618       0x20 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .debug_aranges
-                0x00000000000005f8       0x20 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+                0x0000000000000638       0x20 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_ranges   0x0000000000000000      0x600
+.debug_ranges   0x0000000000000000      0x688
  .debug_ranges  0x0000000000000000       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
  .debug_ranges  0x0000000000000020       0x60 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .debug_ranges  0x0000000000000080       0x10 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .debug_ranges  0x0000000000000090       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_ranges  0x00000000000000b0       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_ranges  0x0000000000000118       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_ranges  0x0000000000000160       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_ranges  0x00000000000001b8       0x78 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_ranges  0x0000000000000230       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_ranges  0x0000000000000288       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_ranges  0x00000000000002f8       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_ranges  0x0000000000000318       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
- .debug_ranges  0x0000000000000340       0xb0 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_ranges  0x00000000000003f0       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_ranges  0x0000000000000418       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_ranges  0x0000000000000438      0x128 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_ranges  0x0000000000000560       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_ranges  0x00000000000005a0       0x60 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_ranges  0x00000000000000b0       0x70 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_ranges  0x0000000000000120       0x48 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_ranges  0x0000000000000168       0x68 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_ranges  0x00000000000001d0       0x80 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_ranges  0x0000000000000250       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_ranges  0x00000000000002a8       0xa0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_ranges  0x0000000000000348       0x58 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_ranges  0x00000000000003a0       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+ .debug_ranges  0x00000000000003c8       0xb0 /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_ranges  0x0000000000000478       0x28 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_ranges  0x00000000000004a0       0x20 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_ranges  0x00000000000004c0      0x128 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_ranges  0x00000000000005e8       0x40 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_ranges  0x0000000000000628       0x60 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_line     0x0000000000000000     0x643c
- .debug_line    0x0000000000000000      0x2f3 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_line    0x00000000000002f3      0x936 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
- .debug_line    0x0000000000000c29      0x1df /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_line    0x0000000000000e08      0x38f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_line    0x0000000000001197      0x8dd /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
- .debug_line    0x0000000000001a74      0x577 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_line    0x0000000000001feb      0x4e7 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
- .debug_line    0x00000000000024d2      0x5a4 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
- .debug_line    0x0000000000002a76      0x342 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_line    0x0000000000002db8      0xa4a /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_line    0x0000000000003802      0x3c5 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_line    0x0000000000003bc7      0x4e0 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
- .debug_line    0x00000000000040a7      0xace /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_line    0x0000000000004b75      0x191 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
- .debug_line    0x0000000000004d06      0x3d2 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_line    0x00000000000050d8      0x100 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
- .debug_line    0x00000000000051d8      0xcb4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_line    0x0000000000005e8c      0x399 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_line    0x0000000000006225       0x89 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_line    0x00000000000062ae      0x18e /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+.debug_line     0x0000000000000000     0x673e
+ .debug_line    0x0000000000000000      0x305 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+ .debug_line    0x0000000000000305      0x93c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+ .debug_line    0x0000000000000c41      0x1df /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_line    0x0000000000000e20      0x38f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_line    0x00000000000011af      0x934 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+ .debug_line    0x0000000000001ae3      0x577 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_line    0x000000000000205a      0x545 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+ .debug_line    0x000000000000259f      0x678 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+ .debug_line    0x0000000000002c17      0x342 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_line    0x0000000000002f59      0xadb /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_line    0x0000000000003a34      0x495 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_line    0x0000000000003ec9      0x4e0 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+ .debug_line    0x00000000000043a9      0xace /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_line    0x0000000000004e77      0x191 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_line    0x0000000000005008      0x3d2 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_line    0x00000000000053da      0x100 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_line    0x00000000000054da      0xcb4 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_line    0x000000000000618e      0x399 /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_line    0x0000000000006527       0x89 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_line    0x00000000000065b0      0x18e /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_str      0x0000000000000000     0x415b
- .debug_str     0x0000000000000000      0x2f7 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
-                                        0x35b (size before relaxing)
- .debug_str     0x00000000000002f7      0x879 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+.debug_str      0x0000000000000000     0x4274
+ .debug_str     0x0000000000000000      0x308 /home/andy/circuits/liger/code/switch/build/bootloader/main/libmain.a(bootloader_start.o)
+                                        0x36c (size before relaxing)
+ .debug_str     0x0000000000000308      0x879 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
                                         0xa5a (size before relaxing)
- .debug_str     0x0000000000000b70      0x235 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_str     0x0000000000000b81      0x235 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
                                         0x389 (size before relaxing)
- .debug_str     0x0000000000000da5       0xaa /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_str     0x0000000000000db6       0xaa /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
                                         0x23d (size before relaxing)
- .debug_str     0x0000000000000e4f      0x342 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
-                                        0x7bd (size before relaxing)
- .debug_str     0x0000000000001191      0x223 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_str     0x0000000000000e60      0x31b /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                                        0x7bf (size before relaxing)
+ .debug_str     0x000000000000117b      0x223 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                         0x57d (size before relaxing)
- .debug_str     0x00000000000013b4     0x184c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
-                                       0x1b7e (size before relaxing)
- .debug_str     0x0000000000002c00      0x251 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
-                                        0x592 (size before relaxing)
- .debug_str     0x0000000000002e51       0xb7 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
-                                        0x3d0 (size before relaxing)
- .debug_str     0x0000000000002f08      0x26f /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
-                                        0x91b (size before relaxing)
- .debug_str     0x0000000000003177       0xf0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                                        0x2ba (size before relaxing)
- .debug_str     0x0000000000003267      0x193 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
+ .debug_str     0x000000000000139e     0x1881 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_qio_mode.o)
+                                       0x1bbf (size before relaxing)
+ .debug_str     0x0000000000002c1f      0x362 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_common.o)
+                                        0x79c (size before relaxing)
+ .debug_str     0x0000000000002f81       0xb0 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                                        0x3ca (size before relaxing)
+ .debug_str     0x0000000000003031      0x243 /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                                        0x98f (size before relaxing)
+ .debug_str     0x0000000000003274      0x10c /home/andy/circuits/liger/code/switch/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                                        0x35f (size before relaxing)
+ .debug_str     0x0000000000003380      0x193 /home/andy/circuits/liger/code/switch/build/bootloader/log/liblog.a(log.o)
                                         0x34f (size before relaxing)
- .debug_str     0x00000000000033fa      0x36a /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_str     0x0000000000003513      0x36a /home/andy/circuits/liger/code/switch/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                         0x74f (size before relaxing)
- .debug_str     0x0000000000003764       0x6e /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
+ .debug_str     0x000000000000387d       0x6e /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(cpu_util.o)
                                         0x17a (size before relaxing)
- .debug_str     0x00000000000037d2       0xbe /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_str     0x00000000000038eb       0xbe /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_init.o)
                                         0x243 (size before relaxing)
- .debug_str     0x0000000000003890       0x3e /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
+ .debug_str     0x00000000000039a9       0x3e /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(gpio_periph.o)
                                         0x144 (size before relaxing)
- .debug_str     0x00000000000038ce      0x53c /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_str     0x00000000000039e7      0x53c /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x96d (size before relaxing)
- .debug_str     0x0000000000003e0a      0x13d /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_str     0x0000000000003f23      0x13d /home/andy/circuits/liger/code/switch/build/bootloader/soc/libsoc.a(rtc_time.o)
                                         0x37f (size before relaxing)
- .debug_str     0x0000000000003f47      0x138 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_str     0x0000000000004060      0x138 /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
                                         0x1de (size before relaxing)
- .debug_str     0x000000000000407f       0xdc /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_str     0x0000000000004198       0xdc /usr/local/src/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
                                         0x258 (size before relaxing)
 
 .comment        0x0000000000000000       0x3a

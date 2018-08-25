@@ -20,6 +20,7 @@ syscalls.o: /usr/local/src/esp/esp-idf/components/newlib/syscalls.c \
  /usr/local/src/esp/esp-idf/components/newlib/include/unistd.h \
  /usr/local/src/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/stdlib.h \
@@ -124,6 +125,8 @@ syscalls.o: /usr/local/src/esp/esp-idf/components/newlib/syscalls.c \
 /usr/local/src/esp/esp-idf/components/newlib/platform_include/sys/unistd.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 

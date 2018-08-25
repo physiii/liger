@@ -29,7 +29,8 @@ mbedtls/library/platform.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/stdlib.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/alloca.h
+ /usr/local/src/esp/esp-idf/components/newlib/include/alloca.h \
+ /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h
 
 /usr/local/src/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h:
 
@@ -90,4 +91,6 @@ mbedtls/library/platform.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/machine/stdlib.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/alloca.h:
+
+/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/library/platform.c:
