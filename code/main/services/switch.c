@@ -1,4 +1,5 @@
 #include "drivers/ssr.c"
+#include "drivers/triac.c"
 
 char switch_service_message[2000];
 char switch_service_message_in[2000];
@@ -74,7 +75,7 @@ fadeSwitch(int start, int stop, int duration)
 static void
 switch_service(void *pvParameter)
 {
-  ssr_main();
+
   while (1) {
 
     if (switch_payload) {
@@ -124,6 +125,8 @@ switch_service(void *pvParameter)
 int
 switch_main()
 {
+  ssr_main();
+  triac_main();
   printf("starting switch service\n");
   xTaskCreate(&switch_service, "switch_service_task", 5000, NULL, 5, NULL);
   return 0;

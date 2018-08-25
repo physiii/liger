@@ -35,7 +35,6 @@ server.on('upgrade', (request, socket, head) => {
 wssMain.on('connection', function connection(ws, req) {
 
   console.log("<< ---- incoming connection, sending token ---- >>");
-  ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}}");
   ws.on('message', function incoming(message) {
     console.log("<< ---- incoming message ---- >>\n", message);
     var msg = ""
@@ -52,7 +51,7 @@ wssMain.on('connection', function connection(ws, req) {
       case "button/pressed":
         //console.log("pressed:",msg.payload);
         console.log(msg.payload);
-        ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"testtoken\"}}");
+        ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}}");
         break;
 
 
