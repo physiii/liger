@@ -1,8 +1,5 @@
 #include "drivers/ssr.c"
 #include "drivers/triac.c"
-
-bool binary_switch_event = false;
-
 #include "drivers/binary_switch.c"
 
 char switch_service_message[2000];
@@ -76,6 +73,18 @@ fadeSwitch(int start, int stop, int duration)
   return 0;
 }
 
+
+/*void populate_array(int *array, size_t arraySize, int (*getNextValue)(void))
+{
+    for (size_t i=0; i<arraySize; i++)
+        array[i] = getNextValue();
+}
+
+int getNextRandomValue(void)
+{
+    return rand();
+}*/
+
 static void
 switch_service(void *pvParameter)
 {
@@ -83,7 +92,11 @@ switch_service(void *pvParameter)
   while (1) {
 
     //outgoing messages to other services
-    if (binary_switch_event) {
+    if (binary_switch_event()) {
+        /*int myarray[10];
+        populate_array(myarray, 10, getNextRandomValue);*/
+        int level = get_switch_level();
+        printf("door open: %d\n", level);
         printf("DOOR OPEN?\n");
     }
 

@@ -26,7 +26,7 @@
 
 #include <string.h>
 
-#define DUMB_PERIOD_US 5000
+#define WS_PERIOD_US 5000
 
 int data_part_count = 0;
 char wss_data_in[5000];
@@ -100,7 +100,7 @@ handle_event(char * event_type)
 		store_char("token",token);
 		return 1;
 	}
-	
+
 	if (strcmp(event_type,"authentication")==0) {
 		char error[500];
 		sprintf(error,"%s",cJSON_GetObjectItem(payload,"error")->valuestring);
@@ -162,7 +162,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		pss->number = 0;
 		strcpy(wss_data_in,"");
 		if (!vhd->options || !((*vhd->options) & 1))
-			lws_set_timer_usecs(wsi, DUMB_PERIOD_US);
+			lws_set_timer_usecs(wsi, WS_PERIOD_US);
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
@@ -228,7 +228,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		if (!vhd->options || !((*vhd->options) & 1)) {
 			lws_callback_on_writable_all_protocol_vhost(
 				lws_get_vhost(wsi), lws_get_protocol(wsi));
-			lws_set_timer_usecs(wsi, DUMB_PERIOD_US);
+			lws_set_timer_usecs(wsi, WS_PERIOD_US);
 		}
 		break;
 

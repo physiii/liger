@@ -21,10 +21,24 @@ bool new_binary_switch_event = false;
 
 bool debounce = false;
 bool switch_event = false;
+int switch_level = 0;
+
 static void IRAM_ATTR binary_switch_isr_handler(void* arg)
 {
     switch_event = true;
+    int switch_level = gpio_get_level(BINARY_SWITCH_IO);
 }
+
+static int get_switch_level(){
+    return switch_level;
+}
+
+static int binary_switch_event(){
+    int ret = switch_event;
+    if (switch_event) switch_event = false;
+    return ret;
+}
+
 
 static void binary_switch_task(void* arg)
 {

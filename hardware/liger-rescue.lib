@@ -474,6 +474,25 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# R_150-open-automation
+#
+DEF R_150-open-automation R 0 0 N Y 1 F N
+F0 "R" 0 0 50 V V C CNN
+F1 "R_150-open-automation" -75 -25 50 V V C CNN
+F2 "Resistors_SMD:R_0603" -70 0 50 V I C CNN
+F3 "https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RNCP0603FTD150R/RNCP0603FTD150RCT-ND/2240427" 80 0 50 V I C CNN
+F4 "RNCP0603FTD150R" 180 100 60 V I C CNN "Part Number"
+$FPLIST
+ R_*
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 f
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # R_1k
 #
 DEF R_1k R 0 0 N Y 1 F N
