@@ -60,6 +60,7 @@ int set_switch(int);
 #include "services/motion.c"
 #include "services/audio.c"
 #include "services/switch.c"
+#include "services/contact-sensor.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -274,7 +275,7 @@ void app_main(void)
 	}*/
 
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.11";
+	i.address = "10.10.10.132";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
@@ -289,17 +290,43 @@ void app_main(void)
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
+	contact_main();
 	//switch_main();
 	//motion_main();
 	//audio_main();
+	
+	bool send_load_event = true;
+	char load_message[500];
 
 	while (1) {
-		if (buttons_service_message_ready) {
+		
+		if (send_load_event) {
+			
+			sprintf(load_message,""
+			"{\"event_type\":\"load\","
+			" \"payload\":{\"services\":["
+			"{\"type\":\"contact_sensor\","
+			"\"state\":{\"contact\":1},"
+			"\"id\":1}"
+			"]}}");
+			printf("load_mesage %s\n",load_message);
+			strcpy(wss_data_out,load_message);
+			send_load_event = false;
+			wss_data_out_ready = true;
+		}
+				
+		if (buttons_service_message_ready && !wss_data_out_ready) {
 			strcpy(wss_data_out,buttons_service_message);
 			buttons_service_message_ready = false;
 			wss_data_out_ready = true;
 		}
-
+		
+		if (contact_service_message_ready && !wss_data_out_ready) {
+			strcpy(wss_data_out,contact_service_message);
+			contact_service_message_ready = false;
+			wss_data_out_ready = true;
+		}
+		
 		if (wsi_connect && got_ip && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;
 			lws_client_connect_via_info(&i);

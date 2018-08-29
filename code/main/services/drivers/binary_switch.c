@@ -26,34 +26,17 @@ int switch_level = 0;
 static void IRAM_ATTR binary_switch_isr_handler(void* arg)
 {
     switch_event = true;
-    int switch_level = gpio_get_level(BINARY_SWITCH_IO);
+    switch_level = gpio_get_level(BINARY_SWITCH_IO);
 }
 
-static int get_switch_level(){
+int get_switch_level(){
+    if (switch_event) switch_event = false;
     return switch_level;
 }
 
 static int binary_switch_event(){
     int ret = switch_event;
-    if (switch_event) switch_event = false;
     return ret;
-}
-
-
-static void binary_switch_task(void* arg)
-{
-    for(;;) {
-        if (switch_event) {
-          switch_event = false;
-          int level = gpio_get_level(BINARY_SWITCH_IO);
-          printf("BINARY_SWITCH[%d] intr, val: %d\n", BINARY_SWITCH_IO, level);
-          new_binary_switch_event = true;
-          debounce = true;
-          vTaskDelay(DEBOUNCE_TIME / portTICK_RATE_MS);
-          debounce = false;
-        }
-        vTaskDelay(100 / portTICK_RATE_MS);
-    }
 }
 
 void binary_switch_main()
@@ -69,7 +52,6 @@ void binary_switch_main()
     gpio_set_intr_type(BINARY_SWITCH_IO, GPIO_INTR_ANYEDGE);
     //create a queue to handle gpio event from isr
     switch_evt_queue = xQueueCreate(10, sizeof(uint32_t));
-    xTaskCreate(binary_switch_task, "binary_switch_task", 2048, NULL, 10, NULL);
 
     //install gpio isr service
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);

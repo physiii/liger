@@ -1,6 +1,5 @@
 #include "drivers/ssr.c"
 #include "drivers/triac.c"
-#include "drivers/binary_switch.c"
 
 char switch_service_message[2000];
 char switch_service_message_in[2000];
@@ -91,15 +90,6 @@ switch_service(void *pvParameter)
 
   while (1) {
 
-    //outgoing messages to other services
-    if (binary_switch_event()) {
-        /*int myarray[10];
-        populate_array(myarray, 10, getNextRandomValue);*/
-        int level = get_switch_level();
-        printf("door open: %d\n", level);
-        printf("DOOR OPEN?\n");
-    }
-
     //incoming messages from other services
     if (switch_payload) {
 
@@ -150,7 +140,6 @@ switch_main()
 {
   ssr_main();
   triac_main();
-  binary_switch_main();
   printf("starting switch service\n");
   xTaskCreate(&switch_service, "switch_service_task", 5000, NULL, 5, NULL);
   return 0;

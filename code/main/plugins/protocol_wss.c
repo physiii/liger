@@ -93,6 +93,13 @@ handle_event(char * event_type)
 		payload = NULL;
 		return 0;
 	}
+	
+	if (strcmp(event_type,"load")==0) {
+		char result[500];
+		sprintf(result,"%s",cJSON_GetObjectItem(payload,"result")->valuestring);
+		lwsl_notice("loaded: %s\n", result);
+		return 0;
+	}
 
 	if (strcmp(event_type,"token")==0) {
 		sprintf(token,"%s",cJSON_GetObjectItem(payload,"token")->valuestring);
@@ -167,7 +174,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
-
+		
 		if (!wss_data_out_ready) break;
 		n = lws_snprintf((char *)p, sizeof(wss_data_out) - LWS_PRE, "%s", wss_data_out);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
@@ -175,7 +182,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			lwsl_err("ERROR %d writing to token socket\n", n);
 		} else {
 			wss_data_out_ready = false;
-			//printf("%s\n",wss_data_out);
+			//printf("SENT: %s\n",wss_data_out);
 		}
 		break;
 
