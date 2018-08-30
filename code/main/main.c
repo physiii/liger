@@ -59,7 +59,7 @@ int set_switch(int);
 #include "services/buttons.c"
 #include "services/motion.c"
 #include "services/audio.c"
-#include "services/switch.c"
+//#include "services/switch.c"
 #include "services/siren.c"
 #include "services/contact-sensor.c"
 

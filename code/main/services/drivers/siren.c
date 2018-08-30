@@ -11,20 +11,23 @@
 #include "esp_system.h"
 #include "soc/cpu.h"
 
-#define SIREN_IO    2
+#define SIREN_IO    5
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<SIREN_IO))
-#define SIREN_OFF 0
-#define SIREN_ON 1
+#define SIREN_OFF 1
+#define SIREN_ON 0
 
-int chirp_delay = 100;
+int chirp_delay = 50;
 
 int
 setSiren(int level)
 {
+    printf("settings siren: %d\n",level);
   if (level) {
     gpio_set_level(SIREN_IO, SIREN_ON);
+    printf("turning on siren %d\n",level);
   } else {
     gpio_set_level(SIREN_IO, SIREN_OFF);
+    printf("turning off siren %d\n",level);
   }
   return level;
 }
@@ -34,6 +37,7 @@ chirpSiren(int number_of_chirps)
 {
   lwsl_notice("chirp siren: %d\n",number_of_chirps);
   for (int i=0; i < number_of_chirps;i++){
+    lwsl_notice("chirp number: %d\n",i);
     setSiren(1);
     vTaskDelay(chirp_delay / portTICK_PERIOD_MS);
     setSiren(0);
@@ -52,6 +56,7 @@ void siren_driver_main()
     io_conf.pull_down_en = 0;
     io_conf.pull_up_en = 0;
     gpio_config(&io_conf);
+    gpio_set_level(SIREN_IO, 1);
 
     printf("starting siren driver\n");
 }
