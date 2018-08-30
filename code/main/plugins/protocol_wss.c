@@ -34,6 +34,7 @@ char wss_data_out[5000];
 bool wss_data_out_ready = false;
 cJSON *payload = NULL;
 cJSON *switch_payload = NULL;
+cJSON *siren_payload = NULL;
 
 struct pss__wss {
 	int number;
@@ -91,21 +92,21 @@ handle_event(char * event_type)
 		printf("handle_event level: %d\n",level);
 		switch_payload = payload;
 		payload = NULL;
-		return 0;
+		return 2;
 	}
 
 	if (strcmp(event_type,"siren")==0) {
 		printf("handle_event siren\n");
 		siren_payload = payload;
 		payload = NULL;
-		return 0;
+		return 2;
 	}
 
 	if (strcmp(event_type,"load")==0) {
 		char result[500];
 		sprintf(result,"%s",cJSON_GetObjectItem(payload,"result")->valuestring);
 		lwsl_notice("loaded: %s\n", result);
-		return 0;
+		return 2;
 	}
 
 	if (strcmp(event_type,"token")==0) {

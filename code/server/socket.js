@@ -56,6 +56,7 @@ wssMain.on('connection', function connection(ws, req) {
       case "load":
         console.log(msg.payload);
         ws.send("{\"event_type\":\"load\", \"payload\":{\"result\":\"services_loaded\"}}");
+        ws.send("{\"event_type\":\"siren\", \"payload\":{\"chirp\":3}}");
         break;
 
       case "service/state":

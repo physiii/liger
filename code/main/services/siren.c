@@ -11,7 +11,6 @@ siren_service(void *pvParameter)
 
     //incoming messages from other services
     if (siren_payload) {
-
       if (cJSON_GetObjectItem(siren_payload,"level")) {
         int level = cJSON_GetObjectItem(siren_payload,"level")->valueint;
         setSiren(level);
