@@ -114,6 +114,7 @@ esp_err_to_name.o: \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
@@ -138,6 +139,7 @@ esp_err_to_name.o: \
  /usr/local/src/esp/esp-idf/components/lwip/apps/ping/esp_ping.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_wifi.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_wps.h \
+ /usr/local/src/esp/esp-idf/components/http_server/include/http_server.h \
  /usr/local/src/esp/esp-idf/components/nvs_flash/include/nvs.h
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
@@ -368,6 +370,8 @@ esp_err_to_name.o: \
 
 /usr/local/src/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h:
 
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
+
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h:
@@ -415,6 +419,8 @@ esp_err_to_name.o: \
 /usr/local/src/esp/esp-idf/components/esp32/include/esp_wifi.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/include/esp_wps.h:
+
+/usr/local/src/esp/esp-idf/components/http_server/include/http_server.h:
 
 /usr/local/src/esp/esp-idf/components/nvs_flash/include/nvs.h:
 /usr/local/src/esp/esp-idf/components/esp32/./esp_err_to_name.c:

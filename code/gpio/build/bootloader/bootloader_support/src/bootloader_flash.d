@@ -1,6 +1,6 @@
 src/bootloader_flash.o: \
  /usr/local/src/esp/esp-idf/components/bootloader_support/src/bootloader_flash.c \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_err.h \
  /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/andy/circuits/liger/code/gpio/build/bootloader/../include/sdkconfig.h \
@@ -32,7 +32,7 @@ src/bootloader_flash.o: \
  /usr/local/src/esp/esp-idf/components/esp32/include/rom/cache.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/include/esp_err.h:
 

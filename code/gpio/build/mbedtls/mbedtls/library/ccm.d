@@ -7,6 +7,7 @@ mbedtls/library/ccm.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/newlib.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ccm.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/cipher.h \
+ /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/_ansi.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/config.h \
@@ -48,6 +49,8 @@ mbedtls/library/ccm.o: \
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ccm.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/cipher.h:
+
+/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 

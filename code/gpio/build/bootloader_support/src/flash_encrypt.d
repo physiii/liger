@@ -16,7 +16,7 @@ src/flash_encrypt.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/stdint.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_err.h \
@@ -30,7 +30,7 @@ src/flash_encrypt.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/alloca.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/assert.h \
  /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_image_format.h \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_flash_data_types.h \
@@ -96,7 +96,7 @@ src/flash_encrypt.o: \
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/stdint.h:
 
@@ -124,7 +124,7 @@ src/flash_encrypt.o: \
 
 /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
 
 /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_image_format.h:
 

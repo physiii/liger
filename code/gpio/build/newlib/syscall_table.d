@@ -21,6 +21,7 @@ syscall_table.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/stdlib.h \
@@ -140,6 +141,8 @@ syscall_table.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 

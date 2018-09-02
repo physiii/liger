@@ -52,11 +52,11 @@ src/bootloader_init.o: \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_flash_encrypt.h \
  /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_config.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_config.h \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/bootloader_clock.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/flash_qio_mode.h
+ /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/flash_qio_mode.h
 
 /usr/local/src/esp/esp-idf/components/esp32/include/esp_attr.h:
 
@@ -162,13 +162,13 @@ src/bootloader_init.o: \
 
 /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_random.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/bootloader_config.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_config.h:
 
 /usr/local/src/esp/esp-idf/components/bootloader_support/include/bootloader_clock.h:
 
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_priv/flash_qio_mode.h:
+/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/flash_qio_mode.h:
 /usr/local/src/esp/esp-idf/components/bootloader_support/src/bootloader_init.c:

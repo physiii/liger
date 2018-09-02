@@ -53,6 +53,7 @@ mbedtls/library/ssl_cookie.o: \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/string.h
 
@@ -161,6 +162,8 @@ mbedtls/library/ssl_cookie.o: \
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
+
+/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 

@@ -26,6 +26,7 @@ mbedtls/library/dhm.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/string.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pem.h \
@@ -90,6 +91,8 @@ mbedtls/library/dhm.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
+/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 

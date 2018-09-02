@@ -1,5 +1,6 @@
 pthread_cond_var.o: \
  /usr/local/src/esp/esp-idf/components/pthread/pthread_cond_var.c \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/errno.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/reent.h \
@@ -13,14 +14,16 @@ pthread_cond_var.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/_types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /usr/local/src/esp/esp-idf/components/newlib/platform_include/pthread.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h \
+ /usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/pthread.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/unistd.h \
  /usr/local/src/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h \
  /usr/local/src/esp/esp-idf/components/newlib/platform_include/time.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/time.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/_ansi.h \
@@ -94,9 +97,10 @@ pthread_cond_var.o: \
  /usr/local/src/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /usr/local/src/esp/esp-idf/components/freertos/include/freertos/list.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/rom/queue.h \
- /usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h \
  /usr/local/src/esp/esp-idf/components/log/include/esp_log.h \
  /usr/local/src/esp/esp-idf/components/log/include/esp_log_internal.h
+
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/errno.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/errno.h:
 
@@ -124,6 +128,16 @@ pthread_cond_var.o: \
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/lock.h:
 
+/usr/local/src/esp/esp-idf/components/newlib/platform_include/pthread.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h:
+
+/usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h:
+
 /usr/local/src/esp/esp-idf/components/newlib/include/pthread.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/unistd.h:
@@ -133,12 +147,6 @@ pthread_cond_var.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/unistd.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/sys/types.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/machine/types.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/sys/sched.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/platform_include/time.h:
 
@@ -285,8 +293,6 @@ pthread_cond_var.o: \
 /usr/local/src/esp/esp-idf/components/freertos/include/freertos/list.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/include/rom/queue.h:
-
-/usr/local/src/esp/esp-idf/components/newlib/include/sys/time.h:
 
 /usr/local/src/esp/esp-idf/components/log/include/esp_log.h:
 

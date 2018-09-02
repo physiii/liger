@@ -16,6 +16,7 @@ mbedtls/library/ctr_drbg.o: \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/rom/aes.h \
+ /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/_ansi.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/config.h \
@@ -72,6 +73,8 @@ mbedtls/library/ctr_drbg.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/include/rom/aes.h:
+
+/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 
