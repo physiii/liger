@@ -16,17 +16,24 @@
 #define TOUCH_FILTER_MODE_EN  (1)
 #define TOUCHPAD_FILTER_TOUCH_PERIOD (10)
 
+#define PAD_NUMBER 10
 #define UP_PAD 7
 #define DOWN_PAD 5
 #define LEFT_PAD 9
 #define RIGHT_PAD 8
 
-int touch_threshold = 1100;
+int touch_threshold[PAD_NUMBER];
+
 uint16_t touch_value;
 uint16_t touch_filter_value;
 
 static void tp_example_touch_pad_init()
 {
+  touch_threshold[UP_PAD] = 1100;
+  touch_threshold[DOWN_PAD] = 1100;
+  touch_threshold[LEFT_PAD] = 800;
+  touch_threshold[RIGHT_PAD] = 1100;
+
   touch_pad_config(UP_PAD, TOUCH_THRESH_NO_USE);
   touch_pad_config(DOWN_PAD, TOUCH_THRESH_NO_USE);
   touch_pad_config(LEFT_PAD, TOUCH_THRESH_NO_USE);
@@ -35,7 +42,7 @@ static void tp_example_touch_pad_init()
 
 int get_pad_state(int pad) {
   touch_pad_read_raw_data(pad, &touch_value);
-  if (touch_value > touch_threshold) {
+  if (touch_value > touch_threshold[pad]) {
     return 0;
   } else return 1;
 }
