@@ -26,7 +26,6 @@ mbedtls/library/aes.o: \
  /usr/local/src/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/esp_types.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/rom/aes.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/padlock.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aesni.h \
@@ -95,8 +94,6 @@ mbedtls/library/aes.o: \
 /usr/local/src/esp/esp-idf/components/esp32/include/esp_types.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/include/rom/aes.h:
-
-/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/padlock.h:
 

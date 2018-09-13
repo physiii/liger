@@ -23,10 +23,7 @@ src/bootloader_common.o: \
  /usr/local/src/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include/bootloader_common.h \
  /usr/local/src/esp/esp-idf/components/soc/include/soc/gpio_periph.h \
- /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/io_mux_reg.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_image_format.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
- /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h
+ /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/io_mux_reg.h
 
 /home/andy/circuits/liger/code/touch_pad_interrupt/build/bootloader/../include/sdkconfig.h:
 
@@ -75,10 +72,4 @@ src/bootloader_common.o: \
 /usr/local/src/esp/esp-idf/components/soc/include/soc/gpio_periph.h:
 
 /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/io_mux_reg.h:
-
-/usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_image_format.h:
-
-/usr/local/src/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h:
-
-/usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h:
 /usr/local/src/esp/esp-idf/components/bootloader_support/src/bootloader_common.c:

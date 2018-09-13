@@ -54,11 +54,9 @@ mbedtls/library/ssl_srv.o: \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha256.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/string.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecp.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_time.h
+ /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecp.h
 
 /usr/local/src/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h:
 
@@ -168,13 +166,9 @@ mbedtls/library/ssl_srv.o: \
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha512.h:
 
-/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
-
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecp.h:
-
-/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_time.h:
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/library/ssl_srv.c:

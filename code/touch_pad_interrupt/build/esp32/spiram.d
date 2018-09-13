@@ -29,7 +29,6 @@ spiram.o: /usr/local/src/esp/esp-idf/components/esp32/spiram.c \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/alloca.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/assert.h \
- /usr/local/src/esp/esp-idf/components/esp32/include/esp_spiram.h \
  /usr/local/src/esp/esp-idf/components/esp32/spiram_psram.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -149,8 +148,6 @@ spiram.o: /usr/local/src/esp/esp-idf/components/esp32/spiram.c \
 /usr/local/src/esp/esp-idf/components/newlib/include/alloca.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/assert.h:
-
-/usr/local/src/esp/esp-idf/components/esp32/include/esp_spiram.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/spiram_psram.h:
 

@@ -38,7 +38,6 @@ mbedtls/library/x509write_crt.o: \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/cipher.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/asn1write.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/string.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pem.h
@@ -118,8 +117,6 @@ mbedtls/library/x509write_crt.o: \
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/asn1write.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/sha1.h:
-
-/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 

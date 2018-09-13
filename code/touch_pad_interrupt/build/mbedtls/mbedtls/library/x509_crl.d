@@ -35,7 +35,6 @@ mbedtls/library/x509_crl.o: \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecdsa.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/oid.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/cipher.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/string.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pem.h \
@@ -117,8 +116,6 @@ mbedtls/library/x509_crl.o: \
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/oid.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/cipher.h:
-
-/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 

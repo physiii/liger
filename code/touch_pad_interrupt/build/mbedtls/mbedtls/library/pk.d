@@ -32,7 +32,6 @@ mbedtls/library/pk.o: \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecdsa.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pk_internal.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pk.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/rsa.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecp.h \
  /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecdsa.h
@@ -100,8 +99,6 @@ mbedtls/library/pk.o: \
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pk_internal.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/pk.h:
-
-/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/rsa.h:
 

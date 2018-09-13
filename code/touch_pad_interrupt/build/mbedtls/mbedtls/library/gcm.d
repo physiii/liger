@@ -11,7 +11,6 @@ mbedtls/library/gcm.o: \
  /usr/local/src/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/features.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/_intsup.h \
- /usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/string.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/_ansi.h \
  /usr/local/src/esp/esp-idf/components/newlib/include/sys/config.h \
@@ -66,8 +65,6 @@ mbedtls/library/gcm.o: \
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/features.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/sys/_intsup.h:
-
-/usr/local/src/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform_util.h:
 
 /usr/local/src/esp/esp-idf/components/newlib/include/string.h:
 

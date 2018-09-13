@@ -20,9 +20,24 @@ static const char* TAG = "Touch pad";
 #define TOUCH_THRESH_PERCENT  (80)
 #define TOUCHPAD_FILTER_TOUCH_PERIOD (10)
 
+
 static bool s_pad_activated[TOUCH_PAD_MAX];
 static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
 
+#define UP_PAD 7
+#define DOWN_PAD 5
+#define LEFT_PAD 9
+#define RIGHT_PAD 8
+
+void tp_set_thresholds(int pad){
+  //read filtered value
+  uint16_t touch_value;
+  touch_pad_read_filtered(pad, &touch_value);
+  s_pad_init_val[pad] = touch_value;
+  ESP_LOGI(TAG, "test init: touch pad [%d] val is %d", pad, touch_value);
+  //set interrupt threshold.
+  ESP_ERROR_CHECK(touch_pad_set_thresh(pad, touch_value * 2 / 3));
+}
 /*
   Read values sensed at all available touch pads.
   Use 2 / 3 of read value as the threshold
@@ -31,19 +46,57 @@ static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
   to configure activation threshold for the touch pads.
   Do not touch any pads when this routine
   is running (on application start).
- */
+ 
 static void tp_example_set_thresholds(void)
 {
-    uint16_t touch_value;
     for (int i = 0; i<TOUCH_PAD_MAX; i++) {
-        //read filtered value
-        touch_pad_read_filtered(i, &touch_value);
-        s_pad_init_val[i] = touch_value;
-        ESP_LOGI(TAG, "test init: touch pad [%d] val is %d", i, touch_value);
-        //set interrupt threshold.
-        ESP_ERROR_CHECK(touch_pad_set_thresh(i, touch_value * 2 / 3));
-
+        if (i==UP_PAD) tp_set_thresholds(i);
+        if (i==DOWN_PAD) tp_set_thresholds(i);
+        if (i==LEFT_PAD) tp_set_thresholds(i);
+        if (i==RIGHT_PAD) tp_set_thresholds(i);
     }
+}*/
+
+static void tp_init(int pad){
+  touch_pad_config(pad, TOUCH_THRESH_NO_USE);
+  tp_set_thresholds(pad);
+}
+
+bool get_pad_state(int pad) {
+  bool state = s_pad_activated[pad];
+  s_pad_activated[pad] = false;
+  return state;
+}
+
+int get_dpad_state() {
+
+  int UP = get_pad_state(UP_PAD);
+  int DOWN = get_pad_state(DOWN_PAD);
+  int LEFT = get_pad_state(LEFT_PAD);
+  int RIGHT = get_pad_state(RIGHT_PAD);
+  
+  if (UP && DOWN && LEFT && RIGHT)
+    return 1;
+
+  if (UP && RIGHT)
+    return 2;
+
+  if (RIGHT && DOWN)
+    return 3;
+
+  if (DOWN && LEFT)
+    return 4;
+
+  if (LEFT && UP)
+    return 5;
+
+  if (UP) return 6;
+  if (RIGHT) return 7;
+  if (DOWN) return 8;
+  if (LEFT) return 9;
+
+  //char buff[512];
+  return 0;
 }
 
 /*
@@ -65,56 +118,21 @@ static void tp_example_set_thresholds(void)
  */
 static void tp_example_read_task(void *pvParameter)
 {
-    static int show_message;
-    int change_mode = 0;
-    int filter_mode = 0;
     while (1) {
-        if (filter_mode == 0) {
             //interrupt mode, enable touch interrupt
-            touch_pad_intr_enable();
-            for (int i = 0; i < TOUCH_PAD_MAX; i++) {
+            /*for (int i = 0; i < TOUCH_PAD_MAX; i++) {
                 if (s_pad_activated[i] == true) {
                     ESP_LOGI(TAG, "T%d activated!", i);
                     // Wait a while for the pad being released
                     vTaskDelay(200 / portTICK_PERIOD_MS);
                     // Clear information on pad activation
                     s_pad_activated[i] = false;
-                    // Reset the counter triggering a message
-                    // that application is running
-                    show_message = 1;
                 }
-            }
-        } else {
-            //filter mode, disable touch interrupt
-            touch_pad_intr_disable();
-            touch_pad_clear_status();
-            for (int i = 0; i < TOUCH_PAD_MAX; i++) {
-                uint16_t value = 0;
-                touch_pad_read_filtered(i, &value);
-                if (value < s_pad_init_val[i] * TOUCH_THRESH_PERCENT / 100) {
-                    ESP_LOGI(TAG, "T%d activated!", i);
-                    ESP_LOGI(TAG, "value: %d; init val: %d", value, s_pad_init_val[i]);
-                    vTaskDelay(200 / portTICK_PERIOD_MS);
-                    // Reset the counter to stop changing mode.
-                    change_mode = 1;
-                    show_message = 1;
-                }
-            }
-        }
-
+            }*/
+            
+        int dpad_state = get_dpad_state();
+        printf("dpad state: %d\n",dpad_state);        
         vTaskDelay(10 / portTICK_PERIOD_MS);
-
-        // If no pad is touched, every couple of seconds, show a message
-        // that application is running
-        if (show_message++ % 500 == 0) {
-            ESP_LOGI(TAG, "Waiting for any pad being touched...");
-        }
-        // Change mode if no pad is touched for a long time.
-        // We can compare the two different mode.
-        if (change_mode++ % 2000 == 0) {
-            filter_mode = !filter_mode;
-            ESP_LOGW(TAG, "Change mode...%s", filter_mode == 0? "interrupt mode": "filter mode");
-        }
     }
 }
 
@@ -157,13 +175,24 @@ void app_main()
     // the high reference valtage will be 2.7V - 1V = 1.7V, The low reference voltage will be 0.5V.
     touch_pad_set_voltage(TOUCH_HVOLT_2V7, TOUCH_LVOLT_0V5, TOUCH_HVOLT_ATTEN_1V);
     // Init touch pad IO
-    tp_example_touch_pad_init();
+    //tp_example_touch_pad_init();
+
+    touch_pad_config(UP_PAD, TOUCH_THRESH_NO_USE);
+    touch_pad_config(DOWN_PAD, TOUCH_THRESH_NO_USE);
+    touch_pad_config(LEFT_PAD, TOUCH_THRESH_NO_USE);
+    touch_pad_config(RIGHT_PAD, TOUCH_THRESH_NO_USE);        
+    
     // Initialize and start a software filter to detect slight change of capacitance.
     touch_pad_filter_start(TOUCHPAD_FILTER_TOUCH_PERIOD);
     // Set thresh hold
-    tp_example_set_thresholds();
+    tp_set_thresholds(UP_PAD);
+    tp_set_thresholds(DOWN_PAD);
+    tp_set_thresholds(LEFT_PAD);
+    tp_set_thresholds(RIGHT_PAD);
+                
     // Register touch interrupt ISR
     touch_pad_isr_register(tp_example_rtc_intr, NULL);
     // Start a task to show what pads have been touched
+    touch_pad_intr_enable();
     xTaskCreate(&tp_example_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
 }

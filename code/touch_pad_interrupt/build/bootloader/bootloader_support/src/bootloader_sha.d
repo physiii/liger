@@ -1,7 +1,6 @@
 src/bootloader_sha.o: \
  /usr/local/src/esp/esp-idf/components/bootloader_support/src/bootloader_sha.c \
  /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h \
- /usr/local/src/esp/esp-idf/components/esp32/include/esp_err.h \
  /usr/local/src/esp/esp-idf/components/esp32/include/rom/sha.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -26,8 +25,6 @@ src/bootloader_sha.o: \
  /usr/local/src/esp/esp-idf/components/soc/esp32/include/soc/soc.h
 
 /usr/local/src/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h:
-
-/usr/local/src/esp/esp-idf/components/esp32/include/esp_err.h:
 
 /usr/local/src/esp/esp-idf/components/esp32/include/rom/sha.h:
 

@@ -275,7 +275,7 @@ void app_main(void)
 	}*/
 
 	memset(&i, 0, sizeof i);
-	i.address = "10.10.10.132";
+	i.address = "10.10.10.124";
 	i.port = 5000;
 	i.ssl_connection = 0;
 	i.host = i.address;
