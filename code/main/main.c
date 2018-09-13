@@ -56,11 +56,11 @@ int set_switch(int);
 
 #include "services/storage.c"
 #include "plugins/protocol_wss.c"
-#include "services/buttons.c"
-#include "services/motion.c"
+#include "services/button.c"
+/*#include "services/motion.c"
 #include "services/audio.c"
 #include "services/switch.c"
-#include "services/contact-sensor.c"
+#include "services/contact-sensor.c"*/
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -290,7 +290,7 @@ void app_main(void)
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
-	contact_main();
+	//contact_main();
 	//switch_main();
 	//motion_main();
 	//audio_main();
@@ -305,8 +305,8 @@ void app_main(void)
 			sprintf(load_message,""
 			"{\"event_type\":\"load\","
 			" \"payload\":{\"services\":["
-			"{\"type\":\"contact_sensor\","
-			"\"state\":{\"contact\":1},"
+			"{\"type\":\"button\","
+			"\"state\":{\"dpad\":0},"
 			"\"id\":1}"
 			"]}}");
 			printf("load_mesage %s\n",load_message);
@@ -321,11 +321,11 @@ void app_main(void)
 			wss_data_out_ready = true;
 		}
 		
-		if (contact_service_message_ready && !wss_data_out_ready) {
+		/*if (contact_service_message_ready && !wss_data_out_ready) {
 			strcpy(wss_data_out,contact_service_message);
 			contact_service_message_ready = false;
 			wss_data_out_ready = true;
-		}
+		}*/
 		
 		if (wsi_connect && got_ip && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;

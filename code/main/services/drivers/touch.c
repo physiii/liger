@@ -1,4 +1,4 @@
-/* Touch Pad Read Example
+/* Touch Pad Interrupt Example
 
    This example code is in the Public Domain (or CC0 licensed, at your option.)
 
@@ -9,41 +9,33 @@
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "esp_log.h"
+
 #include "driver/touch_pad.h"
 #include "soc/rtc_cntl_reg.h"
 #include "soc/sens_reg.h"
-#include "esp_log.h"
 
+static const char* TAG = "Touch pad";
 #define TOUCH_THRESH_NO_USE   (0)
 #define TOUCH_THRESH_PERCENT  (80)
 #define TOUCHPAD_FILTER_TOUCH_PERIOD (10)
+
+bool tp_debounce = false;
+
+static bool s_pad_activated[TOUCH_PAD_MAX];
+static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
 
 #define UP_PAD 7
 #define DOWN_PAD 5
 #define LEFT_PAD 9
 #define RIGHT_PAD 8
 
-int touch_threshold = 1100;
-uint16_t touch_value;
-uint16_t touch_filter_value;
-
-static bool s_pad_activated[TOUCH_PAD_MAX];
-static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
-
-/*static void tp_example_touch_pad_init()
-{
-  touch_pad_config(UP_PAD, TOUCH_THRESH_NO_USE);
-  touch_pad_config(DOWN_PAD, TOUCH_THRESH_NO_USE);
-  touch_pad_config(LEFT_PAD, TOUCH_THRESH_NO_USE);
-  touch_pad_config(RIGHT_PAD, TOUCH_THRESH_NO_USE);
-}*/
-
 void tp_set_thresholds(int pad){
   //read filtered value
   uint16_t touch_value;
   touch_pad_read_filtered(pad, &touch_value);
   s_pad_init_val[pad] = touch_value;
-  //ESP_LOGI(TAG, "test init: touch pad [%d] val is %d", pad, touch_value);
+  ESP_LOGI(TAG, "test init: touch pad [%d] val is %d", pad, touch_value);
   //set interrupt threshold.
   ESP_ERROR_CHECK(touch_pad_set_thresh(pad, touch_value * 2 / 3));
 }
@@ -86,31 +78,28 @@ int get_dpad_state() {
   if (DOWN) return 8;
   if (LEFT) return 9;
 
-  //char buff[512];
   return 0;
 }
 
-/*
-  Handle an interrupt triggered when a pad is touched.
-  Recognize what pad has been touched and save it in a table.
- */
 static void tp_example_rtc_intr(void * arg)
 {
     uint32_t pad_intr = touch_pad_get_status();
     //clear interrupt
     touch_pad_clear_status();
+    if (tp_debounce) return;
     for (int i = 0; i < TOUCH_PAD_MAX; i++) {
         if ((pad_intr >> i) & 0x01) {
             s_pad_activated[i] = true;
+            tp_debounce = true;
         }
     }
+    
 }
-
 
 void touch_main()
 {
     // Initialize touch pad peripheral, it will start a timer to run a filter
-    printf("Initializing touch pad...\n");
+    ESP_LOGI(TAG, "Initializing touch pad");
     touch_pad_init();
     // If use interrupt trigger mode, should set touch sensor FSM mode at 'TOUCH_FSM_MODE_TIMER'.
     touch_pad_set_fsm_mode(TOUCH_FSM_MODE_TIMER);
@@ -140,62 +129,3 @@ void touch_main()
     touch_pad_intr_enable();
     //xTaskCreate(&tp_example_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
 }
-
-
-/*int get_pad_state(int pad) {
-  touch_pad_read_raw_data(pad, &touch_value);
-  if (touch_value > touch_threshold) {
-    return 0;
-  } else return 1;
-}
-
-int get_dpad_state() {
-
-  if (get_pad_state(UP_PAD)
-    && get_pad_state(DOWN_PAD)
-    && get_pad_state(LEFT_PAD)
-    && get_pad_state(RIGHT_PAD))
-    return 1;
-
-  if (get_pad_state(UP_PAD) && get_pad_state(RIGHT_PAD))
-    return 2;
-
-  if (get_pad_state(RIGHT_PAD) && get_pad_state(DOWN_PAD))
-    return 3;
-
-  if (get_pad_state(DOWN_PAD) && get_pad_state(LEFT_PAD))
-    return 4;
-
-  if (get_pad_state(LEFT_PAD) && get_pad_state(UP_PAD))
-    return 5;
-
-  if (get_pad_state(UP_PAD)) return 6;
-  if (get_pad_state(RIGHT_PAD)) return 7;
-  if (get_pad_state(DOWN_PAD)) return 8;
-  if (get_pad_state(LEFT_PAD)) return 9;
-
-  char buff[512];
-  return 0;
-}
-
-
-void touch_main_old()
-{
-    // Initialize touch pad peripheral.
-    // The default fsm mode is software trigger mode.
-    touch_pad_init();
-    // Set reference voltage for charging/discharging
-    // In this case, the high reference valtage will be 2.7V - 1V = 1.7V
-    // The low reference voltage will be 0.5
-    // The larger the range, the larger the pulse count value.
-    touch_pad_set_voltage(TOUCH_HVOLT_2V7, TOUCH_LVOLT_0V5, TOUCH_HVOLT_ATTEN_1V);
-    tp_example_touch_pad_init();
-
-    touch_pad_filter_start(TOUCHPAD_FILTER_TOUCH_PERIOD);
-    // Set thresh hold
-    tp_example_set_thresholds();
-    // Register touch interrupt ISR
-    touch_pad_isr_register(tp_example_rtc_intr, NULL);
-    // Start a task to show what pads have been touched
-    xTaskCreate(&tp_example_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
-}*/

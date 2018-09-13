@@ -50,7 +50,7 @@ wssMain.on('connection', function connection(ws, req) {
 
       case "button/pressed":
         console.log(msg.payload);
-        ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}}");
+        //ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}}");
         break;
         
       case "load":

@@ -77,21 +77,25 @@ button_service(void *pvParameter)
   while (1) {
 
       int state = get_dpad_state();
-
-      if (state != previous_state){
+      
+      if (state){
 
         button_event_handler(state);
 
-        //printf("%s\n", buttons_service_message);
         sprintf(buttons_service_message,""
-        "{\"event_type\":\"button/\pressed\","
+        "{\"event_type\":\"service/\state\","
         " \"payload\":{\"type\":\"dpad\",\"value\":%d}}"
-        , get_dpad_state());
+        , state);
+        
+        printf("%s\n", buttons_service_message);
 
         previous_state = state;
         buttons_service_message_ready = true;
+                
+        vTaskDelay(250 / portTICK_PERIOD_MS); //debounce
+        tp_debounce = false;
       }
-      vTaskDelay(200 / portTICK_PERIOD_MS);
+      vTaskDelay(250 / portTICK_PERIOD_MS);
   }
 
 }
