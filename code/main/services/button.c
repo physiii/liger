@@ -83,7 +83,7 @@ button_service(void *pvParameter)
         button_event_handler(state);
 
         sprintf(buttons_service_message,""
-        "{\"event_type\":\"service/\state\","
+        "{\"event_type\":\"button/\pressed\","
         " \"payload\":{\"type\":\"dpad\",\"value\":%d}}"
         , state);
         
@@ -94,8 +94,7 @@ button_service(void *pvParameter)
                 
         vTaskDelay(250 / portTICK_PERIOD_MS); //debounce
         tp_debounce = false;
-      }
-      vTaskDelay(250 / portTICK_PERIOD_MS);
+      } else vTaskDelay(250 / portTICK_PERIOD_MS);
   }
 
 }

@@ -275,9 +275,8 @@ void app_main(void)
 	}*/
 
 	memset(&i, 0, sizeof i);
-	i.address = "10.10.10.124";
-	i.port = 5000;
-	i.ssl_connection = 0;
+	i.address = "dev.pyfi.org";
+	i.port = 5050;
 	i.host = i.address;
 	i.origin = i.host;
 	i.ietf_version_or_minus_one = -1;
@@ -285,6 +284,8 @@ void app_main(void)
 	i.protocol = "wss-protocol";
 	i.pwsi = &wsi_token;
 	i.path = "/device-relay";
+	i.ssl_connection = LCCSCF_USE_SSL;
+	i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
 
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);
