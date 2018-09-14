@@ -26,6 +26,8 @@
 #define CPU_FREQ_MHZ (240)
 #define CPU_TICK_US (1000000.0 / (CPU_FREQ_MHZ * 1000000))
 
+
+int threshold = 10 * 1000;
 int pir_bits_remaining; // set when timer starts, decremented in handler
 uint64_t pir_bits; // 0-41 used; 42-63 unused
 uint64_t t0, t1;
@@ -127,16 +129,6 @@ void gpio_setup(const gpio_num_t pin) {
         }
       }
     }
-
-    //make rolling average
-    //delta_frame.channel[0] = frame.channel[0]-previous_frame.channel[0];
-    //delta_frame.channel[0] *= delta_frame.channel[0];
-    delta_frame.channel[1] = frame.channel[1]-previous_frame.channel[1];
-    delta_frame.channel[1] *= delta_frame.channel[1];
-    delta_frame.channel[2] = frame.channel[2]-previous_frame.channel[2];
-    delta_frame.channel[2] *= delta_frame.channel[2];
-
-    int threshold = 10 * 1000;
 
     // exponential moving average
     // accumulator = (alpha * new_value) + (1.0 - alpha) * accumulator
