@@ -13,7 +13,7 @@ var url = require('url');
 /* --------------  websocket server for devices  ----------------- */
 var WebSocketServer = require('ws').Server
 const wssMain = new WebSocketServer({ noServer: true });
-const server = http.createServer().listen(5000);
+const server = http.createServer().listen(5050);
 
 
 server.on('upgrade', (request, socket, head) => {

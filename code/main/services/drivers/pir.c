@@ -1,112 +1,199 @@
-/* GPIO Example
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
-*/
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+
 #include "freertos/FreeRTOS.h"
+#include "xtensa/corebits.h"
 #include "freertos/task.h"
-#include "freertos/queue.h"
+#include "esp_spi_flash.h"
 #include "driver/gpio.h"
-#include "driver/rmt.h"
+#include "esp_system.h"
+#include "soc/cpu.h"
 
-/**
- * Brief:
- * This test code shows how to configure gpio and how to use gpio interrupt.
- *
- * GPIO status:
- * GPIO18: output
- * GPIO19: output
- * GPIO4:  input, pulled up, interrupt from rising edge and falling edge
- * GPIO5:  input, pulled up, interrupt from rising edge.
- *
- * Test:
- * Connect GPIO18 with GPIO4
- * Connect GPIO19 with GPIO5
- * Generate pulses on GPIO18/19, that triggers interrupt on GPIO4/5
- *
- */
+#define PIR_FREQ_KHZ (32)
+#define PIR_PERIOD_US ((uint64_t)(1000000.0 / (PIR_FREQ_KHZ * 1000)))
+#define PIR_DL_GPIO (GPIO_NUM_15)
+#define PIR_BITS (42)
+#define CPU_FREQ_MHZ (240)
+#define CPU_TICK_US (1000000.0 / (CPU_FREQ_MHZ * 1000000))
 
-#define GPIO_OUTPUT_IO_0    18
-#define GPIO_OUTPUT_IO_1    19
-#define GPIO_OUTPUT_PIN_SEL  ((1ULL<<GPIO_OUTPUT_IO_0) | (1ULL<<GPIO_OUTPUT_IO_1))
-#define GPIO_INPUT_IO_0     15
-#define GPIO_INPUT_IO_1     5
-#define GPIO_INPUT_PIN_SEL  ((1ULL<<GPIO_INPUT_IO_0) | (1ULL<<GPIO_INPUT_IO_1))
-#define ESP_INTR_FLAG_DEFAULT 0
+bool motion_active = false;
+uint16_t motion_data_0;
+uint16_t motion_data_1;
+uint16_t motion_tmp;
 
-static xQueueHandle gpio_evt_queue = NULL;
+bool pir_debounce = false;
+int threshold = 10 * 1000;
+int pir_bits_remaining; // set when timer starts, decremented in handler
+uint64_t pir_bits; // 0-41 used; 42-63 unused
+uint64_t t0, t1;
 
-static void IRAM_ATTR gpio_isr_handler(void* arg)
-{
-    uint32_t gpio_num = (uint32_t) arg;
-    xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
+// best observed freq has been 20KHz
+void cb_pir_timer(void * arg) {
+  pir_bits_remaining -= 1;
+  // printf("tick; remaining: %d\n", pir_bits_remaining);
+  if (pir_bits_remaining <= 0) {
+    t1 = esp_timer_get_time();
+    esp_timer_stop(*(esp_timer_handle_t*)arg);
+    esp_timer_delete(*(esp_timer_handle_t*)arg);
+    printf("stopped and deleted timer\n");
+
+    printf("t0: %llu, t1: %llu, diff: %llu\n", t0, t1, t1 - t0);
+  }
 }
 
-/*static void gpio_task_example(void* arg)
-{
-    uint32_t io_num;
-    for(;;) {
-        if(xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY)) {
-            printf("GPIO[%d] intr, val: %d\n", io_num, gpio_get_level(io_num));
-        }
+inline void busy_delay_us(float us) {
+  uint32_t t0_ccount, t1_ccount;
+  t0_ccount = CCOUNT;
+  while (true) {
+    RSR(CCOUNT, t1_ccount);
+    if (t1_ccount - t0_ccount > ((uint32_t)(us / CPU_TICK_US))) {
+      break;
     }
-}*/
+  }
+}
 
-void pir_main()
-{
-    gpio_config_t io_conf;
-    //disable interrupt
-    io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-    //set as output mode
-    io_conf.mode = GPIO_MODE_OUTPUT;
-    //bit mask of the pins that you want to set,e.g.GPIO18/19
-    io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;
-    //disable pull-down mode
-    io_conf.pull_down_en = 0;
-    //disable pull-up mode
-    io_conf.pull_up_en = 0;
-    //configure GPIO with the given settings
-    gpio_config(&io_conf);
+bool get_motion_state() {
+  bool state = motion_active;
+  motion_active = false;
+  return state;
+}
 
-    //interrupt of rising edge
-    io_conf.intr_type = GPIO_PIN_INTR_POSEDGE;
-    //bit mask of the pins, use GPIO4/5 here
-    io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
-    //set as input mode
-    io_conf.mode = GPIO_MODE_INPUT;
-    //enable pull-up mode
-    io_conf.pull_up_en = 1;
-    gpio_config(&io_conf);
+void gpio_setup(const gpio_num_t pin) {
 
-    //change gpio intrrupt type for one pin
-    gpio_set_intr_type(GPIO_INPUT_IO_0, GPIO_INTR_ANYEDGE);
+  struct pir_frame_t {
+    uint16_t channel[3];
+  };
 
-    //create a queue to handle gpio event from isr
-    gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
-    //start gpio task
-    //xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
+  struct pir_frame_t frame = {0};
+  struct pir_frame_t previous_frame = {0};
+  struct pir_frame_t delta_frame = {0};
 
-    //install gpio isr service
-    gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
-    //hook isr handler for specific gpio pin
-    gpio_isr_handler_add(GPIO_INPUT_IO_0, gpio_isr_handler, (void*) GPIO_INPUT_IO_0);
-    //hook isr handler for specific gpio pin
-    gpio_isr_handler_add(GPIO_INPUT_IO_1, gpio_isr_handler, (void*) GPIO_INPUT_IO_1);
+  int channel, bit;
 
-    //remove isr handler for gpio number.
-    gpio_isr_handler_remove(GPIO_INPUT_IO_0);
-    //hook isr handler for specific gpio pin again
-    gpio_isr_handler_add(GPIO_INPUT_IO_0, gpio_isr_handler, (void*) GPIO_INPUT_IO_0);
+  gpio_config_t c = {0};
+  c.pin_bit_mask = 1 << pin;
+  c.mode = GPIO_MODE_OUTPUT; // start here to reset to 0
+  c.pull_down_en = GPIO_PULLDOWN_ENABLE;
+  c.pull_up_en = GPIO_PULLUP_DISABLE;
+  c.intr_type = GPIO_PIN_INTR_DISABLE;
 
-    /*int cnt = 0;
-    while(1) {
-        printf("cnt: %d\n", cnt++);
-        vTaskDelay(1000 / portTICK_RATE_MS);
-        gpio_set_level(GPIO_OUTPUT_IO_0, cnt % 2);
-        gpio_set_level(GPIO_OUTPUT_IO_1, cnt % 2);
-    }*/
+  gpio_config(&c);
+  gpio_set_level(pin, 0);
+
+  int accumulator_1 = 0;
+  float alpha = 0.99;
+
+  while (1) {
+    uint64_t pir_frame = 0;
+
+    // wait DL high
+    // printf("waiting for dl\n");
+    gpio_set_direction(pin, GPIO_MODE_INPUT);
+    while (0 == gpio_get_level(pin));
+    // printf("waited for dl\n");
+
+    // wait > 25us
+    busy_delay_us(25.0);
+    // printf("waited 25us\n");
+
+    for (channel = 0; channel < 3; channel += 1) {
+      frame.channel[channel] = 0;
+      for (bit = 0; bit < 14; bit += 1) {
+        gpio_set_direction(pin, GPIO_MODE_OUTPUT);
+        // busy_delay_us(0.2);
+        gpio_set_level(pin, 0);
+        busy_delay_us(0.2);
+        gpio_set_level(pin, 1);
+        busy_delay_us(0.2);
+
+        frame.channel[channel] <<= 1;
+        gpio_set_direction(pin, GPIO_MODE_INPUT);
+        // busy_delay_us(0.1);
+        if (gpio_get_level(pin)) {
+          frame.channel[channel] |= 1;
+        }
+      }
+    }
+
+    // exponential moving average
+    // accumulator = (alpha * new_value) + (1.0 - alpha) * accumulator
+    delta_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * delta_frame.channel[0];
+    delta_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * delta_frame.channel[1];
+    delta_frame.channel[2] = (alpha * frame.channel[2]) + (1.0 - alpha) * delta_frame.channel[2];
+
+    if (delta_frame.channel[0] > threshold && delta_frame.channel[1] > threshold){
+      //printf("ch0: %d\tch1: %d\ttmp: %d\n", delta_frame.channel[0], delta_frame.channel[1], delta_frame.channel[2]);
+      motion_active = true;
+      motion_data_0 = delta_frame.channel[0];
+      motion_data_1 = delta_frame.channel[1];
+      motion_tmp = delta_frame.channel[1];
+      pir_debounce = true;
+    }
+
+    previous_frame = frame;
+    // take a breath between packets
+    vTaskDelay(100 / portTICK_PERIOD_MS);
+  }
+}
+
+void task_pir(void * param) {
+    esp_timer_handle_t t = NULL;
+    esp_err_t result;
+
+    printf("PIR freq: %d KHz, %lluus Period\n", PIR_FREQ_KHZ, PIR_PERIOD_US);
+
+    gpio_setup(PIR_DL_GPIO);
+
+    esp_timer_create_args_t timer_create_args = {};
+    timer_create_args.callback = cb_pir_timer;
+    timer_create_args.dispatch_method = ESP_TIMER_TASK;
+    timer_create_args.arg = &t;
+    timer_create_args.name = "PIR";
+    result = esp_timer_create(&timer_create_args, &t);
+    switch (result) {
+      case ESP_OK:
+        break;
+      case ESP_ERR_INVALID_ARG:
+        printf("ESP_ERR_INVALID_ARG\n");
+        break;
+      case ESP_ERR_INVALID_STATE:
+        printf("ESP_ERR_INVALID_STATE\n");
+        break;
+      case ESP_ERR_NO_MEM:
+       printf("ESP_ERR_NO_MEM\n");
+        break;
+      default:
+        printf("esp_timer_create WTF");
+    }
+
+    if (result == ESP_OK) {
+      pir_bits_remaining = PIR_BITS;
+      t0 = esp_timer_get_time();
+      result = esp_timer_start_periodic(t, PIR_PERIOD_US);
+      switch (result) {
+        case ESP_OK:
+          printf("timer started\n");
+          break;
+        case ESP_ERR_INVALID_ARG:
+          printf("ESP_ERR_INVALID_ARG\n");
+          break;
+        case ESP_ERR_INVALID_STATE:
+          printf("ESP_ERR_INVALID_STATE\n");
+          break;
+        default:
+          printf("esp_timer_start_periodic WTF");
+      }
+    }
+
+    while (1) {
+      vTaskDelay(5000 / portTICK_PERIOD_MS);
+    }
+
+    vTaskDelete(NULL);
+}
+
+void pir_main() {
+    xTaskCreate(task_pir, "PIR_TIMER", 2048, NULL, 10, NULL);
+    //printf("Restarting now.\n");
+    //fflush(stdout);
+    //esp_restart();
 }
