@@ -56,11 +56,11 @@ int set_switch(int);
 
 #include "services/storage.c"
 #include "plugins/protocol_wss.c"
-#include "services/buttons.c"
+#include "services/button.c"
 #include "services/motion.c"
-#include "services/audio.c"
+/*#include "services/audio.c"
 #include "services/switch.c"
-#include "services/contact-sensor.c"
+#include "services/contact-sensor.c"*/
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -275,9 +275,8 @@ void app_main(void)
 	}*/
 
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.21";
-	i.port = 5000;
-	i.ssl_connection = 0;
+	i.address = "192.168.0.9";
+	i.port = 5050;
 	i.host = i.address;
 	i.origin = i.host;
 	i.ietf_version_or_minus_one = -1;
@@ -285,14 +284,16 @@ void app_main(void)
 	i.protocol = "wss-protocol";
 	i.pwsi = &wsi_token;
 	i.path = "/device-relay";
+	//i.ssl_connection = LCCSCF_USE_SSL;
+	//i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
 
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
-	contact_main();
+	//contact_main();
 	//switch_main();
-	//motion_main();
+	motion_main();
 	//audio_main();
 
 	bool send_load_event = true;
@@ -305,8 +306,8 @@ void app_main(void)
 			sprintf(load_message,""
 			"{\"event_type\":\"load\","
 			" \"payload\":{\"services\":["
-			"{\"type\":\"contact_sensor\","
-			"\"state\":{\"contact\":1},"
+			"{\"type\":\"button\","
+			"\"state\":{\"dpad\":0},"
 			"\"id\":1}"
 			"]}}");
 			printf("load_mesage %s\n",load_message);
@@ -321,16 +322,15 @@ void app_main(void)
 			wss_data_out_ready = true;
 		}
 
-		if (contact_service_message_ready && !wss_data_out_ready) {
+		/*if (contact_service_message_ready && !wss_data_out_ready) {
 			strcpy(wss_data_out,contact_service_message);
 			contact_service_message_ready = false;
 			wss_data_out_ready = true;
-		}
+		}*/
 
 		if (wsi_connect && got_ip && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;
 			lws_client_connect_via_info(&i);
-			//connect_client(i);
 		}
 		lws_service(context, 500);
 		taskYIELD();
