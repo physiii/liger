@@ -307,7 +307,11 @@ void app_main(void)
 			"{\"event_type\":\"load\","
 			" \"payload\":{\"services\":["
 			"{\"type\":\"button\","
-			"\"state\":{\"dpad\":0},"
+			"\"state\":{\"dpad\":0}},"
+			"{\"type\":\"motion\","
+			"\"state\":{\"channel_0\":0}},"
+			"{\"type\":\"LED\","
+			"\"state\":{\"rgb\":[0,0,0]},"
 			"\"id\":1}"
 			"]}}");
 			printf("load_mesage %s\n",load_message);
