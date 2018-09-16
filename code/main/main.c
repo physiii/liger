@@ -58,6 +58,7 @@ int set_switch(int);
 #include "plugins/protocol_wss.c"
 #include "services/button.c"
 #include "services/motion.c"
+#include "services/LED.c"
 /*#include "services/audio.c"
 #include "services/switch.c"
 #include "services/contact-sensor.c"*/
@@ -291,6 +292,7 @@ void app_main(void)
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
+  LED_main();
 	//contact_main();
 	//switch_main();
 	motion_main();
@@ -335,7 +337,17 @@ void app_main(void)
 		if (wsi_connect && got_ip && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;
 			lws_client_connect_via_info(&i);
+			//connect_client(i);
 		}
+
+		if (wsi_connect) {
+    	set_pixel_by_index(0, 0, 0, 0, 1);
+			vTaskDelay(200 / portTICK_RATE_MS);
+    	set_pixel_by_index(0, 0, 0, 255, 1);
+		} else {
+			set_pixel_by_index(0, 0, 255, 0, 1);
+		}
+
 		lws_service(context, 500);
 		taskYIELD();
 		vTaskDelay(100 / portTICK_RATE_MS);

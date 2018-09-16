@@ -20,21 +20,17 @@ static const char* TAG = "Touch pad";
 #define TOUCH_THRESH_PERCENT  (80)
 #define TOUCHPAD_FILTER_TOUCH_PERIOD (10)
 
-<<<<<<< HEAD
 #define PAD_NUMBER 10
-=======
 bool tp_debounce = false;
 
 static bool s_pad_activated[TOUCH_PAD_MAX];
 static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
 
->>>>>>> dev
 #define UP_PAD 7
 #define DOWN_PAD 5
 #define LEFT_PAD 9
 #define RIGHT_PAD 8
 
-<<<<<<< HEAD
 int touch_threshold[PAD_NUMBER];
 
 uint16_t touch_value;
@@ -53,12 +49,6 @@ static void tp_example_touch_pad_init()
   touch_pad_config(RIGHT_PAD, TOUCH_THRESH_NO_USE);
 }
 
-int get_pad_state(int pad) {
-  touch_pad_read_raw_data(pad, &touch_value);
-  if (touch_value > touch_threshold[pad]) {
-    return 0;
-  } else return 1;
-=======
 void tp_set_thresholds(int pad){
   //read filtered value
   uint16_t touch_value;
@@ -78,7 +68,6 @@ bool get_pad_state(int pad) {
   bool state = s_pad_activated[pad];
   s_pad_activated[pad] = false;
   return state;
->>>>>>> dev
 }
 
 int get_dpad_state() {
@@ -87,7 +76,7 @@ int get_dpad_state() {
   int DOWN = get_pad_state(DOWN_PAD);
   int LEFT = get_pad_state(LEFT_PAD);
   int RIGHT = get_pad_state(RIGHT_PAD);
-  
+
   if (UP && DOWN && LEFT && RIGHT)
     return 1;
 
@@ -123,7 +112,7 @@ static void tp_example_rtc_intr(void * arg)
             tp_debounce = true;
         }
     }
-    
+
 }
 
 void touch_main()
@@ -143,8 +132,8 @@ void touch_main()
     touch_pad_config(UP_PAD, TOUCH_THRESH_NO_USE);
     touch_pad_config(DOWN_PAD, TOUCH_THRESH_NO_USE);
     touch_pad_config(LEFT_PAD, TOUCH_THRESH_NO_USE);
-    touch_pad_config(RIGHT_PAD, TOUCH_THRESH_NO_USE);        
-    
+    touch_pad_config(RIGHT_PAD, TOUCH_THRESH_NO_USE);
+
     // Initialize and start a software filter to detect slight change of capacitance.
     touch_pad_filter_start(TOUCHPAD_FILTER_TOUCH_PERIOD);
     // Set thresh hold
@@ -152,7 +141,7 @@ void touch_main()
     tp_set_thresholds(DOWN_PAD);
     tp_set_thresholds(LEFT_PAD);
     tp_set_thresholds(RIGHT_PAD);
-                
+
     // Register touch interrupt ISR
     touch_pad_isr_register(tp_example_rtc_intr, NULL);
     // Start a task to show what pads have been touched
