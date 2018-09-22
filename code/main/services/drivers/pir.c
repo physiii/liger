@@ -21,7 +21,7 @@ uint16_t motion_data_1;
 uint16_t motion_tmp;
 
 bool pir_debounce = false;
-int threshold = 10 * 1000;
+int threshold = 7200;
 int pir_bits_remaining; // set when timer starts, decremented in handler
 uint64_t pir_bits; // 0-41 used; 42-63 unused
 uint64_t t0, t1;
@@ -119,9 +119,9 @@ void gpio_setup(const gpio_num_t pin) {
     delta_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * delta_frame.channel[0];
     delta_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * delta_frame.channel[1];
     delta_frame.channel[2] = (alpha * frame.channel[2]) + (1.0 - alpha) * delta_frame.channel[2];
-
+    printf("pir: %d %d\n",delta_frame.channel[0],delta_frame.channel[1]);
     if (delta_frame.channel[0] > threshold && delta_frame.channel[1] > threshold){
-      //printf("ch0: %d\tch1: %d\ttmp: %d\n", delta_frame.channel[0], delta_frame.channel[1], delta_frame.channel[2]);
+      printf("ch0: %d\tch1: %d\ttmp: %d\n", delta_frame.channel[0], delta_frame.channel[1], delta_frame.channel[2]);
       motion_active = true;
       motion_data_0 = delta_frame.channel[0];
       motion_data_1 = delta_frame.channel[1];

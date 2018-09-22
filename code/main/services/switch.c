@@ -4,7 +4,7 @@
 char switch_service_message[2000];
 char switch_service_message_in[2000];
 int current_switch_level = 0;
-int pwm_factor = 2;
+//int pwm_factor = 2;
 
 void
 setPWM(int level) {
