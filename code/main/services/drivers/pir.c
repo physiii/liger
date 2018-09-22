@@ -20,6 +20,9 @@ uint16_t motion_data_0;
 uint16_t motion_data_1;
 uint16_t motion_tmp;
 
+int accumulator_1 = 0;
+float alpha = 1;
+
 bool pir_debounce = false;
 int threshold = 7200;
 int pir_bits_remaining; // set when timer starts, decremented in handler
@@ -78,9 +81,6 @@ void gpio_setup(const gpio_num_t pin) {
 
   gpio_config(&c);
   gpio_set_level(pin, 0);
-
-  int accumulator_1 = 0;
-  float alpha = 0.99;
 
   while (1) {
     uint64_t pir_frame = 0;
