@@ -224,7 +224,7 @@ connect_client(struct lws_client_connect_info i)
 void app_main(void)
 {
 
-	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
+	//strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
 	static struct lws_context_creation_info info;
 	struct lws_context *context;
 	struct lws_vhost *vh;
@@ -270,13 +270,8 @@ void app_main(void)
 	lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info, &vh);
 
-	/*while (1) {
-		vTaskDelay(1000 / portTICK_RATE_MS);
-		if (got_ip) break;
-	}*/
-
 	memset(&i, 0, sizeof i);
-	i.address = "192.168.0.9";
+	i.address = "dev.pyfi.org";
 	i.port = 5050;
 	i.host = i.address;
 	i.origin = i.host;
@@ -285,8 +280,8 @@ void app_main(void)
 	i.protocol = "wss-protocol";
 	i.pwsi = &wsi_token;
 	i.path = "/device-relay";
-	//i.ssl_connection = LCCSCF_USE_SSL;
-	//i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
+	i.ssl_connection = LCCSCF_USE_SSL;
+	i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
 
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);
