@@ -292,7 +292,7 @@ void app_main(void)
 	buttons_main();
   LED_main();
 	//contact_main();
-	//switch_main();
+	switch_main();
 	motion_main();
 	//audio_main();
 
@@ -310,6 +310,8 @@ void app_main(void)
 			"\"state\":{\"dpad\":0}},"
 			"{\"type\":\"motion\","
 			"\"state\":{\"channel_0\":0}},"
+			"{\"type\":\"switch\","
+			"\"state\":{\"level\":0, \"on\":false}},"
 			"{\"type\":\"LED\","
 			"\"state\":{\"rgb\":[0,0,0]},"
 			"\"id\":1}"
