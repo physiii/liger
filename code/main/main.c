@@ -61,8 +61,8 @@ int set_switch(int);
 #include "services/button.c"
 #include "services/motion.c"
 #include "services/LED.c"
-/*#include "services/audio.c"
 #include "services/switch.c"
+/*#include "services/audio.c
 #include "services/contact-sensor.c"*/
 
 static const struct lws_protocols protocols_station[] = {
