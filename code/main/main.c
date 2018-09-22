@@ -291,10 +291,10 @@ void app_main(void)
 
 	buttons_main();
   LED_main();
-	//contact_main();
 	switch_main();
 	motion_main();
 	//audio_main();
+	//contact_main();
 
 	bool send_load_event = true;
 	char load_message[500];
