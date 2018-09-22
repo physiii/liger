@@ -47,6 +47,8 @@ char device_id[100];
 bool token_received = false;
 bool reconnect_with_token = false;
 static struct lws_client_connect_info i;
+char server_address[100] = "dev.pyfi.org";
+bool use_ssl = true;
 
 //needs to go in headers
 
@@ -271,7 +273,7 @@ void app_main(void)
 	context = lws_esp32_init(&info, &vh);
 
 	memset(&i, 0, sizeof i);
-	i.address = "dev.pyfi.org";
+	i.address = server_address;
 	i.port = 5050;
 	i.host = i.address;
 	i.origin = i.host;
@@ -280,9 +282,10 @@ void app_main(void)
 	i.protocol = "wss-protocol";
 	i.pwsi = &wsi_token;
 	i.path = "/device-relay";
-	i.ssl_connection = LCCSCF_USE_SSL;
-	i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
-
+	if (use_ssl) {
+		i.ssl_connection = LCCSCF_USE_SSL;
+		i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
+	}
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);
 
@@ -337,7 +340,7 @@ void app_main(void)
 
 		if (wsi_connect) {
     	set_pixel_by_index(0, 0, 0, 0, 1);
-			vTaskDelay(200 / portTICK_RATE_MS);
+			vTaskDelay(300 / portTICK_RATE_MS);
     	set_pixel_by_index(0, 0, 0, 255, 1);
 		} else {
 			set_pixel_by_index(0, 0, 255, 0, 1);
