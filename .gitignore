@@ -3,3 +3,4 @@ code/build
 *.kicad_pcb-bak
 *_autosave*
 *cache.dcm
+*_saved_*

@@ -19,7 +19,7 @@ S 3300 4800 2850 2200
 U 59096487
 F0 "Microcontroller" 60
 F1 "microcontroller.sch" 60
-F2 "3V3" I R 6150 4950 60 
+F2 "3V3" I L 3300 5900 60 
 F3 "T_LEFT" I R 6150 5050 60 
 F4 "T_RIGHT" I R 6150 5150 60 
 F5 "I2S_DATA_OUT" I R 6150 5250 60 
@@ -40,6 +40,7 @@ F19 "RXD" I L 3300 5225 60
 F20 "TXD" I L 3300 5350 60 
 F21 "IR_TX" O R 6150 6125 60 
 F22 "ZERO_DETECT" I L 3300 5500 60 
+F23 "EN" I L 3300 6000 60 
 $EndSheet
 $Sheet
 S 8050 6200 1950 1350
@@ -139,8 +140,6 @@ Wire Wire Line
 Wire Wire Line
 	6150 5050 6225 5050
 Wire Wire Line
-	6150 4950 6225 4950
-Wire Wire Line
 	9950 4900 10025 4900
 Wire Wire Line
 	9950 4775 10025 4775
@@ -226,7 +225,7 @@ Text Label 7575 2675 0    60   ~ 0
 I2S_BCLK
 Text Label 7375 3050 0    60   ~ 0
 I2S_DATA_OUT
-Text Label 6225 4950 0    60   ~ 0
+Text Label 3250 5900 2    60   ~ 0
 3V3
 Text Label 6225 5050 0    60   ~ 0
 T_LEFT
@@ -369,4 +368,10 @@ Text Label 10025 4900 0    60   ~ 0
 RELAY
 Wire Wire Line
 	10025 5025 9950 5025
+Wire Wire Line
+	3250 5900 3300 5900
+Text Label 3250 6000 2    60   ~ 0
+EN
+Wire Wire Line
+	3250 6000 3300 6000
 $EndSCHEMATC
