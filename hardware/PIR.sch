@@ -54,18 +54,6 @@ Text HLabel 4850 2850 0    60   Input ~ 0
 3V3
 Text HLabel 6600 2950 2    60   Input ~ 0
 PIR
-$Comp
-L open-automation:PYQ2898 U7
-U 1 1 5BA828EE
-P 5450 2950
-F 0 "U7" H 5650 2750 60  0000 C CNN
-F 1 "PYQ2898" H 5500 3191 60  0000 C CNN
-F 2 "open-automation:PYQ2898" H 5500 2550 60  0001 C CNN
-F 3 "https://datasheet.octopart.com/PYQ2898-Excelitas-Technology-datasheet-9789873.pdf" H 5600 2650 60  0001 C CNN
-F 4 "PYQ2898" H 5450 3250 60  0001 C CNN "Part Number"
-	1    5450 2950
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6300 2950 6450 2950
 Wire Wire Line
@@ -96,8 +84,6 @@ Wire Wire Line
 	5000 2850 5200 2850
 Wire Wire Line
 	5000 3200 5100 3200
-Wire Wire Line
-	5200 3200 5200 3050
 Wire Wire Line
 	5100 3250 5100 3200
 Connection ~ 5100 3200
@@ -147,4 +133,18 @@ F 3 "" H 5900 3400 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	5900 3350 5900 3400
+Wire Wire Line
+	5200 3200 5200 3050
+$Comp
+L open-automation:PYQ2898 U7
+U 1 1 5BB8B302
+P 5450 2900
+F 0 "U7" H 5650 2650 60  0000 C CNN
+F 1 "PYQ2898" H 5500 3050 60  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-5-3" H 5450 2900 60  0001 C CNN
+F 3 "" H 5450 2900 60  0001 C CNN
+F 4 "PYQ2898" H 5450 2900 50  0001 C CNN "Part Number"
+	1    5450 2900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -561,9 +561,9 @@ ENDDEF
 DEF open-automation_C_0.1uF C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
 F1 "open-automation_C_0.1uF" -325 -100 50 H V L CNN
-F2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" 100 300 50 H I C CNN
+F2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" 100 300 50 H I C CNN
 F3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" 0 -250 50 H I C CNN
-F4 "CL10F104ZO8NNNC" 125 200 60 H I C CNN "Part Number"
+F4 "C1608X8R1H104K080AB" 125 200 60 H I C CNN "Part Number"
 $FPLIST
  C?
  C_????_*
@@ -584,7 +584,7 @@ ENDDEF
 DEF open-automation_C_100pF C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
 F1 "open-automation_C_100pF" 50 -100 50 H V L CNN
-F2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" 100 300 50 H I C CNN
+F2 "Capacitors_SMD:C_0603" 100 300 50 H I C CNN
 F3 "https://www.digikey.com/product-detail/en/avx-corporation/06035A101FAT2A/478-6202-1-ND/2391401" 0 -250 50 H I C CNN
 F4 "06035A101FAT2A" 125 200 60 H I C CNN "Part Number"
 $FPLIST
@@ -632,7 +632,7 @@ F0 "C" 25 100 50 H V L CNN
 F1 "open-automation_C_1uF" -225 -100 50 H V L CNN
 F2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" 100 300 50 H I C CNN
 F3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" 0 -250 50 H I C CNN
-F4 "CL10B105KP8NNNC" 125 200 60 H I C CNN "Part Number"
+F4 "CGA3E1X7R1C105M080AC" 125 200 60 H I C CNN "Part Number"
 $FPLIST
  C?
  C_????_*
@@ -685,16 +685,16 @@ ENDDEF
 # open-automation_PYQ2898
 #
 DEF open-automation_PYQ2898 U 0 40 Y Y 1 F N
-F0 "U" 200 -200 60 H V C CNN
-F1 "open-automation_PYQ2898" 0 200 60 H V C CNN
-F2 "open-automation:PYQ2898" 50 -400 60 H I C CNN
-F3 "https://datasheet.octopart.com/PYQ2898-Excelitas-Technology-datasheet-9789873.pdf" 150 -300 60 H I C CNN
-F4 "PYQ2898" 0 300 60 H I C CNN "Part Number"
+F0 "U" 200 -250 60 H V C CNN
+F1 "open-automation_PYQ2898" 50 150 60 H V C CNN
+F2 "Package_TO_SOT_THT:TO-5-3" 50 -450 60 H I C CNN
+F3 "https://www.alliedelec.com/mkt/lp/aotb/medical/images/appnote_digipyropyq2898.pdf" 100 -350 60 H I C CNN
+F4 "PYQ2898" 0 -550 60 H I C CNN "Part Number"
 DRAW
-S -150 150 250 -150 0 1 0 f
-X Vdd 1 -250 100 100 R 50 50 1 1 I
-X GND 2 -250 -100 100 R 50 50 1 1 I
-X OUT 3 350 0 100 L 50 50 1 1 I
+S -150 100 250 -200 0 1 0 f
+X Vcc 1 -250 50 100 R 50 50 1 1 I
+X data 2 350 -50 100 L 50 50 1 1 I
+X Vss 3 -250 -150 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
@@ -705,7 +705,7 @@ F0 "R" 0 0 50 V V C CNN
 F1 "open-automation_R_10k" -75 0 50 V V C CNN
 F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" 80 0 50 V I C CNN
-F4 "MCT06030C1002FP500" 180 100 60 V I C CNN "Part Number"
+F4 "RC0603JR-0710KL" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
@@ -724,7 +724,7 @@ F0 "R" 0 0 50 V V C CNN
 F1 "open-automation_R_1k" -75 0 50 V V C CNN
 F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" 80 0 50 V I C CNN
-F4 "ESR03EZPJ102" 180 100 60 V I C CNN "Part Number"
+F4 "ERJ-3GEYJ102V" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
@@ -741,9 +741,9 @@ ENDDEF
 DEF open-automation_R_47.5 R 0 0 N Y 1 F N
 F0 "R" 0 0 50 V V C CNN
 F1 "open-automation_R_47.5" -75 0 50 V V C CNN
-F2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" -70 0 50 V I C CNN
+F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" 80 0 50 V I C CNN
-F4 "ERJ-3EKF47R5V" 180 100 60 V I C CNN "Part Number"
+F4 "RC0603FR-0747R5L" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
