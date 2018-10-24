@@ -27,7 +27,7 @@ int zero_cross_count = 0;
 int cnt = 0;
 int level = 0;
 
-inline void busy_delay_us(float us) {
+/*inline void busy_delay_us(float us) {
   uint32_t t0_ccount, t1_ccount;
   t0_ccount = CCOUNT;
   while (true) {
@@ -36,7 +36,7 @@ inline void busy_delay_us(float us) {
       break;
     }
   }
-}
+}*/
 
 void delay_triac_us(int us) {
   uint32_t t0_ccount, t1_ccount;
@@ -64,7 +64,7 @@ static void triac_task(void* arg)
     gpio_set_level(TRIAC_IO, TRIAC_OFF);
 
     for(;;) {
-        printf("%d delay %d zeros: %d\n", cnt++,triac_off_time, zero_cross_count);
+        //printf("%d delay %d zeros: %d\n", cnt++,triac_off_time, zero_cross_count);
         zero_cross_count = 0;
         vTaskDelay(1000 / portTICK_RATE_MS);
     }

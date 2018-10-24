@@ -394,4 +394,30 @@ F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7375 5100 50  0001 
 $EndComp
 Wire Wire Line
 	7275 4975 7275 5100
+$Comp
+L open-automation:housing-mounts U7
+U 1 1 5BBF1815
+P 9275 2450
+F 0 "U7" H 9553 2503 60  0000 L CNN
+F 1 "housing-mounts" H 9553 2397 60  0000 L CNN
+F 2 "open-automation:generic-housing-mounts-md" H 9475 2250 60  0001 C CNN
+F 3 "" H 9275 2500 60  0001 C CNN
+	1    9275 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:GND #PWR0104
+U 1 1 5BBF1873
+P 8900 2475
+F 0 "#PWR0104" H 8900 2225 50  0001 C CNN
+F 1 "GND" H 8905 2302 50  0000 C CNN
+F 2 "" H 8900 2475 50  0000 C CNN
+F 3 "" H 8900 2475 50  0000 C CNN
+	1    8900 2475
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8900 2475 8900 2450
+Wire Wire Line
+	8900 2450 8925 2450
 $EndSCHEMATC

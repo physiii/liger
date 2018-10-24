@@ -381,6 +381,22 @@ X D 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# PYQ2898-open-automation
+#
+DEF PYQ2898-open-automation U 0 40 Y Y 1 F N
+F0 "U" 200 -200 60 H V C CNN
+F1 "PYQ2898-open-automation" 0 200 60 H V C CNN
+F2 "open-automation:PYQ2898" 50 -400 60 H I C CNN
+F3 "https://datasheet.octopart.com/PYQ2898-Excelitas-Technology-datasheet-9789873.pdf" 150 -300 60 H I C CNN
+F4 "PYQ2898" 0 300 60 H I C CNN "Part Number"
+DRAW
+S -150 150 250 -150 0 1 0 f
+X Vdd 1 -250 100 100 R 50 50 1 1 I
+X GND 2 -250 -100 100 R 50 50 1 1 I
+X OUT 3 350 0 100 L 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
 # Q_NPN_BEC
 #
 DEF Q_NPN_BEC Q 0 0 Y N 1 F N

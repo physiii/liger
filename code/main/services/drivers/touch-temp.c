@@ -27,14 +27,10 @@ uint16_t touch_filter_value;
 
 static void tp_example_touch_pad_init()
 {
-  /*touch_pad_config(UP_PAD, TOUCH_THRESH_NO_USE);
+  touch_pad_config(UP_PAD, TOUCH_THRESH_NO_USE);
   touch_pad_config(DOWN_PAD, TOUCH_THRESH_NO_USE);
   touch_pad_config(LEFT_PAD, TOUCH_THRESH_NO_USE);
-  touch_pad_config(RIGHT_PAD, TOUCH_THRESH_NO_USE);*/
-
-    for (int i = 0;i< TOUCH_PAD_MAX;i++) {
-        touch_pad_config(i, TOUCH_THRESH_NO_USE);
-    }
+  touch_pad_config(RIGHT_PAD, TOUCH_THRESH_NO_USE);
 }
 
 int get_pad_state(int pad) {
@@ -69,6 +65,7 @@ int get_dpad_state() {
   if (get_pad_state(DOWN_PAD)) return 8;
   if (get_pad_state(LEFT_PAD)) return 9;
 
+  char buff[512];
   return 0;
 }
 
