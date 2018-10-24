@@ -47,7 +47,7 @@ F 0 "R5" V 7705 2650 50  0000 C CNN
 F 1 "36" V 7625 2650 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7555 2650 50  0001 C CNN
 F 3 "http://www.yageo.com.tw/exep/pages/download/literatures/PYu-R_INT-thick_7.pdf" H 7625 2650 50  0001 C CNN
-F 4 "RC0603JR-0736RL" V 7625 2650 60  0001 C CNN "Part Number"
+F 4 "RMCF0603FT36R0" V 7625 2650 60  0001 C CNN "Part Number"
 	1    7625 2650
 	1    0    0    -1  
 $EndComp

@@ -225,28 +225,6 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# liger-rescue_LED-GREEN-LTST-C191GKT
-#
-DEF liger-rescue_LED-GREEN-LTST-C191GKT D 0 40 Y N 1 F N
-F0 "D" 0 100 50 H V C CNN
-F1 "liger-rescue_LED-GREEN-LTST-C191GKT" 0 -100 50 H V C CNN
-F2 "LEDs:LED_0603" -100 0 50 H I C CNN
-F3 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191GKT/160-1443-1-ND/386828" 0 100 50 H I C CNN
-F4 "LTST-C191GKT" 100 200 60 H I C CNN "Part Number"
-$FPLIST
- LED*
-$ENDFPLIST
-DRAW
-P 2 0 1 8 -50 -50 -50 50 N
-P 2 0 1 0 -50 0 50 0 N
-P 4 0 1 8 50 -50 50 50 -50 0 50 -50 N
-P 5 0 1 0 -120 -30 -180 -90 -150 -90 -180 -90 -180 -60 N
-P 5 0 1 0 -70 -30 -130 -90 -100 -90 -130 -90 -130 -60 N
-X K 1 -150 0 100 R 50 50 1 1 P
-X A 2 150 0 100 L 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
 # liger-rescue_MAX98357AETE+T
 #
 DEF liger-rescue_MAX98357AETE+T U 0 40 Y Y 1 F N
@@ -563,7 +541,7 @@ F0 "C" 25 100 50 H V L CNN
 F1 "open-automation_C_0.1uF" -325 -100 50 H V L CNN
 F2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" 100 300 50 H I C CNN
 F3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" 0 -250 50 H I C CNN
-F4 "C1608X8R1H104K080AB" 125 200 60 H I C CNN "Part Number"
+F4 "CL10F104ZO8NNNC" 125 200 60 H I C CNN "Part Number"
 $FPLIST
  C?
  C_????_*
@@ -632,7 +610,7 @@ F0 "C" 25 100 50 H V L CNN
 F1 "open-automation_C_1uF" -225 -100 50 H V L CNN
 F2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" 100 300 50 H I C CNN
 F3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" 0 -250 50 H I C CNN
-F4 "CGA3E1X7R1C105M080AC" 125 200 60 H I C CNN "Part Number"
+F4 "CL10B105KP8NNNC" 125 200 60 H I C CNN "Part Number"
 $FPLIST
  C?
  C_????_*
@@ -682,22 +660,6 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# open-automation_PYQ2898
-#
-DEF open-automation_PYQ2898 U 0 40 Y Y 1 F N
-F0 "U" 200 -250 60 H V C CNN
-F1 "open-automation_PYQ2898" 50 150 60 H V C CNN
-F2 "Package_TO_SOT_THT:TO-5-3" 50 -450 60 H I C CNN
-F3 "https://www.alliedelec.com/mkt/lp/aotb/medical/images/appnote_digipyropyq2898.pdf" 100 -350 60 H I C CNN
-F4 "PYQ2898" 0 -550 60 H I C CNN "Part Number"
-DRAW
-S -150 100 250 -200 0 1 0 f
-X Vcc 1 -250 50 100 R 50 50 1 1 I
-X data 2 350 -50 100 L 50 50 1 1 I
-X Vss 3 -250 -150 100 R 50 50 1 1 I
-ENDDRAW
-ENDDEF
-#
 # open-automation_R_10k
 #
 DEF open-automation_R_10k R 0 0 N Y 1 F N
@@ -705,7 +667,7 @@ F0 "R" 0 0 50 V V C CNN
 F1 "open-automation_R_10k" -75 0 50 V V C CNN
 F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" 80 0 50 V I C CNN
-F4 "RC0603JR-0710KL" 180 100 60 V I C CNN "Part Number"
+F4 "MCT06030C1002FP500" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
@@ -724,7 +686,7 @@ F0 "R" 0 0 50 V V C CNN
 F1 "open-automation_R_1k" -75 0 50 V V C CNN
 F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" 80 0 50 V I C CNN
-F4 "ERJ-3GEYJ102V" 180 100 60 V I C CNN "Part Number"
+F4 "ESR03EZPJ102" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
@@ -743,7 +705,7 @@ F0 "R" 0 0 50 V V C CNN
 F1 "open-automation_R_47.5" -75 0 50 V V C CNN
 F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" 80 0 50 V I C CNN
-F4 "RC0603FR-0747R5L" 180 100 60 V I C CNN "Part Number"
+F4 "ERJ-3EKF47R5V" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
@@ -752,6 +714,19 @@ DRAW
 S -40 -100 40 100 0 1 10 f
 X ~ 1 0 150 50 D 50 50 1 1 P
 X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# open-automation_housing-mounts
+#
+DEF open-automation_housing-mounts U 0 40 Y Y 1 F N
+F0 "U" 150 -100 60 H V C CNN
+F1 "open-automation_housing-mounts" 0 200 60 H V C CNN
+F2 "open-automation:generic-housing-mounts-md" 200 -200 60 H I C CNN
+F3 "" 0 50 60 H I C CNN
+DRAW
+S 250 150 -250 -150 0 1 0 f
+X GND 1 -350 0 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
