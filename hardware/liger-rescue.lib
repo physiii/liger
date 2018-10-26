@@ -635,6 +635,19 @@ X SCL 4 400 100 150 L 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
+# housing-mounts-open-automation
+#
+DEF housing-mounts-open-automation U 0 40 Y Y 1 F N
+F0 "U" 150 -100 60 H V C CNN
+F1 "housing-mounts-open-automation" 0 200 60 H V C CNN
+F2 "open-automation:generic-housing-mounts-md" 200 -200 60 H I C CNN
+F3 "" 0 50 60 H I C CNN
+DRAW
+S 250 150 -250 -150 0 1 0 f
+X GND 1 -350 0 100 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
 # soft-button-4x
 #
 DEF soft-button-4x U 0 40 Y Y 1 F N
