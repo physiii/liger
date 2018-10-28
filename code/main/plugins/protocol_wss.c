@@ -26,14 +26,15 @@
 
 #include <string.h>
 
-#define DUMB_PERIOD_US 5000
+#define WS_PERIOD_US 5000
 
 int data_part_count = 0;
 char wss_data_in[5000];
 char wss_data_out[5000];
 bool wss_data_out_ready = false;
 cJSON *payload = NULL;
-cJSON *switch_payload = NULL;
+cJSON *dimmer_payload = NULL;
+cJSON *LED_payload = NULL;
 
 struct pss__wss {
 	int number;
@@ -86,11 +87,18 @@ add_headers(void *in, size_t len)
 int
 handle_event(char * event_type)
 {
-	if (strcmp(event_type,"switch")==0) {
+	if (strcmp(event_type,"dimmer")==0) {
 		int level = cJSON_GetObjectItem(payload,"level")->valueint;
 		printf("handle_event level: %d\n",level);
-		switch_payload = payload;
+		dimmer_payload = payload;
 		payload = NULL;
+		return 0;
+	}
+
+	if (strcmp(event_type,"load")==0) {
+		char result[500];
+		sprintf(result,"%s",cJSON_GetObjectItem(payload,"result")->valuestring);
+		lwsl_notice("loaded: %s\n", result);
 		return 0;
 	}
 
@@ -100,7 +108,7 @@ handle_event(char * event_type)
 		store_char("token",token);
 		return 1;
 	}
-	
+
 	if (strcmp(event_type,"authentication")==0) {
 		char error[500];
 		sprintf(error,"%s",cJSON_GetObjectItem(payload,"error")->valuestring);
@@ -162,7 +170,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		pss->number = 0;
 		strcpy(wss_data_in,"");
 		if (!vhd->options || !((*vhd->options) & 1))
-			lws_set_timer_usecs(wsi, DUMB_PERIOD_US);
+			lws_set_timer_usecs(wsi, WS_PERIOD_US);
 		break;
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
@@ -175,7 +183,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			lwsl_err("ERROR %d writing to token socket\n", n);
 		} else {
 			wss_data_out_ready = false;
-			//printf("%s\n",wss_data_out);
+			//printf("SENT: %s\n",wss_data_out);
 		}
 		break;
 
@@ -228,7 +236,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		if (!vhd->options || !((*vhd->options) & 1)) {
 			lws_callback_on_writable_all_protocol_vhost(
 				lws_get_vhost(wsi), lws_get_protocol(wsi));
-			lws_set_timer_usecs(wsi, DUMB_PERIOD_US);
+			lws_set_timer_usecs(wsi, WS_PERIOD_US);
 		}
 		break;
 

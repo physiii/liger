@@ -97,18 +97,6 @@ F 3 "" H 8275 3950 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L liger-rescue:LED-GREEN-LTST-C191GKT D3
-U 1 1 59B58167
-P 6375 3650
-F 0 "D3" H 6375 3750 50  0000 C CNN
-F 1 "LED-GREEN-LTST-C191GKT" H 6375 3850 50  0001 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6275 3650 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191GKT/160-1443-1-ND/386828" H 6375 3750 50  0001 C CNN
-F 4 "LTST-C191GKT" H 6475 3850 60  0001 C CNN "Part Number"
-	1    6375 3650
-	0    -1   -1   0   
-$EndComp
-$Comp
 L power:GND #PWR016
 U 1 1 59B58DE3
 P 2975 3925
@@ -346,5 +334,19 @@ F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M08
 F 4 "CL10B105KP8NNNC" H 8825 3900 60  0001 C CNN "Part Number"
 	1    8700 3700
 	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:LED-0603-G D?
+U 1 1 5BBE79A0
+P 6375 3650
+AR Path="/59092AD4/5BBE79A0" Ref="D?"  Part="1" 
+AR Path="/5909D8E3/5BBE79A0" Ref="D3"  Part="1" 
+F 0 "D3" V 6350 3800 50  0000 R CNN
+F 1 "LED-0603-G" V 6175 3950 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6275 3650 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/rohm-semiconductor/SML-D12M8WT86/511-1578-1-ND/1641810" H 6375 3750 50  0001 C CNN
+F 4 "SML-D12M8WT86" H 6475 3850 50  0001 C CNN "Part Number"
+	1    6375 3650
+	0    -1   -1   0   
 $EndComp
 $EndSCHEMATC

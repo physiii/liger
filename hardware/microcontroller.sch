@@ -25,47 +25,14 @@ F 3 "" H 5000 1800 50  0000 C CNN
 	1    5000 1800
 	-1   0    0    1   
 $EndComp
-$Comp
-L liger-rescue:ESP-WROOM-32 U1
-U 1 1 590979AF
-P 5950 2500
-F 0 "U1" H 6500 1400 60  0000 C CNN
-F 1 "ESP-WROOM-32" H 5950 3300 60  0000 C CNN
-F 2 "open-automation:ESP-WROOM-32" H 5600 3100 60  0001 C CNN
-F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5600 3100 60  0001 C CNN
-	1    5950 2500
-	1    0    0    -1  
-$EndComp
 Text Label 4800 1075 0    197  ~ 0
 Microcontroller
-$Comp
-L power:GND #PWR02
-U 1 1 59C84AFB
-P 5950 5425
-F 0 "#PWR02" H 5950 5175 50  0001 C CNN
-F 1 "GND" H 5950 5275 50  0000 C CNN
-F 2 "" H 5950 5425 50  0000 C CNN
-F 3 "" H 5950 5425 50  0000 C CNN
-	1    5950 5425
-	1    0    0    -1  
-$EndComp
-Text Notes 5575 5725 0    60   ~ 0
-I2C ByPass CAPs
 Wire Wire Line
 	4950 3150 5050 3150
 Wire Wire Line
 	4950 3250 5050 3250
 Wire Wire Line
 	6350 3700 6350 3800
-Connection ~ 5950 5375
-Wire Wire Line
-	5950 5425 5950 5375
-Wire Wire Line
-	6150 5375 6150 5325
-Wire Wire Line
-	5750 5375 5950 5375
-Wire Wire Line
-	5750 5325 5750 5375
 Wire Wire Line
 	4250 2950 4350 2950
 Wire Wire Line
@@ -75,13 +42,13 @@ Wire Wire Line
 Wire Wire Line
 	7150 2250 6800 2250
 Wire Wire Line
-	7050 5025 7050 4875
+	6725 5100 6575 5100
 Wire Wire Line
-	6800 4875 6800 5025
+	6575 5350 6725 5350
 Wire Wire Line
-	6800 5325 6800 5475
+	7025 5350 7175 5350
 Wire Wire Line
-	7050 5325 7050 5475
+	7025 5100 7175 5100
 Wire Wire Line
 	6900 2350 6800 2350
 Wire Wire Line
@@ -111,8 +78,6 @@ Wire Wire Line
 Wire Wire Line
 	6800 3150 6900 3150
 Wire Wire Line
-	5050 1950 5025 1950
-Wire Wire Line
 	5000 1850 5050 1850
 Wire Wire Line
 	5000 1800 5000 1850
@@ -127,8 +92,8 @@ F 3 "" H 4850 5425 50  0000 C CNN
 	1    4850 5425
 	1    0    0    -1  
 $EndComp
-Text Notes 4475 5775 0    60   ~ 0
-I2S ByPass CAPs
+Text Notes 4575 5775 0    60   ~ 0
+ByPass CAPs
 Connection ~ 4850 5400
 Wire Wire Line
 	4850 5425 4850 5400
@@ -155,50 +120,22 @@ Wire Notes Line
 	4350 4625 5350 4625
 Wire Notes Line
 	5350 4625 5350 5825
-Wire Wire Line
-	5750 5025 5750 4950
-Wire Wire Line
-	5750 4950 5975 4950
-Wire Wire Line
-	6150 4950 6150 5025
-Wire Wire Line
-	5975 4875 5975 4950
-Connection ~ 5975 4950
-Wire Notes Line
-	5450 5750 6400 5750
-Wire Notes Line
-	5450 5750 5450 4625
-Wire Notes Line
-	5450 4625 6400 4625
-Wire Notes Line
-	6400 4625 6400 5750
-Text Notes 6600 5825 0    60   ~ 0
+Text Notes 7200 5600 2    60   ~ 0
 I2C PULL-UP
 Wire Notes Line
-	7300 5850 6525 5850
+	7500 4850 7500 5625
 Wire Notes Line
-	6525 5850 6525 4625
+	7500 5625 6275 5625
 Wire Notes Line
-	6525 4625 7300 4625
+	6275 5625 6275 4850
 Wire Notes Line
-	7300 4625 7300 5850
-Wire Wire Line
-	5950 5375 6150 5375
+	6275 4850 7500 4850
 Wire Wire Line
 	4850 5400 4675 5400
 Wire Wire Line
 	4875 4950 4675 4950
-Wire Wire Line
-	5975 4950 6150 4950
 Text HLabel 4950 1950 0    60   Input ~ 0
 3V3
-Wire Wire Line
-	5050 2050 5025 2050
-Wire Wire Line
-	5025 2050 5025 1950
-Connection ~ 5025 1950
-Wire Wire Line
-	5025 1950 4950 1950
 Text HLabel 4950 2650 0    60   Input ~ 0
 T_LEFT
 Text HLabel 4950 2750 0    60   Input ~ 0
@@ -239,34 +176,20 @@ Text HLabel 6900 2000 2    60   Input ~ 0
 TXD
 Text HLabel 4875 4875 1    60   Input ~ 0
 3V3
-Text HLabel 5975 4875 1    60   Input ~ 0
+Text HLabel 6575 5350 0    60   Input ~ 0
 3V3
-Text HLabel 6800 4875 1    60   Input ~ 0
+Text HLabel 6575 5100 0    60   Input ~ 0
 3V3
-Text HLabel 7050 4875 1    60   Input ~ 0
-3V3
-Text HLabel 6800 5475 3    60   Output ~ 0
+Text HLabel 7175 5350 2    60   Output ~ 0
 SCL
-Text HLabel 7050 5475 3    60   BiDi ~ 0
+Text HLabel 7175 5100 2    60   BiDi ~ 0
 SDA
-$Comp
-L open-automation:C_1uF C4
-U 1 1 5B1F1AAD
-P 6150 5175
-F 0 "C4" H 6265 5221 50  0000 L CNN
-F 1 "C_1uF" H 6265 5130 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6250 5475 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 6150 4925 50  0001 C CNN
-F 4 "CL10B105KP8NNNC" H 6275 5375 60  0001 C CNN "Part Number"
-	1    6150 5175
-	1    0    0    -1  
-$EndComp
 $Comp
 L open-automation:C_1uF C2
 U 1 1 5B1F1B60
 P 5075 5175
-F 0 "C2" H 5125 5275 50  0000 L CNN
-F 1 "C_1uF" H 5190 5130 50  0000 L CNN
+F 0 "C2" H 5100 5250 50  0000 L CNN
+F 1 "C_1uF" H 5100 5100 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5175 5475 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" H 5075 4925 50  0001 C CNN
 F 4 "CL10B105KP8NNNC" H 5200 5375 60  0001 C CNN "Part Number"
@@ -274,23 +197,11 @@ F 4 "CL10B105KP8NNNC" H 5200 5375 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:C_10uF C3
-U 1 1 5B1F217F
-P 5750 5175
-F 0 "C3" H 5625 5275 50  0000 L CNN
-F 1 "C_10uF" H 5475 5100 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5850 5475 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A106MP8NNNC/1276-1871-1-ND/3889957" H 5750 4925 50  0001 C CNN
-F 4 "CL10A106MP8NNNC" H 5875 5375 60  0001 C CNN "Part Number"
-	1    5750 5175
-	1    0    0    -1  
-$EndComp
-$Comp
 L open-automation:C_10uF C1
 U 1 1 5B1F22B0
 P 4675 5175
 F 0 "C1" H 4550 5250 50  0000 L CNN
-F 1 "C_10uF" H 4400 5075 50  0000 L CNN
+F 1 "C_10uF" H 4400 5100 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 4775 5475 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A106MP8NNNC/1276-1871-1-ND/3889957" H 4675 4925 50  0001 C CNN
 F 4 "CL10A106MP8NNNC" H 4800 5375 60  0001 C CNN "Part Number"
@@ -300,26 +211,26 @@ $EndComp
 $Comp
 L open-automation:R_10k R6
 U 1 1 5B31EE0D
-P 7050 5175
-F 0 "R6" H 7120 5221 50  0000 L CNN
-F 1 "R_10k" H 7120 5130 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6980 5175 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 7130 5175 50  0001 C CNN
-F 4 "MCT06030C1002FP500" V 7230 5275 60  0001 C CNN "Part Number"
-	1    7050 5175
-	1    0    0    -1  
+P 6875 5100
+F 0 "R6" V 6875 5075 50  0000 L CNN
+F 1 "R_10k" V 6975 4975 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6805 5100 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 6955 5100 50  0001 C CNN
+F 4 "MCT06030C1002FP500" V 7055 5200 60  0001 C CNN "Part Number"
+	1    6875 5100
+	0    -1   -1   0   
 $EndComp
 $Comp
 L open-automation:R_10k R2
 U 1 1 5B31EE98
-P 6800 5175
-F 0 "R2" H 6870 5221 50  0000 L CNN
-F 1 "R_10k" H 6870 5130 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6730 5175 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 6880 5175 50  0001 C CNN
-F 4 "MCT06030C1002FP500" V 6980 5275 60  0001 C CNN "Part Number"
-	1    6800 5175
-	1    0    0    -1  
+P 6875 5350
+F 0 "R2" V 6875 5325 50  0000 L CNN
+F 1 "R_10k" V 6775 5225 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6805 5350 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" V 6955 5350 50  0001 C CNN
+F 4 "MCT06030C1002FP500" V 7055 5450 60  0001 C CNN "Part Number"
+	1    6875 5350
+	0    -1   -1   0   
 $EndComp
 $Comp
 L open-automation:R_47.5 R7
@@ -349,4 +260,21 @@ Wire Wire Line
 	4950 2550 5050 2550
 Text HLabel 4950 2550 0    60   Input ~ 0
 ZERO_DETECT
+$Comp
+L liger-rescue:ESP-WROOM-32 U1
+U 1 1 590979AF
+P 5950 2500
+F 0 "U1" H 6500 1400 60  0000 C CNN
+F 1 "ESP-WROOM-32" H 5950 3300 60  0000 C CNN
+F 2 "open-automation:ESP-WROOM-32" H 5600 3100 60  0001 C CNN
+F 3 "http://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf" H 5600 3100 60  0001 C CNN
+	1    5950 2500
+	1    0    0    -1  
+$EndComp
+Text HLabel 4950 2050 0    60   Input ~ 0
+EN
+Wire Wire Line
+	4950 1950 5050 1950
+Wire Wire Line
+	4950 2050 5050 2050
 $EndSCHEMATC

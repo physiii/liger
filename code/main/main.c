@@ -47,6 +47,8 @@ char device_id[100];
 bool token_received = false;
 bool reconnect_with_token = false;
 static struct lws_client_connect_info i;
+char server_address[100] = "dev.pyfi.org";
+bool use_ssl = true;
 
 //needs to go in headers
 
@@ -56,10 +58,12 @@ int set_switch(int);
 
 #include "services/storage.c"
 #include "plugins/protocol_wss.c"
-#include "services/buttons.c"
+#include "services/button.c"
 #include "services/motion.c"
-#include "services/audio.c"
-#include "services/switch.c"
+#include "services/LED.c"
+#include "services/dimmer.c"
+/*#include "services/audio.c
+#include "services/contact-sensor.c"*/
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -222,7 +226,7 @@ connect_client(struct lws_client_connect_info i)
 void app_main(void)
 {
 
-	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
+	//strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
 	static struct lws_context_creation_info info;
 	struct lws_context *context;
 	struct lws_vhost *vh;
@@ -268,15 +272,9 @@ void app_main(void)
 	lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info, &vh);
 
-	/*while (1) {
-		vTaskDelay(1000 / portTICK_RATE_MS);
-		if (got_ip) break;
-	}*/
-
 	memset(&i, 0, sizeof i);
-	i.address = "10.10.10.124";
-	i.port = 5000;
-	i.ssl_connection = 0;
+	i.address = server_address;
+	i.port = 5050;
 	i.host = i.address;
 	i.origin = i.host;
 	i.ietf_version_or_minus_one = -1;
@@ -284,27 +282,72 @@ void app_main(void)
 	i.protocol = "wss-protocol";
 	i.pwsi = &wsi_token;
 	i.path = "/device-relay";
-
+	if (use_ssl) {
+		i.ssl_connection = LCCSCF_USE_SSL;
+		i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
+	}
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
-	switch_main();
+  LED_main();
+	dimmer_main();
 	//motion_main();
 	//audio_main();
+	//contact_main();
+
+	bool send_load_event = true;
+	char load_message[500];
 
 	while (1) {
-		if (buttons_service_message_ready) {
+
+		if (send_load_event) {
+
+			sprintf(load_message,""
+			"{\"event_type\":\"load\","
+			" \"payload\":{\"services\":["
+			"{\"type\":\"button\","
+			"\"state\":{\"dpad\":0}},"
+			"{\"type\":\"motion\","
+			"\"state\":{\"channel_0\":0}},"
+			"{\"type\":\"switch\","
+			"\"state\":{\"level\":0, \"on\":false}},"
+			"{\"type\":\"LED\","
+			"\"state\":{\"rgb\":[0,0,0]},"
+			"\"id\":1}"
+			"]}}");
+			printf("load_mesage %s\n",load_message);
+			strcpy(wss_data_out,load_message);
+			send_load_event = false;
+			wss_data_out_ready = true;
+		}
+
+		if (buttons_service_message_ready && !wss_data_out_ready) {
 			strcpy(wss_data_out,buttons_service_message);
 			buttons_service_message_ready = false;
 			wss_data_out_ready = true;
 		}
+
+		/*if (contact_service_message_ready && !wss_data_out_ready) {
+			strcpy(wss_data_out,contact_service_message);
+			contact_service_message_ready = false;
+			wss_data_out_ready = true;
+		}*/
 
 		if (wsi_connect && got_ip && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;
 			lws_client_connect_via_info(&i);
 			//connect_client(i);
 		}
+
+		if (wsi_connect) {
+    	set_pixel_by_index(0, 0, 0, 0, 1);
+			vTaskDelay(300 / portTICK_RATE_MS);
+    	set_pixel_by_index(0, 0, 0, 255, 1);
+		} else {
+			set_pixel_by_index(0, 0, 255, 0, 1);
+		}
+
 		lws_service(context, 500);
 		taskYIELD();
 		vTaskDelay(100 / portTICK_RATE_MS);

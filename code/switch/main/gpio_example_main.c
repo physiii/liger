@@ -13,7 +13,7 @@
 
 #define TRIAC_IO    2
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<TRIAC_IO))
-#define ZERO_DETECT_IO     13
+#define ZERO_DETECT_IO     35
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<ZERO_DETECT_IO))
 #define ESP_INTR_FLAG_DEFAULT 0
 #define TRIAC_OFF 0

@@ -381,6 +381,22 @@ X D 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# PYQ2898-open-automation
+#
+DEF PYQ2898-open-automation U 0 40 Y Y 1 F N
+F0 "U" 200 -200 60 H V C CNN
+F1 "PYQ2898-open-automation" 0 200 60 H V C CNN
+F2 "open-automation:PYQ2898" 50 -400 60 H I C CNN
+F3 "https://datasheet.octopart.com/PYQ2898-Excelitas-Technology-datasheet-9789873.pdf" 150 -300 60 H I C CNN
+F4 "PYQ2898" 0 300 60 H I C CNN "Part Number"
+DRAW
+S -150 150 250 -150 0 1 0 f
+X Vdd 1 -250 100 100 R 50 50 1 1 I
+X GND 2 -250 -100 100 R 50 50 1 1 I
+X OUT 3 350 0 100 L 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
 # Q_NPN_BEC
 #
 DEF Q_NPN_BEC Q 0 0 Y N 1 F N
@@ -463,6 +479,25 @@ F1 "R_10k" -75 0 50 V V C CNN
 F2 "Resistors_SMD:R_0603" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" 80 0 50 V I C CNN
 F4 "RC0603JR-0710KL" 180 100 60 V I C CNN "Part Number"
+$FPLIST
+ R_*
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 f
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# R_150-open-automation
+#
+DEF R_150-open-automation R 0 0 N Y 1 F N
+F0 "R" 0 0 50 V V C CNN
+F1 "R_150-open-automation" -75 -25 50 V V C CNN
+F2 "Resistors_SMD:R_0603" -70 0 50 V I C CNN
+F3 "https://www.digikey.com/product-detail/en/stackpole-electronics-inc/RNCP0603FTD150R/RNCP0603FTD150RCT-ND/2240427" 80 0 50 V I C CNN
+F4 "RNCP0603FTD150R" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
@@ -597,6 +632,19 @@ X Vin 1 -450 100 150 R 50 50 1 1 I
 X GND 2 -450 0 150 R 50 50 1 1 I
 X SDA 3 400 0 150 L 50 50 1 1 I
 X SCL 4 400 100 150 L 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# housing-mounts-open-automation
+#
+DEF housing-mounts-open-automation U 0 40 Y Y 1 F N
+F0 "U" 150 -100 60 H V C CNN
+F1 "housing-mounts-open-automation" 0 200 60 H V C CNN
+F2 "open-automation:generic-housing-mounts-md" 200 -200 60 H I C CNN
+F3 "" 0 50 60 H I C CNN
+DRAW
+S 250 150 -250 -150 0 1 0 f
+X GND 1 -350 0 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
