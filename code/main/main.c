@@ -61,7 +61,7 @@ int set_switch(int);
 #include "services/button.c"
 #include "services/motion.c"
 #include "services/LED.c"
-#include "services/switch.c"
+#include "services/dimmer.c"
 /*#include "services/audio.c
 #include "services/contact-sensor.c"*/
 
@@ -291,8 +291,8 @@ void app_main(void)
 
 	buttons_main();
   LED_main();
-	switch_main();
-	motion_main();
+	dimmer_main();
+	//motion_main();
 	//audio_main();
 	//contact_main();
 

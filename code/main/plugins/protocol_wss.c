@@ -33,7 +33,7 @@ char wss_data_in[5000];
 char wss_data_out[5000];
 bool wss_data_out_ready = false;
 cJSON *payload = NULL;
-cJSON *switch_payload = NULL;
+cJSON *dimmer_payload = NULL;
 cJSON *LED_payload = NULL;
 
 struct pss__wss {
@@ -87,10 +87,10 @@ add_headers(void *in, size_t len)
 int
 handle_event(char * event_type)
 {
-	if (strcmp(event_type,"switch")==0) {
+	if (strcmp(event_type,"dimmer")==0) {
 		int level = cJSON_GetObjectItem(payload,"level")->valueint;
 		printf("handle_event level: %d\n",level);
-		switch_payload = payload;
+		dimmer_payload = payload;
 		payload = NULL;
 		return 0;
 	}

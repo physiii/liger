@@ -20,27 +20,27 @@ void button_event_handler(int state) {
 
   switch(state) {
     case BUTTON_CENTER:
-      switch_payload = cJSON_CreateObject();
+      dimmer_payload = cJSON_CreateObject();
       cJSON *toggle = cJSON_CreateBool(true);
-      cJSON_AddItemToObject(switch_payload, "toggle", toggle);
+      cJSON_AddItemToObject(dimmer_payload, "toggle", toggle);
       printf("BUTTON_CENTER\n");
       break;
 
     case BUTTON_UP:
-      switch_payload = cJSON_CreateObject();
+      dimmer_payload = cJSON_CreateObject();
       level_json = cJSON_CreateNumber(10);
       printf("BUTTON_UP\n");
-      cJSON_AddItemToObject(switch_payload, "increment", level_json);
+      cJSON_AddItemToObject(dimmer_payload, "increment", level_json);
       break;
 
     case BUTTON_RIGHT:
       break;
 
     case BUTTON_DOWN:
-      switch_payload = cJSON_CreateObject();
+      dimmer_payload = cJSON_CreateObject();
       level_json = cJSON_CreateNumber(10);
       printf("BUTTON_DOWN\n");
-      cJSON_AddItemToObject(switch_payload, "decrement", level_json);
+      cJSON_AddItemToObject(dimmer_payload, "decrement", level_json);
       break;
 
     case BUTTON_LEFT:
@@ -62,7 +62,7 @@ void button_event_handler(int state) {
       break;
 
     default:
-      //switch_payload = NULL;
+      //dimmer_payload = NULL;
       //lwsl_err("bad dpad state");
       break;
   }
@@ -77,7 +77,7 @@ button_service(void *pvParameter)
   while (1) {
 
       int state = get_dpad_state();
-      
+
       if (state){
 
         button_event_handler(state);
@@ -86,12 +86,12 @@ button_service(void *pvParameter)
         "{\"event_type\":\"button/\pressed\","
         " \"payload\":{\"type\":\"dpad\",\"value\":%d}}"
         , state);
-        
+
         printf("%s\n", buttons_service_message);
 
         previous_state = state;
         buttons_service_message_ready = true;
-                
+
         vTaskDelay(250 / portTICK_PERIOD_MS); //debounce
         tp_debounce = false;
       } else vTaskDelay(250 / portTICK_PERIOD_MS);
