@@ -315,7 +315,7 @@ dimmer_service(void *pvParameter)
 
           if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
             int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-            fadeSwitch(0,fade,2000);
+            fade_brightness(0,fade,2000);
             lwsl_notice("[dimmer_service] fade %d\n",fade);
           }
 
