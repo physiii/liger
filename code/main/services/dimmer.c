@@ -1,11 +1,3 @@
-/* UART Echo Example
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
-*/
 #include <stdio.h>
 #include <string.h>
 #include "freertos/FreeRTOS.h"
@@ -49,14 +41,25 @@ double sim_zerocross_delay = 0.0166; //simulated zero cross delay (1/120hz)
 char dimmer_service_message[2000];
 char dimmer_service_message_in[2000];
 
+typedef struct {
+    int type;  // the type of timer's event
+    int timer_group;
+    int timer_idx;
+    uint64_t timer_counter_value;
+} timer_event_t;
+
+xQueueHandle timer_queue;
+
 static void example_tg0_timer_init(int timer_idx,
     bool auto_reload, double timer_interval_sec);
 
 // sets delay from when zerocross is detected and
 // triac is turned off to when the triac is turned
 // on. A longer delay means less power available.
-void set_brightness(int brightness) {
-  printf("set brightness %d %f\n",brightness,triac_delay);
+void set_brightness(int level) {
+  if (level > max_brightness) level = max_brightness;
+  if (level < 0) level = 0;
+  current_brightness = level;
   if (!neutral_present) {
     if (triac_delay<0.0040) {
       zerocross_present = false;
@@ -65,11 +68,9 @@ void set_brightness(int brightness) {
       gpio_set_level(TRIAC_IO, 0);
     }
   }
-  if (brightness > max_brightness) brightness = max_brightness;
-  if (brightness < 0) brightness = 0;
-  brightness = max_brightness - brightness;
-  triac_delay = min_triac_delay + max_triac_delay*((double)brightness/max_brightness);
-  current_brightness = brightness;
+  level = max_brightness - level;
+  triac_delay = min_triac_delay + max_triac_delay*((double)level/max_brightness);
+  printf("set brightness to %d\n",current_brightness);
 }
 
 void dec_brightness(int amount) {
@@ -118,16 +119,6 @@ int toggle_dimmer() {
   return new_level;
 }
 
-
-typedef struct {
-    int type;  // the type of timer's event
-    int timer_group;
-    int timer_idx;
-    uint64_t timer_counter_value;
-} timer_event_t;
-
-xQueueHandle timer_queue;
-
 static void inline print_timer_counter(uint64_t counter_value) {
     printf("Counter: 0x%08x%08x\n", (uint32_t) (counter_value >> 32),
                                     (uint32_t) (counter_value));
@@ -174,7 +165,7 @@ void IRAM_ATTR timer_group0_isr(void *para) {
       we need enable it again, so it is triggered the next time */
     //TIMERG0.hw_timer[timer_idx].config.alarm_en = TIMER_ALARM_EN;
 
-    xQueueSendFromISR(timer_queue, &evt, NULL);
+    //xQueueSendFromISR(timer_queue, &evt, NULL);
 }
 
 static void example_tg0_timer_init(int timer_idx,
@@ -249,17 +240,6 @@ static void timer_example_evt_task(void *arg) {
         }
 
         vTaskDelay(200 / portTICK_PERIOD_MS);
-        // timer_event_t evt;
-        //
-        // xQueueReceive(timer_queue, &evt, portMAX_DELAY);
-        //
-        // if (evt.timer_idx == 0 && evt.timer_group == 0) {
-        //   printf("simulated zerocross\n");
-        // }
-        //
-        // if (evt.timer_idx == 1 && evt.timer_group == 0) {
-        //   //printf("delay %f\n",triac_delay);
-        // }
     }
 }
 
@@ -292,10 +272,62 @@ void gpio_init() {
     gpio_isr_handler_add(ZERO_DETECT_IO, dimmer_isr_handler, (void*) ZERO_DETECT_IO);
 }
 
+static void
+dimmer_service(void *pvParameter)
+{
+    uint32_t io_num;
+    while (1) {
+
+        //fade_brightness(0,255,3000);
+        //incoming messages from other services
+        if (dimmer_payload) {
+
+          if (cJSON_GetObjectItem(dimmer_payload,"level")) {
+            int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
+            set_brightness(level);
+            lwsl_notice("[dimmer_service] level %d\n",level);
+          }
+
+          if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
+            toggle_dimmer();
+            lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
+          }
+
+          if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
+            int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
+            inc_brightness(increment);
+            lwsl_notice("[dimmer_service] increment %d\n",increment);
+          }
+
+          if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
+            int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
+            dec_brightness(decrement);
+            lwsl_notice("[dimmer_service] decrement %d\n",decrement);
+          }
+
+          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
+            int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
+            fade_brightness(0,fade,1000);
+            lwsl_notice("[dimmer_service] level %d\n",fade);
+          }
+
+          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
+            int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
+            fadeSwitch(0,fade,2000);
+            lwsl_notice("[dimmer_service] fade %d\n",fade);
+          }
+
+          dimmer_payload = NULL;
+        }
+
+        vTaskDelay(200 / portTICK_PERIOD_MS);
+    }
+}
 
 void dimmer_main() {
   timer_queue = xQueueCreate(10, sizeof(timer_event_t));
-  xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 10, NULL);
+  //xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 10, NULL);
+  xTaskCreate(&dimmer_service, "dimmer_service_task", 5000, NULL, 5, NULL);
   gpio_init();
   printf("starting dimmer service\n");
   //xTaskCreate(&dimmer_service, "dimmer_service_task", 5000, NULL, 5, NULL);

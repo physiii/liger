@@ -59,7 +59,7 @@ int set_switch(int);
 #include "services/storage.c"
 #include "plugins/protocol_wss.c"
 #include "services/button.c"
-#include "services/motion.c"
+//#include "services/motion.c"
 #include "services/LED.c"
 #include "services/dimmer.c"
 /*#include "services/audio.c
@@ -310,7 +310,7 @@ void app_main(void)
 			"\"state\":{\"dpad\":0}},"
 			"{\"type\":\"motion\","
 			"\"state\":{\"channel_0\":0}},"
-			"{\"type\":\"switch\","
+			"{\"type\":\"dimmer\","
 			"\"state\":{\"level\":0, \"on\":false}},"
 			"{\"type\":\"LED\","
 			"\"state\":{\"rgb\":[0,0,0]},"

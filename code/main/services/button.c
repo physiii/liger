@@ -28,7 +28,7 @@ void button_event_handler(int state) {
 
     case BUTTON_UP:
       dimmer_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(10);
+      level_json = cJSON_CreateNumber(30);
       printf("BUTTON_UP\n");
       cJSON_AddItemToObject(dimmer_payload, "increment", level_json);
       break;
@@ -38,7 +38,7 @@ void button_event_handler(int state) {
 
     case BUTTON_DOWN:
       dimmer_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(10);
+      level_json = cJSON_CreateNumber(30);
       printf("BUTTON_DOWN\n");
       cJSON_AddItemToObject(dimmer_payload, "decrement", level_json);
       break;
