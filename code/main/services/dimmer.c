@@ -69,7 +69,7 @@ void set_brightness(int level) {
     }
   }
 
-  if (level > min_brightness) {
+  if (level) {
     level = max_brightness - level;
     triac_delay = min_triac_delay + max_triac_delay*((double)level/max_brightness);
   } else gpio_set_level(TRIAC_IO, 0);
