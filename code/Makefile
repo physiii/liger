@@ -2,7 +2,7 @@
 # This is a project Makefile. It is assumed the directory this Makefile resides in is a
 # project subdirectory.
 #
-PROJECT_NAME := lws-esp32-test-server-demos
+PROJECT_NAME := liger
 SSL_CERT_PEM:=${PWD}/build/libwebsockets/libwebsockets-test-server
 SSL_KEY_PEM:=${PWD}/build/libwebsockets/libwebsockets-test-server.key
 
@@ -21,9 +21,8 @@ CFLAGS+= -I$(PROJECT_PATH)/components/libwebsockets/plugins \
 	 -I$(IDF_PATH)/components/soc/include \
 	 -I$(IDF_PATH)/components/vfs/include \
 	 -DLWS_IS_FACTORY_APPLICATION=$(LWS_IS_FACTORY_APPLICATION) \
-	 -I$(IDF_PATH)/components/soc/esp32/include/ \
-	 -I$(IDF_PATH)/components/esp32/include
+	 -I$(IDF_PATH)/components/soc/esp32/include \
+	 -I$(IDF_PATH)/components/esp32/include \
+	 -I$(IDF_PATH)/components/lwip/include
 
 export IDF_PATH
-
-
