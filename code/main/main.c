@@ -25,17 +25,6 @@
 #include "nvs.h"
 #include "cJSON.h"
 
-/*
- * Configuration for normal station website
- *
- * We implement the generic lws test server features using
- * generic plugin code from lws.  Normally these plugins
- * are dynamically loaded at runtime, but we use them by
- * statically including them.
- *
- * To customize for your own device, you would remove these
- * and put your own plugin include here
- */
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
@@ -62,6 +51,7 @@ int set_switch(int);
 //#include "services/motion.c"
 #include "services/LED.c"
 #include "services/dimmer.c"
+#include "services/scheduler.c"
 /*#include "services/audio.c
 #include "services/contact-sensor.c"*/
 
@@ -136,9 +126,6 @@ static const struct lws_http_mount mount_station_needs_auth = {
 
 	.basic_auth_login_file	= "lwsdemoba", /* esp32 nvs realm to use */
 };
-
-
-
 
 /*
  * This is called when the user asks to "Identify physical device"
@@ -292,6 +279,7 @@ void app_main(void)
 	buttons_main();
   LED_main();
 	dimmer_main();
+	scheduler_main();
 	//motion_main();
 	//audio_main();
 	//contact_main();
