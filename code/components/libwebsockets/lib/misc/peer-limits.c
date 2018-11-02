@@ -64,6 +64,9 @@ lws_get_or_create_peer(struct lws_vhost *vhost, lws_sockfd_type sockfd)
 	int n, af = AF_INET;
 	struct sockaddr_storage addr;
 
+	if (vhost->options & LWS_SERVER_OPTION_UNIX_SOCK)
+		return NULL;
+
 #ifdef LWS_WITH_IPV6
 	if (LWS_IPV6_ENABLED(vhost)) {
 		af = AF_INET6;
@@ -95,7 +98,7 @@ lws_get_or_create_peer(struct lws_vhost *vhost, lws_sockfd_type sockfd)
 
 	hash = hash % context->pl_hash_elements;
 
-	lws_context_lock(context); /* <====================================== */
+	lws_context_lock(context, "peer search"); /* <======================= */
 
 	lws_start_foreach_ll(struct lws_peer *, peerx,
 			     context->pl_hash_table[hash]) {
@@ -163,7 +166,7 @@ lws_peer_cull_peer_wait_list(struct lws_context *context)
 	if (context->next_cull && t < context->next_cull)
 		return;
 
-	lws_context_lock(context); /* <====================================== */
+	lws_context_lock(context, "peer cull"); /* <========================= */
 
 	context->next_cull = t + 5;
 
@@ -190,7 +193,7 @@ lws_peer_add_wsi(struct lws_context *context, struct lws_peer *peer,
 	if (!peer)
 		return;
 
-	lws_context_lock(context); /* <====================================== */
+	lws_context_lock(context, "peer add"); /* <========================== */
 
 	peer->count_wsi++;
 	wsi->peer = peer;
@@ -225,7 +228,7 @@ lws_peer_track_wsi_close(struct lws_context *context, struct lws_peer *peer)
 	if (!peer)
 		return;
 
-	lws_context_lock(context); /* <====================================== */
+	lws_context_lock(context, "peer wsi close"); /* <==================== */
 
 	assert(peer->count_wsi);
 	peer->count_wsi--;
@@ -273,7 +276,7 @@ lws_peer_track_ah_detach(struct lws_context *context, struct lws_peer *peer)
 	if (!peer)
 		return;
 
-	lws_context_lock(context); /* <====================================== */
+	lws_context_lock(context, "peer ah detach"); /* <==================== */
 	assert(peer->http.count_ah);
 	peer->http.count_ah--;
 	lws_context_unlock(context); /* ====================================> */

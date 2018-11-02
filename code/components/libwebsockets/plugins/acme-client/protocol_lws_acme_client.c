@@ -34,7 +34,7 @@
 #if !defined (LWS_PLUGIN_STATIC)
 #define LWS_DLL
 #define LWS_INTERNAL
-#include "../lib/libwebsockets.h"
+#include <libwebsockets.h>
 #endif
 
 #include <string.h>
@@ -585,7 +585,7 @@ callback_acme_client(struct lws *wsi, enum lws_callback_reasons reason,
 			memcpy(start, pvo->value, n);
 			p += n;
 
-			for (m = 0; m < (int)ARRAY_SIZE(pvo_names); m++)
+			for (m = 0; m < (int)LWS_ARRAY_SIZE(pvo_names); m++)
 				if (!strcmp(pvo->name, pvo_names[m]))
 					vhd->pvop[m] = start;
 
@@ -593,7 +593,7 @@ callback_acme_client(struct lws *wsi, enum lws_callback_reasons reason,
 		}
 
 		n = 0;
-		for (m = 0; m < (int)ARRAY_SIZE(pvo_names); m++)
+		for (m = 0; m < (int)LWS_ARRAY_SIZE(pvo_names); m++)
 			if (!vhd->pvop[m] && m >= LWS_TLS_REQ_ELEMENT_COMMON_NAME) {
 				lwsl_notice("%s: require pvo '%s'\n", __func__,
 						pvo_names[m]);
@@ -623,7 +623,7 @@ callback_acme_client(struct lws *wsi, enum lws_callback_reasons reason,
 		 */
 		lws_snprintf(buf, sizeof(buf) - 1, "%s.upd",
 			     vhd->pvop[LWS_TLS_SET_CERT_PATH]);
-		vhd->fd_updated_cert = open(buf, LWS_O_WRONLY | LWS_O_CREAT |
+		vhd->fd_updated_cert = lws_open(buf, LWS_O_WRONLY | LWS_O_CREAT |
 						 LWS_O_TRUNC, 0600);
 		if (vhd->fd_updated_cert < 0) {
 			lwsl_err("unable to create update cert file %s\n", buf);
@@ -631,7 +631,7 @@ callback_acme_client(struct lws *wsi, enum lws_callback_reasons reason,
 		}
 		lws_snprintf(buf, sizeof(buf) - 1, "%s.upd",
 			     vhd->pvop[LWS_TLS_SET_KEY_PATH]);
-		vhd->fd_updated_key = open(buf, LWS_O_WRONLY | LWS_O_CREAT |
+		vhd->fd_updated_key = lws_open(buf, LWS_O_WRONLY | LWS_O_CREAT |
 						LWS_O_TRUNC, 0600);
 		if (vhd->fd_updated_key < 0) {
 			lwsl_err("unable to create update key file %s\n", buf);
@@ -669,7 +669,7 @@ callback_acme_client(struct lws *wsi, enum lws_callback_reasons reason,
 		if (vhd->vhost != caa->vh)
 			return 1;
 
-		for (n = 0; n < (int)ARRAY_SIZE(vhd->pvop);n++)
+		for (n = 0; n < (int)LWS_ARRAY_SIZE(vhd->pvop);n++)
 			if (caa->element_overrides[n])
 				vhd->pvop_active[n] = caa->element_overrides[n];
 			else
@@ -720,19 +720,19 @@ callback_acme_client(struct lws *wsi, enum lws_callback_reasons reason,
 		switch (ac->state) {
 		case ACME_STATE_DIRECTORY:
 			lejp_construct(&ac->jctx, cb_dir, vhd, jdir_tok,
-				       ARRAY_SIZE(jdir_tok));
+				       LWS_ARRAY_SIZE(jdir_tok));
 			break;
 		case ACME_STATE_NEW_REG:
 			break;
 		case ACME_STATE_NEW_AUTH:
 			lejp_construct(&ac->jctx, cb_authz, ac, jauthz_tok,
-				       ARRAY_SIZE(jauthz_tok));
+					LWS_ARRAY_SIZE(jauthz_tok));
 			break;
 
 		case ACME_STATE_POLLING:
 		case ACME_STATE_ACCEPT_CHALL:
 			lejp_construct(&ac->jctx, cb_chac, ac, jchac_tok,
-				       ARRAY_SIZE(jchac_tok));
+					LWS_ARRAY_SIZE(jchac_tok));
 			break;
 
 		case ACME_STATE_POLLING_CSR:
@@ -1598,7 +1598,7 @@ init_protocol_lws_acme_client(struct lws_context *context,
 	}
 
 	c->protocols = protocols;
-	c->count_protocols = ARRAY_SIZE(protocols);
+	c->count_protocols = LWS_ARRAY_SIZE(protocols);
 	c->extensions = NULL;
 	c->count_extensions = 0;
 

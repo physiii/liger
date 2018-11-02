@@ -20,14 +20,6 @@
  */
 
 #include "core/private.h"
-#include "freertos/timers.h"
-#include <esp_attr.h>
-#include <esp_system.h>
-
-#include "apps/sntp/sntp.h"
-
-#include <lwip/sockets.h>
-#include <esp_task_wdt.h>
 
 #include "misc/romfs.h"
 #include <esp_ota_ops.h>
@@ -412,7 +404,7 @@ end_scan()
 	uint16_t count_ap_records;
 	int n, m;
 
-	count_ap_records = ARRAY_SIZE(ap_records);
+	count_ap_records = LWS_ARRAY_SIZE(ap_records);
 	if (esp_wifi_scan_get_ap_records(&count_ap_records, ap_records)) {
 		lwsl_err("%s: failed\n", __func__);
 		return;
@@ -636,7 +628,7 @@ esp_err_t lws_esp32_event_passthru(void *ctx, system_event_t *event)
 
 			mdns_service_add(lws_esp32.group,
 					 "_lwsgrmem", "_tcp", 443, txta,
-					 ARRAY_SIZE(txta));
+					 LWS_ARRAY_SIZE(txta));
 
 			mem = lws_esp32.first;
 			while (mem) {
@@ -1040,14 +1032,12 @@ lws_esp_ota_get_boot_partition(void)
 	                	}
 			}
 
-			/* destroy our OTA image header */
-			spi_flash_erase_range(ota->address, 4096);
-
 			/*
-			 * with no viable OTA image, we will come back up in
+			 * We send a message to the bootloader to erase the OTA header, we will come back up in
 			 * factory where the user can reload the OTA image
 			 */
 			lwsl_notice("  FACTORY copy successful, rebooting\n");
+			lws_esp32_restart_guided(LWS_MAGIC_REBOOT_TYPE_REQ_FACTORY_ERASE_OTA);
 retry:
 			esp_restart();
 		}

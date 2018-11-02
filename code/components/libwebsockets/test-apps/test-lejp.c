@@ -65,6 +65,8 @@ cb(struct lejp_ctx *ctx, char reason)
 		lwsl_notice("%s (%s)\r\n", buf,
 		       reason_names[(unsigned int)
 			(reason) & (LEJP_FLAG_CB_IS_VALUE - 1)]);
+
+		(void)reason_names; /* NO_LOGS... */
 		return 0;
 	}
 
@@ -92,7 +94,7 @@ main(int argc, char *argv[])
 	lwsl_notice("libwebsockets-test-lejp  (C) 2017 - 2018 andy@warmcat.com\n");
 	lwsl_notice("  usage: cat my.json | libwebsockets-test-lejp\n\n");
 
-	lejp_construct(&ctx, cb, NULL, tok, ARRAY_SIZE(tok));
+	lejp_construct(&ctx, cb, NULL, tok, LWS_ARRAY_SIZE(tok));
 
 	fd = 0;
 

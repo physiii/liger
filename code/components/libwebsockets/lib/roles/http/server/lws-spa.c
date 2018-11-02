@@ -263,13 +263,14 @@ retry_as_first:
 			c =*in;
 			if (c >= 'A' && c <= 'Z')
 				c += 'a' - 'A';
-			for (n = 0; n < (int)ARRAY_SIZE(mp_hdr); n++)
+			for (n = 0; n < (int)LWS_ARRAY_SIZE(mp_hdr); n++)
 				if (c == mp_hdr[n][s->mp]) {
 					m++;
 					hit = n;
 				}
 			in++;
 			if (!m) {
+				s->state = MT_IGNORE1; // Unknown header - ignore it
 				s->mp = 0;
 				continue;
 			}
@@ -572,6 +573,9 @@ lws_spa_get_string(struct lws_spa *ludspa, int n)
 LWS_VISIBLE LWS_EXTERN int
 lws_spa_finalize(struct lws_spa *spa)
 {
+	if (!spa)
+		return 0;
+
 	if (spa->s) {
 		lws_urldecode_s_destroy(spa->s);
 		spa->s = NULL;

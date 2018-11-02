@@ -229,7 +229,7 @@ callback_minimal_server_echo(struct lws *wsi, enum lws_callback_reasons reason,
 /* boilerplate needed if we are built as a dynamic plugin */
 
 static const struct lws_protocols protocols[] = {
-	LWS_PLUGIN_PROTOCOL_MINIMAL_server_echo
+	LWS_PLUGIN_PROTOCOL_MINIMAL_SERVER_ECHO
 };
 
 LWS_EXTERN LWS_VISIBLE int
@@ -243,7 +243,7 @@ init_protocol_minimal_server_echo(struct lws_context *context,
 	}
 
 	c->protocols = protocols;
-	c->count_protocols = ARRAY_SIZE(protocols);
+	c->count_protocols = LWS_ARRAY_SIZE(protocols);
 	c->extensions = NULL;
 	c->count_extensions = 0;
 

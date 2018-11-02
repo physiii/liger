@@ -20,7 +20,7 @@
 
 #define LWS_DLL
 #define LWS_INTERNAL
-#include "../lib/libwebsockets.h"
+#include <libwebsockets.h>
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -90,7 +90,7 @@ update(struct per_vhost_data__lws_server_status *v)
 			p += n;
 			l -= n;
 		}
-		fd = open(fp->filepath, LWS_O_RDONLY);
+		fd = lws_open(fp->filepath, LWS_O_RDONLY);
 		if (fd >= 0) {
 			n = read(fd, contents, sizeof(contents) - 1);
 			if (n >= 0) {
@@ -224,7 +224,7 @@ init_protocol_lws_server_status(struct lws_context *context,
 	}
 
 	c->protocols = protocols;
-	c->count_protocols = ARRAY_SIZE(protocols);
+	c->count_protocols = LWS_ARRAY_SIZE(protocols);
 	c->extensions = NULL;
 	c->count_extensions = 0;
 

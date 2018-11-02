@@ -976,7 +976,7 @@ rops_handle_POLLIN_ws(struct lws_context_per_thread *pt, struct lws *wsi,
 #if defined(LWS_WITH_HTTP2)
 	if (wsi->http2_substream || wsi->upgraded_to_http2) {
 		wsi1 = lws_get_network_wsi(wsi);
-		if (wsi1 && wsi1->trunc_len)
+		if (wsi1 && lws_has_buffered_out(wsi1))
 			/* We cannot deal with any kind of new RX
 			 * because we are dealing with a partial send
 			 * (new RX may trigger new http_action() that
@@ -1280,7 +1280,7 @@ int rops_handle_POLLOUT_ws(struct lws *wsi)
 	 *	       payload ordering, but since they are always complete
 	 *	       fragments control packets can interleave OK.
 	 */
-	if (lwsi_role_client(wsi) && wsi->ws->tx_draining_ext) {
+	if (wsi->ws->tx_draining_ext) {
 		lwsl_ext("SERVICING TX EXT DRAINING\n");
 		if (lws_write(wsi, NULL, 0, LWS_WRITE_CONTINUATION) < 0)
 			return LWS_HP_RET_BAIL_DIE;
@@ -1290,8 +1290,10 @@ int rops_handle_POLLOUT_ws(struct lws *wsi)
 
 	/* Priority 6: extensions
 	 */
-	if (!wsi->ws->extension_data_pending)
+	if (!wsi->ws->extension_data_pending && !wsi->ws->tx_draining_ext) {
+		lwsl_ext("%s: !wsi->ws->extension_data_pending\n", __func__);
 		return LWS_HP_RET_USER_SERVICE;
+	}
 
 	/*
 	 * check in on the active extensions, see if they
@@ -1399,9 +1401,12 @@ rops_periodic_checks_ws(struct lws_context *context, int tsi, time_t now)
 		lws_vhost_lock(vh);
 
 		for (n = 0; n < vh->count_protocols; n++) {
-			struct lws *wsi = vh->same_vh_protocol_list[n];
 
-			while (wsi) {
+			lws_start_foreach_dll_safe(struct lws_dll_lws *, d, d1,
+					  vh->same_vh_protocol_heads[n].next) {
+				struct lws *wsi = lws_container_of(d,
+						struct lws, same_vh_protocol);
+
 				if (lwsi_role_ws(wsi) &&
 				    !wsi->socket_is_permanently_unusable &&
 				    !wsi->ws->send_check_ping &&
@@ -1418,8 +1423,8 @@ rops_periodic_checks_ws(struct lws_context *context, int tsi, time_t now)
 					lws_callback_on_writable(wsi);
 					wsi->ws->time_next_ping_check = now;
 				}
-				wsi = wsi->same_vh_protocol_next;
-			}
+
+			} lws_end_foreach_dll_safe(d, d1);
 		}
 
 		lws_vhost_unlock(vh);
@@ -1462,6 +1467,9 @@ rops_service_flag_pending_ws(struct lws_context *context, int tsi)
 static int
 rops_close_via_role_protocol_ws(struct lws *wsi, enum lws_close_status reason)
 {
+	if (!wsi->ws)
+		return 0;
+
 	if (!wsi->ws->close_in_ping_buffer_len && /* already a reason */
 	     (reason == LWS_CLOSE_STATUS_NOSTATUS ||
 	      reason == LWS_CLOSE_STATUS_NOSTATUS_CONTEXT_DESTROY))
@@ -1490,7 +1498,11 @@ rops_close_via_role_protocol_ws(struct lws *wsi, enum lws_close_status reason)
 static int
 rops_close_role_ws(struct lws_context_per_thread *pt, struct lws *wsi)
 {
+	if (!wsi->ws)
+		return 0;
+
 #if !defined(LWS_WITHOUT_EXTENSIONS)
+
 	if (wsi->ws->rx_draining_ext) {
 		struct lws **w = &pt->ws.rx_draining_ext_list;
 
@@ -1508,7 +1520,7 @@ rops_close_role_ws(struct lws_context_per_thread *pt, struct lws *wsi)
 
 	if (wsi->ws->tx_draining_ext) {
 		struct lws **w = &pt->ws.tx_draining_ext_list;
-		lwsl_notice("%s: CLEARING tx_draining_ext\n", __func__);
+		lwsl_ext("%s: CLEARING tx_draining_ext\n", __func__);
 		wsi->ws->tx_draining_ext = 0;
 		/* remove us from context draining ext list */
 		while (*w) {
@@ -1522,10 +1534,6 @@ rops_close_role_ws(struct lws_context_per_thread *pt, struct lws *wsi)
 	}
 #endif
 	lws_free_set_NULL(wsi->ws->rx_ubuf);
-
-	if (wsi->trunc_alloc)
-		/* not going to be completed... nuke it */
-		lws_free_set_NULL(wsi->trunc_alloc);
 
 	wsi->ws->ping_payload_len = 0;
 	wsi->ws->ping_pending_flag = 0;
@@ -1559,7 +1567,7 @@ rops_write_role_protocol_ws(struct lws *wsi, unsigned char *buf, size_t len,
 		/* remove us from the list */
 		struct lws **w = &pt->ws.tx_draining_ext_list;
 
-		lwsl_notice("%s: CLEARING tx_draining_ext\n", __func__);
+		lwsl_ext("%s: CLEARING tx_draining_ext\n", __func__);
 		wsi->ws->tx_draining_ext = 0;
 		/* remove us from context draining ext list */
 		while (*w) {
@@ -1584,7 +1592,7 @@ rops_write_role_protocol_ws(struct lws *wsi, unsigned char *buf, size_t len,
 		if (!(wpt & LWS_WRITE_NO_FIN) && len)
 			*wp &= ~LWS_WRITE_NO_FIN;
 
-		lwsl_notice("FORCED draining wp to 0x%02X (stashed 0x%02X, incoming 0x%02X)\n", *wp,
+		lwsl_ext("FORCED draining wp to 0x%02X (stashed 0x%02X, incoming 0x%02X)\n", *wp,
 				wsi->ws->tx_draining_stashed_wp, wpt);
 		// assert(0);
 	}
@@ -1640,7 +1648,7 @@ rops_write_role_protocol_ws(struct lws *wsi, unsigned char *buf, size_t len,
 		// lwsl_notice("ext processed %d plaintext into %d compressed (wp 0x%x)\n", m, (int)ebuf.len, *wp);
 
 		if (n && ebuf.len) {
-			lwsl_notice("write drain len %d (wp 0x%x) SETTING tx_draining_ext\n", (int)ebuf.len, *wp);
+			lwsl_ext("write drain len %d (wp 0x%x) SETTING tx_draining_ext\n", (int)ebuf.len, *wp);
 			/* extension requires further draining */
 			wsi->ws->tx_draining_ext = 1;
 			wsi->ws->tx_draining_ext_list = pt->ws.tx_draining_ext_list;
@@ -1986,5 +1994,9 @@ struct lws_role_ops role_ops_ws = {
 					  LWS_CALLBACK_SERVER_WRITEABLE },
 	/* close cb clnt, srv */	{ LWS_CALLBACK_CLIENT_CLOSED,
 					  LWS_CALLBACK_CLOSED },
+	/* protocol_bind cb c, srv */	{ LWS_CALLBACK_WS_CLIENT_BIND_PROTOCOL,
+					  LWS_CALLBACK_WS_SERVER_BIND_PROTOCOL },
+	/* protocol_unbind cb c, srv */	{ LWS_CALLBACK_WS_CLIENT_DROP_PROTOCOL,
+					  LWS_CALLBACK_WS_SERVER_DROP_PROTOCOL },
 	/* file handles */		0
 };

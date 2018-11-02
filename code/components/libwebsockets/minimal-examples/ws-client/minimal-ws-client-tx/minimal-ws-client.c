@@ -119,12 +119,12 @@ static int
 connect_client(struct per_vhost_data__minimal *vhd)
 {
 	vhd->i.context = vhd->context;
-	vhd->i.port = 443;
-	vhd->i.address = "pyfi.org";
+	vhd->i.port = 7681;
+	vhd->i.address = "localhost";
 	vhd->i.path = "/publisher";
 	vhd->i.host = vhd->i.address;
 	vhd->i.origin = vhd->i.address;
-	vhd->i.ssl_connection = 1;
+	vhd->i.ssl_connection = 0;
 
 	vhd->i.protocol = "lws-minimal-broker";
 	vhd->i.pwsi = &vhd->client_wsi;

@@ -142,9 +142,13 @@ lws_context_init_ssl_library(const struct lws_context_creation_info *info)
 
 	lwsl_info("Doing SSL library init\n");
 
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 	SSL_library_init();
 	OpenSSL_add_all_algorithms();
 	SSL_load_error_strings();
+#else
+	OPENSSL_init_ssl(OPENSSL_INIT_LOAD_SSL_STRINGS, NULL);
+#endif
 
 	openssl_websocket_private_data_index =
 		SSL_get_ex_new_index(0, "lws", NULL, NULL, NULL);
@@ -206,13 +210,13 @@ lws_ssl_capable_read(struct lws *wsi, unsigned char *buf, int len)
 	errno = 0;
 	n = SSL_read(wsi->tls.ssl, buf, len);
 #if defined(LWS_WITH_ESP32)
-	if (!n && errno == ENOTCONN) {
+	if (!n && errno == LWS_ENOTCONN) {
 		lwsl_debug("%p: SSL_read ENOTCONN\n", wsi);
 		return LWS_SSL_CAPABLE_ERROR;
 	}
 #endif
 #if defined(LWS_WITH_STATS)
-	if (!wsi->seen_rx) {
+	if (!wsi->seen_rx && wsi->accept_start_us) {
                 lws_stats_atomic_bump(wsi->context, pt, LWSSTATS_MS_SSL_RX_DELAY,
 				time_in_microseconds() - wsi->accept_start_us);
                 lws_stats_atomic_bump(wsi->context, pt, LWSSTATS_C_SSL_CONNS_HAD_RX, 1);
@@ -222,19 +226,49 @@ lws_ssl_capable_read(struct lws *wsi, unsigned char *buf, int len)
 
 
 	lwsl_debug("%p: SSL_read says %d\n", wsi, n);
-	/* manpage: returning 0 means connection shut down */
-	if (!n || (n == -1 && errno == ENOTCONN)) {
-		wsi->socket_is_permanently_unusable = 1;
-
-		return LWS_SSL_CAPABLE_ERROR;
-	}
-
-	if (n < 0) {
+	/* manpage: returning 0 means connection shut down
+	 *
+	 * 2018-09-10: https://github.com/openssl/openssl/issues/1903
+	 *
+	 * So, in summary, if you get a 0 or -1 return from SSL_read() /
+	 * SSL_write(), you should call SSL_get_error():
+	 *
+	 *  - If you get back SSL_ERROR_RETURN_ZERO then you know the connection
+	 *    has been cleanly shutdown by the peer. To fully close the
+	 *    connection you may choose to call SSL_shutdown() to send a
+	 *    close_notify back.
+	 *
+	 *  - If you get back SSL_ERROR_SSL then some kind of internal or
+	 *    protocol error has occurred. More details will be on the SSL error
+	 *    queue. You can also call SSL_get_shutdown(). If this indicates a
+	 *    state of SSL_RECEIVED_SHUTDOWN then you know a fatal alert has
+	 *    been received from the peer (if it had been a close_notify then
+	 *    SSL_get_error() would have returned SSL_ERROR_RETURN_ZERO).
+	 *    SSL_ERROR_SSL is considered fatal - you should not call
+	 *    SSL_shutdown() in this case.
+	 *
+	 *  - If you get back SSL_ERROR_SYSCALL then some kind of fatal (i.e.
+	 *    non-retryable) error has occurred in a system call.
+	 */
+	if (n <= 0) {
 		m = lws_ssl_get_error(wsi, n);
-		lwsl_debug("%p: ssl err %d errno %d\n", wsi, m, errno);
-		if (m == SSL_ERROR_ZERO_RETURN ||
-		    m == SSL_ERROR_SYSCALL)
+		lwsl_notice("%p: ssl err %d errno %d\n", wsi, m, errno);
+		if (m == SSL_ERROR_ZERO_RETURN) /* cleanly shut down */
 			return LWS_SSL_CAPABLE_ERROR;
+
+		/* hm not retryable.. could be 0 size pkt or error  */
+
+		if (m == SSL_ERROR_SSL || m == SSL_ERROR_SYSCALL ||
+		    errno == LWS_ENOTCONN) {
+
+			/* unclean, eg closed conn */
+
+			wsi->socket_is_permanently_unusable = 1;
+
+			return LWS_SSL_CAPABLE_ERROR;
+		}
+
+		/* retryable? */
 
 		if (SSL_want_read(wsi->tls.ssl)) {
 			lwsl_debug("%s: WANT_READ\n", __func__);
@@ -246,9 +280,8 @@ lws_ssl_capable_read(struct lws *wsi, unsigned char *buf, int len)
 			lwsl_debug("%p: LWS_SSL_CAPABLE_MORE_SERVICE\n", wsi);
 			return LWS_SSL_CAPABLE_MORE_SERVICE;
 		}
-		wsi->socket_is_permanently_unusable = 1;
 
-		return LWS_SSL_CAPABLE_ERROR;
+		/* keep on trucking it seems */
 	}
 
 	lws_stats_atomic_bump(context, pt, LWSSTATS_B_READ, n);
@@ -327,7 +360,7 @@ lws_ssl_capable_write(struct lws *wsi, unsigned char *buf, int len)
 		if (m == SSL_ERROR_WANT_WRITE || SSL_want_write(wsi->tls.ssl)) {
 			lws_set_blocking_send(wsi);
 
-			lwsl_notice("%s: want write\n", __func__);
+			lwsl_debug("%s: want write\n", __func__);
 
 			return LWS_SSL_CAPABLE_MORE_SERVICE;
 		}
@@ -554,6 +587,11 @@ lws_tls_openssl_cert_info(X509 *x509, enum lws_tls_cert_info type,
 
 	if (!x509)
 		return -1;
+
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L && !defined(X509_get_notBefore)
+#define X509_get_notBefore(x)	X509_getm_notBefore(x)
+#define X509_get_notAfter(x)	X509_getm_notAfter(x)
+#endif
 
 	switch (type) {
 	case LWS_TLS_CERT_INFO_VALIDITY_FROM:

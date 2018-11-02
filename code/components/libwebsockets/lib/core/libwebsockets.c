@@ -28,7 +28,7 @@
 #ifdef LWS_WITH_IPV6
 #if defined(WIN32) || defined(_WIN32)
 #include <wincrypt.h>
-#include <Iphlpapi.h>
+#include <iphlpapi.h>
 #else
 #include <net/if.h>
 #endif
@@ -53,6 +53,7 @@ static const char * const log_level_names[] = {
 	"CLIENT",
 	"LATENCY",
 	"USER",
+	"THREAD",
 	"?",
 	"?"
 };
@@ -88,9 +89,37 @@ signed char char_to_hex(const char c)
 	return -1;
 }
 
+int lws_open(const char *__file, int __oflag, ...)
+{
+	va_list ap;
+	int n;
+
+	va_start(ap, __oflag);
+	if (((__oflag & O_CREAT) == O_CREAT)
+#if defined(O_TMPFILE)
+		|| ((__oflag & O_TMPFILE) == O_TMPFILE)
+#endif
+	)
+		/* last arg is really a mode_t.  But windows... */
+		n = open(__file, __oflag, va_arg(ap, uint32_t));
+	else
+		n = open(__file, __oflag);
+	va_end(ap);
+
+	if (n != -1 && lws_plat_apply_FD_CLOEXEC(n)) {
+		close(n);
+
+		return -1;
+	}
+
+	return n;
+}
+
 void
 lws_vhost_bind_wsi(struct lws_vhost *vh, struct lws *wsi)
 {
+	if (wsi->vhost == vh)
+		return;
 	wsi->vhost = vh;
 	vh->count_bound_wsi++;
 	lwsl_info("%s: vh %s: count_bound_wsi %d\n",
@@ -101,25 +130,30 @@ lws_vhost_bind_wsi(struct lws_vhost *vh, struct lws *wsi)
 void
 lws_vhost_unbind_wsi(struct lws *wsi)
 {
-	if (wsi->vhost) {
-		assert(wsi->vhost->count_bound_wsi > 0);
-		wsi->vhost->count_bound_wsi--;
-		lwsl_info("%s: vh %s: count_bound_wsi %d\n", __func__,
-			  wsi->vhost->name, wsi->vhost->count_bound_wsi);
+	if (!wsi->vhost)
+		return;
 
-		if (!wsi->vhost->count_bound_wsi &&
-		    wsi->vhost->being_destroyed) {
-			/*
-			 * We have closed all wsi that were bound to this vhost
-			 * by any pt: nothing can be servicing any wsi belonging
-			 * to it any more.
-			 *
-			 * Finalize the vh destruction
-			 */
-			lws_vhost_destroy2(wsi->vhost);
-		}
-		wsi->vhost = NULL;
+	lws_context_lock(wsi->context, __func__); /* ---------- context { */
+
+	assert(wsi->vhost->count_bound_wsi > 0);
+	wsi->vhost->count_bound_wsi--;
+	lwsl_info("%s: vh %s: count_bound_wsi %d\n", __func__,
+		  wsi->vhost->name, wsi->vhost->count_bound_wsi);
+
+	if (!wsi->vhost->count_bound_wsi &&
+	    wsi->vhost->being_destroyed) {
+		/*
+		 * We have closed all wsi that were bound to this vhost
+		 * by any pt: nothing can be servicing any wsi belonging
+		 * to it any more.
+		 *
+		 * Finalize the vh destruction
+		 */
+		__lws_vhost_destroy2(wsi->vhost);
 	}
+	wsi->vhost = NULL;
+
+	lws_context_unlock(wsi->context); /* } context ---------- */
 }
 
 void
@@ -137,7 +171,7 @@ __lws_free_wsi(struct lws *wsi)
 		lws_free(wsi->user_space);
 
 	lws_buflist_destroy_all_segments(&wsi->buflist);
-	lws_free_set_NULL(wsi->trunc_alloc);
+	lws_buflist_destroy_all_segments(&wsi->buflist_out);
 	lws_free_set_NULL(wsi->udp);
 
 	if (wsi->vhost && wsi->vhost->lserv_wsi == wsi)
@@ -341,6 +375,15 @@ __lws_set_timer_usecs(struct lws *wsi, lws_usec_t usecs)
 //	lws_dll_dump(&pt->dll_head_hrtimer, "after set_timer_usec");
 }
 
+LWS_VISIBLE lws_usec_t
+lws_now_usecs(void)
+{
+	struct timeval now;
+
+	gettimeofday(&now, NULL);
+	return (now.tv_sec * 1000000ll) + now.tv_usec;
+}
+
 LWS_VISIBLE void
 lws_set_timer_usecs(struct lws *wsi, lws_usec_t usecs)
 {
@@ -403,7 +446,7 @@ __lws_set_timeout(struct lws *wsi, enum pending_timeout reason, int secs)
 
 	time(&now);
 
-	lwsl_debug("%s: %p: %d secs\n", __func__, wsi, secs);
+	lwsl_debug("%s: %p: %d secs (reason %d)\n", __func__, wsi, secs, reason);
 	wsi->pending_timeout_limit = secs;
 	wsi->pending_timeout_set = now;
 	wsi->pending_timeout = reason;
@@ -504,15 +547,16 @@ lws_remove_child_from_any_parent(struct lws *wsi)
 }
 
 int
-lws_bind_protocol(struct lws *wsi, const struct lws_protocols *p)
+lws_bind_protocol(struct lws *wsi, const struct lws_protocols *p, const char *reason)
 {
 //	if (wsi->protocol == p)
 //		return 0;
 	const struct lws_protocols *vp = wsi->vhost->protocols, *vpo;
 
 	if (wsi->protocol && wsi->protocol_bind_balance) {
-		wsi->protocol->callback(wsi, LWS_CALLBACK_HTTP_DROP_PROTOCOL,
-					wsi->user_space, NULL, 0);
+		wsi->protocol->callback(wsi,
+		       wsi->role_ops->protocol_unbind_cb[!!lwsi_role_server(wsi)],
+					wsi->user_space, (void *)reason, 0);
 		wsi->protocol_bind_balance = 0;
 	}
 	if (!wsi->user_space_externally_allocated)
@@ -548,7 +592,8 @@ lws_bind_protocol(struct lws *wsi, const struct lws_protocols *p)
 				 __func__, p, wsi->vhost->name);
 	}
 
-	if (wsi->protocol->callback(wsi, LWS_CALLBACK_HTTP_BIND_PROTOCOL,
+	if (wsi->protocol->callback(wsi, wsi->role_ops->protocol_bind_cb[
+				    !!lwsi_role_server(wsi)],
 				    wsi->user_space, NULL, 0))
 		return 1;
 
@@ -688,14 +733,24 @@ __lws_close_free_wsi(struct lws *wsi, enum lws_close_status reason, const char *
 		goto just_kill_connection;
 
 	case LRS_FLUSHING_BEFORE_CLOSE:
-		if (wsi->trunc_len) {
+		if (lws_has_buffered_out(wsi)
+#if defined(LWS_WITH_HTTP_STREAM_COMPRESSION)
+		    || wsi->http.comp_ctx.buflist_comp ||
+		    wsi->http.comp_ctx.may_have_more
+#endif
+		 ) {
 			lws_callback_on_writable(wsi);
 			return;
 		}
 		lwsl_info("%p: end LRS_FLUSHING_BEFORE_CLOSE\n", wsi);
 		goto just_kill_connection;
 	default:
-		if (wsi->trunc_len) {
+		if (lws_has_buffered_out(wsi)
+#if defined(LWS_WITH_HTTP_STREAM_COMPRESSION)
+				|| wsi->http.comp_ctx.buflist_comp ||
+		    wsi->http.comp_ctx.may_have_more
+#endif
+		) {
 			lwsl_info("%p: LRS_FLUSHING_BEFORE_CLOSE\n", wsi);
 			lwsi_set_state(wsi, LRS_FLUSHING_BEFORE_CLOSE);
 			__lws_set_timeout(wsi,
@@ -709,15 +764,13 @@ __lws_close_free_wsi(struct lws *wsi, enum lws_close_status reason, const char *
 	    lwsi_state(wsi) == LRS_H1C_ISSUE_HANDSHAKE)
 		goto just_kill_connection;
 
-	if (!wsi->told_user_closed && lwsi_role_http(wsi) &&
-	    lwsi_role_server(wsi)) {
-		if (wsi->user_space && wsi->protocol &&
-		    wsi->protocol_bind_balance) {
-			wsi->protocol->callback(wsi,
-						LWS_CALLBACK_HTTP_DROP_PROTOCOL,
-					       wsi->user_space, NULL, 0);
-			wsi->protocol_bind_balance = 0;
-		}
+	if (!wsi->told_user_closed && wsi->user_space && wsi->protocol &&
+	    wsi->protocol_bind_balance) {
+		wsi->protocol->callback(wsi,
+				wsi->role_ops->protocol_unbind_cb[
+				       !!lwsi_role_server(wsi)],
+				       wsi->user_space, (void *)__func__, 0);
+		wsi->protocol_bind_balance = 0;
 	}
 
 	/*
@@ -748,8 +801,10 @@ just_kill_connection:
 	    wsi->protocol_bind_balance) {
 		lwsl_debug("%s: %p: DROP_PROTOCOL %s\n", __func__, wsi,
 		       wsi->protocol->name);
-		wsi->protocol->callback(wsi, LWS_CALLBACK_HTTP_DROP_PROTOCOL,
-				        wsi->user_space, NULL, 0);
+		wsi->protocol->callback(wsi,
+				wsi->role_ops->protocol_unbind_cb[
+				       !!lwsi_role_server(wsi)],
+				       wsi->user_space, (void *)__func__, 0);
 		wsi->protocol_bind_balance = 0;
 	}
 
@@ -822,12 +877,16 @@ just_kill_connection:
 	lwsl_debug("%s: real just_kill_connection: %p (sockfd %d)\n", __func__,
 		   wsi, wsi->desc.sockfd);
 	
-#ifdef LWS_WITH_HTTP_PROXY
+#ifdef LWS_WITH_HUBBUB
 	if (wsi->http.rw) {
 		lws_rewrite_destroy(wsi->http.rw);
 		wsi->http.rw = NULL;
 	}
 #endif
+
+	if (wsi->http.pending_return_headers)
+		lws_free_set_NULL(wsi->http.pending_return_headers);
+
 	/*
 	 * we won't be servicing or receiving anything further from this guy
 	 * delete socket from the internal poll list if still present
@@ -855,7 +914,9 @@ just_kill_connection:
 
 	/* tell the user it's all over for this guy */
 
-	if (lwsi_state_est_PRE_CLOSE(wsi) && !wsi->told_user_closed &&
+	if ((lwsi_state_est_PRE_CLOSE(wsi) ||
+	     lwsi_state_PRE_CLOSE(wsi) == LRS_WAITING_SERVER_REPLY) &&
+	    !wsi->told_user_closed &&
 	    wsi->role_ops->close_cb[lwsi_role_server(wsi)]) {
 		const struct lws_protocols *pro = wsi->protocol;
 
@@ -1495,7 +1556,7 @@ lws_vfs_select_fops(const struct lws_plat_file_ops *fops, const char *vfs_path,
 		pf = fops->next;
 		while (pf) {
 			n = 0;
-			while (n < (int)ARRAY_SIZE(pf->fi) && pf->fi[n].sig) {
+			while (n < (int)LWS_ARRAY_SIZE(pf->fi) && pf->fi[n].sig) {
 				if (p >= vfs_path + pf->fi[n].len)
 					if (!strncmp(p - (pf->fi[n].len - 1),
 						    pf->fi[n].sig,
@@ -1977,25 +2038,26 @@ static const char * const colours[] = {
 	"[32;1m", /* LLL_INFO */
 	"[34;1m", /* LLL_DEBUG */
 	"[33;1m", /* LLL_PARSER */
-	"[33;1m", /* LLL_HEADER */
-	"[33;1m", /* LLL_EXT */
-	"[33;1m", /* LLL_CLIENT */
+	"[33m", /* LLL_HEADER */
+	"[33m", /* LLL_EXT */
+	"[33m", /* LLL_CLIENT */
 	"[33;1m", /* LLL_LATENCY */
 	"[30;1m", /* LLL_USER */
+	"[31m", /* LLL_THREAD */
 };
 
 LWS_VISIBLE void lwsl_emit_stderr(int level, const char *line)
 {
 	char buf[50];
 	static char tty = 3;
-	int n, m = ARRAY_SIZE(colours) - 1;
+	int n, m = LWS_ARRAY_SIZE(colours) - 1;
 
 	if (!tty)
 		tty = isatty(2) | 2;
 	lwsl_timestamp(level, buf, sizeof(buf));
 
 	if (tty == 3) {
-		n = 1 << (ARRAY_SIZE(colours) - 1);
+		n = 1 << (LWS_ARRAY_SIZE(colours) - 1);
 		while (n) {
 			if (level & n)
 				break;
@@ -2019,8 +2081,14 @@ LWS_VISIBLE void _lws_logv(int filter, const char *format, va_list vl)
 	n = vsnprintf(buf, sizeof(buf) - 1, format, vl);
 	(void)n;
 	/* vnsprintf returns what it would have written, even if truncated */
-	if (n > (int)sizeof(buf) - 1)
-		n = sizeof(buf) - 1;
+	if (n > (int)sizeof(buf) - 1) {
+		n = sizeof(buf) - 5;
+		buf[n++] = '.';
+		buf[n++] = '.';
+		buf[n++] = '.';
+		buf[n++] = '\n';
+		buf[n] = '\0';
+	}
 	if (n > 0)
 		buf[n] = '\0';
 
@@ -2129,12 +2197,14 @@ lws_get_ssl(struct lws *wsi)
 LWS_VISIBLE int
 lws_partial_buffered(struct lws *wsi)
 {
-	return !!wsi->trunc_len;
+	return lws_has_buffered_out(wsi);
 }
 
 LWS_VISIBLE lws_fileofs_t
 lws_get_peer_write_allowance(struct lws *wsi)
 {
+	if (!wsi->role_ops->tx_credit)
+		return -1;
 	return wsi->role_ops->tx_credit(wsi);
 }
 
@@ -2339,7 +2409,7 @@ lws_parse_uri(char *p, const char **prot, const char **ads, int *port,
 	      const char **path)
 {
 	const char *end;
-	static const char *slash = "/";
+	char unix_skt = 0;
 
 	/* cut up the location into address, port and path */
 	*prot = p;
@@ -2353,32 +2423,32 @@ lws_parse_uri(char *p, const char **prot, const char **ads, int *port,
 		*p = '\0';
 		p += 3;
 	}
+	if (*p == '+') /* unix skt */
+		unix_skt = 1;
+
 	*ads = p;
 	if (!strcmp(*prot, "http") || !strcmp(*prot, "ws"))
 		*port = 80;
 	else if (!strcmp(*prot, "https") || !strcmp(*prot, "wss"))
 		*port = 443;
 
-       if (*p == '[')
-       {
-               ++(*ads);
-               while (*p && *p != ']')
-                       p++;
-               if (*p)
-                       *p++ = '\0';
-       }
-       else
-       {
-               while (*p && *p != ':' && *p != '/')
-                       p++;
-       }
+	if (*p == '[') {
+		++(*ads);
+		while (*p && *p != ']')
+			p++;
+		if (*p)
+			*p++ = '\0';
+	} else
+		while (*p && *p != ':' && (unix_skt || *p != '/'))
+			p++;
+
 	if (*p == ':') {
 		*p++ = '\0';
 		*port = atoi(p);
 		while (*p && *p != '/')
 			p++;
 	}
-	*path = slash;
+	*path = "/";
 	if (*p) {
 		*p++ = '\0';
 		if (*p)
@@ -2453,7 +2523,7 @@ lws_socket_bind(struct lws_vhost *vhost, lws_sockfd_type sockfd, int port,
 	struct sockaddr_storage sin;
 	struct sockaddr *v;
 
-#ifdef LWS_WITH_UNIX_SOCK
+#if defined(LWS_WITH_UNIX_SOCK)
 	if (LWS_UNIX_SOCK_ENABLED(vhost)) {
 		v = (struct sockaddr *)&serv_unix;
 		n = sizeof(struct sockaddr_un);
@@ -2469,6 +2539,8 @@ lws_socket_bind(struct lws_vhost *vhost, lws_sockfd_type sockfd, int port,
 		strcpy(serv_unix.sun_path, iface);
 		if (serv_unix.sun_path[0] == '@')
 			serv_unix.sun_path[0] = '\0';
+		else
+			unlink(serv_unix.sun_path);
 
 	} else
 #endif
@@ -2531,7 +2603,7 @@ lws_socket_bind(struct lws_vhost *vhost, lws_sockfd_type sockfd, int port,
 #ifdef LWS_WITH_UNIX_SOCK
 	if (n < 0 && LWS_UNIX_SOCK_ENABLED(vhost)) {
 		lwsl_err("ERROR on binding fd %d to \"%s\" (%d %d)\n",
-				sockfd, iface, n, LWS_ERRNO);
+			 sockfd, iface, n, LWS_ERRNO);
 		return -1;
 	} else
 #endif
@@ -2540,6 +2612,14 @@ lws_socket_bind(struct lws_vhost *vhost, lws_sockfd_type sockfd, int port,
 				sockfd, port, n, LWS_ERRNO);
 		return -1;
 	}
+
+#if defined(LWS_WITH_UNIX_SOCK)
+	if (LWS_UNIX_SOCK_ENABLED(vhost) && vhost->context->uid)
+		if (chown(serv_unix.sun_path, vhost->context->uid,
+			    vhost->context->gid))
+			lwsl_notice("%s: chown for unix skt %s failed\n",
+				    __func__, serv_unix.sun_path);
+#endif
 
 #ifndef LWS_PLAT_OPTEE
 	if (getsockname(sockfd, (struct sockaddr *)&sin, &len) == -1)
@@ -2702,6 +2782,27 @@ lws_json_purify(char *escaped, const char *string, int len)
 	}
 
 	while (*p && len-- > 6) {
+		if (*p == '\t') {
+			p++;
+			*q++ = '\\';
+			*q++ = 't';
+			continue;
+		}
+
+		if (*p == '\n') {
+			p++;
+			*q++ = '\\';
+			*q++ = 'n';
+			continue;
+		}
+
+		if (*p == '\r') {
+			p++;
+			*q++ = '\\';
+			*q++ = 'r';
+			continue;
+		}
+
 		if (*p == '\"' || *p == '\\' || *p < 0x20) {
 			*q++ = '\\';
 			*q++ = 'u';
@@ -2838,6 +2939,13 @@ lws_finalize_startup(struct lws_context *context)
 	return 0;
 }
 
+LWS_VISIBLE LWS_EXTERN void
+lws_get_effective_uid_gid(struct lws_context *context, int *uid, int *gid)
+{
+	*uid = context->uid;
+	*gid = context->gid;
+}
+
 int
 lws_snprintf(char *str, size_t size, const char *format, ...)
 {
@@ -2866,6 +2974,65 @@ lws_strncpy(char *dest, const char *src, size_t size)
 	return dest;
 }
 
+#if LWS_MAX_SMP > 1
+
+void
+lws_mutex_refcount_init(struct lws_mutex_refcount *mr)
+{
+	pthread_mutex_init(&mr->lock, NULL);
+	mr->last_lock_reason = NULL;
+	mr->lock_depth = 0;
+	mr->metadata = 0;
+	mr->lock_owner = 0;
+}
+
+void
+lws_mutex_refcount_destroy(struct lws_mutex_refcount *mr)
+{
+	pthread_mutex_destroy(&mr->lock);
+}
+
+void
+lws_mutex_refcount_lock(struct lws_mutex_refcount *mr, const char *reason)
+{
+	/* if true, this sequence is atomic because our thread has the lock
+	 *
+	 *  - if true, only guy who can race to make it untrue is our thread,
+	 *    and we are here.
+	 *
+	 *  - if false, only guy who could race to make it true is our thread,
+	 *    and we are here
+	 *
+	 *  - it can be false and change to a different tid that is also false
+	 */
+	if (mr->lock_owner == pthread_self()) {
+		/* atomic because we only change it if we own the lock */
+		mr->lock_depth++;
+		return;
+	}
+
+	pthread_mutex_lock(&mr->lock);
+	/* atomic because only we can have the lock */
+	mr->last_lock_reason = reason;
+	mr->lock_owner = pthread_self();
+	mr->lock_depth = 1;
+	//lwsl_notice("tid %d: lock %s\n", mr->tid, reason);
+}
+
+void
+lws_mutex_refcount_unlock(struct lws_mutex_refcount *mr)
+{
+	if (--mr->lock_depth)
+		/* atomic because only thread that has the lock can unlock */
+		return;
+
+	mr->last_lock_reason = "free";
+	mr->lock_owner = 0;
+	//lwsl_notice("tid %d: unlock %s\n", mr->tid, mr->last_lock_reason);
+	pthread_mutex_unlock(&mr->lock);
+}
+
+#endif /* SMP */
 
 LWS_VISIBLE LWS_EXTERN int
 lws_is_cgi(struct lws *wsi) {
@@ -2887,6 +3054,21 @@ lws_pvo_search(const struct lws_protocol_vhost_options *pvo, const char *name)
 	}
 
 	return pvo;
+}
+
+int
+lws_pvo_get_str(void *in, const char *name, const char **result)
+{
+	const struct lws_protocol_vhost_options *pv =
+		lws_pvo_search((const struct lws_protocol_vhost_options *)in,
+				name);
+
+	if (!pv)
+		return 1;
+
+	*result = (const char *)pv->value;
+
+	return 0;
 }
 
 void
@@ -3346,7 +3528,7 @@ lws_stats_log_dump(struct lws_context *context)
 		wl = pt->http.ah_wait_list;
 		while (wl) {
 			m++;
-			wl = wl->ah_wait_list;
+			wl = wl->http.ah_wait_list;
 		}
 
 		lwsl_notice("  AH wait list count / actual:      %d / %d\n",
@@ -3383,7 +3565,8 @@ lws_stats_log_dump(struct lws_context *context)
 					strcpy(buf, "unknown");
 #if defined(LWS_ROLE_H1) || defined(LWS_ROLE_H2)
 				lwsl_notice("  peer %s: count wsi: %d, count ah: %d\n",
-					    buf, df->count_wsi, df->count_ah);
+					    buf, df->count_wsi,
+					    df->http.count_ah);
 #else
 				lwsl_notice("  peer %s: count wsi: %d\n",
 					    buf, df->count_wsi);

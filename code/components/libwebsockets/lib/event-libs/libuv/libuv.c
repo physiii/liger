@@ -317,6 +317,7 @@ lws_libuv_closewsi_m(uv_handle_t* handle)
 	lws_sockfd_type sockfd = (lws_sockfd_type)(lws_intptr_t)handle->data;
 	lwsl_debug("%s: sockfd %d\n", __func__, sockfd);
 	compatible_close(sockfd);
+	lws_free(handle);
 }
 
 int
@@ -441,6 +442,8 @@ lws_plat_plugins_destroy(struct lws_context *context)
 	int pofs = 0;
 	void *v;
 	int m;
+
+//	return 0;
 
 #if  defined(__MINGW32__) || !defined(WIN32)
 	pofs = 3;
@@ -593,12 +596,15 @@ elops_check_client_connect_ok_uv(struct lws *wsi)
 static void
 elops_close_handle_manually_uv(struct lws *wsi)
 {
-	uv_handle_t *h = (void *)&wsi->w_read.uv.watcher;
+	struct lws_io_watcher *h = (void *)&wsi->w_read.uv.watcher, *nh;
+
+	nh = lws_malloc(sizeof(*h), __func__);
+	*nh = *h;
 
 	lwsl_debug("%s: lws_libuv_closehandle: wsi %p\n", __func__, wsi);
-	h->data = (void *)(lws_intptr_t)wsi->desc.sockfd;
+	((uv_handle_t *)nh)->data = (void *)(lws_intptr_t)wsi->desc.sockfd;
 	/* required to defer actual deletion until libuv has processed it */
-	uv_close((uv_handle_t*)&wsi->w_read.uv.watcher, lws_libuv_closewsi_m);
+	uv_close((uv_handle_t *)nh, lws_libuv_closewsi_m);
 }
 
 static void
@@ -720,7 +726,7 @@ elops_destroy_pt_uv(struct lws_context *context, int tsi)
 	if (!pt->event_loop_foreign) {
 		uv_signal_stop(&pt->w_sigint.uv.watcher);
 
-		ns = ARRAY_SIZE(sigs);
+		ns = LWS_ARRAY_SIZE(sigs);
 		if (lws_check_opt(context->options,
 				  LWS_SERVER_OPTION_UV_NO_SIGSEGV_SIGFPE_SPIN))
 			ns = 2;
@@ -781,13 +787,13 @@ elops_init_pt_uv(struct lws_context *context, void *_loop, int tsi)
 		LWS_UV_REFCOUNT_STATIC_HANDLE_NEW(&pt->uv.idle, context);
 
 
-		ns = ARRAY_SIZE(sigs);
+		ns = LWS_ARRAY_SIZE(sigs);
 		if (lws_check_opt(context->options,
 				  LWS_SERVER_OPTION_UV_NO_SIGSEGV_SIGFPE_SPIN))
 			ns = 2;
 
 		if (!pt->event_loop_foreign) {
-			assert(ns <= (int)ARRAY_SIZE(pt->uv.signals));
+			assert(ns <= (int)LWS_ARRAY_SIZE(pt->uv.signals));
 			for (n = 0; n < ns; n++) {
 				uv_signal_init(loop, &pt->uv.signals[n]);
 				LWS_UV_REFCOUNT_STATIC_HANDLE_NEW(&pt->uv.signals[n],

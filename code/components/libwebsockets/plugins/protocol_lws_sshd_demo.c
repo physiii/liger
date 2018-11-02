@@ -21,7 +21,7 @@
 #if !defined (LWS_PLUGIN_STATIC)
 #define LWS_DLL
 #define LWS_INTERNAL
-#include "../lib/libwebsockets.h"
+#include <libwebsockets.h>
 #endif
 
 #include <lws-ssh.h>
@@ -397,9 +397,9 @@ callback_lws_sshd_demo(struct lws *wsi, enum lws_callback_reasons reason,
 		 * deal with it down /etc/.. when just after this we will lose
 		 * the privileges needed to read / write /etc/...
 		 */
-		vhd->privileged_fd = open(TEST_SERVER_KEY_PATH, O_RDONLY);
+		vhd->privileged_fd = lws_open(TEST_SERVER_KEY_PATH, O_RDONLY);
 		if (vhd->privileged_fd == -1)
-			vhd->privileged_fd = open(TEST_SERVER_KEY_PATH,
+			vhd->privileged_fd = lws_open(TEST_SERVER_KEY_PATH,
 					O_CREAT | O_TRUNC | O_RDWR, 0600);
 		if (vhd->privileged_fd == -1) {
 			lwsl_err("%s: Can't open %s\n", __func__,
@@ -413,6 +413,9 @@ callback_lws_sshd_demo(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_VHOST_CERT_AGING:
+		break;
+
+	case LWS_CALLBACK_EVENT_WAIT_CANCELLED:
 		break;
 
 	default:
@@ -462,7 +465,7 @@ init_protocol_lws_sshd_demo(struct lws_context *context,
 	}
 
 	c->protocols = protocols;
-	c->count_protocols = ARRAY_SIZE(protocols);
+	c->count_protocols = LWS_ARRAY_SIZE(protocols);
 	c->extensions = NULL;
 	c->count_extensions = 0;
 

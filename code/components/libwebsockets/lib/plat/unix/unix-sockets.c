@@ -41,7 +41,12 @@ lws_send_pipe_choked(struct lws *wsi)
 	wsi_eff->could_have_pending = 0;
 
 	/* treat the fact we got a truncated send pending as if we're choked */
-	if (wsi_eff->trunc_len)
+	if (lws_has_buffered_out(wsi_eff)
+#if defined(LWS_WITH_HTTP_STREAM_COMPRESSION)
+	    ||wsi->http.comp_ctx.buflist_comp ||
+	    wsi->http.comp_ctx.may_have_more
+#endif
+	    )
 		return 1;
 
 	fds.fd = wsi_eff->desc.sockfd;
@@ -61,7 +66,7 @@ lws_send_pipe_choked(struct lws *wsi)
 
 
 int
-lws_plat_set_socket_options(struct lws_vhost *vhost, int fd)
+lws_plat_set_socket_options(struct lws_vhost *vhost, int fd, int unix_skt)
 {
 	int optval = 1;
 	socklen_t optlen = sizeof(optval);
@@ -74,7 +79,9 @@ lws_plat_set_socket_options(struct lws_vhost *vhost, int fd)
 	struct protoent *tcp_proto;
 #endif
 
-	if (vhost->ka_time) {
+	(void)fcntl(fd, F_SETFD, FD_CLOEXEC);
+
+	if (!unix_skt && vhost->ka_time) {
 		/* enable keepalive on this socket */
 		optval = 1;
 		if (setsockopt(fd, SOL_SOCKET, SO_KEEPALIVE,
@@ -119,7 +126,7 @@ lws_plat_set_socket_options(struct lws_vhost *vhost, int fd)
 	}
 
 #if defined(SO_BINDTODEVICE)
-	if (vhost->bind_iface && vhost->iface) {
+	if (!unix_skt && vhost->bind_iface && vhost->iface) {
 		lwsl_info("binding listen skt to %s using SO_BINDTODEVICE\n", vhost->iface);
 		if (setsockopt(fd, SOL_SOCKET, SO_BINDTODEVICE, vhost->iface,
 				strlen(vhost->iface)) < 0) {
@@ -132,18 +139,18 @@ lws_plat_set_socket_options(struct lws_vhost *vhost, int fd)
 	/* Disable Nagle */
 	optval = 1;
 #if defined (__sun) || defined(__QNX__)
-	if (setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, (const void *)&optval, optlen) < 0)
+	if (!unix_skt && setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, (const void *)&optval, optlen) < 0)
 		return 1;
 #elif !defined(__APPLE__) && \
       !defined(__FreeBSD__) && !defined(__FreeBSD_kernel__) &&        \
       !defined(__NetBSD__) && \
       !defined(__OpenBSD__) && \
       !defined(__HAIKU__)
-	if (setsockopt(fd, SOL_TCP, TCP_NODELAY, (const void *)&optval, optlen) < 0)
+	if (!unix_skt && setsockopt(fd, SOL_TCP, TCP_NODELAY, (const void *)&optval, optlen) < 0)
 		return 1;
 #else
 	tcp_proto = getprotobyname("TCP");
-	if (setsockopt(fd, tcp_proto->p_proto, TCP_NODELAY, &optval, optlen) < 0)
+	if (!unix_skt && setsockopt(fd, tcp_proto->p_proto, TCP_NODELAY, &optval, optlen) < 0)
 		return 1;
 #endif
 

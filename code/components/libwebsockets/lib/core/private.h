@@ -136,6 +136,20 @@
 
 #include "tls/private.h"
 
+#if defined(WIN32) || defined(_WIN32)
+	 // Visual studio older than 2015 and WIN_CE has only _stricmp
+	#if (defined(_MSC_VER) && _MSC_VER < 1900) || defined(_WIN32_WCE)
+	#define strcasecmp _stricmp
+	#elif !defined(__MINGW32__)
+	#define strcasecmp stricmp
+	#endif
+	#define getdtablesize() 30000
+#endif
+
+#ifndef LWS_ARRAY_SIZE
+#define LWS_ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -303,6 +317,28 @@ struct lws_foreign_thread_pollfd {
 	int _or;
 };
 
+#if LWS_MAX_SMP > 1
+
+struct lws_mutex_refcount {
+	pthread_mutex_t lock;
+	pthread_t lock_owner;
+	const char *last_lock_reason;
+	char lock_depth;
+	char metadata;
+};
+
+void
+lws_mutex_refcount_init(struct lws_mutex_refcount *mr);
+
+void
+lws_mutex_refcount_destroy(struct lws_mutex_refcount *mr);
+
+void
+lws_mutex_refcount_lock(struct lws_mutex_refcount *mr, const char *reason);
+
+void
+lws_mutex_refcount_unlock(struct lws_mutex_refcount *mr);
+#endif
 
 #define LWS_HRTIMER_NOWAIT (0x7fffffffffffffffll)
 
@@ -313,10 +349,8 @@ struct lws_foreign_thread_pollfd {
 
 struct lws_context_per_thread {
 #if LWS_MAX_SMP > 1
-	pthread_mutex_t lock;
 	pthread_mutex_t lock_stats;
-	pthread_t lock_owner;
-	const char *last_lock_reason;
+	struct lws_mutex_refcount mr;
 #endif
 
 	struct lws_context *context;
@@ -374,12 +408,20 @@ struct lws_context_per_thread {
 	unsigned long count_conns;
 	unsigned int fds_count;
 
+	/*
+	 * set to the Thread ID that's doing the service loop just before entry
+	 * to poll indicates service thread likely idling in poll()
+	 * volatile because other threads may check it as part of processing
+	 * for pollfd event change.
+	 */
+	volatile int service_tid;
+	int service_tid_detected;
+
 	volatile unsigned char inside_poll;
 	volatile unsigned char foreign_spinlock;
 
 	unsigned char tid;
 
-	unsigned char lock_depth;
 	unsigned char inside_service:1;
 	unsigned char event_loop_foreign:1;
 	unsigned char event_loop_destroy_processing_done:1;
@@ -397,6 +439,7 @@ lws_sum_stats(const struct lws_context *ctx, struct lws_conn_stats *cs);
 struct lws_timed_vh_protocol {
 	struct lws_timed_vh_protocol *next;
 	const struct lws_protocols *protocol;
+	struct lws_vhost *vhost; /* only used for pending processing */
 	time_t time;
 	int reason;
 };
@@ -465,7 +508,7 @@ struct lws_vhost {
 	void **protocol_vh_privs;
 	const struct lws_protocol_vhost_options *pvo;
 	const struct lws_protocol_vhost_options *headers;
-	struct lws **same_vh_protocol_list;
+	struct lws_dll_lws *same_vh_protocol_heads;
 	struct lws_vhost *no_listener_vhost_list;
 #if !defined(LWS_NO_CLIENT)
 	struct lws_dll_lws dll_active_client_conns;
@@ -509,7 +552,7 @@ lws_vhost_bind_wsi(struct lws_vhost *vh, struct lws *wsi);
 void
 lws_vhost_unbind_wsi(struct lws *wsi);
 void
-lws_vhost_destroy2(struct lws_vhost *vh);
+__lws_vhost_destroy2(struct lws_vhost *vh);
 
 struct lws_deferred_free
 {
@@ -575,8 +618,7 @@ struct lws_context {
 	struct lws_context_per_thread pt[LWS_MAX_SMP];
 	struct lws_conn_stats conn_stats;
 #if LWS_MAX_SMP > 1
-	pthread_mutex_t lock;
-	int lock_depth;
+	struct lws_mutex_refcount mr;
 #endif
 #ifdef _WIN32
 /* different implementation between unix and windows */
@@ -589,6 +631,11 @@ struct lws_context {
 	struct lws_vhost *vhost_pending_destruction_list;
 	struct lws_plugin *plugin_list;
 	struct lws_deferred_free *deferred_free_list;
+
+#if defined(LWS_WITH_THREADPOOL)
+	struct lws_threadpool *tp_list_head;
+#endif
+
 #if defined(LWS_WITH_PEER_LIMITS)
 	struct lws_peer **pl_hash_table;
 	struct lws_peer *peer_wait_list;
@@ -673,14 +720,6 @@ struct lws_context {
 	unsigned int doing_protocol_init:1;
 	unsigned int done_protocol_destroy_cb:1;
 	unsigned int finalize_destroy_after_internal_loops_stopped:1;
-	/*
-	 * set to the Thread ID that's doing the service loop just before entry
-	 * to poll indicates service thread likely idling in poll()
-	 * volatile because other threads may check it as part of processing
-	 * for pollfd event change.
-	 */
-	volatile int service_tid;
-	int service_tid_detected;
 
 	short count_threads;
 	short plugin_protocol_count;
@@ -833,11 +872,15 @@ struct lws {
 	struct lws *sibling_list; /* subsequent children at same level */
 
 	const struct lws_protocols *protocol;
-	struct lws **same_vh_protocol_prev, *same_vh_protocol_next;
+	struct lws_dll_lws same_vh_protocol;
 
 	struct lws_dll_lws dll_timeout;
 	struct lws_dll_lws dll_hrtimer;
 	struct lws_dll_lws dll_buflist; /* guys with pending rxflow */
+
+#if defined(LWS_WITH_THREADPOOL)
+	struct lws_threadpool_task *tp_task;
+#endif
 
 #if defined(LWS_WITH_PEER_LIMITS)
 	struct lws_peer *peer;
@@ -854,10 +897,8 @@ struct lws {
 	void *user_space;
 	void *opaque_parent_data;
 
-	struct lws_buflist *buflist;
-
-	/* truncated send handling */
-	unsigned char *trunc_alloc; /* non-NULL means buffering in progress */
+	struct lws_buflist *buflist;		/* input-side buflist */
+	struct lws_buflist *buflist_out;	/* output-side buflist */
 
 #if defined(LWS_WITH_TLS)
 	struct lws_lws_tls tls;
@@ -882,9 +923,7 @@ struct lws {
 	/* ints */
 #define LWS_NO_FDS_POS (-1)
 	int position_in_fds_table;
-	unsigned int trunc_alloc_len; /* size of malloc */
-	unsigned int trunc_offset; /* where we are in terms of spilling */
-	unsigned int trunc_len; /* how much is buffered */
+
 #ifndef LWS_NO_CLIENT
 	int chunk_remaining;
 #endif
@@ -917,9 +956,9 @@ struct lws {
 	unsigned int seen_zero_length_recv:1;
 	unsigned int rxflow_will_be_applied:1;
 	unsigned int event_pipe:1;
-	unsigned int on_same_vh_list:1;
 	unsigned int handling_404:1;
 	unsigned int protocol_bind_balance:1;
+	unsigned int unix_skt:1;
 
 	unsigned int could_have_pending:1; /* detect back-to-back writes */
 	unsigned int outer_will_close:1;
@@ -1029,6 +1068,9 @@ lws_latency(struct lws_context *context, struct lws *wsi, const char *action,
 	    int ret, int completion);
 #endif
 
+static LWS_INLINE int
+lws_has_buffered_out(struct lws *wsi) { return !!wsi->buflist_out; }
+
 LWS_EXTERN int LWS_WARN_UNUSED_RESULT
 lws_ws_client_rx_sm(struct lws *wsi, unsigned char c);
 
@@ -1114,7 +1156,8 @@ user_callback_handle_rxflow(lws_callback_function, struct lws *wsi,
 			    void *in, size_t len);
 
 LWS_EXTERN int
-lws_plat_set_socket_options(struct lws_vhost *vhost, lws_sockfd_type fd);
+lws_plat_set_socket_options(struct lws_vhost *vhost, lws_sockfd_type fd,
+			    int unix_skt);
 
 LWS_EXTERN int
 lws_plat_check_connection_error(struct lws *wsi);
@@ -1197,7 +1240,7 @@ LWS_EXTERN void lwsl_emit_stderr(int level, const char *line);
 static LWS_INLINE void
 lws_pt_mutex_init(struct lws_context_per_thread *pt)
 {
-	pthread_mutex_init(&pt->lock, NULL);
+	lws_mutex_refcount_init(&pt->mr);
 	pthread_mutex_init(&pt->lock_stats, NULL);
 }
 
@@ -1205,34 +1248,11 @@ static LWS_INLINE void
 lws_pt_mutex_destroy(struct lws_context_per_thread *pt)
 {
 	pthread_mutex_destroy(&pt->lock_stats);
-	pthread_mutex_destroy(&pt->lock);
+	lws_mutex_refcount_destroy(&pt->mr);
 }
 
-static LWS_INLINE void
-lws_pt_lock(struct lws_context_per_thread *pt, const char *reason)
-{
-	if (pt->lock_owner == pthread_self()) {
-		pt->lock_depth++;
-		return;
-	}
-	pthread_mutex_lock(&pt->lock);
-	pt->last_lock_reason = reason;
-	pt->lock_owner = pthread_self();
-	//lwsl_notice("tid %d: lock %s\n", pt->tid, reason);
-}
-
-static LWS_INLINE void
-lws_pt_unlock(struct lws_context_per_thread *pt)
-{
-	if (pt->lock_depth) {
-		pt->lock_depth--;
-		return;
-	}
-	pt->last_lock_reason = "free";
-	pt->lock_owner = 0;
-	//lwsl_notice("tid %d: unlock %s\n", pt->tid, pt->last_lock_reason);
-	pthread_mutex_unlock(&pt->lock);
-}
+#define lws_pt_lock(pt, reason) lws_mutex_refcount_lock(&pt->mr, reason)
+#define lws_pt_unlock(pt) lws_mutex_refcount_unlock(&pt->mr)
 
 static LWS_INLINE void
 lws_pt_stats_lock(struct lws_context_per_thread *pt)
@@ -1246,17 +1266,8 @@ lws_pt_stats_unlock(struct lws_context_per_thread *pt)
 	pthread_mutex_unlock(&pt->lock_stats);
 }
 
-static LWS_INLINE void
-lws_context_lock(struct lws_context *context)
-{
-	pthread_mutex_lock(&context->lock);
-}
-
-static LWS_INLINE void
-lws_context_unlock(struct lws_context *context)
-{
-	pthread_mutex_unlock(&context->lock);
-}
+#define lws_context_lock(c, reason) lws_mutex_refcount_lock(&c->mr, reason)
+#define lws_context_unlock(c) lws_mutex_refcount_unlock(&c->mr)
 
 static LWS_INLINE void
 lws_vhost_lock(struct lws_vhost *vhost)
@@ -1276,7 +1287,7 @@ lws_vhost_unlock(struct lws_vhost *vhost)
 #define lws_pt_mutex_destroy(_a) (void)(_a)
 #define lws_pt_lock(_a, b) (void)(_a)
 #define lws_pt_unlock(_a) (void)(_a)
-#define lws_context_lock(_a) (void)(_a)
+#define lws_context_lock(_a, _b) (void)(_a)
 #define lws_context_unlock(_a) (void)(_a)
 #define lws_vhost_lock(_a) (void)(_a)
 #define lws_vhost_unlock(_a) (void)(_a)
@@ -1334,7 +1345,7 @@ lws_handshake_server(struct lws *wsi, unsigned char **buf, size_t len);
 LWS_EXTERN int
 lws_access_log(struct lws *wsi);
 LWS_EXTERN void
-lws_prepare_access_log_info(struct lws *wsi, char *uri_ptr, int meth);
+lws_prepare_access_log_info(struct lws *wsi, char *uri_ptr, int len, int meth);
 #else
 #define lws_access_log(_a)
 #endif
@@ -1349,7 +1360,8 @@ int
 lws_protocol_init(struct lws_context *context);
 
 int
-lws_bind_protocol(struct lws *wsi, const struct lws_protocols *p);
+lws_bind_protocol(struct lws *wsi, const struct lws_protocols *p,
+		  const char *reason);
 
 const struct lws_http_mount *
 lws_find_mount(struct lws *wsi, const char *uri_ptr, int uri_len);
@@ -1381,6 +1393,9 @@ void
 lws_plat_pipe_close(struct lws *wsi);
 int
 lws_create_event_pipes(struct lws_context *context);
+
+int
+lws_plat_apply_FD_CLOEXEC(int n);
 
 const struct lws_plat_file_ops *
 lws_vfs_select_fops(const struct lws_plat_file_ops *fops, const char *vfs_path,
@@ -1479,11 +1494,13 @@ void
 lws_peer_dump_from_wsi(struct lws *wsi);
 #endif
 
-#ifdef LWS_WITH_HTTP_PROXY
+#ifdef LWS_WITH_HUBBUB
 hubbub_error
 html_parser_cb(const hubbub_token *token, void *pw);
 #endif
 
+int
+lws_threadpool_tsi_context(struct lws_context *context, int tsi);
 
 void
 __lws_remove_from_timeout_list(struct lws *wsi);

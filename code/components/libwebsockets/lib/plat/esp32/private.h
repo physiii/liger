@@ -39,6 +39,15 @@
  #include <signal.h>
  #include <sys/socket.h>
 
+#include "freertos/timers.h"
+#include <esp_attr.h>
+#include <esp_system.h>
+#include <esp_task_wdt.h>
+
+#include "lwip/apps/sntp.h"
+
+#include <lwip/sockets.h>
+
  #if defined(LWS_BUILTIN_GETIFADDRS)
   #include "./misc/getifaddrs.h"
  #endif
@@ -49,6 +58,7 @@
  #define LWS_EINPROGRESS EINPROGRESS
  #define LWS_EINTR EINTR
  #define LWS_EISCONN EISCONN
+ #define LWS_ENOTCONN ENOTCONN
  #define LWS_EWOULDBLOCK EWOULDBLOCK
 
  #define lws_set_blocking_send(wsi)
@@ -69,4 +79,3 @@
 				 A->lws_lookup[B->desc.sockfd - \
 				  lws_plat_socket_offset()] = B
 #define delete_from_fd(A,B) A->lws_lookup[B - lws_plat_socket_offset()] = 0
-
