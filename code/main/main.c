@@ -277,9 +277,9 @@ void app_main(void)
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
-  LED_main();
-	dimmer_main();
-	scheduler_main();
+  //LED_main();
+	//dimmer_main();
+	//scheduler_main();
 	//motion_main();
 	//audio_main();
 	//contact_main();

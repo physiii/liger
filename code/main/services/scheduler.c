@@ -89,8 +89,8 @@ static void obtain_time(void)
 {
     ESP_ERROR_CHECK( nvs_flash_init() );
     //initialise_wifi();
-    xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT,
-                        false, true, portMAX_DELAY);
+    // xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT,
+    //                     false, true, portMAX_DELAY);
     initialize_sntp();
 
     // wait for time to be set
