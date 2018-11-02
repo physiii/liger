@@ -35,7 +35,7 @@ int current_brightness = 0;
 double triac_delay = 1;
 double min_triac_delay = 0.0001;
 double max_triac_delay = 0.0075;
-bool neutral_present = false;
+bool neutral_present = true;
 bool zerocross_present = false;
 double sim_zerocross_delay = 0.0166; //simulated zero cross delay (1/120hz)
 char dimmer_service_message[2000];
@@ -156,7 +156,9 @@ void IRAM_ATTR timer_group0_isr(void *para) {
         TIMERG0.hw_timer[timer_idx].alarm_low = (uint32_t) timer_counter_value;
         TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_EN;
     } else if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
-        gpio_set_level(TRIAC_IO, 1);
+        if (current_brightness) {
+          gpio_set_level(TRIAC_IO, 1);
+        } else gpio_set_level(TRIAC_IO, 0);
         //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_DIS;
         evt.type = TEST_WITH_RELOAD;
         TIMERG0.int_clr_timers.t1 = 1;
