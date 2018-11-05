@@ -1,23 +1,3 @@
-/*
- * Example ESP32 app code using Libwebsockets
- *
- * Copyright (C) 2017 Andy Green <andy@warmcat.com>
- *
- * This file is made available under the Creative Commons CC0 1.0
- * Universal Public Domain Dedication.
- *
- * The person who associated a work with this deed has dedicated
- * the work to the public domain by waiving all of his or her rights
- * to the work worldwide under copyright law, including all related
- * and neighboring rights, to the extent allowed by law. You can copy,
- * modify, distribute and perform the work, even for commercial purposes,
- * all without asking permission.
- *
- * The test apps are intended to be adapted for use in your code, which
- * may be proprietary.	So unlike the library itself, they are licensed
- * Public Domain.
- *
- */
 #include <libwebsockets.h>
 #include <nvs_flash.h>
 #include <string.h>
@@ -25,17 +5,6 @@
 #include "nvs.h"
 #include "cJSON.h"
 
-/*
- * Configuration for normal station website
- *
- * We implement the generic lws test server features using
- * generic plugin code from lws.  Normally these plugins
- * are dynamically loaded at runtime, but we use them by
- * statically including them.
- *
- * To customize for your own device, you would remove these
- * and put your own plugin include here
- */
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
@@ -44,12 +13,21 @@ int wsi_connect = 1;
 unsigned int rl_token = 0;
 char token[512];
 char device_id[100];
+bool start_service_loop = false;
 bool token_received = false;
 bool reconnect_with_token = false;
 static struct lws_client_connect_info i;
-char server_address[100] = "dev.pyfi.org";
-bool use_ssl = true;
-
+char server_address[100] = "192.168.0.21";
+bool use_ssl = false;
+bool send_load_event = true;
+char load_message[500];
+static struct lws_context_creation_info info;
+struct lws_context *context;
+cJSON *payload = NULL;
+cJSON *dimmer_payload = NULL;
+cJSON *LED_payload = NULL;
+cJSON *schedule_payload = NULL;
+int current_time = 0;
 //needs to go in headers
 
 int set_switch(int);
@@ -57,10 +35,10 @@ int set_switch(int);
 /////////////////
 
 #include "services/storage.c"
+#include "services/LED.c"
 #include "plugins/protocol_wss.c"
 #include "services/button.c"
 //#include "services/motion.c"
-#include "services/LED.c"
 #include "services/dimmer.c"
 #include "services/scheduler.c"
 /*#include "services/audio.c
@@ -73,8 +51,6 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	//LWS_PLUGIN_PROTOCOL_TOKEN, /* demo... */
-	//LWS_PLUGIN_PROTOCOL_TEST_CLIENT, /* demo... */
 	LWS_PLUGIN_PROTOCOL_WSS, /* demo... */
 	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
@@ -138,8 +114,7 @@ static const struct lws_http_mount mount_station_needs_auth = {
 	.basic_auth_login_file	= "lwsdemoba", /* esp32 nvs realm to use */
 };
 
-
-
+void lws_esp32_leds_timer_cb(TimerHandle_t th) {}
 
 /*
  * This is called when the user asks to "Identify physical device"
@@ -156,11 +131,6 @@ lws_esp32_identify_physical_device(void)
 {
 	lwsl_notice("%s\n", __func__);
 }
-
-void lws_esp32_leds_timer_cb(TimerHandle_t th)
-{
-}
-
 
 bool got_ip = false;
 esp_err_t event_handler(void *ctx, system_event_t *event)
@@ -190,7 +160,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 
         case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
             printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
-	    			wsi_connect = 1;
+	    			//wsi_connect = 1;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
 
@@ -220,38 +190,54 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs)
 int
 connect_client(struct lws_client_connect_info i)
 {
+	int ret = 0;
+	if (!got_ip) return 0;
+	if (!wsi_connect) return 0;
+	if (!ratelimit_connects(&rl_token, 4u)) {
+		printf("still connecting...\n");
+		return 0;
+	}
+
+	if (send_load_event) {
+		sprintf(load_message,""
+		"{\"event_type\":\"load\","
+		" \"payload\":{\"services\":["
+		"{\"type\":\"button\","
+		"\"state\":{\"dpad\":0}},"
+		"{\"type\":\"motion\","
+		"\"state\":{\"channel_0\":0}},"
+		"{\"type\":\"dimmer\","
+		"\"state\":{\"level\":0, \"on\":false}},"
+		"{\"type\":\"LED\","
+		"\"state\":{\"rgb\":[0,0,0]},"
+		"\"id\":1}"
+		"]}}");
+		strcpy(wss_data_out,load_message);
+		send_load_event = false;
+		wss_data_out_ready = true;
+		printf("load_mesage %s\n",load_message);
+	}
+
 	printf("connecting to client...\n");
-	return lws_client_connect_via_info(&i);
+	wsi_connect = 0;
+
+	ret = lws_client_connect_via_info(&i);
+	return ret;
 }
 
 void app_main(void)
 {
 
 	//strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
-	static struct lws_context_creation_info info;
-	struct lws_context *context;
+
 	struct lws_vhost *vh;
 	nvs_handle nvh;
 
 	lws_esp32_set_creation_defaults(&info);
 
-	info.port = 443;
-	info.fd_limit_per_thread = 12;
-	info.max_http_header_pool = 12;
-	info.max_http_header_data = 512;
-	info.pt_serv_buf_size = 900;
-	info.keepalive_timeout = 5;
-	info.simultaneous_ssl_restriction = 12;
-	info.options = LWS_SERVER_OPTION_EXPLICIT_VHOSTS |
-		       LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
-
-	info.ssl_cert_filepath = "ap-cert.pem";
-	info.ssl_private_key_filepath = "ap-key.pem";
-
+	info.port = CONTEXT_PORT_NO_LISTEN;
 	info.vhost_name = "station";
 	info.protocols = protocols_station;
-	info.mounts = &mount_station_needs_auth;
-	info.headers = &pvo_headers;
 
 	nvs_flash_init();
 	lws_esp32_wlan_config();
@@ -261,12 +247,12 @@ void app_main(void)
 	 * normally you'd just do this once at setup-time or if the
 	 * password was changed.  If you don't use basic auth on your
 	 * site, no need for this.
-	 */
+
 	if (!nvs_open("lwsdemoba", NVS_READWRITE, &nvh)) {
 		nvs_set_str(nvh, "user", "password");
 		nvs_commit(nvh);
 		nvs_close(nvh);
-	}
+	}	*/
 
 	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
 
@@ -287,24 +273,45 @@ void app_main(void)
 		i.ssl_connection = LCCSCF_USE_SSL;
 		i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
 	}
+
 	strcpy(token,get_char("token"));
 	printf("pulled token from storage: %s\n", token);
 
 	buttons_main();
   LED_main();
 	dimmer_main();
-	scheduler_main();
+	schedule_main();
 	//motion_main();
 	//audio_main();
 	//contact_main();
-
-	bool send_load_event = true;
-	char load_message[500];
+	int service_context_cnt = 0;
+	int cnt = 0;
 
 	while (1) {
+		//printf("main loop.....%d\n",cnt++);
+		if (buttons_service_message_ready && !wss_data_out_ready) {
+			strcpy(wss_data_out,buttons_service_message);
+			buttons_service_message_ready = false;
+			wss_data_out_ready = true;
+		}
+
+		// if (contact_service_message_ready && !wss_data_out_ready) {
+		// 	strcpy(wss_data_out,contact_service_message);
+		// 	contact_service_message_ready = false;
+		// 	wss_data_out_ready = true;
+		// }
+
+		if (wsi_connect) {
+    	set_pixel_by_index(0, 0, 0, 0, 1);
+			vTaskDelay(300 / portTICK_RATE_MS);
+    	set_pixel_by_index(0, 0, 0, 255, 1);
+		}
+
+		//connect_client(i);
+
+
 
 		if (send_load_event) {
-
 			sprintf(load_message,""
 			"{\"event_type\":\"load\","
 			" \"payload\":{\"services\":["
@@ -318,40 +325,29 @@ void app_main(void)
 			"\"state\":{\"rgb\":[0,0,0]},"
 			"\"id\":1}"
 			"]}}");
-			printf("load_mesage %s\n",load_message);
 			strcpy(wss_data_out,load_message);
 			send_load_event = false;
 			wss_data_out_ready = true;
+			printf("load_mesage %s\n",load_message);
 		}
 
-		if (buttons_service_message_ready && !wss_data_out_ready) {
-			strcpy(wss_data_out,buttons_service_message);
-			buttons_service_message_ready = false;
-			wss_data_out_ready = true;
-		}
-
-		/*if (contact_service_message_ready && !wss_data_out_ready) {
-			strcpy(wss_data_out,contact_service_message);
-			contact_service_message_ready = false;
-			wss_data_out_ready = true;
-		}*/
-
-		if (wsi_connect && got_ip && ratelimit_connects(&rl_token, 4u)) {
+		if (got_ip && wsi_connect && ratelimit_connects(&rl_token, 4u)) {
 			wsi_connect = 0;
 			lws_client_connect_via_info(&i);
-			//connect_client(i);
+			printf("connecting to %s\n",server_address);
 		}
 
-		if (wsi_connect) {
-    	set_pixel_by_index(0, 0, 0, 0, 1);
-			vTaskDelay(300 / portTICK_RATE_MS);
-    	set_pixel_by_index(0, 0, 0, 255, 1);
-		} else {
-			set_pixel_by_index(0, 0, 255, 0, 1);
+		if (got_ip && !wsi_connect) {
+			service_context_cnt++;
+			//if (service_context_cnt < 400) {
+				if (lws_service(context, 1000) >= 0) {
+					//printf("lws_service...%d\n",service_context_cnt);
+				} else {
+					lwsl_err("!! COULD NOT SERVICE CONTEXT !!\n");
+				}
+			//}
 		}
-
-		lws_service(context, 500);
-		taskYIELD();
-		vTaskDelay(100 / portTICK_RATE_MS);
+		//taskYIELD();
+		vTaskDelay(1000 / portTICK_RATE_MS);
 	}
 }

@@ -32,6 +32,7 @@ server.on('upgrade', (request, socket, head) => {
   }
 });
 
+//setInterval(function(){ console.log(Date.now()) }, 3000);
 wssMain.on('connection', function connection(ws, req) {
 
   console.log("<< ---- incoming connection, sending token ---- >>");
@@ -42,6 +43,7 @@ wssMain.on('connection', function connection(ws, req) {
     catch (e) { console.log("invalid json", message) };
     if (!msg.event_type) return;
     let event_type = msg.event_type;
+
     switch (event_type) {
       case "getUUID":
         console.log("sending UUID...");
@@ -51,11 +53,19 @@ wssMain.on('connection', function connection(ws, req) {
       case "button/pressed":
         console.log(msg.payload);
         //ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}}");
+        let response = "{\"event_type\":\"time\", \"payload\":{\"time\":"+parseInt(Date.now()/1000)+"}}";
+        ws.send(response);
+        console.log(response);
         break;
 
       case "load":
         console.log(msg.payload);
         ws.send("{\"event_type\":\"load\", \"payload\":{\"result\":\"services_loaded\"}}");
+        break;
+
+      case "time":
+        console.log(msg.payload);
+        ws.send("{\"event_type\":\"time\", \"payload\":{\"time\":"+Date.now()+"}}");
         break;
 
       case "service/state":

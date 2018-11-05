@@ -1,23 +1,3 @@
-/*
- * ws protocol handler plugin for "dumb increment"
- *
- * Copyright (C) 2010-2018 Andy Green <andy@warmcat.com>
- *
- * This file is made available under the Creative Commons CC0 1.0
- * Universal Public Domain Dedication.
- *
- * The person who associated a work with this deed has dedicated
- * the work to the public domain by waiving all of his or her rights
- * to the work worldwide under copyright law, including all related
- * and neighboring rights, to the extent allowed by law. You can copy,
- * modify, distribute and perform the work, even for commercial purposes,
- * all without asking permission.
- *
- * These test plugins are intended to be adapted for use in your code, which
- * may be proprietary.  So unlike the library itself, they are licensed
- * Public Domain.
- */
-
 #if !defined (LWS_PLUGIN_STATIC)
 #define LWS_DLL
 #define LWS_INTERNAL
@@ -29,12 +9,9 @@
 #define WS_PERIOD_US 5000
 
 int data_part_count = 0;
-char wss_data_in[5000];
-char wss_data_out[5000];
+char wss_data_in[2000];
+char wss_data_out[2000];
 bool wss_data_out_ready = false;
-cJSON *payload = NULL;
-cJSON *dimmer_payload = NULL;
-cJSON *LED_payload = NULL;
 
 struct pss__wss {
 	int number;
@@ -99,7 +76,7 @@ handle_event(char * event_type)
 		char result[500];
 		sprintf(result,"%s",cJSON_GetObjectItem(payload,"result")->valuestring);
 		lwsl_notice("loaded: %s\n", result);
-		return 0;
+		return 1;
 	}
 
 	if (strcmp(event_type,"token")==0) {
@@ -113,6 +90,14 @@ handle_event(char * event_type)
 		char error[500];
 		sprintf(error,"%s",cJSON_GetObjectItem(payload,"error")->valuestring);
 		lwsl_err("websocket: %s\n", error);
+		return 1;
+	}
+
+	if (strcmp(event_type,"time")==0) {
+		current_time = cJSON_GetObjectItem(payload,"time")->valueint;
+		schedule_payload = payload;
+		payload = NULL;
+		lwsl_notice("time: %d\n", current_time);
 		return 1;
 	}
 
@@ -133,6 +118,7 @@ wss_event_handler(struct lws *wsi, cJSON * root)
 	return 0;
 }
 
+int LWS_CALLBACK_CLIENT_CLOSED_cnt = 0;
 static int
 callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
@@ -147,6 +133,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 	int n, m;
 
 	switch (reason) {
+
 	case LWS_CALLBACK_PROTOCOL_INIT:
 		//lwsl_notice("!! ------- wss LWS_CALLBACK_PROTOCOL_INIT ---- !!\n");
 		vhd = lws_protocol_vh_priv_zalloc(lws_get_vhost(wsi),
@@ -167,6 +154,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
 		lws_callback_on_writable(wsi);
+		set_pixel_by_index(0, 0, 255, 0, 1);
 		pss->number = 0;
 		strcpy(wss_data_in,"");
 		if (!vhd->options || !((*vhd->options) & 1))
@@ -183,18 +171,25 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			lwsl_err("ERROR %d writing to token socket\n", n);
 		} else {
 			wss_data_out_ready = false;
-			//printf("SENT: %s\n",wss_data_out);
+			printf("SENT: %s\n",wss_data_out);
 		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_RECEIVE:
-		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
-		strcpy(wss_data_in,"");
+		if (len < 10) break;
+		if (len > 1000) break;
+		//lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
+		//strcpy(wss_data_in,"");
+		memset(&wss_data_in, 0, sizeof wss_data_in);
 		strcpy(wss_data_in,(const char *)in);
+		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE\n\n");
+		//break;
 		int valid_json = check_json(wss_data_in);
 		cJSON *root = cJSON_Parse(wss_data_in);
+
     if (root == NULL)
     {
+				break;
         const char *error_ptr = cJSON_GetErrorPtr();
         if (error_ptr != NULL)
         {
@@ -212,23 +207,27 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			break;
 		}
 		int res = wss_event_handler(wsi,root);
-		if (res == 0) lwsl_err("event_type not found\n");
-		if (res == 1) return -1;
+		if (res == 0) lwsl_notice("event_type not found\n");
+		//if (res == 1) return -1;
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
-		lwsl_notice("protocol_wss: closing as requested\n");
+		LWS_CALLBACK_CLIENT_CLOSED_cnt++;
+		lwsl_notice("LWS_CALLBACK_CLIENT_CLOSED %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 			(unsigned char *)"LWS_CALLBACK_CLIENT_CLOSED reconnecting...", 5);
-		wsi_connect = 1;
+		if (LWS_CALLBACK_CLIENT_CLOSED_cnt > 1) {
+			wsi_connect = 1;
+			LWS_CALLBACK_CLIENT_CLOSED_cnt = 0;
+		}
 		return -1;
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-		lwsl_notice("protocol_wss: closing as requested\n");
+		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-			(unsigned char *)"LWS_CALLBACK_CLIENT_CLOSED reconnecting...", 5);
-		wsi_connect = 1;
+			(unsigned char *)"LWS_CALLBACK_CLIENT_CONNECTION_ERROR reconnecting...", 5);
+		//wsi_connect = 1;
 		return -1;
 		break;
 
@@ -240,7 +239,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		}
 		break;
 
-		default:
+	default:
 		   	printf("wss-protocol callback: %d\n",reason);
 			break;
 	}

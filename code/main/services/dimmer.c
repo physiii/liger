@@ -35,7 +35,7 @@ int current_brightness = 0;
 double triac_delay = 1;
 double min_triac_delay = 0.0001;
 double max_triac_delay = 0.0075;
-bool neutral_present = true;
+bool neutral_present = false;
 bool zerocross_present = false;
 double sim_zerocross_delay = 0.0166; //simulated zero cross delay (1/120hz)
 char dimmer_service_message[2000];
@@ -69,10 +69,19 @@ void set_brightness(int level) {
     }
   }
 
-  if (level) {
+  if (current_brightness) {
     level = max_brightness - level;
     triac_delay = min_triac_delay + max_triac_delay*((double)level/max_brightness);
-  } else gpio_set_level(TRIAC_IO, 0);
+    if (current_brightness == max_brightness) {
+      set_pixel_by_index(0, 0, 255, 0, 1);
+    } else {
+      set_pixel_by_index(0, current_brightness, current_brightness, current_brightness, 1);
+    }
+
+  } else {
+    gpio_set_level(TRIAC_IO, 0);
+    set_pixel_by_index(0, 255, 0, 0, 1);
+  }
   printf("set brightness to %d\n",current_brightness);
 }
 
@@ -158,7 +167,10 @@ void IRAM_ATTR timer_group0_isr(void *para) {
     } else if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
         if (current_brightness) {
           gpio_set_level(TRIAC_IO, 1);
-        } else gpio_set_level(TRIAC_IO, 0);
+        } else {
+          gpio_set_level(TRIAC_IO, 0);
+        }
+
         //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_DIS;
         evt.type = TEST_WITH_RELOAD;
         TIMERG0.int_clr_timers.t1 = 1;
@@ -251,7 +263,7 @@ static void timer_example_evt_task(void *arg) {
 static void IRAM_ATTR dimmer_isr_handler(void* arg) {
     uint32_t gpio_num = (uint32_t) arg;
     //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_EN;
-    gpio_set_level(TRIAC_IO, 0);
+    if (current_brightness < max_brightness) gpio_set_level(TRIAC_IO, 0);
     example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
     zerocross_present = true;
     //xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
