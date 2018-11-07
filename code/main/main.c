@@ -159,7 +159,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
             break;
 
         case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-            printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
+            printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
 	    			//wsi_connect = 1;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
