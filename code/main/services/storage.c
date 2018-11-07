@@ -31,14 +31,15 @@ char * get_char(char * key)
                 break;
             case ESP_ERR_NVS_NOT_FOUND:
                 printf("%s value not initialized, key: %s\n",tag, key);
-                return device_id;
+                return "";
             default :
                 printf("%s Error (%d) reading %s\n", tag, err, key);
         }
+        //free(value_str);
         nvs_close(my_handle);
         return value_str;
     }
-    return device_id; //return device id as token if no token found
+    return ""; //return "" if no token found
 }
 
 void store_char(char * key, char * value)

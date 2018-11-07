@@ -72,6 +72,13 @@ handle_event(char * event_type)
 		return 0;
 	}
 
+	if (strcmp(event_type,"schedule")==0) {
+		printf("handle_event schedule\n");
+		schedule_payload = payload;
+		payload = NULL;
+		return 1;
+	}
+
 	if (strcmp(event_type,"load")==0) {
 		char result[500];
 		sprintf(result,"%s",cJSON_GetObjectItem(payload,"result")->valuestring);
@@ -147,10 +154,10 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			vhd->options = (unsigned int *)opt->value;
 		break;
 
-		case	LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
-			//printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
-			add_headers(in,len);
-			break;
+	case	LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
+		//printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
+		add_headers(in,len);
+		break;
 
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
 		lws_callback_on_writable(wsi);
@@ -182,7 +189,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		//strcpy(wss_data_in,"");
 		memset(&wss_data_in, 0, sizeof wss_data_in);
 		strcpy(wss_data_in,(const char *)in);
-		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE\n\n");
+		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE %s\n\n",wss_data_in);
 		//break;
 		int valid_json = check_json(wss_data_in);
 		cJSON *root = cJSON_Parse(wss_data_in);
@@ -224,10 +231,10 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
+		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 			(unsigned char *)"LWS_CALLBACK_CLIENT_CONNECTION_ERROR reconnecting...", 5);
-		//wsi_connect = 1;
+		wsi_connect = 1;
 		return -1;
 		break;
 

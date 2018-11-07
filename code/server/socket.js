@@ -53,7 +53,15 @@ wssMain.on('connection', function connection(ws, req) {
       case "button/pressed":
         console.log(msg.payload);
         //ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}}");
-        let response = "{\"event_type\":\"time\", \"payload\":{\"time\":"+parseInt(Date.now()/1000)+"}}";
+
+        let response = {event_type:"schedule"};
+        let payload = {action:"add"};
+        payload.seconds_into_day = 45800;
+        payload.state = {level:255,on:true};
+        payload.service_id = "dimmer_1"
+        payload.event_id = "1"
+        response.payload = payload;
+        response = JSON.stringify(response);
         ws.send(response);
         console.log(response);
         break;
