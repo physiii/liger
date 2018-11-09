@@ -1,25 +1,23 @@
 #include <libwebsockets.h>
 #include <nvs_flash.h>
 #include <string.h>
+#include "nvs_flash.h"
+#include "nvs.h"
 #include "cJSON.h"
 
-#include "../components/libwebsockets/plugins/protocol_dumb_increment.c"
-#include "../components/libwebsockets/plugins/protocol_lws_mirror.c"
-#include "../components/libwebsockets/plugins/protocol_post_demo.c"
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
 struct lws *wsi_token;
 int wsi_connect = 1;
 unsigned int rl_token = 0;
-char token[512];
+char token[1000];
 char device_id[100];
 bool start_service_loop = false;
 bool token_received = false;
 bool reconnect_with_token = false;
 static struct lws_client_connect_info i;
-char server_address[100] = "192.168.1.2";
-//char server_address[100] = "192.168.1.5";
+char server_address[20] = "192.168.1.2";
 bool use_ssl = false;
 bool send_load_event = true;
 char load_message[500];
@@ -31,22 +29,20 @@ cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
 int current_time = 0;
 bool got_ip = false;
+int port = 5050;
 
 //needs to go in headers
 
 int set_switch(int);
 
 /////////////////
-
 #include "services/storage.c"
 #include "services/LED.c"
 #include "plugins/protocol_wss.c"
 #include "services/button.c"
+//#include "services/motion.c"
 #include "services/dimmer.c"
 #include "services/scheduler.c"
-
-//#include "services/motion.c"
-
 /*#include "services/audio.c
 #include "services/contact-sensor.c"*/
 
@@ -57,9 +53,7 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	LWS_PLUGIN_PROTOCOL_DUMB_INCREMENT, /* demo... */
-	LWS_PLUGIN_PROTOCOL_MIRROR,	    /* replace with */
-	LWS_PLUGIN_PROTOCOL_POST_DEMO,	    /* your own */
+	LWS_PLUGIN_PROTOCOL_WSS, /* demo... */
 	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
@@ -122,43 +116,7 @@ static const struct lws_http_mount mount_station_needs_auth = {
 	.basic_auth_login_file	= "lwsdemoba", /* esp32 nvs realm to use */
 };
 
-
-esp_err_t event_handler(void *ctx, system_event_t *event)
-{
-	/* deal with your own user events here first */
-  switch(event->event_id) {
-
-
-      case SYSTEM_EVENT_STA_START:
-          printf("SYSTEM_EVENT_STA_START\n");
-  //do not actually connect in test case
-          //;
-          break;
-
-      case SYSTEM_EVENT_STA_GOT_IP:
-          printf("got ip: %s\n",
-          ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
-          got_ip = true;
-          break;
-
-      case SYSTEM_EVENT_STA_DISCONNECTED:
-          printf("SYSTEM_EVENT_STA_DISCONNECTED\n");
-          got_ip = false;
-          //TEST_ESP_OK(esp_wifi_connect());
-          break;
-
-      case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-          printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
-          //wsi_connect = 1;
-          //TEST_ESP_OK(esp_wifi_connect());
-          break;
-
-      default:
-          printf("ev_handle_called.\n");
-          break;
-  }
-	return lws_esp32_event_passthru(ctx, event);
-}
+void lws_esp32_leds_timer_cb(TimerHandle_t th) {}
 
 /*
  * This is called when the user asks to "Identify physical device"
@@ -176,8 +134,44 @@ lws_esp32_identify_physical_device(void)
 	lwsl_notice("%s\n", __func__);
 }
 
-void lws_esp32_leds_timer_cb(TimerHandle_t th)
+esp_err_t event_handler(void *ctx, system_event_t *event)
 {
+	/* deal with your own user events here first */
+
+    switch(event->event_id) {
+
+
+        case SYSTEM_EVENT_STA_START:
+            printf("SYSTEM_EVENT_STA_START\n");
+    //do not actually connect in test case
+            //;
+            break;
+
+        case SYSTEM_EVENT_STA_GOT_IP:
+            printf("got ip: %s\n",
+            ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
+	    			got_ip = true;
+            break;
+
+        case SYSTEM_EVENT_STA_DISCONNECTED:
+            printf("SYSTEM_EVENT_STA_DISCONNECTED\n");
+	    			got_ip = false;
+            //TEST_ESP_OK(esp_wifi_connect());
+            break;
+
+        case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
+            printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
+	    			//wsi_connect = 1;
+            //TEST_ESP_OK(esp_wifi_connect());
+            break;
+
+        default:
+ 	    printf("ev_handle_called.\n");
+            break;
+    }
+    //return ESP_OK;
+
+	return lws_esp32_event_passthru(ctx, event);
 }
 
 static int ratelimit_connects(unsigned int *last, unsigned int secs)
@@ -198,6 +192,7 @@ void app_main(void)
 {
 
 	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
+	//store_char("token",device_id);
 
 	struct lws_vhost *vh;
 	nvs_handle nvh;
@@ -210,6 +205,7 @@ void app_main(void)
 
 	nvs_flash_init();
 	lws_esp32_wlan_config();
+
 	/*
 	 * set the basic auth user:password used for /secret/... urls
 	 * normally you'd just do this once at setup-time or if the
@@ -229,7 +225,7 @@ void app_main(void)
 
 	memset(&i, 0, sizeof i);
 	i.address = server_address;
-	i.port = 5050;
+	i.port = port;
 	i.host = i.address;
 	i.origin = i.host;
 	i.ietf_version_or_minus_one = -1;
@@ -249,7 +245,6 @@ void app_main(void)
   LED_main();
 	dimmer_main();
 	schedule_main();
-
 	//motion_main();
 	//audio_main();
 	//contact_main();
@@ -257,7 +252,7 @@ void app_main(void)
 	int cnt = 0;
 
 	while (1) {
-		printf("main loop.....%d\n",cnt++);
+		//printf("main loop.....%d\n",cnt++);
 		if (buttons_service_message_ready && !wss_data_out_ready) {
 			strcpy(wss_data_out,buttons_service_message);
 			buttons_service_message_ready = false;
@@ -278,18 +273,12 @@ void app_main(void)
 
 		//connect_client(i);
 
-
-
 		if (send_load_event) {
 			sprintf(load_message,""
 			"{\"event_type\":\"load\","
 			" \"payload\":{\"services\":["
-			"{\"type\":\"button\","
-			"\"state\":{\"dpad\":0}},"
-			"{\"type\":\"motion\","
-			"\"state\":{\"channel_0\":0}},"
 			"{\"type\":\"dimmer\","
-			"\"state\":{\"level\":0, \"on\":false}},"
+			"\"state\":{\"level\":0, \"on\":false},\"id\":\"dimmer_1\"},"
 			"{\"type\":\"LED\","
 			"\"state\":{\"rgb\":[0,0,0]},"
 			"\"id\":1}"
@@ -310,7 +299,7 @@ void app_main(void)
 			service_context_cnt++;
 			//if (service_context_cnt < 400) {
 				if (lws_service(context, 1000) >= 0) {
-					printf("lws_service...%d\n",service_context_cnt);
+					//printf("lws_service...%d\n",service_context_cnt);
 				} else {
 					lwsl_err("!! COULD NOT SERVICE CONTEXT !!\n");
 				}
@@ -319,57 +308,4 @@ void app_main(void)
 		//taskYIELD();
 		vTaskDelay(1000 / portTICK_RATE_MS);
 	}
-}
-
-
-
-void app_main_orig(void)
-{
-	static struct lws_context_creation_info info;
-	struct lws_context *context;
-	struct lws_vhost *vh;
-	nvs_handle nvh;
-
-	lws_esp32_set_creation_defaults(&info);
-
-	info.port = 443;
-	info.fd_limit_per_thread = 12;
-	info.max_http_header_pool = 12;
-	info.max_http_header_data = 512;
-	info.pt_serv_buf_size = 900;
-	info.keepalive_timeout = 5;
-	info.simultaneous_ssl_restriction = 12;
-	info.options = LWS_SERVER_OPTION_EXPLICIT_VHOSTS |
-		       LWS_SERVER_OPTION_DO_SSL_GLOBAL_INIT;
-
-	info.ssl_cert_filepath = "ap-cert.pem";
-	info.ssl_private_key_filepath = "ap-key.pem";
-
-	info.vhost_name = "station";
-	info.protocols = protocols_station;
-	info.mounts = &mount_station_needs_auth;
-	info.headers = &pvo_headers;
-
-	nvs_flash_init();
-	lws_esp32_wlan_config();
-
-	/*
-	 * set the basic auth user:password used for /secret/... urls
-	 * normally you'd just do this once at setup-time or if the
-	 * password was changed.  If you don't use basic auth on your
-	 * site, no need for this.
-	 */
-	if (!nvs_open("lwsdemoba", NVS_READWRITE, &nvh)) {
-		nvs_set_str(nvh, "user", "password");
-		nvs_commit(nvh);
-		nvs_close(nvh);
-	}
-
-	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
-
-	lws_esp32_wlan_start_station();
-	context = lws_esp32_init(&info, &vh);
-
-	while (!lws_service(context, 50))
-		taskYIELD();
 }

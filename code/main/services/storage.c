@@ -2,6 +2,8 @@ char * get_char(char * key)
 {
     char tag[50] = "[get_char]";
     // Initialize NVS
+    //printf("disable non-iram interrupts\n");
+    //esp_intr_noniram_disable();
     esp_err_t err = nvs_flash_init();
     /*if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
         // NVS partition was truncated and needs to be erased
@@ -37,6 +39,7 @@ char * get_char(char * key)
         }
         //free(value_str);
         nvs_close(my_handle);
+        //printf("key: %s, value: %s\n",key,value_str);
         return value_str;
     }
     return ""; //return "" if no token found

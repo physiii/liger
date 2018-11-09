@@ -150,21 +150,24 @@ void IRAM_ATTR timer_group0_isr(void *para) {
 
     /* Prepare basic event data
        that will be then sent back to the main program task */
-    timer_event_t evt;
-    evt.timer_group = 0;
-    evt.timer_idx = timer_idx;
-    evt.timer_counter_value = timer_counter_value;
+    // timer_event_t evt;
+    // evt.timer_group = 0;
+    // evt.timer_idx = timer_idx;
+    // evt.timer_counter_value = timer_counter_value;
     /* Clear the interrupt
        and update the alarm time for the timer with without reload */
-    if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_0) {
-        example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
-        evt.type = TEST_WITHOUT_RELOAD;
-        TIMERG0.int_clr_timers.t0 = 1;
-        timer_counter_value += (uint64_t) (sim_zerocross_delay * TIMER_SCALE);
-        TIMERG0.hw_timer[timer_idx].alarm_high = (uint32_t) (timer_counter_value >> 32);
-        TIMERG0.hw_timer[timer_idx].alarm_low = (uint32_t) timer_counter_value;
-        TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_EN;
-    } else if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
+    // if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_0) {
+    //     example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
+    //     //evt.type = TEST_WITHOUT_RELOAD;
+    //     TIMERG0.int_clr_timers.t0 = 1;
+    //     timer_counter_value += (uint64_t) (sim_zerocross_delay * TIMER_SCALE);
+    //     TIMERG0.hw_timer[timer_idx].alarm_high = (uint32_t) (timer_counter_value >> 32);
+    //     TIMERG0.hw_timer[timer_idx].alarm_low = (uint32_t) timer_counter_value;
+    //     TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_EN;
+    // }
+
+    if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
+        gpio_set_level(TRIAC_IO, 1);
         if (current_brightness) {
           gpio_set_level(TRIAC_IO, 1);
         } else {
@@ -172,10 +175,10 @@ void IRAM_ATTR timer_group0_isr(void *para) {
         }
 
         //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_DIS;
-        evt.type = TEST_WITH_RELOAD;
+        // evt.type = TEST_WITH_RELOAD;
         TIMERG0.int_clr_timers.t1 = 1;
     } else {
-        evt.type = -1; // not supported even type
+        //evt.type = -1; // not supported even type
     }
 
     /* After the alarm has been triggered

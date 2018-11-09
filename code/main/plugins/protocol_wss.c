@@ -55,9 +55,9 @@ add_headers(void *in, size_t len)
 		return 1;
 
 	*h += sprintf(*h, "x-device-id: %s\x0d\x0a",device_id);
-	*h += sprintf(*h, "x-device-type: %s\x0d\x0a","liger");
+	*h += sprintf(*h, "x-device-type: %s\x0d\x0a","generic");
 	*h += sprintf(*h, "x-device-token: %s\x0d\x0a",token);
-
+	printf("header token:\n%s\n",token);
 	return 0;
 }
 
@@ -93,6 +93,11 @@ handle_event(char * event_type)
 		return 1;
 	}
 
+	if (strcmp(event_type,"reconnect-to-relay")==0) {
+		lwsl_notice("reconnecting to relay!\n");
+		return -1;
+	}
+
 	if (strcmp(event_type,"authentication")==0) {
 		char error[500];
 		sprintf(error,"%s",cJSON_GetObjectItem(payload,"error")->valuestring);
@@ -119,6 +124,17 @@ wss_event_handler(struct lws *wsi, cJSON * root)
 		char event_type[500];
 		sprintf(event_type,"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
 		payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
+
+		// {id:id,callback:true,payload:[false,""]}
+		if (cJSON_GetObjectItemCaseSensitive(root,"id")) {
+			int callback_id = cJSON_GetObjectItemCaseSensitive(root,"id")->valueint;
+			char callback[70];
+			sprintf(callback,"{\"id\":%d,\"callback\":true,\"payload\":[false,\"\"]}",callback_id);
+			strcpy(wss_data_out,callback);
+			wss_data_out_ready = true;
+			//printf("sending callback: %s\n",callback);
+		}
+
 		return handle_event(event_type);
 	}
 
@@ -154,7 +170,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			vhd->options = (unsigned int *)opt->value;
 		break;
 
-	case	LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
+	case LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
 		//printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
 		add_headers(in,len);
 		break;
@@ -215,7 +231,10 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		}
 		int res = wss_event_handler(wsi,root);
 		if (res == 0) lwsl_notice("event_type not found\n");
-		//if (res == 1) return -1;
+		if (res == -1) {
+			wsi_connect = 1;
+			return -1;
+		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:

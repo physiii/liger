@@ -79,4 +79,3 @@
 				 A->lws_lookup[B->desc.sockfd - \
 				  lws_plat_socket_offset()] = B
 #define delete_from_fd(A,B) A->lws_lookup[B - lws_plat_socket_offset()] = 0
-
