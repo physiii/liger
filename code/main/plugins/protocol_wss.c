@@ -73,7 +73,6 @@ handle_event(char * event_type)
 	}
 
 	if (strcmp(event_type,"schedule")==0) {
-		printf("handle_event schedule\n");
 		schedule_payload = payload;
 		payload = NULL;
 		return 1;

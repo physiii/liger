@@ -8,6 +8,12 @@
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
+
+char server_address[20] = "192.168.0.21";
+int port = 5050;
+bool use_ssl = false;
+
+
 struct lws *wsi_token;
 int wsi_connect = 1;
 unsigned int rl_token = 0;
@@ -17,8 +23,6 @@ bool start_service_loop = false;
 bool token_received = false;
 bool reconnect_with_token = false;
 static struct lws_client_connect_info i;
-char server_address[20] = "192.168.1.2";
-bool use_ssl = false;
 bool send_load_event = true;
 char load_message[500];
 static struct lws_context_creation_info info;
@@ -29,13 +33,10 @@ cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
 int current_time = 0;
 bool got_ip = false;
-int port = 5050;
 
 //needs to go in headers
-
 int set_switch(int);
 
-/////////////////
 #include "services/storage.c"
 #include "services/LED.c"
 #include "plugins/protocol_wss.c"

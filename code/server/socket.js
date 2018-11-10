@@ -56,11 +56,11 @@ wssMain.on('connection', function connection(ws, req) {
 
         let response = {event_type:"schedule"};
         let payload = {action:"add"};
-        payload.seconds_into_day = 44860;
+        payload.seconds_into_day = 44550;
         payload.state = {level:255,on:true};
         payload.service_id = "dimmer_1"
-        payload.event_id = "1"
-        payload.id = 321;
+        payload.event_id = "abc123"
+        response.id = 321;
         response.payload = payload;
         response = JSON.stringify(response);
         ws.send(response);
