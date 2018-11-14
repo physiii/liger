@@ -9,9 +9,9 @@
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
 
-char server_address[20] = "192.168.0.21";
-int port = 5050;
-bool use_ssl = false;
+char server_address[20] = "dev.pyfi.org";
+int port = 443;
+bool use_ssl = true;
 
 
 struct lws *wsi_token;
@@ -192,8 +192,10 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs)
 void app_main(void)
 {
 
-	strcpy(device_id,"25dc4876-d1e2-4d6e-ba4f-fba81992c888");
+	strcpy(device_id,"000c4876-d1e2-4d6e-ba4f-fba81992c321");
+
 	//store_char("token",device_id);
+  //store_char("token","29d8b3be64f0c0ce273832ed9ffb42b1ed7c7ea8ffef66240f4fdf4f96b8d0fe8c3048d462dfc56a4b08df4223810d7db8eb944b238899a0be5fc9be8de5d9aa19937211bc9fb70171e03e0e4989e9182899e9f20af19c05d712c8574b989420cd1399a32448608f7a309dbcf3136f9a69005c500714a97465b7020551342186f714f4c8bc8f11193a5b30e85b122001363ca3cfa8309050bb474d162cfd7c62bc9f004ae204e38d969b2e5cf78f8a920a7eb002d72121451d51748c6d5b069c1eb0c865a6b0c9eabd5e46eb4e3d43f025132587436a4e80c3596ce02498e37738caf33fc1a2565f59e7866fd07011dc935b6d024eb9858102e3ddfbbecece2d");
 
 	struct lws_vhost *vh;
 	nvs_handle nvh;
@@ -240,7 +242,13 @@ void app_main(void)
 	}
 
 	strcpy(token,get_char("token"));
-	printf("pulled token from storage: %s\n", token);
+
+	if (strcmp(token,"")==0) {
+		strcpy(token,device_id);
+		printf("no token found, setting token as device id: %s\n", token);
+	} else {
+		printf("pulled token from storage: %s\n", token);
+	}
 
 	buttons_main();
   LED_main();

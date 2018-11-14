@@ -80,8 +80,8 @@ int add_service_id(char * id) {
 
 int create_schedule_ids() {
   cJSON *schedule = cJSON_CreateObject();
-  cJSON *id_arr = cJSON_CreateArray();
-  cJSON_AddItemToObject(schedule, "service_ids", id_arr);
+  schedule_ids = cJSON_CreateArray();
+  cJSON_AddItemToObject(schedule, "service_ids", schedule_ids);
   char *schedule_str = cJSON_PrintUnformatted(schedule);
   store_char("schedule_ids",schedule_str);
   printf("create_schedule_ids\n");
@@ -94,6 +94,7 @@ int check_service_id(char * service_id) {
   }
   bool id_found = false;
   cJSON *service_id_json =  NULL;
+	printf("looping schedule_ids\n");
   cJSON_ArrayForEach(service_id_json, schedule_ids)
   {
     char current_id[15];
@@ -108,7 +109,7 @@ int check_service_id(char * service_id) {
   } else {
     printf("service id (%s) found in schedule ids.\n",service_id);
   }
-
+	printf("check_service_id\n");
   return 0;
 }
 

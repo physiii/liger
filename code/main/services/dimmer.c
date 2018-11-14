@@ -22,7 +22,9 @@
 #define TEST_WITH_RELOAD      1        // testing will be done with auto reload
 
 #define ZERO_DETECT_IO      35
-#define TRIAC_IO      2
+#define TRIAC_IO       2
+#define TRIAC_ON       1
+#define TRIAC_OFF      0
 #define ESP_INTR_FLAG_DEFAULT 0
 
 static xQueueHandle gpio_evt_queue = NULL;
@@ -65,7 +67,7 @@ void set_brightness(int level) {
       zerocross_present = false;
     } else if (!zerocross_present) {
       //printf("turning off triac to get zerocross %f\n",triac_delay);
-      gpio_set_level(TRIAC_IO, 0);
+      gpio_set_level(TRIAC_IO, TRIAC_OFF);
     }
   }
 
@@ -79,7 +81,7 @@ void set_brightness(int level) {
     }
 
   } else {
-    gpio_set_level(TRIAC_IO, 0);
+    gpio_set_level(TRIAC_IO, TRIAC_OFF);
     set_pixel_by_index(0, 255, 0, 0, 1);
   }
   printf("set brightness to %d\n",current_brightness);
@@ -167,11 +169,11 @@ void IRAM_ATTR timer_group0_isr(void *para) {
     // }
 
     if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
-        gpio_set_level(TRIAC_IO, 1);
+        gpio_set_level(TRIAC_IO, TRIAC_ON);
         if (current_brightness) {
-          gpio_set_level(TRIAC_IO, 1);
+          gpio_set_level(TRIAC_IO, TRIAC_ON);
         } else {
-          gpio_set_level(TRIAC_IO, 0);
+          gpio_set_level(TRIAC_IO, TRIAC_OFF);
         }
 
         //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_DIS;
@@ -266,7 +268,7 @@ static void timer_example_evt_task(void *arg) {
 static void IRAM_ATTR dimmer_isr_handler(void* arg) {
     uint32_t gpio_num = (uint32_t) arg;
     //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_EN;
-    if (current_brightness < max_brightness) gpio_set_level(TRIAC_IO, 0);
+    if (current_brightness < max_brightness) gpio_set_level(TRIAC_IO, TRIAC_OFF);
     example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
     zerocross_present = true;
     //xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
@@ -296,6 +298,7 @@ static void
 dimmer_service(void *pvParameter)
 {
     uint32_t io_num;
+    set_brightness(255); //start with dimmmer on
     while (1) {
 
         //fade_brightness(0,255,3000);

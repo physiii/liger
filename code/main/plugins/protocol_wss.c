@@ -69,7 +69,7 @@ handle_event(char * event_type)
 		printf("handle_event level: %d\n",level);
 		dimmer_payload = payload;
 		payload = NULL;
-		return 0;
+		return 1;
 	}
 
 	if (strcmp(event_type,"schedule")==0) {
@@ -234,6 +234,10 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			wsi_connect = 1;
 			return -1;
 		}
+		break;
+
+	case LWS_CALLBACK_WS_PEER_INITIATED_CLOSE:
+		lwsl_notice("\n\LWS_CALLBACK_WS_PEER_INITIATED_CLOSE (%d): %s\n\n",len,(const char *)in);
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
