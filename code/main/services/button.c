@@ -28,30 +28,30 @@ void button_event_handler(int state) {
 
     case BUTTON_UP:
       dimmer_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(30);
+      level_json = cJSON_CreateNumber(255);
+      cJSON_AddItemToObject(dimmer_payload, "level", level_json);
       printf("BUTTON_UP\n");
-      cJSON_AddItemToObject(dimmer_payload, "increment", level_json);
       break;
 
     case BUTTON_RIGHT:
       dimmer_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(0);
+      level_json = cJSON_CreateNumber(30);
+      cJSON_AddItemToObject(dimmer_payload, "decrement", level_json);
       printf("BUTTON_RIGHT\n");
-      cJSON_AddItemToObject(dimmer_payload, "level", level_json);
       break;
 
     case BUTTON_DOWN:
       dimmer_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(30);
+      level_json = cJSON_CreateNumber(0);
+      cJSON_AddItemToObject(dimmer_payload, "level", level_json);
       printf("BUTTON_DOWN\n");
-      cJSON_AddItemToObject(dimmer_payload, "decrement", level_json);
       break;
 
     case BUTTON_LEFT:
       dimmer_payload = cJSON_CreateObject();
-      level_json = cJSON_CreateNumber(255);
+      level_json = cJSON_CreateNumber(30);
+      cJSON_AddItemToObject(dimmer_payload, "increment", level_json);
       printf("BUTTON_LEFT\n");
-      cJSON_AddItemToObject(dimmer_payload, "level", level_json);
       break;
 
     case BUTTON_UP_RIGHT:
@@ -90,7 +90,7 @@ button_service(void *pvParameter)
 
         button_event_handler(state);
 
-        sprintf(buttons_service_message,""
+        snprintf(buttons_service_message,sizeof(buttons_service_message),""
         "{\"event_type\":\"button/\pressed\","
         " \"payload\":{\"type\":\"dpad\",\"value\":%d}}"
         , state);

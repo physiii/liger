@@ -37,6 +37,7 @@ int current_brightness = 0;
 double triac_delay = 1;
 double min_triac_delay = 0.0001;
 double max_triac_delay = 0.0075;
+double no_neutral_thresh = 0.0040;
 bool neutral_present = false;
 bool zerocross_present = false;
 double sim_zerocross_delay = 0.0166; //simulated zero cross delay (1/120hz)
@@ -63,7 +64,7 @@ void set_brightness(int level) {
   if (level < 0) level = 0;
   current_brightness = level;
   if (!neutral_present) {
-    if (triac_delay<0.0040) {
+    if (triac_delay<no_neutral_thresh) {
       zerocross_present = false;
     } else if (!zerocross_present) {
       //printf("turning off triac to get zerocross %f\n",triac_delay);
@@ -338,6 +339,15 @@ dimmer_service(void *pvParameter)
             int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
             fade_brightness(0,fade,2000);
             lwsl_notice("[dimmer_service] fade %d\n",fade);
+          }
+
+          if (cJSON_GetObjectItem(dimmer_payload,"neutral_present")) {
+            if (cJSON_IsTrue(cJSON_GetObjectItem(dimmer_payload,"neutral_present"))) {
+              neutral_present = true;
+            } else {
+              neutral_present = false;
+            }
+            lwsl_notice("[dimmer_service] neutral_present: %d\n",neutral_present);
           }
 
           dimmer_payload = NULL;

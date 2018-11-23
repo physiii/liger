@@ -8,26 +8,36 @@
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
-
 char server_address[20] = "dev.pyfi.org";
 int port = 443;
 bool use_ssl = true;
 
+int DISCONNECTED = 0;
+int CONNECTING   = 1;
+int CONNECTED    = 2;
+int utility_server_status = 0;
+int relay_status = 0;
+int previous_relay_status = 0;
 
 struct lws *wsi_token;
 int wsi_connect = 1;
 unsigned int rl_token = 0;
+unsigned int rl_ping = 0;
+unsigned int rl_device_id = 0;
 char token[1000];
 char device_id[100];
 bool start_service_loop = false;
 bool token_received = false;
 bool reconnect_with_token = false;
-static struct lws_client_connect_info i;
-bool send_load_event = true;
+static struct lws_client_connect_info relay;
+static struct lws_client_connect_info utility_server;
+struct lws_vhost *vh;
+bool sent_load_event = false;
 char load_message[500];
 static struct lws_context_creation_info info;
 struct lws_context *context;
 cJSON *payload = NULL;
+cJSON *utility_payload = NULL;
 cJSON *dimmer_payload = NULL;
 cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
@@ -39,7 +49,8 @@ int set_switch(int);
 
 #include "services/storage.c"
 #include "services/LED.c"
-#include "plugins/protocol_wss.c"
+#include "plugins/protocol_relay.c"
+#include "plugins/protocol_utility.c"
 #include "services/button.c"
 //#include "services/motion.c"
 #include "services/dimmer.c"
@@ -54,7 +65,8 @@ static const struct lws_protocols protocols_station[] = {
 		0,
 		1024, 0, NULL, 900
 	},
-	LWS_PLUGIN_PROTOCOL_WSS, /* demo... */
+	LWS_PLUGIN_PROTOCOL_WSS,
+	LWS_PLUGIN_PROTOCOL_UTILITY,
 	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
 	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
 	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
@@ -161,7 +173,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
             break;
 
         case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-            printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
+            printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
 	    			//wsi_connect = 1;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
@@ -189,15 +201,53 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs)
 	return 1;
 }
 
+int load_device_id() {
+	strcpy(device_id,get_char("device_id"));
+
+	if (strcmp(device_id,"")==0) {
+		memset(&utility_server, 0, sizeof utility_server);
+		utility_server.address = server_address;
+		utility_server.port = port;
+		utility_server.host = utility_server.address;
+		utility_server.origin = utility_server.host;
+		utility_server.ietf_version_or_minus_one = -1;
+		utility_server.context = context;
+		utility_server.protocol = "utility-protocol";
+		utility_server.pwsi = &wsi_token;
+		utility_server.path = "/utilities";
+		if (use_ssl) {
+			utility_server.ssl_connection = LCCSCF_USE_SSL;
+			utility_server.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
+		}
+	}
+
+	while (strcmp(device_id,"")==0) {
+		printf("utility loop (%d)\n",cnt++);
+
+		if (got_ip && ratelimit_connects(&rl_device_id, 5u)) {
+			snprintf(utility_data_out,sizeof(utility_data_out),"{\"event_type\":\"generate-uuid\"}");
+			utility_data_out_ready = true;
+			printf("device_id_main...\n");
+		}
+
+		if (got_ip && utility_server_status != CONNECTED && ratelimit_connects(&rl_token, 4u)) {
+			utility_server_status = CONNECTING;
+			lws_client_connect_via_info(&utility_server);
+			printf("connecting to %s\n",server_address);
+		}
+
+		if (got_ip && utility_server_status != DISCONNECTED) {
+			lws_service(context, 1000);
+		}
+
+		vTaskDelay(1000 / portTICK_RATE_MS);
+	}
+
+	return 0;
+}
+
 void app_main(void)
 {
-
-	strcpy(device_id,"000c4876-d1e2-4d6e-ba4f-fba81992c321");
-
-	//store_char("token",device_id);
-  //store_char("token","29d8b3be64f0c0ce273832ed9ffb42b1ed7c7ea8ffef66240f4fdf4f96b8d0fe8c3048d462dfc56a4b08df4223810d7db8eb944b238899a0be5fc9be8de5d9aa19937211bc9fb70171e03e0e4989e9182899e9f20af19c05d712c8574b989420cd1399a32448608f7a309dbcf3136f9a69005c500714a97465b7020551342186f714f4c8bc8f11193a5b30e85b122001363ca3cfa8309050bb474d162cfd7c62bc9f004ae204e38d969b2e5cf78f8a920a7eb002d72121451d51748c6d5b069c1eb0c865a6b0c9eabd5e46eb4e3d43f025132587436a4e80c3596ce02498e37738caf33fc1a2565f59e7866fd07011dc935b6d024eb9858102e3ddfbbecece2d");
-
-	struct lws_vhost *vh;
 	nvs_handle nvh;
 
 	lws_esp32_set_creation_defaults(&info);
@@ -209,40 +259,21 @@ void app_main(void)
 	nvs_flash_init();
 	lws_esp32_wlan_config();
 
-	/*
-	 * set the basic auth user:password used for /secret/... urls
-	 * normally you'd just do this once at setup-time or if the
-	 * password was changed.  If you don't use basic auth on your
-	 * site, no need for this.
-
-	if (!nvs_open("lwsdemoba", NVS_READWRITE, &nvh)) {
-		nvs_set_str(nvh, "user", "password");
-		nvs_commit(nvh);
-		nvs_close(nvh);
-	}	*/
-
 	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
 
 	lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info, &vh);
 
-	memset(&i, 0, sizeof i);
-	i.address = server_address;
-	i.port = port;
-	i.host = i.address;
-	i.origin = i.host;
-	i.ietf_version_or_minus_one = -1;
-	i.context = context;
-	i.protocol = "wss-protocol";
-	i.pwsi = &wsi_token;
-	i.path = "/device-relay";
-	if (use_ssl) {
-		i.ssl_connection = LCCSCF_USE_SSL;
-		i.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
-	}
+	buttons_main();
+	LED_main();
+	dimmer_main();
+	schedule_main();
+
+	load_device_id();
+
+	printf("Device ID: %s\n",device_id);
 
 	strcpy(token,get_char("token"));
-
 	if (strcmp(token,"")==0) {
 		strcpy(token,device_id);
 		printf("no token found, setting token as device id: %s\n", token);
@@ -250,21 +281,58 @@ void app_main(void)
 		printf("pulled token from storage: %s\n", token);
 	}
 
-	buttons_main();
-  LED_main();
-	dimmer_main();
-	schedule_main();
-	//motion_main();
-	//audio_main();
-	//contact_main();
 	int service_context_cnt = 0;
 	int cnt = 0;
 
+	memset(&relay, 0, sizeof relay);
+	relay.address = server_address;
+	relay.port = port;
+	relay.host = relay.address;
+	relay.origin = relay.host;
+	relay.ietf_version_or_minus_one = -1;
+	relay.context = context;
+	relay.protocol = "wss-protocol";
+	relay.pwsi = &wsi_token;
+	relay.path = "/device-relay";
+	if (use_ssl) {
+		relay.ssl_connection = LCCSCF_USE_SSL;
+		relay.ssl_connection |= LCCSCF_ALLOW_SELFSIGNED;
+	}
+
+	snprintf(load_message,sizeof(load_message),""
+	"{\"event_type\":\"load\","
+	" \"payload\":{\"services\":["
+	"{\"type\":\"dimmer\","
+	"\"state\":{\"level\":0, \"on\":false},\"id\":\"dimmer_1\"},"
+	"{\"type\":\"LED\","
+	"\"state\":{\"rgb\":[0,0,0]},"
+	"\"id\":1}"
+	"]}}");
+	strcpy(wss_data_out,load_message);
+	wss_data_out_ready = true;
+	printf("load_mesage %s\n",load_message);
+
 	while (1) {
-		//printf("main loop.....%d\n",cnt++);
+		//printf("main loop (%d)\n",cnt++);
+
+		if (relay_status == DISCONNECTED) {
+			set_pixel_by_index(0, 0, 0, 0, 1);
+			vTaskDelay(300 / portTICK_RATE_MS);
+			set_pixel_by_index(0, 0, 0, 255, 1);
+		}
+
 		if (buttons_service_message_ready && !wss_data_out_ready) {
 			strcpy(wss_data_out,buttons_service_message);
 			buttons_service_message_ready = false;
+			//wss_data_out_ready = true;
+		}
+
+
+		if (got_ip
+			&& relay_status == CONNECTED
+			&& ratelimit_connects(&rl_ping, 60u)
+			&& strcmp(wss_data_out,"")==0) {
+			snprintf(wss_data_out,sizeof(wss_data_out),"{\"event_type\":\"ping\"}");
 			wss_data_out_ready = true;
 		}
 
@@ -274,47 +342,18 @@ void app_main(void)
 		// 	wss_data_out_ready = true;
 		// }
 
-		if (wsi_connect) {
-    	set_pixel_by_index(0, 0, 0, 0, 1);
-			vTaskDelay(300 / portTICK_RATE_MS);
-    	set_pixel_by_index(0, 0, 0, 255, 1);
-		}
 
-		//connect_client(i);
-
-		if (send_load_event) {
-			sprintf(load_message,""
-			"{\"event_type\":\"load\","
-			" \"payload\":{\"services\":["
-			"{\"type\":\"dimmer\","
-			"\"state\":{\"level\":0, \"on\":false},\"id\":\"dimmer_1\"},"
-			"{\"type\":\"LED\","
-			"\"state\":{\"rgb\":[0,0,0]},"
-			"\"id\":1}"
-			"]}}");
-			strcpy(wss_data_out,load_message);
-			send_load_event = false;
-			wss_data_out_ready = true;
-			printf("load_mesage %s\n",load_message);
-		}
-
-		if (got_ip && wsi_connect && ratelimit_connects(&rl_token, 4u)) {
-			wsi_connect = 0;
-			lws_client_connect_via_info(&i);
+		if (got_ip && relay_status == DISCONNECTED && ratelimit_connects(&rl_token, 4u)) {
+			relay_status = CONNECTED;
+			lws_client_connect_via_info(&relay);
 			printf("connecting to %s\n",server_address);
 		}
 
-		if (got_ip && !wsi_connect) {
-			service_context_cnt++;
-			//if (service_context_cnt < 400) {
-				if (lws_service(context, 1000) >= 0) {
-					//printf("lws_service...%d\n",service_context_cnt);
-				} else {
-					lwsl_err("!! COULD NOT SERVICE CONTEXT !!\n");
-				}
-			//}
+		if (got_ip && relay_status != DISCONNECTED) {
+				lws_service(context, 1000);
 		}
-		//taskYIELD();
+
+		previous_relay_status = relay_status;
 		vTaskDelay(1000 / portTICK_RATE_MS);
 	}
 }

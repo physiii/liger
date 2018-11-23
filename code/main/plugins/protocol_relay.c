@@ -54,9 +54,14 @@ add_headers(void *in, size_t len)
 	if (len < 100)
 		return 1;
 
+	// *h += snprintf(*h, sizeof(h), "x-device-id: %s\x0d\x0a",device_id);
+	// *h += snprintf(*h, sizeof(h), "x-device-type: %s\x0d\x0a","generic");
+	// *h += snprintf(*h, sizeof(h), "x-device-token: %s\x0d\x0a",token);
+
 	*h += sprintf(*h, "x-device-id: %s\x0d\x0a",device_id);
 	*h += sprintf(*h, "x-device-type: %s\x0d\x0a","generic");
 	*h += sprintf(*h, "x-device-token: %s\x0d\x0a",token);
+
 	printf("header token:\n%s\n",token);
 	return 0;
 }
@@ -80,13 +85,13 @@ handle_event(char * event_type)
 
 	if (strcmp(event_type,"load")==0) {
 		char result[500];
-		sprintf(result,"%s",cJSON_GetObjectItem(payload,"result")->valuestring);
+		snprintf(result,sizeof(result),"%s",cJSON_GetObjectItem(payload,"result")->valuestring);
 		lwsl_notice("loaded: %s\n", result);
 		return 1;
 	}
 
 	if (strcmp(event_type,"token")==0) {
-		sprintf(token,"%s",cJSON_GetObjectItem(payload,"token")->valuestring);
+		snprintf(token,sizeof(token),"%s",cJSON_GetObjectItem(payload,"token")->valuestring);
 		lwsl_notice("token received: %s\n", token);
 		store_char("token",token);
 		return 1;
@@ -99,7 +104,7 @@ handle_event(char * event_type)
 
 	if (strcmp(event_type,"authentication")==0) {
 		char error[500];
-		sprintf(error,"%s",cJSON_GetObjectItem(payload,"error")->valuestring);
+		snprintf(error,sizeof(error),"%s",cJSON_GetObjectItem(payload,"error")->valuestring);
 		lwsl_err("websocket: %s\n", error);
 		return 1;
 	}
@@ -121,14 +126,14 @@ wss_event_handler(struct lws *wsi, cJSON * root)
 
 	if (cJSON_GetObjectItem(root,"event_type")) {
 		char event_type[500];
-		sprintf(event_type,"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
+		snprintf(event_type,sizeof(event_type),"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
 		payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
 
 		// {id:id,callback:true,payload:[false,""]}
 		if (cJSON_GetObjectItemCaseSensitive(root,"id")) {
 			int callback_id = cJSON_GetObjectItemCaseSensitive(root,"id")->valueint;
 			char callback[70];
-			sprintf(callback,"{\"id\":%d,\"callback\":true,\"payload\":[false,\"\"]}",callback_id);
+			snprintf(callback,sizeof(callback),"{\"id\":%d,\"callback\":true,\"payload\":[false,\"\"]}",callback_id);
 			strcpy(wss_data_out,callback);
 			wss_data_out_ready = true;
 			//printf("sending callback: %s\n",callback);
@@ -140,7 +145,9 @@ wss_event_handler(struct lws *wsi, cJSON * root)
 	return 0;
 }
 
-int LWS_CALLBACK_CLIENT_CLOSED_cnt = 0;
+int LWS_CALLBACK_CLIENT_CLOSED_CNT = 0;
+int LWS_CALLBACK_CLIENT_WRITEABLE_CNT = 0;
+
 static int
 callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
@@ -185,7 +192,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
-
+		LWS_CALLBACK_CLIENT_WRITEABLE_CNT++;
 		if (!wss_data_out_ready) break;
 		n = lws_snprintf((char *)p, sizeof(wss_data_out) - LWS_PRE, "%s", wss_data_out);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
@@ -194,6 +201,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		} else {
 			wss_data_out_ready = false;
 			printf("SENT: %s\n",wss_data_out);
+			strcpy(wss_data_out,"");
 		}
 		break;
 
@@ -201,11 +209,9 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		if (len < 10) break;
 		if (len > 1000) break;
 		//lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
-		//strcpy(wss_data_in,"");
+
 		memset(&wss_data_in, 0, sizeof wss_data_in);
 		strcpy(wss_data_in,(const char *)in);
-		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE %s\n\n",wss_data_in);
-		//break;
 		int valid_json = check_json(wss_data_in);
 		cJSON *root = cJSON_Parse(wss_data_in);
 
@@ -220,10 +226,6 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
         valid_json = 0;
     }
 
-    //const char *parse_end = NULL;
-    //cJSON *root = cJSON_ParseWithOpts(wss_data_in, &parse_end, true);
-		//if (strcmp(parse_end,"")!=0) break;
-
 		if (!valid_json) {
 			lwsl_err("invalid incoming json\n");
 			break;
@@ -231,32 +233,32 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		int res = wss_event_handler(wsi,root);
 		if (res == 0) lwsl_notice("event_type not found\n");
 		if (res == -1) {
-			wsi_connect = 1;
+			relay_status = DISCONNECTED;
 			return -1;
 		}
 		break;
 
 	case LWS_CALLBACK_WS_PEER_INITIATED_CLOSE:
-		lwsl_notice("\n\LWS_CALLBACK_WS_PEER_INITIATED_CLOSE (%d): %s\n\n",len,(const char *)in);
+		lwsl_notice("\n\nLWS_CALLBACK_WS_PEER_INITIATED_CLOSE (%d): %s\n\n",len,(const char *)in);
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
-		LWS_CALLBACK_CLIENT_CLOSED_cnt++;
-		lwsl_notice("LWS_CALLBACK_CLIENT_CLOSED %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
+		LWS_CALLBACK_CLIENT_CLOSED_CNT++;
+		lwsl_notice("LWS_CALLBACK_CLIENT_CLOSED %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 			(unsigned char *)"LWS_CALLBACK_CLIENT_CLOSED reconnecting...", 5);
-		if (LWS_CALLBACK_CLIENT_CLOSED_cnt > 1) {
-			wsi_connect = 1;
-			LWS_CALLBACK_CLIENT_CLOSED_cnt = 0;
+		if (LWS_CALLBACK_CLIENT_CLOSED_CNT > 1) {
+			relay_status = DISCONNECTED;
+			LWS_CALLBACK_CLIENT_CLOSED_CNT = 0;
 		}
 		return -1;
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_cnt);
+		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 			(unsigned char *)"LWS_CALLBACK_CLIENT_CONNECTION_ERROR reconnecting...", 5);
-		wsi_connect = 1;
+		relay_status = DISCONNECTED;
 		return -1;
 		break;
 
