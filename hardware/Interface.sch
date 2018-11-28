@@ -1,10 +1,10 @@
 EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 9 9
+Sheet 9 8
 Title ""
 Date ""
 Rev ""
@@ -171,34 +171,6 @@ F 3 "" H 4300 5550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4600 5950 4700 5950
-Wire Wire Line
-	4000 5950 4100 5950
-Wire Wire Line
-	4600 5850 4700 5850
-Wire Wire Line
-	4000 5750 4100 5750
-Wire Wire Line
-	4600 5750 4700 5750
-Wire Wire Line
-	4000 5850 4100 5850
-Wire Wire Line
-	4600 5650 4700 5650
-Wire Wire Line
-	4000 5650 4100 5650
-Wire Wire Line
-	4000 5450 4100 5450
-Wire Wire Line
-	4000 5550 4100 5550
-Wire Wire Line
-	4000 5350 4100 5350
-Wire Wire Line
-	4600 5450 4700 5450
-Wire Wire Line
-	4700 5550 4600 5550
-Wire Wire Line
-	4600 5350 4700 5350
-Wire Wire Line
 	4050 5200 4050 5250
 Wire Wire Line
 	4050 5250 4100 5250
@@ -212,34 +184,26 @@ Wire Wire Line
 	4625 3500 4625 3600
 Wire Wire Line
 	3575 3500 3575 3600
-Text HLabel 4000 5350 0    60   Input ~ 0
+Text HLabel 4050 5450 0    60   Input ~ 0
 V_BAT
-Text HLabel 4000 5450 0    60   Input ~ 0
+Text HLabel 4050 5550 0    60   Input ~ 0
 3V3
-Text HLabel 4000 5550 0    60   Input ~ 0
+Text HLabel 4050 5650 0    60   Input ~ 0
 ZERO_DETECT
-Text HLabel 4000 5650 0    60   Input ~ 0
-SCL
-Text HLabel 4000 5750 0    60   Input ~ 0
-I2S_WS
-Text HLabel 4000 5850 0    60   Input ~ 0
-I2S_BCLK
-Text HLabel 4000 5950 0    60   Input ~ 0
+Text HLabel 4650 5850 2    60   Output ~ 0
+RELAY_2
+Text HLabel 4050 5950 0    60   Input ~ 0
 PROG
-Text HLabel 4700 5350 2    60   Input ~ 0
+Text HLabel 4650 5350 2    60   Input ~ 0
 V_USB
-Text HLabel 4700 5450 2    60   Input ~ 0
+Text HLabel 4650 5450 2    60   Output ~ 0
 TXD
-Text HLabel 4700 5550 2    60   Input ~ 0
+Text HLabel 4650 5550 2    60   Input ~ 0
 RXD
-Text HLabel 4700 5650 2    60   Input ~ 0
-SDA
-Text HLabel 4700 5750 2    60   Input ~ 0
-I2S_DATA_IN
-Text HLabel 4700 5850 2    60   Input ~ 0
-I2S_DATA_OUT
-Text HLabel 4700 5950 2    60   Input ~ 0
-RELAY
+Text HLabel 4650 5750 2    60   Output ~ 0
+RELAY_3
+Text HLabel 4650 5950 2    60   Output ~ 0
+RELAY_1
 Text HLabel 6775 5475 0    60   Input ~ 0
 BUTTON_LED
 Text HLabel 3575 2500 1    60   Input ~ 0
@@ -278,7 +242,7 @@ F 3 "" H 7275 5875 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text HLabel 7275 4975 1    60   Input ~ 0
-V_USB
+V_IN
 $Comp
 L open-automation:GND #PWR0102
 U 1 1 5B2DB9CA
@@ -420,4 +384,41 @@ Wire Wire Line
 	8900 2475 8900 2450
 Wire Wire Line
 	8900 2450 8925 2450
+Text HLabel 4650 5650 2    60   Output ~ 0
+RELAY_4
+Wire Wire Line
+	4650 5650 4600 5650
+Wire Wire Line
+	4650 5550 4600 5550
+Wire Wire Line
+	4600 5450 4650 5450
+Wire Wire Line
+	4650 5350 4600 5350
+Wire Wire Line
+	4600 5750 4650 5750
+Wire Wire Line
+	4650 5850 4600 5850
+Wire Wire Line
+	4600 5950 4650 5950
+Wire Wire Line
+	4100 5350 4050 5350
+Wire Wire Line
+	4050 5350 4050 5250
+Connection ~ 4050 5250
+Wire Wire Line
+	4050 5450 4100 5450
+Wire Wire Line
+	4100 5550 4050 5550
+Wire Wire Line
+	4050 5650 4100 5650
+Wire Wire Line
+	4100 5750 4050 5750
+Wire Wire Line
+	4050 5850 4100 5850
+Wire Wire Line
+	4100 5950 4050 5950
+Text HLabel 4050 5850 0    60   Input ~ 0
+I2S_BCLK
+Text HLabel 4050 5750 0    60   Input ~ 0
+I2S_WS
 $EndSCHEMATC

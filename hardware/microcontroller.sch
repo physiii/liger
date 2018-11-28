@@ -1,10 +1,10 @@
 EESchema Schematic File Version 4
 LIBS:liger-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 9
+Sheet 2 8
 Title ""
 Date ""
 Rev ""
@@ -153,7 +153,7 @@ T_DOWN
 Text HLabel 6250 3800 3    60   Input ~ 0
 PIR
 Text HLabel 6350 3800 3    60   Input ~ 0
-RELAY
+RELAY_1
 Text HLabel 6900 3150 2    60   Input ~ 0
 PROG
 Text HLabel 6900 3050 2    60   Output ~ 0
@@ -277,4 +277,16 @@ Wire Wire Line
 	4950 1950 5050 1950
 Wire Wire Line
 	4950 2050 5050 2050
+Text HLabel 6825 2750 2    60   Input ~ 0
+RELAY_2
+Wire Wire Line
+	6825 2750 6800 2750
+Text HLabel 6825 2850 2    60   Input ~ 0
+RELAY_3
+Wire Wire Line
+	6825 2850 6800 2850
+Text HLabel 5000 2450 0    60   Input ~ 0
+RELAY_4
+Wire Wire Line
+	5000 2450 5050 2450
 $EndSCHEMATC
