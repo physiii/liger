@@ -183,7 +183,8 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
 		lws_callback_on_writable(wsi);
-		set_pixel_by_index(0, 0, 255, 0, 1);
+		//set_pixel_by_index(0, 0, 255, 0, 1);
+		setLED(0,255,0);
 		pss->number = 0;
 		strcpy(wss_data_in,"");
 		if (!vhd->options || !((*vhd->options) & 1))

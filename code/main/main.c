@@ -52,7 +52,7 @@ int set_switch(int);
 #include "plugins/protocol_relay.c"
 #include "plugins/protocol_utility.c"
 #include "services/button.c"
-//#include "services/motion.c"
+#include "services/motion.c"
 #include "services/dimmer.c"
 #include "services/scheduler.c"
 /*#include "services/audio.c
@@ -268,6 +268,7 @@ void app_main(void)
 	LED_main();
 	dimmer_main();
 	schedule_main();
+	//motion_main();
 
 	load_device_id();
 
@@ -316,9 +317,11 @@ void app_main(void)
 		//printf("main loop (%d)\n",cnt++);
 
 		if (relay_status == DISCONNECTED) {
-			set_pixel_by_index(0, 0, 0, 0, 1);
+			//set_pixel_by_index(0, 0, 0, 0, 1);
+			setLED(0,0,0);
 			vTaskDelay(300 / portTICK_RATE_MS);
-			set_pixel_by_index(0, 0, 0, 255, 1);
+			//set_pixel_by_index(0, 0, 0, 255, 1);
+			setLED(0,0,255);
 		}
 
 		if (buttons_service_message_ready && !wss_data_out_ready) {

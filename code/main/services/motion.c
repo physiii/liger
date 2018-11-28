@@ -21,7 +21,7 @@ static void motion_service(void *pvParameter)
         "\"channel_0\":%d, \"channel_1\":%d, \"channel_tmp\":%d}}"
         , motion_data_0, motion_data_1, motion_tmp);
 
-        printf("%s\n", motion_service_message);
+        //printf("%s\n", motion_service_message);
 
         previous_state = state;
         motion_service_message_ready = true;

@@ -20,11 +20,14 @@ uint16_t motion_data_0;
 uint16_t motion_data_1;
 uint16_t motion_tmp;
 
-int accumulator_1 = 0;
-float alpha = 1;
-
+float alpha = 0.01;
 bool pir_debounce = false;
-int threshold = 7200;
+
+int threshold_low = 15000;
+int threshold_high = 17000;
+int delta_threshold_low = 7000;
+int delta_threshold_high = 9000;
+
 int pir_bits_remaining; // set when timer starts, decremented in handler
 uint64_t pir_bits; // 0-41 used; 42-63 unused
 uint64_t t0, t1;
@@ -69,6 +72,8 @@ void gpio_setup(const gpio_num_t pin) {
   struct pir_frame_t frame = {0};
   struct pir_frame_t previous_frame = {0};
   struct pir_frame_t delta_frame = {0};
+  struct pir_frame_t previous_delta_frame = {0};
+  struct pir_frame_t accumulator_frame = {0};
 
   int channel, bit;
 
@@ -116,22 +121,35 @@ void gpio_setup(const gpio_num_t pin) {
 
     // exponential moving average
     // accumulator = (alpha * new_value) + (1.0 - alpha) * accumulator
-    delta_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * delta_frame.channel[0];
-    delta_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * delta_frame.channel[1];
-    delta_frame.channel[2] = (alpha * frame.channel[2]) + (1.0 - alpha) * delta_frame.channel[2];
-    printf("pir: %d %d\n",delta_frame.channel[0],delta_frame.channel[1]);
-    if (delta_frame.channel[0] > threshold && delta_frame.channel[1] > threshold){
-      printf("ch0: %d\tch1: %d\ttmp: %d\n", delta_frame.channel[0], delta_frame.channel[1], delta_frame.channel[2]);
+    // The closer alpha is to one the more older values will contribute.
+    accumulator_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator_frame.channel[0];
+    accumulator_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * accumulator_frame.channel[1];
+    accumulator_frame.channel[2] = (alpha * frame.channel[2]) + (1.0 - alpha) * accumulator_frame.channel[2];
+    //printf("pir: %d %d\n",accumulator_frame.channel[0],accumulator_frame.channel[1]);
+    if (accumulator_frame.channel[0] < threshold_low || accumulator_frame.channel[0] > threshold_high){
+      printf("ch0: %d\tch1: %d\ttmp: %d\n", accumulator_frame.channel[0], accumulator_frame.channel[1], accumulator_frame.channel[2]);
       motion_active = true;
-      motion_data_0 = delta_frame.channel[0];
-      motion_data_1 = delta_frame.channel[1];
-      motion_tmp = delta_frame.channel[1];
+      motion_data_0 = accumulator_frame.channel[0];
+      motion_data_1 = accumulator_frame.channel[1];
+      motion_tmp = accumulator_frame.channel[1];
       pir_debounce = true;
     }
 
+
+    delta_frame.channel[0] = accumulator_frame.channel[0] - previous_frame.channel[0];
+    delta_frame.channel[1] = accumulator_frame.channel[1] - previous_frame.channel[1];
+    delta_frame.channel[2] = accumulator_frame.channel[2] - previous_frame.channel[2];
+
+    if (delta_frame.channel[0] > delta_threshold_low && delta_frame.channel[0] < delta_threshold_high) {
+      printf("previous delta: %d\n",previous_frame.channel[0]);
+      printf("delta: %d\n",delta_frame.channel[0]);
+      printf("delta delta: %d\n",previous_delta_frame.channel[0] - delta_frame.channel[0]);
+    }
+
+    previous_delta_frame = delta_frame;
     previous_frame = frame;
     // take a breath between packets
-    vTaskDelay(100 / portTICK_PERIOD_MS);
+    vTaskDelay(15 / portTICK_PERIOD_MS);
   }
 }
 

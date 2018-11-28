@@ -5,9 +5,10 @@ char LED_service_message_in[2000];
 int current_LED_level = 0;
 int pwm_factor = 2;
 
-int setLED(int level) {
-  lwsl_notice("set LED value: %d\n",level);
-  return level;
+int setLED(int r, int g, int b) {
+  lwsl_notice("set LED [%d,%d,%d]\n",r,g,b);
+  set_pixel_by_index(0, r, g, b, 1);
+  return 0;
 }
 
 int toggleLED() {
@@ -19,7 +20,7 @@ int toggleLED() {
   }
 
   lwsl_notice("toggle LED from %d to %d\n",current_LED_level,new_LED_level);
-  setLED(new_LED_level);
+  setLED(new_LED_level,new_LED_level,new_LED_level);
   current_LED_level = new_LED_level;
   return current_LED_level;
 }
@@ -44,7 +45,7 @@ static void LED_service(void *pvParameter) {
 
       if (cJSON_GetObjectItem(LED_payload,"level")) {
         int level = cJSON_GetObjectItem(LED_payload,"level")->valueint;
-        setLED(level);
+        setLED(level,level,level);
         lwsl_notice("[LED_service] level %d\n",level);
       }
 

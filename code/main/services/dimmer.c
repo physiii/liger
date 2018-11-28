@@ -31,6 +31,8 @@ static xQueueHandle gpio_evt_queue = NULL;
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<ZERO_DETECT_IO))
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<TRIAC_IO))
 
+bool neutral_present = true;
+
 int max_brightness = 255;
 int zerocross_count = 0;
 int current_brightness = 0;
@@ -38,7 +40,7 @@ double triac_delay = 1;
 double min_triac_delay = 0.0001;
 double max_triac_delay = 0.0075;
 double no_neutral_thresh = 0.0040;
-bool neutral_present = false;
+
 bool zerocross_present = false;
 double sim_zerocross_delay = 0.0166; //simulated zero cross delay (1/120hz)
 char dimmer_service_message[2000];
@@ -76,14 +78,17 @@ void set_brightness(int level) {
     level = max_brightness - level;
     triac_delay = min_triac_delay + max_triac_delay*((double)level/max_brightness);
     if (current_brightness == max_brightness) {
-      set_pixel_by_index(0, 0, 255, 0, 1);
+      //set_pixel_by_index(0, 0, 255, 0, 1);
+      setLED(0,255,0);
     } else {
-      set_pixel_by_index(0, current_brightness, current_brightness, current_brightness, 1);
+      //set_pixel_by_index(0, current_brightness, current_brightness, current_brightness, 1);
+      setLED(current_brightness,current_brightness,current_brightness);
     }
 
   } else {
     gpio_set_level(TRIAC_IO, TRIAC_OFF);
-    set_pixel_by_index(0, 255, 0, 0, 1);
+    //set_pixel_by_index(0, 255, 0, 0, 1);
+    setLED(255,0,0);
   }
   printf("set brightness to %d\n",current_brightness);
 }

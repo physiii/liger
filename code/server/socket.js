@@ -55,15 +55,15 @@ wssMain.on('connection', function connection(ws, req) {
         //ws.send("{\"event_type\":\"token\", \"payload\":{\"token\":\"25dc4876-d1e2-4d6e-ba4f-fba81992c888\"}}");
 
         let response = {event_type:"schedule"};
-        let payload = {action:"add"};
+        let payload = {action:"remove"};
         payload.seconds_into_day = 44550;
         payload.state = {level:255,on:true};
         payload.service_id = "dimmer_1"
-        payload.event_id = "abc123"
+        payload.event_id = "b321"
         response.id = 321;
         response.payload = payload;
         response = JSON.stringify(response);
-        ws.send(response);
+        //ws.send(response);
         console.log(response);
         break;
 
