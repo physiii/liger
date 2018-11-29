@@ -31,7 +31,7 @@ static xQueueHandle gpio_evt_queue = NULL;
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<ZERO_DETECT_IO))
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<TRIAC_IO))
 
-bool neutral_present = true;
+bool neutral_present = false;
 
 int max_brightness = 255;
 int zerocross_count = 0;
