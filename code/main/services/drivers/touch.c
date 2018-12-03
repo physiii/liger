@@ -17,7 +17,7 @@
 
 static const char* TAG = "Touch pad";
 #define TOUCH_THRESH_NO_USE   (0)
-#define TOUCH_THRESH_PERCENT  (80)
+#define TOUCH_THRESH_PERCENT  (10)
 #define TOUCHPAD_FILTER_TOUCH_PERIOD (10)
 
 #define PAD_NUMBER 10
@@ -38,11 +38,6 @@ uint16_t touch_filter_value;
 
 static void tp_example_touch_pad_init()
 {
-  touch_threshold[UP_PAD] = 1100;
-  touch_threshold[DOWN_PAD] = 1100;
-  touch_threshold[LEFT_PAD] = 800;
-  touch_threshold[RIGHT_PAD] = 1100;
-
   touch_pad_config(UP_PAD, TOUCH_THRESH_NO_USE);
   touch_pad_config(DOWN_PAD, TOUCH_THRESH_NO_USE);
   touch_pad_config(LEFT_PAD, TOUCH_THRESH_NO_USE);
@@ -56,7 +51,7 @@ void tp_set_thresholds(int pad){
   s_pad_init_val[pad] = touch_value;
   ESP_LOGI(TAG, "test init: touch pad [%d] val is %d", pad, touch_value);
   //set interrupt threshold.
-  ESP_ERROR_CHECK(touch_pad_set_thresh(pad, touch_value * 2 / 3));
+  ESP_ERROR_CHECK(touch_pad_set_thresh(pad, touch_value * 98 / 100));
 }
 
 static void tp_init(int pad){
