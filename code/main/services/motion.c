@@ -2,6 +2,7 @@
 
 char motion_service_message[2000];
 bool motion_service_message_ready = false;
+int motion_light_on_value = 100;
 
 static void motion_service(void *pvParameter)
 {
@@ -9,11 +10,19 @@ static void motion_service(void *pvParameter)
   uint32_t io_num;
   printf("motion service loop\n");
   int previous_state = 0;
+  int debounce_ms = 10 * 1000;
   while (1) {
 
-      int state = get_motion_state();
+      bool state = get_motion_state();
 
       if (state){
+
+        if (current_brightness < motion_light_on_value) {
+          cJSON *level_json = NULL;
+          dimmer_payload = cJSON_CreateObject();
+          level_json = cJSON_CreateNumber(motion_light_on_value);
+          cJSON_AddItemToObject(dimmer_payload, "level", level_json);
+        }
 
         sprintf(motion_service_message,""
         "{\"event_type\":\"motion/active\","
@@ -21,12 +30,12 @@ static void motion_service(void *pvParameter)
         "\"channel_0\":%d, \"channel_1\":%d, \"channel_tmp\":%d}}"
         , motion_data_0, motion_data_1, motion_tmp);
 
-        //printf("%s\n", motion_service_message);
+        printf("%s\n", motion_service_message);
 
         previous_state = state;
         motion_service_message_ready = true;
 
-        vTaskDelay(250 / portTICK_PERIOD_MS); //debounce
+        vTaskDelay(debounce_ms / portTICK_PERIOD_MS); //debounce
         pir_debounce = false;
       } else vTaskDelay(250 / portTICK_PERIOD_MS);
   }

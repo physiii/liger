@@ -240,7 +240,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_WS_PEER_INITIATED_CLOSE:
-		lwsl_notice("\n\nLWS_CALLBACK_WS_PEER_INITIATED_CLOSE (%d): %s\n\n",len,(const char *)in);
+		lwsl_notice("\n\nLWS_CALLBACK_WS_PEER_INITIATED_CLOSE (%d)\n\n",len);
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
