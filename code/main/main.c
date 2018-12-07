@@ -43,6 +43,7 @@ cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
 int current_time = 0;
 bool got_ip = false;
+bool debounce_pir = false;
 
 //needs to go in headers
 int set_switch(int);

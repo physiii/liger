@@ -3,6 +3,7 @@
 char motion_service_message[2000];
 bool motion_service_message_ready = false;
 int motion_light_on_value = 100;
+bool debounce_motion = false;
 
 static void motion_service(void *pvParameter)
 {
@@ -13,10 +14,27 @@ static void motion_service(void *pvParameter)
   int debounce_ms = 10 * 1000;
   while (1) {
 
+      //debounce the pir sensor
+      if (debounce_pir) {
+        vTaskDelay(debounce_ms / portTICK_PERIOD_MS);
+        debounce_pir = false;
+      }
+
       bool state = get_motion_state();
 
       if (state){
 
+        //create service message
+        sprintf(motion_service_message,""
+        "{\"event_type\":\"motion/active\","
+        " \"payload\":{\"type\":\"PIR\","
+        "\"channel_0\":%d, \"channel_1\":%d, \"channel_tmp\":%d}}"
+        , motion_data_0, motion_data_1, motion_tmp);
+        printf("%s\n", motion_service_message);
+        previous_state = state;
+        motion_service_message_ready = true;
+
+        //turn on dimmer
         if (current_brightness < motion_light_on_value) {
           cJSON *level_json = NULL;
           dimmer_payload = cJSON_CreateObject();
@@ -24,20 +42,10 @@ static void motion_service(void *pvParameter)
           cJSON_AddItemToObject(dimmer_payload, "level", level_json);
         }
 
-        sprintf(motion_service_message,""
-        "{\"event_type\":\"motion/active\","
-        " \"payload\":{\"type\":\"PIR\","
-        "\"channel_0\":%d, \"channel_1\":%d, \"channel_tmp\":%d}}"
-        , motion_data_0, motion_data_1, motion_tmp);
+      }
 
-        printf("%s\n", motion_service_message);
+      vTaskDelay(250 / portTICK_PERIOD_MS);
 
-        previous_state = state;
-        motion_service_message_ready = true;
-
-        vTaskDelay(debounce_ms / portTICK_PERIOD_MS); //debounce
-        pir_debounce = false;
-      } else vTaskDelay(250 / portTICK_PERIOD_MS);
   }
 }
 

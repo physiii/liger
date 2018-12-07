@@ -20,9 +20,8 @@ uint16_t motion_data_0;
 uint16_t motion_data_1;
 uint16_t motion_tmp;
 
-float alpha = 0.01;
-float avg_alpha = 0.9;
-bool pir_debounce = false;
+float alpha = 0.1;
+float avg_alpha = 0.01;
 
 int threshold_low = 0;
 int threshold_high = 170000;
@@ -123,7 +122,7 @@ void gpio_setup(const gpio_num_t pin) {
 
     // exponential moving average
     // accumulator = (alpha * new_value) + (1.0 - alpha) * accumulator
-    // The closer alpha is to one the more older values will contribute.
+    // The closer alpha is to zero the more older values will contribute.
 
     // accumulator_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator_frame.channel[0];
     // accumulator_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * accumulator_frame.channel[1];
@@ -135,7 +134,7 @@ void gpio_setup(const gpio_num_t pin) {
     //   motion_data_0 = accumulator_frame.channel[0];
     //   motion_data_1 = accumulator_frame.channel[1];
     //   motion_tmp = accumulator_frame.channel[1];
-    //   pir_debounce = true;
+    //   debounce_pir = true;
     // }
 
 
@@ -153,9 +152,9 @@ void gpio_setup(const gpio_num_t pin) {
 
     if (delta_frame.channel[0] > delta_threshold_low * average_frame.channel[0]
       && delta_frame.channel[0] < delta_threshold_high * average_frame.channel[0]
-      && !pir_debounce) {
+      && !debounce_pir) {
       motion_active = true;
-      pir_debounce = true;
+      debounce_pir = true;
       printf("motion: %d  avg: %d\n",delta_frame.channel[0],average_frame.channel[0]);
       // printf("previous delta: %d\n",previous_frame.channel[0]);
       // printf("delta delta: %d\n",previous_delta_frame.channel[0] - delta_frame.channel[0]);

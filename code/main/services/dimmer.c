@@ -63,6 +63,10 @@ static void example_tg0_timer_init(int timer_idx,
 // triac is turned off to when the triac is turned
 // on. A longer delay means less power available.
 void set_brightness(int level) {
+
+  //debounce the pir sensor when changing light values
+  debounce_pir = true;
+
   if (level > max_brightness) level = max_brightness;
   if (level < 0) level = 0;
   current_brightness = level;
