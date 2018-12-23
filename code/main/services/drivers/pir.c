@@ -15,22 +15,26 @@
 #define CPU_FREQ_MHZ (240)
 #define CPU_TICK_US (1000000.0 / (CPU_FREQ_MHZ * 1000000))
 
+int debounce_ms = 5 * 1000;
 bool motion_active = false;
 uint16_t motion_data_0;
 uint16_t motion_data_1;
 uint16_t motion_tmp;
 
-float alpha = 0.1;
+float alpha = 0.005;
 float avg_alpha = 0.01;
 
-int threshold_low = 0;
-int threshold_high = 170000;
-float delta_threshold_low = 0.5;
-float delta_threshold_high = 0.9;
+int pir_threshold = 170;
+
+int pir_lowpass = 16200;
+int pir_highpass = 16800;
+float delta_pir_lowpass = 0.535;
+float delta_pir_highpass = 0.9;
 
 int pir_bits_remaining; // set when timer starts, decremented in handler
 uint64_t pir_bits; // 0-41 used; 42-63 unused
 uint64_t t0, t1;
+int debounce_cnt = 0;
 
 // best observed freq has been 20KHz
 void cb_pir_timer(void * arg) {
@@ -63,6 +67,10 @@ bool get_motion_state() {
   return state;
 }
 
+void debounce_pir () {
+  debounce_cnt = 0;
+}
+
 void gpio_setup(const gpio_num_t pin) {
 
   struct pir_frame_t {
@@ -77,6 +85,9 @@ void gpio_setup(const gpio_num_t pin) {
   struct pir_frame_t average_frame = {0};
 
   int channel, bit;
+  int accumulator = 0;
+  int difference = 0;
+  int warmup = 0;
 
   gpio_config_t c = {0};
   c.pin_bit_mask = 1 << pin;
@@ -89,6 +100,15 @@ void gpio_setup(const gpio_num_t pin) {
   gpio_set_level(pin, 0);
 
   while (1) {
+
+    //debounce the pir sensor
+    // if (debounce_pir) {
+    //   printf("starting pir debounce\n");
+    //   vTaskDelay(debounce_ms / portTICK_PERIOD_MS);
+    //   debounce_pir = false;
+    //   printf("done pir debounce\n");
+    // }
+
     uint64_t pir_frame = 0;
 
     // wait DL high
@@ -127,38 +147,46 @@ void gpio_setup(const gpio_num_t pin) {
     // accumulator_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator_frame.channel[0];
     // accumulator_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * accumulator_frame.channel[1];
     // accumulator_frame.channel[2] = (alpha * frame.channel[2]) + (1.0 - alpha) * accumulator_frame.channel[2];
-    //printf("pir: %d %d\n",accumulator_frame.channel[0],accumulator_frame.channel[1]);
-    // if (accumulator_frame.channel[0] < threshold_low || accumulator_frame.channel[0] > threshold_high){
-    //   printf("ch0: %d\tch1: %d\ttmp: %d\n", accumulator_frame.channel[0], accumulator_frame.channel[1], accumulator_frame.channel[2]);
-    //   motion_active = true;
-    //   motion_data_0 = accumulator_frame.channel[0];
-    //   motion_data_1 = accumulator_frame.channel[1];
-    //   motion_tmp = accumulator_frame.channel[1];
-    //   debounce_pir = true;
-    // }
 
+    //printf("pir: %d %d %d\n",frame.channel[0],frame.channel[1], frame.channel[2]);
+    if (frame.channel[0] > pir_lowpass && frame.channel[0] < pir_highpass){
 
-    average_frame.channel[0] = (avg_alpha * frame.channel[0]) + (1.0 - avg_alpha) * average_frame.channel[0];
-    average_frame.channel[1] = (avg_alpha * frame.channel[1]) + (1.0 - avg_alpha) * average_frame.channel[1];
-    average_frame.channel[2] = (avg_alpha * frame.channel[2]) + (1.0 - avg_alpha) * average_frame.channel[2];
+      accumulator = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator;
+      difference = frame.channel[0] - accumulator;
+      printf("pir: %d\twarmup: %d\tdebounce: %d\n",difference,warmup,debounce_cnt);
 
-    accumulator_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator_frame.channel[0];
-    accumulator_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * accumulator_frame.channel[1];
-    accumulator_frame.channel[2] = (alpha * frame.channel[2]) + (1.0 - alpha) * accumulator_frame.channel[2];
-
-    delta_frame.channel[0] = accumulator_frame.channel[0] - previous_frame.channel[0];
-    delta_frame.channel[1] = accumulator_frame.channel[1] - previous_frame.channel[1];
-    delta_frame.channel[2] = accumulator_frame.channel[2] - previous_frame.channel[2];
-
-    if (delta_frame.channel[0] > delta_threshold_low * average_frame.channel[0]
-      && delta_frame.channel[0] < delta_threshold_high * average_frame.channel[0]
-      && !debounce_pir) {
-      motion_active = true;
-      debounce_pir = true;
-      printf("motion: %d  avg: %d\n",delta_frame.channel[0],average_frame.channel[0]);
-      // printf("previous delta: %d\n",previous_frame.channel[0]);
-      // printf("delta delta: %d\n",previous_delta_frame.channel[0] - delta_frame.channel[0]);
+      if (difference >= pir_threshold && warmup > 1000 && debounce_cnt > 200){
+        printf("motion: %d %d %d\n", frame.channel[0], frame.channel[1], frame.channel[2]);
+        //printf("ch0: %d\tch1: %d\ttmp: %d\n", accumulator_frame.channel[0], accumulator_frame.channel[1], accumulator_frame.channel[2]);
+        motion_active = true;
+        motion_data_0 = accumulator_frame.channel[0];
+        motion_data_1 = accumulator_frame.channel[1];
+        motion_tmp = accumulator_frame.channel[1];
+        debounce_cnt = 0;
+      }
+      debounce_cnt++;
+      warmup++;
     }
+
+
+    // average_frame.channel[0] = (avg_alpha * frame.channel[0]) + (1.0 - avg_alpha) * average_frame.channel[0];
+    // average_frame.channel[1] = (avg_alpha * frame.channel[1]) + (1.0 - avg_alpha) * average_frame.channel[1];
+    // average_frame.channel[2] = (avg_alpha * frame.channel[2]) + (1.0 - avg_alpha) * average_frame.channel[2];
+    //
+    // accumulator_frame.channel[0] = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator_frame.channel[0];
+    // accumulator_frame.channel[1] = (alpha * frame.channel[1]) + (1.0 - alpha) * accumulator_frame.channel[1];
+    // accumulator_frame.channel[2] = (alpha * frame.channel[2]) + (1.0 - alpha) * accumulator_frame.channel[2];
+    //
+    // delta_frame.channel[0] = accumulator_frame.channel[0] - previous_frame.channel[0];
+    // delta_frame.channel[1] = accumulator_frame.channel[1] - previous_frame.channel[1];
+    // delta_frame.channel[2] = accumulator_frame.channel[2] - previous_frame.channel[2];
+    //
+    // if (delta_frame.channel[0] > delta_pir_lowpass * average_frame.channel[0]
+    //   && delta_frame.channel[0] < delta_pir_highpass * average_frame.channel[0]) {
+    //   motion_active = true;
+    //   debounce_pir = true;
+    //   printf("motion: %d  avg: %d\n",delta_frame.channel[0],average_frame.channel[0]);
+    // }
 
     previous_delta_frame = delta_frame;
     previous_frame = frame;

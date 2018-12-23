@@ -43,10 +43,11 @@ cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
 int current_time = 0;
 bool got_ip = false;
-bool debounce_pir = false;
 
 //needs to go in headers
 int set_switch(int);
+void debounce_pir();
+static int ratelimit_connects(unsigned int *last, unsigned int secs);
 
 #include "services/storage.c"
 #include "services/LED.c"

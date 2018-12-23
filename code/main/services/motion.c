@@ -4,6 +4,7 @@ char motion_service_message[2000];
 bool motion_service_message_ready = false;
 int motion_light_on_value = 100;
 bool debounce_motion = false;
+unsigned int debounce_flag = 0;
 
 static void motion_service(void *pvParameter)
 {
@@ -11,14 +12,8 @@ static void motion_service(void *pvParameter)
   uint32_t io_num;
   printf("motion service loop\n");
   int previous_state = 0;
-  int debounce_ms = 10 * 1000;
+  int debounce_ms = 1 * 1000;
   while (1) {
-
-      //debounce the pir sensor
-      if (debounce_pir) {
-        vTaskDelay(debounce_ms / portTICK_PERIOD_MS);
-        debounce_pir = false;
-      }
 
       bool state = get_motion_state();
 

@@ -65,7 +65,8 @@ static void example_tg0_timer_init(int timer_idx,
 void set_brightness(int level) {
 
   //debounce the pir sensor when changing light values
-  debounce_pir = true;
+  //really should communicate with motion service not pir
+  debounce_pir();
 
   if (level > max_brightness) level = max_brightness;
   if (level < 0) level = 0;
