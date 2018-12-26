@@ -26,10 +26,13 @@ bool tp_debounce = false;
 static bool s_pad_activated[TOUCH_PAD_MAX];
 static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
 
+
 #define UP_PAD 7
 #define DOWN_PAD 5
 #define LEFT_PAD 9
 #define RIGHT_PAD 8
+
+int touch_sensitivity = 750; //silicon button: 994
 
 int touch_threshold[PAD_NUMBER];
 
@@ -51,7 +54,7 @@ void tp_set_thresholds(int pad){
   s_pad_init_val[pad] = touch_value;
   ESP_LOGI(TAG, "test init: touch pad [%d] val is %d", pad, touch_value);
   //set interrupt threshold.
-  ESP_ERROR_CHECK(touch_pad_set_thresh(pad, touch_value * 994 / 1000));
+  ESP_ERROR_CHECK(touch_pad_set_thresh(pad, touch_value * touch_sensitivity / 1000));
 }
 
 static void tp_init(int pad){

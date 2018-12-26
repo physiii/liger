@@ -1,4 +1,4 @@
-#include "drivers/pir.c"
+#include "drivers/PYQ2898.c"
 
 char motion_service_message[2000];
 bool motion_service_message_ready = false;

@@ -27,17 +27,6 @@ int zero_cross_count = 0;
 int cnt = 0;
 int level = 0;
 
-/*inline void busy_delay_us(float us) {
-  uint32_t t0_ccount, t1_ccount;
-  t0_ccount = CCOUNT;
-  while (true) {
-    RSR(CCOUNT, t1_ccount);
-    if (t1_ccount - t0_ccount > ((uint32_t)(us / CPU_TICK_US))) {
-      break;
-    }
-  }
-}*/
-
 void delay_triac_us(int us) {
   uint32_t t0_ccount, t1_ccount;
   t0_ccount = CCOUNT;
@@ -51,8 +40,7 @@ void delay_triac_us(int us) {
   gpio_set_level(TRIAC_IO, TRIAC_ON);
 }
 
-static void IRAM_ATTR zero_cross_isr_handler(void* arg)
-{
+static void IRAM_ATTR zero_cross_isr_handler(void* arg) {
     zero_cross_count++;
     //level = gpio_get_level(gpio_num);
     delay_triac_us(50 * 1000);
@@ -61,8 +49,8 @@ static void IRAM_ATTR zero_cross_isr_handler(void* arg)
 static void triac_task(void* arg)
 {
     uint32_t io_num;
-    gpio_set_level(TRIAC_IO, TRIAC_OFF);
-
+    gpio_set_level(TRIAC_IO, TRIAC_ON);
+    printf("starting triac driver\n");
     for(;;) {
         //printf("%d delay %d zeros: %d\n", cnt++,triac_off_time, zero_cross_count);
         zero_cross_count = 0;
@@ -72,27 +60,22 @@ static void triac_task(void* arg)
 
 void triac_main()
 {
-    gpio_config_t io_conf;
-    io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-    io_conf.mode = GPIO_MODE_OUTPUT;
-    io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;
-    io_conf.pull_down_en = 0;
-    io_conf.pull_up_en = 0;
-    gpio_config(&io_conf);
+    // gpio_config_t io_conf;
+    // io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+    // io_conf.mode = GPIO_MODE_OUTPUT;
+    // io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;
+    // io_conf.pull_down_en = 0;
+    // io_conf.pull_up_en = 0;
+    // gpio_config(&io_conf);
+    //
+    // io_conf.intr_type = GPIO_PIN_INTR_POSEDGE;
+    // io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
+    // io_conf.mode = GPIO_MODE_INPUT;
+    // io_conf.pull_up_en = 0;
+    // gpio_config(&io_conf);
+    //
+    // gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
+    // gpio_isr_handler_add(ZERO_DETECT_IO, zero_cross_isr_handler, (void*) ZERO_DETECT_IO);
 
-    io_conf.intr_type = GPIO_PIN_INTR_POSEDGE;
-    io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
-    io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pull_up_en = 0;
-    gpio_config(&io_conf);
-
-    //gpio_set_intr_type(ZERO_DETECT_IO, GPIO_INTR_ANYEDGE);
-
-    //create a queue to handle gpio event from isr
-    //gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
     xTaskCreate(triac_task, "triac_task", 2048, NULL, 10, NULL);
-    gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
-    gpio_isr_handler_add(ZERO_DETECT_IO, zero_cross_isr_handler, (void*) ZERO_DETECT_IO);
-
-    printf("starting triac driver\n");
 }

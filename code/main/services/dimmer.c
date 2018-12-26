@@ -64,13 +64,13 @@ static void example_tg0_timer_init(int timer_idx,
 // on. A longer delay means less power available.
 void set_brightness(int level) {
 
-  //debounce the pir sensor when changing light values
-  //really should communicate with motion service not pir
-  debounce_pir();
+  // debounce the pir sensor when changing light values
+  // really should communicate with motion service not pir
+  // debounce_pir();
 
   if (level > max_brightness) level = max_brightness;
   if (level < 0) level = 0;
-  current_brightness = level;
+
   if (!NEUTRAL_PRESENT) {
     if (triac_delay<no_neutral_thresh) {
       zerocross_present = false;
@@ -80,19 +80,28 @@ void set_brightness(int level) {
     }
   }
 
-  if (current_brightness) {
+  if (level > 0 && level < max_brightness) {
     level = max_brightness - level;
     triac_delay = min_triac_delay + max_triac_delay*((double)level/max_brightness);
-    if (current_brightness == max_brightness) {
+    if (level == max_brightness) {
       setLED(0, 255, 0);
     } else {
-      setLED(current_brightness, current_brightness, current_brightness);
+      setLED(level, level, level);
     }
-  } else {
+  }
+
+  if (level == 0) {
     gpio_set_level(TRIAC_IO, TRIAC_OFF);
     setLED(255, 0, 0);
   }
-  printf("set brightness to %d\n",current_brightness);
+
+  if (level == max_brightness) {
+    gpio_set_level(TRIAC_IO, TRIAC_ON);
+    setLED(0, 255, 0);
+  }
+
+  current_brightness = level;
+  printf("set brightness to %d\n", level);
 }
 
 void dec_brightness(int amount) {
@@ -302,9 +311,7 @@ void gpio_init() {
     gpio_isr_handler_add(ZERO_DETECT_IO, dimmer_isr_handler, (void*) ZERO_DETECT_IO);
 }
 
-static void
-dimmer_service(void *pvParameter)
-{
+static void dimmer_service(void *pvParameter) {
     uint32_t io_num;
     set_brightness(255); //start with dimmmer on
     while (1) {

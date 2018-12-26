@@ -57,8 +57,7 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs);
 #include "services/dimmer.c"
 #include "services/motion.c"
 #include "services/scheduler.c"
-/*#include "services/audio.c
-#include "services/contact-sensor.c"*/
+/*#include "services/audio.c*/
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -143,14 +142,11 @@ void lws_esp32_leds_timer_cb(TimerHandle_t th) {}
  * addressed, like flash an LED on the device on a timer for a
  * few seconds.
  */
-void
-lws_esp32_identify_physical_device(void)
-{
+void lws_esp32_identify_physical_device(void) {
 	lwsl_notice("%s\n", __func__);
 }
 
-esp_err_t event_handler(void *ctx, system_event_t *event)
-{
+esp_err_t event_handler(void *ctx, system_event_t *event) {
 	/* deal with your own user events here first */
 
     switch(event->event_id) {
@@ -189,8 +185,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 	return lws_esp32_event_passthru(ctx, event);
 }
 
-static int ratelimit_connects(unsigned int *last, unsigned int secs)
-{
+static int ratelimit_connects(unsigned int *last, unsigned int secs) {
 	struct timeval tv;
 
 	gettimeofday(&tv, NULL);
@@ -248,8 +243,7 @@ int load_device_id() {
 	return 0;
 }
 
-void app_main(void)
-{
+void app_main(void) {
 	nvs_handle nvh;
 
 	lws_esp32_set_creation_defaults(&info);
