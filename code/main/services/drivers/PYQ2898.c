@@ -22,8 +22,11 @@ uint16_t motion_data_1;
 uint16_t motion_tmp;
 float alpha = 0.1;
 float alpha_avg = 0.005;
-int pir_threshold_high = 170;
-int pir_threshold_low = 130;
+int pir_threshold_high = 180;
+int pir_threshold_low = 120;
+int motion_threshold = 10;
+int delta_diff = 0;
+int delta_diff_count = 20;
 int warmup_time = 400;
 int pir_lowpass = 16200;
 int pir_highpass = 16800;
@@ -70,6 +73,26 @@ void debounce_pir () {
   debounce_cnt = 0;
 }
 
+void zero_array (int array[],int size) {
+  for (int i = 0;i < size;i++) {
+    array[i] = 0;
+    //printf("i\t%d\n",i);
+  }
+}
+
+int find_min_max(int arr[], int size, int * min, int * max) {
+  *max = arr[0];
+  *min = arr[0];
+
+  for(int i=1; i<size; i++) {
+    if(arr[i] > *max) *max = arr[i];
+    if(arr[i] < *min) *min = arr[i];
+  }
+
+  //printf("min: %d\tmax: %d\n", min, max);
+  return 0;
+}
+
 void gpio_setup(const gpio_num_t pin) {
 
   struct pir_frame_t {
@@ -84,10 +107,16 @@ void gpio_setup(const gpio_num_t pin) {
   struct pir_frame_t average_frame = {0};
 
   int channel, bit;
+  int min = 99999;
+  int max = 0;
   int accumulator = 16000;
   int accumulator_avg = 16000;
   int difference = 0;
   int warmup = 0;
+  int difference_arr[delta_diff_count];
+  int count = 0;
+
+  zero_array(&difference_arr,delta_diff_count);
 
   gpio_config_t c = {0};
   c.pin_bit_mask = 1 << pin;
@@ -142,10 +171,17 @@ void gpio_setup(const gpio_num_t pin) {
       accumulator_avg = (alpha_avg * frame.channel[0]) + (1.0 - alpha_avg) * accumulator_avg;
       // difference = frame.channel[0] - accumulator;
       difference = accumulator - accumulator_avg;
-      //printf("pir: %d\twarmup: %d\tdebounce: %d\n",difference,warmup,debounce_cnt);
-      printf("diff: %d\taccumulator: %d\taccumulator_avg: %d\n",difference,accumulator,accumulator_avg);
+      (count < delta_diff_count) ? (count++) : (count=0);
+      difference_arr[count] = difference;
+      find_min_max(difference_arr, delta_diff_count, &min, &max);
+      delta_diff = max - min;
+      //if (count == 0) printf("diff: %d\n", delta_diff);
 
-      if ((difference >= pir_threshold_high || difference <= pir_threshold_low) && warmup > warmup_time && debounce_cnt > debounce_duration){
+      //printf("pir: %d\twarmup: %d\tdebounce: %d\n",difference,warmup,debounce_cnt);
+      //printf("diff: %d\taccumulator: %d\taccumulator_avg: %d\n",difference,accumulator,accumulator_avg);
+
+      //if ((difference >= pir_threshold_high || difference <= pir_threshold_low) && warmup > warmup_time && debounce_cnt > debounce_duration){
+      if (delta_diff>motion_threshold && warmup > warmup_time && debounce_cnt > debounce_duration){
         printf("motion: %d %d %d\n", frame.channel[0], frame.channel[1], frame.channel[2]);
         //printf("ch0: %d\tch1: %d\ttmp: %d\n", accumulator_frame.channel[0], accumulator_frame.channel[1], accumulator_frame.channel[2]);
         motion_active = true;
@@ -172,47 +208,6 @@ void task_pir(void * param) {
     printf("PIR freq: %d KHz, %lluus Period\n", PIR_FREQ_KHZ, PIR_PERIOD_US);
 
     gpio_setup(PIR_DL_GPIO);
-
-    // esp_timer_create_args_t timer_create_args = {};
-    // timer_create_args.callback = cb_pir_timer;
-    // timer_create_args.dispatch_method = ESP_TIMER_TASK;
-    // timer_create_args.arg = &t;
-    // timer_create_args.name = "PIR";
-    // result = esp_timer_create(&timer_create_args, &t);
-    // switch (result) {
-    //   case ESP_OK:
-    //     break;
-    //   case ESP_ERR_INVALID_ARG:
-    //     printf("ESP_ERR_INVALID_ARG\n");
-    //     break;
-    //   case ESP_ERR_INVALID_STATE:
-    //     printf("ESP_ERR_INVALID_STATE\n");
-    //     break;
-    //   case ESP_ERR_NO_MEM:
-    //    printf("ESP_ERR_NO_MEM\n");
-    //     break;
-    //   default:
-    //     printf("esp_timer_create WTF");
-    // }
-    //
-    // if (result == ESP_OK) {
-    //   pir_bits_remaining = PIR_BITS;
-    //   t0 = esp_timer_get_time();
-    //   result = esp_timer_start_periodic(t, PIR_PERIOD_US);
-    //   switch (result) {
-    //     case ESP_OK:
-    //       printf("timer started\n");
-    //       break;
-    //     case ESP_ERR_INVALID_ARG:
-    //       printf("ESP_ERR_INVALID_ARG\n");
-    //       break;
-    //     case ESP_ERR_INVALID_STATE:
-    //       printf("ESP_ERR_INVALID_STATE\n");
-    //       break;
-    //     default:
-    //       printf("esp_timer_start_periodic WTF");
-    //   }
-    // }
 }
 
 void pir_main() {

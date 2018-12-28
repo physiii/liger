@@ -66,7 +66,7 @@ void set_brightness(int level) {
 
   // debounce the pir sensor when changing light values
   // really should communicate with motion service not pir
-  // debounce_pir();
+  debounce_pir();
 
   if (level > max_brightness) level = max_brightness;
   if (level < 0) level = 0;
@@ -81,13 +81,9 @@ void set_brightness(int level) {
   }
 
   if (level > 0 && level < max_brightness) {
-    level = max_brightness - level;
-    triac_delay = min_triac_delay + max_triac_delay*((double)level/max_brightness);
-    if (level == max_brightness) {
-      setLED(0, 255, 0);
-    } else {
-      setLED(level, level, level);
-    }
+    int triac_level = max_brightness - level;
+    triac_delay = min_triac_delay + max_triac_delay*((double)triac_level/max_brightness);
+    setLED(triac_level, triac_level, triac_level);
   }
 
   if (level == 0) {
