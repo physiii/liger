@@ -17,16 +17,17 @@
 
 int debounce_ms = 5 * 1000;
 bool motion_active = false;
-uint16_t motion_data_0;
-uint16_t motion_data_1;
+uint16_t motion_level;
+uint16_t motion_duration;
 uint16_t motion_tmp;
 float alpha = 0.1;
 float alpha_avg = 0.005;
 int pir_threshold_high = 180;
 int pir_threshold_low = 120;
-int motion_threshold = 10;
+int motion_threshold = 12;
+int motion_duration_thresh = 10;
 int delta_diff = 0;
-int delta_diff_count = 20;
+int delta_diff_count = 30;
 int warmup_time = 400;
 int pir_lowpass = 16200;
 int pir_highpass = 16800;
@@ -93,6 +94,18 @@ int find_min_max(int arr[], int size, int * min, int * max) {
   return 0;
 }
 
+int avg_diff_between_elements(int arr[],int size) {
+  int average = 0;
+  for(int i=1; i<size; i++) {
+    //average += (arr[i] - arr[i-1])*(arr[i] - arr[i-1]);
+    int diff = arr[i] - arr[i-1];
+    if (diff > 0) average+=diff;
+    if (diff < 0) average-=diff;
+  }
+  //average = average / size;
+  return average;
+}
+
 void gpio_setup(const gpio_num_t pin) {
 
   struct pir_frame_t {
@@ -115,6 +128,7 @@ void gpio_setup(const gpio_num_t pin) {
   int warmup = 0;
   int difference_arr[delta_diff_count];
   int count = 0;
+  int motion_duration = 0;
 
   zero_array(&difference_arr,delta_diff_count);
 
@@ -173,22 +187,30 @@ void gpio_setup(const gpio_num_t pin) {
       difference = accumulator - accumulator_avg;
       (count < delta_diff_count) ? (count++) : (count=0);
       difference_arr[count] = difference;
-      find_min_max(difference_arr, delta_diff_count, &min, &max);
-      delta_diff = max - min;
-      //if (count == 0) printf("diff: %d\n", delta_diff);
+      //find_min_max(difference_arr, delta_diff_count, &min, &max);
+      int avg_diff = avg_diff_between_elements(difference_arr, delta_diff_count);
+      //delta_diff = max - min;
+      if (count == 0) printf("avg_diff: %d\n", avg_diff);
 
       //printf("pir: %d\twarmup: %d\tdebounce: %d\n",difference,warmup,debounce_cnt);
       //printf("diff: %d\taccumulator: %d\taccumulator_avg: %d\n",difference,accumulator,accumulator_avg);
 
+
       //if ((difference >= pir_threshold_high || difference <= pir_threshold_low) && warmup > warmup_time && debounce_cnt > debounce_duration){
-      if (delta_diff>motion_threshold && warmup > warmup_time && debounce_cnt > debounce_duration){
-        printf("motion: %d %d %d\n", frame.channel[0], frame.channel[1], frame.channel[2]);
-        //printf("ch0: %d\tch1: %d\ttmp: %d\n", accumulator_frame.channel[0], accumulator_frame.channel[1], accumulator_frame.channel[2]);
-        motion_active = true;
-        motion_data_0 = accumulator_frame.channel[0];
-        motion_data_1 = accumulator_frame.channel[1];
-        motion_tmp = accumulator_frame.channel[1];
-        debounce_cnt = 0;
+      if (avg_diff>motion_threshold
+        && warmup > warmup_time
+        && debounce_cnt > debounce_duration){
+        motion_duration++;
+        if (motion_duration >= motion_duration_thresh) {
+          printf("motion: %d\n",motion_threshold);
+          //printf("ch0: %d\tch1: %d\ttmp: %d\n", accumulator_frame.channel[0], accumulator_frame.channel[1], accumulator_frame.channel[2]);
+          motion_active = true;
+          motion_level = avg_diff;
+          motion_tmp = accumulator_frame.channel[1];
+          debounce_cnt = 0;
+        }
+      } else {
+        motion_duration = 0;
       }
       debounce_cnt++;
       warmup++;
