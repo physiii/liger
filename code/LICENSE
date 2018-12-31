@@ -1,26 +1,26 @@
-Libwebsockets and included programs are provided under the terms of the GNU
+open-automation and included programs are provided under the terms of the GNU
 Library General Public License (LGPL) 2.1, with the following exceptions:
 
-1) Static linking of programs with the libwebsockets library does not
-constitute a derivative work and does not require the author to provide 
-source code for the program, use the shared libwebsockets libraries, or
-link their program against a user-supplied version of libwebsockets.
+1) Static linking of programs with the open-automation library does not
+constitute a derivative work and does not require the author to provide
+source code for the program, use the shared open-automation libraries, or
+link their program against a user-supplied version of open-automation.
 
-If you link the program to a modified version of libwebsockets, then the
-changes to libwebsockets must be provided under the terms of the LGPL in
+If you link the program to a modified version of open-automation, then the
+changes to open-automation must be provided under the terms of the LGPL in
 sections 1, 2, and 4.
 
-2) You do not have to provide a copy of the libwebsockets license with
-programs that are linked to the libwebsockets library, nor do you have to
-identify the libwebsockets license in your program or documentation as
+2) You do not have to provide a copy of the open-automation license with
+programs that are linked to the open-automation library, nor do you have to
+identify the open-automation license in your program or documentation as
 required by section 6 of the LGPL.
 
-However, programs must still identify their use of libwebsockets. The
+However, programs must still identify their use of open-automation. The
 following example statement can be included in user documentation to
 satisfy this requirement:
 
-"[program] is based in part on the work of the libwebsockets  project
-(https://libwebsockets.org)"
+"[program] is based in part on the work of the open-automation  project
+(https://open-automation.org)"
 
 3) Some sources included have their own, more liberal licenses, or options
 to get original sources with the liberal terms.
@@ -41,7 +41,7 @@ Public Domain (CC-zero) to simplify reuse
   - test-server/*.c
   - test-server/*.h
   - lwsws/*
-  
+
                   GNU LESSER GENERAL PUBLIC LICENSE
                        Version 2.1, February 1999
 

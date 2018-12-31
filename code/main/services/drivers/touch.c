@@ -32,8 +32,8 @@ static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
 #define LEFT_PAD 9
 #define RIGHT_PAD 8
 
-int touch_sensitivity = 750; //silicon button: 994
-
+int touch_sensitivity = 995; //silicon button: 994
+bool enable_diagnols = false;
 int touch_threshold[PAD_NUMBER];
 
 uint16_t touch_value;
@@ -68,6 +68,7 @@ bool get_pad_state(int pad) {
   return state;
 }
 
+// disabled diaganol direction
 int get_dpad_state() {
 
   int UP = get_pad_state(UP_PAD);
@@ -75,20 +76,22 @@ int get_dpad_state() {
   int LEFT = get_pad_state(LEFT_PAD);
   int RIGHT = get_pad_state(RIGHT_PAD);
 
-  if (UP && DOWN && LEFT && RIGHT)
-    return 1;
+  if (enable_diagnols) {
+    if (UP && DOWN && LEFT && RIGHT)
+      return 1;
 
-  if (UP && RIGHT)
-    return 2;
+    if (UP && RIGHT)
+      return 2;
 
-  if (RIGHT && DOWN)
-    return 3;
+    if (RIGHT && DOWN)
+      return 3;
 
-  if (DOWN && LEFT)
-    return 4;
+    if (DOWN && LEFT)
+      return 4;
 
-  if (LEFT && UP)
-    return 5;
+    if (LEFT && UP)
+      return 5;
+  }
 
   if (UP) return 6;
   if (RIGHT) return 7;

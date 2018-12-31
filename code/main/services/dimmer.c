@@ -66,7 +66,7 @@ void set_brightness(int level) {
 
   // debounce the pir sensor when changing light values
   // really should communicate with motion service not pir
-  debounce_pir();
+  debounce_pir(10);
 
   if (level > max_brightness) level = max_brightness;
   if (level < 0) level = 0;

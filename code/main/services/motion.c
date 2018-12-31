@@ -12,11 +12,10 @@ static void motion_service(void *pvParameter)
   uint32_t io_num;
   printf("motion service loop\n");
   int previous_state = 0;
-  int debounce_ms = 1 * 1000;
+
   while (1) {
 
-      bool state = get_motion_state();
-
+      int state = get_motion_state();
       if (state){
 
         //create service message
@@ -37,6 +36,7 @@ static void motion_service(void *pvParameter)
           cJSON_AddItemToObject(dimmer_payload, "level", level_json);
         }
 
+        debounce_pir(10);
       }
 
       vTaskDelay(250 / portTICK_PERIOD_MS);
