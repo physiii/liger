@@ -153,32 +153,6 @@ int count_motion_events(int arr[],int size) {
   return total;
 }
 
-int sum_diff_between_elements(int arr[],int size) {
-  int total = 0;
-  for(int i=1; i<size; i++) {
-    //average += (arr[i] - arr[i-1])*(arr[i] - arr[i-1]);
-    int diff = arr[i] - arr[i-1];
-    if (diff > 0) total+=diff;
-    if (diff < 0) total-=diff;
-  }
-  return total;
-}
-
-int check_for_motion(int buffer[],int size) {
-  // default to no motion
-  int state = 0;
-
-  // get differences between adjacent elements and total them
-  int sum_diff = sum_diff_between_elements(buffer, buffer_size);
-  if (sum_diff) printf("sum_diff: %d\n",sum_diff);
-
-  if (sum_diff > motion_threshold) {
-    state = 1;
-  }
-
-  return state;
-}
-
 void set_gpio_mode (int mode) {
 
   if (mode == OUTPUT_MODE) {
@@ -200,89 +174,6 @@ void set_gpio_mode (int mode) {
     gpio_config(&c);
   }
 
-}
-
-void pir_loop() {
-
-  struct pir_frame_t {
-    uint16_t channel[3];
-  };
-
-  int channel, bit;
-  int min = 99999;
-  int max = 0;
-  int accumulator = 16000;
-  int accumulator_avg = 16000;
-  int difference = 0;
-  int warmup = 0;
-  int buffer[buffer_size];
-  int count = 0;
-
-  zero_array(&buffer,buffer_size);
-
-  while (1) {
-
-    // wait DL high
-    gpio_set_direction(PIR_IO, GPIO_MODE_INPUT);
-    while (0 == gpio_get_level(PIR_IO));
-
-    // wait > 25us
-    busy_delay_us(25.0);
-
-    for (channel = 0; channel < 3; channel += 1) {
-      frame.channel[channel] = 0;
-      for (bit = 0; bit < 14; bit += 1) {
-        gpio_set_direction(PIR_IO, GPIO_MODE_OUTPUT);
-        // busy_delay_us(0.2);
-        gpio_set_level(PIR_IO, 0);
-        busy_delay_us(0.2);
-        gpio_set_level(PIR_IO, 1);
-        busy_delay_us(0.2);
-
-        frame.channel[channel] <<= 1;
-        gpio_set_direction(PIR_IO, GPIO_MODE_INPUT);
-        // busy_delay_us(0.1);
-        if (gpio_get_level(PIR_IO)) {
-          frame.channel[channel] |= 1;
-        }
-      }
-    }
-
-
-    // bandpass filter on raw data
-    // if (frame.channel[0] > bandpass_low && frame.channel[0] < bandpass_high) {
-    //
-    //   // exponential moving average
-    //   // accumulator = (alpha * new_value) + (1.0 - alpha) * accumulator
-    //   // The closer alpha is to zero the more older values will contribute.
-    //   accumulator = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator;
-    //   accumulator_avg = (alpha_avg * frame.channel[0]) + (1.0 - alpha_avg) * accumulator_avg;
-    //
-    //   //subtract background "average" and fill buffer
-    //   difference = accumulator - accumulator_avg;
-    //   buffer[count] = difference;
-    //
-    //   //check for motion when buffer is full
-    //   if (count < buffer_size) {
-    //     count++;
-    //   } else {
-    //     motion_state = check_for_motion(buffer,buffer_size);
-    //     (motion_state) ? (motion_count++) : (motion_count=0);
-    //
-    //     //set motion state to zero if debounce activated
-    //     if (debounce_count < debounce_delay) motion_state = 0;
-    //
-    //     //set motion state to zero if motion count threshold is not met
-    //     if (motion_count < motion_count_threshold) motion_state = 0;
-    //     count = 0;
-    //   }
-    // }
-    // debounce_count++;
-    //previous_delta_frame = delta_frame;
-    //previous_frame = frame;
-    // take a breath between packets
-    vTaskDelay(15 / portTICK_PERIOD_MS);
-  }
 }
 
 void fill_pir_frame() {
@@ -317,6 +208,7 @@ void fill_pir_frame() {
     }
   }
 
+  // bandpass filter on raw data
   if (frame.channel[0] > bandpass_low && frame.channel[0] < bandpass_high) {
     motion_value += frame.channel[0];
     accumulator = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator;
@@ -326,56 +218,9 @@ void fill_pir_frame() {
     if (difference > motion_threshold) motion_state = 1;
   }
 
-  if (frame.channel[1] > bandpass_low && frame.channel[1] < bandpass_high) {
-    motion_value_1 += frame.channel[1];
-    accumulator_1 = (alpha * frame.channel[1]) + (1.0 - alpha) * accumulator_1;
-    accumulator_1_avg = (alpha_avg * frame.channel[1]) + (1.0 - alpha_avg) * accumulator_1_avg;
-    difference_1 = accumulator_1 - accumulator_1_avg;
-    if (difference_1 < 0) difference_1= 0 - difference_1;
-    //if (difference_1 > motion_threshold) motion_state = 1;
-  }
-
-  // motion_state = check_for_motion(buffer,buffer_size);
-  // (motion_state) ? (motion_count++) : (motion_count=0);
-
   // set motion state to zero if debounce activated
   if (debounce_count < debounce_delay) motion_state = 0;
   debounce_count++;
-
-  // set motion state to zero if motion count threshold is not met
-  // if (motion_count < motion_count_threshold) motion_state = 0;
-  // count = 0;
-
-/*
-  // bandpass filter on raw data
-  if (frame.channel[0] > bandpass_low && frame.channel[0] < bandpass_high) {
-
-    // exponential moving average
-    // accumulator = (alpha * new_value) + (1.0 - alpha) * accumulator
-    // The closer alpha is to zero the more older values will contribute.
-    accumulator = (alpha * frame.channel[0]) + (1.0 - alpha) * accumulator;
-    accumulator_avg = (alpha_avg * frame.channel[0]) + (1.0 - alpha_avg) * accumulator_avg;
-
-    //subtract background "average" and fill buffer
-    difference = accumulator -accumulator_avg;
-    buffer[count] = difference;
-
-    //check for motion when buffer is full
-    if (count < buffer_size) {
-      count++;
-    } else {
-      motion_state = check_for_motion(buffer,buffer_size);
-      (motion_state) ? (motion_count++) : (motion_count=0);
-
-      //set motion state to zero if debounce activated
-      if (debounce_count < debounce_delay) motion_state = 0;
-
-      //set motion state to zero if motion count threshold is not met
-      if (motion_count < motion_count_threshold) motion_state = 0;
-      count = 0;
-    }
-  }
-*/
 }
 
 static void IRAM_ATTR pir_isr_handler(void* arg) {
@@ -497,51 +342,12 @@ void task_pir(void * param) {
 
     zero_array(&buffer,buffer_size);
 
-
     while (1) {
-      // if (!data_tx_started) {
-      //   //pir starts by pulling pin high
-      //   if (gpio_get_level(PIR_IO)) {
-      //     data_tx_started = true;
-      //
-      //     // wait 25us for setup
-      //     busy_delay_us(25.0);
-      //
-      //     // read bits from pir
-      //     fill_pir_frame();
-      //   }
-      // }
-
       vTaskDelay(1000 / portTICK_PERIOD_MS);
       printf("ch0\t%d\tch1\t%d\n",difference,difference_1);
       pir_timer_count = 0;
       motion_value = 0;
-
-      // timer_event_t evt;
-      // xQueueReceive(timer_queue, &evt, portMAX_DELAY);
-      //
-      // /* Print information that the timer reported an event */
-      // if (evt.type == TEST_WITHOUT_RELOAD) {
-      //     printf("\n    Example timer without reload\n");
-      // } else if (evt.type == TEST_WITH_RELOAD) {
-      //     printf("\n    Example timer with auto reload\n");
-      // } else {
-      //     printf("\n    UNKNOWN EVENT TYPE\n");
-      // }
-      // printf("Group[%d], timer[%d] alarm event\n", evt.timer_group, evt.timer_idx);
-      //
-      // /* Print the timer values passed by event */
-      // printf("------- EVENT TIME --------\n");
-      // print_timer_counter(evt.timer_counter_value);
-      //
-      // /* Print the timer values as visible by this task */
-      // printf("-------- TASK TIME --------\n");
-      // uint64_t task_counter_value;
-      // timer_get_counter_value(evt.timer_group, evt.timer_idx, &task_counter_value);
-      // print_timer_counter(task_counter_value);
-
     }
-    //pir_loop();
 }
 
 void pir_main() {

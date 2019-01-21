@@ -8,8 +8,8 @@
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
-char server_address[20] = "192.168.4.1";
-int port = 5050;
+char server_address[20] = "dev.pyfi.org";
+int port = 443;
 bool use_ssl = true;
 
 int DISCONNECTED = 0;
@@ -265,14 +265,13 @@ void app_main(void) {
 	dimmer_main();
 	schedule_main();
 	motion_main();
-	//audio_main();
+	audio_main();
 
 	//store_char("token","");
 	//store_char("device_id","");
 	load_device_id();
 
 	printf("Device ID: %s\n",device_id);
-
 
 	strcpy(token,get_char("token"));
 	if (strcmp(token,"")==0) {

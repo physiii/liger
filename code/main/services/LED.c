@@ -6,7 +6,7 @@ int current_LED_level = 0;
 int pwm_factor = 2;
 
 int setLED(int r, int g, int b) {
-  lwsl_notice("set LED [%d,%d,%d]\n",r,g,b);
+  // lwsl_notice("set LED [%d,%d,%d]\n",r,g,b);
   set_pixel_by_index(0, r, g, b, 1);
   return 0;
 }

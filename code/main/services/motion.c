@@ -2,7 +2,6 @@
 
 char motion_service_message[2000];
 bool motion_service_message_ready = false;
-int motion_light_on_value = 100;
 bool debounce_motion = false;
 unsigned int debounce_flag = 0;
 
@@ -29,12 +28,10 @@ static void motion_service(void *pvParameter)
         motion_service_message_ready = true;
 
         //turn on dimmer
-        if (current_brightness < motion_light_on_value) {
-          cJSON *level_json = NULL;
-          dimmer_payload = cJSON_CreateObject();
-          level_json = cJSON_CreateNumber(motion_light_on_value);
-          cJSON_AddItemToObject(dimmer_payload, "level", level_json);
-        }
+        cJSON *json = NULL;
+        dimmer_payload = cJSON_CreateObject();
+        json = cJSON_CreateNumber(1);
+        cJSON_AddItemToObject(dimmer_payload, "on", json);
 
         debounce_pir(10);
       }

@@ -33,10 +33,10 @@ static xQueueHandle gpio_evt_queue = NULL;
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<TRIAC_IO))
 
 int NEUTRAL_PRESENT = 1;
-
 int max_brightness = 255;
 int zerocross_count = 0;
 int current_brightness = 0;
+int light_trigger_level = 100;
 double triac_delay = 1;
 double min_triac_delay = 0.0001;
 double max_triac_delay = 0.0075;
@@ -62,7 +62,7 @@ static void example_tg0_timer_init(int timer_idx,
 // sets delay from when zerocross is detected and
 // triac is turned off to when the triac is turned
 // on. A longer delay means less power available.
-void set_brightness(int level) {
+int set_brightness(int level) {
 
   // debounce the pir sensor when changing light values
   // really should communicate with motion service not pir
@@ -96,18 +96,28 @@ void set_brightness(int level) {
     setLED(0, 255, 0);
   }
 
-  current_brightness = level;
-  printf("set brightness to %d\n", level);
+  return level;
+}
+
+void turn_off() {
+  set_brightness(0);
+}
+
+void turn_on() {
+  if (current_brightness < light_trigger_level) {
+    current_brightness = set_brightness(light_trigger_level);
+  } else set_brightness(current_brightness);
 }
 
 void dec_brightness(int amount) {
   int new_brightness = current_brightness - amount;
-  set_brightness(new_brightness);
+  current_brightness = set_brightness(new_brightness);
 }
 
 void inc_brightness(int amount) {
+  //turn_on();
   int new_brightness = current_brightness + amount;
-  set_brightness(new_brightness);
+  current_brightness = set_brightness(new_brightness);
 }
 
 void fade_brightness(int start, int stop, int interval) {
@@ -228,55 +238,58 @@ static void example_tg0_timer_init(int timer_idx,
     timer_start(TIMER_GROUP_0, timer_idx);
 }
 
-static void timer_example_evt_task(void *arg) {
-    uint32_t io_num;
-    while (1) {
-
-        //fade_brightness(0,255,3000);
-        //incoming messages from other services
-        if (dimmer_payload) {
-
-          if (cJSON_GetObjectItem(dimmer_payload,"level")) {
-            int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
-            set_brightness(level);
-            lwsl_notice("[dimmer_service] level %d\n",level);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
-            toggle_dimmer();
-            lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
-            int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
-            inc_brightness(increment);
-            lwsl_notice("[dimmer_service] increment %d\n",increment);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
-            int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
-            dec_brightness(decrement);
-            lwsl_notice("[dimmer_service] decrement %d\n",decrement);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-            int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-            fade_brightness(0,fade,1000);
-            lwsl_notice("[dimmer_service] level %d\n",fade);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-            /*int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-            fadeSwitch(0,fade,0);
-            lwsl_notice("[dimmer_service] fade %d\n",fade);*/
-          }
-
-          dimmer_payload = NULL;
-        }
-
-        vTaskDelay(200 / portTICK_PERIOD_MS);
-    }
-}
+// static void timer_example_evt_task(void *arg) {
+//     uint32_t io_num;
+//     while (1) {
+//
+//         //fade_brightness(0,255,3000);
+//         //incoming messages from other services
+//         if (dimmer_payload) {
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"level")) {
+//             int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
+//             set_brightness(level);
+//             lwsl_notice("[dimmer_service] level %d\n",level);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"on")) {
+//             if (cJSON_IsTrue(cJSON_GetObjectItem(dimmer_payload,"neutral_present"))) {
+//               NEUTRAL_PRESENT = 1;
+//             } else {
+//               NEUTRAL_PRESENT = 0;
+//             }
+//             lwsl_notice("[dimmer_service] on\n");
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
+//             toggle_dimmer();
+//             lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
+//             int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
+//             inc_brightness(increment);
+//             lwsl_notice("[dimmer_service] increment %d\n",increment);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
+//             int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
+//             dec_brightness(decrement);
+//             lwsl_notice("[dimmer_service] decrement %d\n",decrement);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
+//             int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
+//             fade_brightness(0,fade,1000);
+//             lwsl_notice("[dimmer_service] level %d\n",fade);
+//           }
+//
+//           dimmer_payload = NULL;
+//         }
+//
+//         vTaskDelay(200 / portTICK_PERIOD_MS);
+//     }
+// }
 
 static void IRAM_ATTR dimmer_isr_handler(void* arg) {
     uint32_t gpio_num = (uint32_t) arg;
@@ -320,6 +333,12 @@ static void dimmer_service(void *pvParameter) {
             int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
             set_brightness(level);
             lwsl_notice("[dimmer_service] level %d\n",level);
+          }
+
+          if (cJSON_GetObjectItem(dimmer_payload,"on")) {
+            int mode = cJSON_GetObjectItem(dimmer_payload,"on")->valueint;
+            if (mode == 0) turn_off();
+            if (mode == 1) turn_on();
           }
 
           if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
