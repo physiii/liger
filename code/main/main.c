@@ -8,8 +8,8 @@
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
-char server_address[20] = "dev.pyfi.org";
-int port = 443;
+char server_address[20] = "192.168.4.1";
+int port = 5050;
 bool use_ssl = true;
 
 int DISCONNECTED = 0;
@@ -57,7 +57,7 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs);
 #include "services/dimmer.c"
 #include "services/motion.c"
 #include "services/scheduler.c"
-#include "services/audio.c"
+//#include "services/audio.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -265,7 +265,7 @@ void app_main(void) {
 	dimmer_main();
 	schedule_main();
 	motion_main();
-	audio_main();
+	//audio_main();
 
 	//store_char("token","");
 	//store_char("device_id","");
