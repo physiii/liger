@@ -33,6 +33,8 @@
 
 #define PIR_TIMER_INTERVAL   (0.015625) // pir timer to get 64 Hz
 
+int motion_threshold = 1000;
+
 int motion_state = 0;
 uint16_t motion_level;
 uint16_t motion_tmp;
@@ -40,7 +42,7 @@ double alpha = 0.8;
 double alpha_avg = 0.001;
 int pir_threshold_high = 180;
 int pir_threshold_low = 120;
-int motion_threshold = 2000;
+
 int motion_count_threshold = 4;
 int motion_count = 0;
 int motion_duration = 0;
@@ -344,7 +346,7 @@ void task_pir(void * param) {
 
     while (1) {
       vTaskDelay(1000 / portTICK_PERIOD_MS);
-      printf("ch0\t%d\tch1\t%d\n",difference,difference_1);
+      // printf("ch0\t%d\tch1\t%d\n",difference,difference_1);
       pir_timer_count = 0;
       motion_value = 0;
     }

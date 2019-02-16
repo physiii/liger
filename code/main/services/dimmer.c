@@ -228,55 +228,55 @@ static void example_tg0_timer_init(int timer_idx,
     timer_start(TIMER_GROUP_0, timer_idx);
 }
 
-static void timer_example_evt_task(void *arg) {
-    uint32_t io_num;
-    while (1) {
-
-        //fade_brightness(0,255,3000);
-        //incoming messages from other services
-        if (dimmer_payload) {
-
-          if (cJSON_GetObjectItem(dimmer_payload,"level")) {
-            int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
-            set_brightness(level);
-            lwsl_notice("[dimmer_service] level %d\n",level);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
-            toggle_dimmer();
-            lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
-            int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
-            inc_brightness(increment);
-            lwsl_notice("[dimmer_service] increment %d\n",increment);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
-            int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
-            dec_brightness(decrement);
-            lwsl_notice("[dimmer_service] decrement %d\n",decrement);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-            int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-            fade_brightness(0,fade,1000);
-            lwsl_notice("[dimmer_service] level %d\n",fade);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-            /*int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-            fadeSwitch(0,fade,0);
-            lwsl_notice("[dimmer_service] fade %d\n",fade);*/
-          }
-
-          dimmer_payload = NULL;
-        }
-
-        vTaskDelay(200 / portTICK_PERIOD_MS);
-    }
-}
+// static void timer_example_evt_task(void *arg) {
+//     uint32_t io_num;
+//     while (1) {
+//
+//         //fade_brightness(0,255,3000);
+//         //incoming messages from other services
+//         if (dimmer_payload) {
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"level")) {
+//             int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
+//             set_brightness(level);
+//             lwsl_notice("[dimmer_service] level %d\n",level);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
+//             toggle_dimmer();
+//             lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
+//             int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
+//             inc_brightness(increment);
+//             lwsl_notice("[dimmer_service] increment %d\n",increment);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
+//             int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
+//             dec_brightness(decrement);
+//             lwsl_notice("[dimmer_service] decrement %d\n",decrement);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
+//             int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
+//             fade_brightness(0,fade,1000);
+//             lwsl_notice("[dimmer_service] level %d\n",fade);
+//           }
+//
+//           if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
+//             /*int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
+//             fadeSwitch(0,fade,0);
+//             lwsl_notice("[dimmer_service] fade %d\n",fade);*/
+//           }
+//
+//           dimmer_payload = NULL;
+//         }
+//
+//         vTaskDelay(200 / portTICK_PERIOD_MS);
+//     }
+// }
 
 static void IRAM_ATTR dimmer_isr_handler(void* arg) {
     uint32_t gpio_num = (uint32_t) arg;

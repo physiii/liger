@@ -31,7 +31,7 @@ static uint32_t s_pad_init_val[TOUCH_PAD_MAX];
 #define LEFT_PAD 9
 #define RIGHT_PAD 8
 
-int touch_sensitivity = 990; //silicon button: 994
+int touch_sensitivity = 980; //silicon button: 994
 bool enable_diagnols = false;
 int touch_threshold[PAD_NUMBER];
 

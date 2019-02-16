@@ -13,6 +13,7 @@
 
 char buttons_service_message[2000];
 bool buttons_service_message_ready = false;
+char button_direction[100];
 
 void button_event_handler(int state) {
   cJSON *level_json = NULL;
@@ -23,6 +24,7 @@ void button_event_handler(int state) {
       dimmer_payload = cJSON_CreateObject();
       cJSON *toggle = cJSON_CreateBool(true);
       cJSON_AddItemToObject(dimmer_payload, "toggle", toggle);
+      strcpy(button_direction,"center");
       printf("BUTTON_CENTER\n");
       break;
 
@@ -30,6 +32,7 @@ void button_event_handler(int state) {
       dimmer_payload = cJSON_CreateObject();
       level_json = cJSON_CreateNumber(255);
       cJSON_AddItemToObject(dimmer_payload, "level", level_json);
+      strcpy(button_direction,"up");
       printf("BUTTON_UP\n");
       break;
 
@@ -37,6 +40,7 @@ void button_event_handler(int state) {
       dimmer_payload = cJSON_CreateObject();
       level_json = cJSON_CreateNumber(30);
       cJSON_AddItemToObject(dimmer_payload, "increment", level_json);
+      strcpy(button_direction,"right");
       printf("BUTTON_RIGHT\n");
       break;
 
@@ -44,6 +48,7 @@ void button_event_handler(int state) {
       dimmer_payload = cJSON_CreateObject();
       level_json = cJSON_CreateNumber(0);
       cJSON_AddItemToObject(dimmer_payload, "level", level_json);
+      strcpy(button_direction,"down");
       printf("BUTTON_DOWN\n");
       break;
 
@@ -51,6 +56,7 @@ void button_event_handler(int state) {
       dimmer_payload = cJSON_CreateObject();
       level_json = cJSON_CreateNumber(30);
       cJSON_AddItemToObject(dimmer_payload, "decrement", level_json);
+      strcpy(button_direction,"left");
       printf("BUTTON_LEFT\n");
       break;
 
@@ -91,9 +97,9 @@ button_service(void *pvParameter)
         button_event_handler(state);
 
         snprintf(buttons_service_message,sizeof(buttons_service_message),""
-        "{\"event_type\":\"button/\pressed\","
-        " \"payload\":{\"type\":\"dpad\",\"value\":%d}}"
-        , state);
+        "{\"event_type\":\"service/state\","
+        " \"payload\":{\"service_id\":\"button_1\",\"state\":{\"value\":\"%s\"}}}"
+        , button_direction);
 
         printf("%s\n", buttons_service_message);
 

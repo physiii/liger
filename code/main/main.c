@@ -8,7 +8,7 @@
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
-char server_address[20] = "192.168.4.1";
+char server_address[20] = "192.168.0.2";
 int port = 5050;
 bool use_ssl = true;
 
@@ -17,7 +17,6 @@ int CONNECTING   = 1;
 int CONNECTED    = 2;
 int utility_server_status = 0;
 int relay_status = 0;
-int previous_relay_status = 0;
 
 struct lws *wsi_token;
 int wsi_connect = 1;
@@ -41,6 +40,7 @@ cJSON *utility_payload = NULL;
 cJSON *dimmer_payload = NULL;
 cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
+cJSON *alarm_payload = NULL;
 int current_time = 0;
 bool got_ip = false;
 
@@ -49,6 +49,7 @@ int set_switch(int);
 void debounce_pir();
 static int ratelimit_connects(unsigned int *last, unsigned int secs);
 
+#include "services/alarm.c"
 #include "services/storage.c"
 #include "services/LED.c"
 #include "plugins/protocol_relay.c"
@@ -69,8 +70,8 @@ static const struct lws_protocols protocols_station[] = {
 	LWS_PLUGIN_PROTOCOL_WSS,
 	LWS_PLUGIN_PROTOCOL_UTILITY,
 	LWS_PLUGIN_PROTOCOL_LWS_STATUS,	    /* plugin protocol */
-	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	/* helper protocol to allow reset to factory */
-	{ NULL, NULL, 0, 0, 0, NULL, 0 } /* terminator */
+	LWS_PLUGIN_PROTOCOL_ESPLWS_RTF,	    /* helper protocol to allow reset to factory */
+	{ NULL, NULL, 0, 0, 0, NULL, 0 }    /* terminator */
 };
 
 static const struct lws_protocol_vhost_options pvo_headers = {
@@ -88,10 +89,6 @@ static const struct lws_http_mount mount_station_rtf = {
 	.mountpoint_len		= 10,
 };
 
-/*
- * this makes a special URL "/formtest" which gets passed to
- * the "protocol-post-demo" plugin protocol for handling
- */
 static const struct lws_http_mount mount_station_post = {
 	.mount_next		= &mount_station_rtf,
 	.mountpoint		= "/formtest",
@@ -100,9 +97,6 @@ static const struct lws_http_mount mount_station_post = {
 	.mountpoint_len		= 9,
 };
 
-/*
- * this serves "/station/..." in the romfs at "/" in the URL namespace
- */
 static const struct lws_http_mount mount_station = {
         .mount_next		= &mount_station_post,
         .mountpoint		= "/",
@@ -112,13 +106,6 @@ static const struct lws_http_mount mount_station = {
         .mountpoint_len		= 1,
 };
 
-/*
- * this serves "/secret/" in the romfs at "/secret" in the URL namespace
- * it requires basic auth, which for the demo is set to literally user / password
- * This is just demoing how to do basic auth.
- *
- * See below how the password is set
- */
 static const struct lws_http_mount mount_station_needs_auth = {
         .mount_next		= &mount_station,
         .mountpoint		= "/secret",
@@ -131,20 +118,6 @@ static const struct lws_http_mount mount_station_needs_auth = {
 };
 
 void lws_esp32_leds_timer_cb(TimerHandle_t th) {}
-
-/*
- * This is called when the user asks to "Identify physical device"
- * he is configuring, by pressing the Identify button on the AP
- * setup page for the device.
- *
- * It should do something device-specific that
- * makes it easy to identify which physical device is being
- * addressed, like flash an LED on the device on a timer for a
- * few seconds.
- */
-void lws_esp32_identify_physical_device(void) {
-	lwsl_notice("%s\n", __func__);
-}
 
 esp_err_t event_handler(void *ctx, system_event_t *event) {
 	/* deal with your own user events here first */
@@ -165,13 +138,13 @@ esp_err_t event_handler(void *ctx, system_event_t *event) {
             break;
 
         case SYSTEM_EVENT_STA_DISCONNECTED:
-            printf("SYSTEM_EVENT_STA_DISCONNECTED\n");
+            printf("[Main] SYSTEM_EVENT_STA_DISCONNECTED\n");
 	    			got_ip = false;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
 
         case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-            printf("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
+            printf("[Main] LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
 	    			//wsi_connect = 1;
             //TEST_ESP_OK(esp_wifi_connect());
             break;
@@ -264,6 +237,7 @@ void app_main(void) {
 	LED_main();
 	dimmer_main();
 	schedule_main();
+	alarm_main();
 	motion_main();
 	//audio_main();
 
@@ -306,15 +280,21 @@ void app_main(void) {
 	"\"state\":{\"level\":0, \"on\":false},\"id\":\"dimmer_1\"},"
 	"{\"type\":\"LED\","
 	"\"state\":{\"rgb\":[0,0,0]},"
-	"\"id\":1}"
+	"\"id\":\"rgb_1\"}"
+	",{\"type\":\"button\","
+	"\"state\":{\"value\":1},"
+	"\"id\":\"button_1\"}"
+	",{\"type\":\"alarm\","
+	"\"state\":{\"value\":1},"
+	"\"id\":\"alarm_1\"}"
 	"]}}");
+
 	strcpy(wss_data_out,load_message);
 	wss_data_out_ready = true;
 	printf("load_mesage %s\n",load_message);
 
 	while (1) {
-		//printf("main loop (%d)\n",cnt++);
-
+		// This should be non-blocking
 		if (relay_status == DISCONNECTED) {
 			setLED(0, 0, 0);
 			vTaskDelay(300 / portTICK_RATE_MS);
@@ -327,24 +307,22 @@ void app_main(void) {
 			wss_data_out_ready = true;
 		}
 
+		if (alarm_service_message_ready && !wss_data_out_ready) {
+			strcpy(wss_data_out,alarm_service_message);
+			alarm_service_message_ready = false;
+			wss_data_out_ready = true;
+		}
 
 		if (got_ip
 			&& relay_status == CONNECTED
 			&& ratelimit_connects(&rl_ping, 60u)
 			&& strcmp(wss_data_out,"")==0) {
-			snprintf(wss_data_out,sizeof(wss_data_out),"{\"event_type\":\"ping\"}");
-			wss_data_out_ready = true;
+				snprintf(wss_data_out,sizeof(wss_data_out),"{\"event_type\":\"ping\"}");
+				wss_data_out_ready = true;
 		}
 
-		// if (contact_service_message_ready && !wss_data_out_ready) {
-		// 	strcpy(wss_data_out,contact_service_message);
-		// 	contact_service_message_ready = false;
-		// 	wss_data_out_ready = true;
-		// }
-
-
 		if (got_ip && relay_status == DISCONNECTED && ratelimit_connects(&rl_token, 4u)) {
-			relay_status = CONNECTED;
+			relay_status = CONNECTING;
 			lws_client_connect_via_info(&relay);
 			printf("connecting to %s\n",server_address);
 		}
@@ -353,7 +331,6 @@ void app_main(void) {
 				lws_service(context, 1000);
 		}
 
-		previous_relay_status = relay_status;
 		vTaskDelay(1000 / portTICK_RATE_MS);
 	}
 }

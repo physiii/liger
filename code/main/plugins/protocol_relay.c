@@ -8,6 +8,7 @@
 
 #define WS_PERIOD_US 5000
 
+int LWS_CALLBACK_CLIENT_WRITEABLE_CNT = 0;
 int data_part_count = 0;
 char wss_data_in[2000];
 char wss_data_out[2000];
@@ -54,10 +55,6 @@ add_headers(void *in, size_t len)
 	if (len < 100)
 		return 1;
 
-	// *h += snprintf(*h, sizeof(h), "x-device-id: %s\x0d\x0a",device_id);
-	// *h += snprintf(*h, sizeof(h), "x-device-type: %s\x0d\x0a","generic");
-	// *h += snprintf(*h, sizeof(h), "x-device-token: %s\x0d\x0a",token);
-
 	*h += sprintf(*h, "x-device-id: %s\x0d\x0a",device_id);
 	*h += sprintf(*h, "x-device-type: %s\x0d\x0a","generic");
 	*h += sprintf(*h, "x-device-token: %s\x0d\x0a",token);
@@ -69,10 +66,16 @@ add_headers(void *in, size_t len)
 int
 handle_event(char * event_type)
 {
+	printf("looking for event type: %s\n",event_type);
+
 	if (strcmp(event_type,"dimmer")==0) {
-		int level = cJSON_GetObjectItem(payload,"level")->valueint;
-		printf("handle_event level: %d\n",level);
 		dimmer_payload = payload;
+		payload = NULL;
+		return 1;
+	}
+
+	if (strcmp(event_type,"alarm")==0) {
+		alarm_payload = payload;
 		payload = NULL;
 		return 1;
 	}
@@ -145,9 +148,6 @@ wss_event_handler(struct lws *wsi, cJSON * root)
 	return 0;
 }
 
-int LWS_CALLBACK_CLIENT_CLOSED_CNT = 0;
-int LWS_CALLBACK_CLIENT_WRITEABLE_CNT = 0;
-
 static int
 callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			void *user, void *in, size_t len)
@@ -178,6 +178,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
 		//printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
+		relay_status = CONNECTED;
 		add_headers(in,len);
 		break;
 
@@ -193,7 +194,6 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_WRITEABLE:
 		//printf("LWS_CALLBACK_CLIENT_WRITEABLE\n");
-		LWS_CALLBACK_CLIENT_WRITEABLE_CNT++;
 		if (!wss_data_out_ready) break;
 		n = lws_snprintf((char *)p, sizeof(wss_data_out) - LWS_PRE, "%s", wss_data_out);
 		m = lws_write(wsi, p, n, LWS_WRITE_TEXT);
@@ -209,7 +209,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 10) break;
 		if (len > 1000) break;
-		//lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
+		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
 
 		memset(&wss_data_in, 0, sizeof wss_data_in);
 		strcpy(wss_data_in,(const char *)in);
@@ -240,23 +240,31 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_WS_PEER_INITIATED_CLOSE:
-		lwsl_notice("\n\nLWS_CALLBACK_WS_PEER_INITIATED_CLOSE (%d)\n\n",len);
+		lwsl_notice("\nLWS_CALLBACK_WS_PEER_INITIATED_CLOSE\n");
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
-		LWS_CALLBACK_CLIENT_CLOSED_CNT++;
-		lwsl_notice("LWS_CALLBACK_CLIENT_CLOSED %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
-		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-			(unsigned char *)"LWS_CALLBACK_CLIENT_CLOSED reconnecting...", 5);
-		if (LWS_CALLBACK_CLIENT_CLOSED_CNT > 1) {
+		lwsl_notice("LWS_CALLBACK_CLIENT_CLOSED\n");
+		if (relay_status == CONNECTED) {
 			relay_status = DISCONNECTED;
-			LWS_CALLBACK_CLIENT_CLOSED_CNT = 0;
+			return -1;
 		}
-		return -1;
+		break;
+
+	case LWS_CALLBACK_VHOST_CERT_AGING:
+		lwsl_notice("LWS_CALLBACK_VHOST_CERT_AGING\n");
+		break;
+
+	case LWS_CALLBACK_WSI_CREATE:
+		lwsl_notice("LWS_CALLBACK_WSI_CREATE\n");
+		break;
+
+	case LWS_CALLBACK_WS_CLIENT_DROP_PROTOCOL:
+		lwsl_notice("LWS_CALLBACK_WS_CLIENT_DROP_PROTOCOL\n");
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
+		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 			(unsigned char *)"LWS_CALLBACK_CLIENT_CONNECTION_ERROR reconnecting...", 5);
 		relay_status = DISCONNECTED;

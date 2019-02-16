@@ -81,7 +81,7 @@ callback_utility(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER:
 		//printf("LWS_CALLBACK_CLIENT_APPEND_HANDSHAKE_HEADER\n");
-		//utility_server_status = CONNECTED;
+		utility_server_status = CONNECTED;
 		break;
 
 	case LWS_CALLBACK_CLIENT_ESTABLISHED:
@@ -138,7 +138,7 @@ callback_utility(struct lws *wsi, enum lws_callback_reasons reason,
 		int res = utility_event_handler(wsi,root);
 		if (res == 0) lwsl_notice("event_type not found\n");
 		if (res == -1) {
-			wsi_connect = 1;
+			utility_server_status = DISCONNECTED;
 			return -1;
 		}
 		break;
@@ -148,22 +148,18 @@ callback_utility(struct lws *wsi, enum lws_callback_reasons reason,
 		break;
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
-		LWS_CALLBACK_CLIENT_CLOSED_CNT++;
-		lwsl_notice("LWS_CALLBACK_CLIENT_CLOSED %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
-		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
-			(unsigned char *)"LWS_CALLBACK_CLIENT_CLOSED reconnecting...", 5);
-		if (LWS_CALLBACK_CLIENT_CLOSED_CNT > 1) {
-			wsi_connect = 1;
-			LWS_CALLBACK_CLIENT_CLOSED_CNT = 0;
+		if (utility_server_status == CONNECTED) {
+			connection_count = 0;
+			utility_server_status = DISCONNECTED;
+			return -1;
 		}
-		return -1;
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",LWS_CALLBACK_CLIENT_CLOSED_CNT);
+		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",connection_count);
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 			(unsigned char *)"LWS_CALLBACK_CLIENT_CONNECTION_ERROR reconnecting...", 5);
-		wsi_connect = 1;
+		utility_server_status = DISCONNECTED;
 		return -1;
 		break;
 
