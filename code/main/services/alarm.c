@@ -18,6 +18,7 @@
 char alarm_service_message[2000];
 char alarm_service_message_in[2000];
 bool alarm_service_message_ready = false;
+char alarm_state[1000];
 
 bool system_armed_state = true;
 
@@ -33,6 +34,17 @@ bool isArmed() {
   return system_armed_state;
 }
 
+void store_alarm_state(int mode) {
+  snprintf(alarm_state,sizeof(alarm_state),"{\"mode\":%d}",mode);
+  store_char("alarm_state",alarm_state);
+  printf("Storing alarm state:\t%s\n", alarm_state);
+}
+
+void load_alarm_state() {
+  strcpy(alarm_state, get_char("alarm_state"));
+  alarm_payload = cJSON_Parse(alarm_state);
+  printf("Loading alarm state, setting payload:\t%s\n", alarm_state);
+}
 
 void createAlarmServiceMessage () {
   snprintf(alarm_service_message,sizeof(alarm_service_message),""
@@ -44,14 +56,15 @@ void createAlarmServiceMessage () {
 }
 
 static void alarm_service(void *pvParameter) {
+    load_alarm_state();
     while (1) {
 
         //incoming messages from other services
         if (alarm_payload) {
-
           if (cJSON_GetObjectItem(alarm_payload,"mode")) {
             int mode = cJSON_GetObjectItem(alarm_payload,"mode")->valueint;
             armSystem(mode);
+            store_alarm_state(mode);
             lwsl_notice("[alarm_service] mode %d\n",mode);
           }
 

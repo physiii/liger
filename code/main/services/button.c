@@ -15,7 +15,64 @@ char buttons_service_message[2000];
 bool buttons_service_message_ready = false;
 char button_direction[100];
 
-void button_event_handler(int state) {
+void createButtonServiceMessage(int state) {
+  cJSON *level_json = NULL;
+  int level;
+
+  switch(state) {
+    case BUTTON_CENTER:
+      strcpy(button_direction,"center");
+      printf("BUTTON_CENTER\n");
+      break;
+
+    case BUTTON_UP:
+      strcpy(button_direction,"up");
+      printf("BUTTON_UP\n");
+      break;
+
+    case BUTTON_RIGHT:
+      strcpy(button_direction,"right");
+      printf("BUTTON_RIGHT\n");
+      break;
+
+    case BUTTON_DOWN:
+      strcpy(button_direction,"down");
+      printf("BUTTON_DOWN\n");
+      break;
+
+    case BUTTON_LEFT:
+      strcpy(button_direction,"left");
+      printf("BUTTON_LEFT\n");
+      break;
+
+    case BUTTON_UP_RIGHT:
+      break;
+
+    case BUTTON_RIGHT_DOWN:
+      break;
+
+    case BUTTON_DOWN_LEFT:
+      break;
+
+    case BUTTON_LEFT_UP:
+      break;
+
+    case BUTTON_RELEASE:
+      break;
+
+    default:
+      break;
+  }
+
+  snprintf(buttons_service_message,sizeof(buttons_service_message),""
+  "{\"event_type\":\"service/state\","
+  " \"payload\":{\"service_id\":\"button_1\",\"state\":{\"value\":\"%s\"}}}"
+  , button_direction);
+  printf("%s\n", buttons_service_message);
+  buttons_service_message_ready = true;
+}
+
+void createDimmerServiceMessage(int state) {
   cJSON *level_json = NULL;
   int level;
 
@@ -76,8 +133,6 @@ void button_event_handler(int state) {
       break;
 
     default:
-      //dimmer_payload = NULL;
-      //lwsl_err("bad dpad state");
       break;
   }
 }
@@ -91,20 +146,12 @@ button_service(void *pvParameter)
   while (1) {
 
       int state = get_dpad_state();
-
+      // printf("Button state:\t%s\t%d\n", button_direction, state);
       if (state){
 
-        button_event_handler(state);
-
-        snprintf(buttons_service_message,sizeof(buttons_service_message),""
-        "{\"event_type\":\"service/state\","
-        " \"payload\":{\"service_id\":\"button_1\",\"state\":{\"value\":\"%s\"}}}"
-        , button_direction);
-
-        printf("%s\n", buttons_service_message);
-
-        previous_state = state;
-        buttons_service_message_ready = true;
+        if (dimmer_enabled) createDimmerServiceMessage(state);
+        createButtonServiceMessage(state);
+        // previous_state = state;
 
         vTaskDelay(250 / portTICK_PERIOD_MS); //debounce
         tp_debounce = false;

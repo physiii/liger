@@ -8,7 +8,8 @@
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
-char server_address[20] = "192.168.0.2";
+bool dimmer_enabled = false;
+char server_address[20] = "192.168.4.1";
 int port = 5050;
 bool use_ssl = true;
 
@@ -49,8 +50,9 @@ int set_switch(int);
 void debounce_pir();
 static int ratelimit_connects(unsigned int *last, unsigned int secs);
 
-#include "services/alarm.c"
 #include "services/storage.c"
+#include "services/alarm.c"
+#include "services/audio.c"
 #include "services/LED.c"
 #include "plugins/protocol_relay.c"
 #include "plugins/protocol_utility.c"
@@ -58,7 +60,6 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs);
 #include "services/dimmer.c"
 #include "services/motion.c"
 #include "services/scheduler.c"
-//#include "services/audio.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -233,16 +234,16 @@ void app_main(void) {
 	lws_esp32_wlan_start_station();
 	context = lws_esp32_init(&info, &vh);
 
+	alarm_main();
 	buttons_main();
 	LED_main();
 	dimmer_main();
 	schedule_main();
-	alarm_main();
 	motion_main();
-	//audio_main();
+	audio_main();
 
-	//store_char("token","");
-	//store_char("device_id","");
+	// store_char("token","");
+	// store_char("device_id","");
 	load_device_id();
 
 	printf("Device ID: %s\n",device_id);
@@ -287,6 +288,9 @@ void app_main(void) {
 	",{\"type\":\"alarm\","
 	"\"state\":{\"value\":1},"
 	"\"id\":\"alarm_1\"}"
+	",{\"type\":\"audio\","
+	"\"state\":{\"value\":1},"
+	"\"id\":\"audio_1\"}"
 	"]}}");
 
 	strcpy(wss_data_out,load_message);

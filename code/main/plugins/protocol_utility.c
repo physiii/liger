@@ -149,14 +149,13 @@ callback_utility(struct lws *wsi, enum lws_callback_reasons reason,
 
 	case LWS_CALLBACK_CLIENT_CLOSED:
 		if (utility_server_status == CONNECTED) {
-			connection_count = 0;
 			utility_server_status = DISCONNECTED;
 			return -1;
 		}
 		break;
 
 	case LWS_CALLBACK_CLIENT_CONNECTION_ERROR:
-		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR %d\n",connection_count);
+		lwsl_notice("LWS_CALLBACK_CLIENT_CONNECTION_ERROR\n");
 		lws_close_reason(wsi, LWS_CLOSE_STATUS_GOINGAWAY,
 			(unsigned char *)"LWS_CALLBACK_CLIENT_CONNECTION_ERROR reconnecting...", 5);
 		utility_server_status = DISCONNECTED;

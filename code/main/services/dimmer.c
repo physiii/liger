@@ -56,8 +56,8 @@ typedef struct {
 
 xQueueHandle timer_queue;
 
-static void example_tg0_timer_init(int timer_idx,
-    bool auto_reload, double timer_interval_sec);
+// static void tg1_timer_init(int timer_idx,
+//     bool auto_reload, double timer_interval_sec);
 
 // sets delay from when zerocross is detected and
 // triac is turned off to when the triac is turned
@@ -66,7 +66,7 @@ void set_brightness(int level) {
 
   // debounce the pir sensor when changing light values
   // really should communicate with motion service not pir
-  debounce_pir(10);
+  // debounce_pir(10);
 
   if (level > max_brightness) level = max_brightness;
   if (level < 0) level = 0;
@@ -146,13 +146,7 @@ int toggle_dimmer() {
   return new_level;
 }
 
-static void inline print_timer_counter(uint64_t counter_value) {
-    printf("Counter: 0x%08x%08x\n", (uint32_t) (counter_value >> 32),
-                                    (uint32_t) (counter_value));
-    printf("Time   : %.8f s\n", (double) counter_value / TIMER_SCALE);
-}
-
-void IRAM_ATTR timer_group0_isr(void *para) {
+void IRAM_ATTR timer_group1_isr(void *para) {
     int timer_idx = (int) para;
 
     /* Retrieve the interrupt status and the counter value
@@ -172,7 +166,7 @@ void IRAM_ATTR timer_group0_isr(void *para) {
     /* Clear the interrupt
        and update the alarm time for the timer with without reload */
     // if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_0) {
-    //     example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
+    //     tg1_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
     //     //evt.type = TEST_WITHOUT_RELOAD;
     //     TIMERG0.int_clr_timers.t0 = 1;
     //     timer_counter_value += (uint64_t) (sim_zerocross_delay * TIMER_SCALE);
@@ -203,7 +197,7 @@ void IRAM_ATTR timer_group0_isr(void *para) {
     //xQueueSendFromISR(timer_queue, &evt, NULL);
 }
 
-static void example_tg0_timer_init(int timer_idx,
+static void tg1_timer_init(int timer_idx,
     bool auto_reload, double timer_interval_sec) {
     /* Select and initialize basic parameters of the timer */
     timer_config_t config;
@@ -213,81 +207,30 @@ static void example_tg0_timer_init(int timer_idx,
     config.alarm_en = TIMER_ALARM_EN;
     config.intr_type = TIMER_INTR_LEVEL;
     config.auto_reload = auto_reload;
-    timer_init(TIMER_GROUP_0, timer_idx, &config);
+    timer_init(TIMER_GROUP_1, timer_idx, &config);
 
     /* Timer's counter will initially start from value below.
        Also, if auto_reload is set, this value will be automatically reload on alarm */
-    timer_set_counter_value(TIMER_GROUP_0, timer_idx, 0x00000000ULL);
+    timer_set_counter_value(TIMER_GROUP_1, timer_idx, 0x00000000ULL);
 
     /* Configure the alarm value and the interrupt on alarm. */
-    timer_set_alarm_value(TIMER_GROUP_0, timer_idx, timer_interval_sec * TIMER_SCALE);
-    timer_enable_intr(TIMER_GROUP_0, timer_idx);
-    timer_isr_register(TIMER_GROUP_0, timer_idx, timer_group0_isr,
+    timer_set_alarm_value(TIMER_GROUP_1, timer_idx, timer_interval_sec * TIMER_SCALE);
+    timer_enable_intr(TIMER_GROUP_1, timer_idx);
+    timer_isr_register(TIMER_GROUP_1, timer_idx, timer_group1_isr,
         (void *) timer_idx, ESP_INTR_FLAG_IRAM, NULL);
 
-    timer_start(TIMER_GROUP_0, timer_idx);
+    timer_start(TIMER_GROUP_1, timer_idx);
 }
 
-// static void timer_example_evt_task(void *arg) {
-//     uint32_t io_num;
-//     while (1) {
-//
-//         //fade_brightness(0,255,3000);
-//         //incoming messages from other services
-//         if (dimmer_payload) {
-//
-//           if (cJSON_GetObjectItem(dimmer_payload,"level")) {
-//             int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
-//             set_brightness(level);
-//             lwsl_notice("[dimmer_service] level %d\n",level);
-//           }
-//
-//           if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
-//             toggle_dimmer();
-//             lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
-//           }
-//
-//           if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
-//             int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
-//             inc_brightness(increment);
-//             lwsl_notice("[dimmer_service] increment %d\n",increment);
-//           }
-//
-//           if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
-//             int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
-//             dec_brightness(decrement);
-//             lwsl_notice("[dimmer_service] decrement %d\n",decrement);
-//           }
-//
-//           if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-//             int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-//             fade_brightness(0,fade,1000);
-//             lwsl_notice("[dimmer_service] level %d\n",fade);
-//           }
-//
-//           if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-//             /*int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-//             fadeSwitch(0,fade,0);
-//             lwsl_notice("[dimmer_service] fade %d\n",fade);*/
-//           }
-//
-//           dimmer_payload = NULL;
-//         }
-//
-//         vTaskDelay(200 / portTICK_PERIOD_MS);
-//     }
-// }
-
-static void IRAM_ATTR dimmer_isr_handler(void* arg) {
+static void IRAM_ATTR zerocross_isr(void* arg) {
     uint32_t gpio_num = (uint32_t) arg;
-    //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_EN;
     if (current_brightness < max_brightness) gpio_set_level(TRIAC_IO, TRIAC_OFF);
-    example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
+    tg1_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
     zerocross_present = true;
-    //xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
+    // xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
 }
 
-void gpio_init() {
+void dimmer_gpio_init() {
     gpio_config_t io_conf;
     io_conf.intr_type = GPIO_PIN_INTR_ANYEDGE;
     io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
@@ -304,7 +247,7 @@ void gpio_init() {
 
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
 
-    gpio_isr_handler_add(ZERO_DETECT_IO, dimmer_isr_handler, (void*) ZERO_DETECT_IO);
+    gpio_isr_handler_add(ZERO_DETECT_IO, zerocross_isr, (void*) ZERO_DETECT_IO);
 }
 
 static void dimmer_service(void *pvParameter) {
@@ -312,58 +255,62 @@ static void dimmer_service(void *pvParameter) {
     set_brightness(255); //start with dimmmer on
     while (1) {
 
-        //fade_brightness(0,255,3000);
-        //incoming messages from other services
-        if (dimmer_payload) {
+      if (!dimmer_enabled) {
+        vTaskDelay(200 / portTICK_PERIOD_MS);
+        continue;
+      }
 
-          if (cJSON_GetObjectItem(dimmer_payload,"level")) {
-            int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
-            set_brightness(level);
-            lwsl_notice("[dimmer_service] level %d\n",level);
-          }
+      //incoming messages from other services
+      if (dimmer_payload) {
 
-          if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
-            toggle_dimmer();
-            lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
-            int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
-            inc_brightness(increment);
-            lwsl_notice("[dimmer_service] increment %d\n",increment);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
-            int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
-            dec_brightness(decrement);
-            lwsl_notice("[dimmer_service] decrement %d\n",decrement);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-            int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-            fade_brightness(0,fade,1000);
-            lwsl_notice("[dimmer_service] level %d\n",fade);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-            int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-            fade_brightness(0,fade,2000);
-            lwsl_notice("[dimmer_service] fade %d\n",fade);
-          }
-
-          if (cJSON_GetObjectItem(dimmer_payload,"neutral_present")) {
-            if (cJSON_IsTrue(cJSON_GetObjectItem(dimmer_payload,"neutral_present"))) {
-              NEUTRAL_PRESENT = 1;
-            } else {
-              NEUTRAL_PRESENT = 0;
-            }
-            lwsl_notice("[dimmer_service] neutral_present: %d\n",NEUTRAL_PRESENT);
-          }
-
-          dimmer_payload = NULL;
+        if (cJSON_GetObjectItem(dimmer_payload,"level")) {
+          int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
+          set_brightness(level);
+          lwsl_notice("[dimmer_service] level %d\n",level);
         }
 
-        vTaskDelay(200 / portTICK_PERIOD_MS);
+        if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
+          toggle_dimmer();
+          lwsl_notice("[dimmer_service] toggle %d\n",current_brightness);
+        }
+
+        if (cJSON_GetObjectItem(dimmer_payload,"increment")) {
+          int increment = cJSON_GetObjectItem(dimmer_payload,"increment")->valueint;
+          inc_brightness(increment);
+          lwsl_notice("[dimmer_service] increment %d\n",increment);
+        }
+
+        if (cJSON_GetObjectItem(dimmer_payload,"decrement")) {
+          int decrement = cJSON_GetObjectItem(dimmer_payload,"decrement")->valueint;
+          dec_brightness(decrement);
+          lwsl_notice("[dimmer_service] decrement %d\n",decrement);
+        }
+
+        if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
+          int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
+          fade_brightness(0,fade,1000);
+          lwsl_notice("[dimmer_service] level %d\n",fade);
+        }
+
+        if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
+          int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
+          fade_brightness(0,fade,2000);
+          lwsl_notice("[dimmer_service] fade %d\n",fade);
+        }
+
+        if (cJSON_GetObjectItem(dimmer_payload,"neutral_present")) {
+          if (cJSON_IsTrue(cJSON_GetObjectItem(dimmer_payload,"neutral_present"))) {
+            NEUTRAL_PRESENT = 1;
+          } else {
+            NEUTRAL_PRESENT = 0;
+          }
+          lwsl_notice("[dimmer_service] neutral_present: %d\n",NEUTRAL_PRESENT);
+        }
+
+        dimmer_payload = NULL;
+      }
+
+      vTaskDelay(200 / portTICK_PERIOD_MS);
     }
 }
 
@@ -371,7 +318,7 @@ void dimmer_main() {
   timer_queue = xQueueCreate(10, sizeof(timer_event_t));
   //xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 10, NULL);
   xTaskCreate(&dimmer_service, "dimmer_service_task", 5000, NULL, 5, NULL);
-  gpio_init();
+  dimmer_gpio_init();
   printf("starting dimmer service\n");
   //xTaskCreate(&dimmer_service, "dimmer_service_task", 5000, NULL, 5, NULL);
   return 0;

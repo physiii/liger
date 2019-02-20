@@ -66,8 +66,7 @@ add_headers(void *in, size_t len)
 int
 handle_event(char * event_type)
 {
-	printf("looking for event type: %s\n",event_type);
-
+	// printf("looking for event type: %s\n",event_type);
 	if (strcmp(event_type,"dimmer")==0) {
 		dimmer_payload = payload;
 		payload = NULL;
@@ -132,14 +131,13 @@ wss_event_handler(struct lws *wsi, cJSON * root)
 		snprintf(event_type,sizeof(event_type),"%s",cJSON_GetObjectItem(root,"event_type")->valuestring);
 		payload = cJSON_GetObjectItemCaseSensitive(root,"payload");
 
-		// {id:id,callback:true,payload:[false,""]}
+		// Reply with callback
 		if (cJSON_GetObjectItemCaseSensitive(root,"id")) {
 			int callback_id = cJSON_GetObjectItemCaseSensitive(root,"id")->valueint;
 			char callback[70];
 			snprintf(callback,sizeof(callback),"{\"id\":%d,\"callback\":true,\"payload\":[false,\"\"]}",callback_id);
 			strcpy(wss_data_out,callback);
 			wss_data_out_ready = true;
-			//printf("sending callback: %s\n",callback);
 		}
 
 		return handle_event(event_type);
@@ -201,7 +199,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 			lwsl_err("ERROR %d writing to token socket\n", n);
 		} else {
 			wss_data_out_ready = false;
-			printf("SENT: %s\n",wss_data_out);
+			// printf("SENT: %s\n",wss_data_out);
 			strcpy(wss_data_out,"");
 		}
 		break;
@@ -209,7 +207,7 @@ callback_wss(struct lws *wsi, enum lws_callback_reasons reason,
 	case LWS_CALLBACK_CLIENT_RECEIVE:
 		if (len < 10) break;
 		if (len > 1000) break;
-		lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
+		// lwsl_notice("\n\nLWS_CALLBACK_RECEIVE(%d): %s\n\n",len,(const char *)in);
 
 		memset(&wss_data_in, 0, sizeof wss_data_in);
 		strcpy(wss_data_in,(const char *)in);
