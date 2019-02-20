@@ -37,6 +37,17 @@ static void audio_service(void *pvParameter)
       cJSON_AddItemToObject(dimmer_payload, "on", json);
     }
 
+    //incoming messages from other services
+    if (audio_payload) {
+      if (cJSON_GetObjectItem(audio_payload,"mode")) {
+        int mode = cJSON_GetObjectItem(audio_payload,"mode")->valueint;
+        armSystem(mode);
+        store_alarm_state(mode);
+        lwsl_notice("[audio_service] mode %d\n",mode);
+      }
+
+      audio_payload = NULL;
+    }
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }

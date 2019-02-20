@@ -79,6 +79,18 @@ handle_event(char * event_type)
 		return 1;
 	}
 
+	if (strcmp(event_type,"motion")==0) {
+		motion_payload = payload;
+		payload = NULL;
+		return 1;
+	}
+
+	if (strcmp(event_type,"audio")==0) {
+		audio_payload = payload;
+		payload = NULL;
+		return 1;
+	}
+
 	if (strcmp(event_type,"schedule")==0) {
 		schedule_payload = payload;
 		payload = NULL;

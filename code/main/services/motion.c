@@ -35,6 +35,19 @@ static void motion_service(void *pvParameter)
     } else {
       motion_duration = 0;
     }
+
+    //incoming messages from other services
+    if (motion_payload) {
+      if (cJSON_GetObjectItem(motion_payload,"motion_threshold")) {
+        int mode = cJSON_GetObjectItem(motion_payload,"motion_threshold")->valueint;
+        // armSystem(mode);
+        // store_alarm_state(mode);
+        lwsl_notice("[motion_service] mode %d\n",mode);
+      }
+
+      motion_payload = NULL;
+    }
+
     // printf("Motion Level:\t%d\n",motion_level);
     vTaskDelay(400 / portTICK_PERIOD_MS);
   }

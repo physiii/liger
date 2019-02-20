@@ -42,6 +42,8 @@ cJSON *dimmer_payload = NULL;
 cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
 cJSON *alarm_payload = NULL;
+cJSON *motion_payload = NULL;
+cJSON *audio_payload = NULL;
 int current_time = 0;
 bool got_ip = false;
 
