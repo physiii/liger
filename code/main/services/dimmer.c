@@ -62,7 +62,7 @@ xQueueHandle timer_queue;
 // sets delay from when zerocross is detected and
 // triac is turned off to when the triac is turned
 // on. A longer delay means less power available.
-void set_brightness(int level) {
+int set_brightness(int level) {
 
   // debounce the pir sensor when changing light values
   // really should communicate with motion service not pir
@@ -96,18 +96,18 @@ void set_brightness(int level) {
     setLED(0, 255, 0);
   }
 
-  current_brightness = level;
-  printf("set brightness to %d\n", level);
+  printf("Set brightness to %d.\n", level);
+  return level;
 }
 
 void dec_brightness(int amount) {
   int new_brightness = current_brightness - amount;
-  set_brightness(new_brightness);
+  current_brightness = set_brightness(new_brightness);
 }
 
 void inc_brightness(int amount) {
   int new_brightness = current_brightness + amount;
-  set_brightness(new_brightness);
+  current_brightness = set_brightness(new_brightness);
 }
 
 void fade_brightness(int start, int stop, int interval) {
@@ -117,7 +117,7 @@ void fade_brightness(int start, int stop, int interval) {
   if (stop>start) {
     interval = interval / (stop - start);
     for(int i=start; i<=stop; i+=divider) {
-      set_brightness(i);
+      current_brightness = set_brightness(i);
       if (interval<10) interval=10;
       vTaskDelay( interval / portTICK_RATE_MS);
     }
@@ -126,7 +126,7 @@ void fade_brightness(int start, int stop, int interval) {
   if (start>stop) {
     interval = interval / (start - stop);
     for(int i=start; i>=stop; i-=divider) {
-      set_brightness(i);
+      current_brightness = set_brightness(i);
       if (interval<10) interval=10;
       vTaskDelay( interval / portTICK_RATE_MS);
     }
@@ -142,38 +142,18 @@ int toggle_dimmer() {
   }
 
   lwsl_notice("toggle dimmer from %d to %d\n",current_brightness,new_level);
-  set_brightness(new_level);
+  current_brightness = set_brightness(new_level);
   return new_level;
 }
 
 void IRAM_ATTR timer_group1_isr(void *para) {
     int timer_idx = (int) para;
 
-    /* Retrieve the interrupt status and the counter value
-       from the timer that reported the interrupt */
     uint32_t intr_status = TIMERG0.int_st_timers.val;
     TIMERG0.hw_timer[timer_idx].update = 1;
     uint64_t timer_counter_value =
         ((uint64_t) TIMERG0.hw_timer[timer_idx].cnt_high) << 32
         | TIMERG0.hw_timer[timer_idx].cnt_low;
-
-    /* Prepare basic event data
-       that will be then sent back to the main program task */
-    // timer_event_t evt;
-    // evt.timer_group = 0;
-    // evt.timer_idx = timer_idx;
-    // evt.timer_counter_value = timer_counter_value;
-    /* Clear the interrupt
-       and update the alarm time for the timer with without reload */
-    // if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_0) {
-    //     tg1_timer_init(TIMER_1, TEST_WITH_RELOAD, triac_delay);
-    //     //evt.type = TEST_WITHOUT_RELOAD;
-    //     TIMERG0.int_clr_timers.t0 = 1;
-    //     timer_counter_value += (uint64_t) (sim_zerocross_delay * TIMER_SCALE);
-    //     TIMERG0.hw_timer[timer_idx].alarm_high = (uint32_t) (timer_counter_value >> 32);
-    //     TIMERG0.hw_timer[timer_idx].alarm_low = (uint32_t) timer_counter_value;
-    //     TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_EN;
-    // }
 
     if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
         gpio_set_level(TRIAC_IO, TRIAC_ON);
@@ -183,18 +163,8 @@ void IRAM_ATTR timer_group1_isr(void *para) {
           gpio_set_level(TRIAC_IO, TRIAC_OFF);
         }
 
-        //TIMERG0.hw_timer[0].config.alarm_en = TIMER_ALARM_DIS;
-        // evt.type = TEST_WITH_RELOAD;
         TIMERG0.int_clr_timers.t1 = 1;
-    } else {
-        //evt.type = -1; // not supported even type
     }
-
-    /* After the alarm has been triggered
-      we need enable it again, so it is triggered the next time */
-    //TIMERG0.hw_timer[timer_idx].config.alarm_en = TIMER_ALARM_EN;
-
-    //xQueueSendFromISR(timer_queue, &evt, NULL);
 }
 
 static void tg1_timer_init(int timer_idx,
@@ -252,7 +222,7 @@ void dimmer_gpio_init() {
 
 static void dimmer_service(void *pvParameter) {
     uint32_t io_num;
-    set_brightness(255); //start with dimmmer on
+    current_brightness = set_brightness(255); //start with dimmmer on
     while (1) {
 
       if (!dimmer_enabled) {
@@ -262,11 +232,24 @@ static void dimmer_service(void *pvParameter) {
 
       //incoming messages from other services
       if (dimmer_payload) {
-
         if (cJSON_GetObjectItem(dimmer_payload,"level")) {
           int level = cJSON_GetObjectItem(dimmer_payload,"level")->valueint;
-          set_brightness(level);
+          current_brightness = set_brightness(level);
           lwsl_notice("[dimmer_service] level %d\n",level);
+        }
+
+        if (cJSON_GetObjectItem(dimmer_payload,"on")) {
+          int power = cJSON_GetObjectItem(dimmer_payload,"on")->valueint;
+          if (power == 1) {
+            if (current_brightness == 0) current_brightness = max_brightness;
+            current_brightness = set_brightness(current_brightness);
+          } else if (power == 0) {
+            // we do not set current_brightness
+            // so 'on' returns to previous brightness
+            set_brightness(0);
+          }
+
+          lwsl_notice("[dimmer_service] power %d\n",power);
         }
 
         if (cJSON_GetObjectItem(dimmer_payload,"toggle")) {
@@ -290,12 +273,6 @@ static void dimmer_service(void *pvParameter) {
           int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
           fade_brightness(0,fade,1000);
           lwsl_notice("[dimmer_service] level %d\n",fade);
-        }
-
-        if (cJSON_GetObjectItem(dimmer_payload,"fade")) {
-          int fade = cJSON_GetObjectItem(dimmer_payload,"fade")->valueint;
-          fade_brightness(0,fade,2000);
-          lwsl_notice("[dimmer_service] fade %d\n",fade);
         }
 
         if (cJSON_GetObjectItem(dimmer_payload,"neutral_present")) {

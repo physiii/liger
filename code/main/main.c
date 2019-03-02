@@ -1,15 +1,12 @@
 #include <libwebsockets.h>
-#include <nvs_flash.h>
 #include <string.h>
-#include "nvs_flash.h"
-#include "nvs.h"
 #include "cJSON.h"
 
 #include "../components/libwebsockets/plugins/protocol_lws_status.c"
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
-bool dimmer_enabled = false;
-char server_address[20] = "192.168.4.1";
+bool dimmer_enabled =  true;
+char server_address[20] = "192.168.0.2";
 int port = 5050;
 bool use_ssl = true;
 
@@ -39,22 +36,24 @@ struct lws_context *context;
 cJSON *payload = NULL;
 cJSON *utility_payload = NULL;
 cJSON *dimmer_payload = NULL;
+cJSON *button_payload = NULL;
 cJSON *LED_payload = NULL;
 cJSON *schedule_payload = NULL;
 cJSON *alarm_payload = NULL;
 cJSON *motion_payload = NULL;
-cJSON *audio_payload = NULL;
+cJSON *microphone_payload = NULL;
 int current_time = 0;
 bool got_ip = false;
 
 //needs to go in headers
 int set_switch(int);
+int set_brightness(int);
 void debounce_pir();
 static int ratelimit_connects(unsigned int *last, unsigned int secs);
 
 #include "services/storage.c"
 #include "services/alarm.c"
-#include "services/audio.c"
+#include "services/microphone.c"
 #include "services/LED.c"
 #include "plugins/protocol_relay.c"
 #include "plugins/protocol_utility.c"
@@ -220,15 +219,13 @@ int load_device_id() {
 }
 
 void app_main(void) {
-	nvs_handle nvh;
-
 	lws_esp32_set_creation_defaults(&info);
 
 	info.port = CONTEXT_PORT_NO_LISTEN;
 	info.vhost_name = "station";
 	info.protocols = protocols_station;
 
-	nvs_flash_init();
+	storage_init();
 	lws_esp32_wlan_config();
 
 	ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL));
@@ -242,7 +239,7 @@ void app_main(void) {
 	dimmer_main();
 	schedule_main();
 	motion_main();
-	audio_main();
+	microphone_main();
 
 	// store_char("token","");
 	// store_char("device_id","");
@@ -280,7 +277,7 @@ void app_main(void) {
 	"{\"event_type\":\"load\","
 	" \"payload\":{\"services\":["
 	"{\"type\":\"dimmer\","
-	"\"state\":{\"level\":0, \"on\":false},\"id\":\"dimmer_1\"},"
+	"\"state\":{\"level\":0, \"on\":false},\"id\":\"dimmer_1\",\"schedule\":[]},"
 	"{\"type\":\"LED\","
 	"\"state\":{\"rgb\":[0,0,0]},"
 	"\"id\":\"rgb_1\"}"
@@ -290,9 +287,12 @@ void app_main(void) {
 	",{\"type\":\"alarm\","
 	"\"state\":{\"value\":1},"
 	"\"id\":\"alarm_1\"}"
-	",{\"type\":\"audio\","
-	"\"state\":{\"value\":1},"
-	"\"id\":\"audio_1\"}"
+	",{\"type\":\"microphone\","
+	"\"state\":{\"sensitivity\":1},"
+	"\"id\":\"microphone_1\"}"
+	",{\"type\":\"motion\","
+	"\"state\":{\"sensitivity\":1},"
+	"\"id\":\"motion_1\"}"
 	"]}}");
 
 	strcpy(wss_data_out,load_message);

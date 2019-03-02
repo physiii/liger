@@ -52,8 +52,11 @@ int check_schedule() {
 	      if (difference == 0) {
 	        cJSON *state = cJSON_GetObjectItem(event,"state");
 	        int level = cJSON_GetObjectItem(state,"level")->valueint;
-	        set_brightness(level);
-	        printf("[%s] setting level to %d\n",current_id,level);
+	        // set_brightness(level);
+					dimmer_payload = cJSON_CreateObject();
+		      cJSON *level_json = cJSON_CreateNumber(level);
+		      cJSON_AddItemToObject(dimmer_payload, "level", level_json);
+	        printf("Setting dimmer to %d\n",level);
 	      }
 			}
     }
@@ -143,8 +146,8 @@ int store_event() {
       	sprintf(current_service_id,"%s",service_id_obj->valuestring);
 				sprintf(current_event_id,"%s",event_id_obj->valuestring);
 
-				if (strcmp(current_service_id,service_id)==0) {
-					if (strcmp(current_event_id,event_id)==0) {
+				if (strcmp(current_service_id, service_id)==0) {
+					if (strcmp(current_event_id, event_id)==0) {
 							printf("deleting event to replace...%s %s",current_service_id,current_service_id);
 							del_index = index;
 							del_index_found = true;

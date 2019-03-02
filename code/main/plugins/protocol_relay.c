@@ -59,7 +59,7 @@ add_headers(void *in, size_t len)
 	*h += sprintf(*h, "x-device-type: %s\x0d\x0a","generic");
 	*h += sprintf(*h, "x-device-token: %s\x0d\x0a",token);
 
-	printf("header token:\n%s\n",token);
+	// printf("header token:\n%s\n",token);
 	return 0;
 }
 
@@ -85,8 +85,14 @@ handle_event(char * event_type)
 		return 1;
 	}
 
-	if (strcmp(event_type,"audio")==0) {
-		audio_payload = payload;
+	if (strcmp(event_type,"button")==0) {
+		button_payload = payload;
+		payload = NULL;
+		return 1;
+	}
+
+	if (strcmp(event_type,"microphone")==0) {
+		microphone_payload = payload;
 		payload = NULL;
 		return 1;
 	}

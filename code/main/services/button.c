@@ -14,6 +14,27 @@
 char buttons_service_message[2000];
 bool buttons_service_message_ready = false;
 char button_direction[100];
+int button_debounce_time = 500; // debounce time in ms
+
+int store_button_settings(cJSON * settings) {
+  store_char("button_settings", cJSON_PrintUnformatted(settings));
+  return 0;
+}
+
+int load_button_settings_from_flash() {
+  char * button_settings_str = get_char("button_settings");
+  if (strcmp(button_settings_str,"")==0) {
+    printf("No button settings found in flash.\n");
+    return 1;
+  } else {
+    printf("Loading button settings from flash. %s\n", button_settings_str);
+  }
+
+  // Need JSON validation
+  button_payload = cJSON_Parse(button_settings_str);
+
+  return 0;
+}
 
 void createButtonServiceMessage(int state) {
   cJSON *level_json = NULL;
@@ -22,27 +43,22 @@ void createButtonServiceMessage(int state) {
   switch(state) {
     case BUTTON_CENTER:
       strcpy(button_direction,"center");
-      printf("BUTTON_CENTER\n");
       break;
 
     case BUTTON_UP:
       strcpy(button_direction,"up");
-      printf("BUTTON_UP\n");
       break;
 
     case BUTTON_RIGHT:
       strcpy(button_direction,"right");
-      printf("BUTTON_RIGHT\n");
       break;
 
     case BUTTON_DOWN:
       strcpy(button_direction,"down");
-      printf("BUTTON_DOWN\n");
       break;
 
     case BUTTON_LEFT:
       strcpy(button_direction,"left");
-      printf("BUTTON_LEFT\n");
       break;
 
     case BUTTON_UP_RIGHT:
@@ -68,7 +84,6 @@ void createButtonServiceMessage(int state) {
   "{\"event_type\":\"service/state\","
   " \"payload\":{\"service_id\":\"button_1\",\"state\":{\"value\":\"%s\"}}}"
   , button_direction);
-  printf("%s\n", buttons_service_message);
   buttons_service_message_ready = true;
 }
 
@@ -79,10 +94,9 @@ void createDimmerServiceMessage(int state) {
   switch(state) {
     case BUTTON_CENTER:
       dimmer_payload = cJSON_CreateObject();
-      cJSON *toggle = cJSON_CreateBool(true);
-      cJSON_AddItemToObject(dimmer_payload, "toggle", toggle);
+      level_json = cJSON_CreateBool(true);
+      cJSON_AddItemToObject(dimmer_payload, "toggle", level_json);
       strcpy(button_direction,"center");
-      printf("BUTTON_CENTER\n");
       break;
 
     case BUTTON_UP:
@@ -90,7 +104,6 @@ void createDimmerServiceMessage(int state) {
       level_json = cJSON_CreateNumber(255);
       cJSON_AddItemToObject(dimmer_payload, "level", level_json);
       strcpy(button_direction,"up");
-      printf("BUTTON_UP\n");
       break;
 
     case BUTTON_RIGHT:
@@ -98,7 +111,6 @@ void createDimmerServiceMessage(int state) {
       level_json = cJSON_CreateNumber(30);
       cJSON_AddItemToObject(dimmer_payload, "increment", level_json);
       strcpy(button_direction,"right");
-      printf("BUTTON_RIGHT\n");
       break;
 
     case BUTTON_DOWN:
@@ -106,7 +118,6 @@ void createDimmerServiceMessage(int state) {
       level_json = cJSON_CreateNumber(0);
       cJSON_AddItemToObject(dimmer_payload, "level", level_json);
       strcpy(button_direction,"down");
-      printf("BUTTON_DOWN\n");
       break;
 
     case BUTTON_LEFT:
@@ -114,7 +125,6 @@ void createDimmerServiceMessage(int state) {
       level_json = cJSON_CreateNumber(30);
       cJSON_AddItemToObject(dimmer_payload, "decrement", level_json);
       strcpy(button_direction,"left");
-      printf("BUTTON_LEFT\n");
       break;
 
     case BUTTON_UP_RIGHT:
@@ -140,22 +150,32 @@ void createDimmerServiceMessage(int state) {
 static void
 button_service(void *pvParameter)
 {
-
   touch_main();
-  int previous_state = 0;
+  load_button_settings_from_flash();
+
   while (1) {
-
       int state = get_dpad_state();
-      // printf("Button state:\t%s\t%d\n", button_direction, state);
-      if (state){
 
+      if (state) {
         if (dimmer_enabled) createDimmerServiceMessage(state);
         createButtonServiceMessage(state);
-        // previous_state = state;
-
-        vTaskDelay(250 / portTICK_PERIOD_MS); //debounce
+        tp_debounce = true;
+        vTaskDelay(button_debounce_time / portTICK_PERIOD_MS); //debounce
         tp_debounce = false;
-      } else vTaskDelay(250 / portTICK_PERIOD_MS);
+      }
+
+      //incoming messages from other services
+      if (button_payload) {
+        if (cJSON_GetObjectItem(button_payload,"sensitivity")) {
+          int sensitivity = cJSON_GetObjectItem(button_payload,"sensitivity")->valueint;
+          set_touch_threshold(sensitivity);
+          store_button_settings(button_payload);
+          lwsl_notice("[button_service] sensitivity %d\n",sensitivity);
+        }
+        button_payload = NULL;
+      }
+
+      vTaskDelay(250 / portTICK_PERIOD_MS); //debounce
   }
 
 }

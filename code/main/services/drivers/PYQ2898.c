@@ -29,7 +29,9 @@
 #define PIR_TIMER_INTERVAL   (0.015625) // pir timer to get 64 Hz
 
 int motion_threshold = 1500;
-
+int max_motion_level = 5000;
+int motion_scale = 255;
+int motion_bias = 100;
 int motion_state = 0;
 int motion_level;
 double alpha = 0.1;
@@ -54,7 +56,6 @@ xQueueHandle timer_queue;
 struct pir_frame_t {
   uint16_t channel[3];
 };
-
 struct pir_frame_t frame = {0};
 struct pir_frame_t previous_frame = {0};
 struct pir_frame_t delta_frame = {0};
@@ -79,6 +80,10 @@ bool get_motion_state() {
   return state;
 }
 
+void set_motion_threshold(int sensitivity) {
+  motion_threshold = motion_bias + (max_motion_level - motion_bias) * sensitivity / motion_scale;
+}
+
 void set_gpio_mode (int mode) {
   if (mode == OUTPUT_MODE) {
     gpio_config_t c = {0};
@@ -100,7 +105,7 @@ void set_gpio_mode (int mode) {
   }
 }
 
-void fill_pir_frame() {
+void IRAM_ATTR fill_pir_frame() {
   // wait DL high
   gpio_set_direction(PIR_IO, GPIO_MODE_INPUT);
   while (0 == gpio_get_level(PIR_IO));
@@ -151,7 +156,7 @@ void IRAM_ATTR timer_group0_isr(void *para) {
 
   if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
     TIMERG0.int_clr_timers.t1 = 1;
-    fill_pir_frame();
+    if (!storage_in_use) fill_pir_frame();
     pir_timer_count++;
   }
 

@@ -14,13 +14,12 @@
 #include "driver/i2s.h"
 
 const int sample_rate = 44100;
-int max_audio_level = 0;
 int mic_timer_count = 0;
 uint16_t buf_len = 1024;
-int32_t audio_level = 0;
+int32_t microphone_level = 0;
 
-int get_audio_level() {
-	return audio_level;
+int get_microphone_level() {
+	return microphone_level;
 }
 
 static void mic_gpio_init() {
@@ -105,13 +104,13 @@ void task_microphone(void *pvParams) {
 			magnitude = sample_max - sample_min;
 			magnitude_avg = (alpha_avg * magnitude) + (1.0 - alpha_avg) * magnitude_avg;
 			if (magnitude > magnitude_avg) {
-				audio_level = magnitude - magnitude_avg;
+				microphone_level = magnitude - magnitude_avg;
 			} else {
-				audio_level = magnitude_avg - magnitude;
+				microphone_level = magnitude_avg - magnitude;
 			}
 
-			// if (audio_level > max_audio_level) max_audio_level = audio_level;
-			// printf("Avg:\t%u\tLevel:\t%u\tPeriod:\t%llu usec\n", magnitude_avg, audio_level, sample_time - prev_sample_time);
+			// if (microphone_level > max_microphone_level) max_microphone_level = microphone_level;
+			// printf("Avg:\t%u\tLevel:\t%u\tPeriod:\t%llu usec\n", magnitude_avg, microphone_level, sample_time - prev_sample_time);
 			prev_sample_time = sample_time;
 			// magnitude_avg = 0;
 			magnitude = 0;
@@ -119,51 +118,6 @@ void task_microphone(void *pvParams) {
 			sample_min = 0;
 			cnt = 0;
 		}
-		// char *buf_ptr_read = buf;
-		// char *buf_ptr_write = buf;
-		//
-		// // read whole block of samples
-		// int bytes_read = 0;
-		// while(bytes_read == 0) {
-		// 	bytes_read = i2s_read_bytes(I2S_NUM_1, buf, buf_len, 0);
-		// }
-		//
-		// uint32_t samples_read = bytes_read / 2 / (I2S_BITS_PER_SAMPLE_32BIT / 8);
-		//
-		// // convert 2x 32 bit stereo -> 1 x 16 bit mono
-		// for(int i = 0; i < samples_read; i++) {
-		// 	buf_ptr_write[2] = buf_ptr_write[0]; // mid
-		// 	buf_ptr_write[3] = buf_ptr_write[1]; // high
-		//
-		// 	buf_ptr_write += 2 * (I2S_BITS_PER_SAMPLE_16BIT / 8);
-		// 	buf_ptr_read += 2 * (I2S_BITS_PER_SAMPLE_32BIT / 8);
-		//
-		// 	sample_magnitude = buf_ptr_read[3];
-		// 	sample_magnitude = sample_magnitude << 8;
-		// 	sample_magnitude |= buf_ptr_read[2];
-		// 	magnitude_sum += sample_magnitude;
-		// }
-		//
-		// magnitude += magnitude_sum;
-		// magnitude_sum = 0;
-		// cnt += samples_read;
-		//
-		// if(cnt >= sample_rate) {
-		// 	gettimeofday(&tv, &tz);
-		// 	micros = tv.tv_usec + tv.tv_sec * 1000000;
-		// 	micros_prev = micros;
-		// 	printf("Sample Rate:\t%llu\n", 1 / (micros - micros_prev));
-		//
-		// 	// exponential moving average
-		// 	magnitude_avg = (alpha_avg * magnitude) + (1.0 - alpha_avg) * magnitude_avg;
-		// 	audio_level = magnitude - magnitude_avg;
-		// 	if (audio_level < 0) audio_level = 0 - audio_level;
-		// 	if (audio_level > max_audio_level) max_audio_level = audio_level;
-		// 	magnitude = 0;
-		// 	cnt = 0;
-		// }
-		//
-		// vTaskDelay(100 / portTICK_RATE_MS);
 	}
 }
 
