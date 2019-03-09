@@ -147,6 +147,7 @@ int toggle_dimmer() {
 }
 
 void IRAM_ATTR timer_group1_isr(void *para) {
+
     int timer_idx = (int) para;
 
     uint32_t intr_status = TIMERG0.int_st_timers.val;
@@ -155,14 +156,13 @@ void IRAM_ATTR timer_group1_isr(void *para) {
         ((uint64_t) TIMERG0.hw_timer[timer_idx].cnt_high) << 32
         | TIMERG0.hw_timer[timer_idx].cnt_low;
 
-    if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1) {
+    if ((intr_status & BIT(timer_idx)) && timer_idx == TIMER_1 && !storage_in_use) {
         gpio_set_level(TRIAC_IO, TRIAC_ON);
         if (current_brightness) {
           gpio_set_level(TRIAC_IO, TRIAC_ON);
         } else {
           gpio_set_level(TRIAC_IO, TRIAC_OFF);
         }
-
         TIMERG0.int_clr_timers.t1 = 1;
     }
 }

@@ -147,6 +147,7 @@ void IRAM_ATTR fill_pir_frame() {
 }
 
 void IRAM_ATTR timer_group0_isr(void *para) {
+  
   int timer_idx = (int) para;
   uint32_t intr_status = TIMERG0.int_st_timers.val;
   TIMERG0.hw_timer[timer_idx].update = 1;

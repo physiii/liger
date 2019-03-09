@@ -6,8 +6,8 @@
 #include <protocol_esp32_lws_reboot_to_factory.c>
 
 bool dimmer_enabled =  true;
-char server_address[20] = "192.168.0.2";
-int port = 5050;
+char server_address[20] = "dev.pyfi.org";
+int port = 443;
 bool use_ssl = true;
 
 int DISCONNECTED = 0;

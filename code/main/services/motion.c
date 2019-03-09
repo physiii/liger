@@ -1,11 +1,14 @@
 #include "drivers/PYQ2898.c"
 
+int MOTION_DEBOUNCE = 20 * 1000;
+
 char motion_service_message[2000];
 bool motion_service_message_ready = false;
 bool debounce_motion = false;
 unsigned int debounce_flag = 0;
 int motion_duration = 0;
 int motion_duration_threshold = 2;
+
 
 void createMotionServiceMessage () {
   sprintf(motion_service_message,""
@@ -50,8 +53,9 @@ static void motion_service(void *pvParameter)
       if (motion_level > motion_threshold) motion_duration++;
       if (motion_duration > motion_duration_threshold) {
         createMotionServiceMessage();
-        // createDimmerServiceMessage(BUTTON_UP);
         if (isArmed()) createAlarmServiceMessage();
+        createDimmerServiceMessage(BUTTON_UP);
+        vTaskDelay(MOTION_DEBOUNCE / portTICK_PERIOD_MS);
       }
     } else {
       motion_duration = 0;
