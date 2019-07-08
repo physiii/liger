@@ -42,10 +42,12 @@ cJSON *schedule_payload = NULL;
 cJSON *alarm_payload = NULL;
 cJSON *motion_payload = NULL;
 cJSON *microphone_payload = NULL;
+
 int current_time = 0;
 bool got_ip = false;
 
 //needs to go in headers
+void arm_lock(bool);
 int set_switch(int);
 int set_brightness(int);
 void debounce_pir();
@@ -53,14 +55,16 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs);
 
 #include "services/storage.c"
 #include "services/alarm.c"
-#include "services/microphone.c"
+// #include "services/microphone.c"
 #include "services/LED.c"
 #include "plugins/protocol_relay.c"
 #include "plugins/protocol_utility.c"
 #include "services/button.c"
-#include "services/dimmer.c"
+// #include "services/dimmer.c"
 #include "services/motion.c"
 #include "services/scheduler.c"
+#include "services/lock.c"
+#include "services/nfc.c"
 
 static const struct lws_protocols protocols_station[] = {
 	{
@@ -174,7 +178,7 @@ static int ratelimit_connects(unsigned int *last, unsigned int secs) {
 }
 
 int load_device_id() {
-	strcpy(device_id,get_char("device_id"));
+	// strcpy(device_id,get_char("device_id"));
 
 	if (strcmp(device_id,"")==0) {
 		memset(&utility_server, 0, sizeof utility_server);
@@ -193,6 +197,7 @@ int load_device_id() {
 		}
 	}
 
+	int cnt = 0;
 	while (strcmp(device_id,"")==0) {
 		printf("utility loop (%d)\n",cnt++);
 
@@ -236,13 +241,14 @@ void app_main(void) {
 	alarm_main();
 	buttons_main();
 	LED_main();
-	dimmer_main();
+	// dimmer_main();
 	schedule_main();
+	nfc_main();
 	motion_main();
-	microphone_main();
+	// microphone_main();
 
-	// store_char("token","");
-	// store_char("device_id","");
+	store_char("token","");
+	store_char("device_id","");
 	load_device_id();
 
 	printf("Device ID: %s\n",device_id);

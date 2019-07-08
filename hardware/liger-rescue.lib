@@ -3,7 +3,7 @@ EESchema-LIBRARY Version 2.4
 #
 # 18650_Battery_Cell_1043
 #
-DEF ~18650_Battery_Cell_1043 BT 0 0 N N 1 F N
+DEF 18650_Battery_Cell_1043 BT 0 0 N N 1 F N
 F0 "BT" 100 100 50 H V L CNN
 F1 "18650_Battery_Cell_1043" 100 0 50 H I L CNN
 F2 "" 0 60 50 V I C CNN
@@ -61,6 +61,52 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# C_0.1uF-open-automation
+#
+DEF C_0.1uF-open-automation C 0 10 N Y 1 F N
+F0 "C" 25 100 50 H V L CNN
+F1 "C_0.1uF-open-automation" -325 -100 50 H V L CNN
+F2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" 100 300 50 H I C CNN
+F3 "https://www.digikey.com/product-detail/en/tdk-corporation/C1608X8R1H104K080AB/445-8818-1-ND/3248223" 0 -250 50 H I C CNN
+F4 "CL10F104ZO8NNNC" 125 200 60 H I C CNN "Part Number"
+$FPLIST
+ C?
+ C_????_*
+ C_????
+ SMD*_c
+ Capacitor*
+$ENDFPLIST
+DRAW
+P 2 0 1 20 -80 -30 80 -30 N
+P 2 0 1 20 -80 30 80 30 N
+X ~ 1 0 150 110 D 50 50 1 1 P
+X ~ 2 0 -150 110 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# C_100pF-open-automation
+#
+DEF C_100pF-open-automation C 0 10 N Y 1 F N
+F0 "C" 25 100 50 H V L CNN
+F1 "C_100pF-open-automation" 50 -100 50 H V L CNN
+F2 "Capacitors_SMD:C_0603" 100 300 50 H I C CNN
+F3 "https://www.digikey.com/product-detail/en/avx-corporation/06035A101FAT2A/478-6202-1-ND/2391401" 0 -250 50 H I C CNN
+F4 "06035A101FAT2A" 125 200 60 H I C CNN "Part Number"
+$FPLIST
+ C?
+ C_????_*
+ C_????
+ SMD*_c
+ Capacitor*
+$ENDFPLIST
+DRAW
+P 2 0 1 20 -80 -30 80 -30 N
+P 2 0 1 20 -80 30 80 30 N
+X ~ 1 0 150 110 D 50 50 1 1 P
+X ~ 2 0 -150 110 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # C_10uF
 #
 DEF C_10uF C 0 10 N Y 1 F N
@@ -84,6 +130,29 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# C_10uF-open-automation
+#
+DEF C_10uF-open-automation C 0 10 N Y 1 F N
+F0 "C" 25 100 50 H V L CNN
+F1 "C_10uF-open-automation" 50 -100 50 H V L CNN
+F2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" 100 300 50 H I C CNN
+F3 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A106MP8NNNC/1276-1871-1-ND/3889957" 0 -250 50 H I C CNN
+F4 "CL10A106MP8NNNC" 125 200 60 H I C CNN "Part Number"
+$FPLIST
+ C?
+ C_????_*
+ C_????
+ SMD*_c
+ Capacitor*
+$ENDFPLIST
+DRAW
+P 2 0 1 20 -80 -30 80 -30 N
+P 2 0 1 20 -80 30 80 30 N
+X ~ 1 0 150 110 D 50 50 1 1 P
+X ~ 2 0 -150 110 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # C_1uF
 #
 DEF C_1uF C 0 10 N Y 1 F N
@@ -92,6 +161,29 @@ F1 "C_1uF" -225 -100 50 H V L CNN
 F2 "Capacitors_SMD:C_0603" 100 300 50 H I C CNN
 F3 "https://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V7BB105/311-1372-1-ND/2103156" 0 -250 50 H I C CNN
 F4 "CC0603ZRY5V7BB105" 125 200 60 H I C CNN "Part Number"
+$FPLIST
+ C?
+ C_????_*
+ C_????
+ SMD*_c
+ Capacitor*
+$ENDFPLIST
+DRAW
+P 2 0 1 20 -80 -30 80 -30 N
+P 2 0 1 20 -80 30 80 30 N
+X ~ 1 0 150 110 D 50 50 1 1 P
+X ~ 2 0 -150 110 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# C_1uF-open-automation
+#
+DEF C_1uF-open-automation C 0 10 N Y 1 F N
+F0 "C" 25 100 50 H V L CNN
+F1 "C_1uF-open-automation" -225 -100 50 H V L CNN
+F2 "Capacitor_SMD:C_0603_1608Metric_Pad0.99x1.00mm_HandSolder" 100 300 50 H I C CNN
+F3 "https://www.digikey.com/product-detail/en/tdk-corporation/CGA3E1X7R1C105M080AC/445-12540-1-ND/3954206" 0 -250 50 H I C CNN
+F4 "CL10B105KP8NNNC" 125 200 60 H I C CNN "Part Number"
 $FPLIST
  C?
  C_????_*
@@ -161,7 +253,7 @@ ENDDEF
 #
 # D_Schottky-BAT20JFILM
 #
-DEF ~D_Schottky-BAT20JFILM D 0 40 N N 1 F N
+DEF D_Schottky-BAT20JFILM D 0 40 N N 1 F N
 F0 "D" 0 100 50 H V C CNN
 F1 "D_Schottky-BAT20JFILM" 0 -100 50 H I C CNN
 F2 "Diodes_SMD:D_SOD-323" 0 -175 50 H I C CNN
@@ -246,6 +338,19 @@ X IO33 9 -900 -250 200 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
+# GND-open-automation
+#
+DEF GND-open-automation #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "GND-open-automation" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GND 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
 # IR-RX-TSOP34438
 #
 DEF IR-RX-TSOP34438 U 0 40 Y Y 1 F N
@@ -276,6 +381,27 @@ DRAW
 P 2 0 1 8 -50 -50 -50 50 N
 P 2 0 1 0 -50 0 50 0 N
 P 4 0 1 8 50 -50 50 50 -50 0 50 -50 N
+P 5 0 1 0 -120 -30 -180 -90 -150 -90 -180 -90 -180 -60 N
+P 5 0 1 0 -70 -30 -130 -90 -100 -90 -130 -90 -130 -60 N
+X K 1 -150 0 100 R 50 50 1 1 P
+X A 2 150 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# LED-0603-G-open-automation
+#
+DEF LED-0603-G-open-automation D 0 40 Y N 1 F N
+F0 "D" 0 100 50 H V C CNN
+F1 "LED-0603-G-open-automation" 0 -150 50 H V C CNN
+F2 "LED_SMD:LED_0603_1608Metric_Pad0.82x1.00mm_HandSolder" -100 0 50 H I C CNN
+F3 "https://www.digikey.com/product-detail/en/rohm-semiconductor/SML-D12M8WT86/511-1578-1-ND/1641810" 0 100 50 H I C CNN
+F4 "SML-D12M8WT86" 100 200 50 H I C CNN "Part Number"
+$FPLIST
+ LED*
+$ENDFPLIST
+DRAW
+P 2 0 1 8 -50 -50 -50 50 N
+P 4 0 1 8 50 -50 50 50 -50 0 50 -50 F
 P 5 0 1 0 -120 -30 -180 -90 -150 -90 -180 -90 -180 -60 N
 P 5 0 1 0 -70 -30 -130 -90 -100 -90 -130 -90 -130 -60 N
 X K 1 -150 0 100 R 50 50 1 1 P
@@ -490,6 +616,25 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# R_10k-open-automation
+#
+DEF R_10k-open-automation R 0 0 N Y 1 F N
+F0 "R" 0 0 50 V V C CNN
+F1 "R_10k-open-automation" -75 0 50 V V C CNN
+F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
+F3 "https://www.digikey.com/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647" 80 0 50 V I C CNN
+F4 "MCT06030C1002FP500" 180 100 60 V I C CNN "Part Number"
+$FPLIST
+ R_*
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 f
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # R_150-open-automation
 #
 DEF R_150-open-automation R 0 0 N Y 1 F N
@@ -528,6 +673,25 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# R_1k-open-automation
+#
+DEF R_1k-open-automation R 0 0 N Y 1 F N
+F0 "R" 0 0 50 V V C CNN
+F1 "R_1k-open-automation" -75 0 50 V V C CNN
+F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
+F3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" 80 0 50 V I C CNN
+F4 "ESR03EZPJ102" 180 100 60 V I C CNN "Part Number"
+$FPLIST
+ R_*
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 f
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # R_2k
 #
 DEF R_2k R 0 0 N Y 1 F N
@@ -555,6 +719,25 @@ F1 "R_47.5" -75 0 50 V V C CNN
 F2 "Resistors_SMD:R_0603" -70 0 50 V I C CNN
 F3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" 80 0 50 V I C CNN
 F4 "RC0603FR-0747R5L" 180 100 60 V I C CNN "Part Number"
+$FPLIST
+ R_*
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 f
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# R_47.5-open-automation
+#
+DEF R_47.5-open-automation R 0 0 N Y 1 F N
+F0 "R" 0 0 50 V V C CNN
+F1 "R_47.5-open-automation" -75 0 50 V V C CNN
+F2 "Resistor_SMD:R_0603_1608Metric_Pad0.99x1.00mm_HandSolder" -70 0 50 V I C CNN
+F3 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0747R5L/311-47.5HRCT-ND/730201" 80 0 50 V I C CNN
+F4 "ERJ-3EKF47R5V" 180 100 60 V I C CNN "Part Number"
 $FPLIST
  R_*
  R_*
@@ -693,7 +876,7 @@ ENDDEF
 #
 # speaker-CVS-1508
 #
-DEF ~speaker-CVS-1508 LS 0 0 Y N 1 F N
+DEF speaker-CVS-1508 LS 0 0 Y N 1 F N
 F0 "LS" 50 225 50 H V R CNN
 F1 "speaker-CVS-1508" 50 150 50 H I R CNN
 F2 "open-automation:speaker-1508" 0 -200 50 H I C CNN

@@ -1,4 +1,5 @@
-#include "drivers/PYQ2898.c"
+// #include "drivers/PYQ2898.c"
+#include "drivers/AM312.c"
 
 int MOTION_DEBOUNCE = 20 * 1000;
 
@@ -8,17 +9,21 @@ bool debounce_motion = false;
 unsigned int debounce_flag = 0;
 int motion_duration = 0;
 int motion_duration_threshold = 2;
-
+int motion_threshold = 0;
 
 void createMotionServiceMessage () {
   sprintf(motion_service_message,""
   "{\"event_type\":\"motion/active\","
   " \"payload\":{\"type\":\"PIR\","
-  "\"level\":%d, \"duration\":%d}}"
-  , motion_level, motion_duration);
+  " \"duration\":%d}}"
+  , motion_duration);
   printf("%s\n", motion_service_message);
 
   motion_service_message_ready = true;
+}
+
+void set_motion_threshold(int sensitivity) {
+  motion_threshold = sensitivity;
 }
 
 int store_motion_settings(cJSON * settings) {
@@ -41,8 +46,7 @@ int load_motion_settings_from_flash() {
   return 0;
 }
 
-static void motion_service(void *pvParameter)
-{
+static void motion_service(void *pvParameter) {
   pir_main();
   uint32_t io_num;
   printf("motion service loop\n");
@@ -50,8 +54,12 @@ static void motion_service(void *pvParameter)
 
   while (1) {
     if (get_motion_state()){
-      if (motion_level > motion_threshold) motion_duration++;
+      motion_duration++;
       if (motion_duration > motion_duration_threshold) {
+        arm_lock(false);
+        vTaskDelay(4 * 1000 / portTICK_RATE_MS);
+        arm_lock(true);
+
         createMotionServiceMessage();
         if (isArmed()) createAlarmServiceMessage();
         createDimmerServiceMessage(BUTTON_UP);
@@ -74,7 +82,7 @@ static void motion_service(void *pvParameter)
     }
 
     // printf("Motion Level:\t%d\n",motion_level);
-    vTaskDelay(400 / portTICK_PERIOD_MS);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
   }
 }
 
