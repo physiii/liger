@@ -32,7 +32,7 @@
     "co-views": "^2.1.0",
     "diskspace": "^2.0.0",
     "ejs": "^2.3.4",
-    "express": "^4.15.3",
+    "express": "^4.17.3",
     "find-remove": "^1.0.1",
     "getmac": "^1.2.1",
     "greenlock": "^2.1.12",
